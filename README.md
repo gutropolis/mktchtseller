@@ -12,4 +12,16 @@
 <h2>About Vue.Js</h2>
 <p>Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.</p>
 
+<h2><a href="#installation" aria-hidden="true" class="anchor" id="user-content-installation"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
+<ul>
+<li><code>git clone https://github.com/gutropolis/mktchtseller.git </code></li>
+<li><code>cd mktchtseller</code></li>
+<li><code>cp .env.example .env</code></li>
+<li><code>composer install</code></li>
+<li><code>php artisan key:generate</code></li>
+<li><code>php artisan jwt:secret</code></li>
+<li>Edit <code>.env</code> and set your database connection details</li>
+<li><code>php artisan migrate</code></li>
+<li><code>npm install</code> / <code>yarn</code></li>
+</ul>
 </article>
