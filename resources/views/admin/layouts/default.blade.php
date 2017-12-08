@@ -43,7 +43,7 @@
         <div class="navbar-right">
             <ul class="nav navbar-nav">
                 @include('admin.layouts._messages')
-				{{--      @include('admin.layouts._notifications') --}}
+				 @include('admin.layouts._notifications') 
 				
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -171,7 +171,7 @@
 
         <!-- Notifications -->
         <div id="notific">
-		{{-- @include('notifications') --}}
+		@include('notifications') 
         </div>
 
                 <!-- Content -->
