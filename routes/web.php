@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin', 'namespace'=>'Admin'], function () {
     # Lock screen
     Route::get('{id}/lockscreen', 'UsersController@lockscreen')->name('lockscreen');
     Route::post('{id}/lockscreen', 'UsersController@postLockscreen')->name('lockscreen');
+	
     # All basic routes defined here
     Route::get('login', 'AuthController@getSignin')->name('login');
     Route::get('signin', 'AuthController@getSignin')->name('signin');
@@ -93,6 +94,28 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
         Route::post('passwordreset', 'UsersController@passwordreset')->name('passwordreset');
 
     });
+	
+	//charity management
+    Route::group([ 'prefix' => 'charity'], function () {
+        Route::get('data', 'charityController@data')->name('charity.data');
+        Route::get('{charity}/delete', 'charityController@destroy')->name('charity.delete');
+        Route::get('{charity}/confirm-delete', 'charityController@getModalDelete')->name('charity.confirm-delete');
+        //Route::get('{user}/restore', 'charityController@getRestore')->name('restore.user');
+//        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
+       // Route::post('passwordreset', 'charityController@passwordreset')->name('passwordreset');
+    });
+
+    Route::resource('charity', 'charityController');
+    
+        Route::get('deleted_users',['before' => 'Sentinel', 'uses' => 'charityController@getDeletedUsers'])->name('deleted_users');
+    /*routes for Charity category*/
+    Route::group(['prefix' => 'charitycategory'], function () {
+       Route::get('{charitycategory}/delete', 'CharityCategoryController@destroy')->name('charitycategory.delete');
+       // Route::get('{charitycategory}/confirm-delete', 'CharityCategoryController@getModalDelete')->name('charitycategory.confirm-delete');
+      //  Route::get('{charityCategory}/restore', 'CharityCategoryController@getRestore')->name('charitycategory.restore');
+    });
+    Route::resource('charitycategory', 'CharityCategoryController');
+        
     Route::resource('users', 'UsersController');
 
     Route::get('deleted_users',['before' => 'Sentinel', 'uses' => 'UsersController@getDeletedUsers'])->name('deleted_users');
@@ -193,27 +216,7 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
     Route::post('task/{task}/delete', 'TaskController@delete')->name('delete');
 
 });
- //charity management
-    Route::group([ 'prefix' => 'charity'], function () {
-        Route::get('data', 'charityController@data')->name('charity.data');
-        Route::get('{charity}/delete', 'charityController@destroy')->name('charity.delete');
-        Route::get('{charity}/confirm-delete', 'charityController@getModalDelete')->name('charity.confirm-delete');
-        //Route::get('{user}/restore', 'charityController@getRestore')->name('restore.user');
-//        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
-       // Route::post('passwordreset', 'charityController@passwordreset')->name('passwordreset');
-    });
-
-    Route::resource('charity', 'charityController');
-    
-        Route::get('deleted_users',['before' => 'Sentinel', 'uses' => 'charityController@getDeletedUsers'])->name('deleted_users');
-    /*routes for Charity category*/
-    Route::group(['prefix' => 'charitycategory'], function () {
-       Route::get('{charitycategory}/delete', 'CharityCategoryController@destroy')->name('charitycategory.delete');
-       // Route::get('{charitycategory}/confirm-delete', 'CharityCategoryController@getModalDelete')->name('charitycategory.confirm-delete');
-      //  Route::get('{charityCategory}/restore', 'CharityCategoryController@getRestore')->name('charitycategory.restore');
-    });
-    Route::resource('charitycategory', 'CharityCategoryController');
-        
+ 
 
 
 
