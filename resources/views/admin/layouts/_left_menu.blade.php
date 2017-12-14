@@ -73,7 +73,8 @@
             </li>
         </ul>
 		</li>
-		 <li {!! (Request::is('admin/charity') || Request::is('admin/charity/create') || Request::is('admin/user_profile') || Request::is('admin/charity/*') || Request::is('admin/deleted_users') ? 'class="active"' : '') !!}>
+		
+		<li {!! (Request::is('admin/charity') || Request::is('admin/charity/create') || Request::is('admin/user_profile') || Request::is('admin/charity/*') || Request::is('admin/deleted_users') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="charity" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
@@ -105,6 +106,17 @@
                     View cahrity Profile
                 </a>
             </li>
+            <li {!! (Request::is('admin/deleted_users') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/deleted_users') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Deleted charity
+                </a>
+            </li>
+        </ul>
+    </li>
+		
+		
+		
 
 	<li {!! (Request::is('admin/seller') || Request::is('admin/seller/create') || Request::is('admin/seller_profile') || Request::is('admin/seller/*') || Request::is('admin/deleted_seller') ? 'class="active"' : '') !!}>
         <a href="#">
