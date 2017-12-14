@@ -73,6 +73,38 @@
             </li>
         </ul>
 		</li>
+		 <li {!! (Request::is('admin/charity') || Request::is('admin/charity/create') || Request::is('admin/user_profile') || Request::is('admin/charity/*') || Request::is('admin/deleted_users') ? 'class="active"' : '') !!}>
+        <a href="#">
+            <i class="livicon" data-name="charity" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
+               data-loop="true"></i>
+            <span class="title">Charity</span>
+            <span class="fa arrow"></span>
+        </a>
+        <ul class="sub-menu">
+		 <li {!! (Request::is('admin/charitycategory') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/charitycategory') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Category
+                </a>
+            </li>
+            <li {!! (Request::is('admin/charity') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/charity') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    charity
+                </a>
+            </li>
+            <li {!! (Request::is('admin/charity/create') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/charity/create') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Add New charity
+                </a>
+            </li>
+            <li {!! ((Request::is('admin/charity/*')) && !(Request::is('admin/charity/create')) ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::route('admin.charity.show',Sentinel::getUser()->id) }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    View cahrity Profile
+                </a>
+            </li>
 
 	<li {!! (Request::is('admin/seller') || Request::is('admin/seller/create') || Request::is('admin/seller_profile') || Request::is('admin/seller/*') || Request::is('admin/deleted_seller') ? 'class="active"' : '') !!}>
         <a href="#">
