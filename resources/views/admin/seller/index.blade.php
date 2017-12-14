@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Users List
+Seller List
 @parent
 @stop
 
@@ -16,7 +16,7 @@ Users List
 {{-- Page content --}}
 @section('content')
 <section class="content-header">
-    <h1>Users</h1>
+    <h1>Seller</h1>
     <ol class="breadcrumb">
         <li>
            <!-- <a href="{{ route('admin.dashboard') }}">-->
@@ -25,8 +25,8 @@ Users List
                 Dashboard
             </a>
         </li>
-        <li><a href="#"> Users</a></li>
-        <li class="active">Users List</li>
+        <li><a href="#"> Seller</a></li>
+        <li class="active">Seller List</li>
     </ol>
 </section>
 
@@ -35,8 +35,8 @@ Users List
     <div class="row">
         <div class="panel panel-primary ">
             <div class="panel-heading">
-                <h4 class="panel-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                    Users List
+                <h4 class="panel-title"> <i class="livicon" data-name="seller" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
+                    Seller List
                 </h4>
             </div>
             <br />
@@ -46,11 +46,12 @@ Users List
                     <thead>
                         <tr class="filters">
                             <th>ID</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>User E-mail</th>
-                            <th>Status</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Loaction</th>
+                            <th>Year in Buisness</th>
                             <th>Created At</th>
+							
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -76,14 +77,15 @@ Users List
         var table = $('#table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! route('admin.users.data') !!}',
+            ajax: '{!! route('admin.seller.data') !!}',
             columns: [
                 { data: 'id', name: 'id' },
-                { data: 'first_name', name: 'first_name' },
-                { data: 'last_name', name: 'last_name' },
-                { data: 'email', name: 'email' },
-                { data: 'status', name: 'status'},
+                { data: 'title', name: 'tile' },
+                { data: 'description', name: 'decription' },
+                { data: 'location', name: 'location' },
+                { data: 'year_in_buisness', name: 'year_in_buisness'},
                 { data: 'created_at', name:'created_at'},
+				
                 { data: 'actions', name: 'actions', orderable: false, searchable: false }
             ]
         });
@@ -96,7 +98,7 @@ Users List
 
 </script>
 
-<div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
+<div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="seller_delete_confirm_title" aria-hidden="true">
 	<div class="modal-dialog">
     	<div class="modal-content"></div>
   </div>
