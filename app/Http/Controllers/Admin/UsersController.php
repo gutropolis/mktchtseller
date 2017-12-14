@@ -41,7 +41,7 @@ class UsersController extends JoshController
      * @return mixed
      */
     public function data()
-    {		
+    {
         $users = User::get(['id', 'first_name', 'last_name', 'email','created_at']);
 
         return DataTables::of($users)

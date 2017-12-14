@@ -72,6 +72,50 @@
                 </a>
             </li>
         </ul>
+		</li>
+
+	<li {!! (Request::is('admin/seller') || Request::is('admin/seller/create') || Request::is('admin/seller_profile') || Request::is('admin/seller/*') || Request::is('admin/deleted_seller') ? 'class="active"' : '') !!}>
+        <a href="#">
+            <i class="livicon" data-name="seller" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
+               data-loop="true"></i>
+            <span class="title">Seller</span>
+            <span class="fa arrow"></span>
+        </a>
+		 <ul class="sub-menu">
+            <li {!! (Request::is('admin/sellercategory') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/sellercategory') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Seller Category
+                </a>
+            </li>
+			
+			
+			
+			<li {!! (Request::is('admin/seller') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/seller') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Seller
+                </a>
+            </li>
+            <li {!! (Request::is('admin/seller/create') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/seller/create') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Add New Seller
+                </a>
+            </li>
+            <li {!! ((Request::is('admin/seller/*')) && !(Request::is('admin/seller/create')) ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::route('admin.seller.show',Sentinel::getUser()) }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    View Profile
+                </a>
+            </li>
+            <li {!! (Request::is('admin/deleted_seller') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/deleted_seller') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Deleted Seller
+                </a>
+            </li>
+        </ul>
     </li>
     <li {!! (Request::is('admin/groups') || Request::is('admin/groups/create') || Request::is('admin/groups/*') ? 'class="active"' : '') !!}>
         <a href="#">

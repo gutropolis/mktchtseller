@@ -73,11 +73,10 @@ Users List
 
 <script>
     $(function() {
-        var table = $('#table').DataTable({			
+        var table = $('#table').DataTable({
             processing: true,
             serverSide: true,
-            //ajax: '{!! route('admin.users.data') !!}',
-			ajax: '{!! route('admin.users.data') !!}',
+            ajax: '{!! route('admin.users.data') !!}',
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'first_name', name: 'first_name' },

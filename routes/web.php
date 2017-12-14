@@ -96,6 +96,20 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
     Route::resource('users', 'UsersController');
 
     Route::get('deleted_users',['before' => 'Sentinel', 'uses' => 'UsersController@getDeletedUsers'])->name('deleted_users');
+	 # Seller Management
+	 
+    Route::group([ 'prefix' => 'seller'], function () {
+        Route::get('data', 'SellerController@data')->name('seller.data');
+        Route::get('{seller}/delete', 'SellerController@destroy')->name('seller.delete');
+        Route::get('{seller}/confirm-delete', 'SellerController@getModalDelete')->name('seller.confirm-delete');
+        Route::get('{seller}/restore', 'SellerController@getRestore')->name('restore.seller');
+//        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
+        Route::post('passwordreset', 'SellerController@passwordreset')->name('passwordreset');
+
+    });
+    Route::resource('seller', 'SellerController');
+
+    Route::get('deleted_seller',['before' => 'Sentinel', 'uses' => 'SellerController@getDeletedSeller'])->name('deleted_seller');
 
     # Group Management
     Route::group(['prefix' => 'groups'], function () {
@@ -121,6 +135,16 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
         Route::get('{blogCategory}/restore', 'BlogCategoryController@getRestore')->name('blogcategory.restore');
     });
     Route::resource('blogcategory', 'BlogCategoryController');
+	
+	
+	 /*routes for seller category*/
+    Route::group(['prefix' => 'sellercategory'], function () {
+        Route::get('{sellerCategory}/delete', 'SellerCategoryController@destroy')->name('sellercategory.delete');
+        Route::get('{sellerCategory}/confirm-delete', 'SellerCategoryController@getModalDelete')->name('Sellercategory.confirm-delete');
+        Route::get('{sellerCategory}/restore', 'SellerCategoryController@getRestore')->name('sellercategory.restore');
+    });
+    Route::resource('sellercategory', 'SellerCategoryController');
+	
     /*routes for file*/
     Route::group(['prefix' => 'file'], function () {
         Route::post('create', 'FileController@store')->name('store');
