@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\JoshController;
 use App\Http\Requests\charityRequest;
 use App\charity;
+use App\CharityCategory;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use Hash;
@@ -33,6 +34,7 @@ class charityController extends JoshController
     {
 
         // Show the page
+        
         return view('admin.charity.index', compact('charity'));
     }
  public function data()
@@ -58,8 +60,7 @@ class charityController extends JoshController
    
     public function store(Request $request)
     {
-		//echo $request->file('pic_file');
-		 if ($file = $request->file('pic_file')) {
+        if ($file = $request->file('pic_file')) {
             $extension = $file->extension()?: 'png';
             $destinationPath = public_path() . '/uploads/charity/';
             $safeName = str_random(10) . '.' . $extension;
@@ -79,7 +80,8 @@ class charityController extends JoshController
 		
 	
 	
-		
+        //$charity->charity_type= Sentinel::getUser()->id;
+        //$charity->save();
 		
         charity::create($request->all());
         return redirect()->route('admin.charity.index')
@@ -124,8 +126,9 @@ class charityController extends JoshController
 	  public function create()
     {
 		
-		 
-         return view('admin.charity.create');
+        $charitycategory = CharityCategory::pluck( 'title','id');
+        
+         return view('admin.charity.create', compact('charitycategory'));
 
     }
 	 public function edit(charity $charity)
