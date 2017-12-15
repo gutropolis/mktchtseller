@@ -69,7 +69,7 @@
                                             <div class="col-sm-10">
                                                 <input id="title" name="title" type="text"
                                                        placeholder="title" class="form-control required"
-                                                       value="{!! old('title') !!}" />
+                                                       value="{!! old('title') !!}" required/>
 
                                                 {!! $errors->first('title', '<span class="help-block">:message</span>') !!}
                                             </div>
@@ -79,7 +79,7 @@
                                             <label for="description" class="col-sm-2 control-label">Description *</label>
                                             <div class="col-sm-10">
                                                 <input id="description" name="description" type="text" placeholder="description"
-                                                       class="form-control required" value="{!! old('description') !!}"/>
+                                                       class="form-control required" value="{!! old('description') !!}"  required/>
 
                                                 {!! $errors->first('description', '<span class="help-block">:message</span>') !!}
                                             </div>
@@ -89,7 +89,7 @@
                                             <label for="location" class="col-sm-2 control-label">Location *</label>
                                             <div class="col-sm-10">
                                                 <input id="location" name="location" placeholder="location" type="text"
-                                                       class="form-control required" value="{!! old('location') !!}"/>
+                                                       class="form-control required" value="{!! old('location') !!}"  required/>
                                                 {!! $errors->first('location', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
@@ -112,7 +112,7 @@
                                 <span class="btn btn-default btn-file">
                                     <span class="fileinput-new">Select image</span>
                                     <span class="fileinput-exists">Change</span>
-                                    <input id="pic" name="pic_file" type="file" class="form-control"/>
+                                    <input id="pic" name="pic_file" type="file" class="form-control"  required/>
                                 </span>
                                                         <a href="#" class="btn btn-danger fileinput-exists"
                                                            data-dismiss="fileinput">Remove</a>
@@ -126,7 +126,7 @@
                                             <label for="year_in_business" class="col-sm-2 control-label">Year In Business *</label>
                                             <div class="col-sm-10">
                                                 <input id="year_in_business" name="year_in_business" type="text" placeholder="year_in_business"
-                                                       class="form-control required" value="{!! old('year_in_business') !!}"/>
+                                                       class="form-control required" value="{!! old('year_in_business') !!}"  required/>
 
                                                 {!! $errors->first('year_in_business', '<span class="help-block">:message</span>') !!}
                                             </div>
@@ -139,7 +139,7 @@
                                             <div class="col-sm-10">
                                                 <input id="dob" name="start_up_year" type="text" class="form-control"
                                                        data-date-format="YYYY"
-                                                       placeholder="yyyy"/>
+                                                       placeholder="yyyy"  required/>
                                             </div>
                                             <span class="help-block">{{ $errors->first('start_up_year', ':message') }}</span>
                                         </div>
@@ -148,7 +148,7 @@
                                             <label for="business_purpose" class="col-sm-2 control-label">Business Purpose*</label>
                                             <div class="col-sm-10">
                                                 <input id="business_purpose" name="business_purpose" type="text" placeholder="business_perpose"
-                                                       class="form-control required" value="{!! old('business_purpose') !!}"/>
+                                                       class="form-control required" value="{!! old('business_purpose') !!}"  required/>
 
                                                 {!! $errors->first('business_purpose', '<span class="help-block">:message</span>') !!}
                                             </div>
@@ -159,8 +159,8 @@
                                         <div class="form-group">
                                             <label for="address" class="col-sm-2 control-label">Address *</label>
                                             <div class="col-sm-10">
-                        <textarea name="address" id="bio" class="form-control resize_vertical"
-                                  rows="4">{!! old('address') !!}</textarea>
+                        <textarea name="address" id="bio"  required class="form-control resize_vertical"
+                                  rows="4">{!! old('address') !!}  </textarea>
                                             </div>
                                             {!! $errors->first('address', '<span class="help-block">:message</span>') !!}
                                         </div>
@@ -172,7 +172,7 @@
                                             <label for="phone_number" class="col-sm-2 control-label">Phone Number*</label>
                                             <div class="col-sm-10">
                                                 <input id="phone_number" name="phone_number" type="number" placeholder="phone_number"
-                                                       class="form-control required" value="{!! old('phone_number') !!}"/>
+                                                       class="form-control required" value="{!! old('phone_number') !!}" required/>
 
                                                 {!! $errors->first('phone_number', '<span class="help-block">:message</span>') !!}
                                             </div>
@@ -182,14 +182,14 @@
                                             <label for="keyword" class="col-sm-2 control-label">Keyword*</label>
                                             <div class="col-sm-10">
                                                 <input id="keyword" name="keyword" type="text" class="form-control"
-                                                       value="{!! old('keyword') !!}"/>
+                                                       value="{!! old('keyword') !!} " required/>
                                             </div>
                                             <span class="help-block">{{ $errors->first('keyword', ':message') }}</span>
                                         </div>
 										  <div class="form-group">
                                             <label for="vision_statement" class="col-sm-2 control-label">Vision Statement *</label>
                                             <div class="col-sm-10">
-                        <textarea name="vision_statement" id="vision_statement" class="form-control resize_vertical"
+                        <textarea name="vision_statement"  id="vision_statement" required  class="form-control resize_vertical"
                                   rows="4">{!! old('vision_statement') !!}</textarea>
                                             </div>
                                             {!! $errors->first('vision_statement', '<span class="help-block">:message</span>') !!}
@@ -197,7 +197,7 @@
                                         <div class="form-group">
                                             <label for="mission_statement" class="col-sm-2 control-label">Mission Statement *</label>
                                             <div class="col-sm-10">
-                        <textarea name="mission_statement" id="mission_statement" class="form-control resize_vertical"
+                        <textarea name="mission_statement" id="mission_statement"  required class="form-control resize_vertical"
                                   rows="4">{!! old('mission_statement') !!}</textarea>
                                             </div>
                                             {!! $errors->first('mission_statement', '<span class="help-block">:message</span>') !!}
@@ -207,7 +207,7 @@
                                             <label for="tags" class="col-sm-2 control-label">Tags*</label>
                                             <div class="col-sm-10">
                                                 <input id="tags" name="tags" type="text" class="form-control"
-                                                       value="{!! old('tags') !!}"/>
+                                                       value="{!! old('tags') !!}" required/>
                                             </div>
                                             <span class="help-block">{{ $errors->first('tags', ':message') }}</span>
                                         </div>
