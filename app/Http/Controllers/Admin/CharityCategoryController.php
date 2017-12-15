@@ -17,12 +17,15 @@ class CharityCategoryController extends JoshController
      *
      * @return Response
      */
-    public function index(CharityCategoryRequest  $request)
+    public function index()
     {
         // Grab all the blog category
-		$charitycategories=CharityCategory::all();
-       
-        return view('admin.charitycategory.index', compact('charitycategories'));
+        $charitycategories=CharityCategory::all();
+        $charitycategory=CharityCategory::all()->where('parent_id','=','0');
+        $subcategory=CharityCategory::all()->where('parent_id','>','0');
+        //$charitycategories=CharityCategory::with('children')->get();
+        
+        return view('admin.charitycategory.index', compact('charitycategories','charitycategory','subcategory'));
     }
 
     /**
