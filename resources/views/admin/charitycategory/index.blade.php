@@ -50,8 +50,8 @@
                             <label for="parent_id" class="">Parent Category *</label>
                             <select name="parent_id" class="form-control">
 							<option value="0">Select Category...
-							@foreach($charitycategories as $cat)
-							<option value="{{$cat->parent_id}}">{{$cat->title}}</option>
+							@foreach($charitycategory as $cat)
+							<option value="{{$cat->id}}">{{$cat->title}}</option>
 							</option>
 							@endforeach
 							</select>
@@ -90,23 +90,18 @@
 				
       <div class="table-responsive">
 	  
-	<table border="2"   class="table table-bordered width100">
-	<tr>
-	<th>ID</th>
-	<th>Title</th>
-	<th>Description</th>
-	<th>Charity Title</th>
-	<th>Created At</th>
-	 <th>Actions</th>
-	</tr>
-	@foreach($charitycategories as $charity)
+	<table rules="row" class="table table-bordered width100">
 	<tr>
 	
-	<td>{{$charity->id}}</td>
-	<td>{{$charity->title}}</td>
-	<td>{{$charity->description}}</td>
-	<td>{{$charity->title}}</td>
-	<td>{{$charity->created_at}}</td>
+	<th>Title</th>
+	 <th>Actions</th>
+	</tr>
+	@foreach($charitycategory as $charity)
+	<tr>
+	
+	
+	<td ><h3>* {{$charity->title}}</h3></td>
+	
 	<td><a href="{{ URL::to('admin/charitycategory/' . $charity->id . '/edit' ) }}"><i class="livicon"
                                                                                                      data-name="edit"
                                                                                                      data-size="18"
@@ -119,6 +114,36 @@
                                                                         data-hc="#f56954"
                                                                         title="@lang('charitycategories/table.delete-blog')"></i></a></td>
 	</tr>
+    @foreach($subcategory as $sub)
+    @if($charity->id==$sub->parent_id)
+    <tr>
+   
+    
+    <td>--{{$sub->title}}</td>
+    
+    <td>
+    
+    <a href="{{ URL::to('admin/charitycategory/' . $sub->id . '/edit' ) }}"><i class="livicon"
+                                                                                                     data-name="edit"
+                                                                                                     data-size="18"
+                                                                                                     data-loop="true"
+                                                                                                     data-c="#428BCA"
+                                                                                                     data-hc="#428BCA"
+                                                                                                     title="@lang('charitycategory/table.update-blog')"></i></a>
+    
+    
+    
+    
+    
+    <a href="{{ route('admin.charitycategory.delete', $sub->id) }}"><i class="livicon" data-name="remove-alt"
+                                                                        data-size="18" data-loop="true" data-c="#f56954"
+                                                                        data-hc="#f56954"
+                                                                        title="@lang('charitycategories/table.delete-blog')"></i></a></td>
+    
+    
+    </tr>
+    @endif
+    @endforeach
 	@endforeach
 	</table>
 	</div>
