@@ -44,16 +44,7 @@
                             <i class="livicon" data-name="user" data-size="16" data-c="#000" data-hc="#000" data-loop="true"></i>
                            Charity Profile</a>
                     </li>
-                    <li>
-                        <a href="#tab2" data-toggle="tab">
-                            <i class="livicon" data-name="key" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>
-                            Change Password</a>
-                    </li>
-                    <li>
-                        <a href="{{ URL::to('admin/user_profile') }}" >
-                            <i class="livicon" data-name="gift" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>
-                            Advanced Charity Profile</a>
-                    </li>
+                   
 
                 </ul>
                 <div  class="tab-content mar-top">
@@ -109,6 +100,83 @@
                                                             </td>
                                                             <td>
                                                                 {{ $charity->location }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>year_in_business</td>
+                                                            <td>
+                                                                {{ $charity->year_in_business }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>start_up_year</td>
+                                                            <td>
+                                                                {{ $charity->start_up_year }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>business purpose</td>
+                                                            <td>
+                                                                {{ $charity->business_purpose}}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Address</td>
+                                                            <td>
+                                                                {{ $charity->address }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Phone_number</td>
+                                                            <td>
+                                                                {{ $charity->phone_number }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Keyword</td>
+                                                            <td>
+                                                                {{ $charity->keyword }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Vision Statement</td>
+                                                            <td>
+                                                                {{ $charity->vision_statement }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Mission Statement</td>
+                                                            <td>
+                                                                {{ $charity->mission_statement }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Tags</td>
+                                                            <td>
+                                                                {{ $charity->tags }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>user id</td>
+                                                            <td>
+                                                                {{ $charity->user_id }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Charity Type</td>
+                                                            <td>
+                                                                {{ $charity->charity_type }}
                                                             </td>
                                                         </tr>
                                                        
