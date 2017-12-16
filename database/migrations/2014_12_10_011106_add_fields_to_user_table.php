@@ -20,10 +20,13 @@ class AddFieldsToUserTable extends Migration {
 			$table->date('dob')->nullable();
 			$table->string('pic')->nullable();
 			$table->string('country')->nullable();
+			$table->string('role')->nullable();
+
 			$table->string('state')->nullable();
 			$table->string('city')->nullable();
 			$table->string('address')->nullable();
 			$table->string('postal')->nullable();
+			$table->string('membership_id')->nullable();
 
 		});
 	}
@@ -38,7 +41,7 @@ class AddFieldsToUserTable extends Migration {
 		Schema::table('users', function(Blueprint $table)
 		{
 			// delete above columns
-			$table->dropColumn(array('bio', 'gender', 'dob', 'pic', 'country', 'state', 'city', 'address', 'postal'));
+			$table->dropColumn(array('bio', 'gender', 'dob', 'pic', 'country','role','state', 'city', 'address', 'postal','membership_id'));
 		});
 	}
 
