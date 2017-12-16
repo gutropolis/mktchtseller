@@ -126,7 +126,9 @@ class charityController extends JoshController
 	  public function create()
     {
 		
-        $charitycategory = CharityCategory::pluck( 'title','id');
+        $charitycategory=CharityCategory::all()->where('parent_id','>','0');
+       // echo $charitycategory;
+        //exit;
         
          return view('admin.charity.create', compact('charitycategory'));
 
