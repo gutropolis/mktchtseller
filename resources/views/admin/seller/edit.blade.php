@@ -66,6 +66,30 @@
                                         <div class="tab-content">
                                     <div class="tab-pane" id="tab1">
                                         <h2 class="hidden">&nbsp;</h2>
+										<div class="form-group {{ $errors->first('seller_type', 'has-error') }}">
+                                            <label for="seller_type" class="col-sm-2 control-label">Seller Type *</label>
+                                            <div class="col-sm-10">
+                                                <select name="seller_type" class="form-control required" required>
+            
+                                                <option value="{{$seller->seller_type}}">{{$seller->seller_type}}</option>
+
+                                                @foreach($sellerpercategory as $parent)
+                                                <option value="" disabled>*{{$parent->title}}</option>
+
+            @foreach($sellercategory as $sellercat)
+                                                @if($parent->id==$sellercat->parent_id)
+            <option value="{{$sellercat->title}}">--{{$sellercat->title}}</option>
+            @endif
+                                                   @endforeach  
+                                                   @endforeach  
+            </select>
+                                                {!! $errors->first('seller_type', '<span class="help-block">:message</span>') !!}
+                                            </div>
+                                        </div>
+										
+										
+										
+										
                                         <div class="form-group {{ $errors->first('title', 'has-error') }}">
                                             <label for="title" class="col-sm-2 control-label">Title *</label>
                                             <div class="col-sm-10">

@@ -41,11 +41,25 @@
     <div class="row">
         <div class="the-box no-border">
             <!-- errors -->
-            {!! Form::model($sellercategory, ['url' => URL::to('admin/sellercategory') . '/' . $sellercategory->id, 'method' => 'put', 'class' => 'form-horizontal']) !!}
+            {!! Form::model($sellercategory, ['url' => URL::to('admin/sellercategory/' . $sellercategory->id), 'method' => 'put', 'class' => 'bf', 'files'=> true]) !!}
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                  <div class="row">
                     <div class="col-sm-8">
 					
+						 <div class="form-group {{ $errors->first('parent_id', 'has-error') }}">
+                            <label for="parent_id" class="">Parent Category *</label>
+                            <select name="parent_id" class="form-control">
+							<option value="0">Select Category...
+							
+							
+							</option>
+							<option value="{{$sellercategory->parent_id}}">{{$sellercategory->title}}
+							
+							
+							</option>
+							</select>
+                            
+                        </div>
 					
                         <div class="form-group {{ $errors->first('title', 'has-error') }}">
                           <input type="text" name="title" placeholder="Title" class="form-control" value="{!! old('title',$sellercategory->title) !!}"/> 
@@ -54,7 +68,8 @@
                           <div class="form-group ">
                         <textarea name="description" id="description" class="form-control resize_vertical" placeholder="Description"
                                   rows="4">{!! old('description',$sellercategory->description) !!}</textarea>
-								   <span class="help-block">{{ $errors->first('description', ':message') }}</span>
+								   <span class="help-block">{{ $errors->first(
+								   'description', ':message') }}</span>
                                             </div>
                  
                        
@@ -62,24 +77,19 @@
                        
                        
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">@lang('update')</button>
+                            <button type="submit" class="btn btn-success">@lang('publish')</button>
                             <a href="{!! URL::to('admin/charitycategory/index') !!}"
-                               class="btn btn-danger">@lang('Discard')</a>
+                               class="btn btn-danger">@lang('discard')</a>
                         </div>
-                    </div>
-                    <!-- /.col-sm-4 -->
+                   
+                    <!-- /.col-sm-4 --> 
                 {!! Form::close() !!}
 				
-				
-				
-			
-				
-        
+	</div>
+	 </div>
     </div>
-	
-			 </div>
-	 </div>	
-	
+	</div>
+	 
     <!--main content ends-->
 </section>
 @stop
@@ -87,8 +97,7 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
 <!-- begining of page level js -->
-<!--edit 
--->
+<!--edit blog-->
 <script src="{{ asset('assets/vendors/summernote/summernote.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/vendors/select2/js/select2.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/vendors/bootstrap-tagsinput/js/bootstrap-tagsinput.js') }}" type="text/javascript" ></script>

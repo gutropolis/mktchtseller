@@ -1,69 +1,121 @@
 @extends('admin/layouts/default')
 
-{{-- Web site Title --}}
-
+{{-- Page title --}}
 @section('title')
     @lang('Seller Category') :: @parent
 @stop
 
-{{-- Content --}}
+{{-- page level styles --}}
+@section('header_styles')
 
+    <link href="{{ asset('assets/vendors/summernote/summernote.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/vendors/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/vendors/bootstrap-tagsinput/css/bootstrap-tagsinput.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/pages/blog.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/jasny-bootstrap/css/jasny-bootstrap.css') }}">
+    <!--end of page level css-->
+@stop
+
+
+{{-- Page content --}}
 @section('content')
+
 <section class="content-header">
-    <h1>
-        @lang('Create Seller Category')
-    </h1>
+    <!--section starts-->
+    <h1>@lang('Add Seller Sub Category')</h1>
     <ol class="breadcrumb">
         <li>
-            <a href="{{ route('admin.dashboard') }}"> <i class="livicon" data-name="home" data-size="16" data-color="#000"></i> Dashboard
+            <a href="{{ route('admin.dashboard') }}"> <i class="livicon" data-name="home" data-size="14" data-c="#000" data-loop="true"></i>
+                @lang('general.home')
             </a>
         </li>
-        <li>@lang('Seller Categories')</li>
-        <li class="active">
-            @lang('Add Seller Category')
+        <li>
+            <a href="#">@lang('Category')</a>
         </li>
+        <li class="active">@lang('Add Sub category ')</li>
     </ol>
 </section>
 
-<!-- Main content -->
-<section class="content">
+ 
+<!--section ends-->
+<section class="content paddingleft_right15">
+    <!--main content-->
     <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-primary ">
-                <div class="panel-heading">
-                    <h4 class="panel-title"> <i class="livicon" data-name="users-add" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                        @lang('Add Seller Category')
-                    </h4>
-                </div>
-                <div class="panel-body">
-                    {!! Form::open(array('url' => URL::to('admin/sellercategory'), 'method' => 'post', 'class' => 'form-horizontal', 'files'=> true)) !!}
-                    <div class="form-group {{ $errors->first('title', 'has-error') }}">
-                        <label for="title" class="col-sm-2 control-label">
-                            @lang('Category Name')
-                        </label>
-                        <div class="col-sm-5">
-                            {!! Form::text('title', null, array('class' => 'form-control', 'placeholder'=>trans('categoryname'))) !!}
+        <div class="the-box no-border">
+            <!-- errors -->
+            {!! Form::open(array('url' => URL::to('admin/sellercategory'), 'method' => 'post', 'class' => 'bf', 'files'=> true)) !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                 <div class="row">
+				 
+                    <div class="col-sm-8">
+					
+						 <div class="form-group {{ $errors->first('parent_id', 'has-error') }}">
+                            <label for="parent_id" class="">Parent Category *</label>
+                            <select name="parent_id" class="form-control">
+							<option value="0">Select Category...
+							@foreach($sellercategories as $cat)
+							<option value="{{$cat->parent_id}}">{{$cat->title}}</option>
+							</option>
+							@endforeach
+							</select>
+							
+						
+                            
                         </div>
-                        <div class="col-sm-4">
-                            {!! $errors->first('title', '<span class="help-block">:message</span> ') !!}
+					<label for="Sub Category" class="">Sub Category *</label>
+                        <div class="form-group {{ $errors->first('title', 'has-error') }}">
+                          <input type="text" name="title" placeholder="Title" class="form-control" value="{!! old('title') !!}"/> 
+						   <span class="help-block">{{ $errors->first('title', ':message') }}</span>
+                        </div>
+						<label for="description" class=""> Description *</label>
+                          <div class="form-group ">
+                        <textarea name="description" id="description" class="form-control resize_vertical" placeholder="Description"
+                                  rows="4">{!! old('description') !!}</textarea>
+								   <span class="help-block">{{ $errors->first('description', ':message') }}</span>
+                                            </div>
+					
+                       
+                       
+                       
+                       
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">@lang('Save New Category')</button>
+                            <a href="{!! URL::to('admin/charitycategory/index') !!}"
+                               class="btn btn-danger">@lang('Descard')</a>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-4">
-                            <a class="btn btn-danger" href="{{ URL::to('admin/sellercategory/') }}">
-                                @lang('Cancel')
-                            </a>
-                            <button type="submit" class="btn btn-success">
-                                @lang('Save')
-                            </button>
-                        </div>
-                    </div>
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
+                    <!-- /.col-sm-4 -->
+                {!! Form::close() !!}
+				
+				
+				
+			
+				
+        
     </div>
-    <!-- row-->
+	<div class="panel panel-primary ">
+	 <div class="panel-heading clearfix">
+                <h4 class="panel-title pull-left">
+                    @lang('Seller Category List')
+                </h4>
+               </div>
+           
+            
+			 </div>
+	 </div>	
+	
+    <!--main content ends-->
 </section>
+@stop
+
+{{-- page level scripts --}}
+@section('footer_scripts')
+<!-- begining of page level js -->
+<!--edit 
+-->
+<script src="{{ asset('assets/vendors/summernote/summernote.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/vendors/select2/js/select2.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/vendors/bootstrap-tagsinput/js/bootstrap-tagsinput.js') }}" type="text/javascript" ></script>
+<script type="text/javascript" src="{{ asset('assets/vendors/jasny-bootstrap/js/jasny-bootstrap.js') }}"></script>
+<script src="{{ asset('assets/js/pages/add_newblog.js') }}" type="text/javascript"></script>
 @stop

@@ -32,7 +32,7 @@
         <li>
             <a href="#">@lang('Category')</a>
         </li>
-        <li class="active">@lang('Add category ')</li>
+        <li class="active">@lang('Add Seller  Category ')</li>
     </ol>
 </section>
 <!--section ends-->
@@ -50,8 +50,8 @@
                             <label for="parent_id" class="">Parent Category *</label>
                             <select name="parent_id" class="form-control">
 							<option value="0">Select Category...
-							@foreach($sellercategories as $cat)
-							<option value="{{$cat->parent_id}}">{{$cat->title}}</option>
+							@foreach($s as $cat)
+							<option value="{{$cat->id}}">{{$cat->title}}</option>
 							</option>
 							@endforeach
 							</select>
@@ -77,75 +77,81 @@
                             <a href="{!! URL::to('admin/charitycategory/index') !!}"
                                class="btn btn-danger">@lang('discard')</a>
                         </div>
-                    </div>
-                    <!-- /.col-sm-4 -->
+                   
+                    <!-- /.col-sm-4 --> 
                 {!! Form::close() !!}
-				
-				
-				
-			
-				
-        
-    </div>
-	<div class="panel panel-primary ">
-	 <div class="panel-heading clearfix">
-                <h4 class="panel-title pull-left">
-                    @lang('Seller Category List')
+				 <div class="panel panel-primary ">
+			  <div class="panel-heading">
+                <h4 class="panel-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
+                   Seller Category List
                 </h4>
-               </div>
-           
-            
-			
-	    <div class="panel-body">
-                <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr class="filters">
-						<th>@lang('id')</th>
-                            <th>@lang('Title')</th>
-                            <th>@lang('Description')</th>
-							<th>@lang('Created_at')</th>
-							<th>@lang('parent_id')</th>
-							<th>@lang('Action')</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                 
-                       	@foreach($sellercategories as $cat)
-                            <tr>
-                                <td>{{ $cat->id }}</td>
-                                <td>{{ $cat->title }}</td>
-                                <td>{{ $cat->description }}</td>
-								
-                                <td>{{ $cat->created_at }}</td>
-								<td>{{$cat->parent_id}}</td>
-								 
-								 <td>
-                                    <a href="{{ URL::to('admin/sellercategory/' . $cat->id ) }}"></a>
-                                    <a href="{{ URL::to('admin/sellercategory/' . $cat->id . '/edit' ) }}"><i class="livicon"
+            </div>	
+				
+				
+      <div class="table-responsive">
+	  
+	<table rules="row" class="table table-bordered width100">
+	<tr>
+	
+	<th>Title</th>
+	 <th>Actions</th>
+	</tr>
+	@foreach($s as $sell)
+	<tr>
+	
+	
+	<td ><h3>* {{$sell->title}}</h3></td>
+	
+	<td><a href="{{ URL::to('admin/sellercategory/' . $sell->id . '/edit' ) }}"><i class="livicon"
                                                                                                      data-name="edit"
                                                                                                      data-size="18"
                                                                                                      data-loop="true"
                                                                                                      data-c="#428BCA"
                                                                                                      data-hc="#428BCA"
-                                                                                                     title="@lang('seller/table.update-seller')"></i></a>
-                                    <a href="{{ route('admin.sellercategory.delete', $cat->id) }}"><i class="livicon" data-name="remove-alt"
+                                                                                                     title="@lang('sellercategory/table.update-blog')"></i></a>
+                                    <a href="{{ route('admin.sellercategory.delete', $sell->id) }}"><i class="livicon" data-name="remove-alt"
                                                                         data-size="18" data-loop="true" data-c="#f56954"
                                                                         data-hc="#f56954"
-                                                                        title="@lang('charitycategories/table.delete-blog')"></i></a>
-                                </td>
-                                
-                            </tr>
-                        @endforeach
-                    
-                    </tbody>
-                </table>
-                </div>
-            </div>
-			 </div>
-	 </div>	
-	
+                                                                        title="@lang('sellercategories/table.delete-blog')"></i></a></td>
+	</tr>
+    @foreach($subcategory as $sub)
+    @if($sell->id==$sub->parent_id)
+    <tr>
+   
+    
+    <td>--{{$sub->title}}</td>
+    
+    <td>
+    
+    <a href="{{ URL::to('admin/charitycategory/' . $sub->id . '/edit' ) }}"><i class="livicon"
+                                                                                                     data-name="edit"
+                                                                                                     data-size="18"
+                                                                                                     data-loop="true"
+                                                                                                     data-c="#428BCA"
+                                                                                                     data-hc="#428BCA"
+                                                                                                     title="@lang('charitycategory/table.update-blog')"></i></a>
+    
+    
+    
+    
+    
+    <a href="{{ route('admin.sellercategory.delete', $sub->id) }}"><i class="livicon" data-name="remove-alt"
+                                                                        data-size="18" data-loop="true" data-c="#f56954"
+                                                                        data-hc="#f56954"
+                                                                        title="@lang('charitycategories/table.delete-blog')"></i></a></td>
+    
+    
+    </tr>
+    @endif
+    @endforeach
+	@endforeach
+	</table>
+	</div>
+	</div>
+	 </div>
+    </div>
+	</div>
+	 </div>
     <!--main content ends-->
 </section>
 @stop
@@ -153,8 +159,7 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
 <!-- begining of page level js -->
-<!--edit 
--->
+<!--edit blog-->
 <script src="{{ asset('assets/vendors/summernote/summernote.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/vendors/select2/js/select2.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/vendors/bootstrap-tagsinput/js/bootstrap-tagsinput.js') }}" type="text/javascript" ></script>
