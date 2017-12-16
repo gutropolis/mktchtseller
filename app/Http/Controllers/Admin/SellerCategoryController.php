@@ -18,10 +18,15 @@ class SellerCategoryController extends JoshController
      */
     public function index()
     {
-        // Grab all the blog category
         $sellercategories = SellerCategory::all();
+		
+		$subcategory= SellerCategory::all()->where('parent_id','>','0');
+		
+		$s = SellerCategory::all()->where('parent_id','=','0');
+		
         // Show the page
-        return view('admin.sellercategory.index', compact('sellercategories'));
+        return view('admin.sellercategory.index', compact('sellercategories','s','subcategory'));
+    
     }
 
     /**
