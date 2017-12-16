@@ -74,7 +74,7 @@
                        
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">@lang('publish')</button>
-                            <a href="{!! URL::to('admin/charitycategory/index') !!}"
+                            <a href="{!! URL::to('admin/charitycategory') !!}"
                                class="btn btn-danger">@lang('discard')</a>
                         </div>
                    
