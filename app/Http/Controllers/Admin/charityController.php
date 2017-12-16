@@ -142,7 +142,7 @@ class charityController extends JoshController
         //$roles = Sentinel::getRoleRepository()->all();
 
         //$status = Activation::completed($user);
-
+//this is adit 
         //$countries = $this->countries;
              $charityparcategory=CharityCategory::all()->where('parent_id','=','0');
              $charitycategory=CharityCategory::all()->where('parent_id','>','0');
