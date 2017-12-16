@@ -31,7 +31,7 @@
         <li>
             <a href="#">@lang('blog/title.blog')</a>
         </li>
-        <li class="active">@lang('blog/title.add-blog')</li>
+        <li class="active">@lang('title.add-blog')</li>
     </ol>
 </section>
 <!--section ends-->
