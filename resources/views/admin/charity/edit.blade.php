@@ -23,7 +23,7 @@
 {{-- Page content --}}
 @section('content')
     <section class="content-header">
-        <h1>Edit user</h1>
+        <h1>Edit Charity</h1>
         <ol class="breadcrumb">
             <li>
                 <a href="{{ route('admin.dashboard') }}">
@@ -66,6 +66,26 @@
                                         <div class="tab-content">
                                     <div class="tab-pane" id="tab1">
                                         <h2 class="hidden">&nbsp;</h2>
+																				 <div class="form-group {{ $errors->first('charity_type', 'has-error') }}">
+                                            <label for="charity_type" class="col-sm-2 control-label">Charity Type *</label>
+                                            <div class="col-sm-10">
+                                                <select name="charity_type" class="form-control required" required>
+												
+                                                <option value="{{$charity->charity_type}}">{{$charity->charity_type}}</option>
+
+                                                @foreach($charityparcategory as $parent)
+                                                <option value="" disabled>*{{$parent->title}}</option>
+
+												@foreach($charitycategory as $charitycat)
+                                                @if($parent->id==$charitycat->parent_id)
+												<option value="{{$charitycat->title}}">--{{$charitycat->title}}</option>
+												@endif
+                                                   @endforeach  
+                                                   @endforeach  
+												</select>
+                                                {!! $errors->first('charity_type', '<span class="help-block">:message</span>') !!}
+                                            </div>
+                                        </div>
                                         <div class="form-group {{ $errors->first('title', 'has-error') }}">
                                             <label for="title" class="col-sm-2 control-label">Title *</label>
                                             <div class="col-sm-10">
@@ -119,7 +139,7 @@
                                                         <span class="fileinput-new">Select image</span>
                                                         <span class="fileinput-exists">Change</span>
                                                         <input id="pic" name="pic_file" type="file"
-                                                               class="form-control" required/>
+                                                               class="form-control" />
                                                     </span>
                                                                 <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput" style="color: black !important;">Remove</a>
                                                             </div>
