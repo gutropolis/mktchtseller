@@ -125,12 +125,12 @@ class charityController extends JoshController
      */
 	  public function create()
     {
-		
+		$charityparcategory=CharityCategory::all()->where('parent_id','=','0');
         $charitycategory=CharityCategory::all()->where('parent_id','>','0');
        // echo $charitycategory;
         //exit;
         
-         return view('admin.charity.create', compact('charitycategory'));
+         return view('admin.charity.create', compact('charitycategory','charityparcategory'));
 
     }
 	 public function edit(charity $charity)
@@ -144,9 +144,11 @@ class charityController extends JoshController
         //$status = Activation::completed($user);
 
         //$countries = $this->countries;
-
-       
-        return view('admin.charity.edit', compact('charity'));
+             $charityparcategory=CharityCategory::all()->where('parent_id','=','0');
+             $charitycategory=CharityCategory::all()->where('parent_id','>','0');
+			//echo $charityparcategory;
+			//exit;
+        return view('admin.charity.edit', compact('charity','charitycategory','charityparcategory'));
     }
     
     public function destroy($id)
