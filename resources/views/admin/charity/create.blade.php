@@ -64,6 +64,20 @@
                                 <div class="tab-content">
                                     <div class="tab-pane" id="tab1">
                                         <h2 class="hidden">&nbsp;</h2>
+										 <div class="form-group {{ $errors->first('charity_type', 'has-error') }}">
+                                            <label for="charity_type" class="col-sm-2 control-label">Charity Type *</label>
+                                            <div class="col-sm-10">
+                                                <select name="charity_type" class="form-control required">
+												<option value="">Select charity_type</option>
+												@foreach($charitycategory as $charitycat)
+                                                
+												<option value="{{$charitycat->title}}">{{$charitycat->title}}</option>
+												
+                                                   @endforeach    
+												</select>
+                                                {!! $errors->first('charity_type', '<span class="help-block">:message</span>') !!}
+                                            </div>
+                                        </div>
                                         <div class="form-group {{ $errors->first('title', 'has-error') }}">
                                             <label for="title" class="col-sm-2 control-label">Title *</label>
                                             <div class="col-sm-10">
