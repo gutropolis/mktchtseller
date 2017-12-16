@@ -11,7 +11,7 @@ class SellerCategory extends Model {
 
     protected $dates = ['deleted_at'];
 
-    protected $table = 'gs_seller_type';
+    protected $table = 'gs_vender_business_type';
 
     protected $guarded = ['id'];
 
