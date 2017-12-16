@@ -24,11 +24,7 @@ use stdClass;
 class charityController extends JoshController
 {
 
-    /**
-     * Show a list of all the users.
-     *
-     * @return View
-     */
+    
 
     public function index()
     {
