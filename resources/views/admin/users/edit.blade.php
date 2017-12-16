@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li>Users</li>
-            <li class="active">Add New User</li>
+            <li class="active">Edit New User</li>
         </ol>
     </section>
     <section class="content">
@@ -72,7 +72,7 @@
                                                     <div class="col-sm-10">
                                                         <input id="first_name" name="first_name" type="text"
                                                                placeholder="First Name" class="form-control required"
-                                                               value="{!! old('first_name', $user->first_name) !!}"/>
+                                                               value="{!! old('first_name', $user->first_name) !!}" required/>
                                                     </div>
                                                     {!! $errors->first('first_name', '<span class="help-block">:message</span>') !!}
                                                 </div>
@@ -82,7 +82,7 @@
                                                     <div class="col-sm-10">
                                                         <input id="last_name" name="last_name" type="text" placeholder="Last Name"
                                                                class="form-control required"
-                                                               value="{!! old('last_name', $user->last_name) !!}"/>
+                                                               value="{!! old('last_name', $user->last_name) !!}" required/>
                                                     </div>
                                                     {!! $errors->first('last_name', '<span class="help-block">:message</span>') !!}
                                                 </div>
@@ -92,7 +92,7 @@
                                                     <div class="col-sm-10">
                                                         <input id="email" name="email" placeholder="E-Mail" type="text"
                                                                class="form-control required email"
-                                                               value="{!! old('email', $user->email) !!}"/>
+                                                               value="{!! old('email', $user->email) !!}" required/>
 
                                                     {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                                                     </div>
@@ -157,7 +157,7 @@
                                                         <span class="fileinput-new">Select image</span>
                                                         <span class="fileinput-exists">Change</span>
                                                         <input id="pic" name="pic_file" type="file"
-                                                               class="form-control"/>
+                                                               class="form-control" required/>
                                                     </span>
                                                                 <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput" style="color: black !important;">Remove</a>
                                                             </div>
@@ -168,7 +168,7 @@
                                                 <div class="form-group  {{ $errors->first('pic', 'has-error') }}">
                                                     <label for="bio" class="col-sm-2 control-label">Bio <small>(brief intro)</small></label>
                                                     <div class="col-sm-10">
-                                            <textarea name="bio" id="bio" class="form-control resize_vertical"
+                                            <textarea name="bio" id="bio" required class="form-control resize_vertical"
                                                       rows="4">{!! old('bio', $user->bio) !!}</textarea>
                                                     </div>
                                                     {!! $errors->first('bio', '<span class="help-block">:message</span>') !!}
@@ -203,7 +203,7 @@
                                                     <label for="state" class="col-sm-2 control-label">State </label>
                                                     <div class="col-sm-10">
                                                         <input id="state" name="state" type="text" class="form-control"
-                                                               value="{!! old('state', $user->state) !!}"/>
+                                                               value="{!! old('state', $user->state) !!}" required/>
                                                     </div>
                                                     {!! $errors->first('state', '<span class="help-block">:message</span>') !!}
                                                 </div>
@@ -212,7 +212,7 @@
                                                     <label for="city" class="col-sm-2 control-label">City </label>
                                                     <div class="col-sm-10">
                                                         <input id="city" name="city" type="text" class="form-control"
-                                                               value="{!! old('city', $user->city) !!}"/>
+                                                               value="{!! old('city', $user->city) !!}" required/>
                                                     </div>
                                                     {!! $errors->first('city', '<span class="help-block">:message</span>') !!}
                                                 </div>
@@ -221,7 +221,7 @@
                                                     <label for="address" class="col-sm-2 control-label">Address </label>
                                                     <div class="col-sm-10">
                                                         <input id="address" name="address" type="text" class="form-control"
-                                                               value="{!! old('address', $user->address) !!}"/>
+                                                               value="{!! old('address', $user->address) !!}" required/>
                                                     </div>
                                                     {!! $errors->first('address', '<span class="help-block">:message</span>') !!}
                                                 </div>
@@ -230,7 +230,7 @@
                                                     <label for="postal" class="col-sm-2 control-label">Postal/zip</label>
                                                     <div class="col-sm-10">
                                                         <input id="postal" name="postal" type="text" class="form-control"
-                                                               value="{!! old('postal', $user->postal) !!}"/>
+                                                               value="{!! old('postal', $user->postal) !!}" required/>
                                                     </div>
                                                     {!! $errors->first('postal', '<span class="help-block">:message</span>') !!}
                                                 </div>
