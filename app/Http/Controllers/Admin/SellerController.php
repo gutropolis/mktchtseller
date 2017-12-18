@@ -6,6 +6,7 @@ use App\Seller;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use Hash;
+use App\SellerCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Redirect;
@@ -69,8 +70,9 @@ class SellerController extends JoshController
      */
     public function create()
     {
-    
-        return view('admin.seller.create');
+		$sellerpercategory=SellerCategory::all()->where('parent_id','=','0');
+    $sellercategory=SellerCategory::all()->where('parent_id','>','0');
+        return view('admin.seller.create',compact('sellercategory','sellerpercategory'));
     }
 
     /**
@@ -88,21 +90,7 @@ class SellerController extends JoshController
             $file->move($destinationPath, $safeName);
             $request['pic'] = $safeName;
         }
-		request()->validate([
-			'title'=>'required',
-			'description'=>'required',
-			'location'=>'required',
-			'pic'=>'required',
-			'year_in_buisness'=>'required',
-			'start_up_year'=>'required',
-			'address'=>'required',
-			'mission_statement'=>'required',
-			'vision_statement'=>'required',
-			'phone_number'=>'required',
-			'tax_id'=>'required'
 		
-		
-		]);
        
         Seller::create($request->all());
 		return redirect()->route('admin.seller.index')
@@ -118,9 +106,10 @@ class SellerController extends JoshController
   
 		 public function edit(Seller $seller)
     {
-
+		$sellercategory=SellerCategory::all()->where('parent_id','>','0');
+		$sellerpercategory=SellerCategory::all()->where('parent_id','=','0');
         // Show the page
-        return view('admin.seller.edit', compact('seller'));
+        return view('admin.seller.edit', compact('seller','sellercategory','sellerpercategory'));
     }
        
     
