@@ -60,7 +60,7 @@
                                 @lang('Title')
                             </label>
                             <div class="col-sm-5">
-                                <input type="text" id="title" name="title" class="form-control" placeholder="Title"
+                                <input type="text" id="title" name="title" class="form-control" required placeholder="Title"
                                        value="{!! old('title'),$rol->title !!}">
                             </div>
                             <div class="col-sm-4">
@@ -73,7 +73,7 @@
                                 @lang('Description')
                             </label>
                             <div class="col-sm-5">
-                                <input type="text" id="description" name="description
+                                <input type="text" id="description" required name="description
 								" class="form-control" placeholder="Description"
                                        value="{!! old('description'),$rol->description !!}">
                             </div>
@@ -130,7 +130,7 @@
                                 @lang('Slug')
                             </label>
                             <div class="col-sm-5">
-                                <input type="text" id="slug" name="slug" class="form-control" placeholder="Add Slug"
+                                <input type="text" id="slug" name="slug" required class="form-control" placeholder="Add Slug"
                                        value="{!! old('slug'),$rol->slug !!}">
                             </div>
                             <div class="col-sm-4">
@@ -143,7 +143,7 @@
                                 @lang('Guide')
                             </label>
                             <div class="col-sm-5">
-                                <input type="text" id="guide" name="guide" class="form-control" placeholder="Add Guide"
+                                <input type="text" id="guide" required name="guide" class="form-control" placeholder="Add Guide"
                                        value="{!! old('guide'),$rol->guide !!}">
                             </div>
                             <div class="col-sm-4">
