@@ -149,6 +149,24 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
         Route::get('{blog}/restore', 'BlogController@restore')->name('blog.restore');
         Route::post('{blog}/storecomment', 'BlogController@storeComment')->name('storeComment');
     });
+	
+	 Route::group([ 'prefix' => 'cms'], function () {
+        Route::get('data', 'cmsController@data')->name('cms.data');
+        Route::get('{cms}/delete', 'cmsController@destroy')->name('cms.delete');
+        Route::get('{cms}/confirm-delete', 'cmsController@getModalDelete')->name('cms.confirm-delete');
+        Route::get('{cms}/restore', 'cmsController@getRestore')->name('restore.cms');
+//        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
+        Route::post('passwordreset', 'cmsController@passwordreset')->name('passwordreset');
+
+    });
+    Route::resource('cms', 'cmsController');
+
+    Route::get('deleted_cms',['before' => 'Sentinel', 'uses' => 'cmsController@getDeletedcms'])->name('deleted_cms');
+	
+	
+	
+	
+
     Route::resource('blog', 'BlogController');
 
     /*routes for blog category*/
