@@ -153,12 +153,7 @@
                     View Profile
                 </a>
             </li>
-            <li {!! (Request::is('admin/deleted_seller') ? 'class="active" id="active"' : '') !!}>
-                <a href="{{ URL::to('admin/deleted_seller') }}">
-                    <i class="fa fa-angle-double-right"></i>
-                    Deleted Seller
-                </a>
-            </li>
+            
         </ul>
     </li>
     <li {!! (Request::is('admin/groups') || Request::is('admin/groups/create') || Request::is('admin/groups/*') ? 'class="active"' : '') !!}>
@@ -183,6 +178,40 @@
             </li>
         </ul>
     </li>
+	
+	<li {!! (Request::is('admin/cms') || Request::is('admin/cms/create') || Request::is('admin/cms_profile') || Request::is('admin/cms/*') || Request::is('admin/deleted_seller') ? 'class="active"' : '') !!}>
+        <a href="#">
+            <i class="livicon" data-name="seller" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
+               data-loop="true"></i>
+            <span class="title">Manage CMS</span>
+            <span class="fa arrow"></span>
+        </a>
+		 <ul class="sub-menu">
+            
+			<li {!! (Request::is('admin/cms') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/cms') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    CMS List
+                </a>
+            </li>
+            <li {!! (Request::is('admin/cms/create') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/cms/create') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Add New CMS
+                </a>
+            </li>
+            <li {!! ((Request::is('admin/cms/*')) && !(Request::is('admin/cms/create')) ? 'class="active" id="active"' : '') !!}>
+				{{-- <a href="{{ URL::route('admin.cms.show',Sentinel::getUser()) }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    View CMS
+                </a>--}}
+            </li>
+            
+        </ul>
+    </li>
+	
+	
+	
 	<li {!! ((Request::is('admin/blogcategory') || Request::is('admin/blogcategory/create') || Request::is('admin/blog') ||  Request::is('admin/blog/create')) || Request::is('admin/blog/*') || Request::is('admin/blogcategory/*') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="comment" data-c="#F89A14" data-hc="#F89A14" data-size="18"
