@@ -109,6 +109,9 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
     
         Route::get('deleted_users',['before' => 'Sentinel', 'uses' => 'charityController@getDeletedUsers'])->name('deleted_users');
 		
+		
+		
+		
 		  Route::group([ 'prefix' => 'membership'], function () {
         Route::get('data', 'MembershipController@data')->name('membership.data');
         Route::get('{membership}/delete', 'MembershipController@destroy')->name('membership.delete');
@@ -120,6 +123,18 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
 
     Route::resource('membership', 'MembershipController');
 		
+		
+		 //Routes for settings
+  Route::group([ 'prefix' => 'settings'], function () {
+        //Route::get('data', 'charityController@data')->name('charity.data');
+       // Route::get('{charity}/delete', 'charityController@destroy')->name('charity.delete');
+       // Route::get('{charity}/confirm-delete', 'charityController@getModalDelete')->name('charity.confirm-delete');
+        //Route::get('{user}/restore', 'charityController@getRestore')->name('restore.user');
+//        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
+       // Route::post('passwordreset', 'charityController@passwordreset')->name('passwordreset');
+    });
+
+    Route::resource('settings', 'SettingsController');
 		
     /*routes for Charity category*/
     Route::group(['prefix' => 'charitycategory'], function () {
