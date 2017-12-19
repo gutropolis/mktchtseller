@@ -67,7 +67,7 @@
 									<td> <div class="img-file">
                                                 
                                            <img src="{!! url('/').'/uploads/sellerproduct/'.$role->images !!}" alt="img"
-                                                         class="img-responsive" />
+                                                         height="60px" width="60px" />
 														 {!! $role->images !!}
                                             </div></td>
 									<td>{!! $role->reviews !!}</td>
