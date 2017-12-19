@@ -108,6 +108,19 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
     Route::resource('charity', 'charityController');
     
         Route::get('deleted_users',['before' => 'Sentinel', 'uses' => 'charityController@getDeletedUsers'])->name('deleted_users');
+		
+		  Route::group([ 'prefix' => 'membership'], function () {
+        Route::get('data', 'MembershipController@data')->name('membership.data');
+        Route::get('{membership}/delete', 'MembershipController@destroy')->name('membership.delete');
+        Route::get('{membership}/confirm-delete', 'MembershipController@getModalDelete')->name('membership.confirm-delete');
+        //Route::get('{user}/restore', 'charityController@getRestore')->name('restore.user');
+//        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
+       // Route::post('passwordreset', 'charityController@passwordreset')->name('passwordreset');
+    });
+
+    Route::resource('membership', 'MembershipController');
+		
+		
     /*routes for Charity category*/
     Route::group(['prefix' => 'charitycategory'], function () {
        Route::get('{charitycategory}/delete', 'CharityCategoryController@destroy')->name('charitycategory.delete');
@@ -130,7 +143,14 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
         Route::post('passwordreset', 'SellerController@passwordreset')->name('passwordreset');
 
     });
-    Route::resource('seller', 'SellerController');
+	 Route::resource('seller', 'SellerController');
+	 Route::group([ 'prefix' => 'sellerproduct'], function () {
+        
+        Route::get('{sellerproduct}/delete', 'SellerproductController@destroy')->name('sellerproduct.delete');
+        Route::get('{sellerproduct}/confirm-delete', 'SellerproductController@getModalDelete')->name('sellerproduct.confirm-delete');
+	 });
+	Route::resource('sellerproduct','SellerproductController');
+   
 
     Route::get('deleted_seller',['before' => 'Sentinel', 'uses' => 'SellerController@getDeletedSeller'])->name('deleted_seller');
 
