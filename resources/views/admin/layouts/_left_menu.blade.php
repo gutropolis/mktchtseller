@@ -65,10 +65,10 @@
                     View Profile
                 </a>
             </li>
-            <li {!! (Request::is('admin/deleted_users') ? 'class="active" id="active"' : '') !!}>
-                <a href="{{ URL::to('admin/deleted_users') }}">
+            <li {!! (Request::is('admin/membership') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/membership') }}">
                     <i class="fa fa-angle-double-right"></i>
-                    Deleted Users
+                    Membership Type
                 </a>
             </li>
         </ul>
@@ -151,6 +151,12 @@
                 <a href="{{ URL::route('admin.seller.show',Sentinel::getUser()) }}">
                     <i class="fa fa-angle-double-right"></i>
                     View Profile
+                </a>
+            </li>
+			<li {!! (Request::is('admin/sellerproduct') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/sellerproduct') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Seller product
                 </a>
             </li>
             
