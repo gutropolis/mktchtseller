@@ -268,6 +268,24 @@
             </li>
         </ul>
     </li>
+	 <li {!! (Request::is('admin/setting') || Request::is('admin/setting')  ? 'class="active"' : '') !!}>
+        <a href="#">
+            <i class="livicon" data-name="move" data-c="#ef6f6c" data-hc="#ef6f6c" data-size="18"
+               data-loop="true"></i>
+            <span class="title">Settings</span>
+            <span class="fa arrow"></span>
+        </a>
+        <ul class="sub-menu">
+            <li {!! (Request::is('admin/setting') ? 'class="active"' : '') !!}>
+                <a href="{{ URL::to('admin/settings') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                   General Settings
+                </a>
+            </li>
+           
+        </ul>
+  
+    </li>
    
     
     
