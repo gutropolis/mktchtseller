@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class SellerRequest extends FormRequest
 {
 
     /**
@@ -33,7 +33,7 @@ class UserRequest extends FormRequest
                 return [
                     'title' => 'required|min:3',
                     'description' => 'required|min:3',
-                    'location' => 'required|email|unique:users,email',
+                    
                     'pic_file' => 'mimes:jpg,jpeg,bmp,png,gif|max:10000'
                 ];
             }
@@ -42,7 +42,7 @@ class UserRequest extends FormRequest
                 return [
                     'title' => 'required|min:3',
                     'description' => 'required|min:3',
-                    'location' => 'required|min:3',
+                   
                     'pic_file' => 'mimes:jpg,jpeg,bmp,png,gif|max:10000'
                 ];
             }
