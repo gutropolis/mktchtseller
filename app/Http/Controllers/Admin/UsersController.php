@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\JoshController;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests;
 use App\User;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
@@ -17,7 +17,7 @@ use Validator;
 Use App\Mail\Restore;
 use stdClass;
 
-//alkfjlasjf
+
 class UsersController extends JoshController
 {
 
@@ -88,20 +88,57 @@ class UsersController extends JoshController
      *
      * @return Redirect
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
-       if ($file = $request->file('pic_file')) {
+        $data = new stdClass();
+        //upload image
+        if ($file = $request->file('pic_file')) {
             $extension = $file->extension()?: 'png';
             $destinationPath = public_path() . '/uploads/users/';
             $safeName = str_random(10) . '.' . $extension;
             $file->move($destinationPath, $safeName);
             $request['pic'] = $safeName;
         }
-		
-       
-        User::create($request->all());
-		return redirect()->route('admin.users.index')
-		->with('success', 'new record created succesfullly');
+        //check whether use should be activated by default or not
+        $activate = $request->get('activate') ? true : false;
+
+        try {
+            // Register the user
+            $user = Sentinel::register($request->except('_token', 'password_confirm', 'group', 'activate', 'pic_file'), $activate);
+
+            //add user to 'User' group
+            $role = Sentinel::findRoleById($request->get('group'));
+            if ($role) {
+                $role->users()->attach($user);
+            }
+            //check for activation and send activation mail if not activated by default
+            if (!$request->get('activate')) {
+                // Data to be used on the email view
+                $data->user_name =$user->first_name .' '. $user->last_name;
+                $data->activationUrl = URL::route('activate', [$user->id, Activation::create($user)->code]);
+
+                // Send the activation code through email
+                Mail::to($user->email)
+                    ->send(new Restore($data));
+            }
+            // Activity log for New user create
+            activity($user->full_name)
+                ->performedOn($user)
+                ->causedBy($user)
+                ->log('New User Created by '.Sentinel::getUser()->full_name);
+            // Redirect to the home page with success menu
+            return Redirect::route('admin.users.index')->with('success', trans('users/message.success.create'));
+
+        } catch (LoginRequiredException $e) {
+            $error = trans('admin/users/message.user_login_required');
+        } catch (PasswordRequiredException $e) {
+            $error = trans('admin/users/message.user_password_required');
+        } catch (UserExistsException $e) {
+            $error = trans('admin/users/message.user_exists');
+        }
+
+        // Redirect to the user creation page
+        return Redirect::back()->withInput()->with('error', $error);
     }
 
     /**
@@ -133,7 +170,7 @@ class UsersController extends JoshController
      * @param UserRequest $request
      * @return Redirect
      */
-    public function update(User $user, UserRequest $request)
+    public function update(User $user, Request $request)
     {
         $data = new stdClass();
 
