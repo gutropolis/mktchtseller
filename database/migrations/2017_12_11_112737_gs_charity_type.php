@@ -19,7 +19,7 @@ class GsCharityType extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('parent_id');
-            $table->string('updated_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
             
 
