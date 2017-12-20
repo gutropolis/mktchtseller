@@ -68,8 +68,10 @@ class cmsController extends JoshController
      */
     public function store(Request $request)
     {
-	  
-        cms::create($request->all());
+		$cms = new cms($request->all());
+	  $cms->updated_by = Sentinel ::getUser()->first_name;	
+       $cms->save();
+	   
 		return redirect()->route('admin.cms.index')
 		->with('success', 'new record created succesfullly');
     }
