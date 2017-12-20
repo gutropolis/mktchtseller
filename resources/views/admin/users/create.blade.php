@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-    Add Users
+    Add User
     @parent
 @stop
 
@@ -69,7 +69,7 @@
                                             <div class="col-sm-10">
                                                 <input id="first_name" name="first_name" type="text"
                                                        placeholder="First Name" class="form-control required"
-                                                       value="{!! old('first_name') !!}" required/>
+                                                       value="{!! old('first_name') !!}"/>
 
                                                 {!! $errors->first('first_name', '<span class="help-block">:message</span>') !!}
                                             </div>
@@ -79,7 +79,7 @@
                                             <label for="last_name" class="col-sm-2 control-label">Last Name *</label>
                                             <div class="col-sm-10">
                                                 <input id="last_name" name="last_name" type="text" placeholder="Last Name"
-                                                       class="form-control required" value="{!! old('last_name') !!}" required/>
+                                                       class="form-control required" value="{!! old('last_name') !!}"/>
 
                                                 {!! $errors->first('last_name', '<span class="help-block">:message</span>') !!}
                                             </div>
@@ -89,7 +89,7 @@
                                             <label for="email" class="col-sm-2 control-label">Email *</label>
                                             <div class="col-sm-10">
                                                 <input id="email" name="email" placeholder="E-mail" type="text"
-                                                       class="form-control required email" value="{!! old('email') !!}" required/>
+                                                       class="form-control required email" value="{!! old('email') !!}"/>
                                                 {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
@@ -98,7 +98,7 @@
                                             <label for="password" class="col-sm-2 control-label">Password *</label>
                                             <div class="col-sm-10">
                                                 <input id="password" name="password" type="password" placeholder="Password"
-                                                       class="form-control required" value="{!! old('password') !!}" />
+                                                       class="form-control required" value="{!! old('password') !!}"/>
                                                 {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
@@ -107,7 +107,7 @@
                                             <label for="password_confirm" class="col-sm-2 control-label">Confirm Password *</label>
                                             <div class="col-sm-10">
                                                 <input id="password_confirm" name="password_confirm" type="password"
-                                                       placeholder="Confirm Password " class="form-control required" />
+                                                       placeholder="Confirm Password " class="form-control required"/>
                                                 {!! $errors->first('password_confirm', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
@@ -118,7 +118,7 @@
                                             <div class="col-sm-10">
                                                 <input id="dob" name="dob" type="text" class="form-control"
                                                        data-date-format="YYYY-MM-DD"
-                                                       placeholder="yyyy-mm-dd" />
+                                                       placeholder="yyyy-mm-dd"/>
                                             </div>
                                             <span class="help-block">{{ $errors->first('dob', ':message') }}</span>
                                         </div>
@@ -136,7 +136,7 @@
                                 <span class="btn btn-default btn-file">
                                     <span class="fileinput-new">Select image</span>
                                     <span class="fileinput-exists">Change</span>
-                                    <input id="pic" name="pic_file" type="file" class="form-control" required/>
+                                    <input id="pic" name="pic_file" type="file" class="form-control"/>
                                 </span>
                                                         <a href="#" class="btn btn-danger fileinput-exists"
                                                            data-dismiss="fileinput">Remove</a>
@@ -150,7 +150,7 @@
                                         <div class="form-group">
                                             <label for="bio" class="col-sm-2 control-label">Bio <small>(brief intro) *</small></label>
                                             <div class="col-sm-10">
-                        <textarea name="bio" id="bio"  required class="form-control resize_vertical"
+                        <textarea name="bio" id="bio" class="form-control resize_vertical"
                                   rows="4">{!! old('bio') !!}</textarea>
                                             </div>
                                             {!! $errors->first('bio', '<span class="help-block">:message</span>') !!}
@@ -189,7 +189,7 @@
                                         <div class="form-group">
                                             <label for="state" class="col-sm-2 control-label">State</label>
                                             <div class="col-sm-10">
-                                                <input id="state" name="state" type="text" class="form-control" required
+                                                <input id="state" name="state" type="text" class="form-control"
                                                        value="{!! old('state') !!}"/>
                                             </div>
                                             <span class="help-block">{{ $errors->first('state', ':message') }}</span>
@@ -199,7 +199,7 @@
                                             <label for="city" class="col-sm-2 control-label">City</label>
                                             <div class="col-sm-10">
                                                 <input id="city" name="city" type="text" class="form-control"
-                                                       value="{!! old('city') !!}" required/>
+                                                       value="{!! old('city') !!}"/>
                                             </div>
                                             <span class="help-block">{{ $errors->first('city', ':message') }}</span>
                                         </div>
@@ -208,7 +208,7 @@
                                             <label for="address" class="col-sm-2 control-label">Address</label>
                                             <div class="col-sm-10">
                                                 <input id="address" name="address" type="text" class="form-control"
-                                                       value="{!! old('address') !!}" required/>
+                                                       value="{!! old('address') !!}"/>
                                             </div>
                                             <span class="help-block">{{ $errors->first('address', ':message') }}</span>
                                         </div>
@@ -217,7 +217,7 @@
                                             <label for="postal" class="col-sm-2 control-label">Postal/zip</label>
                                             <div class="col-sm-10">
                                                 <input id="postal" name="postal" type="text" class="form-control"
-                                                       value="{!! old('postal') !!}" required/>
+                                                       value="{!! old('postal') !!}"/>
                                             </div>
                                             <span class="help-block">{{ $errors->first('postal', ':message') }}</span>
                                         </div>
@@ -229,7 +229,7 @@
                                             <label for="group" class="col-sm-2 control-label">Group *</label>
                                             <div class="col-sm-10">
                                                 <select class="form-control required" title="Select group..." name="group"
-                                                        id="group" required>
+                                                        id="group">
                                                     <option value="">Select</option>
                                                     @foreach($groups as $group)
                                                         <option value="{{ $group->id }}"
