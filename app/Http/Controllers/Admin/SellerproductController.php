@@ -31,7 +31,7 @@ class SellerproductController extends JoshController
     public function index()
     {
 		
-		$cms=Sellerproduct::paginate(2);
+		$cms=Sellerproduct::all();
         // Show the page
         return view('admin.sellerproduct.index', compact('cms'));
     }
@@ -82,7 +82,7 @@ class SellerproductController extends JoshController
      */
     public function store(Request $request)
     {
-		
+	   
         if ($file = $request->file('pic')) {
             $extension = $file->extension()?: 'png';
             $destinationPath = public_path() . '/uploads/sellerproduct/';
@@ -92,7 +92,10 @@ class SellerproductController extends JoshController
         }
 		
        
-        Sellerproduct::create($request->all());
+       $sellerproduct = new Sellerproduct($request->all());
+	  $sellerproduct->updated_by = Sentinel ::getUser()->first_name;	
+	  $sellerproduct->user_id=Sentinel:: getUser()->id;
+       $sellerproduct->save();
 		return redirect()->route('admin.sellerproduct.index')
 		->with('success', 'new record created succesfullly');
     }
