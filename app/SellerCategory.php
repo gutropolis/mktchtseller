@@ -19,5 +19,8 @@ class SellerCategory extends Model {
     {
         return $this->hasMany(Seller::class);
     }
-
+public function author()
+		{
+			return $this->belongsTo(User::class, 'user_id','user_name');
+		}
 }
