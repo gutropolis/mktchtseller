@@ -59,11 +59,11 @@
                         </div>
 					
                         <div class="form-group {{ $errors->first('title', 'has-error') }}">
-                          <input type="text" name="title" placeholder="Title" class="form-control" value="{!! old('title') !!}"/> 
+                          <input type="text" name="title" placeholder="Title" class="form-control" value="{!! old('title') !!}" required /> 
 						   <span class="help-block">{{ $errors->first('title', ':message') }}</span>
                         </div>
                           <div class="form-group ">
-                        <textarea name="description" id="description" class="form-control resize_vertical" placeholder="Description"
+                        <textarea name="description" id="description" required class="form-control resize_vertical" placeholder="Description"
                                   rows="4">{!! old('description') !!}</textarea>
 								   <span class="help-block">{{ $errors->first('description', ':message') }}</span>
                                             </div>
