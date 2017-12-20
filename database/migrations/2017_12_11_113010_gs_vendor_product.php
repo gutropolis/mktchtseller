@@ -21,9 +21,9 @@ class GsVendorProduct extends Migration
             $table->string('asin_url');
             $table->string('images');
             $table->string('reviews');
-            $table->string('user_id');
+            $table->string('user_id')->nullable();
             
-            $table->string('updated_by');
+            $table->string('updated_by')->nullable();
             
             $table->timestamps();
             

@@ -24,7 +24,7 @@ class GsCms extends Migration
             $table->string('slug');
             $table->string('guide');
 
-            $table->string('updated_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
             
 
