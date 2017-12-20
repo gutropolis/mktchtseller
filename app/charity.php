@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;        
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Cviebrock\EloquentTaggable\Taggable;
@@ -32,4 +32,8 @@ class charity extends Model
         {
             return $this->category->pluck('id');
         }
+		public function author()
+  {
+   return $this->belongsTo(User::class, 'user_id','user_name');
+  }
 }

@@ -12,7 +12,28 @@ class AdminSeeder extends DatabaseSeeder {
 		DB::table('roles')->truncate();
 		DB::table('role_users')->truncate();
 		DB::table('activations')->truncate();
-
+		DB::table('gs_setting')->truncate();
+		
+		$gs_setting=[
+		'site_title'=>'abc',
+		'description'=>'charity description',
+		'keyword'=>'charity keyword',
+		'site_url'=>'localhost:8000/admin/',
+		'site_logo'=>'logo.png',
+		'base_url'=>'www.charityseller.com',
+		'admin_email'=>'admin@admin.com',
+		'upload_path'=>'public/charity/',
+		'smtp_server'=>'192.168.1.1',
+		'smtp_user'=>'admin',
+		'smtp_password'=>'admin@123',
+		'smtp_host'=>'local'
+		
+		];
+		
+		DB::table('gs_setting')->insert($gs_setting);
+		
+		
+		
 		$admin = Sentinel::registerAndActivate(array(
 			'email'       => 'admin@admin.com',
 			'password'    => "admin",
@@ -30,7 +51,7 @@ class AdminSeeder extends DatabaseSeeder {
 			'name'  => 'User',
 			'slug'  => 'user',
 		]);
-
+		
 
 		$admin->roles()->attach($adminRole);
 

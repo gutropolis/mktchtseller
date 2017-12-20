@@ -6,7 +6,7 @@ use\App\Http\Controllers\JoshController;
 use App\CharityCategory;
 use App\Http\Requests\CharityCategoryRequest;
 use App\Http\Requests;
-
+use Sentinel;
 use Illuminate\Http\Request;
 
 class CharityCategoryController extends JoshController
@@ -43,7 +43,7 @@ class CharityCategoryController extends JoshController
      *
      * @return Response
      */
-    public function store(CharityCategoryRequest  $request)
+    public function store(Request  $request)
     {
        
 		
@@ -55,12 +55,16 @@ class CharityCategoryController extends JoshController
            
         ]);
 		
-		
+		  $CharityCategory=new CharityCategory($request->all());
+		  
+		  $CharityCategory->updated_by=Sentinel::getUser()->first_name;
+		  
+		  $CharityCategory->save();
 	
 	
 		
 		
-        CharityCategory::create($request->all());
+        //CharityCategory::create($request->all());
         return redirect()->route('admin.charitycategory.index')
                         ->with('success','New Record created successfully');
     }

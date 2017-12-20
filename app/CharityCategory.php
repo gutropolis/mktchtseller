@@ -21,4 +21,9 @@ class CharityCategory extends model
     {
         return $this->hasMany('CharityCategory', 'parent_id');
     }
+	public function author()
+  {
+   return $this->belongsTo(User::class, 'user_id','user_name');
+  }
+	
 }
