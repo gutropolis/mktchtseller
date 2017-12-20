@@ -6,7 +6,11 @@ use Cviebrock\EloquentTaggable\Taggable;
 
 class User extends EloquentUser {
 
-	
+	/**
+	 * The database table used by the model.
+	 *
+	 * @var string
+	 */
 
 	protected $table = 'users';
 
@@ -19,9 +23,7 @@ class User extends EloquentUser {
 	 */
     use Taggable;
 
-	 protected $fillable = [
-        'id','email','password','permission','first_name','last_name','bio','gender','dob','pic','country','role','state','city','address','postal','membership_id'
-    ];
+	protected $fillable = [];
 	protected $guarded = ['id'];
 	/**
 	 * The attributes excluded from the model's JSON form.
