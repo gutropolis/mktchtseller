@@ -107,9 +107,9 @@
                                                         
                                                        
                                                         <tr>
-                                                          <td>@lang('seller/title.year_in_buisness ')</td>
+                                                          <td>@lang('seller/title.year_in_business ')</td>
                                                             <td>
-                                                                {{ $seller->year_in_buisness }}
+                                                                {{ $seller->year_in_business }}
                                                             </td>
                                                         </tr>
                                                        
