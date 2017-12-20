@@ -92,9 +92,12 @@ class SellerController extends JoshController
         }
 		
        
-        Seller::create($request->all());
+        $seller = new Seller($request->all());
+	  $seller->updated_by = Sentinel ::getUser()->first_name;	
+	  $seller->user_id=Sentinel:: getUser()->id;
+       $seller->save();
 		return redirect()->route('admin.seller.index')
-		->with('success', 'new record created succesfullly');
+		->with('success', 'new record created succesfully');
     }
 
     /**
