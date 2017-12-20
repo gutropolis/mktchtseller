@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-    Add User
+    Add Users
     @parent
 @stop
 
