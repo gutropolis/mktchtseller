@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use\App\Http\Controllers\JoshController;
 use App\SellerCategory;
 use App\Http\Requests;
+use Sentinel;
 use App\Http\Requests\SellerCategoryRequest;
 
 
@@ -47,6 +48,7 @@ class SellerCategoryController extends JoshController
     public function store(SellerCategoryRequest $request)
     {
         $sellerCategory = new SellerCategory($request->all());
+		 $sellerCategory->updated_by = Sentinel ::getUser()->first_name;
 
         if ($sellerCategory->save()) {
             return redirect('admin/sellercategory')->with('success', trans('sellercategory/message.success.create'));
