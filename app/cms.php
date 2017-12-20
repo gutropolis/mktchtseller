@@ -10,6 +10,9 @@ class cms extends Model
     protected $fillable = [
    'title','meta_keyword','description','meta_desc','meta_title','slug','guide'
     ];
-
+public function author()
+		{
+			return $this->belongsTo(User::class, 'user_id','user_name');
+		}
     
 }
