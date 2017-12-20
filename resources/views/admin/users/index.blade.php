@@ -25,7 +25,7 @@ Users List
                 Dashboard
             </a>
         </li>
-        <li><a href="#"> Users</a></li>
+        <li><a href="#"> User</a></li>
         <li class="active">Users List</li>
     </ol>
 </section>
