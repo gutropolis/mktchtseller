@@ -135,19 +135,6 @@
                         </div>
 						
 						 
-						<div class="form-group {{ $errors->
-                            first('name', 'has-error') }}">
-                            <label for="user_id" class="col-sm-2 control-label">
-                                @lang('User Id')
-                            </label>
-                            <div class="col-sm-5">
-                                <input type="text" id="user_id" required name="user_id" class="form-control" placeholder="Add User"
-                                       value="{!! old('user_id'),$rol->user_id !!}">
-                            </div>
-                            <div class="col-sm-4">
-                                {!! $errors->first('user_id', '<span class="help-block">:message</span> ') !!}
-                            </div>
-                        </div>
 						
 						
 						
