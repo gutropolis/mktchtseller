@@ -83,7 +83,7 @@ Seller List
                 { data: 'title', name: 'tile' },
                 { data: 'description', name: 'decription' },
                 { data: 'location', name: 'location' },
-                { data: 'year_in_buisness', name: 'year_in_buisness'},
+                { data: 'year_in_business', name: 'year_in_business'},
                 { data: 'created_at', name:'created_at'},
 				
                 { data: 'actions', name: 'actions', orderable: false, searchable: false }

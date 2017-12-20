@@ -64,11 +64,11 @@
                                 <div class="tab-content">
                                     <div class="tab-pane" id="tab1">
                                         <h2 class="hidden">&nbsp;</h2>
-										<div class="form-group {{ $errors->first('seller_type', 'has-error') }}">
-                                            <label for="seller_type" class="col-sm-2 control-label">Seller Type *</label>
+										<div class="form-group {{ $errors->first('business_type', 'has-error') }}">
+                                            <label for="business_type" class="col-sm-2 control-label">Business Type *</label>
                                             <div class="col-sm-10">
-                                                <select name="seller_type" class="form-control required">
-												  <option value="">Select Seller Type</option>
+                                                <select name="business_type" class="form-control required" required>
+												  <option value="">Select Business Type</option>
 
                                                 @foreach($sellerpercategory as $parent)
                                                 <option value="" disabled>*{{$parent->title}}</option>
@@ -80,7 +80,7 @@
                                                    @endforeach  
                                                    @endforeach    
 												</select>
-                                                {!! $errors->first('seller_type', '<span class="help-block">:message</span>') !!}
+                                                {!! $errors->first('business_type', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
 										
@@ -139,12 +139,12 @@
                                                 <span class="help-block">{{ $errors->first('pic_file', ':message') }}</span>
                                             </div>
                                         </div>
-											  <div class="form-group {{ $errors->first('year_in_buisness', 'has-error') }}">
-                                            <label for="year_in_buisness" class="col-sm-2 control-label">Year in Buisness *</label>
+											  <div class="form-group {{ $errors->first('year_in_business', 'has-error') }}">
+                                            <label for="year_in_business" class="col-sm-2 control-label">Year in Buisness *</label>
                                             <div class="col-sm-10">
-                                                <input id="year_in_buisness" name="year_in_buisness" placeholder="year_in_buisness" type="text"
-                                                       class="form-control required year_in_buisness" value="{!! old('year_in_buisness') !!}" required/>
-                                                {!! $errors->first('year_in_buisness', '<span class="help-block">:message</span>') !!}
+                                                <input id="year_in_business" name="year_in_business" placeholder="year_in_business" type="text"
+                                                       class="form-control required year_in_business" value="{!! old('year_in_business') !!}" required/>
+                                                {!! $errors->first('year_in_business', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
 
