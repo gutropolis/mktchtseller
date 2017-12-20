@@ -11,5 +11,8 @@ class Seller extends Model
         'title','description','location','pic','year_in_business','start_up_year','address','mission_statement','vision_statement','tax_id','phone_number','business_type'
     ];
 
-    
+			public function author()
+		{
+			return $this->belongsTo(User::class, 'user_id','user_name');
+		}
 }
