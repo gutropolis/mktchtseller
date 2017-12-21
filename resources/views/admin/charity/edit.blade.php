@@ -237,7 +237,14 @@
                                             </div>
                                             <span class="help-block">{{ $errors->first('tags', ':message') }}</span>
                                         </div>
-
+											 <div class="form-group">
+                                            <label for="user_id" class="col-sm-2 control-label">User ID*</label>
+                                            <div class="col-sm-10">
+                                                <input id="user_id" name="user_id" type="text" class="form-control"
+                                                       value="{!! old('user_id',$charity->user_id) !!}" required/>
+                                            </div>
+                                            <span class="help-block">{{ $errors->first('user_id', ':message') }}</span>
+                                        </div>
                                         
                                     </div>
                                             <ul class="pager wizard">

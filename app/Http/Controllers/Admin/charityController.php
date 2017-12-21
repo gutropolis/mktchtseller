@@ -65,16 +65,16 @@ class charityController extends JoshController
             $request['images'] = $safeName;
 			
 		 }
-          $charity=new charity($request->all());
+          //$charity=new charity($request->all());
 		  
-		  $charity->user_id=Sentinel::getUser()->id;
+		  //$charity->user_id=Sentinel::getUser()->id;
 		  
-		  $charity->save();
+		 // $charity->save();
 	
         //$charity->charity_type= Sentinel::getUser()->id;
         //$charity->save();
 		
-       // charity::create($request->all());
+       charity::create($request->all());
         return redirect()->route('admin.charity.index')
                         ->with('success','New Record created successfully');
 	}

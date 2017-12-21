@@ -17,7 +17,7 @@ class charity extends Model
     protected $fillable = [
         'title','description','location','images','year_in_business',
 		'start_up_year','business_purpose','address','phone_number',
-		'keyword','vision_statement','mission_statement','charity_type','tags'
+		'keyword','vision_statement','mission_statement','charity_type','tags','user_id'
 		];
     
         protected $guarded = ['id'];
