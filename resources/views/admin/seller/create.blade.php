@@ -142,7 +142,7 @@
 											  <div class="form-group {{ $errors->first('year_in_business', 'has-error') }}">
                                             <label for="year_in_business" class="col-sm-2 control-label">Year in Buisness *</label>
                                             <div class="col-sm-10">
-                                                <input id="year_in_business" name="year_in_business" placeholder="year_in_business" type="text"
+                                                <input id="year_in_business" name="year_in_business" placeholder="year_in_business" type="number"
                                                        class="form-control required year_in_business" value="{!! old('year_in_business') !!}" required/>
                                                 {!! $errors->first('year_in_business', '<span class="help-block">:message</span>') !!}
                                             </div>
@@ -190,8 +190,17 @@
 										<div class="form-group {{ $errors->first('tax_id', 'has-error') }}">
                                             <label for="tax_id" class="col-sm-2 control-label">Tax Id *</label>
                                             <div class="col-sm-10">
-                                                <input id="tax_id" name="tax_id" type="text" placeholder="tax_id"
+                                                <input id="tax_id" name="tax_id" type="number" placeholder="tax_id"
                                                        class="form-control required" value="{!! old('tax_id') !!}" required/>
+
+                                                {!! $errors->first('tax_id', '<span class="help-block">:message</span>') !!}
+                                            </div>
+                                        </div>
+										<div class="form-group {{ $errors->first('user_id', 'has-error') }}">
+                                            <label for="user_id" class="col-sm-2 control-label">User Id *</label>
+                                            <div class="col-sm-10">
+                                                <input id="user_id" name="user_id" type="number" placeholder="user_id"
+                                                       class="form-control required" value="{!! old('user_id') !!}" required/>
 
                                                 {!! $errors->first('tax_id', '<span class="help-block">:message</span>') !!}
                                             </div>
@@ -201,7 +210,7 @@
                                         <div class="form-group {{ $errors->first('phone_number', 'has-error') }}">
                                             <label for="description" class="col-sm-2 control-label">Phone Number *</label>
                                             <div class="col-sm-10">
-                                                <input id="phone_number" name="phone_number" type="text" placeholder="phone_number"
+                                                <input id="phone_number" name="phone_number" type="number" placeholder="phone_number"
                                                        class="form-control required" value="{!! old('phone_number') !!}" required/>
 
                                                 {!! $errors->first('phone_number', '<span class="help-block">:message</span>') !!}
