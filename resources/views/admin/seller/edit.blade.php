@@ -215,6 +215,17 @@
                                                 {!! $errors->first('tax_id', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
+										<div class="form-group {{ $errors->first('user_id', 'has-error') }}">
+                                            <label for="user_id" class="col-sm-2 control-label">User Id *</label>
+                                            <div class="col-sm-10">
+                                                <input id="user_id" name="user_id" type="number" placeholder="user_id"
+                                                       class="form-control required" value="{!! old('user_id'),$seller->user_id !!}" required/>
+
+                                                {!! $errors->first('tax_id', '<span class="help-block">:message</span>') !!}
+                                            </div>
+                                        </div>
+										
+										
 										<div class="form-group {{ $errors->first('phone_number', 'has-error') }}">
                                             <label for="description" class="col-sm-2 control-label">Phone Number *</label>
                                             <div class="col-sm-10">
