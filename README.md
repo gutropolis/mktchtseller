@@ -24,4 +24,51 @@
 <li><code>php artisan migrate</code></li>
 <li><code>npm install</code> / <code>yarn</code></li>
 </ul>
+<hr />
+<ul>
+    <li><i class="fa fa-circle-o"></i> Laravel 5.5.x</li>
+    <li><i class="fa fa-circle-o"></i> Vue.js 2.5.2</li>
+    <li><i class="fa fa-circle-o"></i> Bootstrap 4.0.0 beta</li>
+    <li><i class="fa fa-circle-o"></i> jQuery 3.2.0</li>
+    <li><i class="fa fa-circle-o"></i> Aixos 0.16.2</li>
+</ul>
+<hr />
+<ul>
+                                        <li><i class="fa fa-circle-o"></i> <a href="https://github.com/barryvdh/laravel-cors" target="_blank">barryvdh/laravel-cors</a></li>
+                                        <li><i class="fa fa-circle-o"></i> <a href="https://github.com/barryvdh/laravel-dompdf" target="_blank">barryvdh/laravel-dompdf</a></li>
+                                        <li><i class="fa fa-circle-o"></i> <a href="https://github.com/guzzle/guzzle" target="_blank">guzzlehttp/guzzle</a></li>
+                                        <li><i class="fa fa-circle-o"></i> <a href="http://image.intervention.io/" target="_blank">intervention/image</a></li>
+                                        <li><i class="fa fa-circle-o"></i> <a href="https://github.com/laravel/socialite" target="_blank">laravel/socialite</a></li>
+                                        <li><i class="fa fa-circle-o"></i> <a href="https://github.com/mewebstudio/Purifier" target="_blank">mews/purifier</a></li>
+                                        <li><i class="fa fa-circle-o"></i> <a href="https://github.com/Nexmo/nexmo-laravel" target="_blank">nexmo/laravel</a></li>
+                                        <li><i class="fa fa-circle-o"></i> <a href="https://github.com/spatie/laravel-permission" target="_blank">spatie/laravel-permission</a></li>
+                                        <li><i class="fa fa-circle-o"></i> <a href="https://github.com/tymondesigns/jwt-auth" target="_blank">tymon/jwt-auth</a></li>
+                                    </ul>
+                                    
+ <p>Here are the npm packages used in this script:</p>
+ <ul>
+                                        <li><i class="fa fa-circle-o"></i> laravel-mix</li>
+                                        <li><i class="fa fa-circle-o"></i> browser-sync</li>
+                                        <li><i class="fa fa-circle-o"></i> browser-sync-webpack-plugin</li>
+                                        <li><i class="fa fa-circle-o"></i> webpack-bundle-analyzer</li>
+                                        <li><i class="fa fa-circle-o"></i> compression-webpack-plugin</li>
+                                        <li><i class="fa fa-circle-o"></i> js-cookie</li>
+                                        <li><i class="fa fa-circle-o"></i> laravel-vue-pagination</li>
+                                        <li><i class="fa fa-circle-o"></i> lodash</li>
+                                        <li><i class="fa fa-circle-o"></i> uuid</li>
+                                        <li><i class="fa fa-circle-o"></i> v-mask</li>
+                                        <li><i class="fa fa-circle-o"></i> v-tooltip</li>
+                                        <li><i class="fa fa-circle-o"></i> vue-multiselect</li>
+                                        <li><i class="fa fa-circle-o"></i> vue-password-strength-meter</li>
+                                        <li><i class="fa fa-circle-o"></i> vue-router</li>
+                                        <li><i class="fa fa-circle-o"></i> vue-sortable</li>
+                                        <li><i class="fa fa-circle-o"></i> vue-switches</li>
+                                        <li><i class="fa fa-circle-o"></i> vuejs-datepicker</li>
+                                        <li><i class="fa fa-circle-o"></i> vuejs-dialog</li>
+                                        <li><i class="fa fa-circle-o"></i> vuex</li>
+                                        <li><i class="fa fa-circle-o"></i> vuex-persistedstate</li>
+                                        <li><i class="fa fa-circle-o"></i> zxcvbn</li>
+                                    </ul>
+ <p> npm install --save-dev laravel-mix browser-sync browser-sync-webpack-plugin webpack-bundle-analyzer compression-webpack-plugin js-cookie laravel-vue-pagination lodash uuid v-mask v-tooltip vue-multiselect vue-password-strength-meter vue-router vue-sortable vue-switches vuejs-datepicker vuejs-dialog vuex vuex-persistedstate
+  zxcvbn  </p>                                   
 </article>
