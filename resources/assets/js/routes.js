@@ -24,12 +24,20 @@ let routes = [
                 component: require('./views/pages/contact')
             },
 			{
+				path: '/aboutus',
+                component: require('./views/pages/aboutus')
+			},
+			{
 				path: '/seller',
 				component:require('./views/pages/seller')
 			},
 			{
 				path: '/product',
 				component:require('./views/pages/seller_product')
+			},
+			{
+				path: '/charityfba',
+                component: require('./views/pages/charityfba')
 			},
 			{
 				path: '/sellerfab',

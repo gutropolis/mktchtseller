@@ -14,10 +14,13 @@
                              <router-link to="/" class="nav-link" href="#">Home  <span class="sr-only">(current)</span></router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+						<router-link to="/aboutus">
+                            <a class="nav-link" href="#">About</a></router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="#">Charityfab Post</a>
+						<router-link to="/charityfba">
+                            <a class="nav-link " href="#">Charityfab Post</a></router-link>
+							
                         </li>
 						 <li class="nav-item">
                              <router-link to="/sellerfab" class="nav-link">Sellerfab Us </router-link>

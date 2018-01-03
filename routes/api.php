@@ -50,3 +50,20 @@ Route::post('/upload', function (Request $request) {
         return response()->json(['fileName'=>$fileName,'error'=>false]);
 
 });
+
+Route::resource('/gs_charity_organisation', 'charityController');
+
+
+Route::post('/upload', function (Request $request) {
+   $imageData = $request->get('image');
+      $fileName = uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+        Image::make($request->get('image'))->save(public_path('images/').$fileName);
+        return response()->json(['fileName'=>$fileName,'error'=>false]); 
+    
+});
+
+ Route::post('/update-avatar','charityController@updateAvatar');
+   // Route::post('/user/remove-avatar','charityController@delete');
+
+Route::get('/search','charityController@search');
+Route::post('/search','charityController@search');
