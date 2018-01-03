@@ -1,0 +1,15 @@
+.btn-border-white {
+  background: none;
+  border: solid 1px;
+  text-transform: uppercase;
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out; }
+
+.btn-border-brown {
+  background: none;
+  border: solid 1px;
+  text-transform: uppercase;
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out; }
