@@ -1,0 +1,76 @@
+<template>
+<div>
+   <section class="equal ">
+        <div class="Container">
+            <div class="login__element">
+                <h3 class="login__element--heading">Login</h3>
+                <div class="login__element--box">
+                    <div class="row login-option">
+                        <div class="col-md-6 text-center">
+                            <a href="https://healeastern.com/auth/facebook" class="btn facebooklarge">
+                                <span><i class="fa fa-facebook" aria-hidden="true"></i></span> Login with Facebook
+                            </a>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <a href="https://healeastern.com/auth/google" class="btn googlelarge ">
+                                <span><i class="fa fa-google-plus" aria-hidden="true"></i></span> Login with Google
+                            </a>
+                        </div>
+                        <h4>OR</h4>
+                    </div>
+                    <form id="loginform" @submit.prevent="submit">
+                        <div class="form-group">
+                            <label class="login__element--box--label">Email</label>
+                            <input type="email" placeholder="jhon@gmail.com" v-model="loginForm.email" class="login__element--box--input">
+                        </div>
+                        <div class="form-group">
+                            <label class="login__element--box--label">Password</label>
+                            <input type="password" placeholder="abc@123" v-model="loginForm.password" class="login__element--box--input">
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" placeholder="" value="" class="login__element--box--check">
+                            <label class="login__element--box--remeber">Remember Me</label>
+                        </div>
+                        <p class="login__element--box--content"><a href="#" class="login__element--box--content--link">Don't remember your password?</a></p>
+                        <div class="form-group text-center">
+                            <input type="Submit" placeholder="" value="Login" class="btn btn-bg-orange login__element--box--button">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+</template>
+
+<script>
+    import helper from '../../services/helper'
+    import GuestFooter from '../../layouts/guest-footer.vue'
+
+    export default {
+        data() {
+            return {
+                loginForm: {
+                    email: '',
+                    password: ''
+                }
+            }
+        },
+       
+        mounted(){
+        },
+        methods: {
+            submit(e){
+                axios.post('/api/auth/login', this.loginForm).then(response =>  {
+                    localStorage.setItem('auth_token',response.data.token);
+                    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('auth_token');
+                    toastr['success'](response.data.message);
+                    this.$router.push('/my_account')
+                }).catch(error => {
+                    toastr['error'](error.response.data.message);
+                });
+            }
+        }
+    }
+</script>
