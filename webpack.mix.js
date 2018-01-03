@@ -11,5 +11,9 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+
+var plugin =  'resources/assets/plugins/';
+
+mix.js('resources/assets/js/app.js', 'public/js/app.js')
+	.combine([  'public/js/app.js', ],'public/js/bundle.min.js') 
+	.browserSync();
