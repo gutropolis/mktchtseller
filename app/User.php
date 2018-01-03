@@ -2,9 +2,10 @@
 use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentTaggable\Taggable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-
-class User extends EloquentUser {
+class User extends Authenticatable{
 
 	/**
 	 * The database table used by the model.
@@ -23,7 +24,7 @@ class User extends EloquentUser {
 	 */
     use Taggable;
 
-	protected $fillable = [];
+	protected $fillable = ['first_name', 'last_name', 'email', 'status', 'avatar', 'password'];
 	protected $guarded = ['id'];
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -47,5 +48,8 @@ class User extends EloquentUser {
     public function country() {
         return $this->belongsTo( Country::class );
     }
-
+public function profile()
+    {
+        return $this->hasOne('App\Profile');
+    }
 }
