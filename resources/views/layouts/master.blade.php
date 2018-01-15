@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/style.css">
 	 <link rel="stylesheet" href="css/vue-form-wizard.min.css">
   <link href="css/toastr.min.css" rel="stylesheet" type="text/css">  
+ 
  </head>
  <body >
         
@@ -24,5 +25,7 @@
     <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
  <script src="js/toastr.min.js"></script>
+ <script src="/path/to/vue-infinite-loading/dist/vue-infinite-loading.js"></script>
+
  </body>
 </html>
