@@ -20,6 +20,15 @@ let routes = [
                 component: require('./views/auth/login')
             },
 			{
+                path: '/forget_password',
+                component: require('./views/auth/forget_password')
+            },
+			{
+                path: '/password',
+                component: require('./views/auth/change_password')
+            },
+			
+			{
                 path: '/register',
                 component: require('./views/auth/register')
             },
@@ -34,7 +43,7 @@ let routes = [
 			
 			{
 				path: '/product',
-				component:require('./views/pages/manage seller/seller_product')
+				component:require('./views/pages/manage_seller/seller_product')
 			},
 			{
 				path: '/charityfba',
@@ -42,7 +51,7 @@ let routes = [
 			},
 			{
 				path: '/sellerfab',
-				component:require('./views/pages/manage seller/sellersearch')
+				component:require('./views/pages/manage_seller/sellersearch')
 			},
 			{
 				path : '/my_account',
@@ -89,11 +98,11 @@ let routes = [
 			},
 			{
 				path: '/vender_organisation',
-				component:require('./views/pages/manage seller/vender_organisation')
+				component:require('./views/pages/manage_seller/vender_organisation')
 			},
 			{
 				path: '/product_list',
-				component:require('./views/pages/manage seller/product_list')
+				component:require('./views/pages/manage_seller/product_list')
 			},
 			{
 				name:'edit_product',
