@@ -29,11 +29,19 @@ class charityController extends JoshController
 
     public function index()
     {
- $charity = charity::latest()->paginate(5);
-        return view('pages.charityfba',compact('charity'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
-        // $charity = charity::all();
-       // return response()->json($charity);
+		
+		$charityparcategory=CharityCategory::all();
+ //$charityparcategory=CharityCategory::all()->where('parent_id','=','0');
+       // $charitycategory=CharityCategory::all()->where('parent_id','>','0');
+		//return response()->json(array('data1'=>$charityparcategory,'data2'=>$charitycategory));
+		return response()->json($charityparcategory);
+    }
+	 public function charity_list()
+    {
+		
+		$charity=charity::all();
+ 
+		return response()->json($charity);
     }
  public function data()
     {
@@ -90,10 +98,21 @@ class charityController extends JoshController
        
          
 		$charity = Validator::make($request->all(), [
-            'title' => 'required',
-            'description' => 'required',
-            'location' => 'required',
-			 'image'=>'required'
+            'charity_type'=>'required',
+			
+			'title' => 'required',
+			'description'=>'required',
+			'location'=>'required',
+			'year_in_business'=>'required',
+			'start_up_year'=>'required',
+			'business_purpose'=>'required',
+			'address'=>'required',
+			'phone_number'=>'required',
+			'keyword'=>'required',
+			'vision_statement'=>'required',
+			'mission_statement'=>'required',
+			'tags'=>'required'
+            
         ]);
 		if($charity->fails())
             return response()->json(['message' => $charity->messages()->first()],422);
@@ -121,8 +140,27 @@ class charityController extends JoshController
         return response()->json(['message' => 'Data Record Successfully']);
 	}
 	public function update(Request $request,$id)
-    {
+    { 	
+	
+        $charity = charity::find($id);
+
+            $charity->title = $request->get('title');
+			$charity->description = $request->get('description');
+			$charity->location = $request->get('location');
+			$charity->year_in_business= request('year_in_business');
+			$charity->start_up_year= request('start_up_year');
+			$charity->business_purpose= request('business_purpose');
+			$charity->address=request('address');
+			$charity->phone_number= request('phone_number');
+			$charity->keyword= request('keyword');
+			$charity->vision_statement= request('vision_statement');
+			$charity->mission_statement= request('mission_statement');
+			$charity->tags=request('tags');
+			$charity->charity_type= request('charity_type');
+
+        $charity->save();
 		
+        return response()->json(['message' => 'Data update Successfully']);
         
 	}
     
@@ -139,13 +177,26 @@ class charityController extends JoshController
 		
 
     }
-	 public function edit(charity $charity)
+	 public function edit(Request $request,$id)
     {
- 
+		$charity_type=CharityCategory::all();
+		$charity = charity::find($id);
+		return response()->json(array('data1'=>$charity,'data2'=>$charity_type));	
     }
+	public function charity_details(Request $request,$id=1)
+    {
+		//$charity_details=CharityCategory::all();
+		$charity_details = charity::find($id);
+		return response()->json($charity_details);	
+    }
+	
     
     public function destroy($id)
 	{
+		 $charity = charity::find($id);
+      $charity->delete();
+
+     return response()->json(['message' => 'Data Deleted Successfully']);
     
     }
 	
@@ -185,7 +236,7 @@ class charityController extends JoshController
 		
 		
 		$keyword=request('searchlocation');
-			
+			//return response()->json($keyword);
 		$charity=charity::Where('location', 'like', '%' . $keyword . '%')->get();
 		//return charity::paginate(4);
 		return response()->json($charity);
