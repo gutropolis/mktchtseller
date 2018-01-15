@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+//use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Validator;
+use Illuminate\Notifications\Notifiable;
 use App\Notifications\Activation;
 use App\Notifications\Activated;
 use App\Notifications\PasswordReset;
@@ -48,8 +49,8 @@ class AuthController extends Controller
         }
 
         $user = JWTAuth::parseToken()->authenticate();
-        $profile = $user->Profile;
-        $social_auth = ($user->password) ? 0 : 1;
+        //$profile = $user;
+        //$social_auth = ($user->password) ? 0 : 1;
 
         return response()->json(compact('user','profile','social_auth'));
     }
@@ -103,7 +104,7 @@ class AuthController extends Controller
             'password' => bcrypt(request('password'))
         ]);
 
-        //$user->activation_token = generateUuid();
+        $user->activation_token = generateUuid();
         $user->save();
          return response()->json(['message' => 'You have registered successfully. Please check your email for activation!']);
 
@@ -150,7 +151,7 @@ class AuthController extends Controller
             'email' => request('email'),
             'token' => $token
         ]);
-        $user->notify(new PasswordReset($user,$token));
+        //$user->notify(new PasswordReset($user,$token));
 
         return response()->json(['message' => 'We have sent reminder email. Please check your inbox!']);
     }
