@@ -136,7 +136,7 @@ class AdsController extends Controller
             return response()->json(['message' => $validation->messages()->first()],422);
         $create_ads = new my_ads($request->all());
 		$user = JWTAuth::parseToken()->authenticate();
-		 $create_ads->organisation_id = $user->id;	
+		 $create_ads->user_id = $user->id;	
 	 
        $create_ads->save();
 	   
