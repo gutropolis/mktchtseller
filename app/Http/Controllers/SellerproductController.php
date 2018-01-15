@@ -1,7 +1,8 @@
-<?php namespace App\Http\Controllers;
+<?php 
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\JoshController;
-use App\Http\Requests\SellerRequest;
+
+
 use App\Seller;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
@@ -19,8 +20,9 @@ Use App\Mail\Restore;
 use stdClass;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
+//use JWTAuth;
 
-class SellerproductController extends JoshController
+class SellerproductController extends Controller
 {
 
     /**
@@ -31,7 +33,9 @@ class SellerproductController extends JoshController
 
     public function index()
     {
-		$sellerproduct=Seller::all();
+		$user = JWTAuth::parseToken()->authenticate();
+		 $query = \App\SellerProduct::whereUserId($user->id);
+		$sellerproduct = $query->get();
         return response()->json($sellerproduct);
     }
 
@@ -131,8 +135,9 @@ class SellerproductController extends JoshController
         if($validation->fails())
             return response()->json(['message' => $validation->messages()->first()],422);
         $sellerproduct = new Sellerproduct($request->all());
-	 // $sellerproduct->updated_by = Sentinel ::getUser()->first_name;	
-	  //$sellerproduct->user_id=Sentinel:: getUser()->id;
+		$user = JWTAuth::parseToken()->authenticate();
+		 $sellerproduct->user_id = $user->id;	
+	  $sellerproduct->updated_by=$user->first_name;
        $sellerproduct->save();
 	   
        
@@ -150,10 +155,9 @@ class SellerproductController extends JoshController
   
 		 public function edit($id)
     {
-		$cms=Sellerproduct::all();
-
-        // Show the page
-        return view('admin.sellerproduct.edit',compact('cms'));
+		$sellerproduct = sellerproduct::find($id);
+		return response()->json($sellerproduct);
+   
     }
        
     
@@ -167,20 +171,15 @@ class SellerproductController extends JoshController
      */
     public function update(Request $request,$id)
     {
-         if ($file = $request->file('images')) {
-            $extension = $file->extension()?: 'png';
-            $destinationPath = public_path() . '/uploads/sellerproduct/';
-            $safeName = str_random(10) . '.' . $extension;
-   
-            $file->move($destinationPath, $safeName);
-            $request['images'] = $safeName;
-   
-   }
-        
-  
-        Sellerproduct::find($id)->update($request->all());
-        return redirect()->route('admin.sellerproduct.index')
-                        ->with('success','Update Seller  successfully');
+		
+       $sellerproduct=sellerproduct::find($id);
+		$sellerproduct->title=$request->get('title');
+		$sellerproduct->description=$request->get('description');
+		$sellerproduct->asin_url=$request->get('asin_url');
+		$sellerproduct->reviews=$request->get('reviews');
+		
+		$sellerproduct->save();
+     return response()->json(['message' => 'Data update Successfully']);
 
     
 	}
@@ -215,26 +214,15 @@ class SellerproductController extends JoshController
     }
 
     
-    public function destroy($id)
-    {
-        try {
-            // Get seller information
-            $seller = Sentinel::findById($id);
-            
-            
-           
-            Sellerproduct::destroy($id);
-           
-            $success = trans('seller/message.success.delete');
-                      
-            return Redirect::route('admin.sellerproduct.index')->with('success', $success);
-	} catch (UserNotFoundException $e) {
-            // Prepare the error message
-            $error = trans('admin/sellerproduct/message.seller_not_found', compact('id'));
+   public function destroy(Request $request, $id){
+        $task = \App\Sellerproduct::find($id);
 
-            // Redirect to the user management page
-            return Redirect::route('admin.sellerproduct.index')->with('error', $error);
-        }
+        if(!$task)
+            return response()->json(['message' => 'Couldnot find task!'],422);
+
+        $task->delete();
+
+        return response()->json(['message' => 'Task deleted!']);
     }
 
     /**
