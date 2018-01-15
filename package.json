@@ -46,7 +46,10 @@
         "fs": "0.0.1-security",
         "helper": "0.0.13",
         "node-fs": "^0.1.7",
+        "notification": "0.0.6",
         "npm-helper": "0.0.6",
+        "vee-validate": "^2.0.0",
+        "vue-form-wizard": "^0.8.2",
         "vue-range-slider": "^0.2.4"
     }
 }
