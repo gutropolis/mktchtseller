@@ -19,9 +19,11 @@ use Yajra\DataTables\DataTables;
 use Validator;
 Use App\Mail\Restore;
 use stdClass;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 
-class SellerController extends JoshController
+class SellerController extends Controller
 {
 
     /**
@@ -34,7 +36,7 @@ class SellerController extends JoshController
     {
 
         // Show the page
-		$seller=Seller::all();
+		$seller=SellerCategory::all();
         return response()->json($seller);
     }
 
@@ -135,7 +137,9 @@ class SellerController extends JoshController
 			'mission_statement' => request('mission_statement'),
 			'tax_id' => request('tax_id'),
         ]);
-	   
+	   $user = JWTAuth::parseToken()->authenticate();
+		 $seller->user_id = $user->id;	
+		 $seller->updated_by = $user->first_name;	
 	    $seller->save();
 	   
        
