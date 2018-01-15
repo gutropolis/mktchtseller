@@ -49,6 +49,10 @@ Route::post('/user/update-avatar','SellerproductController@updateAvatar');
 //Seller Organisation
 Route::resource('/gs_seller_organisation', 'SellerController');
 Route::get('/gs_seller_organisation', 'SellerController@index');
+Route::get('/seller_list','SellerController@seller_list');
+Route::get('/edit_seller/{id}','SellerController@edit');
+Route::post('/edit_seller/{id}','SellerController@update');
+ Route::delete('/seller_list/{id}','SellerController@destroy');
 
 Route::get('/vender_category','SellerCategoryController@index');
 Route::post('/vender_category','SellerCategoryController@store');
