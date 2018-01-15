@@ -31,7 +31,7 @@
                             <input type="checkbox" placeholder="" value="" class="login__element--box--check">
                             <label class="login__element--box--remeber">Remember Me</label>
                         </div>
-                        <p class="login__element--box--content"><a href="#" class="login__element--box--content--link">Don't remember your password?</a></p>
+                        <p class="login__element--box--content"><router-link to="/forget_password" class="login__element--box--content--link">Don't remember your password?</router-link></p>
                         <div class="form-group text-center">
                             <input type="Submit" placeholder="" value="Login" class="btn btn-bg-orange login__element--box--button">
                         </div>
