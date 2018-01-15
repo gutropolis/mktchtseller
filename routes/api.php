@@ -36,28 +36,27 @@ Route::middleware('auth:api')->get('/charity', function (Request $request) {
 
 });
 Route::group(['middleware' => ['jwt.auth']], function () {
-  Route::get('/auth/user','AuthController@getAuthUser');
-  Route::post('/user/update-profile','UserController@updateProfile');
-  Route::post('/user/change-password','AuthController@changePassword');
-   Route::delete('/task/{id}','SellerproductController@destroy');
-   Route::post('/task/{id}','SellerproductController@update');
-	 Route::get('/task/{id}','SellerproductController@edit');
- Route::post('/user/update-avatar','SellerproductController@updateAvatar');
+	//user Profile
+Route::get('/auth/user','AuthController@getAuthUser');
+Route::post('/user/update-profile','UserController@updateProfile');
+Route::post('/user/change-password','AuthController@changePassword');
+//seller Product
+Route::delete('/task/{id}','SellerproductController@destroy');
+Route::post('/task/{id}','SellerproductController@update');
+Route::get('/task/{id}','SellerproductController@edit');
+Route::get('/product_list','SellerproductController@index');
+Route::post('/user/update-avatar','SellerproductController@updateAvatar');
+//Seller Organisation
 Route::resource('/gs_seller_organisation', 'SellerController');
 Route::get('/gs_seller_organisation', 'SellerController@index');
-Route::get('/product_list','SellerproductController@index');
+
 Route::get('/vender_category','SellerCategoryController@index');
 Route::post('/vender_category','SellerCategoryController@store');
-
 Route::post('/create_ads','AdsController@store');
 Route::get('/get_ads/','AdsController@index');
 Route :: get('/get_ad/{id}','AdsController@edit');
 Route :: post('/get_ad/{id}','AdsController@update');
-
-
 Route::resource('/gs_seller_product', 'SellerproductController');
-
-
 Route::get('/sellersearch', 'SellerController@search');
 Route::post('/sellersearch', 'SellerController@search');
 
@@ -84,8 +83,21 @@ Route::post('/upload', function (Request $request) {
     
 });
 
- Route::post('/update-avatar','charityController@updateAvatar');
-   // Route::post('/user/remove-avatar','charityController@delete');
+//Charity Organisation 
+Route::get('/charity_details/{id}','charityController@charity_details');
+
+Route::post('/search','charityController@search');
+Route::get('/search','charityController@search');
+Route::post('/search','charityController@search');
+Route::get('/charity_organisation','charityController@index');
+Route::post('/charity_category','CharityCategoryController@store');
+Route::get('/charity_category','CharityCategoryController@index');
+Route::get('/charity_list','charityController@charity_list');
+Route::get('/edit_charity/{id}','charityController@edit');
+Route::post('/edit_charity/{id}','charityController@update');
+ Route::delete('/charity_list/{id}','charityController@destroy');
+//Route::resource('/edit_charity', 'charityController');
 
 Route::get('/search','charityController@search');
 Route::post('/search','charityController@search');
+
