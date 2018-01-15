@@ -15,7 +15,7 @@ use View;
 use Yajra\DataTables\DataTables;
 use Validator;
 Use App\Mail\Restore;
-use JWTAuth;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use stdClass;
 
 
@@ -42,34 +42,28 @@ public function index(){
     /**
      * @return mixed
      */
-    public function data()
-    {
-        $user = User::get(['id', 'first_name', 'last_name', 'email','created_at']);
+      public function updateProfile(Request $request){
 
-        return DataTables::of($users)
-            ->editColumn('created_at',function(User $user) {
-                return $user->created_at->diffForHumans();
-            })
-            ->addColumn('status',function($user){
+        $validation = Validator::make($request->all(),[
+			
+        ]);
 
-                if($activation = Activation::completed($user)){
+        if($validation->fails())
+            return response()->json(['message' => $validation->messages()->first()],422);
 
-                    return 'Activated';} else
-                    return 'Pending';
-
-            })
-            ->addColumn('actions',function($user) {
-                $actions = '<a href='. route('admin.users.show', $user->id) .'><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
-                            <a href='. route('admin.users.edit', $user->id) .'><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update user"></i></a>';
-                if ((Sentinel::getUser()->id != $user->id) && ($user->id != 1)) {
-                    $actions .= '<a href='. route('admin.users.confirm-delete', $user->id) .' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user"></i></a>';
-                }
-                return $actions;
-            })
-            ->rawColumns(['actions'])
-            ->make(true);
+        $user = JWTAuth::parseToken()->authenticate();
+         $user->first_name = request('first_name');
+        $user->last_name = request('last_name');
+        $user->dob = request('dob');
+        $user->gender = request('gender');
+		$user->address= request('address');
+		$user->postal= request('postal');
+		$user->bio = request('bio');
+	
+      
+		  $user->save();
+        return response()->json(['message' => 'Your profile has been updated!','user' => $user]);
     }
-
     /**
      * Create new user
      *
@@ -172,111 +166,7 @@ public function index(){
      * @param UserRequest $request
      * @return Redirect
      */
-    public function update(User $user, Request $request)
-    {
-        $data = new stdClass();
-
-        try {
-            $user->update($request->except('pic_file','password','password_confirm','groups','activate'));
-
-            if ( !empty($request->password)) {
-                $user->password = Hash::make($request->password);
-            }
-
-            // is new image uploaded?
-            if ($file = $request->file('pic_file')) {
-                $extension = $file->extension()?: 'png';
-                $destinationPath = public_path() . '/uploads/users/';
-                $safeName = str_random(10) . '.' . $extension;
-                $file->move($destinationPath, $safeName);
-                //delete old pic if exists
-                if (File::exists($destinationPath . $user->pic)) {
-                    File::delete($destinationPath . $user->pic);
-                }
-                //save new file path into db
-                $user->pic = $safeName;
-            }
-
-            //save record
-            $user->save();
-
-            // Get the current user groups
-            $userRoles = $user->roles()->pluck('id')->all();
-
-            // Get the selected groups
-
-            $selectedRoles = $request->get('groups');
-
-            // Groups comparison between the groups the user currently
-            // have and the groups the user wish to have.
-            $rolesToAdd = array_diff($selectedRoles, $userRoles);
-            $rolesToRemove = array_diff($userRoles, $selectedRoles);
-
-            // Assign the user to groups
-
-            foreach ($rolesToAdd as $roleId) {
-                $role = Sentinel::findRoleById($roleId);
-                $role->users()->attach($user);
-            }
-
-            // Remove the user from groups
-            foreach ($rolesToRemove as $roleId) {
-                $role = Sentinel::findRoleById($roleId);
-                $role->users()->detach($user);
-            }
-
-            // Activate / De-activate user
-
-            $status = $activation = Activation::completed($user);
-
-            if ($request->get('activate') != $status) {
-                if ($request->get('activate')) {
-                    $activation = Activation::exists($user);
-                    if ($activation) {
-                        Activation::complete($user, $activation->code);
-                    }
-                } else {
-                    //remove existing activation record
-                    Activation::remove($user);
-                    //add new record
-                    Activation::create($user);
-                    //send activation mail
-                    $data->user_name =$user->first_name .' '. $user->last_name;
-                    $data->activationUrl = URL::route('activate', [$user->id, Activation::exists($user)->code]);
-                    // Send the activation code through email
-                    Mail::to($user->email)
-                        ->send(new Restore($data));
-
-                }
-            }
-
-            // Was the user updated?
-            if ($user->save()) {
-                // Prepare the success message
-                $success = trans('users/message.success.update');
-               //Activity log for user update
-                activity($user->full_name)
-                    ->performedOn($user)
-                    ->causedBy($user)
-                    ->log('User Updated by '.Sentinel::getUser()->full_name);
-                // Redirect to the user page
-                return Redirect::route('admin.users.edit', $user)->with('success', $success);
-            }
-
-            // Prepare the error message
-            $error = trans('users/message.error.update');
-        } catch (UserNotFoundException $e) {
-            // Prepare the error message
-            $error = trans('users/message.user_not_found', compact('id'));
-
-            // Redirect to the user management page
-            return Redirect::route('admin.users.index')->with('error', $error);
-        }
-
-        // Redirect to the user page
-        return Redirect::route('admin.users.edit', $user)->withInput()->with('error', $error);
-    }
-
+   
     /**
      * Show a list of all the deleted users.
      *
