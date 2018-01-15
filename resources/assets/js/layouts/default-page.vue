@@ -1,17 +1,19 @@
 <template> 
 	<div id="main-wrapper">
-		<Header></Header>
-				<router-view></router-view>
-			<Footer></Footer>
+		<app-header></app-header>
+	
+		<router-view></router-view>
+		<app-footer></app-footer>
 	</div>
 </template>
 
 <script>
- import Header from './header.vue' 
- import Footer from './footer.vue'
+ import AppHeader from './header.vue' 
+
+ import AppFooter from './footer.vue'
     export default {
         components: {
-            Header,  Footer 
+            AppHeader,AppFooter 
         } 
     }
 </script>
