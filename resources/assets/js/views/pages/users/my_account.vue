@@ -268,22 +268,26 @@
                                 </div>
 
                             </div>
+							
                             <div class="dashboard__content--box--list">
+							<tr v-for="item in items">
                                 <ul class="dashboard__content--box--list--content">
-                                    <li class="dashboard__content--box--list--content--item"><span><b>Name:</b></span> John Smith</li>
-                                    <li class="dashboard__content--box--list--content--item designation">Chief Officer</li>
-                                    <li class="dashboard__content--box--list--content--item"><span>Age:</span> 40 yrs </li>
-                                    <li class="dashboard__content--box--list--content--item"><span>Location:</span> Chandigarh</li>
-                                    <li class="dashboard__content--box--list--content--item"><span>Company:</span> Gutropolis Solutions</li>
+                                    <li class="dashboard__content--box--list--content--item"><span><b>First Name:</b></span> {{item.first_name}}</li>
+                                    
+                                  
+                                    <li class="dashboard__content--box--list--content--item"><span>Last Name:</span> {{item.last_name}}</li>
+                                    <li class="dashboard__content--box--list--content--item"><span>Email:</span> {{item.email}}</li>
                                 </ul>
+								</tr>
                             </div>
-                            <div class="dashboard__content--box--editbtn">
-                                <button type="button" class="btn btn-bg-orange"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                             <div class="dashboard__content--box--editbtn">
+                                <router-link to="/edit_account" type="button" class="btn btn-bg-orange"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                                 <g>
                                     <path d="M448,177.14V448c0,35.344-28.656,64-64,64H64c-35.344,0-64-28.656-64-64V128c0-35.344,28.656-64,64-64h270.844l-63.969,64   H64v320h320V241.156L448,177.14z M398.875,45.25L376.25,67.875l67.875,67.891l22.625-22.625L398.875,45.25z M444.125,0   L421.5,22.625l67.875,67.891L512,67.875L444.125,0z M150,294.188l67.875,67.875L421.5,158.406l-67.875-67.891L150,294.188z    M128,384h64l-64-64V384z" fill="#FFFFFF"/>
                                 </g>
-                                </svg> Edit</button>
+                                </svg> Edit</router-link>
                             </div>
+                        
                         </div>
                         <div class="dashboard__content--description">
                             <hr>
@@ -300,7 +304,9 @@
         </div>
     </section>
 	
+
 </div>
+
 </template>
 <script>
  export default {
@@ -324,7 +330,7 @@
 			 fetchItems()
 			 {
              
-              axios.get('/api/user').then((response) => {
+              axios.get('/api/auth/user').then((response) => {
                  
 				    this.items=response.data;
 					
