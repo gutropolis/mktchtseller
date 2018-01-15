@@ -101,13 +101,23 @@ let routes = [
 				component:require('./views/pages/manage_seller/vender_organisation')
 			},
 			{
+				name:'seller_list',
+				path : 'seller_list',
+				component:require('./views/pages/manage_seller/seller_list')
+			},
+			{
+				name:'edit_seller',
+				path : '/edit_seller',
+				component:require('./views/pages/manage_seller/edit_seller')
+			},
+			{
 				path: '/product_list',
 				component:require('./views/pages/manage_seller/product_list')
 			},
 			{
 				name:'edit_product',
 				path : '/edit_product',
-				component:require('./views/pages/manage seller/edit_product')
+				component:require('./views/pages/manage_seller/edit_product')
 			},
 			{
 				path : 'my_ads',
