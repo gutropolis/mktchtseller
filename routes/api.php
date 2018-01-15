@@ -35,13 +35,35 @@ Route::middleware('auth:api')->get('/charity', function (Request $request) {
     return $request->charity();
 
 });
+Route::group(['middleware' => ['jwt.auth']], function () {
+  Route::get('/auth/user','AuthController@getAuthUser');
+  Route::post('/user/update-profile','UserController@updateProfile');
+  Route::post('/user/change-password','AuthController@changePassword');
+   Route::delete('/task/{id}','SellerproductController@destroy');
+   Route::post('/task/{id}','SellerproductController@update');
+	 Route::get('/task/{id}','SellerproductController@edit');
  Route::post('/user/update-avatar','SellerproductController@updateAvatar');
 Route::resource('/gs_seller_organisation', 'SellerController');
+Route::get('/gs_seller_organisation', 'SellerController@index');
+Route::get('/product_list','SellerproductController@index');
+Route::get('/vender_category','SellerCategoryController@index');
+Route::post('/vender_category','SellerCategoryController@store');
+
+Route::post('/create_ads','AdsController@store');
+Route::get('/get_ads/','AdsController@index');
+Route :: get('/get_ad/{id}','AdsController@edit');
+Route :: post('/get_ad/{id}','AdsController@update');
+
+
 Route::resource('/gs_seller_product', 'SellerproductController');
-Route::get('/user','UserController@index');
+
 
 Route::get('/sellersearch', 'SellerController@search');
 Route::post('/sellersearch', 'SellerController@search');
+
+});
+
+
 Route::post('/upload', function (Request $request) {
     
         $imageData = $request->get('image');
