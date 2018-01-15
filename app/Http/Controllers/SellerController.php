@@ -46,6 +46,13 @@ class SellerController extends Controller
     /**
      * @return mixed
      */
+	 public function seller_list()
+    {
+		
+		$seller=Seller::all();
+ 
+		return response()->json($seller);
+    }
     public function data()
     {		
         $seller = Seller::get(['id','title', 'description', 'location', 'year_in_business','created_at']);
@@ -153,12 +160,11 @@ class SellerController extends Controller
      * @return View
      */
   
-		 public function edit(Seller $seller)
+		 public function edit(Request $request,$id)
     {
-		$sellercategory=SellerCategory::all()->where('parent_id','>','0');
-		$sellerpercategory=SellerCategory::all()->where('parent_id','=','0');
-        // Show the page
-        return view('admin.seller.edit', compact('seller','sellercategory','sellerpercategory'));
+		$seller_type=SellerCategory::all();
+		$seller = Seller::find($id);
+		return response()->json(array('data1'=>$seller,'data2'=>$seller_type));	
     }
        
     
@@ -170,32 +176,28 @@ class SellerController extends Controller
      * @param SellerRequest $request
      * @return Redirect
      */
-    public function update(Request $request,$id)
-    {
-         if ($file = $request->file('pic_file')) {
-            $extension = $file->extension()?: 'png';
-            $destinationPath = public_path() . '/uploads/seller/';
-            $safeName = str_random(10) . '.' . $extension;
-   
-            $file->move($destinationPath, $safeName);
-            $request['images'] = $safeName;
-   
-   }
-        request()->validate([
-            'title' => 'required',
-           
-        ]);
-  
-  
- 
- 
-  
-  
-        Seller::find($id)->update($request->all());
-        return redirect()->route('admin.seller.index')
-                        ->with('success','Update Seller  successfully');
+   public function update(Request $request,$id)
+    { 	
+	
+        $seller = Seller::find($id);
 
-    
+            $seller->title = $request->get('title');
+            $seller->description = $request->get('description');
+            $seller->location = $request->get('location');
+			$seller->year_in_business = $request->get('year_in_business');
+			$seller->start_up_year= $request->get('start_up_year');
+			$seller->business_type = $request->get('business_type');
+			$seller->address = $request->get('address');
+			$seller->phone_number = $request->get('phone_number');
+			$seller->keyword = $request->get('keyword');
+			$seller->vision_statement = $request->get('vision_statement');
+			$seller->mission_statement = $request->get('mission_statement');
+			$seller->tax_id = $request->get('tax_id');
+
+        $seller->save();
+		
+        return response()->json(['message' => 'Data update Successfully']);
+        
 	}
 
     /**
@@ -212,44 +214,17 @@ class SellerController extends Controller
     }
 
 
-    /**
-     * Delete Confirm
-     *
-     * @param   int $id
-     * @return  View
-     */
-    public function getModalDelete($id)
-    {
-       $model = 'gs_seller_organisation';
-        $confirm_route = $error = null;
-       
-        $confirm_route = route('admin.seller.delete', [$id]);
-        return view('admin.layouts.modal_confirmation', compact('error', 'model', 'confirm_route')); 
-    }
+  
 
-    
     public function destroy($id)
-    {
-        try {
-            // Get seller information
-            $seller = Sentinel::findById($id);
-            
-            
-           
-            Seller::destroy($id);
-           
-            $success = trans('seller/message.success.delete');
-                      
-            return Redirect::route('admin.seller.index')->with('success', $success);
-	} catch (UserNotFoundException $e) {
-            // Prepare the error message
-            $error = trans('admin/seller/message.seller_not_found', compact('id'));
+	{
+		 $seller = Seller::find($id);
+      $seller->delete();
 
-            // Redirect to the user management page
-            return Redirect::route('admin.seller.index')->with('error', $error);
-        }
+     return response()->json(['message' => 'Data Deleted Successfully']);
+    
     }
-
+	
     /**
      * Restore a deleted user.
      *
