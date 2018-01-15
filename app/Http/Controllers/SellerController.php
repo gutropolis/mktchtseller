@@ -139,7 +139,7 @@ class SellerController extends Controller
 			'business_type' => request('business_type'),
 			'address' => request('address'),
 			'phone_number' => request('phone_number'),
-			'keyword' => request('keyword'),
+			
 			'vision_statement' =>request('vision_statement'),
 			'mission_statement' => request('mission_statement'),
 			'tax_id' => request('tax_id'),
@@ -189,7 +189,7 @@ class SellerController extends Controller
 			$seller->business_type = $request->get('business_type');
 			$seller->address = $request->get('address');
 			$seller->phone_number = $request->get('phone_number');
-			$seller->keyword = $request->get('keyword');
+			
 			$seller->vision_statement = $request->get('vision_statement');
 			$seller->mission_statement = $request->get('mission_statement');
 			$seller->tax_id = $request->get('tax_id');
