@@ -5,7 +5,7 @@ use Cviebrock\EloquentTaggable\Taggable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable{
+class User extends Authenticatable {
 
 	/**
 	 * The database table used by the model.
@@ -52,4 +52,8 @@ public function profile()
     {
         return $this->hasOne('App\Profile');
     }
+	public function author()
+		{
+			return $this->belongsTo('user_id','user_name');
+		}
 }
