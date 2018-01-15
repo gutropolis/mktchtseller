@@ -12,17 +12,13 @@ let routes = [
                 component: require('./views/pages/home')
             },
 			{
+                path: '/home',
+                component: require('./views/pages/home')
+            },
+			{
                 path: '/login',
                 component: require('./views/auth/login')
             },
-			{
-                path: '/forget_password',
-                component: require('./views/auth/forget_password')
-            },
-			{
-				path : 'password',
-				component:require('./views/auth/change_password')
-			},
 			{
                 path: '/register',
                 component: require('./views/auth/register')
@@ -35,26 +31,6 @@ let routes = [
 				path: '/aboutus',
                 component: require('./views/pages/aboutus')
 			},
-			{
-				path: '/vender_organisation',
-				component:require('./views/pages/manage seller/vender_organisation')
-			},
-			{
-				path: '/product_list',
-				component:require('./views/pages/manage seller/product_list')
-			},
-			
-			{
-				path: '/vender_Category',
-				component:require('./views/pages/manage seller/vender_category')
-			},
-			
-			
-			{ 
-				name : 'edit_product',
-                path: '/edit',
-                component: require('./views/pages/manage seller/edit')
-            },
 			
 			{
 				path: '/product',
@@ -62,7 +38,7 @@ let routes = [
 			},
 			{
 				path: '/charityfba',
-                component: require('./views/pages/charityfba')
+                component: require('./views/Charity/charityfba')
 			},
 			{
 				path: '/sellerfab',
@@ -71,6 +47,58 @@ let routes = [
 			{
 				path : '/my_account',
 				component:require('./views/pages/users/my_account')
+			},
+			{
+				path : '/edit_account',
+				component:require('./views/pages/users/edit_profile')
+			},
+			{
+				path : 'my_ads',
+				component:require('./views/pages/my_ads')
+			},
+			{
+				path : 'my_notification',
+				component:require('./views/pages/my_notification')
+			},
+			{
+				path : 'my_message',
+				component:require('./views/pages/my_message')
+			},
+             {
+				path : 'charity_organisation',
+				component:require('./views/Charity/charity_organisation')
+			},
+			{
+				path : 'charity_category',
+				component:require('./views/Charity/charity_category')
+			},
+			{
+				name:'charity_list',
+				path : 'charity_list',
+				component:require('./views/Charity/charity_list')
+			},
+			{
+				name:'edit_charity',
+				path : '/edit_charity',
+				component:require('./views/Charity/edit_charity')
+			},
+			{
+				name:'charity_details',
+				path : '/charity_details',
+				component:require('./views/Charity/charity_details')
+			},
+			{
+				path: '/vender_organisation',
+				component:require('./views/pages/manage seller/vender_organisation')
+			},
+			{
+				path: '/product_list',
+				component:require('./views/pages/manage seller/product_list')
+			},
+			{
+				name:'edit_product',
+				path : '/edit_product',
+				component:require('./views/pages/manage seller/edit_product')
 			},
 			{
 				path : 'my_ads',
@@ -89,21 +117,7 @@ let routes = [
 				path : 'show_ads',
 				component:require('./views/pages/my_ads/show_ads')
 			},
-			{
-				
-				path : 'my_notification',
-				component:require('./views/pages/my_notification')
-			},
-			{
-				path : 'my_message',
-				component:require('./views/pages/my_message')
-			},
-			{
-				path : 'my_profile',
-				component:require('./views/pages/users/edit_profile')
-			},
 			
-             
         ]
     },
 	 
@@ -119,12 +133,12 @@ let routes = [
     }
 ];
 
-
 const router = new VueRouter({
 	routes,
     linkActiveClass: 'active',
     mode: 'history'
 });
 
+ 
 
 export default router;
