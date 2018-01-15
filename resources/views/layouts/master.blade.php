@@ -14,7 +14,7 @@
 	 <link rel="stylesheet" href="css/vue-form-wizard.min.css">
   <link href="css/toastr.min.css" rel="stylesheet" type="text/css">  
  </head>
- <body>
+ <body >
         
      <div id="root">
          <router-view></router-view>
