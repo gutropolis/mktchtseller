@@ -241,7 +241,7 @@ return [
 		'Reminder'   => Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
 		'Sentinel'   => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
 		'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
-		'JWTFactory' => Tymon\JWTAuthFacades\JWTFactory::class`
+		'JWTFactory' => Tymon\JWTAuthFacades\JWTFactory::class,
 		
     ],
 
