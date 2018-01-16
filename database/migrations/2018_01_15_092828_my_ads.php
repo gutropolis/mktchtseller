@@ -12,7 +12,6 @@ class MyAds extends Migration
      * @return void
      */
     public function up()
-    {
 {
         Schema::create('my_ads', function(Blueprint $table)
 		{
