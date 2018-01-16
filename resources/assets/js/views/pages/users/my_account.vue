@@ -241,7 +241,7 @@
                                </svg> Vendor Category</router-link>
                         </li>
                         <li class="proflie__element--detail--list--item">
-                            <a href="#" class="proflie__element--detail--list--item--link">
+                            <a href="#"  @click.prevent="logout" class="proflie__element--detail--list--item--link">
                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="44.816px" height="44.816px" viewBox="0 0 44.816 44.816" style="enable-background:new 0 0 44.816 44.816;" xml:space="preserve">
                                    <g>
                                        <path d="M22.404,21.173c2.126,0,3.895-1.724,3.895-3.85V3.849C26.299,1.724,24.53,0,22.404,0c-2.126,0-3.895,1.724-3.895,3.849
@@ -349,7 +349,17 @@
             this.fetchItems();
         },
         methods: {
-		
+		logout(){
+                axios.post('/api/auth/logout').then(response =>  {
+            localStorage.removeItem('auth_token');
+            axios.defaults.headers.common['Authorization'] = null;
+            toastr['success'](response.data.message);
+			this.$router.push('/');
+        }).catch(error => {
+            console.log(error);
+        });
+    },
+            },
 		 
 			 fetchItems()
 			 {
@@ -361,7 +371,7 @@
               });
             },
         }
-    }
+    
 </script>
 
 
