@@ -37,6 +37,8 @@ class AuthController extends Controller
 
         if($user->status != 'activated')
             return response()->json(['message' => 'There is something wrong with your account. Please contact system administrator.'], 422);
+		if($user->role == '')
+            return response()->json(['message' => 'There is something wrong with your account. Please select User Role.'], 422);
 
         return response()->json(['message' => 'You are successfully logged in!','token' => $token]);
     }
@@ -90,7 +92,8 @@ class AuthController extends Controller
             'last_name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'password_confirmation' => 'required|same:password'
+            'password_confirmation' => 'required|same:password',
+			'role' => 'required',
         ]);
 
         if($validation->fails())
@@ -99,10 +102,13 @@ class AuthController extends Controller
         $user = \App\User::create([
             'email' => request('email'),
 			'first_name'=>request('first_name'),
+			'role'=>request('role'),
 			'last_name'=>request('last_name'),
             'status' => 'pending_activation',
-            'password' => bcrypt(request('password'))
+            'password' => bcrypt(request('password')),
+			
         ]);
+		//$user = new  \App\User($request->all());
 
         $user->activation_token = generateUuid();
         $user->save();
