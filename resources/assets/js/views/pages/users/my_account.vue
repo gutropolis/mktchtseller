@@ -359,7 +359,7 @@
             console.log(error);
         });
     },
-            },
+            
 		 
 			 fetchItems()
 			 {
@@ -371,7 +371,7 @@
               });
             },
         }
-    
+    }
 </script>
 
 
