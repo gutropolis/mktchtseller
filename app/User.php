@@ -25,7 +25,7 @@ class User extends Authenticatable {
 	 */
     use Taggable;
 
-	protected $fillable = ['first_name', 'last_name', 'email', 'status', 'avatar', 'password'];
+	protected $fillable = [];
 	protected $guarded = ['id'];
 	/**
 	 * The attributes excluded from the model's JSON form.
