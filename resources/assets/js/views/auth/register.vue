@@ -39,7 +39,17 @@
                             <label class="login__element--box--label">Confirm Password</label>
                             <input type="password" name="password_confirmation" placeholder="Confirm Password" v-model="registerForm.password_confirmation" class="login__element--box--input">
                         </div>
-
+						<div class="form-group">
+					   
+                            <label class="login__element--box--label">Role</label>
+                            <select name="role"  v-model="registerForm.role" class="login__element--box--input">
+							<option value="select">Select .. </option>
+							<option value="charity">charity</option>
+								<option value="seller">Seller</option>
+							
+							
+							</select>
+                        </div>
 
                         <div class="form-group text-center">
                             <input type="Submit" placeholder="" value="Sign Up" class="btn btn-bg-orange login__element--box--button">
@@ -64,8 +74,9 @@
                     password: '',
                     password_confirmation: '',
                     first_name: '',
-                    last_name: ''
-                }
+                    last_name: '',
+					role: ''
+				}
             }
         },
         
