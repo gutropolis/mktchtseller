@@ -101,6 +101,10 @@ let routes = [
 				component:require('./views/pages/manage_seller/vender_organisation')
 			},
 			{
+				path : 'seller_category',
+				component:require('./views/pages/manage_seller/seller_category')
+			},
+			{
 				name:'seller_list',
 				path : 'seller_list',
 				component:require('./views/pages/manage_seller/seller_list')
