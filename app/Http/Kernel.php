@@ -58,10 +58,9 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin' => \App\Http\Middleware\SentinelAdmin::class,
-	    //'user' => \App\Http\Middleware\SentinelUser::class,
-		'seller' => \App\Http\Middleware\seller::class,
-		'charity' => \App\Http\Middleware\charity::class,
-		'jwt.auth' => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
+		'user' => \App\Http\Middleware\SentinelUser::class,
+ 
+  'jwt.auth' => 'Tymon\JWTAuth\Middleware\GetUserFromToken',
         'jwt.refresh' => 'Tymon\JWTAuth\Middleware\RefreshToken',
     ];
 }
