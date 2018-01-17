@@ -217,7 +217,7 @@
 						<li class="proflie__element--detail--list--item">
                             
 
-						   <router-link to="/vender_Category" class="proflie__element--detail--list--item--link">
+						   <router-link to="/seller_Category" class="proflie__element--detail--list--item--link">
                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="31.979px" height="31.979px" viewBox="0 0 31.979 31.979" style="enable-background:new 0 0 31.979 31.979;" xml:space="preserve">
                                     <g>
                                        <path d="M21.945,6.06V5.359c0-0.796-0.646-1.441-1.441-1.441h-2.365c0.197-0.356,0.309-0.797,0.309-1.245
@@ -257,7 +257,7 @@
                         </li>
                     </ul>
                     <div class="contact__btn">
-                        <a href="#" class="btn contact__btn--content">Contact</a>
+                        <router-link to="/contact" class="btn contact__btn--content">Contact</router-link>
                     </div>
                 </div>
 			</tr>
