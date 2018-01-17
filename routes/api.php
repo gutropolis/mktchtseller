@@ -15,12 +15,12 @@ use Illuminate\Http\Request;
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('/login','AuthController@authenticate');
-	Route::get('/login','AuthController@authenticate');
-	
+ Route::get('/login','AuthController@authenticate');
+ 
     Route::post('/logout','AuthController@logout');
     Route::post('/check','AuthController@check');
     Route::post('/register','AuthController@register');
-	Route::get('/register','AuthController@register');
+ Route::get('/register','AuthController@register');
     Route::get('/activate/{token}','AuthController@activate');
     Route::post('/password','AuthController@password');
     Route::post('/validate-password-reset','AuthController@validatePasswordReset');
@@ -36,7 +36,7 @@ Route::middleware('auth:api')->get('/charity', function (Request $request) {
 
 });
 Route::group(['middleware' => ['jwt.auth']], function () {
-	//user Profile
+ //user Profile
 Route::get('/auth/user','AuthController@getAuthUser');
 Route::post('/user/update-profile','UserController@updateProfile');
 Route::post('/user/change-password','AuthController@changePassword');
@@ -104,4 +104,3 @@ Route::post('/edit_charity/{id}','charityController@update');
 
 Route::get('/search','charityController@search');
 Route::post('/search','charityController@search');
-
