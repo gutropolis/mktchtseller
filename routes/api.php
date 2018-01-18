@@ -109,3 +109,8 @@ Route::post('/edit_charity/{id}','charityController@update');
 
 Route::get('/search','charityController@search');
 Route::post('/search','charityController@search');
+//message part
+
+Route::get('/create_message','MessageController@index');
+Route::post('/create_message','MessageController@store');
+Route::get('/get_user','UserController@index');
