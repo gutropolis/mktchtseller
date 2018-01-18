@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\JoshController;
 use App\Http\Requests\SellerRequest;
-use App\Seller;
+use App\Message;
 use App\Http\Requests;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
@@ -23,7 +23,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 
-class SellerController extends JoshController
+class MessagesellerController extends Controller
 {
 
     /**
@@ -38,14 +38,6 @@ class SellerController extends JoshController
         // Show the page
 		$seller=SellerCategory::all();
         return response()->json($seller);
-    }
-		
-	 public function seller_details(Request $request,$id)
-    {
-
-        // Show the page
-		$seller_details=Seller::find($id);
-        return response()->json($seller_details);
     }
 
     /*
@@ -111,57 +103,39 @@ class SellerController extends JoshController
      */
     public function store(Request $request)
     {
-		
-        if ($file = $request->file('pic_file')) {
-            $extension = $file->extension()?: 'png';
-            $destinationPath = public_path() . '/uploads/seller/';
-            $safeName = str_random(10) . '.' . $extension;
-            $file->move($destinationPath, $safeName);
-            $request['pic'] = $safeName;
-        }
-		 $validation = Validator::make($request->all(), [
-            'title' => 'required',
-            'description' => 'required',
-            'location' => 'required',
-			'year_in_business' => 'required',
-			'start_up_year' => 'required',
-			'business_type' => 'required',
-			'address' => 'required',
-			'phone_number' => 'required',
-			'keyword' => 'required',
-			'vision_statement' => 'required',
-			'mission_statement' => 'required',
-			'tax_id' => 'required'
-			
+      $message = Validator::make($request->all(), [
             
+   
+   'msgtitle' => 'required',
+   'message'=>'required',
+   
         ]);
-
-        if($validation->fails())
-            return response()->json(['message' => $validation->messages()->first()],422);
-       $seller = \App\Seller::create([
-            'title' => request('title'),
-            'description' => request('description'),
-            'location' => request('location'),
-			'year_in_business' => request('year_in_business'),
-			'start_up_year' => request('start_up_year'),
-			'business_type' => request('business_type'),
-			'address' => request('address'),
-			'phone_number' => request('phone_number'),
-			
-			'vision_statement' =>request('vision_statement'),
-			'mission_statement' => request('mission_statement'),
-			'tax_id' => request('tax_id'),
-        ]);
-	   $user = JWTAuth::parseToken()->authenticate();
-		 $seller->user_id = $user->id;	
-		 $seller->updated_by = $user->first_name;	
-
-	    $seller->save();
-	   
+  if($message->fails())
+            return response()->json(['message' => $message->messages()->first()],422);
+   $message=\App\Messages::create([
+   'subject'=> request('msgtitle'),
+   'message'=>request('message'),
+   'reciever_id'=>request('user_id'),
+   'post_id'=>request('id'),
+   'post_type'=>request('post_type'),
+   'reciever'=>request('updated_by'),
+   
+   
+   ]);
+   
+   $user = JWTAuth::parseToken()->authenticate();
+   
+   $message->sender_id=$user->id;
+   $message->sender=$user->first_name;
+   //$message->post_type=$user->role;
+   
+        $message->save();
+  
+        return response()->json(['message' => 'Message sent  Successfully']);  
        
-		 return response()->json(['message' => 'You have registered successfully']);
-    }
 
+      
+    }
     /**
      * User update.
      *

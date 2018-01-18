@@ -111,10 +111,12 @@ class AuthController extends Controller
 		//$user = new  \App\User($request->all());
 
         $user->activation_token = generateUuid();
+		
         $user->save();
+		$user->notify(new Activation($user));
          return response()->json(['message' => 'You have registered successfully. Please check your email for activation!']);
 
-       // $user->notify(new Activation($user));
+        
 
         
     }
