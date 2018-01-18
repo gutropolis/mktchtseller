@@ -85,7 +85,7 @@
 					
 					
     
-	<tr v-for="item in items" >
+	<tr v-for="item in items">
 			
 				<div class="charity__listing row">
 						<figure class="charity__listing--figure  col-md-3">
@@ -108,7 +108,7 @@
 							
 							
 													 
-								<h4 class="charity__listing--content--box--heading">{{item.title}}</h4>
+								<router-link :to="{name: 'charity_details', params: { id: item.id }}" ><h4 class="charity__listing--content--box--heading">{{item.title}}</h4></router-link>
 								<h6 class="charity__listing--content--box--subheading">Contrary to popular belief, Lorem Ipsum.</h6>
 								<p class="charity__listing--content--box--pera">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
 							</div>
@@ -125,12 +125,12 @@
 				 </tr>
 	
 	
-	
+	<infinite-loading @infinite="infiniteHandler"></infinite-loading>
 	
   					
 					
 				</div>
-				<infinite-loading @infinite="infiniteHandler"></infinite-loading>
+				
 			</div>
 		</div>
 		

@@ -24,19 +24,19 @@
         <div class="container">
             <div class="search__form">
                 <h4 class="search__form--heading">SEARCH SELLER/CHARITY POST'S</h4>
-                <form class="row">
+                <form id="searchform" class="row">
                     <div class="col-md-3">
                         <div class="form-group ">
-                            <input type="text" placeholder="Search Keywords" class="search__form--area">
+                            <input type="text" name="searchlocation" placeholder="Search Location" v-model="searchform.searchlocation"class="search__form--area">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <select placeholder="Search Keywords" class="search__form--area">
-                                    <option>Select Charity/Seller</option>
-                                    <option>Select Charity/Seller</option>
-                                    <option>Select Charity/Seller</option>
-                                    <option>Select Charity/Seller</option>
+                            <select placeholder="Search Keywords" v-model="searchform.selectcategory" class="search__form--area">
+                                    <option value="">Select Charity/Seller</option>
+                                    <option value="seller">Select Seller</option>
+                                    <option value="charity">Select Charity</option>
+                                    
                                 </select>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <input type="submit" placeholder="Search Keywords" class="search__form--btn btn btn-primary ">
+                            <a href="javascript:void()" class="search__form--btn btn btn-primary " v-on:click="submit(searchform.selectcategory)" >Submit</a></td>
                         </div>
                     </div>
                 </form>
@@ -343,7 +343,51 @@
 </template>
 <script>
     export default {
+	        data() {
+	selectcategory:'charity'
+            return {
+			
+                searchform: {
+
+                   searchlocation:'',
+				  selectcategory:''
+                    
+                }
+            }
+        },
+		
+	
         mounted() {
-        }
+        },
+		methods: {
+		submit:function(msg)
+		{
+		
+		     axios.post('/api/search', this.searchform).then(response =>  {
+                    
+					
+					if(msg=='charity')
+					{
+					
+                    this.$router.push('/charityfba');
+					toastr['success'](response.data.message);
+					}
+					else if (msg=='seller')
+					{
+					 this.$router.push('/sellerfab');
+					 toastr['success'](response.data.message);
+					}
+					else{
+					toastr['error']('Please select one option');
+					}
+                }).catch(error => {
+                    toastr['error'](error.response.data.message);
+                });
+					
+				
+		}
+		
+		}
+		
     }
 </script>
