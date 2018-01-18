@@ -129,11 +129,15 @@ class charityController extends JoshController
 			'vision_statement'=> request('vision_statement'),
 			'mission_statement'=> request('mission_statement'),
 			'tags'=> request('tags'),
-			'charity_type'=> request('charity_type')
+			'charity_type'=> request('charity_type'),
+			'post_type'=>'charity',
 			
 			]);
 			
-			
+			$user = JWTAuth::parseToken()->authenticate();
+   $charity->user_id = $user->id; 
+   $charity->updated_by= $user->first_name; 
+   //$charity->updated_by = $user->first_name;
 			
         $charity->save();
 		

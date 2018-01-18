@@ -1,86 +1,96 @@
+
+
 <template>
-<div align="center">
-
-<div >
-<table border="2px" cellpadding=4 height="200px" width="400px">
-<tr>
-<th  colspan="2" class="charity__listing--content--box--heading"> Charity Details is here</th>
-</tr>
-<tr>
-<th>Title</th><td>{{items.title}}</td>
-</tr>
-<tr>
-<th>Description</th><td>{{items.description}}</td>
-</tr>
-<tr>
-<th>Location</th><td>{{items.location}}</td>
-</tr>
-<tr>
-<th>Address</th><td>{{items.address}}</td>
-</tr>
-<tr>
-<th>Year in business</th><td>{{items.year_in_business}}</td>
-</tr>
-<tr>
-<th>Start up Year</th><td>{{items.start_up_year}}</td>
-</tr>
-<tr>
-<th>Business Purpose</th><td>{{items.business_purpose}}</td>
-</tr>
-<tr>
-<th>Phone Number</th><td>{{items.phone_number}}</td>
-</tr>
-<tr>
-<th>Keyword</th><td>{{items.keyword}}</td>
-</tr>
-<tr>
-<th>Charity Type</th><td>{{items.charity_type}}</td>
-</tr>
-
-
-
-
-
-</table>
+<div id="main-wrapper">
+ <app-navbar></app-navbar>
+ <section class=" my__account">
+        <div class="row">
+			<app-sidebar></app-sidebar>
+			
+  <div class="dashboard__content--outer">
+                        
+                         <form id="create_message" @submit.prevent="submit">
+                      
+                       
+                      <div class="form-group">
+                            <label class="login__element--box--label">Title</label>
+                            <input type="text" name="msgtitle" v-model="create_message.msgtitle"  placeholder="Title"  class="login__element--box--input" />
+							
+                        </div>
+						
+						 <input type="hidden" name="user_id" v-model="create_message.user_id"   class="login__element--box--input" />
+						 <input type="hidden" name="id" v-model="create_message.id"   class="login__element--box--input" />
+						  <input type="hidden" name="post_type" v-model="create_message.post_type"   class="login__element--box--input" />
+						   <input type="hidden" name="updated_by" v-model="create_message.updated_by"   class="login__element--box--input" />
+						 
+                       <div class="form-group">
+                            <label class="login__element--box--label">Message</label>
+                           <textarea placeholder="Type your message here" v-model="create_message.message"  class="login__element--box--input" rows="5">
+						   </textarea>
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="Submit" placeholder="" value="Send Message" class="btn btn-bg-orange login__element--box--button">
+                        </div>
+                    </form>                
+					
+                       
+                    </div>
+					{{create_message|json}}
+					
+					
 </div>
+</section>
 </div>
-
 </template>
-
 <script>
-
-export default {
-	
+import AppNavbar from './navbar.vue' 
+ import AppSidebar from './sidebar.vue'
+ 
+ export default {
+	components: {
+            AppNavbar,  AppSidebar 
+        },
   
         data() {
-		
-            return {
-			items:{}
+           return{
+		   create_message:{},
+		   create_message:{
+		  
+		   }
+		   
+		   }
+		   
+		   
+		   },
 			
-
-                  
-				   
-                    
-                }
-            },
-       
-		
-		created: function()
+             created: function()
         {
             this.fetchItems();
-        },
+        },        
+               
+            
+        
        
         
         mounted(){
         },
-        methods: {
-		
+         methods: {
+            submit(e){
+                axios.post('/api/create_message', this.create_message).then(response =>  {
+                    toastr['success'](response.data.message);
+                    
+                }).catch(error => {
+                    toastr['error'](error.response.data.message);
+                });
+            },
+			
 			 fetchItems()
             {
 			
              axios.get('api/charity_details/'+this.$route.params.id).then(response=>{
 			
-			this.items=response.data;
+			this.create_message=response.data;
+			
 			
 			}).catch(error=>{
 			toastr['error'](error.response.data.message);
@@ -88,7 +98,14 @@ export default {
               });
             }
 			
-			}
-			}
+			
+		
+    }
+	}
+	
+	
+	
 </script>
+
+
 
