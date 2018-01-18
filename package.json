@@ -48,8 +48,11 @@
         "node-fs": "^0.1.7",
         "notification": "0.0.6",
         "npm-helper": "0.0.6",
+        "socket.io-client": "^2.0.4",
         "vee-validate": "^2.0.0",
         "vue-form-wizard": "^0.8.2",
-        "vue-range-slider": "^0.2.4"
+        "vue-infinite-loading": "^2.2.3",
+        "vue-range-slider": "^0.2.4",
+        "vue-socket.io": "^2.1.1-b"
     }
 }
