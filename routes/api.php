@@ -39,6 +39,7 @@ Route::group(['middleware' => ['jwt.auth']], function () {
  //user Profile
 Route::get('/auth/user','AuthController@getAuthUser');
 Route::post('/user/update-profile','UserController@updateProfile');
+Route::get('/get_user','UserController@index');
 Route::post('/user/change-password','AuthController@changePassword');
 //seller Product
 Route::delete('/task/{id}','SellerproductController@destroy');
@@ -53,6 +54,7 @@ Route::get('/seller_list','SellerController@seller_list');
 Route::get('/edit_seller/{id}','SellerController@edit');
 Route::post('/edit_seller/{id}','SellerController@update');
  Route::delete('/seller_list/{id}','SellerController@destroy');
+ Route::get('/seller_details/{id}','SellerController@seller_details');
 
 Route::get('/vender_category','SellerCategoryController@index');
 Route::post('/vender_category','SellerCategoryController@store');
@@ -63,6 +65,9 @@ Route :: post('/get_ad/{id}','AdsController@update');
 Route::resource('/gs_seller_product', 'SellerproductController');
 Route::get('/sellersearch', 'SellerController@search');
 Route::post('/sellersearch', 'SellerController@search');
+
+//message communicate
+Route::post('/create_message','MessageController@store');
 
 });
 

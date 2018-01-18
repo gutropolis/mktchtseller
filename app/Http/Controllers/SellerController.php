@@ -39,6 +39,14 @@ class SellerController extends JoshController
 		$seller=SellerCategory::all();
         return response()->json($seller);
     }
+		
+		 public function seller_details(Request $request,$id)
+    {
+
+        // Show the page
+		$seller_details=Seller::find($id);
+        return response()->json($seller_details);
+    }
 
     /*
      * Pass data through ajax call
