@@ -32,7 +32,7 @@ class GsVendorOrganisation extends Migration
 			$table->string('updated_by');
             $table->string('user_id')->nullable();
             
-            $table->string('updated_by')->nullable();
+           
             
             $table->timestamps();
             
