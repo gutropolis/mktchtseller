@@ -50,8 +50,8 @@ let routes = [
                 component: require('./views/Charity/charityfba')
 			},
 			{
-				path: '/sellerfab',
-				component:require('./views/pages/manage_seller/sellersearch')
+				path: '/sellerfba',
+				component:require('./views/pages/manage_seller/sellerfba')
 			},
 			{
 				path : '/my_account',
@@ -71,7 +71,11 @@ let routes = [
 			},
 			{
 				path : 'my_message',
-				component:require('./views/pages/my_message')
+				component:require('./views/pages/message/my_message')
+			},
+			{
+				path : 'create_message',
+				component:require('./views/pages/message/create_message')
 			},
              {
 				path : 'charity_organisation',
@@ -108,6 +112,11 @@ let routes = [
 				name:'seller_list',
 				path : 'seller_list',
 				component:require('./views/pages/manage_seller/seller_list')
+			},
+			{
+				name:'seller_details',
+				path : 'seller_details',
+				component:require('./views/pages/manage_seller/seller_details')
 			},
 			{
 				name:'edit_seller',
@@ -161,6 +170,7 @@ const router = new VueRouter({
     linkActiveClass: 'active',
     mode: 'history'
 });
+
 
  
 
