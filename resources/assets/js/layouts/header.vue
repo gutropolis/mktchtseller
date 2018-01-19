@@ -3,7 +3,7 @@
     <header class="header_element">
         <nav class="navbar navbar-toggleable-md navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="#"><img src="images/logo.png"></a>
+                <router-link to="/" class="navbar-brand" href="#"><img src="images/logo.png"></router-link>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,12 +23,13 @@
 							
                         </li>
 						 <li class="nav-item">
-                             <router-link to="/sellerfab" class="nav-link">Sellerfab Us </router-link>
+                             <router-link to="/sellerfba" class="nav-link">Sellerfba Us </router-link>
                         </li>
                         <li class="nav-item">
                             <router-link to="/contact" class="nav-link">Contact Us </router-link>
                         </li>
                     </ul>
+					
                     <div class=" my-2 my-lg-0 ">
                         <router-link to="/register" class="btn join_btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Join Us </router-link>
                         <router-link to="/login" class="btn sign_btn"><img src="images/sign-arrow.png">Sign In </router-link>
@@ -41,10 +42,3 @@
     </header>
     <!-- header element End -->
 </template>
-
-<script>
-    export default {
-        mounted() {
-        }
-    }
-</script>
