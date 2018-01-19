@@ -131,7 +131,8 @@ class SellerController extends JoshController
 			'keyword' => 'required',
 			'vision_statement' => 'required',
 			'mission_statement' => 'required',
-			'tax_id' => 'required'
+			'tax_id' => 'required',
+			
 			
             
         ]);
@@ -151,6 +152,8 @@ class SellerController extends JoshController
 			'vision_statement' =>request('vision_statement'),
 			'mission_statement' => request('mission_statement'),
 			'tax_id' => request('tax_id'),
+			'post_type'=>'seller',
+			
         ]);
 	   $user = JWTAuth::parseToken()->authenticate();
 		 $seller->user_id = $user->id;	
