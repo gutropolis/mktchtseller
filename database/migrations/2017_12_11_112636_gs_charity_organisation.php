@@ -29,6 +29,8 @@ class GsCharityOrganisation extends Migration
             $table->string('vision_statement');
             $table->string('mission_statement');
             $table->string('tags');
+			$table->string('post_type');
+			$table->string('updated_by');
             $table->string('user_id')->nullable();
 			
             $table->string('charity_type')->nullable();

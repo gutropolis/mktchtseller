@@ -21,11 +21,12 @@ class AddFieldsToUserTable extends Migration {
 			$table->string('pic')->nullable();
 			$table->string('country')->nullable();
 			$table->string('role')->nullable();
-
+			$table->string('status')->nullable();
 			$table->string('state')->nullable();
 			$table->string('city')->nullable();
 			$table->string('address')->nullable();
 			$table->string('postal')->nullable();
+			$table->string('activation_token')->nullable();
 			$table->string('membership_id')->nullable();
 
 		});
