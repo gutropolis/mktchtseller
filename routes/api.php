@@ -60,16 +60,18 @@ Route::get('/vender_category','SellerCategoryController@index');
 Route::post('/vender_category','SellerCategoryController@store');
 Route::post('/create_ads','AdsController@store');
 Route::get('/get_ads/','AdsController@index');
+Route::get('/show_ads','AdsController@index');
 Route :: get('/get_ad/{id}','AdsController@edit');
 Route :: post('/get_ad/{id}','AdsController@update');
 Route::resource('/gs_seller_product', 'SellerproductController');
-Route::get('/sellersearch', 'SellerController@search');
-Route::post('/sellersearch', 'SellerController@search');
+
 
 //message communicate
-Route::post('/create_message','MessageController@store');
+Route::post('/create_messages','MessagesellerController@store');
 
 });
+Route::get('/sellersearch', 'SellerController@search');
+Route::post('/sellersearch', 'SellerController@search');
 
 
 Route::post('/upload', function (Request $request) {
