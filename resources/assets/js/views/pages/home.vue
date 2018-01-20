@@ -374,7 +374,7 @@
 					}
 					else if (msg=='seller')
 					{
-					 this.$router.push('/sellerfab');
+					 this.$router.push('/sellerfba');
 					 toastr['success'](response.data.message);
 					}
 					else{

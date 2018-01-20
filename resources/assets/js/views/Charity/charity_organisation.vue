@@ -278,7 +278,7 @@ import Vue from 'vue'
             submit(e){
                 axios.post('/api/gs_charity_organisation', this.savecharityform).then(response =>  {
                     toastr['success'](response.data.message);
-                    this.$router.push('/aboutus');
+                    this.$router.push('/charity_list');
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });

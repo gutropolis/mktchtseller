@@ -84,7 +84,7 @@
 				<!-- End listing element -->
 				<div class="pagination_element">
 					<ul class="pagination">
-					<v-infinite-scroll :loading="loading" @top="prevPage" @bottom="nextPage"  style="max-height: 80vh; overflow-y: scroll;">
+					
     
 	<tr v-for="item in items" >
 			
@@ -125,10 +125,7 @@
 				</div>
 				 </tr>
 	
-	
-	
-	
-  </v-infinite-scroll>					
+	 <infinite-loading @infinite="infiniteHandler" ></infinite-loading>				
 					</ul>
 				</div>
 			</div>
@@ -142,9 +139,12 @@
  </div>
 </template>
 <script>
-
+import InfiniteLoading from 'vue-infinite-loading';
 export default {
-	
+	components:
+	{
+	InfiniteLoading,
+	},
   
         data() {
 		
@@ -181,23 +181,24 @@ export default {
                     toastr['error'](error.response.data.message);
                 });
             },
-			prevPage () {
-      if (this.page == 1) return
-      --this.page
-      this.fetchItems()
-    },
-    nextPage () {
-      ++this.page
-      this.fetchItems()
+			infiniteHandler($state) {
+      setTimeout(() => {
+        const temp = [];
+        for (let i = this.items.length + 1; i <= this.items.length + 3; i++) {
+          temp.push(i);
+        }
+        this.items = this.items.concat(temp);
+        $state.loaded();
+      }, 1000);
     },
 			 fetchItems()
             {
-			this.loading = true
+			
               axios.get('/api/search').then(response =>  {
 					
                   this.items = response.data;
 				  //this.page=response.data.data;
-				   this.loading = false
+				  
               });
             }
 			

@@ -159,14 +159,22 @@
                                </svg>Delete</button>
                                 </div>
                             </div>
+							<div class="notification__element--view">
+							<div class=" my-2 my-lg-0 ">
+							<router-link to="/create_message" class="btn join_btn"> Create Message</router-link>
+							</div>
+							</div>
                             <div class="notification__element--view">
                                 <div class="notification__element--mark">
                                     <input type="checkbox" value="mark" class="notification__element--mark--check">
                                 </div>
+								
                                 <div class="notification__element--listing">
+								
                                     <figure class="notification__element--listing--figure">
                                         <img src="images/download.jpg" class="notification__element--listing--figure--image">
                                     </figure>
+									
                                     <div class="notification__element--listing--content">
                                         <h4>Charity Life</h4>
                                         <p>Contrary to popular belief, Lorem Ipsum.</p>
