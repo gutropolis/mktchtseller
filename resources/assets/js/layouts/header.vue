@@ -15,15 +15,15 @@
                         </li>
                         <li class="nav-item">
 						<router-link to="/aboutus">
-                            <a class="nav-link" href="#">About</a></router-link>
+                            <a class="nav-link" href="#"> About</a></router-link>
                         </li>
                         <li class="nav-item">
 						<router-link to="/charityfba">
-                            <a class="nav-link " href="#">Charityfab Post</a></router-link>
+                            <a class="nav-link " href="#">Charity</a></router-link>
 							
                         </li>
 						 <li class="nav-item">
-                             <router-link to="/sellerfba" class="nav-link">Sellerfba Us </router-link>
+                             <router-link to="/sellerfba" class="nav-link">Seller</router-link>
                         </li>
                         <li class="nav-item">
                             <router-link to="/contact" class="nav-link">Contact Us </router-link>
