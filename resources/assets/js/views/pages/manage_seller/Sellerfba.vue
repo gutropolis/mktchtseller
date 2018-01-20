@@ -155,7 +155,7 @@ export default {
                 axios.post('/api/sellersearch', this.sellersearch).then(response =>  {
                     toastr['success'](response.data.message);
 					 this.items = response.data;
-                    this.$router.push('/sellerfab');
+                    this.$router.push('/sellerfba');
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });
