@@ -51,7 +51,7 @@ let routes = [
 			},
 			{
 				path: '/sellerfba',
-				component:require('./views/pages/manage_seller/sellerfba')
+				component:require('./views/pages/manage_seller/Sellerfba')
 			},
 			{
 				path : '/my_account',
