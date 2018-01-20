@@ -168,8 +168,8 @@
                             <a href="#" class="btn btn-border-orange">View More</a>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="buzz">bbb</div>
-                    <div role="tabpanel" class="tab-pane fade" id="references">ccc</div>
+                    <div role="tabpanel" class="tab-pane fade" id="buzz"></div>
+                    <div role="tabpanel" class="tab-pane fade" id="references"></div>
                 </div>
 
             </div>
