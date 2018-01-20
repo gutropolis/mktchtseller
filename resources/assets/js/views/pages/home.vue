@@ -73,7 +73,7 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content main-tab-content">
-                    <div role="tabpanel" class="tab-pane fade in active" id="profile">
+                    <div role="tabpanel" >
                         <div class="recent__post--tab--content row">
                             <div class="col-md-2">
                                 <figure class="recent__post--tab--figure"><img src="images/download.jpg" class="recent__post--tab--figure--images"></figure>
