@@ -1,6 +1,7 @@
 <template>
 <div>
  <section class="page__head">
+ 
 		<div class="container">
 			<div class="page__head--content">
 				<h2 class="page__head--content--heading">Seller listing</h2>
@@ -169,7 +170,8 @@ export default {
         $state.loaded();
       }, 10000);
     },
-			 fetchItems()
+			
+			fetchItems()
 			 {
              
               axios.get('/api/sellersearch',this.sellersearch).then((response) => {
