@@ -59,9 +59,9 @@ Route::post('/edit_seller/{id}','SellerController@update');
 Route::get('/vender_category','SellerCategoryController@index');
 Route::post('/vender_category','SellerCategoryController@store');
 Route::post('/create_ads','AdsController@store');
-Route::get('/get_ads/','AdsController@index');
-Route::get('/show_ads','AdsController@index');
+Route::get('/get_ad/','AdsController@index');
 Route :: get('/get_ad/{id}','AdsController@edit');
+Route::delete('/get_ad/{id}','AdsController@destroy');
 Route :: post('/get_ad/{id}','AdsController@update');
 Route::resource('/gs_seller_product', 'SellerproductController');
 
@@ -74,14 +74,7 @@ Route::get('/sellersearch', 'SellerController@search');
 Route::post('/sellersearch', 'SellerController@search');
 
 
-Route::post('/upload', function (Request $request) {
-    
-        $imageData = $request->get('image');
-        $fileName = uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-        Image::make($request->get('image'))->save(public_path('images/').$fileName);
-        return response()->json(['fileName'=>$fileName,'error'=>false]);
-
-});
+Route::post('/upload','UserController@upload_image' );
 
 Route::resource('/gs_charity_organisation', 'charityController');
 
