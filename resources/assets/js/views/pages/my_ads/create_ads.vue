@@ -84,6 +84,8 @@
                    location: '',
 				   image:'',
 				   Category:'select',
+				   business_type:'select',
+				   ads_type:'select'
                     
                 }
             }
