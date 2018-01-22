@@ -159,7 +159,14 @@ class AdsController extends Controller
 		return response()->json($edit_ads);
    
     }
-       
+      public function destroy($id)
+	{
+		 $ads = my_ads::find($id);
+      $ads->delete();
+
+     return response()->json(['message' => 'Data Deleted Successfully']);
+    
+    }
     
 
     /**
@@ -215,16 +222,7 @@ class AdsController extends Controller
     }
 
     
-   public function destroy(Request $request, $id){
-        $task = \App\Sellerproduct::find($id);
-
-        if(!$task)
-            return response()->json(['message' => 'Couldnot find task!'],422);
-
-        $task->delete();
-
-        return response()->json(['message' => 'Task deleted!']);
-    }
+  
 
     /**
      * Restore a deleted user.
