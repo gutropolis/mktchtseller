@@ -31,7 +31,7 @@
 					   
                             <label class="login__element--box--label">Seller Type</label>
                             <select name="business_type"  v-model="savesellerform.business_type" class="login__element--box--input">
-							<option value="">Select .. </option>
+							<option value="select">Select .. </option>
 							
 							<option  v-for="item in items" v-if="item.parent_id==savesellerform.seller_Category"  v-bind:value="item.title">{{ item.title }}</option>
 							
@@ -85,7 +85,7 @@
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Tax_Id</label>
-                            <input type="text" placeholder="Tax_id" v-model="savesellerform.tax_id" class="login__element--box--input">
+                            <input type="text" placeholder="Tags" v-model="savesellerform.tax_id" class="login__element--box--input">
                         </div>
 						
 						
@@ -117,7 +117,9 @@
 				
 				items:[],
                 savesellerform: {
+				business_type: 'select',
 				seller_Category:'select',
+				
                     title: '',
                     description: '',
                    location: ''
