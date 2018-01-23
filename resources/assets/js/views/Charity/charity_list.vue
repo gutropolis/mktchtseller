@@ -28,7 +28,10 @@
                        </svg>Home</a>
                     </div>
 					<div>
-					
+					<div v-if="!loaded">
+            <h3 class="text-center">Loading...</h3>
+            </div>
+					 <div v-if="loaded">
 						<table border=2 cellpadding="2" cellspacing="1">
 						
 						<tr>
@@ -44,7 +47,7 @@
 						</tr>
 					
 						</table>
-	             
+	             </div>
 				  </div>
 				  
 				  
@@ -71,7 +74,8 @@ import AppNavbar from './navbar.vue'
         data() {
 		
             return {
-			items:[]
+			items:[],
+			 loaded: false,
                 
                     
                 }
@@ -91,7 +95,7 @@ import AppNavbar from './navbar.vue'
 			axios.get('api/charity_list').then(response=>{
 			
 			this.items=response.data;
-			
+			this.loaded = true;
 			
 			}).catch(error=>{
 			toastr['error'](error.response.data.message);

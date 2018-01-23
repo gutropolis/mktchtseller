@@ -7,7 +7,7 @@
                 <div class="login__element--box">
                     <div class="row login-option">
                         <div class="col-md-6 text-center">
-                            <a href="https://healeastern.com/auth/facebook" class="btn facebooklarge">
+                            <a href="/auth/social/facebook " class="btn facebooklarge">
                                 <span><i class="fa fa-facebook" aria-hidden="true"></i></span> Login with Facebook
                             </a>
                         </div>
@@ -64,9 +64,12 @@
             submit(e){
                 axios.post('/api/auth/login', this.loginForm).then(response =>  {
                     localStorage.setItem('auth_token',response.data.token);
+					
                     axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('auth_token');
+					
                     toastr['success'](response.data.message);
-                    this.$router.push('/my_account')
+					location.reload();
+                    this.$router.replace('/my_account')
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });

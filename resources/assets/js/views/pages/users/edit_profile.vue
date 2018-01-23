@@ -154,11 +154,11 @@
                             
                             
                             <div class="dashboard__content--box--editbtn">
-                                <a type="button" class="btn btn-bg-orange"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                                <router-link to="/image_upload" type="button" class="btn btn-bg-orange"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                                 <g>
                                     <path d="M448,177.14V448c0,35.344-28.656,64-64,64H64c-35.344,0-64-28.656-64-64V128c0-35.344,28.656-64,64-64h270.844l-63.969,64   H64v320h320V241.156L448,177.14z M398.875,45.25L376.25,67.875l67.875,67.891l22.625-22.625L398.875,45.25z M444.125,0   L421.5,22.625l67.875,67.891L512,67.875L444.125,0z M150,294.188l67.875,67.875L421.5,158.406l-67.875-67.891L150,294.188z    M128,384h64l-64-64V384z" fill="#FFFFFF"/>
                                 </g>
-                                </svg> Edit</a>
+                                </svg>Image Upload</router-link>
                             </div>
 							 <div class="dashboard__content--box--editbtn">
                                 <router-link to="/password" type="button" class="btn btn-bg-orange"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -173,7 +173,7 @@
                             <hr>
                             <h3 class="dashboard__content--description--heading">Edit Profile</h3>
                            
-                     <form class="form-horizontal form-material" id="profileForm"  @submit.prevent="updateProfile"">
+                     <form class="form-horizontal form-material"  @submit.prevent="updateProfile"">
 					
 					
                         <div class="form-group">
@@ -207,7 +207,19 @@
                                     <label for="gender_female"> Female </label>
                                 </div>
                             </div>
-					
+			<div class="form-group">
+        
+            <div class="col-md-2">
+                <img :src="image" class="img-responsive">
+            </div>
+            <div class="col-md-8">
+                <input type="file" v-on:change="onFileChange" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-success btn-block" @click="upload">Upload</button>
+            </div>
+       
+    </div>
 						
 						<div class="form-group">
                             <label class="login__element--box--label">Address</label>
@@ -219,7 +231,9 @@
                         </div>
 						<button type="submit" class="btn btn-info waves-effect waves-light m-t-10">Update</button>
 						  </form>
-						
+						<tr v-for="profileForms in profileForm">
+							{{profileForms.first_name}}
+						</tr>
 						 
                         </div>
                     </div>
@@ -228,14 +242,6 @@
 			
         </div>
     </section>
-	
-
-	
-		
-		
-		
-
-
 </div>
 </template>
 <script>
@@ -243,25 +249,66 @@
         data() {
             return {
               
-				 profileForm: {},
-				 
-			
-				 
-				 };
+			  profileForm: 
+				{
+                    first_name : '',
+                    last_name : '',
+                    dob:'',
+					bio:'',
+					postal:'',
+					address :'',
+                    gender : '',
+                    image: '',
+				} ,
+				    
+				  }; 
             },
-       mounted()
-	{
-		  axios.get('/api/auth/user',this.profileForm).then(response => {
-		   this.profileForm = response
-		   .data;
-		  });
-
-	},	   
+	  created: function()
+         {
+            this.fetchItems()
+         },
+      mounted()
+		{},	   
        
-        
-       
+      methods: {
+		 fetchItems(){
 		 
-        methods: {
+		 axios.get('/api/auth/user').then(response => response.data.user).then(response => {
+		 
+              // var self=this
+				 console.log(response);
+				 console.log(response.first_name);
+			  
+				 this.profileForm.first_name = response.first_name;
+				 this.profileForm.last_name = response.last_name;
+				 this.profileForm.dob = response.dob;
+				 this.profileForm.postal = response.postal;
+				 this.profileForm.gender = response.gender;
+				 this.profileForm.bio = response.bio;
+			     this.profileForm.address = response.address;
+                	
+              });
+		 },
+		 
+		 onFileChange(e) {
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                let reader = new FileReader();
+                let vm = this;
+                reader.onload = (e) => {
+                    vm.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+            upload(){
+                axios.post('/api/upload',{image: this.image}).then(response => {
+
+                });
+				},
 		
 			updateProfile() {
               
@@ -273,8 +320,6 @@
                     toastr['error'](response.message);
                 });
             },
-			
-
 				
         },
 		

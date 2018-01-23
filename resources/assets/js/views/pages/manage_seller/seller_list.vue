@@ -28,7 +28,10 @@
                        </svg>Home</a>
                     </div>
 					<div>
-					
+					<div v-if="!loaded">
+            <h3 class="text-center">Loading...</h3>
+            </div>
+					 <div v-if="loaded">
 						<table border=2 cellpadding="2" cellspacing="1">
 						
 						<tr>
@@ -39,12 +42,12 @@
 						<td>{{item.title}}</td>
 						<td>{{item.description}}</td>
 						<td>{{item.location}}</td>
-						<td><router-link :to="{name: 'edit_seller', params: { id: item.id }}" class="btn btn-primary" >Edit</router-link> / <button class="btn btn-danger" v-on:click="deleteItem(item.id)">Delete</button></td>
+						<td><router-link :to="{name: 'edit_seller', params: { id: item.id }}" class="btn btn-primary" >Edit</router-link> <button class="btn btn-danger" v-on:click="deleteItem(item.id)">Delete</button></td>
 					
 						</tr>
 					
 						</table>
-	             
+	             </div>
 				  </div>
 				  
 				  
@@ -71,8 +74,8 @@ import AppNavbar from './navbar.vue'
         data() {
 		
             return {
-			items:[]
-                
+			items:[],
+            loaded: false,
                     
                 }
             },
@@ -91,7 +94,7 @@ import AppNavbar from './navbar.vue'
 			axios.get('api/seller_list').then(response=>{
 			
 			this.items=response.data;
-			
+			 this.loaded = true;
 			
 			}).catch(error=>{
 			toastr['error'](error.response.data.message);
