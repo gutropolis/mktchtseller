@@ -12,8 +12,16 @@ let mix = require('laravel-mix');
  */
 
 
-var plugin =  'resources/assets/plugins/';
+var plugin =  'resources/assets/js/';
 
 mix.js('resources/assets/js/app.js', 'public/js/app.js')
-	.combine([  'public/js/app.js', ],'public/js/bundle.min.js') 
-	.browserSync();
+.sass('resources/assets/sass/style.scss', 'public/css')	
+.combine([  
+		plugin + 'jquery.min.js',
+		plugin + 'jquery.bxslider.min.js',
+		plugin + 'bootstrap.min.js',
+		plugin + 'paccordion.js'  ,
+		plugin + 'custom.js'  ,
+		'public/js/app.js'
+],'public/js/bundle.min.js') 
+.browserSync();

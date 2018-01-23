@@ -1,0 +1,36 @@
+/* Spaces variable */
+
+$space-vs: 5px;
+$space-s: 10px;
+$space-n: 20px;
+$space-m: 30px;
+$space-l: 50px;
+$space-xl: 60px;
+
+/*Font veriable*/
+
+$content-lg:210px;
+$content-m:160px;
+$content-s:100px;
+
+/* media variables */
+
+$break-lg: 1200px;
+$break-tab: 1025px;
+$break-md: 980px;
+$break-sm-v: 800px;
+$break-sm: 767px;
+$break-xs: 600px;
+$break-vs: 400px;
+$full: 100%;
+@mixin background($imgpath, $position:0 0, $repeat: no-repeat) {
+    background: {
+        image: url($imgpath);
+        position: $position;
+        repeat: $repeat;
+    }
+}
+
+@mixin box-shadow($x-axis: 0, $y-axis: 2px, $blur: 5px, $spread:5px, $color: $lt-gray-color) {
+    box-shadow: $x-axis $y-axis $blur $spread $color;
+}
