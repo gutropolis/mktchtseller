@@ -353,6 +353,7 @@
                 axios.post('/api/auth/logout').then(response =>  {
             localStorage.removeItem('auth_token');
             axios.defaults.headers.common['Authorization'] = null;
+			location.reload();
             toastr['success'](response.data.message);
 			this.$router.push('/');
         }).catch(error => {
@@ -370,6 +371,7 @@
 					
               });
             },
+			
         }
     }
 </script>
