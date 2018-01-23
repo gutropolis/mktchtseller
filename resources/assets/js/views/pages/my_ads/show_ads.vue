@@ -12,7 +12,11 @@
                         <div class="dashboard__content--description">
                             <hr>
                             
-                      <h3>List of the Ads</h3>     
+                      <h3>List of the Ads</h3> 
+			 <div v-if="!loaded">
+            <h3 class="text-center">Loading...</h3>
+            </div>
+			  <div v-if="loaded">
                      <table border="1">
 						<tr>
 						<th>Id</th>
@@ -33,6 +37,7 @@
 					 <td> <router-link :to="{name: 'edit_ads', params: { id: item.id }}" class="btn btn-primary" >Edit</router-link> <button class="btn btn-danger btn-sm" @click.prevent="deleteTask(item)" data-toggle="tooltip" title="Delete task">Delete</button></td>
 					 </tr>
 					 </table>
+					 </div>
                         </div>
                     </div>
                 </div>
@@ -52,7 +57,8 @@ import AppNavbar from './navbar.vue'
 	data() {
             return {
 				
-                 items: []
+                 items: [],
+				 loaded: false,
             }
         },
         mounted(){
@@ -77,6 +83,7 @@ import AppNavbar from './navbar.vue'
 		 {
               axios.get('/api/get_ad').then((response) => {
                  this.items=response.data;
+				 this.loaded = true;
 					
               }) 
 			  
