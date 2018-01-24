@@ -22,7 +22,8 @@ mix.js('resources/assets/js/app.js', 'public/js/app.js')
 		plugin + 'bootstrap.min.js',
 		plugin + 'paccordion.js'  ,
 		plugin + 'custom.js'  ,
-		plugin + 'tether.min.js'  ,
+		plugin + 'tether.min.js',
+		plugin + 'toastr.min.js',
 		'public/js/app.js'
 ],'public/js/bundle.min.js') 
 .browserSync();
