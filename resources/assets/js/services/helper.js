@@ -4,6 +4,7 @@ export default {
             localStorage.removeItem('auth_token');
             axios.defaults.headers.common['Authorization'] = null;
             toastr['success'](response.data.message);
+			location.reload();
         }).catch(error => {
             console.log(error);
         });
@@ -16,6 +17,15 @@ export default {
             return error.response.data;
         });
     },
+	
+	checkLogin() {
+    const token = localStorage.getItem('auth_token')
+   if (token) {
+        return true
+      } else {
+        return false
+      }
+  },
 
     check(){
         return axios.post('/api/auth/check').then(response =>  {
