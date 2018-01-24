@@ -63,7 +63,7 @@
     
                     <div class=" my-2 my-lg-0 ">
     
-    
+							<div v-if="loginCheck">
     
                         <div class="admin__profile">
     
@@ -357,7 +357,7 @@
     
                                         <div class="admin__lsit--content--detail">
     
-                                            <a href="#" class="admin__lsit--content--detail--link"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                            <a href="#"  @click.prevent="logout" class="admin__lsit--content--detail--link"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
     
                                                 viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
     
@@ -470,14 +470,12 @@
                                     </li>
     
                                 </ul>
-    
+								 
                             </b-collapse>
-    
-                        </div>
-    
-                        <a href="#" @click.prevent="logout"><i class="fa fa-power-off"></i> Logout</a>
-    
-    
+							
+						</div>
+							</div>
+				<div v-else>
     
     
     
@@ -487,15 +485,11 @@
     
     
     
+						</div>
     
     
     
-    
-                        <div>
-    
-    
-    
-                        </div>
+                       
     
                     </div>
     
@@ -519,14 +513,9 @@
         data() {
     
     
-    
-    
-    
             return {
     
                 loginCheck: helper.checkLogin()
-    
-    
     
             }
     
