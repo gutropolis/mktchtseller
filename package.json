@@ -42,6 +42,7 @@
         "zxcvbn": "^4.4.2"
     },
     "dependencies": {
+        "bootstrap-vue": "^2.0.0-rc.0",
         "click-confirm": "^2.0.1",
         "fs": "0.0.1-security",
         "helper": "0.0.13",
