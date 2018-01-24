@@ -22,12 +22,6 @@
      <script src="js/bundle.min.js"></script>
 	 <script src="js/toastr.min.js"></script>
  
-<script>
-   $(document).ready(function(){
-    $("#dropdown-menu").click(function(){
-        $(".drop_menu").slideToggle();
-    });
-});
-</script>
+
  </body>
 </html>
