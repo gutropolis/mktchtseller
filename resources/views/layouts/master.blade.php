@@ -20,7 +20,7 @@
      </div>
 	 <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
      <script src="js/bundle.min.js"></script>
-	 <script src="js/toastr.min.js"></script>
+	 
  
 
  </body>
