@@ -41,10 +41,27 @@
                     color: $orange-color;
                 }
             }
+            @media screen and (max-width:$break-lg) {
+                padding: $space-s $space-s;
+            }
+            @media screen and (max-width: $break-md) {
+                padding: $space-s 0px;
+            }
+            @media screen and (max-width: $break-sm) {
+                padding: 0px 0px;
+            }
+        }
+        @media screen and (max-width: $break-md) {
+            padding-left: 0px;
         }
     }
     .join_btn {
         color: $orange-color;
+        @media screen and (max-width: $break-sm) {
+            display: block;
+            text-align: left;
+            padding-left: 0px;
+        }
     }
     .sign_btn {
         background: $orange-color;
@@ -64,6 +81,9 @@
         padding: $space-xl+$space-m;
         background: rgba($red-color, 0.7);
         color: $white-color;
+        @media screen and (max-width: $break-sm) {
+            padding: $space-m - $space-vs;
+        }
         &--heading {
             text-align: center;
             margin: 0px auto;
@@ -131,6 +151,9 @@
                     font-size: 14px;
                     margin-bottom: 0px;
                 }
+            }
+            @media screen and (max-width: $break-sm) {
+                padding: $space-s;
             }
         }
         &--figure {
@@ -289,17 +312,24 @@ footer {
             }
         }
     }
+    @media only screen and (max-width:$break-sm) {
+        text-align: center;
+    }
 }
 
 .page__head {
     background: $grey-color2;
     padding: $space-n 0px;
+    @media only screen and (max-width: $break-sm) {}
     &--content {
         &--heading {
             padding-bottom: $space-s;
             color: $grey-color5;
             text-transform: uppercase;
             font-weight: 600;
+            @media only screen and (max-width: $break-sm) {
+                font-size: 26px;
+            }
         }
     }
 }
@@ -388,16 +418,44 @@ footer {
 .ac-content {
     border: 1px solid #fff;
     margin-top: -1px;
-    padding: 15px;
+    padding: $space-s + $space-vs;
+}
+
+.client__accordian {
+    width: 100%;
+    &--card {
+        display: block;
+        &--header {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 0px !important;
+            &--link {
+                width: 100%;
+                display: inline-block;
+                background: $orange-color;
+                color: $white-color;
+                padding: $space-s;
+                font-size: 18px;
+            }
+        }
+        &--detail {}
+    }
 }
 
 .contact_us_sec {
     padding-top: $space-xl;
     padding-bottom: $space-xl;
+    @media screen and (max-width: $break-sm) {
+        text-align: center;
+    }
     .contact_detail {
         padding: $space-l;
         @include box-shadow();
         margin-top: $space-l;
+        @media screen and (max-width: $break-sm) {
+            margin-top: $space-n;
+        }
         .contact_detail_main {
             margin-bottom: $space-m;
             width: 100%;
@@ -417,6 +475,10 @@ footer {
         padding: $space-l;
         @include box-shadow();
         margin-top: $space-l;
+        @media screen and (max-width: $break-sm) {
+            padding: $space-n;
+            margin-top: $space-n;
+        }
         .form-group {
             .form-control {
                 padding: $space-s+$space-vs;
@@ -986,6 +1048,9 @@ footer {
 .admin__profile {
     width: 250px;
     position: relative;
+    @media screen and (max-width: $break-md) {
+        width: 190px;
+    }
     &--user {
         position: relative;
         display: inline-block;
@@ -1076,6 +1141,7 @@ footer {
         }
     }
 }
+
 .charity_inner {
     border: 1px solid $grey-color4;
     &--figure {
@@ -1161,8 +1227,7 @@ footer {
 
 .charity__request {
     text-align: center;
-    padding:$space-n 0px;
-
+    padding: $space-n 0px;
     &--cancel {
         background: $red-color;
         color: $white-color;

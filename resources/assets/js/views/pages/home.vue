@@ -75,20 +75,20 @@
                 <div class="tab-content main-tab-content">
                     <div role="tabpanel" >
                         <div class="recent__post--tab--content row">
-                            <div class="col-md-2">
+                            <div class="col-sm-2 col-md-2 col-lg-2">
                                 <figure class="recent__post--tab--figure"><img src="images/download.jpg" class="recent__post--tab--figure--images"></figure>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-sm-6 col-md-6 col-lg-7">
                                 <article class="recent__post--tab--content-block">
                                     <h6 class="recent__post--tab--content--block--heading">Charity Life</h6>
                                     <p class="recent__post--tab--content--block--pera">Contrary to popular belief, Lorem Ipsum.</p>
                                     <p class="recent__post--tab--content--block--pera"><strong>Unit</strong> 5 Location: Delhi, India</p>
                                 </article>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-sm-3 col-md-3 col-lg-2">
                                 <a href="#" class="btn btn-border-orange">Donate Now</a>
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-sm-1 col-md-1 col-lg-1">
                                 <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                             </div>
                         </div>
