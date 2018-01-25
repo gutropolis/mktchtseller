@@ -1076,3 +1076,99 @@ footer {
         }
     }
 }
+.charity_inner {
+    border: 1px solid $grey-color4;
+    &--figure {
+        height: 265px;
+        overflow: hidden;
+        margin-bottom: $space-m;
+    }
+    &--content {
+        &--heading {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 24px;
+        }
+        &--pera {
+            font-size: 18px;
+            color: $orange-color;
+        }
+        padding: $space-m 0px;
+        &--list {
+            &--item {
+                position: relative;
+                left: 0;
+                padding-left: $space-l;
+                line-height: 35px;
+                font-size: 16px;
+                svg {
+                    width: 25px;
+                    position: absolute;
+                    left: 0;
+                    fill: $grey-color2;
+                    top: 4px;
+                }
+                span {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+
+.charity_profile--detail {
+    width: 100%;
+    border-top: 1px solid $grey-color4;
+    padding: $space-n;
+    &--heading {
+        text-transform: uppercase;
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+}
+
+.charity__social--list {
+    width: 100%;
+    text-align: center;
+    max-width: 400px;
+    margin: 0px auto;
+    display: block;
+    &--heading {
+        float: left;
+        line-height: 40px;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 22px;
+    }
+    &--item {
+        background: transparent;
+        border: none;
+        width: auto;
+        display: inline-block;
+        padding: 0px $space-s;
+        &:hover,
+        &:focus {
+            background: transparent;
+            border: none;
+        }
+        svg {
+            width: 40px;
+            height: auto;
+        }
+    }
+}
+
+.charity__request {
+    text-align: center;
+    padding:$space-n 0px;
+
+    &--cancel {
+        background: $red-color;
+        color: $white-color;
+        min-width: 165px;
+    }
+    &--send {
+        min-width: 165px;
+    }
+}
