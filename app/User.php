@@ -33,6 +33,10 @@ class User extends Authenticatable {
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
+	
+	protected $casts = [
+    'settings' => 'array'
+];
 
 	/**
 	* To allow soft deletes
