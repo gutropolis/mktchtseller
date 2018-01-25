@@ -7,14 +7,14 @@
                 <div class="banner_element--content row">
                     <h2 class="banner_element--content--heading">I am Seller</h2>
                     <p class="banner_element--content--pera">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-                    <a href="#" class="banner_element--content--btn btn btn-border-white">Post Ad's</a>
+                    <router-link to ="/login" class="banner_element--content--btn btn btn-border-white">Post Ad's</router-link>
                 </div>
             </div>
             <div class="col-md-6 banner_element--right">
                 <div class="banner_element--content banner_element--right--content row">
                     <h2 class="banner_element--content--heading">I am Seller</h2>
                     <p class="banner_element--content--pera">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-                    <a href="#" class="banner_element--content--btn btn btn-border-white">Post Ad's</a>
+                    <router-link to ="/login" class="banner_element--content--btn btn btn-border-white">Post Ad's</router-link>
                 </div>
             </div>
 
