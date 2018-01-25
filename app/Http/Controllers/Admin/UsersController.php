@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\JoshController;
 use App\Http\Requests;
-use App\User;
+use App\Users;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use Hash;
@@ -42,10 +42,10 @@ class UsersController extends JoshController
      */
     public function data()
     {
-        $users = User::get(['id', 'first_name', 'last_name', 'email','created_at']);
+        $users = Users::get(['id', 'first_name', 'last_name', 'email','created_at']);
 
         return DataTables::of($users)
-            ->editColumn('created_at',function(User $user) {
+            ->editColumn('created_at',function(Users $user) {
                 return $user->created_at->diffForHumans();
             })
             ->addColumn('status',function($user){
@@ -147,7 +147,7 @@ class UsersController extends JoshController
      * @param  int $id
      * @return View
      */
-    public function edit(User $user)
+    public function edit(Users $user)
     {
 
         // Get this user groups
@@ -170,7 +170,7 @@ class UsersController extends JoshController
      * @param UserRequest $request
      * @return Redirect
      */
-    public function update(User $user, Request $request)
+    public function update(Users $user, Request $request)
     {
         $data = new stdClass();
 
@@ -283,7 +283,7 @@ class UsersController extends JoshController
     public function getDeletedUsers()
     {
         // Grab deleted users
-        $users = User::onlyTrashed()->get();
+        $users = Users::onlyTrashed()->get();
 
         // Show the page
         return view('admin.deleted_users', compact('users'));
@@ -340,7 +340,7 @@ class UsersController extends JoshController
             }
             // Delete the user
             //to allow soft deleted, we are performing query on users model instead of Sentinel model
-            User::destroy($id);
+            Users::destroy($id);
             Activation::where('user_id',$user->id)->delete();
             // Prepare the success message
             $success = trans('users/message.success.delete');
