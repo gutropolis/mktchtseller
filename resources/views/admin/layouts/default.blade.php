@@ -31,7 +31,7 @@
 <body class="skin-josh">
 <header class="header">
     <a href="{{ route('admin.dashboard') }}" class="logo">
-        <img src="{{ asset('uploads/logo.png') }}" alt="logo"  width="100">
+        <img src="{{ asset('uploads/logo-1.png') }}" alt="logo"  width="110">
     </a>
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
