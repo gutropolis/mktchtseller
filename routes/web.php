@@ -305,6 +305,8 @@ Route::post('contact', 'FrontEndController@postContact')->name('contact');
 Route::get('/', ['as' => 'home', function () {
     return view('index');
 }]);
+Route::get('auth/{driver}', ['as' => 'socialAuth', 'uses' => 'Auth\SocialController@redirectToProvider']);
+Route::get('auth/{driver}/callback', ['as' => 'socialAuthCallback', 'uses' => 'Auth\SocialController@handleProviderCallback']);
 
 Route::get('blog','BlogController@index')->name('blog');
 Route::get('blog/{slug}/tag', 'BlogController@getBlogTag');
