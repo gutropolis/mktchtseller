@@ -44,16 +44,8 @@
                             <i class="livicon" data-name="seller" data-size="16" data-c="#000" data-hc="#000" data-loop="true"></i>
                             Seller Profile</a>
                     </li>
-                    <li>
-                        <a href="#tab2" data-toggle="tab">
-                            <i class="livicon" data-name="key" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>
-                            Change Password</a>
-                    </li>
-                    <li>
-                        <a href="{{ URL::to('admin/user_profile') }}" >
-                            <i class="livicon" data-name="gift" data-size="16" data-loop="true" data-c="#000" data-hc="#000"></i>
-                            Advanced Seller Profile</a>
-                    </li>
+                   
+                   
 
                 </ul>
                 <div  class="tab-content mar-top">
@@ -82,23 +74,29 @@
                                             <div class="panel-body">
                                                 <div class="table-responsive">
                                                     <table class="table table-bordered table-striped" id="users">
+														 <tr>
+                                                            <td>ID</td>
+                                                            <td>
+                                                                <p class="user_name_max">{{ $seller->id }}</p>
+                                                            </td>
 
+                                                        </tr>
                                                         <tr>
-                                                            <td>@lang('seller/title.title')</td>
+                                                            <td>Title</td>
                                                             <td>
                                                                 <p class="user_name_max">{{ $seller->title }}</p>
                                                             </td>
 
                                                         </tr>
                                                         <tr>
-                                                            <td>@lang('seller/title.description')</td>
+                                                            <td>Description</td>
                                                             <td>
                                                                 <p class="user_name_max">{{ $seller->description }}</p>
                                                             </td>
 
                                                         </tr>
                                                         <tr>
-                                                            <td>@lang('seller/title.location')</td>
+                                                            <td>Location</td>
                                                             <td>
                                                                 {{ $seller->location }}
                                                             </td>
@@ -107,9 +105,15 @@
                                                         
                                                        
                                                         <tr>
-                                                          <td>@lang('seller/title.year_in_business ')</td>
+                                                          <td>Year_in_business</td>
                                                             <td>
                                                                 {{ $seller->year_in_business }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>Start_up_year</td>
+                                                            <td>
+                                                                {{ $seller->start_up_year }}
                                                             </td>
                                                         </tr>
                                                        
@@ -119,9 +123,61 @@
                                                                 {{ $seller->address }}
                                                             </td>
                                                         </tr>
-                                                       
                                                         <tr>
-                                                            <td>@lang('seller/title.created_at')</td>
+                                                            <td>Business Type</td>
+                                                            <td>
+                                                                {{ $seller->business_type}}
+                                                            </td>
+                                                        </tr>
+														<tr>
+                                                            <td>Address</td>
+                                                            <td>
+                                                                {{ $seller->address}}
+                                                            </td>
+                                                        </tr>
+														 <tr>
+                                                            <td>Phone_number</td>
+                                                            <td>
+                                                                {{ $seller->phone_number }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Keyword</td>
+                                                            <td>
+                                                                {{ $seller->keyword }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Vision Statement</td>
+                                                            <td>
+                                                                {{ $seller->vision_statement }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Mission Statement</td>
+                                                            <td>
+                                                                {{ $seller->mission_statement }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Tax_id</td>
+                                                            <td>
+                                                                {{ $seller->tax_id }}
+                                                            </td>
+                                                        </tr>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>user id</td>
+                                                            <td>
+                                                                {{ $seller->user_id }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Created_at</td>
                                                             <td>
                                                                 {!! $seller->created_at->diffForHumans() !!}
                                                             </td>

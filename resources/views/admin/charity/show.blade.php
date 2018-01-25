@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-    View User Details
+    View Charity Details
     @parent
 @stop
 
