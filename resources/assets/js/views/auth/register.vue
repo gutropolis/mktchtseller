@@ -12,16 +12,16 @@
   </li>  
 </ul> 
 <div class="tab-content">
-              <div class="tab-pane active fade show" id="home" role="tabpanel">  <h3 class="login__element--heading">Seller Signup</h3>
+              <div class="tab-pane active fade show" id="home" role="seller">  <h3 class="login__element--heading">Seller Signup</h3>
                 <div class="login__element--box">
                     <div class="row login-option">
                         <div class="col-md-6 text-center">
-                            <a href="https://healeastern.com/auth/facebook" class="btn facebooklarge">
+                            <a href="/auth/facebook" class="btn facebooklarge">
                                 <span><i class="fa fa-facebook" aria-hidden="true"></i></span> Login with Facebook
                             </a>
                         </div>
                         <div class="col-md-6 text-center">
-                            <a href="https://healeastern.com/auth/google" class="btn googlelarge ">
+                            <a href="/auth/google" class="btn googlelarge ">
                                 <span><i class="fa fa-google-plus" aria-hidden="true"></i></span> Login with Google
                             </a>
                         </div>
@@ -47,24 +47,25 @@
                         <div class="form-group">
                             <label class="login__element--box--label">Confirm Password</label>
                             <input type="password" name="password_confirmation" placeholder="Confirm Password" v-model="registerForm.password_confirmation" class="login__element--box--input">
-                        </div>						
-
+                        </div>
+									
+						
                         <div class="form-group text-center">
                             <input type="Submit" placeholder="" value="Sign Up" class="btn btn-bg-orange login__element--box--button">
                         </div>
                     </form>
                 </div>
 			</div>
-			 <div class="tab-pane fade " id="profile" role="tabpanel">  <h3 class="login__element--heading">Charity Signup</h3>
+			 <div class="tab-pane fade " id="profile" role="charity">  <h3 class="login__element--heading">Charity Signup</h3>
                 <div class="login__element--box">
                     <div class="row login-option">
                         <div class="col-md-6 text-center">
-                            <a href="https://healeastern.com/auth/facebook" class="btn facebooklarge">
+                            <a href="/auth/facebook" class="btn facebooklarge">
                                 <span><i class="fa fa-facebook" aria-hidden="true"></i></span> Login with Facebook
                             </a>
                         </div>
                         <div class="col-md-6 text-center">
-                            <a href="https://healeastern.com/auth/google" class="btn googlelarge ">
+                            <a href="/auth/google" class="btn googlelarge ">
                                 <span><i class="fa fa-google-plus" aria-hidden="true"></i></span> Login with Google
                             </a>
                         </div>
@@ -110,6 +111,8 @@
     export default {
         data() {
             return {
+			seller:'',
+			charity:'',
                 registerForm: {
                     email: '',
                     password: '',
