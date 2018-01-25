@@ -134,12 +134,7 @@
             <div class="page-sidebar  sidebar-nav">
                 <div class="nav_icons">
                     <ul class="sidebar_threeicons">
-                        <li>
-                            <a href="{{ URL::to('admin/advanced_tables') }}">
-                                <i class="livicon" data-name="table" title="Advanced tables" data-loop="true"
-                                   data-color="#418BCA" data-hc="#418BCA" data-s="25"></i>
-                            </a>
-                        </li>
+                        
                         <li>
                             <a href="{{ URL::to('admin/tasks') }}">
                                 <i class="livicon" data-name="list-ul" title="Tasks" data-loop="true"
