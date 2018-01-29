@@ -54,7 +54,7 @@
                         <li class="nav-item">
     
                             <router-link to="/contact" class="nav-link">Contact Us </router-link>
-    
+							
                         </li>
     
                     </ul>
@@ -64,7 +64,7 @@
                     <div class=" my-2 my-lg-0 ">
     
 							<div v-if="loginCheck">
-    
+							<tr v-for="item in items">
                         <div class="admin__profile">
     
                             <a href="#" class="admin__profile--user"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -141,13 +141,11 @@
     
                                         </div>
     
-                                        <h5>John Wick</h5>
+                                        <h5>{{item.first_name}} {{item.last_name}}</h5>
+										<h8>{{item.email}}</h8>
+									
     
                                     </li>
-    
-    
-    
-    
     
                                     <li class="admin__lsit--content">
     
@@ -474,6 +472,7 @@
                             </b-collapse>
 							
 						</div>
+						</tr>
 							</div>
 				<div v-else>
     
@@ -514,7 +513,8 @@
     
     
             return {
-    
+				items: [],
+				
                 loginCheck: helper.checkLogin()
     
             }
@@ -524,6 +524,13 @@
         },
     
         mounted() {},
+		
+		  created: function() {
+    
+            this.fetchItems();
+    
+        },
+    
     
         methods: {
     
@@ -540,6 +547,19 @@
                     this.$router.replace('/');
     
                 })
+    
+            },
+			fetchItems() {
+    
+                axios.get('/api/auth/user').then((response) => {
+    
+    
+                    this.items = response.data;
+    
+    
+                });
+    
+    
     
             },
     
