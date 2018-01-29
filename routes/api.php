@@ -20,7 +20,9 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/logout','AuthController@logout');
     Route::post('/check','AuthController@check');
     Route::post('/register','AuthController@register');
- Route::get('/register','AuthController@register');
+    Route::post('/charityregister','AuthController@charityregister');
+
+	Route::get('/register','AuthController@register');
     Route::get('/activate/{token}','AuthController@activate');
     Route::post('/password','AuthController@password');
     Route::post('/validate-password-reset','AuthController@validatePasswordReset');
