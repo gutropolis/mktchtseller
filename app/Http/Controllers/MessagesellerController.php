@@ -113,7 +113,7 @@ class MessagesellerController extends Controller
   if($message->fails())
             return response()->json(['message' => $message->messages()->first()],422);
    $message=\App\Messages::create([
-   'subject'=> request('msgtitle'),
+   'title'=> request('msgtitle'),
    'message'=>request('message'),
    'reciever_id'=>request('user_id'),
    'post_id'=>request('id'),
