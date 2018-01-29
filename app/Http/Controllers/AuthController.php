@@ -93,7 +93,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
             'password_confirmation' => 'required|same:password',
-			'role' => 'required',
+			
         ]);
 
         if($validation->fails())
