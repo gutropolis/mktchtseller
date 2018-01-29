@@ -8,17 +8,18 @@
             <div class="col-md-9 dashboard">
                 <div class="dashboard__content clearfix">
                 
-                    <div class="dashboard__content--outer">
+                    <div class="dashboard__content--head">
                         
-                        <div class="dashboard__content--description">
-                            <hr>
+                       
                             
                       <h3>List of the Product</h3> 
-	<div v-if="!loaded">
-            <h3 class="text-center">Loading...</h3>
-            </div>
-					 <div v-if="loaded">					  
-                     <table border="1">
+	
+						
+			 <div class="panel-body">
+                <div class="table-responsive">
+					
+						<table id="example" class="table table-striped table-bordered" width="100%" cellspacing="0">			  
+                    
 						<tr>
 						<th>Id</th>
 						<th>Title</th>
@@ -37,11 +38,13 @@
 					 <td>{{item.images}}</td>
 					 <td>{{item.reviews}}</td>
 					 <td>{{item.created_at}}</td>
-					 <td> <router-link :to="{name: 'edit_product', params: { id: item.id }}" class="btn btn-primary" >Edit</router-link> <button class="btn btn-danger btn-sm" @click.prevent="deleteTask(item)" data-toggle="tooltip" title="Delete task"><i class="fa fa-trash"></i></button></td>
+					 <td><router-link :to="{name: 'edit_product', params: { id: item.id }}" class="btn btn-success" >Edit</router-link> <button class="btn btn-danger " @click.prevent="deleteTask(item)" data-toggle="tooltip" title="Delete task">Delete</button></td>
 					 </tr>
 					 </table>
-					 </div>
-                        </div>
+			
+					</div>
+					</div>
+                     
                     </div>
                 </div>
             </div>
@@ -55,7 +58,13 @@
 
 </div>
 </template>
+<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
+<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
 <script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+
 import AppNavbar from './navbar.vue' 
  import AppSidebar from './sidebar.vue'
  export default {
@@ -84,7 +93,7 @@ import AppNavbar from './navbar.vue'
                     toastr['success'](response.data.message);
 					this.loaded = true;
 					this.fetchItems();
-                    this.getTasks();
+                  
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });
