@@ -222,7 +222,7 @@ class SellerproductController extends Controller
 
         $task->delete();
 
-        return response()->json(['message' => 'Task deleted!']);
+        return response()->json(['message' => 'Product deleted!']);
     }
 
     /**
