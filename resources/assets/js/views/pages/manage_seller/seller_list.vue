@@ -53,9 +53,7 @@
 <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
 
 <script>
-$(document).ready(function() {
-    $('#example').DataTable();
-} );
+
 import AppNavbar from './navbar.vue' 
  import AppSidebar from './sidebar.vue'
     export default {
