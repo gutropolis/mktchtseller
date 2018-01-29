@@ -102,10 +102,45 @@ class AuthController extends Controller
         $user = \App\User::create([
             'email' => request('email'),
 			'first_name'=>request('first_name'),
-			'role'=>request('role'),
 			'last_name'=>request('last_name'),
             'status' => 'pending_activation',
             'password' => bcrypt(request('password')),
+			'role'=> 'seller',
+			
+        ]);
+		//$user = new  \App\User($request->all());
+
+        $user->activation_token = generateUuid();
+		
+        $user->save();
+		$user->notify(new Activation($user));
+         return response()->json(['message' => 'You have registered successfully. Please check your email for activation!']);
+
+        
+
+        
+    }
+	  public function charityregister(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+            'password_confirmation' => 'required|same:password',
+			
+        ]);
+
+        if($validation->fails())
+            return response()->json(['message' => $validation->messages()->first()],422);
+
+        $user = \App\User::create([
+            'email' => request('email'),
+			'first_name'=>request('first_name'),
+			'last_name'=>request('last_name'),
+            'status' => 'pending_activation',
+            'password' => bcrypt(request('password')),
+			'role'=> 'charity',
 			
         ]);
 		//$user = new  \App\User($request->all());
