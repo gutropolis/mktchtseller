@@ -102,11 +102,6 @@
 							<div class="charity__listing--content--box">
 							
 							
-							
-							
-							
-							
-							
 													 
 								<router-link :to="{name: 'charity_details', params: { id: item.id }}" ><h4 class="charity__listing--content--box--heading">{{item.title}}</h4></router-link>
 								<h6 class="charity__listing--content--box--subheading">Contrary to popular belief, Lorem Ipsum.</h6>
