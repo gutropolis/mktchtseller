@@ -33,6 +33,10 @@ let routes = [
                 component: require('./views/auth/register')
             },
 			{
+                path: '/charityregister',
+                component: require('./views/auth/charityregister')
+            },
+			{
                 path: '/contact',
                 component: require('./views/pages/contact')
             },
@@ -95,6 +99,12 @@ let routes = [
 				path : '/edit_charity',
 				component:require('./views/Charity/edit_charity')
 			},
+				{
+				name:'charity_detail1',
+				path : '/charity_detail1',
+				component:require('./views/Charity/charity_detail1')
+			},
+			
 			{
 				name:'charity_details',
 				path : '/charity_details',
