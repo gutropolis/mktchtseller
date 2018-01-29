@@ -103,7 +103,7 @@
             <li {!! ((Request::is('admin/charity/*')) && !(Request::is('admin/charity/create')) ? 'class="active" id="active"' : '') !!}>
                 <a href="{{ URL::route('admin.charity.show',Sentinel::getUser()->id) }}">
                     <i class="fa fa-angle-double-right"></i>
-                    View cahrity Profile
+                    View charity Profile
                 </a>
             </li>
             <li {!! (Request::is('admin/deleted_users') ? 'class="active" id="active"' : '') !!}>
