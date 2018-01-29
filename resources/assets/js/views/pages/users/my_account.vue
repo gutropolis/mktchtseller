@@ -459,107 +459,13 @@
     
     
     
-                            </li <li class="proflie__element--detail--list--item">
-    
-    
-    
-                            <router-link to="/charity_organisation" class="proflie__element--detail--list--item--link">
-    
-    
-    
-                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
-    
-        
-    
-                                           <g>
-    
-        
-    
-                                               <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
-    
-        
-    
-                                               <path d="M304.5,270.3l-52.8,48.2c-4.1,3.8-10.5,3.8-14.6,0l-52-48.2l-165.6,131h451L304.5,270.3z"/>
-    
-        
-    
-                                               <polygon points="244.6,296.7 472.8,88.7 16.4,88.7 		"/>
-    
-        
-    
-                                               <polygon points="320,256.3 490,390.4 490,101.1 		"/>
-    
-        
-    
-                                           </g>
-    
-        
-    
-                                       
-    
-        
-    
-                                       </svg> charity_organisation</router-link>
-    
-    
-    
-                            </li>
-    
-    
+                            </li> 
     
                             <li class="proflie__element--detail--list--item">
     
     
     
-                                <router-link to="/charity_category" class="proflie__element--detail--list--item--link">
-    
-    
-    
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
-    
-        
-    
-                                           <g>
-    
-        
-    
-                                               <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
-    
-        
-    
-                                               <path d="M304.5,270.3l-52.8,48.2c-4.1,3.8-10.5,3.8-14.6,0l-52-48.2l-165.6,131h451L304.5,270.3z"/>
-    
-        
-    
-                                               <polygon points="244.6,296.7 472.8,88.7 16.4,88.7 		"/>
-    
-        
-    
-                                               <polygon points="320,256.3 490,390.4 490,101.1 		"/>
-    
-        
-    
-                                           </g>
-    
-        
-    
-                                       
-    
-        
-    
-                                       </svg> charity_category</router-link>
-    
-    
-    
-                            </li>
-    
-    
-    
-                            <li class="proflie__element--detail--list--item">
-    
-    
-    
-                                <router-link to="/charity_list" class="proflie__element--detail--list--item--link">
+                                <router-link to="" class="proflie__element--detail--list--item--link">
     
     
     
@@ -591,21 +497,21 @@
     
         
     
-                                       </svg> charity_list </router-link>
-    
+                                       </svg>Charity</router-link>
+   
                                 <b-link class="dropdown__arrow" v-b-toggle.collapse3><i class="fa fa-angle-down" aria-hidden="true"></i></b-link>
     
                                 <b-collapse  id="collapse3" class=""  >  
     
                                     <ul class="drop_menu">
     
-                                        <li class="drop_menu--list"><a class="drop_menu--list--link">Duis aute</a></li>
+                                        <li class="drop_menu--list"><router-link to="/charity_organisation" class="drop_menu--list--link">Add Charity Organisation</router-link></li>
     
-                                        <li class="drop_menu--list"><a class="drop_menu--list--link">Duis aute</a></li>
+                                        <li class="drop_menu--list"><router-link to="/charity_list" class="drop_menu--list--link">Charity List</router-link></li>
     
-                                        <li class="drop_menu--list"><a class="drop_menu--list--link">Duis aute</a></li>
+                                        <li class="drop_menu--list"><router-link to="/charity_category"			class="drop_menu--list--link">Charity Category</router-link></li>
     
-                                        <li class="drop_menu--list"><a class="drop_menu--list--link">Duis aute</a></li>
+                                        
     
                                     </ul>
                                 </b-collapse>
@@ -614,112 +520,11 @@
                             </li>
     
     
-    
-    
-    
-    
-    
                             <li class="proflie__element--detail--list--item">
     
     
     
-                                <router-link to="/vender_organisation" class="proflie__element--detail--list--item--link">
-    
-    
-    
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="31.979px" height="31.979px" viewBox="0 0 31.979 31.979" style="enable-background:new 0 0 31.979 31.979;" xml:space="preserve">
-    
-        
-    
-                                            <g>
-    
-        
-    
-                                               <path d="M21.945,6.06V5.359c0-0.796-0.646-1.441-1.441-1.441h-2.365c0.197-0.356,0.309-0.797,0.309-1.245
-    
-        
-    
-                                                   C18.447,1.2,17.249,0,15.777,0c-1.472,0-2.669,1.2-2.669,2.673c0,0.448,0.112,0.889,0.309,1.245h-1.94
-    
-        
-    
-                                                   c-0.796,0-1.441,0.645-1.441,1.441V6.06H6.822c-1.207,0-2.185,0.979-2.185,2.186v21.546c0,1.207,0.978,2.187,2.185,2.187h18.334
-    
-        
-    
-                                                   c1.207,0,2.186-0.979,2.186-2.187V8.246c0-1.207-0.979-2.186-2.186-2.186H21.945z M14.187,2.674c0-0.878,0.713-1.594,1.589-1.594
-    
-        
-    
-                                                   c0.878,0,1.591,0.716,1.591,1.594c0,0.502-0.234,0.933-0.6,1.245h-1.981C14.421,3.606,14.187,3.176,14.187,2.674z M25.156,28.492
-    
-        
-    
-                                                   c0,0.742-0.602,1.344-1.344,1.344H8.166c-0.742,0-1.344-0.602-1.344-1.344V9.59c0-0.743,0.602-1.344,1.344-1.344h1.868
-    
-        
-    
-                                                   c0,0.591,0.479,1.071,1.07,1.071h9.769c0.592,0,1.07-0.479,1.07-1.071h1.869c0.741,0,1.344,0.602,1.344,1.344V28.492
-    
-        
-    
-                                                   L25.156,28.492z"/>
-    
-        
-    
-                                               <circle cx="10.852" cy="13.098" r="1.899"/>
-    
-        
-    
-                                               <path d="M21.656,12.038H15.18c-0.596,0-1.08,0.475-1.08,1.071c0,0.596,0.483,1.071,1.08,1.071h6.478
-    
-        
-    
-                                                   c0.596,0,1.078-0.475,1.078-1.071C22.736,12.513,22.253,12.038,21.656,12.038z"/>
-    
-        
-    
-                                               <circle cx="10.852" cy="18.485" r="1.899"/>
-    
-        
-    
-                                               <path d="M21.656,17.391H15.18c-0.596,0-1.08,0.498-1.08,1.094s0.483,1.092,1.08,1.092h6.478c0.596,0,1.078-0.496,1.078-1.092
-    
-        
-    
-                                                   S22.253,17.391,21.656,17.391z"/>
-    
-        
-    
-                                               <circle cx="10.852" cy="24.242" r="1.898"/>
-    
-        
-    
-                                               <path d="M21.656,23.145H15.18c-0.596,0-1.08,0.498-1.08,1.094s0.483,1.092,1.08,1.092h6.478c0.596,0,1.078-0.497,1.078-1.092
-    
-        
-    
-                                                   C22.736,23.643,22.253,23.145,21.656,23.145z"/>
-    
-        
-    
-                                           </g>
-    
-        
-    
-                                       </svg> Vendor Organisation</router-link>
-    
-    
-    
-                            </li>
-    
-    
-    
-                            <li class="proflie__element--detail--list--item">
-    
-    
-    
-                                <router-link to="/seller_list" class="proflie__element--detail--list--item--link">
+                                <router-link to="" class="proflie__element--detail--list--item--link">
     
     
     
@@ -751,218 +556,33 @@
     
         
     
-                                       
     
-        
+                                       </svg>Seller</router-link>
+									   
+									
+									    <b-link class="dropdown__arrow" v-b-toggle.collapse5><i class="fa fa-angle-down" aria-hidden="true"></i></b-link>
+									
+							<b-collapse  id="collapse5" class=""  >  
     
-                                       </svg> Seller List</router-link>
+                                    <ul class="drop_menu">
     
+                                        <li class="drop_menu--list"><router-link to="/vender_organisation" class="drop_menu--list--link">Add Seller Organisation</router-link></li>
     
+                                       <li class="drop_menu--list"><router-link to="/seller_list" class="drop_menu--list--link">Seller List</router-link></li>
+                                        <li class="drop_menu--list"><router-link to="/product" class="drop_menu--list--link">Add Product</router-link></li>
     
-                            </li>
+                                       <li class="drop_menu--list"><router-link to="/product_list" class="drop_menu--list--link">Product Lists</router-link></li>
+									   
+									   <li class="drop_menu--list"><router-link to="/seller_Category" class="drop_menu--list--link">Seller Category</router-link></li>
     
-    
-    
-                            <li class="proflie__element--detail--list--item">
-    
-    
-    
-                                <router-link to="/product_list" class="proflie__element--detail--list--item--link">
-    
-    
-    
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
-    
-        
-    
-                                           <g>
-    
-        
-    
-                                               <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
-    
-        
-    
-                                               <path d="M304.5,270.3l-52.8,48.2c-4.1,3.8-10.5,3.8-14.6,0l-52-48.2l-165.6,131h451L304.5,270.3z"/>
-    
-        
-    
-                                               <polygon points="244.6,296.7 472.8,88.7 16.4,88.7 		"/>
-    
-        
-    
-                                               <polygon points="320,256.3 490,390.4 490,101.1 		"/>
-    
-        
-    
-                                           </g>
-    
-        
-    
-                                       
-    
-        
-    
-                                       </svg> Product List</router-link>
+                                    </ul>
+                                </b-collapse>
     
     
     
                             </li>
     
-    
-    
-                            <li class="proflie__element--detail--list--item">
-    
-    
-    
-                                <router-link to="/product" class="proflie__element--detail--list--item--link">
-    
-    
-    
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
-    
-        
-    
-                                           <g>
-    
-        
-    
-                                               <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
-    
-        
-    
-                                               <path d="M304.5,270.3l-52.8,48.2c-4.1,3.8-10.5,3.8-14.6,0l-52-48.2l-165.6,131h451L304.5,270.3z"/>
-    
-        
-    
-                                               <polygon points="244.6,296.7 472.8,88.7 16.4,88.7 		"/>
-    
-        
-    
-                                               <polygon points="320,256.3 490,390.4 490,101.1 		"/>
-    
-        
-    
-                                           </g>
-    
-        
-    
-                                       
-    
-        
-    
-                                       </svg> Add Product</router-link>
-    
-    
-    
-                            </li>
-    
-    
-    
-                            <li class="proflie__element--detail--list--item">
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-                                <router-link to="/seller_Category" class="proflie__element--detail--list--item--link">
-    
-    
-    
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="31.979px" height="31.979px" viewBox="0 0 31.979 31.979" style="enable-background:new 0 0 31.979 31.979;" xml:space="preserve">
-    
-        
-    
-                                            <g>
-    
-        
-    
-                                               <path d="M21.945,6.06V5.359c0-0.796-0.646-1.441-1.441-1.441h-2.365c0.197-0.356,0.309-0.797,0.309-1.245
-    
-        
-    
-                                                   C18.447,1.2,17.249,0,15.777,0c-1.472,0-2.669,1.2-2.669,2.673c0,0.448,0.112,0.889,0.309,1.245h-1.94
-    
-        
-    
-                                                   c-0.796,0-1.441,0.645-1.441,1.441V6.06H6.822c-1.207,0-2.185,0.979-2.185,2.186v21.546c0,1.207,0.978,2.187,2.185,2.187h18.334
-    
-        
-    
-                                                   c1.207,0,2.186-0.979,2.186-2.187V8.246c0-1.207-0.979-2.186-2.186-2.186H21.945z M14.187,2.674c0-0.878,0.713-1.594,1.589-1.594
-    
-        
-    
-                                                   c0.878,0,1.591,0.716,1.591,1.594c0,0.502-0.234,0.933-0.6,1.245h-1.981C14.421,3.606,14.187,3.176,14.187,2.674z M25.156,28.492
-    
-        
-    
-                                                   c0,0.742-0.602,1.344-1.344,1.344H8.166c-0.742,0-1.344-0.602-1.344-1.344V9.59c0-0.743,0.602-1.344,1.344-1.344h1.868
-    
-        
-    
-                                                   c0,0.591,0.479,1.071,1.07,1.071h9.769c0.592,0,1.07-0.479,1.07-1.071h1.869c0.741,0,1.344,0.602,1.344,1.344V28.492
-    
-        
-    
-                                                   L25.156,28.492z"/>
-    
-        
-    
-                                               <circle cx="10.852" cy="13.098" r="1.899"/>
-    
-        
-    
-                                               <path d="M21.656,12.038H15.18c-0.596,0-1.08,0.475-1.08,1.071c0,0.596,0.483,1.071,1.08,1.071h6.478
-    
-        
-    
-                                                   c0.596,0,1.078-0.475,1.078-1.071C22.736,12.513,22.253,12.038,21.656,12.038z"/>
-    
-        
-    
-                                               <circle cx="10.852" cy="18.485" r="1.899"/>
-    
-        
-    
-                                               <path d="M21.656,17.391H15.18c-0.596,0-1.08,0.498-1.08,1.094s0.483,1.092,1.08,1.092h6.478c0.596,0,1.078-0.496,1.078-1.092
-    
-        
-    
-                                                   S22.253,17.391,21.656,17.391z"/>
-    
-        
-    
-                                               <circle cx="10.852" cy="24.242" r="1.898"/>
-    
-        
-    
-                                               <path d="M21.656,23.145H15.18c-0.596,0-1.08,0.498-1.08,1.094s0.483,1.092,1.08,1.092h6.478c0.596,0,1.078-0.497,1.078-1.092
-    
-        
-    
-                                                   C22.736,23.643,22.253,23.145,21.656,23.145z"/>
-    
-        
-    
-                                           </g>
-    
-        
-    
-                                       </svg> Vendor Category</router-link>
-    
-    
-    
-                            </li>
-    
-    
-    
+   
                             <li class="proflie__element--detail--list--item">
     
     
@@ -1008,12 +628,6 @@
         
     
                                            </g>
-    
-        
-    
-                                       
-    
-        
     
                                        </svg> Log Out</a>
     
