@@ -43,12 +43,16 @@ Route::get('/auth/user','AuthController@getAuthUser');
 Route::post('/user/update-profile','UserController@updateProfile');
 Route::get('/get_user','UserController@index');
 Route::post('/user/change-password','AuthController@changePassword');
+
 //seller Product
 Route::delete('/task/{id}','SellerproductController@destroy');
 Route::post('/task/{id}','SellerproductController@update');
 Route::get('/task/{id}','SellerproductController@edit');
 Route::get('/product_list','SellerproductController@index');
-Route::post('/user/update-avatar','SellerproductController@updateAvatar');
+
+
+Route::post('/product_upload', 'SellerproductController@updateimage');
+
 //Seller Organisation
 Route::resource('/gs_seller_organisation', 'SellerController');
 Route::get('/gs_seller_organisation', 'SellerController@index');
@@ -82,11 +86,20 @@ Route::resource('/gs_charity_organisation', 'charityController');
 
 
 Route::post('/upload', function (Request $request) {
-   $imageData = $request->get('image');
-      $fileName = uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-        Image::make($request->get('image'))->save(public_path('images/').$fileName);
-        return response()->json(['fileName'=>$fileName,'error'=>false]); 
-    
+    $validator = Validator::make($request->all(), [
+        'image' => 'required'
+    ]);
+    if ($validator->fails()) {
+        return response()->json(['errors'=>$validator->errors()]);
+    } else {
+        $imageData = $request->get('image');
+        $fileName = uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+        Image::make($request->get('image'))->save(public_path('images/user/').$fileName);
+	$user = JWTAuth::parseToken()->authenticate();
+		$user->pic= $fileName;
+		$user->save();
+        return response()->json(['fileName'=>$fileName,'message' => 'Your profile Image has been updated!']);
+    }
 });
 
 //Charity Organisation 
