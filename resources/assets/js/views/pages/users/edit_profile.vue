@@ -207,19 +207,7 @@
                                     <label for="gender_female"> Female </label>
                                 </div>
                             </div>
-			<div class="form-group">
-        
-            <div class="col-md-2">
-                <img :src="image" class="img-responsive">
-            </div>
-            <div class="col-md-8">
-                <input type="file" v-on:change="onFileChange" class="form-control">
-            </div>
-            <div class="col-md-2">
-                <button class="btn btn-success btn-block" @click="upload">Upload</button>
-            </div>
-       
-    </div>
+			
 						
 						<div class="form-group">
                             <label class="login__element--box--label">Address</label>
@@ -290,25 +278,7 @@
               });
 		 },
 		 
-		 onFileChange(e) {
-                let files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                this.createImage(files[0]);
-            },
-            createImage(file) {
-                let reader = new FileReader();
-                let vm = this;
-                reader.onload = (e) => {
-                    vm.image = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            },
-            upload(){
-                axios.post('/api/upload',{image: this.image}).then(response => {
-
-                });
-				},
+		
 		
 			updateProfile() {
               
