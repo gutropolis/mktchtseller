@@ -36,12 +36,24 @@ public function index(){
 	}
 
 
-    /*
-     * Pass data through ajax call
-     */
-    /**
-     * @return mixed
-     */
+   public function upload_image(Request $request)
+   {
+	    $validator = Validator::make($request->all(), [
+        'image' => 'required|image64:jpeg,jpg,png'
+    ]);
+    if ($validator->fails()) {
+        return response()->json(['errors'=>$validator->errors()]);
+    } else {
+        $imageData = $request->get('image');
+        $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+        Image::make($request->get('image'))->save(public_path('images/').$fileName);
+      
+		$user = JWTAuth::parseToken()->authenticate();
+		$user->pic= request('image');
+		$user->save();
+
+;    }
+   }
       public function updateProfile(Request $request){
 
         $validation = Validator::make($request->all(),[
