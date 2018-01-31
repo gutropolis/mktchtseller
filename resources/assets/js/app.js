@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+import store from './store'
 import router from './routes'
 window.Vue = require('vue');
 
@@ -18,5 +19,6 @@ window.Vue = require('vue');
  
 const app = new Vue({
     el: '#root',
+	 store,
 	router
 });
