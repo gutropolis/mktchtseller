@@ -2,7 +2,7 @@
     <!-- header element start -->
     
     <header class="header_element">
-    
+
         <nav class="navbar navbar-toggleable-md navbar-light bg-light navbar-expand-md">
     
             <div class="container">
@@ -64,7 +64,7 @@
                     <div class=" my-2 my-lg-0 ">
     
 							<div v-if="loginCheck">
-							<tr v-for="item in items">
+							
                         <div class="admin__profile">
     
                             <a href="#" class="admin__profile--user"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -117,7 +117,7 @@
     
     
     
-                                <figure class="admin__element--figure"><img src="../../images/user4.jpg"></figure>
+                                <figure class="admin__element--figure"><img :src="getAvatar" alt="user" class="profile-pic" /></figure>
     
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
     
@@ -137,12 +137,13 @@
     
                                         <div class="admin__lsit--content--profile">
     
-                                            <img src="images/user4.jpg">
+                                            <img :src="getAvatar" alt="user" class="profile-pic" />
     
                                         </div>
     
-                                        <h5>{{item.first_name}} {{item.last_name}}</h5>
-										<h8>{{item.email}}</h8>
+                                        <h5>{{getAuthUserFullName()}}</h5>
+										<h6>{{getAuthUser('email')}}</h6>
+										
 									
     
                                     </li>
@@ -472,11 +473,9 @@
                             </b-collapse>
 							
 						</div>
-						</tr>
+						
 							</div>
 				<div v-else>
-    
-    
     
                         <router-link to="/register" class="btn join_btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Join Us </router-link>
     
@@ -485,7 +484,7 @@
     
     
 						</div>
-    
+						
     
     
                        
@@ -562,6 +561,7 @@
     
     
             },
+			
     
             getAuthUserFullName() {
     
@@ -577,14 +577,12 @@
     
         },
     
-        computed: {
-    
-            getAvatar() {
-    
-                return '/images/users/' + this.getAuthUser('avatar');
-    
+         computed: {
+			
+            getAvatar(){
+                return '/images/user/'+this.getAuthUser('avatar');
             }
-    
+			
         }
     
     }
