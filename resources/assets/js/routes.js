@@ -66,6 +66,10 @@ let routes = [
 				component:require('./views/pages/users/edit_profile')
 			},
 			{
+				path : '/image_upload',
+				component:require('./views/pages/users/image_upload')
+			},
+			{
 				path : 'my_ads',
 				component:require('./views/pages/my_ads')
 			},
