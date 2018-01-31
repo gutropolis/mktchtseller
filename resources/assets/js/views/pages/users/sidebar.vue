@@ -7,7 +7,7 @@
     
     
     
-                        <img src="images/profile-dashboard.jpg">
+                        <img :src="getAvatar" alt="user" /> 
     
     
     
@@ -19,7 +19,7 @@
     
     
     
-                    <h4 class="proflie__element--name">John Smith</h4>
+                    <h4 class="proflie__element--name">{{getAuthUserFullName()}}</h4>
     
     
     
@@ -596,10 +596,10 @@
                         <div class="contact__btn">
     
     
-    
+						
                             <router-link to="/contact" class="btn contact__btn--content">Contact</router-link>
     
-    
+							
     
                         </div>
     
@@ -618,28 +618,33 @@
 			
 			
 			</template>
-			<script>
-			export default {
-        data() {
-            return {
-              
-				 
+<script>
+    import helper from '../../../services/helper'
+
+    export default {
+        mounted() {
+        },
+        methods : {
+            logout(){
+                helper.logout().then(() => {
+                    this.$store.dispatch('resetAuthUserDetail');
+                    this.$router.replace('/login')
+                })
+            },
+            getAuthUserFullName(){
+                return this.$store.getters.getAuthUserFullName;
+            },
+            getAuthUser(name){
+                return this.$store.getters.getAuthUser(name);
             }
         },
-       
-		methods:
-		{
-		
-		logout(){
-        return axios.post('/api/auth/logout').then(response =>  {
-            localStorage.removeItem('auth_token');
-            axios.defaults.headers.common['Authorization'] = null;
-            toastr['success'](response.data.message);
-			this.$router.push('/');
-        }).catch(error => {
-            console.log(error);
-        });
-    },
-		}
-		}
-			</script>
+        computed: {
+            getAvatar(){
+                return '/images/user/'+this.getAuthUser('avatar');
+            }
+        }
+    }
+</script>
+
+			
+			
