@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="col-md-2">
-                <img :src="image" class="img-responsive">
+                <img :src="avatar" class="img-responsive">
             </div>
             <div class="col-md-8">
                 <input type="file" v-on:change="onFileChange" class="form-control">
@@ -52,7 +52,7 @@
         },
  data() {
             return {
-				 image: ''
+				 avatar: ''
 			};
 			},
   methods: {
@@ -60,18 +60,18 @@
                 let files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
                     return;
-                this.createImage(files[0]);
+                this.createAvatar(files[0]);
             },
-            createImage(file) {
+            createAvatar(file) {
                 let reader = new FileReader();
                 let vm = this;
                 reader.onload = (e) => {
-                    vm.image = e.target.result;
+                    vm.avatar = e.target.result;
                 };
                 reader.readAsDataURL(file);
             },
             upload(){
-                axios.post('/api/upload',{image: this.image}).then(response => {
+                axios.post('/api/upload',{avatar: this.avatar}).then(response => {
 					 toastr['success'](response.data.message);
                 });
 				},
