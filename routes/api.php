@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('/login','AuthController@authenticate');
- Route::get('/login','AuthController@authenticate');
+	Route::get('/login','AuthController@authenticate');
  
     Route::post('/logout','AuthController@logout');
     Route::post('/check','AuthController@check');
@@ -87,16 +87,16 @@ Route::resource('/gs_charity_organisation', 'charityController');
 
 Route::post('/upload', function (Request $request) {
     $validator = Validator::make($request->all(), [
-        'image' => 'required'
+        'avatar' => 'required'
     ]);
     if ($validator->fails()) {
         return response()->json(['errors'=>$validator->errors()]);
     } else {
-        $imageData = $request->get('image');
+        $imageData = $request->get('avatar');
         $fileName = uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-        Image::make($request->get('image'))->save(public_path('images/user/').$fileName);
+        Image::make($request->get('avatar'))->save(public_path('images/user/').$fileName);
 	$user = JWTAuth::parseToken()->authenticate();
-		$user->pic= $fileName;
+		$user->avatar= $fileName;
 		$user->save();
         return response()->json(['fileName'=>$fileName,'message' => 'Your profile Image has been updated!']);
     }
