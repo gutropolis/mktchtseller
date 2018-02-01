@@ -17,19 +17,31 @@
     
                         <div class="dashboard__content--head">
 						 <h3 class="dashboard__content--head--heading">Change Profile Pic</h3>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-2">
-                <img :src="avatar" class="img-responsive">
-            </div>
-            <div class="col-md-8">
-                <input type="file" v-on:change="onFileChange" class="form-control">
-            </div>
-            <div class="col-md-2">
-                <button class="btn btn-success btn-block" @click="upload">Upload</button>
-            </div>
-        </div>
-    </div>
+    <div class="card">
+                    <div class="card-body">
+                        <div class="pull-right">
+                          
+                                <button type="button" class="btn btn-sm btn-danger waves-effect waves-light m-t-10" v-if="defaultAvatar" @click="removeAvatar">Remove Avatar</button>
+                           
+                        </div>
+                        <h4 class="card-title">Upload Avatar</h4>
+                        <div class="form-group text-center m-t-20">
+                            <span id="fileselector">
+                                <label class="btn btn-info">
+                                    <input type="file"  @change="previewAvatar" id="avatarUpload" class="upload-button">
+                                  
+                                </label>
+                            </span>
+                        </div>
+                        <div class="form-group text-center">
+                            <img :src="avatar" class="img-responsive" style="max-width:200px;">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-info waves-effect waves-light m-t-10" v-if="avatar" @click="uploadAvatar">Upload</button>
+                            <button type="button" class="btn btn-danger waves-effect waves-light m-t-10" v-if="avatar" @click="cancelUploadAvatar">Cancel Upload</button>
+                        </div>
+                    </div>
+                </div>
 	</div>
 	
                     </div>
@@ -46,6 +58,7 @@
  import AppNavbar from './navbar.vue' 
  import AppSidebar from './sidebar.vue'
  import Vue from 'vue'
+
     export default {
     components: {
             AppNavbar,  AppSidebar 
@@ -56,7 +69,7 @@
 			};
 			},
   methods: {
- onFileChange(e) {
+  previewAvatar(e) {
                 let files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
                     return;
@@ -64,17 +77,48 @@
             },
             createAvatar(file) {
                 let reader = new FileReader();
-                let vm = this;
                 reader.onload = (e) => {
-                    vm.avatar = e.target.result;
+                    this.avatar = e.target.result;
                 };
                 reader.readAsDataURL(file);
             },
-            upload(){
-                axios.post('/api/upload',{avatar: this.avatar}).then(response => {
-					 toastr['success'](response.data.message);
+            cancelUploadAvatar(){
+                this.avatar = '';
+            },
+            uploadAvatar() {
+                let data = new FormData();
+                data.append('avatar', $('#avatarUpload')[0].files[0]);
+                axios.post('/api/user/update-avatar',data)
+                .then(response => {
+                    this.$store.dispatch('setAuthUserDetail',{
+                        avatar: response.data.profile.avatar
+                    });
+                    toastr['success'](response.data.message);
+                    this.avatar = '';
+                    $("#avatarUpload").val('');
+                }).catch(error => {
+                    toastr['error'](error.response.data.message);
                 });
-				},
-		}
+            },
+            removeAvatar() {
+                axios.post('/api/user/remove-avatar')
+                .then(response => {
+                    this.$store.dispatch('setAuthUserDetail',{
+                        avatar: null
+                    });
+                    toastr['success'](response.data.message);
+                }).catch(error => {
+                    toastr['error'](error.response.data.message);
+                });
+            },
+			getAuthUser(name){
+                return this.$store.getters.getAuthUser(name);
+            }
+		},
+		        computed: {
+            defaultAvatar(){
+                return this.getAuthUser('avatar') !== 'avatar.png' ? true : false;
+            }
+        }
 } 	
 </script>
