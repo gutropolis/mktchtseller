@@ -42,6 +42,11 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 Route::get('/auth/user','AuthController@getAuthUser');
 Route::post('/user/update-profile','UserController@updateProfile');
 
+ Route::post('/user/update-avatar','UserController@updateAvatar');
+    Route::post('/user/remove-avatar','UserController@removeAvatar');
+
+
+
 Route::get('/get_user','UserController@index');
 Route::post('/user/change-password','AuthController@changePassword');
 
@@ -86,22 +91,7 @@ Route::post('/upload','UserController@upload_image' );
 Route::resource('/gs_charity_organisation', 'charityController');
 
 
-Route::post('/upload', function (Request $request) {
-    $validator = Validator::make($request->all(), [
-        'avatar' => 'required'
-    ]);
-    if ($validator->fails()) {
-        return response()->json(['errors'=>$validator->errors()]);
-    } else {
-        $imageData = $request->get('avatar');
-        $fileName = uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-        Image::make($request->get('avatar'))->save(public_path('images/user/').$fileName);
-	$user = JWTAuth::parseToken()->authenticate();
-		$user->avatar= $fileName;
-		$user->save();
-        return response()->json(['fileName'=>$fileName,'message' => 'Your profile Image has been updated!']);
-    }
-});
+
 
 //Charity Organisation 
 Route::get('/charity_details/{id}','charityController@charity_details');
