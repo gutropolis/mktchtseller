@@ -18,7 +18,7 @@ class AddFieldsToUserTable extends Migration {
 			$table->text('bio')->nullable();
 			$table->string('gender')->nullable();
 			$table->date('dob')->nullable();
-			$table->string('pic')->nullable();
+			$table->string('avatar')->nullable();
 			$table->string('country')->nullable();
 			$table->string('role')->nullable();
 			$table->string('status')->nullable();
