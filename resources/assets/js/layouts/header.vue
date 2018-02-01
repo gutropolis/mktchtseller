@@ -539,7 +539,7 @@
     
                 helper.logout().then(() => {
     
-                    //this.$store.dispatch('resetAuthUserDetail');
+                    this.$store.dispatch('resetAuthUserDetail');
     
     
     
