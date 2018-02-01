@@ -107,11 +107,11 @@
     
     
     
-                                        <figure><img src="images/profile-dashboard.jpg" class="dashboard__content--box--upload--box-image"></figure>
+                                        <figure><img :src="getAvatar" alt="user" class="dashboard__content--box--upload--box-image"></figure>
     
     
     
-                                        <form><input type="file" value="Upload"></form>
+                                       
     
     
     
@@ -285,14 +285,6 @@ import AppNavbar from './navbar.vue'
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
         mounted() {},
     
     
@@ -350,6 +342,12 @@ import AppNavbar from './navbar.vue'
     
     
             },
+			 getAuthUserFullName(){
+                return this.$store.getters.getAuthUserFullName;
+            },
+            getAuthUser(name){
+                return this.$store.getters.getAuthUser(name);
+            },
     
     
             fetchItems() {
@@ -368,6 +366,11 @@ import AppNavbar from './navbar.vue'
     
     
     
+        },
+		 computed: {
+            getAvatar(){
+                return '/images/user/'+this.getAuthUser('avatar');
+            }
         }
     
     
