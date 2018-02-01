@@ -10,7 +10,8 @@ const store = new Vuex.Store({
 			first_name: '',
 			last_name: '',
 			email: '',
-			avatar: ''
+			avatar: '',
+			role: ''
 		},
 		config: {
 			company_name: '',
@@ -50,6 +51,9 @@ const store = new Vuex.Store({
 	getters: {
 		getAuthUser: (state) => (name) => {
 		    return state.auth[name];
+		},
+		getAuthUserRole: (state) => {
+		    return state.auth['role'];
 		},
 		getAuthUserFullName: (state) => {
 		    return state.auth['first_name']+' '+state.auth['last_name'];
