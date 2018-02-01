@@ -11,10 +11,22 @@
                         
                         <div class="dashboard__content--description">
                             <hr>
-                            
-                           
-                     <form class="form-horizontal form-material" id="saveproductform" @submit.prevent="submit">
-                    <h3 class="box-title m-b-20">Add Product</h3>
+                            <h3 class="box-title m-b-20">Add Product</h3>
+                       	<div class="form-group ">
+                        <label class="login__element--box--label">Choose Image</label>
+                           <input type="file" name="image" v-on:change="onFileChange"   class="form-control">
+                        <div class="col-md-2">
+						<img :src="image" class="img-responsive">
+						</div>
+                    </div>
+					<div class="col-md-2">
+					<button class="btn btn-success btn-block" v-if="image" @click="upload">Upload</button>
+					</div>
+					    
+                     <form class="form-horizontal form-material" id="saveproductform" @submit.prevent="submit"  enctype="multipart/form-data">
+                    
+					
+				
 					<div class="form-group ">
                         <label class="login__element--box--label">Title</label>
                             <input type="text" name="title" class="login__element--box--input"  placeholder="Title" v-model="saveproductform.title">
@@ -30,6 +42,7 @@
                             <input type="text" name="asin_url" class="login__element--box--input"  placeholder="asin_url" v-model="saveproductform.asin_url">
                        
                     </div>
+					
                    
 					 
 					 <div class="form-group ">
@@ -55,8 +68,8 @@
 </div>
 </template>
 <script>
-import AppNavbar from './navbar.vue' 
- import AppSidebar from './sidebar.vue'
+import AppNavbar from '../users/navbar.vue' 
+ import AppSidebar from '../users/sidebar.vue'
  export default {
   components: {
             AppNavbar,  AppSidebar 
@@ -64,10 +77,11 @@ import AppNavbar from './navbar.vue'
         data() {
             return {
 			image: '',
-				fileName: '',
+				
                 saveproductform: {
                     title: '',
                     description: '',
+					image:'',
                   
                     
                 }
@@ -78,58 +92,38 @@ import AppNavbar from './navbar.vue'
         mounted(){
         },
         methods: {
-		
+		onFileChange(e) {
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                let reader = new FileReader();
+                let vm = this;
+                reader.onload = (e) => {
+                    vm.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+		upload(){
+                axios.post('/api/product_upload',{image: this.image}).then(response => {
+					 toastr['success'](response.data.message);
+                });
+				},
             submit(e){
-                axios.post('/api/gs_seller_product', this.saveproductform).then(response =>  {
+                axios.post('/api/gs_seller_product',this.saveproductform).then(response =>  {
                     toastr['success'](response.data.message);
-                    this.$router.push('/');
+                    this.$router.push('/product_list');
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });
             },
 			
-			previewAvatar(e) {
-                let files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                this.createAvatar(files[0]);
-            },
-            createAvatar(file) {
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                    this.avatar = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            },
-            cancelUploadAvatar(){
-                this.avatar = '';
-            },
-            uploadAvatar() {
-                let data = new FormData();
-                data.append('avatar', $('#avatarUpload')[0].files[0]);
-                axios.post('/api/user/update-avatar',data)
-                .then(response => {
-                    this.$store.dispatch('setAuthUserDetail',{
-                        avatar: response.data.sellerproduct.avatar
-                    });
-                    toastr['success'](response.data.message);
-                    this.avatar = '';
-                    $("#avatarUpload").val('');
-                }).catch(error => {
-                    toastr['error'](error.response.data.message);
-                });
-            },
-            removeAvatar() {
-                axios.post('/api/user/remove-avatar')
-                .then(response => {
-                    this.$store.dispatch('setAuthUserDetail',{
-                        avatar: null
-                    });
-                    toastr['success'](response.data.message);
-                }).catch(error => {
-                    toastr['error'](error.response.data.message);
-                });
-            },
+			
+            
+           
+            
         }
     }
 </script>
