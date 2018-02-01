@@ -1,33 +1,18 @@
 <template>
-<div>       
-<div class="dashboard__content--description">
+<div id="main-wrapper">
+<app-navbar></app-navbar>
+	    <section class=" my__account">
+        <div class="row">
+            <app-sidebar></app-sidebar>
+            <div class="col-md-9 dashboard">
+                <div class="dashboard__content clearfix">
+                
+                    <div class="dashboard__content--outer">   
+					<div class="dashboard__content--description">
+                            <hr>
+                            <h3 class="dashboard__content--description--heading">Create Your Ads</h3>
                      <form class="form-horizontal form-material" id="create_ads" @submit.prevent="submit">
 					<div class="col-md-6">
-					<div class="form-group">
-					   
-                            <label class="login__element--box--label">Category</label>
-                            <select name="Category"  v-model="create_ads.Category" class="login__element--box--input">
-							<option value="select">Select .. </option>
-							
-							<option  v-for="item in items" v-if="item.parent_id==0"  v-bind:value="item.id">{{ item.title }}</option>
-							
-							
-							</select>
-                        </div>
-						<div v-if="create_ads.Category !='select' "  class="form-group">
-					   
-                            <label class="login__element--box--label">Sub Category</label>
-                            <select name="business_type"  v-model="create_ads.business_type" class="login__element--box--input">
-							<option value="">Select .. </option>
-							
-							<option  v-for="item in items" v-if="item.parent_id==create_ads.Category"  v-bind:value="item.title">{{ item.title }}</option>
-							
-							
-							</select>
-                        </div>
-					
-					
-					
 					
 					<div class="form-group">
 					   
@@ -62,17 +47,25 @@
                         </div>
 						
 					</div>
-					
-						
-						
-						
+			
 						<input type="submit" value="Submit" class="btn btn-info waves-effect waves-light m-t-10">
 						  </form>
 						   </div>
+						  </div> 	
+                </div>
+            </div>
+			</div> 
+			</section>
 						   </div>
 						  </template>
 <script>
+import AppNavbar from './navbar.vue' 
+ import AppSidebar from './sidebar.vue'
+ import Vue from 'vue'
 	 export default {
+	  components: {
+            AppNavbar,  AppSidebar 
+        },
 	data() {
             return {
 				items:[],
@@ -83,17 +76,13 @@
                     description: '',
                    location: '',
 				   image:'',
-				   Category:'select',
-				   business_type:'select',
+				  
 				   ads_type:'select'
                     
                 }
             }
         },
-       created: function()
-        {
-            this.fetchItems();
-        },
+       
         
        
         methods: {
@@ -105,16 +94,7 @@
                     toastr['error'](error.response.data.message);
                 });
             },
-			fetchItems()
-			{
-			axios.get('api/gs_seller_organisation',this.savesellerform).then(response=>{
 			
-			this.items=response.data;
-			
-			}).catch(error=>{
-			toastr['error'](error.response.data.message);
-			});
-			}
 			
         }
     }
