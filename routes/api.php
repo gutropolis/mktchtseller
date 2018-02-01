@@ -41,6 +41,7 @@ Route::group(['middleware' => ['jwt.auth']], function () {
  //user Profile
 Route::get('/auth/user','AuthController@getAuthUser');
 Route::post('/user/update-profile','UserController@updateProfile');
+
 Route::get('/get_user','UserController@index');
 Route::post('/user/change-password','AuthController@changePassword');
 
