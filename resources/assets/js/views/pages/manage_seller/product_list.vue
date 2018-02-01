@@ -63,8 +63,8 @@
 <script>
 
 
-import AppNavbar from './navbar.vue' 
- import AppSidebar from './sidebar.vue'
+import AppNavbar from '../users/navbar.vue' 
+ import AppSidebar from '../users/sidebar.vue'
  export default {
  components: {
             AppNavbar,  AppSidebar 
