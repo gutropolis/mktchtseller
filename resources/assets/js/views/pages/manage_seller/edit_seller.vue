@@ -89,8 +89,8 @@
 </div>
 </template>
 <script>
-import AppNavbar from './navbar.vue' 
- import AppSidebar from './sidebar.vue'
+import AppNavbar from '../users/navbar.vue' 
+ import AppSidebar from '../users/sidebar.vue'
 import Vue from 'vue'
  import VueFormWizard from 'vue-form-wizard'
  Vue.use(VueFormWizard)
