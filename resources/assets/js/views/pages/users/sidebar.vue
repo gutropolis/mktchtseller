@@ -25,7 +25,7 @@
     
     
     
-    
+		
     
                     <div class="proflie__element--detail">
     
@@ -412,7 +412,8 @@
     
     
                             </li> 
-    
+						
+							<div v-if="getrole === 'charity'">
                             <li class="proflie__element--detail--list--item">
     
     
@@ -471,7 +472,9 @@
     
                             </li>
     
-    
+							</div>
+							
+							<div v-else>
                             <li class="proflie__element--detail--list--item">
     
     
@@ -533,7 +536,7 @@
     
     
                             </li>
-    
+							</div>
    
                             <li class="proflie__element--detail--list--item">
     
@@ -622,6 +625,14 @@
     import helper from '../../../services/helper'
 
     export default {
+	data() {
+	return {
+				
+				
+				charity:''		
+			}
+	},
+	
         mounted() {
         },
         methods : {
@@ -634,11 +645,17 @@
             getAuthUserFullName(){
                 return this.$store.getters.getAuthUserFullName;
             },
+			getAuthUserrole(){
+                return this.$store.getters.getAuthUserrole;
+            },
             getAuthUser(name){
                 return this.$store.getters.getAuthUser(name);
             }
         },
         computed: {
+				getrole(){
+					return this.getAuthUser('role');
+				},
             getAvatar(){
                 return '/images/user/'+this.getAuthUser('avatar');
             }
