@@ -302,6 +302,13 @@ Route::get('logout', 'FrontEndController@getLogout')->name('logout');
 Route::post('contact', 'FrontEndController@postContact')->name('contact');
 
 #frontend views
+Route::get('/{vue?}', function () {
+    return view('index');
+})->where('vue', '[\/\w\.-]*')->name('index');
+
+
+
+
 Route::get('/', ['as' => 'home', function () {
     return view('index');
 }]);
