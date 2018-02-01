@@ -24,9 +24,10 @@
                     toastr[type](message, title);
                 });
             },
+			
             getAuthUser(name){
                 return this.$store.getters.getAuthUser(name);
-            }
+            },
         },
         components: {
             AppHeader,AppFooter 
@@ -38,7 +39,8 @@
                         first_name: response.user.first_name,
                         last_name: response.user.last_name,
                         email: response.user.email,
-                        avatar:response.user.avatar
+                        avatar:response.user.avatar,
+						role:response.user.role,
                     });
                 });
             }
