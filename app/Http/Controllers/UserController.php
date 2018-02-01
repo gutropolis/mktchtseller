@@ -21,7 +21,7 @@ use stdClass;
 
 class UserController extends Controller
 {
-
+ protected $avatar_path = 'images/user/';
     /**
      * Show a list of all the users.
      *
@@ -36,24 +36,51 @@ public function index(){
 	}
 
 
-   public function upload_image(Request $request)
-   {
-	    $validator = Validator::make($request->all(), [
-        'image' => 'required|image64:jpeg,jpg,png'
-    ]);
-    if ($validator->fails()) {
-        return response()->json(['errors'=>$validator->errors()]);
-    } else {
-        $imageData = $request->get('image');
-        $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-        Image::make($request->get('image'))->save(public_path('images/').$fileName);
-      
-		$user = JWTAuth::parseToken()->authenticate();
-		$user->pic= request('image');
-		$user->save();
+ 
+   public function updateAvatar(Request $request){
+        $validation = Validator::make($request->all(), [
+            'avatar' => 'required|image'
+        ]);
 
-;    }
-   }
+        if ($validation->fails())
+            return response()->json(['message' => $validation->messages()->first()],422);
+
+        $user = JWTAuth::parseToken()->authenticate();
+   
+
+        if($user->avatar && \File::exists($this->avatar_path.$user->avatar))
+            \File::delete($this->avatar_path.$user->avatar);
+
+        $extension = $request->file('avatar')->getClientOriginalExtension();
+        $filename = uniqid();
+        $file = $request->file('avatar')->move($this->avatar_path, $filename.".".$extension);
+        $img = \Image::make($this->avatar_path.$filename.".".$extension);
+        $img->resize(200, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+        $img->save($this->avatar_path.$filename.".".$extension);
+        $user->avatar = $filename.".".$extension;
+        $user->save();
+
+        return response()->json(['message' => 'Avatar updated!','profile' => $user]);
+    }
+
+    public function removeAvatar(Request $request){
+
+        $user = JWTAuth::parseToken()->authenticate();
+
+ 
+        if(!$user->avatar)
+            return response()->json(['message' => 'No avatar uploaded!'],422);
+
+        if(\File::exists($this->avatar_path.$user->avatar))
+            \File::delete($this->avatar_path.$user->avatar);
+
+        $user->avatar = null;
+        $user->save();
+
+        return response()->json(['message' => 'Avatar removed!']);
+    }
       public function updateProfile(Request $request){
 
         $validation = Validator::make($request->all(),[
