@@ -40,9 +40,10 @@ class FacebookServiceProvider extends AbstractServiceProvider
             'last_name' => $user->user['last_name'],
             'email' => $user->email,
             'gender' => ucfirst($user->user['gender']),
-            'settings' => [
-                'facebook_id' => $user->id,                
+            /*'settings' => [
+              'facebook_id' => $user->id,                
             ]
+			*/
         ]);        
 
         return $this->login($newUser);
