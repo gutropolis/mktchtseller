@@ -81,6 +81,7 @@ public function index(){
 
         return response()->json(['message' => 'Avatar removed!']);
     }
+
       public function updateProfile(Request $request){
 
         $validation = Validator::make($request->all(),[
@@ -101,7 +102,7 @@ public function index(){
 	
       
 		  $user->save();
-        return response()->json(['message' => 'Your profile has been updated!','user' => $user]);
+        return response()->json(['message' => 'Your profile has been updated!']);
     }
     /**
      * Create new user
