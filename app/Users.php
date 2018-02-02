@@ -32,6 +32,9 @@ class Users extends EloquentUser {
 	 *
 	 * @var array
 	 */
+	 protected $casts = [
+    'settings' => 'array'
+];
 	protected $hidden = ['password', 'remember_token'];
 
 	/**
