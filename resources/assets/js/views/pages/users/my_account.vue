@@ -135,7 +135,7 @@
     
     
     
-                                    <tr v-for="item in items">
+                                    <div v-for="item in items">
     
     
     
@@ -167,7 +167,7 @@
     
     
     
-                                    </tr>
+                                    </div>
     
     
     
