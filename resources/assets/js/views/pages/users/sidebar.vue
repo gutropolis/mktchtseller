@@ -39,7 +39,7 @@
     
     
     
-                                <a href="#" class="proflie__element--detail--list--item--link">
+                                <router-link to ="/my_account" class="proflie__element--detail--list--item--link">
     
     
     
@@ -111,7 +111,7 @@
     
         
     
-                                       </svg> My Profile</a>
+                                       </svg> My Profile</router-link>
     
     
     
