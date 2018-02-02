@@ -27,7 +27,7 @@ class AddFieldsToUserTable extends Migration {
 			$table->string('address')->nullable();
 			$table->string('postal')->nullable();
 			$table->string('activation_token')->nullable();
-			$table->json('settings')->nullable();
+			$table->string('settings')->nullable();
 			$table->string('membership_id')->nullable();
 
 		});
