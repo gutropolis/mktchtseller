@@ -13,7 +13,6 @@ class User extends Authenticatable {
 	 *
 	 * @var string
 	 */
-	 
 
 	protected $table = 'users';
 
@@ -24,9 +23,6 @@ class User extends Authenticatable {
 	 *
 	 * @var array
 	 */
-	 protected $casts = [
-    'settings' => 'array'
-];
     use Taggable;
 
 	protected $fillable =['first_name', 'last_name', 'email', 'status','role', 'avatar', 'password'];
