@@ -141,7 +141,7 @@ class AdsController extends Controller
        $create_ads->save();
 	   
        
-		 return response()->json(['message' => 'You have registered successfully']);
+		 return response()->json(['message' => 'Your Ads sucessfully Added']);
     }
 
     
