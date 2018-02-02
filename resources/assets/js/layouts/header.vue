@@ -512,7 +512,7 @@
     
     
             return {
-				items: [],
+			
 				
                 loginCheck: helper.checkLogin()
     
@@ -524,13 +524,7 @@
     
         mounted() {},
 		
-		  created: function() {
-    
-            this.fetchItems();
-    
-        },
-    
-    
+		     
         methods: {
     
     
@@ -540,27 +534,12 @@
                 helper.logout().then(() => {
     
                     this.$store.dispatch('resetAuthUserDetail');
-    
-    
-    
                     this.$router.replace('/');
     
                 })
     
             },
-			fetchItems() {
-    
-                axios.get('/api/auth/user').then((response) => {
-    
-    
-                    this.items = response.data;
-    
-    
-                });
-    
-    
-    
-            },
+			
 			
     
             getAuthUserFullName() {
