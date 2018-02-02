@@ -12,7 +12,7 @@
             </div>
             <div class="col-md-6 banner_element--right">
                 <div class="banner_element--content banner_element--right--content row">
-                    <h2 class="banner_element--content--heading">I am Seller</h2>
+                    <h2 class="banner_element--content--heading">I am Charity</h2>
                     <p class="banner_element--content--pera">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
                     <router-link to ="/login" class="banner_element--content--btn btn btn-border-white">Post Ad's</router-link>
                 </div>
@@ -332,7 +332,7 @@
                 <p class="sign__element--block--content">There are many variations of passages of Lorem Ipsum <span class="block_content">available, but the majority have suffered alteration in some</span> form, by injected humour.</p>
                 <div class="sign__element--block--btn">
                     <router-link to="/register">Seller </router-link>
-                   <router-link to="/register">Charity</router-link>
+                   <router-link to="/charityregister">Charity</router-link>
                 </div>
             </div>
         </div>
