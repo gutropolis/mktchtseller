@@ -85,7 +85,7 @@
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Tax_Id</label>
-                            <input type="text" placeholder="Tags" v-model="savesellerform.tax_id" class="login__element--box--input">
+                            <input type="text" placeholder="Tax_Id" v-model="savesellerform.tax_id" class="login__element--box--input">
                         </div>
 						
 						
