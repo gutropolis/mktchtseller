@@ -103,11 +103,7 @@ let routes = [
 				path : '/edit_charity',
 				component:require('./views/Charity/edit_charity')
 			},
-				{
-				name:'charity_detail1',
-				path : '/charity_detail1',
-				component:require('./views/Charity/charity_detail1')
-			},
+				
 			
 			{
 				name:'charity_details',
