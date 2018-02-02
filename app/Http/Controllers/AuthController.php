@@ -103,7 +103,7 @@ class AuthController extends Controller
             'email' => request('email'),
 			'first_name'=>request('first_name'),
 			'last_name'=>request('last_name'),
-            'status' => 'pending_activation',
+            'status' => 'activated',
             'password' => bcrypt(request('password')),
 			'role'=> 'seller',
 			
@@ -113,10 +113,10 @@ class AuthController extends Controller
         $user->activation_token = generateUuid();
 		
         $user->save();
-		$user->notify(new Activation($user));
-         return response()->json(['message' => 'You have registered successfully. Please check your email for activation!']);
+		//$user->notify(new Activation($user));
+         //return response()->json(['message' => 'You have registered successfully. Please check your email for activation!']);
 
-        
+        return response()->json(['message' => 'You have registered successfully.']);
 
         
     }
@@ -138,7 +138,7 @@ class AuthController extends Controller
             'email' => request('email'),
 			'first_name'=>request('first_name'),
 			'last_name'=>request('last_name'),
-            'status' => 'pending_activation',
+            'status' => 'activated',
             'password' => bcrypt(request('password')),
 			'role'=> 'charity',
 			
@@ -148,8 +148,11 @@ class AuthController extends Controller
         $user->activation_token = generateUuid();
 		
         $user->save();
-		$user->notify(new Activation($user));
-         return response()->json(['message' => 'You have registered successfully. Please check your email for activation!']);
+$user->save();
+		//$user->notify(new Activation($user));
+         //return response()->json(['message' => 'You have registered successfully. Please check your email for activation!']);
+
+        return response()->json(['message' => 'You have registered successfully.']);
 
         
 
