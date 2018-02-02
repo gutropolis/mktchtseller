@@ -280,26 +280,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('{name?}', 'JoshController@showView');
 });
 
-#FrontEndController
-Route::get('login', 'FrontEndController@getLogin')->name('login');
-Route::post('login', 'FrontEndController@postLogin')->name('login');
-Route::get('register', 'FrontEndController@getRegister')->name('register');
-Route::post('register','FrontEndController@postRegister')->name('register');
-Route::get('activate/{userId}/{activationCode}','FrontEndController@getActivate')->name('activate');
-Route::get('forgot-password','FrontEndController@getForgotPassword')->name('forgot-password');
-Route::post('forgot-password', 'FrontEndController@postForgotPassword');
+Route::get('auth/{driver}', ['as' => 'socialAuth', 'uses' => 'Auth\SocialController@redirectToProvider']);
+Route::get('auth/{driver}/callback', ['as' => 'socialAuthCallback', 'uses' => 'Auth\SocialController@handleProviderCallback']);
 
-# Forgot Password Confirmation
-Route::post('forgot-password/{userId}/{passwordResetCode}', 'FrontEndController@postForgotPasswordConfirm');
-Route::get('forgot-password/{userId}/{passwordResetCode}', 'FrontEndController@getForgotPasswordConfirm')->name('forgot-password-confirm');
-# My account display and update details
-Route::group(['middleware' => 'user'], function () {
-    Route::put('my-account', 'FrontEndController@update');
-    Route::get('my-account', 'FrontEndController@myAccount')->name('my-account');
-});
-Route::get('logout', 'FrontEndController@getLogout')->name('logout');
-# contact form
-Route::post('contact', 'FrontEndController@postContact')->name('contact');
+
 
 #frontend views
 Route::get('/{vue?}', function () {
@@ -312,8 +296,7 @@ Route::get('/{vue?}', function () {
 Route::get('/', ['as' => 'home', function () {
     return view('index');
 }]);
-Route::get('auth/{driver}', ['as' => 'socialAuth', 'uses' => 'Auth\SocialController@redirectToProvider']);
-Route::get('auth/{driver}/callback', ['as' => 'socialAuthCallback', 'uses' => 'Auth\SocialController@handleProviderCallback']);
+
 
 Route::get('blog','BlogController@index')->name('blog');
 Route::get('blog/{slug}/tag', 'BlogController@getBlogTag');
