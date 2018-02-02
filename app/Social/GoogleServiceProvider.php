@@ -40,9 +40,9 @@ class GoogleServiceProvider extends AbstractServiceProvider
             'last_name' => $user->user['last_name'],
             'email' => $user->email,
             'gender' => ucfirst($user->user['gender']),
-            'settings' => [
+            /*'settings' => [
                 'google_id' => $user->id,                
-            ]
+            ]*/
         ]);        
 
         return $this->login($newUser);
