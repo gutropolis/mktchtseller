@@ -1,6 +1,6 @@
 <template>
 <div id="main-wrapper">
-<app-navbar></app-navbar>
+
 	    <section class=" my__account">
         <div class="row">
             <app-sidebar></app-sidebar>
