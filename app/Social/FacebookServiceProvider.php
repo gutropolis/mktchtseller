@@ -13,14 +13,15 @@ class FacebookServiceProvider extends AbstractServiceProvider
      */
     public function handle()
     {
+		
         $user = $this->provider->fields([
                     'first_name', 
                     'last_name', 
                     'email', 
                     'gender', 
-                                        
+                     'activation_token'                
                 ])->user();
-
+		$user->activation_token = generateUuid();
         //$existingUser = User::where('settings->facebook_id', $user->id)->first();
 
        /* if ($existingUser) {
@@ -39,7 +40,7 @@ class FacebookServiceProvider extends AbstractServiceProvider
             'first_name' => $user->user['first_name'],
             'last_name' => $user->user['last_name'],
             'email' => $user->user['email'],
-            'gender' => ucfirst($user->user['gender']),
+            'gender' => $user->user['gender'],
             /*'settings' => [
               'facebook_id' => $user->id,                
             ]
