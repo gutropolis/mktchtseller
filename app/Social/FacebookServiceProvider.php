@@ -19,9 +19,9 @@ class FacebookServiceProvider extends AbstractServiceProvider
                     'last_name', 
                     'email', 
                     'gender', 
-                     'activation_token'                
+                                        
                 ])->user();
-		//$user->activation_token = generateUuid();
+
         //$existingUser = User::where('settings->facebook_id', $user->id)->first();
 
        /* if ($existingUser) {
