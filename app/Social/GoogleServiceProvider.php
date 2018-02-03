@@ -21,7 +21,7 @@ class GoogleServiceProvider extends AbstractServiceProvider
                     'verified',                    
                 ])->user();
 
-        $existingUser = User::where('settings->google_id', $user->id)->first();
+        /*$existingUser = User::where('settings->google_id', $user->id)->first();
 
         if ($existingUser) {
             $settings = $existingUser->settings;
@@ -33,7 +33,7 @@ class GoogleServiceProvider extends AbstractServiceProvider
             }
 
             return $this->login($existingUser);
-        }
+        }*/
 
         $newUser = $this->register([
             'first_name' => $user->user['first_name'],
