@@ -18,12 +18,12 @@ class FacebookServiceProvider extends AbstractServiceProvider
                     'last_name', 
                     'email', 
                     'gender', 
-                    'verified',                    
+                                        
                 ])->user();
 
-        $existingUser = User::where('settings->facebook_id', $user->id)->first();
+        //$existingUser = User::where('settings->facebook_id', $user->id)->first();
 
-        if ($existingUser) {
+       /* if ($existingUser) {
             $settings = $existingUser->settings;
 
             if (! isset($settings['facebook_id'])) {
@@ -33,7 +33,7 @@ class FacebookServiceProvider extends AbstractServiceProvider
             }
 
             return $this->login($existingUser);
-        }
+        }*/
 
         $newUser = $this->register([
             'first_name' => $user->user['first_name'],
