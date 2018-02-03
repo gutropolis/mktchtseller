@@ -39,7 +39,7 @@ class GoogleServiceProvider extends AbstractServiceProvider
             'first_name' => $user->user['first_name'],
             'last_name' => $user->user['last_name'],
             'email' => $user->user['email'],
-            'gender' => ucfirst($user->user['gender']),
+            'gender' =>$user->user['gender'],
             /*'settings' => [
                 'google_id' => $user->id,                
             ]*/
