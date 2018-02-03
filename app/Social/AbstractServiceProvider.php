@@ -31,7 +31,7 @@ abstract class AbstractServiceProvider
     {
         auth()->login($user);
 
-        return redirect()->intended('/login');
+        return redirect()->intended('/my_account');
     }
 
     /**
