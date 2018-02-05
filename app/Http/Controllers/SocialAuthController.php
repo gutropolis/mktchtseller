@@ -20,7 +20,7 @@ class SocialAuthController extends Controller
         try {
             $user = Socialite::driver($provider)->user();
         } catch (Exception $e) {
-            return redirect('/my_account');
+            return redirect('/auth/social');
         }
 
         $user_exists = \App\User::whereEmail($user->email)->first();
@@ -28,14 +28,14 @@ class SocialAuthController extends Controller
         if($user_exists)
             $token = JWTAuth::fromUser($user_exists);
         else {
-            $new_user = new \App\User;
+           $new_user = new \App\User;
             $new_user->email = $user->email;
-			$new_user->first_name = $user->first_name;
-			$new_user->last_name = $user->last_name;
             $new_user->provider = $provider;
             $new_user->provider_unique_id = $user->id;
             $new_user->status = 'activated';
             $new_user->activation_token = generateUuid();
+			$new_user->first_name = array_key_exists(0, $name) ? $name[0] : 'John';
+            $new_user->last_name = array_key_exists(1, $name) ? $name[1] : 'Doe';
             $new_user->save();
            
             $token = JWTAuth::fromUser($new_user);
