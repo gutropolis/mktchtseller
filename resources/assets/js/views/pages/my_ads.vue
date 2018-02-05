@@ -36,7 +36,7 @@
                                 </div> 
                                 <div class="notification__element--button clearfix">
                                     <!-- <button type="button" class="btn">Mark as Read</button> -->
-									  <button type="button" class="btn"> <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+									  <b-button to= "/create_ads" type="button" class="btn"> <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="485.219px" height="485.22px" viewBox="0 0 485.219 485.22" style="enable-background:new 0 0 485.219 485.22;"
 	 xml:space="preserve">
 <g>
@@ -51,8 +51,8 @@
 		C147.097,447.637,146.36,447.193,145.734,446.572z"/>
 </g>
 
-</svg>Edit</button>
-                                    <button type="button" class="btn"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+</svg>Edit</b-button>
+                                    <b-button to="/login" class="btn"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                     width="408.483px" height="408.483px" viewBox="0 0 408.483 408.483" style="enable-background:new 0 0 408.483 408.483;"
                                     xml:space="preserve">
                                    <g>
@@ -66,7 +66,7 @@
                                            c-7.125,0-12.9,5.776-12.9,12.901V74.47h304.451V33.944C356.467,26.819,350.692,21.043,343.567,21.043z"/>
                                    </g>
                                
-                               </svg>Delete</button>
+                               </svg>Delete</b-button>
 							 
                                 </div>
                             </div>

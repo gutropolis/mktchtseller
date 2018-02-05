@@ -878,7 +878,7 @@ footer {
     }
     &--button {
         float: right;
-        button {
+        .btn {
             width: 110px;
             cursor: pointer;
             background: transparent;
@@ -1318,4 +1318,9 @@ footer {
             margin-right: $space-vs;
         }
     }
+}
+
+.collapsed>.when-opened,
+:not(.collapsed)>.when-closed {
+    display: none;
 }
