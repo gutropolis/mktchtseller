@@ -1,7 +1,7 @@
 <template>
 
 <div  id="main-wrapper">
-	
+		<app-navbar></app-navbar>
 			
 	<section class=" my__account">
         <div class="row">
@@ -54,7 +54,7 @@
 
 <script>
 
-import AppNavbar from '../users/navbar.vue' 
+import AppNavbar from './navbar.vue' 
  import AppSidebar from '../users/sidebar.vue'
     export default {
         components: {
