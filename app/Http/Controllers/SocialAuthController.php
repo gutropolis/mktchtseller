@@ -43,7 +43,7 @@ class SocialAuthController extends Controller
         }
 
         \Cache::put('jwt_token', $token, 1);
-        return redirect('/auth/social');
+        return redirect('/my_account');
     }
 
     public function getToken(){
