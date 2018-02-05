@@ -30,6 +30,8 @@ class SocialAuthController extends Controller
         else {
             $new_user = new \App\User;
             $new_user->email = $user->email;
+			$new_user->first_name = $user->first_name;
+			$new_user->last_name = $user->last_name;
             $new_user->provider = $provider;
             $new_user->provider_unique_id = $user->id;
             $new_user->status = 'activated';
