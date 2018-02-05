@@ -135,15 +135,14 @@
     
     
     
-                                    <div v-for="item in items">
-    
+                                  
     
     
                                         <ul class="dashboard__content--box--list--content">
     
     
     
-                                            <li class="dashboard__content--box--list--content--item"><span><b>First Name:</b></span> {{item.first_name}}</li>
+                                            <li class="dashboard__content--box--list--content--item"><span><b>Full Name:</b></span> {{getAuthUserFullName()}}</li>
     
     
     
@@ -155,11 +154,11 @@
     
     
     
-                                            <li class="dashboard__content--box--list--content--item"><span>Last Name:</span> {{item.last_name}}</li>
+                                           
     
     
     
-                                            <li class="dashboard__content--box--list--content--item"><span>Email:</span> {{item.email}}</li>
+                                            <li class="dashboard__content--box--list--content--item"><span>Email:</span> {{getAuthUser('email')}}</li>
     
     
     
@@ -171,7 +170,6 @@
     
     
     
-                                </div>
     
     
     
