@@ -817,6 +817,12 @@ footer {
     top: 0px;
     color: $white-color;
     font-size: 30px;
+    &:hover,
+    &:focus {
+        color: $orange-color;
+        border-color: $orange-color;
+        fill: $orange-color;
+    }
 }
 
 .drop_menu {
@@ -824,12 +830,23 @@ footer {
     &--list {
         width: 100%;
         line-height: 30px;
-        padding: 10px 0px;
-        border-bottom: 1px solid $white-color;
-        padding-left: 70px;
         &--link {
-            color: $white-color !important;
+            color: $white-color;
             font-size: 16px;
+            padding: $space-s 0px;
+            border-bottom: 1px solid $white-color;
+            padding-left: 70px;
+            display: inline-block;
+            width: 100%;
+            transition: 0.3s ease-in-out;
+            -webkit-transition: 0.3s ease-in-out;
+            -moz-transition: 0.3s ease-in-out;
+            &:hover,
+            &:focus {
+                color: $orange-color;
+                border-color: $orange-color;
+                fill: $orange-color;
+            }
         }
     }
 }
@@ -862,21 +879,19 @@ footer {
     &--button {
         float: right;
         button {
-            width: 150px;
+            width: 110px;
             cursor: pointer;
             background: transparent;
             border: 1px solid $grey-color5;
             color: $grey-color5;
-            height: 45px;
+            height: 40px;
             line-height: 30px;
             margin-bottom: $space-m;
             svg {
                 fill: $grey-color5;
-                width: 25px;
+                width: 15px;
                 height: auto;
-                position: relative;
-                float: left;
-                left: 15px;
+                margin-right: $space-vs;
             }
         }
     }
@@ -1282,5 +1297,25 @@ footer {
     }
     &--send {
         min-width: 165px;
+    }
+}
+
+.table-box {
+    width: 100%;
+    th {
+        background: $orange-color;
+        color: $white-color;
+    }
+    td {
+        color: $grey-color5;
+    }
+    .table-icon {
+        display: inline-block;
+        svg {
+            width: 15px;
+            height: auto;
+            fill: $grey-color5;
+            margin-right: $space-vs;
+        }
     }
 }
