@@ -280,9 +280,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('{name?}', 'JoshController@showView');
 });
 
-Route::get('auth/{driver}', ['as' => 'socialAuth', 'uses' => 'Auth\SocialController@redirectToProvider']);
-Route::get('auth/{driver}/callback', ['as' => 'socialAuthCallback', 'uses' => 'Auth\SocialController@handleProviderCallback']);
-
+Route::get('/auth/social/{provider}', 'SocialAuthController@providerRedirect');
+Route::get('/auth/{provider}/callback', 'SocialAuthController@providerRedirectCallback');
 
 
 #frontend views
