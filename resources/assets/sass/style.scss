@@ -32,7 +32,7 @@
 }
 
 .main-nav {
-    ul {
+    &-box {
         padding-left: $space-xl;
         li {
             padding: $space-s $space-n;
@@ -436,7 +436,7 @@ footer {
                 background: $orange-color;
                 color: $white-color;
                 padding: $space-s;
-                font-size: 18px;
+                font-size: 16px;
             }
         }
         &--detail {}
@@ -657,26 +657,33 @@ footer {
 .my__account {
     overflow-x: hidden;
     .proflie__element {
-        background: $grey-color7;
-        padding-right: 0px;
+        background: $grey-color8;
+        &--box {
+            background: $grey-color7;
+            padding: $space-n;
+        }
         &--image {
             border-radius: 100%;
-            width: 100px;
-            height: 100px;
+            width: 60px;
+            height: 60px;
             margin: $space-s auto;
-            position: relative;
+            position: absolute;
             overflow: hidden;
+            left: 35px;
+            top: 0px;
         }
         &--name {
             color: $white-color;
-            text-align: center;
-            padding-bottom: $space-s;
+            text-align: left;
+            padding-left: $space-l + $space-n;
+            font-size: 20px;
+            line-height: 40px;
         }
         &--detail {
             background: $grey-color8;
             &--list {
                 text-align: left;
-                padding: $space-n;
+                padding: 0;
                 width: 100%;
                 &--item {
                     position: relative;
@@ -688,18 +695,18 @@ footer {
                         width: 100%;
                         padding: $space-s 0px;
                         position: relative;
-                        font-size: $very-small;
-                        padding-left: 100px;
+                        font-size: 16px;
+                        padding-left: 70px;
                         transition: 0.3s ease-in-out;
                         -webkit-transition: 0.3s ease-in-out;
                         -moz-transition: 0.3s ease-in-out;
                         svg {
-                            width: 30px;
+                            width: 20px;
                             height: auto;
                             position: absolute;
                             left: 0;
-                            left: 55px;
-                            top: 5px;
+                            left: 40px;
+                            top: 10px;
                         }
                         &:hover,
                         &:focus {
@@ -774,6 +781,8 @@ footer {
                 &--list {
                     font-size: 16px;
                     float: left;
+                    padding-left: $space-m;
+                    padding-top: $space-m - $space-vs;
                 }
                 &--editbtn {
                     float: right;
@@ -817,10 +826,28 @@ footer {
         line-height: 30px;
         padding: 10px 0px;
         border-bottom: 1px solid $white-color;
-        padding-left: 50px;
+        padding-left: 70px;
         &--link {
             color: $white-color !important;
-            font-size: 18px;
+            font-size: 16px;
+        }
+    }
+}
+
+.notification {
+    position: relative;
+    padding: $space-s;
+    &__profile {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        border-radius: 100%;
+        overflow: hidden;
+    }
+    &__content {
+        padding-left: $space-xl;
+        &--ago {
+            float: right;
         }
     }
 }
@@ -1048,6 +1075,11 @@ footer {
 .admin__profile {
     width: 250px;
     position: relative;
+    text-align: right;
+    &--list {
+        display: inline-block;
+        position: relative;
+    }
     @media screen and (max-width: $break-md) {
         width: 190px;
     }
@@ -1077,7 +1109,6 @@ footer {
 }
 
 .admin__element {
-    float: right;
     &--figure {
         width: 40px;
         height: 40px;
@@ -1097,25 +1128,29 @@ footer {
     position: absolute;
     z-index: 99;
     padding-left: 0px !important;
-    width: 100%;
+    width: 280px;
     background: $white-color;
     top: $space-l + $space-n;
+    right: 0;
 }
 
 .admin__lsit {
     padding-left: 0px !important;
     width: 100%;
+    text-align: left;
     &--content {
         &--name {
-            background: $dark-orange;
+            background: $grey-color2;
             width: 100%;
-            padding: $space-n $space-s !important;
+            padding: $space-s+$space-vs $space-s !important;
             h5 {
-                color: $white-color;
+                color: $grey-color5;
+                font-size: 18px;
+                font-weight: 600;
             }
         }
         border-bottom: 1px solid $grey-color2;
-        padding: $space-s 0px !important;
+        padding: 0px 0px !important;
         &--profile {
             width: 40px;
             height: 40px;
@@ -1123,19 +1158,31 @@ footer {
             overflow: hidden;
             float: left;
             margin-right: $space-s+$space-vs;
+            margin-top: -9px;
+        }
+        &--notification {
+            width: 25px;
+            height: 25px;
+            border-radius: 100%;
+            overflow: hidden;
+            float: left;
+            margin-right: $space-s+$space-vs;
             margin-top: -5px;
+            img {}
         }
         &--detail {
             position: relative;
-            padding-left: $space-l + $space-m;
+            padding: $space-s 0px;
+            padding-left: $space-l;
             line-height: 30px;
             &--link {
-                svg {
-                    width: 30px;
+                img {
+                    width: 20px;
                     position: absolute;
                     left: 15px;
                     height: auto;
                     fill: $grey-color5;
+                    top: 15px;
                 }
             }
         }

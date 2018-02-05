@@ -1,25 +1,21 @@
 <template>
- <aside class="col-md-3 proflie__element">
+ <aside class="col-md-3 proflie__element pr-0">
     
     
-    
+                    <div class="proflie__element--box">
                     <figure class="proflie__element--image">
-    
-    
-    
                         <img :src="getAvatar" alt="user" /> 
     
-    
-    
                     </figure>
-    
-    
-    
-    
-    
-    
-    
                     <h4 class="proflie__element--name">{{getAuthUserFullName()}}</h4>
+                    </div>
+    
+    
+    
+    
+    
+    
+                    
     
     
     
