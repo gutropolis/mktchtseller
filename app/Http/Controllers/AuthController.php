@@ -52,7 +52,7 @@ class AuthController extends Controller
 
         $user = JWTAuth::parseToken()->authenticate();
         //$profile = $user;
-        //$social_auth = ($user->password) ? 0 : 1;
+        $social_auth = ($user->password) ? 0 : 1;
 
         return response()->json(compact('user','profile','social_auth'));
     }
