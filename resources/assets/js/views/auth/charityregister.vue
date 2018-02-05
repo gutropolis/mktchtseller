@@ -5,10 +5,10 @@
             <div class="login__element">
 			<ul class="nav nav-tabs sign_up" role="tablist">
   <li class="nav-item sign_up--item">
-    <router-link to="/register" class="nav-link sign_up--item--link active" data-toggle="tab" role="tab">SELLER </router-link>
+    <router-link to="/register" class="nav-link sign_up--item--link " data-toggle="tab" role="tab">SELLER </router-link>
   </li>
   <li class="nav-item sign_up--item">
-    <a class="nav-link sign_up--item--link" data-toggle="tab" href="#profile" role="tab">CHARITY </a>
+    <a class="nav-link sign_up--item--link active" data-toggle="tab" href="#profile" role="tab">CHARITY </a>
   </li>  
 </ul> 
 <div class="tab-content">
