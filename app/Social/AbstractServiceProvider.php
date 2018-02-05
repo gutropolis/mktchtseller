@@ -45,7 +45,7 @@ abstract class AbstractServiceProvider
         $password = bcrypt(str_random(10));
         
         $newUser = User::create(array_merge($user, ['password' => $password]));        
-
+		$user->activation_token = generateUuid();
         return $newUser;
     }
 
