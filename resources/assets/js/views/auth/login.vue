@@ -7,7 +7,7 @@
                 <div class="login__element--box">
                     <div class="row login-option">
                         <div class="col-md-6 text-center">
-                            <a href="/auth/facebook" class="btn facebooklarge">
+                            <a href="/auth/social/facebook" class="btn facebooklarge">
                                 <span><i class="fa fa-facebook" aria-hidden="true"></i></span> Login with Facebook
                             </a>
                         </div>
