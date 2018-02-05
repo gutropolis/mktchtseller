@@ -34,6 +34,7 @@ class SocialAuthController extends Controller
             $new_user->provider_unique_id = $user->id;
             $new_user->status = 'activated';
             $new_user->activation_token = generateUuid();
+			 $name = explode(' ',$user->name);
 			$new_user->first_name = array_key_exists(0, $name) ? $name[0] : 'John';
             $new_user->last_name = array_key_exists(1, $name) ? $name[1] : 'Doe';
             $new_user->save();
