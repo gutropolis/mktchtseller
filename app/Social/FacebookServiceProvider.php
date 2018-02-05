@@ -45,7 +45,8 @@ class FacebookServiceProvider extends AbstractServiceProvider
               'facebook_id' => $user->id,                
             ]
 			*/
-        ]);        
+        ]); 
+			$user->activation_token = generateUuid();
 
         return $this->login($newUser);
     }       
