@@ -158,7 +158,7 @@
     
     
     
-                                            <li class="dashboard__content--box--list--content--item"><span>Email:</span> {{getAuthUser('email')}}</li>
+                                            <li class="dashboard__content--box--list--content--item"><b>Email:</b> {{getAuthUser('email')}}</li>
     
     
     
