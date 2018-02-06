@@ -27,10 +27,7 @@
                             <label class="login__element--box--label">Password</label>
                             <input type="password" placeholder="abc@123" v-model="loginForm.password" class="login__element--box--input">
                         </div>
-                        <div class="form-group">
-                            <input type="checkbox" placeholder="" value="" class="login__element--box--check">
-                            <label class="login__element--box--remeber">Remember Me</label>
-                        </div>
+                        
                         <p class="login__element--box--content"><router-link to="/forget_password" class="login__element--box--content--link">Don't remember your password?</router-link></p>
                         <div class="form-group text-center">
                             <input type="Submit" placeholder="" value="Login" class="btn btn-bg-orange login__element--box--button">
