@@ -31,8 +31,8 @@
                         <div class="notification__element clearfix">
                             <div class="notification__element-bottom">
                                <div class="notification__element--mark">
-                                    <input type="checkbox" value="mark" class="notification__element--mark--check">
-                                    <label class="notification__element--mark--value">Mark All</label>
+                                    
+                                    <input type='checkbox' class="notification__element--mark--value" @click='checkAll()' v-model='isCheckAll'> Mark All 
                                 </div> 
                                 <div class="notification__element--button clearfix">
                                     <!-- <button type="button" class="btn">Mark as Read</button> -->
@@ -51,7 +51,7 @@
 		C147.097,447.637,146.36,447.193,145.734,446.572z"/>
 </g>
 
-</svg>Edit</b-button>
+</svg>Create Ads</b-button>
                                     <b-button to="/login" class="btn"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                     width="408.483px" height="408.483px" viewBox="0 0 408.483 408.483" style="enable-background:new 0 0 408.483 408.483;"
                                     xml:space="preserve">
@@ -81,7 +81,7 @@
                                         <img src="images/download.jpg" class="notification__element--listing--figure--image">
                                     </figure>
                                     <div class="notification__element--listing--content">
-                                        <h4>{{item.title}}</h4>
+                                        <router-link :to="{name: 'edit_ads', params: { id: item.id }}" ><h4 class="charity__listing--content--box--heading">{{item.title}}</h4></router-link>
                                         <p>{{item.description}}</p>
                                         <p><strong>Like:</strong>{{item.like}}<strong>Location:</strong>{{item.location}}</p>
                                     </div>
@@ -113,7 +113,7 @@ import AppNavbar from './users/navbar.vue'
         },
 		data() {
             return {
-				
+				 isCheckAll: false,
                  items: [],
 				 loaded: false,
             }
@@ -125,6 +125,13 @@ import AppNavbar from './users/navbar.vue'
             this.fetchItems();
         },
 		 methods: {
+		  checkAll: function(){
+
+      
+      this.items = [];
+      
+      },
+    
 		deleteTask(item){
                 axios.delete('/api/get_ad/'+item.id).then(response => {
                     toastr['success'](response.data.message);
