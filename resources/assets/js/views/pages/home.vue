@@ -6,15 +6,15 @@
             <div class="col-md-6 banner_element--left">
                 <div class="banner_element--content row">
                     <h2 class="banner_element--content--heading">I am Seller</h2>
-                    <p class="banner_element--content--pera">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-                    <router-link to ="/login" class="banner_element--content--btn btn btn-border-white">Post Ad's</router-link>
+                    <p class="banner_element--content--pera">I would like to give my Poduct to charity in need. There he can post the Products.</p>
+                    <router-link to ="/login" class="banner_element--content--btn btn btn-border-white">Post My Products</router-link>
                 </div>
             </div>
             <div class="col-md-6 banner_element--right">
                 <div class="banner_element--content banner_element--right--content row">
                     <h2 class="banner_element--content--heading">I am Charity</h2>
-                    <p class="banner_element--content--pera">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-                    <router-link to ="/login" class="banner_element--content--btn btn btn-border-white">Post Ad's</router-link>
+                    <p class="banner_element--content--pera">We are need of Amazon Products to Help Our Cause.Here can Post Needs.</p>
+                    <router-link to ="/login" class="banner_element--content--btn btn btn-border-white">Post Charity Needs</router-link>
                 </div>
             </div>
 
@@ -23,7 +23,7 @@
 	<section class="equal">
         <div class="container">
             <div class="search__form">
-                <h4 class="search__form--heading">SEARCH SELLER/CHARITY POST'S</h4>
+                <h4 class="search__form--heading">Search Products or Find a Charity</h4>
                 <form id="searchform" class="row">
                     <div class="col-md-3">
                         <div class="form-group ">
@@ -33,8 +33,8 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <select placeholder="Search Keywords" v-model="searchform.selectcategory" class="search__form--area">
-                                    <option value="">Select Charity/Seller</option>
-                                    <option value="seller">Select Seller</option>
+                                    <option value="">Select Charity/Products</option>
+                                    <option value="seller">Select Products</option>
                                     <option value="charity">Select Charity</option>
                                     
                                 </select>
@@ -67,7 +67,7 @@
                         <a class="nav-link active" href="#profile" role="tab" data-toggle="tab">Charity</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#buzz" role="tab" data-toggle="tab">Seller</a>
+                        <a class="nav-link" href="#buzz" role="tab" data-toggle="tab">Products</a>
                     </li>
                 </ul>
 
@@ -180,7 +180,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="awesome__solution--heading">WE BUILT AWESOME SOLUTIONS FOR <span class="block_content">CHARITY & SELLERS</span></h4>
+                    <h4 class="awesome__solution--heading">Creating A Win Solution For Both Amazon FBA <span class="block_content">SELLERS & CHARITIES IN NEED</span></h4>
                 </div>
                 <div class="col-md-3">
                     <div class="awesome__solution--content">
