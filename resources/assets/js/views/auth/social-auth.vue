@@ -1,6 +1,6 @@
 <template>
     <section id="wrapper">
-       
+        <div class="login-register" style="background-image:url(/images/background/background.jpg);">
             <div class="login-box card">
             <div class="card-body">
                 <h3 class="box-title m-b-20 text-center">Loging in...</h3>
@@ -23,7 +23,9 @@
         data() {
             return {}
         },
-       
+        components: {
+            GuestFooter
+        },
         mounted(){
             axios.post('/api/auth/social/token').then(response => {
                 localStorage.setItem('auth_token',response.data.token);
