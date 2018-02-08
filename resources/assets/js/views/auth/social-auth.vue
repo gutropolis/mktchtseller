@@ -29,7 +29,7 @@
                 localStorage.setItem('auth_token',response.data.token);
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('auth_token');
                 toastr['success'](response.data.message);
-                this.$router.push('/home')
+                this.$router.push('/my_account')
             }).catch(error => {
                 this.$router.push('/login');
             });
