@@ -24,7 +24,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class SellerproductController extends Controller
 {
-
+	 protected $avatar_path = 'images/product/';
     /**
      * Show a list of all the users.
      *
@@ -40,7 +40,7 @@ class SellerproductController extends Controller
     }
 
 	
-	public function updateAvatar(Request $request){
+	 public function updateAvatar(Request $request,$id){
         $validation = Validator::make($request->all(), [
             'avatar' => 'required|image'
         ]);
@@ -48,7 +48,8 @@ class SellerproductController extends Controller
         if ($validation->fails())
             return response()->json(['message' => $validation->messages()->first()],422);
 
-       	$sellerproduct=Seller::all();
+       $sellerproduct = sellerproduct::find($id);
+   
 
         if($sellerproduct->avatar && \File::exists($this->avatar_path.$sellerproduct->avatar))
             \File::delete($this->avatar_path.$sellerproduct->avatar);
@@ -61,39 +62,66 @@ class SellerproductController extends Controller
             $constraint->aspectRatio();
         });
         $img->save($this->avatar_path.$filename.".".$extension);
-        $sellerproduct->avatar = $filename.".".$extension;
+        $sellerproduct->image = $filename.".".$extension;
         $sellerproduct->save();
 
         return response()->json(['message' => 'Avatar updated!','profile' => $sellerproduct]);
     }
 
-	
+    public function removeAvatar(Request $request,$id){
+
+         $sellerproduct = sellerproduct::find($id);
+
+ 
+        if(!$sellerproduct->avatar)
+            return response()->json(['message' => 'No avatar uploaded!'],422);
+
+        if(\File::exists($this->avatar_path.$sellerproduct->avatar))
+            \File::delete($this->avatar_path.$sellerproduct->avatar);
+
+        $sellerproduct->avatar = null;
+        $sellerproduct->save();
+
+        return response()->json(['message' => 'Avatar removed!']);
+    }
     /*
      * Pass data through ajax call
      */
     /**
      * @return mixed
      */
-    public function data()
-    {		
-        $seller = Seller::get(['id','title', 'description', 'location', 'year_in_buisness','created_at']);
+   
+	public function search(Request $request)
+	{		
+		$keyword = request('asin_url'); 
+		//$keyword1=request('title');
+		$seller=sellerproduct::Where('asin_url', 'like', '%' . $keyword . '%')->get();
 		
-        return DataTables::of($seller)
-            ->editColumn('created_at',function(Seller $seller) {
-                return $seller->created_at->diffForHumans();
-            })
-           
+		//$seller=sellerproduct::Where('title', 'like', '%' . $keyword1 . '%')->get();
+		
+		
+	  return response()->json($seller);
+	  
+	}
+	public function search1(Request $request)
+	{		
+		//$keyword = request('asin_url'); 
+		$keyword1=request('title');
+		//$seller=sellerproduct::Where('asin_url', 'like', '%' . $keyword . '%')->get();
+		
+		$seller=sellerproduct::Where('title', 'like', '%' . $keyword1 . '%')->get();
+		
+		
+	  return response()->json($seller);
+	  
+	}
 	
-            ->addColumn('actions',function($seller) {
-                $actions = '<a href='. route('admin.seller.show', $seller->id) .'><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view seller"></i></a>
-                            <a href='. route('admin.seller.edit', $seller->id) .'><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update seller"></i></a>';
-                if ((Sentinel::getUser()->id != $seller->id) && ($seller->id != 1)) {
-                    $actions .= '<a href='. route('admin.seller.confirm-delete', $seller->id) .' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="seller-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete seller"></i></a>';
-                }
-                return $actions;
-            })
-            ->rawColumns(['actions'])
-            ->make(true);
+	public function product_details(Request $request,$id)
+    {
+
+        // Show the page
+		$product_details=sellerproduct::find($id);
+        return response()->json($product_details);
     }
 
     /**
@@ -115,25 +143,6 @@ class SellerproductController extends Controller
     public function store(Request $request)
     {
 	   
-        if ($file = $request->file('pic')) {
-            $extension = $file->extension()?: 'png';
-            $destinationPath = public_path() . '/uploads/sellerproduct/';
-            $safeName = str_random(10) . '.' . $extension;
-            $file->move($destinationPath, $safeName);
-            $request['images'] = $safeName;
-        }
-		
-       
-      $validation = Validator::make($request->all(), [
-            'title' => 'required',
-            'description' => 'required',
-            'asin_url' => 'required',
-			'reviews' => 'required'
-			 
-        ]);
-
-        if($validation->fails())
-            return response()->json(['message' => $validation->messages()->first()],422);
         $sellerproduct = new Sellerproduct($request->all());
 		$user = JWTAuth::parseToken()->authenticate();
 		 $sellerproduct->user_id = $user->id;	
