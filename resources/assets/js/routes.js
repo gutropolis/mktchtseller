@@ -36,6 +36,10 @@ let routes = [
                 path: '/charityregister',
                 component: require('./views/auth/charityregister')
             },
+			{
+                path: '/social',
+                component: require('./views/auth/social-auth')
+            },
 			
 			{
                 path: '/auth/:token/activate',
@@ -45,10 +49,7 @@ let routes = [
                 path: '/password/reset/:token',
                 component: require('./views/auth/reset')
             },
-			{
-                path: '/auth/social',
-                component: require('./views/auth/social-auth')
-            },
+			
 			{
                 path: '/contact',
                 component: require('./views/pages/contact')
