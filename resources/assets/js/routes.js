@@ -182,7 +182,20 @@ const router = new VueRouter({
     mode: 'history'
 });
 
+router.beforeEach((to, from, next) => {
 
- 
+    if (to.matched.some(m => m.meta.requiresAuth)){
+        return helper.check().then(response => {
+            if(!response){
+                return next({ path : '/login'})
+            }
+
+            return next()
+        })
+    }
+	
+
+ return next()
+});
 
 export default router;
