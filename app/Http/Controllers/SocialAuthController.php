@@ -20,7 +20,7 @@ class SocialAuthController extends Controller
         try {
             $user = Socialite::driver($provider)->user();
         } catch (Exception $e) {
-            return redirect('/auth/social');
+            return redirect('/social');
         }
 
         $user_exists = \App\User::whereEmail($user->email)->first();
@@ -43,7 +43,7 @@ class SocialAuthController extends Controller
         }
 //jngi
         \Cache::put('jwt_token', $token, 1);
-        return redirect('/auth/social');
+        return redirect('/social');
     }
 
     public function getToken(){
