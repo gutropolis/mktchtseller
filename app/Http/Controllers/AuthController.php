@@ -79,7 +79,9 @@ class AuthController extends Controller
             }
 
         } catch (JWTException $e) {
+			return redirect('/login');
             return response()->json($e->getMessage(), 500);
+			
         }
 
         return response()->json(['message' => 'You are successfully logged out!']);
