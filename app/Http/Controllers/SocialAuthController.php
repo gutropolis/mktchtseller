@@ -20,7 +20,7 @@ class SocialAuthController extends Controller
         try {
             $user = Socialite::driver($provider)->user();
         } catch (Exception $e) {
-            return redirect('/social');
+            return redirect('/auth/social');
         }
 
         $user_exists = \App\User::whereEmail($user->email)->first();
