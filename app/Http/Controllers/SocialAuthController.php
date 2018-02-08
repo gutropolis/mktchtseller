@@ -41,9 +41,9 @@ class SocialAuthController extends Controller
            
             $token = JWTAuth::fromUser($new_user);
         }
-
+//jngi
         \Cache::put('jwt_token', $token, 1);
-        return redirect('/my_account');
+        return redirect('/auth/social');
     }
 
     public function getToken(){
