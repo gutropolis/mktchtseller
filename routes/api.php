@@ -28,7 +28,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/validate-password-reset','AuthController@validatePasswordReset');
     Route::post('/reset','AuthController@reset');
     Route::post('/social/token','SocialAuthController@getToken');
-	Route::post('/selectrole','UserController@role');
+	Route::post('/selectrole','SocialAuthController@providerRedirectCallback');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
