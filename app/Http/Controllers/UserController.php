@@ -64,6 +64,18 @@ public function index(){
 
         return response()->json(['message' => 'Avatar updated!','profile' => $user]);
     }
+	
+	public function role(Request $request)
+	{
+		 $user = JWTAuth::parseToken()->authenticate();
+		$user->role = request('role');
+		$user->save();
+		return response()->json(['message' => 'Role Selected']);
+	}
+	
+	
+	
+	
 
     public function removeAvatar(Request $request){
 
