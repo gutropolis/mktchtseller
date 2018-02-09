@@ -1,6 +1,5 @@
 <template>
 <div id="main-wrapper">
-<app-navbar></app-navbar>
 	    <section class=" my__account">
         <div class="row">
             <app-sidebar></app-sidebar>
@@ -9,7 +8,7 @@
                 
                     <div class="dashboard__content--outer">   
 					<div class="dashboard__content--description">
-                            <hr>
+                        
                             <h3 class="dashboard__content--description--heading">Create Your Ads</h3>
                      <form class="form-horizontal form-material" id="create_ads" @submit.prevent="submit">
 					<div class="col-md-6">
@@ -59,12 +58,12 @@
 						   </div>
 						  </template>
 <script>
-import AppNavbar from './navbar.vue' 
- import AppSidebar from './sidebar.vue'
+
+ import AppSidebar from '../users/sidebar.vue'
  import Vue from 'vue'
 	 export default {
 	  components: {
-            AppNavbar,  AppSidebar 
+            AppSidebar 
         },
 	data() {
             return {
