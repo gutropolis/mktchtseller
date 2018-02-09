@@ -1,6 +1,13 @@
 <template>
-<div>       
-<div class="dashboard__content--description">
+<div id="main-wrapper">
+	    <section class=" my__account">
+        <div class="row">
+            <app-sidebar></app-sidebar>
+            <div class="col-md-9 dashboard">
+                <div class="dashboard__content clearfix">
+                
+                    <div class="dashboard__content--outer">   
+					<div class="dashboard__content--description">
                      <form class="form-horizontal form-material" id="create_ads" @submit.prevent="update">
 					<div class="col-md-6">
 					<div class="form-group">
@@ -42,11 +49,21 @@
 						
 						<input type="submit" value="Submit" class="btn btn-info waves-effect waves-light m-t-10">
 						  </form>
+						    </div>
+						  </div> 	
+                </div>
+            </div>
+			</div> 
+			</section>
 						   </div>
-						   </div>
-						  </template>
+						   </template>
 <script>
+ import AppSidebar from '../users/sidebar.vue'
+ import Vue from 'vue'
 	 export default {
+	  components: {
+              AppSidebar 
+        },
 	data() {
             return {
 				
