@@ -30,7 +30,7 @@
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('auth_token');
                 toastr['success'](response.data.message);
 				location.reload();
-                this.$router.push('/select_role')
+                this.$router.push('/my_account')
             }).catch(error => {
                 this.$router.push('/login');
             });
