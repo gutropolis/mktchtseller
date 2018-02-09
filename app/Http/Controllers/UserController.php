@@ -67,7 +67,7 @@ public function index(){
 	
 	public function role(Request $request)
 	{
-		$user = new \App\User;
+		 $user = JWTAuth::parseToken()->authenticate();
 		$user->role = request('role');
 		$user->save();
 		return response()->json(['message' => 'Role Selected']);
