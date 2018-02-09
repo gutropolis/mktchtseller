@@ -40,6 +40,10 @@ let routes = [
                 path: '/social',
                 component: require('./views/auth/social-auth')
             },
+			{
+                path: '/select_role',
+                component: require('./views/auth/select_role')
+            },
 			
 			{
                 path: '/auth/:token/activate',
