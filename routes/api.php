@@ -28,6 +28,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/validate-password-reset','AuthController@validatePasswordReset');
     Route::post('/reset','AuthController@reset');
     Route::post('/social/token','SocialAuthController@getToken');
+	Route::post('/selectrole','UserController@role');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -55,6 +56,8 @@ Route::delete('/task/{id}','SellerproductController@destroy');
 Route::post('/task/{id}','SellerproductController@update');
 Route::get('/task/{id}','SellerproductController@edit');
 Route::get('/product_list','SellerproductController@index');
+ Route::post('product/update-avatar','SellerproductController@updateAvatar');
+ Route::post('product/remove-avatar','SellrproductController@removeAvatar');
 
 
 Route::post('/product_upload', 'SellerproductController@updateimage');
@@ -66,7 +69,7 @@ Route::get('/seller_list','SellerController@seller_list');
 Route::get('/edit_seller/{id}','SellerController@edit');
 Route::post('/edit_seller/{id}','SellerController@update');
  Route::delete('/seller_list/{id}','SellerController@destroy');
- Route::get('/seller_details/{id}','SellerController@seller_details');
+ Route::get('/product_details/{id}','SellerproductController@product_details');
 
 Route::get('/vender_category','SellerCategoryController@index');
 Route::post('/vender_category','SellerCategoryController@store');
@@ -76,14 +79,19 @@ Route :: get('/get_ad/{id}','AdsController@edit');
 Route::delete('/get_ad/{id}','AdsController@destroy');
 Route :: post('/get_ad/{id}','AdsController@update');
 Route::resource('/gs_seller_product', 'SellerproductController');
-
-
+Route:: post('/gs_seller_product', 'SellerproductController@store');
+Route::get('/searchproduct', 'SellerproductController@search');
+Route::post('/searchproduct', 'SellerproductController@search');
 //message communicate
 Route::post('/create_messages','MessagesellerController@store');
 
 });
-Route::get('/sellersearch', 'SellerController@search');
-Route::post('/sellersearch', 'SellerController@search');
+
+
+
+
+Route::get('/productsearch', 'SellerproductController@search1');
+Route::post('/productsearch', 'SellerproductController@search1');
 
 
 Route::post('/upload','UserController@upload_image' );
