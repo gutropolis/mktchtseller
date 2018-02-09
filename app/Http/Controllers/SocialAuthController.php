@@ -10,7 +10,7 @@ class SocialAuthController extends Controller
             return redirect('/login')->withErrors('This is not a valid link.');
         return Socialite::driver($provider)->redirect();
     }
-    public function providerRedirectCallback($provider = '')
+    public function providerRedirectCallback(Request $request,$provider = '')
     {
         try {
             $user = Socialite::driver($provider)->user();
@@ -30,6 +30,7 @@ class SocialAuthController extends Controller
 			 $name = explode(' ',$user->name);
 			$new_user->first_name = array_key_exists(0, $name) ? $name[0] : 'John';
             $new_user->last_name = array_key_exists(1, $name) ? $name[1] : 'Doe';
+			$new_user->role=request('role');
             $new_user->save();
            
             $token = JWTAuth::fromUser($new_user);
