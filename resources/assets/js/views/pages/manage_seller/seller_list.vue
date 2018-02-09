@@ -88,7 +88,7 @@
  import AppSidebar from '../users/sidebar.vue'
     export default {
         components: {
-            AppNavbar,  AppSidebar 
+             AppSidebar 
         },
 
 
