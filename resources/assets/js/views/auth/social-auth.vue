@@ -23,13 +23,11 @@
         data() {
             return {}
         },
-        
         mounted(){
             axios.post('/api/auth/social/token').then(response => {
                 localStorage.setItem('auth_token',response.data.token);
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('auth_token');
                 toastr['success'](response.data.message);
-				location.reload();
                 this.$router.push('/select_role')
             }).catch(error => {
                 this.$router.push('/login');
