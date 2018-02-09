@@ -35,7 +35,7 @@ class SocialAuthController extends Controller
             $token = JWTAuth::fromUser($new_user);
         }
         \Cache::put('jwt_token', $token, 1);
-        return redirect('/social');
+        return redirect('/select_role');
     }
     public function getToken(){
         if(!\Cache::has('jwt_token'))
