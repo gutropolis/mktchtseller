@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-    Josh Admin Template
+    Charity Fba
     @parent
 @stop
 
