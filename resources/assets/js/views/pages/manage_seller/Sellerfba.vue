@@ -4,9 +4,9 @@
  
 		<div class="container">
 			<div class="page__head--content">
-				<h2 class="page__head--content--heading">Seller listing</h2>
+				<h2 class="page__head--content--heading">Product listing</h2>
 				<router-link to="/"><a href="#" class="page__head--content--menu">Home </a> ></router-link>
-				<a href="#" class="page__head--content--menu">Sellerfba Post</a>
+				<a href="#" class="page__head--content--menu">SellerPost</a>
 				
 			</div>
 		</div>
@@ -21,8 +21,8 @@
 					<div class="charity__element--block--content">
 					<form id="sellersearch"  @submit.prevent="submit">						
 						<div class="form-group charity__element--block--content--box">
-							<label class="charity__element--block--content--box--label">Select location</label>
-							<input type="text" placeholder="Location Select" name="location" v-model="sellersearch.location" class="charity__element--block--content--box--input">
+							<label class="charity__element--block--content--box--label">Product Name</label>
+							<input type="text" placeholder="Location Select" name="title" v-model="sellersearch.title" class="charity__element--block--content--box--input">
 						</div>
 						<div class="form-group charity_element--block--content--box">
 							<label class="charity__element--block--content--box--label">Area Range</label>
@@ -91,7 +91,8 @@
 				<div class="charity__listing row">
 				
 						<figure class="charity__listing--figure col-md-3">
-							<img src="images/download.jpg" class="charity__listing--figure--image">
+							<img  class="charity__listing--figure--image" v-bind:src="item.images">
+							
 						</figure>	
 						
 						<div class="col-md-9 charity__listing--content">	
@@ -104,9 +105,9 @@
 								<p class="charity__listing--content--box--pera">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
 							</div>
 							<div class="charity__listing--content--address row">
-								<div class="charity__listing--content--address--location col-md-4 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Location:</span>{{item.location}}</p></div>
-								<div class="charity__listing--content--address--location col-md-3 "><p><i class="fa fa-briefcase" aria-hidden="true"></i><span>ASIS:</span> 12345</p></div>
-								<div class="charity__listing--content--address--location col-md-2 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Unit:</span> 3</p></div>
+								<div class="charity__listing--content--address--location col-md-4 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Reviews:</span>{{item.reviews}}</p></div>
+								<div class="charity__listing--content--address--location col-md-3 "><p><i class="fa fa-briefcase" aria-hidden="true"></i><span>ASIN:</span> {{item.asin_url}}</p></div>
+								<div class="charity__listing--content--address--location col-md-2 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Unit:</span> {{item.units}}</p></div>
 								<div class="charity__listing--content--address--location col-md-3 "><p><a href="#" class="btn btn-bg-orange btn-donate">Donate</a></p></div>
 							</div>
 							
@@ -152,8 +153,8 @@ export default {
 		 
             submit(e){
 			this.items=[];
-                axios.post('/api/sellersearch', this.sellersearch).then(response =>  {
-                    toastr['success'](response.data.message);
+                axios.post('/api/productsearch', this.sellersearch).then(response =>  {
+                    toastr['success'](Search);
 					 this.items = response.data;
                     this.$router.push('/sellerfba');
                 }).catch(error => {
@@ -174,7 +175,7 @@ export default {
 			fetchItems()
 			 {
              
-              axios.get('/api/sellersearch',this.sellersearch).then((response) => {
+              axios.get('/api/productsearch',this.sellersearch).then((response) => {
                  
 				    this.items=response.data;
               });
