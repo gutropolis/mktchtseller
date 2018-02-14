@@ -565,7 +565,9 @@ footer {
     &--figure {
         margin-bottom: 0px;
         padding-bottom: 0px;
+		&--image{width:100px;}
     }
+	
     &--content {
         &--icon {
             position: absolute;
