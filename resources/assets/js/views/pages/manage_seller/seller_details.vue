@@ -38,7 +38,7 @@
 		C45.576,13.08,46.321,24.468,41.099,31.431z"/>
 	</g>
 </svg>
-<span>Location:</span>{{create_message.location}} </li>
+<span>Reviews:</span>{{create_message.reviews}} </li>
 								<li class="charity_inner--content--list--item">
 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 50.425 50.425" style="enable-background:new 0 0 50.425 50.425;" xml:space="preserve">
@@ -52,7 +52,7 @@
 			c0-1.051,0.888-1.939,1.939-1.939h5.172c1.051,0,1.939,0.888,1.939,1.939V11.313z"/>
 	</g>
 </svg>
- <span>ASIS:</span> 12345 </li>
+ <span>ASIN:</span> {{create_message.asin_url}}</li>
 									<li class="charity_inner--content--list--item">
 										<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 469.333 469.333" style="enable-background:new 0 0 469.333 469.333;" xml:space="preserve">
@@ -70,7 +70,7 @@
 		</g>
 
 </svg>
-										<span>Unit:</span> 3</li>
+										<span>Unit:</span> {{create_message.units}}</li>
 
 						
 						</ul>
@@ -191,7 +191,7 @@
 					</div>
 				</div>
 			</div>
-			{{create_message|json}}
+			
 		</div>		
 	
    </section>
@@ -242,7 +242,7 @@ export default {
 	fetchItem()
             {
 			
-             axios.get('api/seller_details/'+this.$route.params.id).then(response=>{
+             axios.get('api/product_details/'+this.$route.params.id).then(response=>{
 			
 			this.create_message=response.data;
 			
