@@ -34,7 +34,7 @@ class SellerproductController extends Controller
     public function index()
     {
 		$user = JWTAuth::parseToken()->authenticate();
-		 $query = \App\SellerProduct::whereUserId($user->id);
+		 $query = SellerProduct::whereUserId($user->id);
 		$sellerproduct = $query->get();
         return response()->json($sellerproduct);
     }
