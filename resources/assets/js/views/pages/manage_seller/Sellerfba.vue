@@ -105,8 +105,8 @@
 								<p class="charity__listing--content--box--pera">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
 							</div>
 							<div class="charity__listing--content--address row">
-								<div class="charity__listing--content--address--location col-md-4 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Reviews:</span>{{item.reviews}}</p></div>
-								<div class="charity__listing--content--address--location col-md-3 "><p><i class="fa fa-briefcase" aria-hidden="true"></i><span>ASIN:</span> {{item.asin_url}}</p></div>
+								<div class="charity__listing--content--address--location col-md-3"><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Reviews:</span>{{item.reviews}}</p></div>
+								<div class="charity__listing--content--address--location col-md-4"><p><i class="fa fa-briefcase" aria-hidden="true"></i> <span>ASIN: </span> {{item.asin_url}}</p></div>
 								<div class="charity__listing--content--address--location col-md-2 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Unit:</span> {{item.units}}</p></div>
 								<div class="charity__listing--content--address--location col-md-3 "><p><a href="#" class="btn btn-bg-orange btn-donate">Donate</a></p></div>
 							</div>
