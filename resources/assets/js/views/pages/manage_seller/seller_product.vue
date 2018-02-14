@@ -77,7 +77,7 @@
 			
         </div>
     </section>
-	{{items|json}}
+	
 	
 </div>
 </template>
