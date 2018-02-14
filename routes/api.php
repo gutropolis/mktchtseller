@@ -87,8 +87,9 @@ Route::post('/create_messages','MessagesellerController@store');
 
 });
 
-
-
+//Route::get('/product/search', 'ProductController@getSearchPage');
+Route::get('/product/search','ProductController@formsearch');
+Route::post('/product/search', 'ProductController@formSearch');
 
 Route::get('/productsearch', 'SellerproductController@search1');
 Route::post('/productsearch', 'SellerproductController@search1');
