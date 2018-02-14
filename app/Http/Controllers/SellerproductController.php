@@ -142,9 +142,24 @@ class SellerproductController extends Controller
      */
     public function store(Request $request)
     {
+		
+		$sellerproduct = \App\Sellerproduct::create([
+            'title' => request('name'),
+            'description' => request('description'),
+            'asin_url' => request('ASIN'),
+			'images' => request('image'),
+			'reviews' => request('reviews'),
+			'units'=> request('units'),
+			
+        ]);
+		
+		
 	   
-        $sellerproduct = new Sellerproduct($request->all());
+        
 		$user = JWTAuth::parseToken()->authenticate();
+		$query= Seller::where('user_id',$user->id)->first();
+		$sellerproduct->organisation_id=$query->id;
+		
 		 $sellerproduct->user_id = $user->id;	
 	  $sellerproduct->updated_by=$user->first_name;
        $sellerproduct->save();
@@ -152,6 +167,7 @@ class SellerproductController extends Controller
        
 		 return response()->json(['message' => 'You have registered successfully']);
     }
+    
 
     
 
