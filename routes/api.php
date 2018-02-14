@@ -80,8 +80,8 @@ Route::delete('/get_ad/{id}','AdsController@destroy');
 Route :: post('/get_ad/{id}','AdsController@update');
 Route::resource('/gs_seller_product', 'SellerproductController');
 Route:: post('/gs_seller_product', 'SellerproductController@store');
-Route::get('/searchproduct', 'SellerproductController@search');
-Route::post('/searchproduct', 'SellerproductController@search');
+Route::get('/productsearch', 'SellerproductController@search1');
+Route::post('/productsearch', 'SellerproductController@search1');
 //message communicate
 Route::post('/create_messages','MessagesellerController@store');
 
