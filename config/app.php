@@ -180,7 +180,7 @@ return [
 		Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 		Intervention\Image\ImageServiceProvider::class,
 		 Laravel\Socialite\SocialiteServiceProvider::class,
-
+		 App\Providers\AmazonServiceProvider::class,
 
 		
 
@@ -244,7 +244,7 @@ return [
 		'Sentinel'   => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
 		'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
 		'JWTFactory' => Tymon\JWTAuthFacades\JWTFactory::class,
-		
+		'Amazon' => App\Facades\Amazon::class
    
    ],
 
