@@ -42,12 +42,12 @@
 					<input type="hidden" name="organisation_id" v-model="items.organisation_id"   class="login__element--box--input" />
                     <div class="form-group ">
                         <label class="login__element--box--label">ASIN</label>
-                            <input type="text" name="asin" class="login__element--box--input"   placeholder="Description" v-model="items.ASIN">
+                            <input type="text" name="asin" class="login__element--box--input"   placeholder="ASIN" v-model="items.ASIN">
                        
                     </div>
 					<div class="form-group ">
                         <label class="login__element--box--label">Description</label>
-                            <input type="text" name="description" class="login__element--box--input"   placeholder="Description" v-model="items.description">
+                            <textarea  type="text"  v-model="items.description" rows="3" placeholder="Description" class="login__element--box--input"></textarea>
                        
                     </div>
 					 <div class="form-group ">
