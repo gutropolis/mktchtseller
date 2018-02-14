@@ -21,8 +21,8 @@
 					
 				
 					<div class="form-group ">
-                        <label class="login__element--box--label">Keywords</label>
-                            <input type="text" name="keywords" class="login__element--box--input"  placeholder="Keywords" v-model="productform.keywords">
+                        <label class="login__element--box--label">ASIN</label>
+                            <input type="text" name="keywords" class="login__element--box--input"  placeholder="ASIN" v-model="productform.keywords">
                       
                     </div>
 					
