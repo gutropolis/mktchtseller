@@ -24,44 +24,10 @@
 							<label class="charity__element--block--content--box--label">Product Name</label>
 							<input type="text" placeholder="Product Name" name="title" v-model="sellersearch.title" class="charity__element--block--content--box--input">
 						</div>
-						<div class="form-group charity_element--block--content--box">
-							<label class="charity__element--block--content--box--label">Area Range</label>
-							<div class="range-slider">
-								<input class="range-slider__range" type="range" value="250" min="0" max="500" step="50">
-								<span class="range-slider__value">0</span>
-							</div>
-						</div>
-						<div class="form-group charity_element--block--content--box">
-							<label class="charity__element--block--content--box--label">Seller / Organisation</label>
-							<select class="charity__element--block--content--box--select">
-								<option value="1">Organisation 1</option>
-								<option value="1">Organisation 2</option>
-								<option value="1">Organisation 3</option>
-								<option value="1">Organisation 4</option>
-								<option value="1">Organisation 5</option>
-							</select>
-							
-						</div>
-						<div class="form-group charity__element--block--content--box">
-							<label class="charity__element--block--content--box--label">ASIS</label>
-							<select class="charity__element--block--content--box--select">
-								<option value="1">Organisation 1</option>
-								<option value="1">Organisation 2</option>
-								<option value="1">Organisation 3</option>
-								<option value="1">Organisation 4</option>
-								<option value="1">Organisation 5</option>
-							</select>
-						</div>
-						<div class="form-group charity__element--block--content--box">
-							<label class="charity__element--block--content--box--label">Units</label>
-							<select class="charity__element--block--content--box--select">
-								<option value="1">Organisation 1</option>
-								<option value="1">Organisation 2</option>
-								<option value="1">Organisation 3</option>
-								<option value="1">Organisation 4</option>
-								<option value="1">Organisation 5</option>
-							</select>
-						</div>
+						
+						
+						
+						
 						<div class="form-group charity_element--block--content--box">							
 							<input type="submit" value="SEARCH" class="charity__element--block--content--box--input btn btn-bg-orange">
 						</div>
@@ -132,30 +98,38 @@
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
 export default {
- components: {
+	 components: {
     InfiniteLoading,
   },
+  
         data() {
+		
             return {
-                sellersearch: {},
-				 items: []
+			items:[],
+			
+                sellersearch: {  
+                    
+                }
             }
+        },
+		
+		created: function()
+        {
+            this.fetchItems();
         },
        
         
         mounted(){
         },
-		 created: function()
-        {
-            this.fetchItems();
-        },
         methods: {
-		 
+		
             submit(e){
 			this.items=[];
+			//this.page=[];
                 axios.post('/api/productsearch', this.sellersearch).then(response =>  {
-                    toastr['success'](Search);
-					 this.items = response.data;
+                    toastr['success']("Search Completed");
+					this.items = response.data;
+				
                     this.$router.push('/sellerfba');
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
@@ -171,15 +145,18 @@ export default {
         $state.loaded();
       }, 10000);
     },
+			 fetchItems()
+            {
 			
-			fetchItems()
-			 {
-             
-              axios.get('/api/productsearch',this.sellersearch).then((response) => {
-                 
-				    this.items=response.data;
+              axios.get('/api/productsearch').then(response =>  {
+					
+                  this.items = response.data;
+				
+				  
               });
-            },
-        }
-    }
+            }
+			
+			}
+			}
 </script>
+
