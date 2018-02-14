@@ -85,6 +85,7 @@ class Amazon {
 	        Log::info("Title:\t".$xml->ItemAttributes->Title);
 	        Log::info("ASIN:\t".$xml->ASIN);
 			Log::info("Images:\t".$xml->Images);
+			
 	        Log::info("Offer price:\t".$xml->OfferSummary->LowestNewPrice->FormattedPrice);
 			Log::info("Units:\t". $xml->OfferSummary->TotalNew);
 	        Log::info("Node:\t".$xml->BrowseNodes->BrowseNode[0]->Name);
@@ -104,7 +105,7 @@ class Amazon {
     	    $product->ASIN = (string) $xml->ASIN;
     	    $product->category = (string) $xml->BrowseNodes->BrowseNode[0]->Name;
        
-      foreach (array('LargeImage', 'MediumImage', 'SmallImage') as $images)
+      foreach (array('LargeImage') as $images)
         if (isset($xml->{$images}))
           $product->image = (string) $xml->{$images}->URL;
     	    return $product;
