@@ -4,7 +4,7 @@ export default {
             localStorage.removeItem('auth_token');
             axios.defaults.headers.common['Authorization'] = null;
             toastr['success'](response.data.message);
-			location.reload();
+			
         }).catch(error => {
             console.log(error);
         });
