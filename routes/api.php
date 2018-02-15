@@ -25,12 +25,7 @@ Route::post('/reset','AuthController@reset');
 Route::post('/social/token','SocialAuthController@getToken');
 Route::post('/selectrole','UserController@role');
 });
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-return $request->user();
-});
-Route::middleware('auth:api')->get('/charity', function (Request $request) {
-return $request->charity();
-});
+
 Route::group(['middleware' => ['jwt.auth']], function () {
 //user Profile
 Route::get('/auth/user','AuthController@getAuthUser');
@@ -46,7 +41,7 @@ Route::get('/task/{id}','SellerproductController@edit');
 Route::get('/product_list','SellerproductController@index');
 Route::post('product/update-avatar','SellerproductController@updateAvatar');
 Route::post('product/remove-avatar','SellrproductController@removeAvatar');
-Route::post('/product_upload', 'SellerproductController@updateimage');
+
 //Seller Organisation
 Route::resource('/gs_seller_organisation', 'SellerController');
 Route::get('/gs_seller_organisation', 'SellerController@index');
