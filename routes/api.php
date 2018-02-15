@@ -54,7 +54,7 @@ Route::get('/seller_list','SellerController@seller_list');
 Route::get('/edit_seller/{id}','SellerController@edit');
 Route::post('/edit_seller/{id}','SellerController@update');
 Route::delete('/seller_list/{id}','SellerController@destroy');
-Route::get('/product_details/{id}','SellerproductController@product_details');
+
 Route::get('/vender_category','SellerCategoryController@index');
 Route::post('/vender_category','SellerCategoryController@store');
 Route::post('/create_ads','AdsController@store');
@@ -81,6 +81,7 @@ Route::get('/search','charityController@search');
 
 Route::get('/productsearch', 'SellerproductController@search');
 Route::post('/productsearch', 'SellerproductController@search');
+Route::get('/product_details/{id}','SellerproductController@product_details');
 
 Route::get('/charity_organisation','charityController@index');
 Route::post('/charity_category','CharityCategoryController@store');
