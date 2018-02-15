@@ -313,10 +313,8 @@
                 helper.logout().then(() => {
     
                     this.$store.dispatch('resetAuthUserDetail');
-    
-    
-    
                     this.$router.replace('/');
+					window.location.reload();
     
                 })
     
