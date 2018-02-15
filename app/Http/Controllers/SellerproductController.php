@@ -4,6 +4,7 @@ use App\Seller;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use Hash;
+use App\Http\Controllers\JoshController;
 use App\Sellerproduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -18,9 +19,9 @@ use stdClass;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 //use JWTAuth;
-class SellerproductController extends Controller
+class SellerproductController extends JoshController
 {
-protected $avatar_path = 'images/product/';
+
 /**
 * Show a list of all the users.
 *
@@ -40,21 +41,14 @@ protected $avatar_path = 'images/product/';
 /**
 * @return mixed
 */
+
 	public function search(Request $request)
 	{		
-		$keyword = request('asin_url'); 
-		//$keyword1=request('title');
-		$seller=sellerproduct::Where('asin_url', 'like', '%' . $keyword . '%')->get();
-		//$seller=sellerproduct::Where('title', 'like', '%' . $keyword1 . '%')->get();
-		return response()->json($seller);
-	}
-	public function search1(Request $request)
-	{		
-	//$keyword = request('asin_url'); 
-	$keyword1=request('title');
-	//$seller=sellerproduct::Where('asin_url', 'like', '%' . $keyword . '%')->get();
-	$seller=sellerproduct::Where('title', 'like', '%' . $keyword1 . '%')->get();
-	return response()->json($seller);
+	
+	$keyword=request('title');
+	
+	$sellerproduct=sellerproduct::Where('title', 'like', '%' . $keyword . '%')->get();
+	return response()->json($sellerproduct);
 	}
 	public function product_details(Request $request,$id)
 	{
@@ -122,10 +116,5 @@ protected $avatar_path = 'images/product/';
 	return response()->json(['message' => 'Product deleted!']);
 	}
 
-	public function show($id)
-	{
-	$seller = Seller::find($id);
-	return view('admin.seller.show',compact('seller'));
-	}
-
+	
 }
