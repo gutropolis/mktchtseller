@@ -26,23 +26,23 @@
                        
                     </div>
 					<div class="form-group ">
-                        <label class="login__element--box--label">Asin_url</label>
-                            <input type="text" name="asin_url" class="login__element--box--input"  placeholder="asin_url" v-model="productForm.asin_url">
+                        <label class="login__element--box--label">ASIN</label>
+                            <input type="text" name="asin_url" class="login__element--box--input"  placeholder="ASIN" v-model="productForm.asin_url">
                        
                     </div>
-                   
-					 
-					 <div class="form-group ">
-                       <label class="login__element--box--label">Reviews</label>
-                            <input type="text" name="reviews" class="login__element--box--input" placeholder="reviews" v-model="productForm.reviews">
-                        
+                   <div class="form-group ">
+                        <label class="login__element--box--label">UNITS</label>
+                            <input type="text" name="units" class="login__element--box--input"  placeholder="units" v-model="productForm.units">
+                       
                     </div>
-					
+					 
 					
 					 <div class="form-group text-center">
                             <input type="Submit" placeholder="" value="Save" class="btn btn-bg-orange login__element--box--button">
                         </div>
 					</form>
+					
+					 
                         </div>
                     </div>
                 </div>
@@ -55,14 +55,15 @@
 </div>
 </template>
 <script>
-import AppNavbar from '../users/navbar.vue' 
+
  import AppSidebar from '../users/sidebar.vue'
  export default {
  components: {
-            AppNavbar,  AppSidebar 
+              AppSidebar 
         },
         data() {
             return {
+			
 			productForm: {}
                   
                     
@@ -80,6 +81,7 @@ import AppNavbar from '../users/navbar.vue'
       
 		
         methods: {
+		 
 		fetchItems(){
                 axios.get('/api/task/'+this.$route.params.id).then(response=>{
                     this.productForm = response.data;    
