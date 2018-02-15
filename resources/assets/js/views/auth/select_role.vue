@@ -48,8 +48,8 @@
             submit(e){
                 axios.post('/api/auth/selectrole', this.saverole).then(response =>  {
                     toastr['success'](response.data.message);
-					location.reload();
                     this.$router.push('/my_account');
+					location.reload();
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });
