@@ -1310,6 +1310,10 @@ footer {
     }
     td {
         color: $grey-color5;
+		word-wrap:break-word;
+		&:nth-child(3){
+			max-width:300px;
+		}
     }
     .table-icon {
         display: inline-block;
@@ -1320,6 +1324,10 @@ footer {
             margin-right: $space-vs;
         }
     }
+	.table-image
+	{
+		width:100px;
+	}
 }
 
 .collapsed>.when-opened,
