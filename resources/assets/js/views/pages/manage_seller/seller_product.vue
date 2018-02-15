@@ -41,7 +41,7 @@
                               <input type="text" name="image" class="login__element--box--input" placeholder="image" v-model="items.image">
                            </div>
                            <div class="form-group ">
-                              <label class="login__element--box--label">Units</label>
+                              <label class="login__element--box--label">How Many Units do you want to donate?</label>
                               <input type="text" name="units" class="login__element--box--input"  placeholder="units" v-model="items.units">
                            </div>
                            <div class="form-group text-center">
