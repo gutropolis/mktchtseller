@@ -32,10 +32,7 @@
                               <label class="login__element--box--label">Description</label>
                               <textarea  type="text"  v-model="items.description" rows="3" placeholder="Description" class="login__element--box--input"></textarea>
                            </div>
-                           <div class="form-group ">
-                              <label class="login__element--box--label">Reviews</label>
-                              <input type="text" name="reviews" class="login__element--box--input" placeholder="reviews" v-model="items.reviews">
-                           </div>
+                           
                            <div class="form-group ">
                               <label class="login__element--box--label">Image</label>
                               <input type="text" name="image" class="login__element--box--input" placeholder="image" v-model="items.image">
