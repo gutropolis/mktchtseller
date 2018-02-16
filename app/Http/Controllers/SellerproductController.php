@@ -18,20 +18,16 @@ Use App\Mail\Restore;
 use stdClass;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
-//use JWTAuth;
+
 class SellerproductController extends JoshController
 {
 
-/**
-* Show a list of all the users.
-*
-* @return View
-*/
+
 	public function index()
 	{
 	$user = JWTAuth::parseToken()->authenticate();
 	$query = SellerProduct::whereUserId($user->id);
-	$sellerproduct = $query->get();
+	$sellerproduct = $query->latest()->get();
 	return response()->json($sellerproduct );
 	}
 
@@ -47,7 +43,7 @@ class SellerproductController extends JoshController
 	
 	$keyword=request('title');
 	
-	$sellerproduct=sellerproduct::Where('title', 'like', '%' . $keyword . '%')->get();
+	$sellerproduct=sellerproduct::Where('title', 'like', '%' . $keyword . '%')->latest()->get();
 	return response()->json($sellerproduct);
 	}
 	public function product_details(Request $request,$id)
@@ -65,7 +61,7 @@ class SellerproductController extends JoshController
 	'description' => request('description'),
 	'asin_url' => request('ASIN'),
 	'images' => request('image'),
-	'reviews' => request('reviews'),
+	
 	'units'=> request('units'),
 	]);
 	$user = JWTAuth::parseToken()->authenticate();
