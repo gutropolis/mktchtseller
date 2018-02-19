@@ -83,32 +83,46 @@ class Amazon {
 	        $product = new Product;
 
 	        Log::info("Title:\t".$xml->ItemAttributes->Title);
-	        Log::info("ASIN:\t".$xml->ASIN);
+			Log::info("ASIN:\t".$xml->ASIN);
 			Log::info("Images:\t".$xml->Images);
-			
+			Log::info("bulletPoints:\t".$xml->ItemAttributes->Feature);
 	        Log::info("Offer price:\t".$xml->OfferSummary->LowestNewPrice->FormattedPrice);
 			Log::info("Units:\t". $xml->OfferSummary->TotalNew);
 	        Log::info("Node:\t".$xml->BrowseNodes->BrowseNode[0]->Name);
 			
 	        
-            if ($xml->EditorialReviews) {
-    	        foreach($xml->EditorialReviews->EditorialReview as $review) {
-    	            if ($review->Source == "Product Description" && isset($review->Content))
-    	                $product->description = $review->Content;
-    	        }
-            }
+
 	        
-    	    $product->name = (string) $xml->ItemAttributes->Title;
+    	    
+			$bulletPoints= $xml->ItemAttributes->Feature;
+			/*$bulletPoint='<ul>';
+			if(count($bulletPoints) > 0 ){
+				foreach($bulletPoints as $item)
+				{
+					$bulletPoint=$bulletPoint+'<li>'+$item+'</li>';
+				}
+				
+			}
+			$bulletPoint='<ul>';
+			$bulletPoint=$bulletPoint+'</ul>';*/
+		
+			
+			$product->name = (string) $xml->ItemAttributes->Title;
     	    $product->description = (string) $xml->DetailPageURL;
     	    $product->offer_price = str_replace('$','',$xml->OfferSummary->LowestNewPrice->FormattedPrice);
 			 $product->units = str_replace('$','',$xml->OfferSummary->TotalNew);
     	    $product->ASIN = (string) $xml->ASIN;
     	    $product->category = (string) $xml->BrowseNodes->BrowseNode[0]->Name;
-       
+				$product->bulletPoints = $bulletPoints;
+//	print_r($product->bulletPoints);exit;
       foreach (array('LargeImage') as $images)
         if (isset($xml->{$images}))
           $product->image = (string) $xml->{$images}->URL;
-    	    return $product;
+
+         
+	
+	
+    	 return $product;
 	} // xmlToProduct
 	
 	// Format JSON
