@@ -28,11 +28,12 @@
                               <label class="login__element--box--label">ASIN</label>
                               <input type="text" name="asin" class="login__element--box--input"   placeholder="ASIN" v-model="items.ASIN">
                            </div>
-                           <div class="form-group ">
+						 
+                           <div class="form-group">
                               <label class="login__element--box--label">Description</label>
-                              <textarea  type="text"  v-model="items.description" rows="3" placeholder="Description" class="login__element--box--input"></textarea>
-                           </div>
+                              <textarea  type="text" v-html="items.bulletPoints" v-model="items.bulletPoints"  rows="7" placeholder="BulletPoints" class="login__element--box--input"></textarea>
                            
+                           </div>
                            <div class="form-group ">
                               <label class="login__element--box--label">Image</label>
                               <input type="text" name="image" class="login__element--box--input" placeholder="image" v-model="items.image">
@@ -42,10 +43,15 @@
                               <label class="login__element--box--label">How Many Units do you want to donate?</label>
                               <input type="text" name="units" class="login__element--box--input"  placeholder="units" v-model="items.units">
                            </div>
+						   <div class="form-group ">
+                              <label class="login__element--box--label">Tags</label>
+                              <input type="text" name="units" class="login__element--box--input"  placeholder="tags" v-model="items.tags">
+                           </div>
                            <div class="form-group text-center">
                               <input type="Submit" placeholder="" value="Save" class="btn btn-bg-orange login__element--box--button">
                            </div>
                         </form>
+						 
                      </div>
                   </div>
                </div>
@@ -66,7 +72,7 @@
    					productform:{
    					 keywords: '',
    					},
-   			
+   			bulletpoints:[]
                  
           }
       },
@@ -74,15 +80,43 @@
           mounted(){
           },
           methods: {
+		  
    	
    		
               submit1(e){
+			   const vm = this;
                   axios.post('/api/product/search',this.productform).then(response =>  {
-                     this.items=response.data;
-   			 
+                     
+					 this.items=response.data; 
+					
+					 console.log(this.items);
+					 console.log(this.items.bulletPoints);
+					  console.log(this.items.bulletPoints[0]);
+					  console.log(this.items.bulletPoints[1]);
+					  console.log(this.items.bulletPoints[2]);
+					  console.log(this.items.bulletPoints[3]);
+					   
+					   this.bulletpoints=this.items.bulletPoints;
+					    let listBullet=[];
+					  let txtBullet='<ul>';
+					   $.each(response.data.bulletPoints, function(value, key) {
+						 listBullet.push(key);
+						  txtBullet=txtBullet+'<li>'+key+'</li>';
+					   });
+					   
+					     txtBullet=txtBullet+'</ul>';
+						 console.log(txtBullet);
+					   console.log(listBullet);
+					   
+						vm.items.bulletPoints=txtBullet;
+					 
+					 
+					
+					  
+					//	this.items.push();
                       this.$router.push('/product');
                   }).catch(error => {
-                      toastr['error'](error.response.data.message);
+                     // toastr['error'](error.response.data.message);
                   });
               },
    		 submit(e){
@@ -90,7 +124,9 @@
                       toastr['success'](response.data.message);
                       this.$router.push('/product_list');
                   }).catch(error => {
-                      toastr['error'](error.response.data.message);
+				      if(error.response.data){
+						toastr['error'](error.response.data.message);
+					  }
                   });
               },
    		   
