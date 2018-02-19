@@ -58,7 +58,7 @@ class SellerproductController extends JoshController
 	{
 	$sellerproduct = \App\Sellerproduct::create([
 	'title' => request('name'),
-	'description' => request('description'),
+	'description' => request('bulletPoints'),
 	'asin_url' => request('ASIN'),
 	'images' => request('image'),
 	
