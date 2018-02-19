@@ -168,10 +168,14 @@ import AppNavbar from './navbar.vue'
 			updateProfile() {
               
 					 axios.post('/api/user/update-profile',this.profileForm).then(response => {
+                    toastr['success']("Your profile updated");
+                    this.$store.dispatch('setAuthUserDetail',{
+                        first_name: this.profileForm.first_name,
+                        last_name: this.profileForm.last_name
+                    });
+                })
                     
-					toastr['success'](response.message);
-                    
-                }).catch(response => {
+             .catch(response => {
                     toastr['error'](response.message);
                 });
             },
