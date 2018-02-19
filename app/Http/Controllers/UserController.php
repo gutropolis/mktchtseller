@@ -114,7 +114,7 @@ public function index(){
 	
       
 		  $user->save();
-        return response()->json(['message' => 'Your profile has been updated!']);
+        return response()->json(['message' => 'Your profile has been updated!','user' => $user]);
     }
     /**
      * Create new user
