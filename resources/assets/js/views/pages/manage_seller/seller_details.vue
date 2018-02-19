@@ -20,7 +20,7 @@
 			
 				<div class="charity_inner row">
 					<div class="col-md-6 no-gutters">
-						<figure class="charity_inner--figure">	<img  class="charity__listing--figure--image" height="300" width="200" v-bind:src="create_message.images"></figure>
+						<figure class="charity_inner--figure">	<img  class="charity__listing--figure--image" height="300" width="240" v-bind:src="create_message.images"></figure>
 					</div>
 				<div class="col-md-5">
 					<div class="charity_inner--content">
