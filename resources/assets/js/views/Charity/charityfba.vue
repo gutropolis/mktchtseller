@@ -149,10 +149,7 @@ export default {
             return {
 			items:[],
 			
-                searchform: {
-
-                  
-				   
+                searchform: {  
                     
                 }
             }
