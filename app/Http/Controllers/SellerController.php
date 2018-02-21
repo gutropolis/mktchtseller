@@ -23,7 +23,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 
-class SellerController extends JoshController
+class SellerController extends Controller
 {
 
     /**
