@@ -17,17 +17,15 @@ use Yajra\DataTables\DataTables;
 use Validator;
 Use App\Mail\Restore;
 use stdClass;
+use App\Http\Requests;
+use Amazon;
+use Log;
 
 
 class SellerproductController extends JoshController
 {
 
-    /**
-     * Show a list of all the users.
-     *
-     * @return View
-     */
-
+ 
     public function index()
     {
 		
@@ -69,17 +67,14 @@ class SellerproductController extends JoshController
      *
      * @return View
      */
-    public function create()
+    public function create(Request $request)
     {
+		
 		
         return view('admin.sellerproduct.create');
     }
 
-    /**
-     * User create form processing.
-     *
-     * @return Redirect
-     */
+    
     public function store(Request $request)
     {
 	   
@@ -109,7 +104,7 @@ class SellerproductController extends JoshController
   
 		 public function edit($id)
     {
-		$cms=Sellerproduct::all();
+		$cms=Sellerproduct::where('id',$id)->get();
 
         // Show the page
         return view('admin.sellerproduct.edit',compact('cms'));
