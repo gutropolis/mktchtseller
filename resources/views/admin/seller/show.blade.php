@@ -64,7 +64,7 @@
                                         <div class="col-md-4">
                                             <div class="img-file">
                                                 @if($seller->pic)
-                                                    <img src="{!! url('/').'/uploads/seller/'.$seller->pic !!}" alt="img"
+                                                    <img src="{!! url('/').'/images/seller/'.$seller->pic !!}" alt="img"
                                                          class="img-responsive"/>
                                                
                                                 @endif
@@ -145,7 +145,7 @@
                                                         <tr>
                                                             <td>Keyword</td>
                                                             <td>
-                                                                {{ $seller->keyword }}
+                                                                {{ $seller->keywords }}
                                                             </td>
                                                         </tr>
                                                         </tr>
