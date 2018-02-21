@@ -163,9 +163,10 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
         
         Route::get('{sellerproduct}/delete', 'SellerproductController@destroy')->name('sellerproduct.delete');
         Route::get('{sellerproduct}/confirm-delete', 'SellerproductController@getModalDelete')->name('sellerproduct.confirm-delete');
+		Route::post('/formsearch','SellerproductController@formsearch')->name('sellerproduct.formSearch');
 	 });
 	Route::resource('sellerproduct','SellerproductController');
-   
+ 
 
     Route::get('deleted_seller',['before' => 'Sentinel', 'uses' => 'SellerController@getDeletedSeller'])->name('deleted_seller');
 
