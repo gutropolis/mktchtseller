@@ -163,18 +163,28 @@
                                         <div class="form-group">
                                             <label for="address" class="col-sm-2 control-label">Address <small>(brief intro) *</small></label>
                                             <div class="col-sm-10">
-                        <textarea name="address" id="address" required class="form-control resize_vertical"
+                        <textarea name="address" id="address" placeholder="Address" required class="form-control resize_vertical"
                                   rows="4">{!! old('address') !!}</textarea>
                                             </div>
                                             {!! $errors->first('address', '<span class="help-block">:message</span>') !!}
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab3" disabled="disabled">
+									
+									  <div class="form-group {{ $errors->first('phone_number', 'has-error') }}">
+                                            <label for="Keywords" class="col-sm-2 control-label">Keywords *</label>
+                                            <div class="col-sm-10">
+                                                <input id="keywords" name="keywords" type="text" placeholder="Keywords"
+                                                       class="form-control required" value="{!! old('keywords') !!}" required/>
+
+                                                {!! $errors->first('keywords', '<span class="help-block">:message</span>') !!}
+                                            </div>
+                                        </div>
                                        
 										 <div class="form-group">
                                             <label for="mission_statement" class="col-sm-2 control-label">Mission Statement <small>(brief intro) *</small></label>
                                             <div class="col-sm-10">
-                        <textarea name="mission_statement" id="mission_statement" required class="form-control resize_vertical"
+                        <textarea type="text" name="mission_statement" id="mission_statement" placeholder="Mission_statement" required class="form-control resize_vertical"
                                   rows="4">{!! old('mission_statement') !!}</textarea>
                                             </div>
                                             {!! $errors->first('mission_statement', '<span class="help-block">:message</span>') !!}
@@ -182,7 +192,7 @@
 										<div class="form-group">
                                             <label for="vision_statement" class="col-sm-2 control-label">Vision Statement <small>(brief intro) *</small></label>
                                             <div class="col-sm-10">
-                        <textarea name="vision_statement" id="vision_statement" required class="form-control resize_vertical"
+                        <textarea name="vision_statement" id="vision_statement"  placeholder="Vision_statement" required class="form-control resize_vertical"
                                   rows="4">{!! old('vision_statement') !!}</textarea>
                                             </div>
                                             {!! $errors->first('vision_statement', '<span class="help-block">:message</span>') !!}
@@ -196,19 +206,10 @@
                                                 {!! $errors->first('tax_id', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
-										<div class="form-group {{ $errors->first('user_id', 'has-error') }}">
-                                            <label for="user_id" class="col-sm-2 control-label">User Id *</label>
-                                            <div class="col-sm-10">
-                                                <input id="user_id" name="user_id" type="number" placeholder="user_id"
-                                                       class="form-control required" value="{!! old('user_id') !!}" required/>
-
-                                                {!! $errors->first('tax_id', '<span class="help-block">:message</span>') !!}
-                                            </div>
-                                        </div>
-
+										
 
                                         <div class="form-group {{ $errors->first('phone_number', 'has-error') }}">
-                                            <label for="description" class="col-sm-2 control-label">Phone Number *</label>
+                                            <label for="phone_number" class="col-sm-2 control-label">Phone Number *</label>
                                             <div class="col-sm-10">
                                                 <input id="phone_number" name="phone_number" type="number" placeholder="phone_number"
                                                        class="form-control required" value="{!! old('phone_number') !!}" required/>
