@@ -53,10 +53,12 @@ Route::delete('/seller_list/{id}','SellerController@destroy');
 Route::get('/vender_category','SellerCategoryController@index');
 Route::post('/vender_category','SellerCategoryController@store');
 Route::post('/create_ads','AdsController@store');
-Route::get('/get_ad/','AdsController@index');
-Route :: get('/get_ad/{id}','AdsController@edit');
-Route::delete('/get_ad/{id}','AdsController@destroy');
-Route :: post('/get_ad/{id}','AdsController@update');
+Route::get('/charityads/','AdsController@index');
+Route :: get('/charityads/{id}','AdsController@edit');
+Route::delete('/charityads/{id}','AdsController@destroy');
+Route :: post('/charityads/{id}','AdsController@update');
+Route::post('/update-avatar/{id}','AdsController@updateAvatar' );
+Route::post('/update-image','AdsController@updateImage' );
 Route::resource('/gs_seller_product', 'SellerproductController');
 Route:: post('/gs_seller_product', 'SellerproductController@store');
 
@@ -67,7 +69,7 @@ Route::post('/create_messages','MessagesellerController@store');
 Route::get('/product/search','ProductController@formsearch');
 Route::post('/product/search', 'ProductController@formSearch');
 
-Route::post('/upload','UserController@upload_image' );
+
 Route::resource('/gs_charity_organisation', 'charityController');
 //Charity Organisation 
 Route::get('/charity_details/{id}','charityController@charity_details');
