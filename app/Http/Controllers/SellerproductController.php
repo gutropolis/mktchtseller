@@ -21,7 +21,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class SellerproductController extends JoshController
 {
-
+protected $avatar_path = 'images/charityads/';
 
 	public function index()
 	{
@@ -56,6 +56,8 @@ class SellerproductController extends JoshController
 
 	public function store(Request $request)
 	{
+	
+		
 	$sellerproduct = \App\Sellerproduct::create([
 	'title' => request('name'),
 	'description' => request('bulletPoints'),
