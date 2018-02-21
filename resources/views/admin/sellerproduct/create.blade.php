@@ -83,10 +83,10 @@
 						 <div class="form-group {{ $errors->
                             first('name', 'has-error') }}">
                             <label for="asin_url" class="col-sm-2 control-label">
-                                @lang('asin_url')
+                                @lang('ASIN')
                             </label>
                             <div class="col-sm-5">
-                                <input type="text" id="asin_url" required name="asin_url" class="form-control" placeholder="asin_url"
+                                <input type="text" id="asin_url" required name="asin_url" class="form-control" placeholder="ASIN"
                                        value="{!! old('asin_url') !!}">
                             </div>
                             <div class="col-sm-4">
@@ -116,15 +116,15 @@
 						
 						<div class="form-group {{ $errors->
                             first('name', 'has-error') }}">
-                            <label for="reviews" class="col-sm-2 control-label">
-                                @lang('Product Review')
+                            <label for="tags" class="col-sm-2 control-label">
+                                @lang('Product Tags')
                             </label>
                             <div class="col-sm-5">
-                                <input type="text" id="reviews" required name="reviews" class="form-control" placeholder="Product_review"
-                                       value="{!! old('reviews') !!}">
+                                <input type="text" id="tags" required name="tags" class="form-control" placeholder="Produuct_tags"
+                                       value="{!! old('tags') !!}">
                             </div>
                             <div class="col-sm-4">
-                                {!! $errors->first('reviews', '<span class="help-block">:message</span> ') !!}
+                                {!! $errors->first('tags', '<span class="help-block">:message</span> ') !!}
                             </div>
                         </div>
 						
