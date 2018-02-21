@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\JoshController;
 use App\Http\Requests\charityRequest;
 use App\Settings;
-//use App\CharityCategory;
+
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use Hash;
@@ -15,7 +15,7 @@ use Redirect;
 use Sentinel;
 use URL;
 use View;
-//use Yajra\DataTables\DataTables;
+
 use Validator;
 Use App\Mail\Restore;
 use stdClass;
@@ -24,20 +24,10 @@ use config;
 
 class SettingsController extends JoshController
 {
-
-    
-
-    public function index(Request $request)
+	public function index(Request $request)
     {
-
-       //$config=config('app.url');
-	  // config::get('app.url');
-	   //echo config;
-	  
-	  // exit;
 	 $settings = Settings::find(1);
-        //echo $settings->site_title;
-		//exit;
+	
         return view('admin.setting.index',compact('settings'));
     }
 
@@ -48,7 +38,7 @@ class SettingsController extends JoshController
         
 		if ($file = $request->file('image')) {
             $extension = $file->extension()?: 'png';
-            $destinationPath = public_path() . '/uploads/charity/';
+            $destinationPath = public_path() . '/images/';
             $safeName = str_random(10) . '.' . $extension;
 			
             $file->move($destinationPath, $safeName);
@@ -60,11 +50,6 @@ class SettingsController extends JoshController
             
            
         ]);
-		
-		
-	
-	
-		
 		
         Settings::find(1)->update($request->all());
         return redirect()->route('admin.settings.index')
@@ -92,11 +77,6 @@ class SettingsController extends JoshController
             
            
         ]);
-		
-		
-	
-	
-		
 		
         Settings::find(1)->update($request->all());
         return redirect()->route('admin.settings.index')
