@@ -31,9 +31,7 @@ class charityController extends JoshController
     {
 		
 		$charityparcategory=CharityCategory::all();
- //$charityparcategory=CharityCategory::all()->where('parent_id','=','0');
-       // $charitycategory=CharityCategory::all()->where('parent_id','>','0');
-		//return response()->json(array('data1'=>$charityparcategory,'data2'=>$charitycategory));
+ 
 		return response()->json($charityparcategory);
     }
 	 public function charity_list()
