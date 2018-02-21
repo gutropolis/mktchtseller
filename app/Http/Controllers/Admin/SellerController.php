@@ -85,7 +85,7 @@ class SellerController extends JoshController
 		
         if ($file = $request->file('pic_file')) {
             $extension = $file->extension()?: 'png';
-            $destinationPath = public_path() . '/uploads/seller/';
+            $destinationPath = public_path() . '/images/seller/';
             $safeName = str_random(10) . '.' . $extension;
             $file->move($destinationPath, $safeName);
             $request['pic'] = $safeName;
@@ -93,8 +93,9 @@ class SellerController extends JoshController
 		
        
         $seller = new Seller($request->all());
+		$seller->post_type="seller";
 	  $seller->updated_by = Sentinel ::getUser()->first_name;	
-	 // $seller->user_id=Sentinel:: getUser()->id;
+	  $seller->user_id=Sentinel:: getUser()->id;
        $seller->save();
 		return redirect()->route('admin.seller.index')
 		->with('success', 'new record created succesfully');
