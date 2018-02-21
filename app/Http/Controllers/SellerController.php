@@ -25,7 +25,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class SellerController extends Controller
 {
-
+		protected $avatar_path = 'images/seller/';
     /**
      * Show a list of all the users.
      *
@@ -128,7 +128,7 @@ class SellerController extends Controller
 			'business_type' => 'required',
 			'address' => 'required',
 			'phone_number' => 'required',
-			'keyword' => 'required',
+			'keywords' => 'required',
 			'vision_statement' => 'required',
 			'mission_statement' => 'required',
 			'tax_id' => 'required',
@@ -148,7 +148,7 @@ class SellerController extends Controller
 			'business_type' => request('business_type'),
 			'address' => request('address'),
 			'phone_number' => request('phone_number'),
-			
+			'keywords' => request('keywords'),
 			'vision_statement' =>request('vision_statement'),
 			'mission_statement' => request('mission_statement'),
 			'tax_id' => request('tax_id'),
@@ -179,15 +179,33 @@ class SellerController extends Controller
 		return response()->json(array('data1'=>$seller,'data2'=>$seller_type));	
     }
        
-    
+    public function updateSeller(Request $request,$id)
+	{
+		$validation = Validator::make($request->all(), [
+		'avatar' => 'required|image'
+		]);
+		if ($validation->fails())
+		return response()->json(['message' => $validation->messages()->first()],422);
+		$seller = new Seller;
+		if($seller->avatar && \File::exists($this->avatar_path.$seller->avatar))
+		\File::delete($this->avatar_path.$seller->avatar);
+		$extension = $request->file('avatar')->getClientOriginalExtension();
+		$filename = uniqid();
+		$file = $request->file('avatar')->move($this->avatar_path, $filename.".".$extension);
+		$img = \Image::make($this->avatar_path.$filename.".".$extension);
+		$img->resize(200, null, function ($constraint) {
+		$constraint->aspectRatio();
+		
+	});
+		$image_ads = Seller::find($id);
+		        $img->save($this->avatar_path.$filename.".".$extension);
+				
+        $image_ads->pic = $filename.".".$extension;
+        $image_ads->save();
+	 return response()->json(['message' => 'Avatar updated!','profile' => $image_ads]);
+    }
 
-    /**
-     * User update form processing page.
-     *
-     * @param  seller $user
-     * @param SellerRequest $request
-     * @return Redirect
-     */
+    
    public function update(Request $request,$id)
     { 	
 	
@@ -201,7 +219,7 @@ class SellerController extends Controller
 			$seller->business_type = $request->get('business_type');
 			$seller->address = $request->get('address');
 			$seller->phone_number = $request->get('phone_number');
-			
+			$seller->keywords = $request->get('keywords');
 			$seller->vision_statement = $request->get('vision_statement');
 			$seller->mission_statement = $request->get('mission_statement');
 			$seller->tax_id = $request->get('tax_id');
