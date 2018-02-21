@@ -224,31 +224,30 @@
                                     </div>
                                     <div class="tab-pane" id="tab4" disabled="disabled">
                                         <p class="text-danger"><strong>Be careful with group selection, if you give admin access.. they can access admin section</strong></p>
-
+								
+								
                                         <div class="form-group required">
                                             <label for="group" class="col-sm-2 control-label">Group *</label>
                                             <div class="col-sm-10">
                                                 <select class="form-control required" title="Select group..." name="group"
                                                         id="group">
-                                                    <option value="">Select</option>
-                                                    @foreach($groups as $group)
-                                                        <option value="{{ $group->id }}"
-                                                                @if($group->id == old('group')) selected="selected" @endif >{{ $group->name}}</option>
-                                                    @endforeach
+                                                      <option value="">Select</option>
+                                                    <option value="admin"
+                                                            @if(old('group') === 'admin') selected="selected" @endif >Admin
+                                                    </option>
+                                                    <option value="seller"
+                                                            @if(old('group') === 'seller') selected="selected" @endif >
+                                                        Seller
+                                                    </option>
+                                                    <option value="charity"
+                                                            @if(old('group') === 'charity') selected="selected" @endif >Charity
+                                                    </option>
                                                 </select>
                                                 {!! $errors->first('group', '<span class="help-block">:message</span>') !!}
                                             </div>
                                             <span class="help-block">{{ $errors->first('group', ':message') }}</span>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="activate" class="col-sm-2 control-label"> Activate User *</label>
-                                            <div class="col-sm-10">
-                                                <input id="activate" name="activate" type="checkbox"
-                                                       class="pos-rel p-l-30 custom-checkbox"
-                                                       value="1" @if(old('activate')) checked="checked" @endif >
-                                                <span>To activate user account automatically, click the check box</span></div>
-
-                                        </div>
+                                        
                                     </div>
                                     <ul class="pager wizard">
                                         <li class="previous"><a href="#">Previous</a></li>
