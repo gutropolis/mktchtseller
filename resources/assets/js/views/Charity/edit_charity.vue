@@ -76,7 +76,21 @@
                             <label class="login__element--box--label">Tags</label>
                             <input type="text" placeholder="Tags" v-model="items.tags" class="login__element--box--input">
                         </div>
-						
+						<h4 class="card-title">Upload Organisation Image</h4>
+                                       <div class="form-group text-center m-t-20">
+                                          <span id="fileselector">
+                                          <label class="btn btn-info">
+                                          <input type="file"  @change="previewAvatar" id="avatarUpload" class="upload-button">
+                                          </label>
+                                          </span>
+                                       </div>
+                                       <div class="form-group text-center">
+                                          <img :src="avatar" class="img-responsive" style="max-width:200px;">
+                                       </div>
+                                       <div class="text-center">
+                                          <button type="submit" class="btn btn-info waves-effect waves-light m-t-10" v-if="avatar" @click="uploadAvatar">Upload</button>
+                                          <button type="button" class="btn btn-danger waves-effect waves-light m-t-10" v-if="avatar" @click="cancelUploadAvatar">Cancel Upload</button>
+                                       </div>
                     </tab-content>
 					</form-wizard>
                        
@@ -105,6 +119,7 @@ import Vue from 'vue'
   
         data() {
             return {
+			avatar: '',
 			items:{},
 			category:[],
                     
@@ -120,6 +135,36 @@ import Vue from 'vue'
         mounted(){
         },
         methods: {
+           previewAvatar(e) {
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createAvatar(files[0]);
+            },
+            createAvatar(file) {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    this.avatar = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+            cancelUploadAvatar(){
+                this.avatar = '';
+            },
+            uploadAvatar() {
+                let data = new FormData();
+                data.append('avatar', $('#avatarUpload')[0].files[0]);
+                axios.post('/api/update-charity/'+this.$route.params.id,data)
+                .then(response => {
+                  
+                 
+                    toastr['success'](response.data.message);
+                    this.avatar = '';
+                    $("#avatarUpload").val('');
+                }).catch(error => {
+                    toastr['error'](error.response.data.message);
+                });
+            },
            
 			fetchItems()
 			{
