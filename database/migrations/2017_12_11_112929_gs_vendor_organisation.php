@@ -28,6 +28,7 @@ class GsVendorOrganisation extends Migration
             $table->string('tax_id');
             $table->string('business_type');
             $table->string('phone_number');
+			$table->string('keywords');
             $table->string('user_id')->nullable();
 			$table->string('post_type')->nullable();
             

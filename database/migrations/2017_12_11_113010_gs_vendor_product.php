@@ -20,7 +20,8 @@ class GsVendorProduct extends Migration
             $table->text('description');
             $table->string('asin_url');
             $table->string('images');
-            $table->string('reviews');
+            $table->string('units');
+			$table->string('tags');
             $table->string('user_id')->nullable();
             
             $table->string('updated_by')->nullable();
