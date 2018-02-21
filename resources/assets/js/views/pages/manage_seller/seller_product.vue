@@ -36,9 +36,11 @@
                            </div>
                            <div class="form-group ">
                               <label class="login__element--box--label">Image</label>
-                              <input type="text" name="image" class="login__element--box--input" placeholder="image" v-model="items.image">
+                              <input type="hidden" name="image" class="login__element--box--input" placeholder="image" v-model="items.image">
+							
 							<img v-bind:src="items.image"  height="100px" width="50px">
                            </div>
+						   
                            <div class="form-group ">
                               <label class="login__element--box--label">How Many Units do you want to donate?</label>
                               <input type="text" name="units" class="login__element--box--input"  placeholder="units" v-model="items.units">
