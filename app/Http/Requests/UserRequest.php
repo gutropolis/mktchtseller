@@ -36,7 +36,10 @@ class UserRequest extends FormRequest
                     'email' => 'required|email|unique:users,email',
                     'password' => 'required|between:3,32',
                     'password_confirm' => 'required|same:password',
-                    'pic_file' => 'mimes:jpg,jpeg,bmp,png,gif|max:10000'
+                    'pic_file' => 'mimes:jpg,jpeg,bmp,png,gif|max:10000',
+					
+					
+					
                 ];
             }
             case 'PUT':
