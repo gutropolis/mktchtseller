@@ -35,7 +35,7 @@ class charityController extends JoshController
     }
  public function data()
     {
-        $charity = charity::get(['id', 'title', 'description', 'location','created_at']);
+        $charity = charity::get(['id', 'title', 'description', 'location','images','created_at']);
 
         return DataTables::of($charity)
             ->editColumn('created_at',function(charity $charity) {
@@ -58,23 +58,34 @@ class charityController extends JoshController
     {
         if ($file = $request->file('pic_file')) {
             $extension = $file->extension()?: 'png';
-            $destinationPath = public_path() . '/uploads/charity/';
+            $destinationPath = public_path() . '/images/charity/';
             $safeName = str_random(10) . '.' . $extension;
 			
             $file->move($destinationPath, $safeName);
             $request['images'] = $safeName;
 			
 		 }
-          //$charity=new charity($request->all());
-		  
-		  //$charity->user_id=Sentinel::getUser()->id;
-		  
-		 // $charity->save();
-	
-        //$charity->charity_type= Sentinel::getUser()->id;
-        //$charity->save();
 		
-       charity::create($request->all());
+      $charity=\App\charity::create([
+			'title'=> request('title'),
+			'description'=> request('description'),
+			'location'=> request('location'),
+			'year_in_business'=> request('year_in_business'),
+			'start_up_year'=> request('start_up_year'),
+			'business_purpose'=> request('business_purpose'),
+			'address'=> request('address'),
+			'phone_number'=> request('phone_number'),
+			'keyword'=> request('keyword'),
+			'vision_statement'=> request('vision_statement'),
+			'mission_statement'=> request('mission_statement'),
+			'tags'=> request('tags'),
+			'charity_type'=> request('charity_type'),
+			'post_type'=>'charity',
+			'images'=> request('images'),
+			'updated_by' => Sentinel ::getUser()->first_name,
+			'user_id'	=>	Sentinel:: getUser()->id,
+			]);
+			
         return redirect()->route('admin.charity.index')
                         ->with('success','New Record created successfully');
 	}
@@ -82,7 +93,7 @@ class charityController extends JoshController
     {
 		 if ($file = $request->file('pic_file')) {
             $extension = $file->extension()?: 'png';
-            $destinationPath = public_path() . '/uploads/charity/';
+            $destinationPath = public_path() . '/images/charity/';
             $safeName = str_random(10) . '.' . $extension;
 			
             $file->move($destinationPath, $safeName);
@@ -126,19 +137,10 @@ class charityController extends JoshController
     }
 	 public function edit(charity $charity)
     {
- // Get this user groups
-        //$userRoles = $user->getRoles()->pluck('name', 'id')->all();
-		// $charity = charity::find($id);
-        // Get a list of all the available groups
-        //$roles = Sentinel::getRoleRepository()->all();
 
-        //$status = Activation::completed($user);
-//this is adit 
-        //$countries = $this->countries;
              $charityparcategory=CharityCategory::all()->where('parent_id','=','0');
              $charitycategory=CharityCategory::all()->where('parent_id','>','0');
-			//echo $charityparcategory;
-			//exit;
+			
         return view('admin.charity.edit', compact('charity','charitycategory','charityparcategory'));
     }
     
