@@ -31,7 +31,7 @@ return [
 		],
 			
 	// Default response group
-	'response_group' => env('AMAZON_RESPONSE_GROUP', 'Images,ItemAttributes,OfferSummary'),
+	'response_group' => env('AMAZON_RESPONSE_GROUP', 'Images,ItemAttributes,OfferSummary,Reviews'),
 	
 	// Amazon categories
 	'categories' => [
