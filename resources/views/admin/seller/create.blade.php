@@ -99,8 +99,8 @@
                                         <div class="form-group {{ $errors->first('description', 'has-error') }}">
                                             <label for="description" class="col-sm-2 control-label">Description *</label>
                                             <div class="col-sm-10">
-                                                <input id="description" name="description" type="text" placeholder="description"
-                                                       class="form-control required" value="{!! old('description') !!}"  required/>
+                                                <textarea id="description" name="description" rows="5" type="text" placeholder="description"
+                                                       class="form-control required"   required/>{!! old('description') !!}</textarea>
 
                                                 {!! $errors->first('description', '<span class="help-block">:message</span>') !!}
                                             </div>
