@@ -63,7 +63,7 @@
                                         <div class="col-md-4">
                                             <div class="img-file">
                                                 @if($charity->images)
-                                                    <img src="{!! url('/').'/uploads/charity/'.$charity->images !!}" alt="img"
+                                                    <img src="{!! url('/').'/images/charity/'.$charity->images !!}" alt="img"
                                                          class="img-responsive"/>
                                                
                                                 @endif
