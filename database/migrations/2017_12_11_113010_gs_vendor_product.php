@@ -17,7 +17,7 @@ class GsVendorProduct extends Migration
 		{
 			$table->increments('id');
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('asin_url');
             $table->string('images');
             $table->string('reviews');
