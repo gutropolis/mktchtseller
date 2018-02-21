@@ -67,8 +67,8 @@
                                     <div class="panel-body">
                                         <div class="col-md-4">
                                             <div class="img-file">
-                                                @if($user->pic)
-                                                    <img src="{!! url('/').'/uploads/users/'.$user->pic !!}" alt="img"
+                                                @if($user->avatar)
+                                                    <img src="{!! url('/').'/images/user/'.$user->avatar !!}" alt="img"
                                                          class="img-responsive"/>
                                                 @elseif($user->gender === "male")
                                                     <img src="{{ asset('assets/images/authors/avatar3.png') }}" alt="..."
