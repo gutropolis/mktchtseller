@@ -217,11 +217,11 @@
     
                                         <div class="admin__lsit--content--detail">
     
-                                            <a href="#" class="admin__lsit--content--detail--link">
+                                            <router-link to="/edit_account"  class="admin__lsit--content--detail--link">
 											<img src="../../svg/settings-gears.svg">
-                                               Configuration
+                                               Account Settings
     
-                                           </a>
+                                           </router-link>
     
                                         </div>
     
