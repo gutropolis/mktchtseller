@@ -25,7 +25,7 @@ use stdClass;
 class charityController extends JoshController
 {
 
-    
+ protected $avatar_path = 'images/charity/';   
 
     public function index()
     {
@@ -63,33 +63,6 @@ class charityController extends JoshController
     }
 	
 	
-	 public function updateAvatar(Request $request){
-        $validation = Validator::make($request->all(), [
-            'avatar' => 'required|image'
-        ]);
-
-        if ($validation->fails())
-            return response()->json(['message' => $validation->messages()->first()],422);
-
-        $charity = JWTAuth::parseToken()->authenticate();
-        $profile = $charity->Profile;
-
-        if($profile->avatar && \File::exists($this->avatar_path.$profile->avatar))
-            \File::delete($this->avatar_path.$profile->avatar);
-
-        $extension = $request->file('avatar')->getClientOriginalExtension();
-        $filename = uniqid();
-        $file = $request->file('avatar')->move($this->avatar_path, $filename.".".$extension);
-        $img = \Image::make($this->avatar_path.$filename.".".$extension);
-        $img->resize(200, null, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $img->save($this->avatar_path.$filename.".".$extension);
-        $profile->avatar = $filename.".".$extension;
-        $profile->save();
-
-        return response()->json(['message' => 'Avatar updated!','profile' => $profile]);
-    }
    
     public function store(Request $request)
     {
@@ -141,6 +114,12 @@ class charityController extends JoshController
 		
         return response()->json(['message' => 'Data Record Successfully']);
 	}
+	 public function edit(Request $request,$id)
+    {
+		$charity_type=CharityCategory::all();
+		$charity = charity::find($id);
+		return response()->json(array('data1'=>$charity,'data2'=>$charity_type));	
+    }
 	public function update(Request $request,$id)
     { 	
 	
@@ -166,25 +145,33 @@ class charityController extends JoshController
         
 	}
     
-
-    /**
-     * User update form processing page.
-     *
-     * @param  charity $user
-     * @param charityRequest $request
-     * @return Redirect
-     */
-	  public function create()
-    {
+	
+	 public function updateCharity(Request $request,$id)
+	{
+		$validation = Validator::make($request->all(), [
+		'avatar' => 'required|image'
+		]);
+		if ($validation->fails())
+		return response()->json(['message' => $validation->messages()->first()],422);
+		$charity = new Charity;
+		if($charity->avatar && \File::exists($this->avatar_path.$seller->avatar))
+		\File::delete($this->avatar_path.$charity->avatar);
+		$extension = $request->file('avatar')->getClientOriginalExtension();
+		$filename = uniqid();
+		$file = $request->file('avatar')->move($this->avatar_path, $filename.".".$extension);
+		$img = \Image::make($this->avatar_path.$filename.".".$extension);
+		$img->resize(200, null, function ($constraint) {
+		$constraint->aspectRatio();
 		
-
+	});
+		$image_ads = Charity::find($id);
+		        $img->save($this->avatar_path.$filename.".".$extension);
+				
+        $image_ads->images = $filename.".".$extension;
+        $image_ads->save();
+	 return response()->json(['message' => 'Avatar updated!','profile' => $image_ads]);
     }
-	 public function edit(Request $request,$id)
-    {
-		$charity_type=CharityCategory::all();
-		$charity = charity::find($id);
-		return response()->json(array('data1'=>$charity,'data2'=>$charity_type));	
-    }
+	
 	public function charity_details(Request $request,$id=1)
     {
 		//$charity_details=CharityCategory::all();
