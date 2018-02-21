@@ -100,12 +100,7 @@
                     Add New charity
                 </a>
             </li>
-            <li {!! ((Request::is('admin/charity/*')) && !(Request::is('admin/charity/create')) ? 'class="active" id="active"' : '') !!}>
-                <a href="{{ URL::route('admin.charity.show',Sentinel::getUser()->id) }}">
-                    <i class="fa fa-angle-double-right"></i>
-                    View charity Profile
-                </a>
-            </li>
+         
             <li {!! (Request::is('admin/deleted_users') ? 'class="active" id="active"' : '') !!}>
                 <a href="{{ URL::to('admin/deleted_users') }}">
                     <i class="fa fa-angle-double-right"></i>
@@ -147,12 +142,7 @@
                     Add New Seller
                 </a>
             </li>
-            <li {!! ((Request::is('admin/seller/*')) && !(Request::is('admin/seller/create')) ? 'class="active" id="active"' : '') !!}>
-                <a href="{{ URL::route('admin.seller.show',Sentinel::getUser()) }}">
-                    <i class="fa fa-angle-double-right"></i>
-                    View Profile
-                </a>
-            </li>
+         
 			<li {!! (Request::is('admin/sellerproduct') ? 'class="active" id="active"' : '') !!}>
                 <a href="{{ URL::to('admin/sellerproduct') }}">
                     <i class="fa fa-angle-double-right"></i>
