@@ -31,7 +31,7 @@
 <body class="skin-josh">
 <header class="header">
     <a href="{{ route('admin.dashboard') }}" class="logo">
-        <img src="{{ asset('uploads/logo-1.png') }}" alt="logo"  width="110">
+        <img src="{{ asset('images/logo-1.png') }}" alt="logo"  width="110">
     </a>
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
@@ -48,7 +48,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             @if(Sentinel::getUser()->pic)
-                                <img src="{!! url('/').'/uploads/users/'.Sentinel::getUser()->pic !!}" alt="img" height="35px" width="35px"
+                                <img src="{!! url('/').'/images/user/'.Sentinel::getUser()->avatar !!}" alt="img" height="35px" width="35px"
                                      class="img-circle img-responsive pull-left"/>
 
                             @elseif(Sentinel::getUser()->gender === "male")
