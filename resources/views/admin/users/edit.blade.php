@@ -131,14 +131,14 @@
                                                     </div>
                                                     {!! $errors->first('dob', '<span class="help-block">:message</span>') !!}
                                                 </div>
-
+												
                                                 <div class="form-group {{ $errors->first('pic_file', 'has-error') }}">
-                                                    <label for="pic" class="col-sm-2 control-label">Profile picture</label>
+                                                    <label for="pic_file" class="col-sm-2 control-label">Profile picture</label>
                                                     <div class="col-sm-10">
                                                         <div class="fileinput fileinput-new" data-provides="fileinput">
                                                             <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
-                                                                @if($user->pic)
-                                                                    <img src="{!! url('/').'/uploads/users/'.$user->pic !!}" alt="img"
+                                                                @if($user->avatar)
+                                                                    <img src="{!! url('/').'/images/user/'.$user->avatar !!}" alt="img"
                                                                          class="img-responsive"/>
                                                                 @elseif($user->gender === "male")
                                                                     <img src="{{ asset('assets/images/authors/avatar3.png') }}" alt="..."
@@ -156,13 +156,14 @@
                                                     <span class="btn btn-default btn-file">
                                                         <span class="fileinput-new">Select image</span>
                                                         <span class="fileinput-exists">Change</span>
-                                                        <input id="pic" name="pic_file" type="file"
+                                                        <input id="images" name="pic_file" type="file"
                                                                class="form-control"/>
+															    
                                                     </span>
                                                                 <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput" style="color: black !important;">Remove</a>
                                                             </div>
                                                         </div>
-                                                        {!! $errors->first('pic_file', '<span class="help-block">:message</span>') !!}
+                                                        {!! $errors->first('avatar', '<span class="help-block">:message</span>') !!}
                                                     </div>
                                                 </div>
                                                 <div class="form-group  {{ $errors->first('pic', 'has-error') }}">
@@ -235,28 +236,26 @@
                                                     {!! $errors->first('postal', '<span class="help-block">:message</span>') !!}
                                                 </div>
                                             </div>
+											
+											
+											
                                             <div class="tab-pane" id="tab4" disabled="disabled">
                                                 <p class="text-danger"><strong>Be careful with group selection, if you give admin access.. they can access admin section</strong></p>
                                                 <div class="form-group {{ $errors->first('group', 'has-error') }}">
                                                     <label for="group" class="col-sm-2 control-label">Group *</label>
                                                     <div class="col-sm-10">
-                                                        <select class="form-control " title="Select group..." name="groups[]" id="groups" required>
+                                                        <select class="form-control" title="Select group..." name="group">
                                                             <option value="">Select</option>
-                                                            @foreach($roles as $role)
-                                                                <option value="{!! $role->id !!}" {{ (array_key_exists($role->id, $userRoles) ? ' selected="selected"' : '') }}>{{ $role->name }}</option>
-                                                            @endforeach
+                                                            <option value="admin" @if($user->role === 'admin') selected="selected" @endif >Admin</option>
+                                                            <option value="seller" @if($user->role === 'seller') selected="selected" @endif >Seller</option>
+                                                            <option value="charity" @if($user->role === 'charity') selected="selected" @endif >Charity</option>
+
                                                         </select>
                                                     </div
                                                             {!! $errors->first('group', '<span class="help-block">:message</span>') !!}>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <label for="activate" class="col-sm-2 control-label"> Activate User</label>
-                                                    <div class="col-sm-10">
-                                                        <input id="activate" name="activate" type="checkbox" class="pos-rel p-l-30 custom-checkbox" value="1" @if($status) checked="checked" @endif  >
-                                                        <span>To activate your account click the check box</span>
-                                                    </div>
-                                                </div>
+                                               
                                             </div>
                                             <ul class="pager wizard">
                                                 <li class="previous"><a href="#">Previous</a></li>
