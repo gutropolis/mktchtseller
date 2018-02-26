@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import axios from 'axios'
 import BootstrapVue from 'bootstrap-vue'
-import Form from './services/Form'
+import Form from './services/form'
+
 Vue.use(BootstrapVue);
 window.Vue = Vue;
 Vue.use(VueRouter);
