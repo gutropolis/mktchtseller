@@ -18,7 +18,7 @@ class Errors {
 
 
     /**
-     * Determine if we have any errors. n
+     * Determine if we have any errors. 
      */
     any() {
         return Object.keys(this.errors).length > 0;
