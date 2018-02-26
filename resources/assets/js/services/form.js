@@ -1,9 +1,9 @@
-//import Errors from './Errors'
+import Errors from './Errors'
 
 class Form {
 
     /**
-     * Create a new Form instance.
+     * Create a new Form instances.
      *
      * @param {object} data
      */
