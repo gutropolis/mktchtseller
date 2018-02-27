@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group">
                             <label class="login__element--box--label">Title</label>
-                            <input type="text" name="title" v-model="savesellerform.title"   placeholder="Title" class="login__element--box--input">
+                            <input type="text" name="title" v-model="savesellerform.title" required   placeholder="Title" class="login__element--box--input">
                         </div>
                         <div class="form-group">
                             <label class="login__element--box--label">Description</label>
