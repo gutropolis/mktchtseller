@@ -75,7 +75,7 @@
                </router-link>
             </li>
             <li class="proflie__element--detail--list--item">
-               <router-link to="/my_message" class="proflie__element--detail--list--item--link">
+               <router-link to="/recieve_message" class="proflie__element--detail--list--item--link">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
                      <g>
                         <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
@@ -89,10 +89,10 @@
                   <b-collapse  id="collapse7" class=""  >
                      <ul class="drop_menu">
                         <li class="drop_menu--list">
-                           <router-link to="/charity_organisation" class="drop_menu--list--link">Sent Message</router-link>
+                           <router-link to="/sent_message" class="drop_menu--list--link">Sent Message</router-link>
                         </li>
                         <li class="drop_menu--list">
-                           <router-link to="/charity_list" class="drop_menu--list--link">Recieve Message</router-link>
+                           <router-link to="/recieve_message" class="drop_menu--list--link">Recieve Message</router-link>
                         </li>
                        
                      </ul>
@@ -136,7 +136,7 @@
                         <polygon points="320,256.3 490,390.4 490,101.1 		"/>
                      </g>
                   </svg>
-                  Donate Products
+                  Add Product
                </router-link>
             </li>
 			<li class="proflie__element--detail--list--item">
@@ -167,10 +167,13 @@
                   <b-collapse  id="collapse5" class=""  >
                      <ul class="drop_menu">
                         <li class="drop_menu--list">
-                           <router-link to="/vender_organisation" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Add Seller Organisation</router-link>
+                           <router-link to="/vender_organisation" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Add Company</router-link>
                         </li>
                         <li class="drop_menu--list">
                            <router-link to="/seller_list" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> My Companies</router-link>
+                        </li>
+						 <li class="drop_menu--list">
+                           <router-link to="" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Tax Documents</router-link>
                         </li>
                        
                         
