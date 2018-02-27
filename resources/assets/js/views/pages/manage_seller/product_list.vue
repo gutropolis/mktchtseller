@@ -20,6 +20,7 @@
                                     <th>Description</th>
                                     <th>ASIN</th>
                                     <th>Images</th>
+									<th>Units</th>
                                     <th>Created On</th>
                                     <th>Action</th>
                                  </tr>
@@ -31,6 +32,7 @@
                                     <td>
                                        <figure class="table-image"><img v-bind:src="item.images"></figure>
                                     </td>
+									<td>{{item.units}}</td>
                                     <td>{{item.created_at}}</td>
                                     <td>
                                        <router-link :to="{name: 'edit_product', params: { id: item.id }}" class="table-icon" >
@@ -74,6 +76,7 @@
                            </div>
                         </div>
                      </div>
+					 <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                   </div>
                </div>
             </div>
@@ -82,10 +85,11 @@
    </div>
 </template>
 <script>
+import InfiniteLoading from 'vue-infinite-loading';
    import AppSidebar from '../users/sidebar.vue'
    export default {
    components: {
-               AppSidebar 
+               AppSidebar , InfiniteLoading
           },
    
           data() {
@@ -111,6 +115,16 @@
 				toastr['error'](error.response.data.message);
 				});
 			},
+			infiniteHandler($state) {
+      setTimeout(() => {
+        const temp = [];
+        for (let i = this.items.length + 1; i <= this.items.length + 4; i++) {
+          temp.push(i);
+        }
+        this.items = this.items.concat(temp);
+        $state.loaded();
+      }, 10000);
+    },
    	
    		 deleteTask(item){
                   axios.delete('/api/task/'+item.id).then(response => {
