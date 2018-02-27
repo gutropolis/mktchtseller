@@ -18,7 +18,7 @@
                               <input type="Submit" placeholder="" value="Search" class="btn btn-bg-orange login__element--box--button">
                            </div>
                         </form>
-                        <form class="form-horizontal form-material" id="items" @submit.prevent="submit">
+                          <form class="form-horizontal form-material" id="items" @submit.prevent="submit">
                            <div class="form-group ">
                               <label class="login__element--box--label">Title</label>
                               <input type="text" name="title" class="login__element--box--input"  placeholder="Title" v-model="items.name">
