@@ -68,12 +68,12 @@ $sellerproduct = SellerProduct::latest()->get();
 	'description' => request('bulletPoints'),
 	'asin_url' => request('ASIN'),
 	'images' => request('image'),
-	
+	'organisation_id'=>request('title'),
 	'units'=> request('units'),
 	]);
 	$user = JWTAuth::parseToken()->authenticate();
 	$query= Seller::where('user_id',$user->id)->first();
-	$sellerproduct->organisation_id=$query->id;
+	//$sellerproduct->organisation_id=$query->id;
 	$sellerproduct->user_id = $user->id;	
 	$sellerproduct->updated_by=$user->first_name;
 	$sellerproduct->save();
@@ -92,7 +92,8 @@ $sellerproduct = SellerProduct::latest()->get();
 	$sellerproduct->title=$request->get('title');
 	$sellerproduct->description=$request->get('description');
 	$sellerproduct->asin_url=$request->get('asin_url');
-	$sellerproduct->reviews=$request->get('reviews');
+	$sellerproduct->organisation_id=$request->get('organisation_id');
+	$sellerproduct->units=$request->get('units');
 	$sellerproduct->save();
 	return response()->json(['message' => 'Data update Successfully']);
 	}
