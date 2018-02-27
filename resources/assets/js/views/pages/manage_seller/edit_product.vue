@@ -9,12 +9,24 @@
                 
                     <div class="dashboard__content--outer">
                         
-                        <div class="dashboard__content--description" >
+                        <div class="dashboard__content--description">
                             <hr>
                             
                            
                      <form class="form-horizontal form-material" id="productForm" @submit.prevent="proceed">
                     <h3 class="box-title m-b-20">Edit Product</h3>
+					 <div class="form-group">
+					   
+                            <label class="login__element--box--label">Select Company</label>
+                            <select name="company"  v-model="productForm.organisation_id"  class="login__element--box--input">
+							<option value="select">Select .. </option>
+							<option  v-for="item in items" v-bind:value="item.title">{{ item.title }}</option>
+								
+							
+							</select>
+                        </div>
+					
+					
 					<div class="form-group ">
                         <label class="login__element--box--label">Title</label>
                             <input type="text" name="title" class="login__element--box--input"  placeholder="Title" v-model="productForm.title">
@@ -22,7 +34,7 @@
                     </div>
                     <div class="form-group ">
                         <label class="login__element--box--label">Description</label>
-                            <input type="text" name="description" class="login__element--box--input"   placeholder="Description" v-model="productForm.description">
+                            <textarea  type="text" v-html="productForm.bulletPoints" v-model="productForm.description"  rows="7" placeholder="Description" class="login__element--box--input"></textarea>
                        
                     </div>
 					<div class="form-group ">
@@ -35,6 +47,12 @@
                             <input type="text" name="units" class="login__element--box--input"  placeholder="units" v-model="productForm.units">
                        
                     </div>
+					  <div class="form-group ">
+                        <label class="login__element--box--label">Tags</label>
+                            <input type="text" name="tags" class="login__element--box--input"  placeholder="tags" v-model="productForm.tags">
+                       
+                    </div>
+					
 					 
 					
 					 <div class="form-group text-center">
@@ -63,7 +81,7 @@
         },
         data() {
             return {
-			
+			items:[],
 			productForm: {}
                   
                     
@@ -72,6 +90,7 @@
 			
 			created: function()
         {
+			 this.fetchItem();
             this.fetchItems();
 			
         },
@@ -81,6 +100,17 @@
       
 		
         methods: {
+		 fetchItem()
+					{
+					axios.get('api/seller_list').then(response=>{
+					
+					this.items=response.data;
+					
+					
+					}).catch(error=>{
+					toastr['error'](error.response.data.message);
+					});
+					},
 		 
 		fetchItems(){
                 axios.get('/api/task/'+this.$route.params.id).then(response=>{
