@@ -56,33 +56,12 @@ class SellerController extends Controller
      */
 	 public function seller_list()
     {
-		
-		$seller=Seller::all();
+		$user = JWTAuth::parseToken()->authenticate();
+		$seller=Seller::where('user_id',$user->id)->latest()->get();
  
 		return response()->json($seller);
     }
-    public function data()
-    {		
-        $seller = Seller::get(['id','title', 'description', 'location', 'year_in_business','created_at']);
-		
-        return DataTables::of($seller)
-            ->editColumn('created_at',function(Seller $seller) {
-                return $seller->created_at->diffForHumans();
-            })
-           
-	
-            ->addColumn('actions',function($seller) {
-                $actions = '<a href='. route('admin.seller.show', $seller->id) .'><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view seller"></i></a>
-                            <a href='. route('admin.seller.edit', $seller->id) .'><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update seller"></i></a>';
-                if ((Sentinel::getUser()->id != $seller->id) && ($seller->id != 1)) {
-                    $actions .= '<a href='. route('admin.seller.confirm-delete', $seller->id) .' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="seller-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete seller"></i></a>';
-                }
-                return $actions;
-            })
-            ->rawColumns(['actions'])
-            ->make(true);
-    }
-
+   
     /**
      * Create new user
      *
@@ -124,7 +103,7 @@ class SellerController extends Controller
             'description' => 'required',
             'location' => 'required',
 			'year_in_business' => 'required',
-			'start_up_year' => 'required',
+			
 			'business_type' => 'required',
 			'address' => 'required',
 			'phone_number' => 'required',
@@ -144,7 +123,7 @@ class SellerController extends Controller
             'description' => request('description'),
             'location' => request('location'),
 			'year_in_business' => request('year_in_business'),
-			'start_up_year' => request('start_up_year'),
+			
 			'business_type' => request('business_type'),
 			'address' => request('address'),
 			'phone_number' => request('phone_number'),
