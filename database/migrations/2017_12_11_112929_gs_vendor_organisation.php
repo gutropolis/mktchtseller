@@ -21,7 +21,7 @@ class GsVendorOrganisation extends Migration
             $table->string('location');
             $table->string('pic');
             $table->string('year_in_business');
-            $table->string('start_up_year');
+           
 			$table->string('address');
             $table->string('mission_statement');
             $table->string('vision_statement');
