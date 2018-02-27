@@ -62,7 +62,8 @@ $sellerproduct = SellerProduct::latest()->get();
 
 	public function store(Request $request)
 	{
-	
+
+            
 	$sellerproduct = \App\Sellerproduct::create([
 	'title' => request('name'),
 	'description' => request('bulletPoints'),
@@ -70,6 +71,7 @@ $sellerproduct = SellerProduct::latest()->get();
 	'images' => request('image'),
 	'organisation_id'=>request('title'),
 	'units'=> request('units'),
+	'tags' => request('tags'),
 	]);
 	$user = JWTAuth::parseToken()->authenticate();
 	$query= Seller::where('user_id',$user->id)->first();
@@ -94,6 +96,7 @@ $sellerproduct = SellerProduct::latest()->get();
 	$sellerproduct->asin_url=$request->get('asin_url');
 	$sellerproduct->organisation_id=$request->get('organisation_id');
 	$sellerproduct->units=$request->get('units');
+	$sellerproduct->tags=$request->get('tags');
 	$sellerproduct->save();
 	return response()->json(['message' => 'Data update Successfully']);
 	}
