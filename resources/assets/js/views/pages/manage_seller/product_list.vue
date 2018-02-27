@@ -20,7 +20,7 @@
                                     <th>Description</th>
                                     <th>ASIN</th>
                                     <th>Images</th>
-                                    <th>Created_at</th>
+                                    <th>Created On</th>
                                     <th>Action</th>
                                  </tr>
                                  <tr v-for="item in items">
