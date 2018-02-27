@@ -18,8 +18,21 @@
                               <input type="Submit" placeholder="" value="Search" class="btn btn-bg-orange login__element--box--button">
                            </div>
                         </form>
-                          <form class="form-horizontal form-material" id="items" @submit.prevent="submit">
-                           <div class="form-group ">
+                        <form class="form-horizontal form-material" id="items" @submit.prevent="submit">
+                           <div class="form-group">
+					   
+                            <label class="login__element--box--label">Select Company</label>
+                            <select name="title"  v-model="items.title" required class="login__element--box--input">
+							<option value="select">Select .. </option>
+							
+							<option  v-for="items in item" v-bind:value="items.title">{{ items.title }}</option>
+							
+							
+							</select>
+                        </div>
+						   
+						   
+						   <div class="form-group ">
                               <label class="login__element--box--label">Title</label>
                               <input type="text" name="title" class="login__element--box--input"  placeholder="Title" v-model="items.name">
                            </div>
@@ -47,7 +60,7 @@
                            </div>
 						   <div class="form-group ">
                               <label class="login__element--box--label">Tags</label>
-                              <input type="text" name="units" class="login__element--box--input"  placeholder="tags" v-model="items.tags">
+                              <input type="text" name="tags" class="login__element--box--input"  placeholder="tags" v-model="items.tags">
                            </div>
                            <div class="form-group text-center">
                               <input type="Submit" placeholder="" value="Save" class="btn btn-bg-orange login__element--box--button">
@@ -70,7 +83,11 @@
           },
           data() {
               return {
-   				items:[],
+			 
+			  item:[],
+   				items:{
+				 title: 'select',
+				},
    					productform:{
    					 keywords: '',
    					},
@@ -78,11 +95,25 @@
                  
           }
       },
+	  created: function()
+          {
+              this.fetchItems();
+          },
           
           mounted(){
           },
           methods: {
-		  
+					  fetchItems()
+					{
+					axios.get('api/seller_list').then(response=>{
+					
+					this.item=response.data;
+					
+					
+					}).catch(error=>{
+					toastr['error'](error.response.data.message);
+					});
+					},
    	
    		
               submit1(e){
