@@ -87,7 +87,7 @@ class Amazon {
 			Log::info("Images:\t".$xml->Images);
 			Log::info("bulletPoints:\t".$xml->ItemAttributes->Feature);
 	        Log::info("Offer price:\t".$xml->OfferSummary->LowestNewPrice->FormattedPrice);
-			Log::info("Units:\t". $xml->OfferSummary->TotalNew);
+			//Log::info("Units:\t". $xml->OfferSummary->TotalNew);
 	        Log::info("Node:\t".$xml->BrowseNodes->BrowseNode[0]->Name);
 			
 	        
@@ -110,7 +110,7 @@ class Amazon {
 			$product->name = (string) $xml->ItemAttributes->Title;
     	    $product->description = (string) $xml->DetailPageURL;
     	    $product->offer_price = str_replace('$','',$xml->OfferSummary->LowestNewPrice->FormattedPrice);
-			 $product->units = str_replace('$','',$xml->OfferSummary->TotalNew);
+			// $product->units = str_replace('$','',$xml->OfferSummary->TotalNew);
     	    $product->ASIN = (string) $xml->ASIN;
     	    $product->category = (string) $xml->BrowseNodes->BrowseNode[0]->Name;
 				$product->bulletPoints = $bulletPoints;
