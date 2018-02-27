@@ -9,7 +9,7 @@
                 
                     <div class="dashboard__content--outer">
                         
-                        <div class="dashboard__content--description">
+                        <div class="dashboard__content--description" >
                             <hr>
                             
                            
