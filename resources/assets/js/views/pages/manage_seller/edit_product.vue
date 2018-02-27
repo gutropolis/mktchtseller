@@ -18,7 +18,7 @@
 					 <div class="form-group">
 					   
                             <label class="login__element--box--label">Select Company</label>
-                            <select name="company"  v-model="productForm.organisation_id"  class="login__element--box--input">
+                            <select name="company"   v-model="productForm.organisation_id"  required class="login__element--box--input">
 							<option value="select">Select .. </option>
 							<option  v-for="item in items" v-bind:value="item.title">{{ item.title }}</option>
 								
@@ -29,27 +29,27 @@
 					
 					<div class="form-group ">
                         <label class="login__element--box--label">Title</label>
-                            <input type="text" name="title" class="login__element--box--input"  placeholder="Title" v-model="productForm.title">
+                            <input type="text" name="title" class="login__element--box--input" required  placeholder="Title" v-model="productForm.title">
                       
                     </div>
                     <div class="form-group ">
                         <label class="login__element--box--label">Description</label>
-                            <textarea  type="text" v-html="productForm.bulletPoints" v-model="productForm.description"  rows="7" placeholder="Description" class="login__element--box--input"></textarea>
+                            <textarea  type="text" v-html="productForm.bulletPoints" v-model="productForm.description" required  rows="7" placeholder="Description" class="login__element--box--input"></textarea>
                        
                     </div>
 					<div class="form-group ">
                         <label class="login__element--box--label">ASIN</label>
-                            <input type="text" name="asin_url" class="login__element--box--input"  placeholder="ASIN" v-model="productForm.asin_url">
+                            <input type="text" name="asin_url" class="login__element--box--input" required  placeholder="ASIN" v-model="productForm.asin_url">
                        
                     </div>
                    <div class="form-group ">
                         <label class="login__element--box--label">UNITS</label>
-                            <input type="text" name="units" class="login__element--box--input"  placeholder="units" v-model="productForm.units">
+                            <input type="text" name="units" class="login__element--box--input" required placeholder="units" v-model="productForm.units">
                        
                     </div>
 					  <div class="form-group ">
                         <label class="login__element--box--label">Tags</label>
-                            <input type="text" name="tags" class="login__element--box--input"  placeholder="tags" v-model="productForm.tags">
+                            <input type="text" name="tags" class="login__element--box--input" required  placeholder="tags" v-model="productForm.tags">
                        
                     </div>
 					
