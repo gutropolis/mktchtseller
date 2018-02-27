@@ -11,7 +11,7 @@ class Sellerproduct extends Model
         'title','description','asin_url','images','reviews','user_id','units'
     ];
 	public function author()
-		{
+		{ 
 			return $this->belongsTo(User::class, 'user_id','user_name');
 		}
     
