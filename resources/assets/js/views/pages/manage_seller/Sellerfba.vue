@@ -88,7 +88,7 @@
 	</div>
    </section>
 <section>
-	<div class="container">
+	<div class="container" >
 	</div>
 </section>
  </div>
