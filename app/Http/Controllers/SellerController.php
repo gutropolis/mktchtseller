@@ -187,6 +187,26 @@ class SellerController extends Controller
     
    public function update(Request $request,$id)
     { 	
+	$validation = Validator::make($request->all(), [
+            'title' => 'required',
+            'description' => 'required',
+            'location' => 'required',
+			'year_in_business' => 'required',
+			
+			'business_type' => 'required',
+			'address' => 'required',
+			'phone_number' => 'required',
+			'keywords' => 'required',
+			'vision_statement' => 'required',
+			'mission_statement' => 'required',
+			'tax_id' => 'required',
+			
+			
+            
+        ]);
+
+        if($validation->fails())
+            return response()->json(['message' => $validation->messages()->first()],422);
 	
         $seller = Seller::find($id);
 
@@ -194,7 +214,7 @@ class SellerController extends Controller
             $seller->description = $request->get('description');
             $seller->location = $request->get('location');
 			$seller->year_in_business = $request->get('year_in_business');
-			$seller->start_up_year= $request->get('start_up_year');
+		
 			$seller->business_type = $request->get('business_type');
 			$seller->address = $request->get('address');
 			$seller->phone_number = $request->get('phone_number');
