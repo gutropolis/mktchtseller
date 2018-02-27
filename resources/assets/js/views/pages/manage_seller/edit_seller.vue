@@ -22,7 +22,7 @@
                             <select name="business_type" v-model="items.business_type"  class="login__element--box--input">
 							<option value:="items.business_type">{{items.business_type}}</option>
 							<option  v-for="cat in category" v-if="cat.parent_id > 0" :value="cat.title">{{ cat.title }}</option>					
-							</select>
+			 				</select>
                         </div>
                         <div class="form-group">
                             <label class="login__element--box--label">Title</label>
