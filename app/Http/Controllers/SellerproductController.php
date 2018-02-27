@@ -57,7 +57,6 @@ protected $avatar_path = 'images/charityads/';
 	public function store(Request $request)
 	{
 	
-		
 	$sellerproduct = \App\Sellerproduct::create([
 	'title' => request('name'),
 	'description' => request('bulletPoints'),
