@@ -34,33 +34,33 @@
 						   
 						   <div class="form-group ">
                               <label class="login__element--box--label">Title</label>
-                              <input type="text" name="title" class="login__element--box--input"  placeholder="Title" v-model="items.name">
+                              <input type="text" name="title" class="login__element--box--input" required placeholder="Title" v-model="items.name">
                            </div>
                            <input type="hidden" name="organisation_id" v-model="items.organisation_id"   class="login__element--box--input" />
                            <div class="form-group ">
                               <label class="login__element--box--label">ASIN</label>
-                              <input type="text" name="asin" class="login__element--box--input"   placeholder="ASIN" v-model="items.ASIN">
+                              <input type="text" name="asin" class="login__element--box--input" required   placeholder="ASIN" v-model="items.ASIN">
                            </div>
 						 
                            <div class="form-group">
                               <label class="login__element--box--label">Description</label>
-                              <textarea  type="text" v-html="items.bulletPoints" v-model="items.bulletPoints"  rows="7" placeholder="BulletPoints" class="login__element--box--input"></textarea>
+                              <textarea  type="text" v-html="items.bulletPoints" v-model="items.bulletPoints" required rows="7" placeholder="BulletPoints" class="login__element--box--input"></textarea>
                            
                            </div>
                            <div class="form-group ">
                               <label class="login__element--box--label">Image</label>
-                              <input type="hidden" name="image" class="login__element--box--input" placeholder="image" v-model="items.image">
+                              <input type="hidden" name="image" class="login__element--box--input"  required placeholder="image" v-model="items.image">
 							
 							<img v-bind:src="items.image"  height="100px" width="50px">
                            </div>
 						   
                            <div class="form-group ">
                               <label class="login__element--box--label">How Many Units do you want to donate?</label>
-                              <input type="text" name="units" class="login__element--box--input"  placeholder="units" v-model="items.units">
+                              <input type="text" name="units" class="login__element--box--input" required  placeholder="units" v-model="items.units">
                            </div>
 						   <div class="form-group ">
                               <label class="login__element--box--label">Tags</label>
-                              <input type="text" name="tags" class="login__element--box--input"  placeholder="tags" v-model="items.tags">
+                              <input type="text" name="tags" class="login__element--box--input" required placeholder="tags" v-model="items.tags">
                            </div>
                            <div class="form-group text-center">
                               <input type="Submit" placeholder="" value="Save" class="btn btn-bg-orange login__element--box--button">
