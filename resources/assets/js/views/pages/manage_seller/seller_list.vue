@@ -92,7 +92,7 @@
               loaded: false,
                       
                   }
-              },
+              }, 
    		
    		created: function()
           {
