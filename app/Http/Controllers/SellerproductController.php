@@ -30,6 +30,12 @@ protected $avatar_path = 'images/charityads/';
 	$sellerproduct = $query->latest()->get();
 	return response()->json($sellerproduct );
 	}
+		public function products()
+	{
+	
+$sellerproduct = SellerProduct::latest()->get();
+	return response()->json($sellerproduct );
+	}
 
 /*
 * Pass data through ajax call
