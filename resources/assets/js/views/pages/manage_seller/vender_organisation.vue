@@ -100,7 +100,7 @@
     </section>
 	
 
-</div>
+</div> 
 </template>
 <script>
  import AppNavbar from '../users/navbar.vue' 
