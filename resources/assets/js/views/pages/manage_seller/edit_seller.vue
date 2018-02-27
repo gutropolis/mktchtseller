@@ -129,7 +129,7 @@ import Vue from 'vue'
             {
               axios.post('api/edit_seller/'+this.$route.params.id,this.items).then(response =>  {
                     toastr['success'](response.data.message);
-                    this.$router.push('/aboutus');
+                    this.$router.push('/seller_list');
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });
