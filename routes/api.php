@@ -88,6 +88,7 @@ Route::get('/product/search','ProductController@formsearch');
 Route::post('/product/search', 'ProductController@formSearch');
 Route::get('/product_details/{id}','SellerproductController@product_details');
 Route::get('/productsearch','SellerproductController@products');
+Route::post('/productsearch','SellerproductController@search');
 
 //charity list
 Route::get('/charity_details/{id}','charityController@charity_details');
