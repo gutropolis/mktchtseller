@@ -11,14 +11,14 @@
                         
                         <div class="dashboard__content--description">
                             <hr>
-                            <h3 class="dashboard__content--description--heading">Add Your Organisation</h3>
+                            <h3 class="dashboard__content--description--heading">Add Your Company</h3>
                            
-                   <form-wizard @on-complete="submit" shape="circle"  title="Add Your Organisation"
+                   <form-wizard @on-complete="submit" shape="circle"  title="Add Your Company"
                       subtitle="" color="#19b325">
 					    <tab-content>
 					  <div class="form-group">
 					   
-                            <label class="login__element--box--label">Seller Category</label>
+                            <label class="login__element--box--label">Company Category </label>
                             <select name="seller_Category"  v-model="savesellerform.seller_Category" class="login__element--box--input">
 							<option value="select">Select .. </option>
 							
@@ -29,7 +29,7 @@
                         </div>
 						<div v-if="savesellerform.seller_Category !='select' "  class="form-group">
 					   
-                            <label class="login__element--box--label">Seller Type</label>
+                            <label class="login__element--box--label">Company SubCategory</label>
                             <select name="business_type"  v-model="savesellerform.business_type" class="login__element--box--input">
 							<option value="select">Select .. </option>
 							
@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group">
                             <label class="login__element--box--label">Title</label>
-                            <input type="text" name="title" v-model="savesellerform.title"  placeholder="Title" class="login__element--box--input">
+                            <input type="text" name="title" v-model="savesellerform.title"   placeholder="Title" class="login__element--box--input">
                         </div>
                         <div class="form-group">
                             <label class="login__element--box--label">Description</label>
@@ -53,12 +53,8 @@
 						  </tab-content>
 						  <tab-content>
 						<div class="form-group">
-                            <label class="login__element--box--label">Year in business</label>
+                            <label class="login__element--box--label">Years in business</label>
                             <input type="text" placeholder="year in business" v-model="savesellerform.year_in_business" class="login__element--box--input">
-                        </div>
-						<div class="form-group">
-                            <label class="login__element--box--label">Start up year</label>
-                            <input type="date" placeholder="Start up year" v-model="savesellerform.start_up_year"  class="login__element--box--input">
                         </div>
 						
 						<div class="form-group">
@@ -73,7 +69,7 @@
 						    <tab-content>
 						<div class="form-group">
                             <label class="login__element--box--label">Keyword</label>
-                            <input type="text" placeholder="Keyword" v-model="savesellerform.keyword" class="login__element--box--input">
+                            <input type="text" placeholder="Keywords" v-model="savesellerform.keywords" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Vision</label>
@@ -100,7 +96,7 @@
     </section>
 	
 
-</div> 
+</div>
 </template>
 <script>
  import AppNavbar from '../users/navbar.vue' 
