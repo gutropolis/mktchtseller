@@ -172,6 +172,26 @@ let routes = [
 				component:require('./views/pages/my_ads/show_ads')
 			},
 			
+			{
+				path : 'user_chat',
+				component:require('./views/pages/message/user_chat')
+			},
+			
+			
+			{
+				path : 'user_chat_demo',
+				component:require('./views/pages/message/user_chat_demo')
+			},
+			
+			{
+				path : 'users_detail',
+				component:require('./views/pages/message/users_detail')
+			},
+			
+			{
+				path : 'users_message',
+				component:require('./views/pages/message/users_message')
+			},
         ]
     },
 	 
