@@ -31,7 +31,13 @@ public function index(){
         return response()->json($message);
 		
 	}
-
+	public function message()
+    {
+     $user = JWTAuth::parseToken()->authenticate();   
+	 $message=Message::where('reciever_id',$user->id)->get();
+	 
+	 return response()->json($message);
+    }
 
      
    
