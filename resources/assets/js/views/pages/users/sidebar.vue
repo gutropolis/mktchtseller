@@ -75,7 +75,7 @@
                </router-link>
             </li>
             <li class="proflie__element--detail--list--item">
-               <router-link to="/recieve_message" class="proflie__element--detail--list--item--link">
+               <router-link to="#" v-b-toggle.collapse7 class="proflie__element--detail--list--item--link">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
                      <g>
                         <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
@@ -101,7 +101,7 @@
 			
             <div v-if="getrole === 'charity'">
                <li class="proflie__element--detail--list--item">
-                  <router-link to="" class="proflie__element--detail--list--item--link">
+                  <router-link to="" v-b-toggle.collapse3 class="proflie__element--detail--list--item--link">
                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512px" height="512px">
                         <g>
                            <g>
@@ -153,7 +153,7 @@
                </router-link>
             </li>
                <li class="proflie__element--detail--list--item">
-                  <router-link to="" class="proflie__element--detail--list--item--link">
+                  <router-link to="" v-b-toggle.collapse5 class="proflie__element--detail--list--item--link">
                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512px" height="512px">
                         <g>
                            <g>
