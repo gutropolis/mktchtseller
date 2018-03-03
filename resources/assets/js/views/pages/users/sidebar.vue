@@ -75,7 +75,7 @@
                </router-link>
             </li>
             <li class="proflie__element--detail--list--item">
-               <router-link to="#" v-b-toggle.collapse7 class="proflie__element--detail--list--item--link">
+               <router-link to="users_detail" v-b-toggle.collapse7 class="proflie__element--detail--list--item--link">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
                      <g>
                         <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
@@ -85,18 +85,7 @@
                      </g>
                   </svg>
                   Messages
-               </router-link> <b-link class="dropdown__arrow" v-b-toggle.collapse7><i class="fa fa-angle-down" aria-hidden="true"></i></b-link>
-                  <b-collapse  id="collapse7" class=""  >
-                     <ul class="drop_menu">
-                        <li class="drop_menu--list">
-                           <router-link to="/sent_message" class="drop_menu--list--link">Sent Message</router-link>
-                        </li>
-                        <li class="drop_menu--list">
-                           <router-link to="/recieve_message" class="drop_menu--list--link">Recieve Message</router-link>
-                        </li>
-                       
-                     </ul>
-                  </b-collapse>
+               </router-link> 
             </li>
 			
             <div v-if="getrole === 'charity'">
