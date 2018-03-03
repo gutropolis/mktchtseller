@@ -51,6 +51,7 @@
                           </div>
                           <p class="users_messages--users_area--box--list--link--user_name">Nikhil</p>
                           <p class="users_messages--users_area--box--list--link--user_title">It is a long established fact that a reader will be distracted.</p>
+                          <p class="users_messages--users_area--box--list--link--date">20/2/2018:03:10pm</p>
                         </a>
                       </li>
 
