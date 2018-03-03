@@ -104,10 +104,10 @@
                   <b-collapse  id="collapse3" class=""  >
                      <ul class="drop_menu">
                         <li class="drop_menu--list">
-                           <router-link to="/charity_organisation" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i>Add Charity Organisation</router-link>
+                           <router-link to="/charity_organisation" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Add Charity Organisation</router-link>
                         </li>
                         <li class="drop_menu--list">
-                           <router-link to="/charity_list" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i>Charity List</router-link>
+                           <router-link to="/charity_list" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Charity List</router-link>
                         </li>
                        
                      </ul>
