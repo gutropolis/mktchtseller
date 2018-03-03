@@ -1288,13 +1288,14 @@ footer {
         height: auto;
         overflow: hidden;
         margin-bottom: 0px;
-		padding: 10% 0px;
+        padding: 10% 0px;
+        text-align: center;
     }
     &--content {
         &--heading {
             font-weight: 600;
             text-transform: uppercase;
-            font-size: 24px;
+            font-size: 20px;
         }
         &--pera {
             font-size: 18px;
@@ -1835,7 +1836,7 @@ footer {
                         border-radius: 100%;
                         color: $white-color;
                         position: absolute;
-                        top: 25px;
+                        top: 35px;
                         right: 15px;
                     }
                 }
