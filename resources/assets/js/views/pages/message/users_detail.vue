@@ -44,7 +44,7 @@
                     <ul class="users_messages--users_area--box">
                       
                       <li class="users_messages--users_area--box--list">
-                        <b-link to="{name: 'user_message', params: { id: create_messages.id }}" class="users_messages--users_area--box--list--link">
+                        <b-link to="/users_message" class="users_messages--users_area--box--list--link">
                           <div class="users_messages--users_area--box--list--link--image_outer">
                             <figure class="users_messages--users_area--box--list--link--image_outer--image_box">
                              <img :src="'/images/user/'+ create_messages.sender_image"  class="users_messages--users_area--box--list--link--image_outer--image_box--image">
