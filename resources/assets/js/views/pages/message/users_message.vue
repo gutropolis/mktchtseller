@@ -33,7 +33,7 @@
             <div class="messages_outer">
               
               <div class="messages_outer--left_sec">
-                <a href="#" class="messages_outer--left_sec--back_btn"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                <router-link to="/users_detail" class="messages_outer--left_sec--back_btn"><i class="fa fa-arrow-left" aria-hidden="true"></i></router-link>
                 <div class="messages_outer--left_sec--image_outer">
                   <figure class="messages_outer--left_sec--image_outer--image_box">
                     <img src="../../../../images/profile-dashboard.jpg" class="messages_outer--left_sec--image_outer--image_box--image">
