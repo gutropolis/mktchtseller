@@ -568,7 +568,7 @@ footer {
     &--figure {
         margin-bottom: 0px;
         padding-bottom: 0px;
-        &--image{width:100px;}
+        &--image{width:80%;}
     }
     
     &--content {
@@ -1285,9 +1285,10 @@ footer {
 .charity_inner {
     border: 1px solid $grey-color4;
     &--figure {
-        height: 265px;
+        height: auto;
         overflow: hidden;
-        margin-bottom: $space-m;
+        margin-bottom: 0px;
+		padding: 10% 0px;
     }
     &--content {
         &--heading {
@@ -1834,7 +1835,7 @@ footer {
                         border-radius: 100%;
                         color: $white-color;
                         position: absolute;
-                        top: 35px;
+                        top: 25px;
                         right: 15px;
                     }
                 }

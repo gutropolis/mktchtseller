@@ -100,3 +100,4 @@ Route::get('/search','charityController@search');
 Route::get('/create_message','MessageController@index');
 Route::post('/create_message','MessageController@store');
 Route::get('/get_user','UserController@index');
+Route::get('/recieve_messages','MessageController@message');
