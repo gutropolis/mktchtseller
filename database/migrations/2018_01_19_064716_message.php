@@ -24,6 +24,8 @@ class Message extends Migration
             $table->string('message');
 			$table->string('sender_read');
             $table->string('reciever_read');
+			$table->string('parent_id');
+			$table->string('sender_image');
             $table->string('post_id');
             $table->string('post_type');
             $table->string('updated_by')->nullable();
