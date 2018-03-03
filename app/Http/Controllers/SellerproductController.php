@@ -72,12 +72,14 @@ $sellerproduct = SellerProduct::latest()->get();
 	'organisation_id'=>request('title'),
 	'units'=> request('units'),
 	'tags' => request('tags'),
+	
 	]);
 	$user = JWTAuth::parseToken()->authenticate();
 	$query= Seller::where('user_id',$user->id)->first();
 	//$sellerproduct->organisation_id=$query->id;
 	$sellerproduct->user_id = $user->id;	
 	$sellerproduct->updated_by=$user->first_name;
+	$sellerproduct->post_type= 'seller';
 	$sellerproduct->save();
 	return response()->json(['message' => 'Your Data Are Stored']);
 	}
