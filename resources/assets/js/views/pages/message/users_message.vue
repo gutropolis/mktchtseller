@@ -33,13 +33,87 @@
             <div class="messages_outer">
               
               <div class="messages_outer--left_sec">
+                <a href="#" class="messages_outer--left_sec--back_btn"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
                 <div class="messages_outer--left_sec--image_outer">
                   <figure class="messages_outer--left_sec--image_outer--image_box">
                     <img src="../../../../images/profile-dashboard.jpg" class="messages_outer--left_sec--image_outer--image_box--image">
                   </figure>
                 </div>
                 <div class="messages_outer--left_sec--user_name">Nikhil Singla</div>
-                <div class="messages_outer--left_sec--user_detail"><b class="messages_outer--left_sec--user_detail--title">Detail:</b>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</div>
+                <ul class="messages_outer--left_sec--detail_sec">
+                  
+                    <li class="messages_outer--left_sec--detail_sec--detail clearfix">
+                      <span class="messages_outer--left_sec--detail_sec--detail--title pull-left">User Name:</span>
+                      <span class="messages_outer--left_sec--detail_sec--detail--data pull-right">Ajay Thakur</span>
+                    </li>
+                    <li class="messages_outer--left_sec--detail_sec--detail clearfix">
+                      <span class="messages_outer--left_sec--detail_sec--detail--title pull-left">Email:</span>
+                      <span class="messages_outer--left_sec--detail_sec--detail--data pull-right">mail@example.com</span>
+                    </li>
+                    <li class="messages_outer--left_sec--detail_sec--detail clearfix">
+                      <span class="messages_outer--left_sec--detail_sec--detail--title pull-left">Phone:</span>
+                      <span class="messages_outer--left_sec--detail_sec--detail--data pull-right">9988774455</span>
+                    </li>
+                    <li class="messages_outer--left_sec--detail_sec--detail clearfix">
+                      <span class="messages_outer--left_sec--detail_sec--detail--title pull-left">location:</span>
+                      <span class="messages_outer--left_sec--detail_sec--detail--data pull-right">Punjab</span>
+                    </li>
+
+                    <li class="messages_outer--left_sec--detail_sec--description">
+                    <span class="messages_outer--left_sec--detail_sec--description--title">Description:</span>
+                    <span class="messages_outer--left_sec--detail_sec--description--data">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using.</span>
+                  </li>
+                    
+                </ul>
+                <div class="detail_icon">
+                  <button type="button" class="detail_slide-toggle"><i class="fa fa-user" aria-hidden="true"></i></button>
+                </div>
+
+                <div id="mobile_msg_detail" >
+
+                    
+
+                  <div class="mobile_message_outer clearfix ">
+
+                  <div class="mobile_message_outer--left_sec detail_box-inner">
+                <div class="mobile_message_outer--left_sec--image_outer">
+                  <figure class="mobile_message_outer--left_sec--image_outer--image_box">
+                    <img src="../../../../images/profile-dashboard.jpg" class="mobile_message_outer--left_sec--image_outer--image_box--image">
+                  </figure>
+                </div>
+                <div class="mobile_message_outer--left_sec--user_name">Nikhil Singla</div>
+
+                <ul class="mobile_message_outer--left_sec--detail_sec">
+                 
+                    <li class="mobile_message_outer--left_sec--detail_sec--detail clearfix">
+                      <span class="mobile_message_outer--left_sec--detail_sec--detail--title pull-left">User Name:</span>
+                      <span class="mobile_message_outer--left_sec--detail_sec--detail--data pull-right">Ajay Thakur</span>
+                    </li>
+                    <li class="mobile_message_outer--left_sec--detail_sec--detail clearfix">
+                      <span class="mobile_message_outer--left_sec--detail_sec--detail--title pull-left">Email:</span>
+                      <span class="mobile_message_outer--left_sec--detail_sec--detail--data pull-right">mail@example.com</span>
+                    </li>
+                    <li class="mobile_message_outer--left_sec--detail_sec--detail clearfix">
+                      <span class="mobile_message_outer--left_sec--detail_sec--detail--title pull-left">Phone:</span>
+                      <span class="mobile_message_outer--left_sec--detail_sec--detail--data pull-right">9988774455</span>
+                    </li>
+                    <li class="mobile_message_outer--left_sec--detail_sec--detail clearfix">
+                      <span class="mobile_message_outer--left_sec--detail_sec--detail--title pull-left">location:</span>
+                      <span class="mobile_message_outer--left_sec--detail_sec--detail--data pull-right">Punjab</span>
+                    </li>
+
+                     <li class="mobile_message_outer--left_sec--detail_sec--description">
+                    <span class="mobile_message_outer--left_sec--detail_sec--description--title">Description:</span>
+                    <span class="mobile_message_outer--left_sec--detail_sec--description--data">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using.</span>
+                  </li>
+                    
+                </ul>               
+                 </div>
+
+                </div>
+
+               </div>
+
               </div>
 
               <div class="messages_outer--right_sec">
@@ -108,6 +182,7 @@
 import AppNavbar from '../users/navbar.vue' 
  import AppSidebar from '../users/sidebar.vue'
  import Vue from 'vue'
+ import toogle from '../../../../js/toogle.js'
     export default {
     components: {
             AppNavbar,  AppSidebar 
