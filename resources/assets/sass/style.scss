@@ -230,6 +230,9 @@
         }
         &--image {}
     }
+    &__content{
+        margin-top: 20px;
+    }
 }
 
 .sign__element {
@@ -584,6 +587,7 @@ footer {
             &--heading {
                 text-transform: uppercase;
                 padding-bottom: $space-s;
+                font-size: 20px;
             }
             &--subheading {
                 color: $orange-color;
@@ -591,6 +595,11 @@ footer {
             &--pera {
                 padding-top: $space-s;
                 margin-bottom: 0px;
+                ul{
+                    li{
+                        list-style: disc;
+                    }
+                }
             }
         }
         &--address {
@@ -677,7 +686,7 @@ footer {
         &--name {
             color: $white-color;
             text-align: left;
-            padding-left: $space-l + $space-n;
+            padding-left:$space-xl + $space-m;
             font-size: 20px;
             line-height: 40px;
         }
@@ -689,9 +698,11 @@ footer {
                 width: 100%;
                 &--item {
                     position: relative;
+                    background: transparent;
                     &--link {
                         color: $white-color;
                         fill: $white-color;
+                        background: transparent;
                         border-bottom: 1px solid $grey-color4;
                         display: inline-block;
                         width: 100%;
@@ -715,6 +726,34 @@ footer {
                             color: $orange-color;
                             border-color: $orange-color;
                             fill: $orange-color;
+                            // border: 1px solid transparent;
+                            // border-bottom-color: $orange-color; 
+                        }
+                        
+                        &--sub_items{
+                            &--list{
+                            background: transparent;
+                            color: $white-color;
+                            font-size: 16px;
+                            padding: 10px 0px;
+                            border-bottom: 1px solid $white-color;;
+                            padding-left: 70px;
+                            display: inline-block;
+                            width: 100%;
+                            transition: 0.3s ease-in-out;
+                            -webkit-transition: 0.3s ease-in-out;
+                            -moz-transition: 0.3s ease-in-out;
+
+                            // &:hover,
+                            // &:focus {
+                            //     color: $orange-color;
+                            //     border-color: $orange-color;
+                            //     fill: $orange-color;
+                            //     border: 1px solid transparent;
+                            //     border-bottom-color: $orange-color; 
+                            //}
+                        }
+                       
                         }
                     }
                 }
@@ -881,7 +920,7 @@ footer {
     &--button {
         float: right;
         .btn {
-            width: 110px;
+            width: 125px;
             cursor: pointer;
             background: transparent;
             border: 1px solid $grey-color5;
@@ -1112,7 +1151,7 @@ footer {
 
 .profile_notification_icon{
     position: relative;
-    margin-top: $space-s;
+    margin-top: $space-s+$space-vs;
     margin-right: $space-s;
     span {
         background: $orange-color;
