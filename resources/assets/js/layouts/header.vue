@@ -61,7 +61,7 @@
     
     
     
-                    <div class=" my-2 my-lg-0 ">
+                    <div class=" my-2 my-lg-0 user_profile_dropdown">
     
 							 <div v-if="loginCheck">
 
