@@ -38,101 +38,32 @@
                       </form>                             
                   </div>
 
-                  <div class="users_messages--users_area">
-
+                    <div class="users_messages--users_area">
+					<div v-for="create_messages in create_message">
+					  <div v-if="create_messages.parent_id==0">
                     <ul class="users_messages--users_area--box">
                       
                       <li class="users_messages--users_area--box--list">
-                        <a href="#" class="users_messages--users_area--box--list--link">
+                        <b-link to="{name: 'user_message', params: { id: create_messages.id }}" class="users_messages--users_area--box--list--link">
                           <div class="users_messages--users_area--box--list--link--image_outer">
                             <figure class="users_messages--users_area--box--list--link--image_outer--image_box">
-                              <img src="../../../../images/profile-dashboard.jpg" class="users_messages--users_area--box--list--link--image_outer--image_box--image">
+                             <img :src="'/images/user/'+ create_messages.sender_image"  class="users_messages--users_area--box--list--link--image_outer--image_box--image">
                             </figure>
                           </div>
-                          <p class="users_messages--users_area--box--list--link--user_name">Nikhil</p>
-                          <p class="users_messages--users_area--box--list--link--user_title">It is a long established fact that a reader will be distracted.</p>
-                          <p class="users_messages--users_area--box--list--link--date">20/2/2018:03:10pm</p>
-                        </a>
-                      </li>
-
-                      <li class="users_messages--users_area--box--list">
-                        <a href="#" class="users_messages--users_area--box--list--link">
-                          <div class="users_messages--users_area--box--list--link--image_outer">
-                            <figure class="users_messages--users_area--box--list--link--image_outer--image_box">
-                              <img src="../../../../images/profile-dashboard.jpg" class="users_messages--users_area--box--list--link--image_outer--image_box--image">
-                            </figure>
-                          </div>
-                          <p class="users_messages--users_area--box--list--link--user_name">Nikhil</p>
-                          <p class="users_messages--users_area--box--list--link--user_title">It is a long established fact that a reader will be distracted.</p>
-                          <span>5</span>
-                        </a>
-                      </li>
-
-                      <li class="users_messages--users_area--box--list">
-                        <a href="#" class="users_messages--users_area--box--list--link">
-                          <div class="users_messages--users_area--box--list--link--image_outer">
-                            <figure class="users_messages--users_area--box--list--link--image_outer--image_box">
-                              <img src="../../../../images/profile-dashboard.jpg" class="users_messages--users_area--box--list--link--image_outer--image_box--image">
-                            </figure>
-                          </div>
-                          <p class="users_messages--users_area--box--list--link--user_name">Nikhil</p>
-                          <p class="users_messages--users_area--box--list--link--user_title">It is a long established fact that a reader will be distracted.</p>
-                          <span>2</span>
-                        </a>
-                      </li>
-
-                      <li class="users_messages--users_area--box--list">
-                        <a href="#" class="users_messages--users_area--box--list--link">
-                          <div class="users_messages--users_area--box--list--link--image_outer">
-                            <figure class="users_messages--users_area--box--list--link--image_outer--image_box">
-                              <img src="../../../../images/profile-dashboard.jpg" class="users_messages--users_area--box--list--link--image_outer--image_box--image">
-                            </figure>
-                          </div>
-                          <p class="users_messages--users_area--box--list--link--user_name">Nikhil</p>
-                          <p class="users_messages--users_area--box--list--link--user_title">It is a long established fact that a reader will be distracted.</p>
-                        </a>
-                      </li>
-
-                      <li class="users_messages--users_area--box--list">
-                        <a href="#" class="users_messages--users_area--box--list--link">
-                          <div class="users_messages--users_area--box--list--link--image_outer">
-                            <figure class="users_messages--users_area--box--list--link--image_outer--image_box">
-                              <img src="../../../../images/profile-dashboard.jpg" class="users_messages--users_area--box--list--link--image_outer--image_box--image">
-                            </figure>
-                          </div>
-                          <p class="users_messages--users_area--box--list--link--user_name">Nikhil</p>
-                          <p class="users_messages--users_area--box--list--link--user_title">It is a long established fact that a reader will be distracted.</p>
-                        </a>
-                      </li>
-
-                      <li class="users_messages--users_area--box--list">
-                        <a href="#" class="users_messages--users_area--box--list--link">
-                          <div class="users_messages--users_area--box--list--link--image_outer">
-                            <figure class="users_messages--users_area--box--list--link--image_outer--image_box">
-                              <img src="../../../../images/profile-dashboard.jpg" class="users_messages--users_area--box--list--link--image_outer--image_box--image">
-                            </figure>
-                          </div>
-                          <p class="users_messages--users_area--box--list--link--user_name">Nikhil</p>
-                          <p class="users_messages--users_area--box--list--link--user_title">It is a long established fact that a reader will be distracted.</p>
-                        </a>
-                      </li>
-
-                      <li class="users_messages--users_area--box--list">
-                        <a href="#" class="users_messages--users_area--box--list--link">
-                          <div class="users_messages--users_area--box--list--link--image_outer">
-                            <figure class="users_messages--users_area--box--list--link--image_outer--image_box">
-                              <img src="../../../../images/profile-dashboard.jpg" class="users_messages--users_area--box--list--link--image_outer--image_box--image">
-                            </figure>
-                          </div>
-                          <p class="users_messages--users_area--box--list--link--user_name">Nikhil</p>
-                          <p class="users_messages--users_area--box--list--link--user_title">It is a long established fact that a reader will be distracted.</p>
-                        </a>
+                          <p class="users_messages--users_area--box--list--link--user_name"> {{create_messages.sender}}</p>
+                          <p class="users_messages--users_area--box--list--link--user_title">{{create_messages.title}}</p>
+						  <p class="users_messages--users_area--box--list--link--date">{{create_messages.updated_at}}</p>
+						  <span>2</span>
+                        </b-link>
                       </li>
 
                     </ul>
 
                   </div>
 
+
+              </div>
+                 </div>
 
               </div>
                             
@@ -149,26 +80,49 @@
 </template>
 
 <script>
-import AppNavbar from '../users/navbar.vue' 
+
  import AppSidebar from '../users/sidebar.vue'
  import Vue from 'vue'
     export default {
     components: {
-            AppNavbar,  AppSidebar 
+             AppSidebar 
         },
     data() {
             return {
-        
+				 create_message:{},
                  
             }
+
         },
+		created: function()
+           {
+			
+   			this.fetchItem();
+   			 	
+           },
+		
         mounted(){
         },
      
      methods: {
+	 fetchItem()
+               {
+   			
+                axios.get('/api/recieve_messages').then(response=>{
+   			
+   			this.create_message=response.data;
+   			
+   			
+   			}).catch(error=>{
+   			toastr['error'](error.response.data.message);
+   				  
+                 });
+               },
             },
       
         }
     
 </script>
+
+
 
