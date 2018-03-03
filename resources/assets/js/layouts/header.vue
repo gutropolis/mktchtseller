@@ -275,7 +275,7 @@
                         </b-navbar-nav>
 						
 							</div>
-				<div v-else> -->
+				<div v-else>
     
                         <router-link to="/register" class="btn join_btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Join Us </router-link>
     
