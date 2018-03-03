@@ -179,11 +179,6 @@ let routes = [
 			
 			
 			{
-				path : 'user_chat_demo',
-				component:require('./views/pages/message/user_chat_demo')
-			},
-			
-			{
 				path : 'users_detail',
 				component:require('./views/pages/message/users_detail')
 			},
