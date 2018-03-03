@@ -1152,6 +1152,15 @@ footer {
 .navbar-expand-md .navbar-nav .dropdown-menu-right{
     border: 0px;
     padding: 0px;
+    @media screen and (max-width:$break-sm){
+        position: absolute;
+        width: 300px;
+        left: -20px;
+        right: 0;
+    }
+    @media screen and (max-width:$break-vs){
+        width: 220px;
+    }
 }
 .admin__list--box {
     position: relative;
@@ -1161,6 +1170,22 @@ footer {
     background: #fff;
     top: 0px;
     right: 0;
+    @media screen and (max-width:$break-sm){
+        width: 100%;
+    }
+}
+
+.user_profile_dropdown{
+    .navbar-nav{
+        @media screen and (max-width:$break-sm){
+        display: inline-block;
+        }
+        .dropup, .dropdown{
+            @media screen and (max-width:$break-sm){
+            display: inline-block;
+            }
+        }
+    }
 }
 
 .admin__lsit {
