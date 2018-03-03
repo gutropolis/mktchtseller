@@ -104,10 +104,10 @@
                   <b-collapse  id="collapse3" class=""  >
                      <ul class="drop_menu">
                         <li class="drop_menu--list">
-                           <router-link to="/charity_organisation" class="drop_menu--list--link">Add Charity Organisation</router-link>
+                           <router-link to="/charity_organisation" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i>Add Charity Organisation</router-link>
                         </li>
                         <li class="drop_menu--list">
-                           <router-link to="/charity_list" class="drop_menu--list--link">Charity List</router-link>
+                           <router-link to="/charity_list" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i>Charity List</router-link>
                         </li>
                        
                      </ul>
@@ -117,27 +117,59 @@
             <div v-else>
 			 <li class="proflie__element--detail--list--item">
                <router-link to="/product" class="proflie__element--detail--list--item--link">
-                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
-                     <g>
-                        <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
-                        <path d="M304.5,270.3l-52.8,48.2c-4.1,3.8-10.5,3.8-14.6,0l-52-48.2l-165.6,131h451L304.5,270.3z"/>
-                        <polygon points="244.6,296.7 472.8,88.7 16.4,88.7 		"/>
-                        <polygon points="320,256.3 490,390.4 490,101.1 		"/>
+                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                      width="510px" height="510px" viewBox="0 0 510 510" style="enable-background:new 0 0 510 510;" xml:space="preserve">
+                  <g>
+                     <g id="shopping-cart">
+                        <path d="M153,408c-28.05,0-51,22.95-51,51s22.95,51,51,51s51-22.95,51-51S181.05,408,153,408z M0,0v51h51l91.8,193.8L107.1,306
+                           c-2.55,7.65-5.1,17.85-5.1,25.5c0,28.05,22.95,51,51,51h306v-51H163.2c-2.55,0-5.1-2.55-5.1-5.1v-2.551l22.95-43.35h188.7
+                           c20.4,0,35.7-10.2,43.35-25.5L504.9,89.25c5.1-5.1,5.1-7.65,5.1-12.75c0-15.3-10.2-25.5-25.5-25.5H107.1L84.15,0H0z M408,408
+                           c-28.05,0-51,22.95-51,51s22.95,51,51,51s51-22.95,51-51S436.05,408,408,408z"/>
                      </g>
-                  </svg>
+                  </g>
+               </svg>
                   Add Product
                </router-link>
             </li>
 			<li class="proflie__element--detail--list--item">
                <router-link to="/product_list" class="proflie__element--detail--list--item--link">
-                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
+                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                      <g>
-                        <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
-                        <path d="M304.5,270.3l-52.8,48.2c-4.1,3.8-10.5,3.8-14.6,0l-52-48.2l-165.6,131h451L304.5,270.3z"/>
-                        <polygon points="244.6,296.7 472.8,88.7 16.4,88.7 		"/>
-                        <polygon points="320,256.3 490,390.4 490,101.1 		"/>
+                        <g>
+                           <path d="M362.658,66.016h-85.312c-5.888,0-10.656,4.928-10.656,11.008S271.426,88,277.346,88h85.344
+                              c5.888,0,10.656-4.928,10.656-11.008S368.578,66.016,362.658,66.016z"/>
+                        </g>
                      </g>
-                  </svg>
+                     <g>
+                        <g>
+                           <path d="M393.378,5.792C391.554,2.24,387.938,0,384.002,0h-128c-3.936,0-7.552,2.24-9.408,5.824
+                              c-1.856,3.552-1.632,7.904,0.544,11.264l22.304,34.528c2.528-0.8,5.088-1.632,7.872-1.632h85.344c2.816,0,5.376,0.8,7.904,1.632
+                              l22.304-34.528C395.042,13.728,395.266,9.376,393.378,5.792z"/>
+                        </g>
+                     </g>
+                     <g>
+                        <g>
+                           <path d="M48.002,256h-32c-8.832,0-16,7.168-16,16v224c0,8.832,7.168,16,16,16h32c8.832,0,16-7.168,16-16V272
+                              C64.002,263.168,56.834,256,48.002,256z"/>
+                        </g>
+                     </g>
+                     <g>
+                        <g>
+                           <path d="M501.89,290.528c-16.256-20.96-46.464-24.704-67.328-8.416l-118.016,91.776C308.098,380.448,297.73,384,287.074,384
+                              H176.002c44.192,0,80-35.808,80-80c0-8.832-7.168-16-16-16h-144v96v96h212.992c17.792,0,35.072-5.92,49.12-16.864l135.36-105.28
+                              C514.402,341.6,518.146,311.456,501.89,290.528z"/>
+                        </g>
+                     </g>
+                     <g>
+                        <g>
+                           <path d="M436.226,228.448l-68.448-125.472c-1.696,0.352-3.264,1.024-5.088,1.024h-85.344c-1.792,0-3.36-0.704-5.056-1.024
+                              l-68.48,125.472c-4.672,8.576-7.52,17.952-9.44,27.552h45.632c26.464,0,48,21.536,48,48c0,17.152-3.904,33.44-10.816,48h9.888
+                              c3.584,0,6.976-1.152,9.824-3.36l118.016-91.776c8.16-6.368,17.376-10.912,27.072-13.696
+                              C440.258,238.176,438.754,233.088,436.226,228.448z"/>
+                        </g>
+                     </g>
+                     </svg>
                   Donate Products List
                </router-link>
             </li>
