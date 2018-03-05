@@ -14,7 +14,7 @@
 <div class="tab-content">
               <div class="tab-pane active fade show" id="home" role="seller">  <h3 class="login__element--heading">Charity Signup</h3>
                 <div class="login__element--box">
-                    <div class="row login-option">
+                    <!-- <div class="row login-option">
                         <div class="col-md-6 text-center">
                             <a href="/auth/facebook" class="btn facebooklarge">
                                 <span><i class="fa fa-facebook" aria-hidden="true"></i></span> Login with Facebook
@@ -26,7 +26,7 @@
                             </a>
                         </div>
                         <h4>OR</h4>
-                    </div>
+                    </div> -->
                     <form id="registerform" @submit.prevent="submit">
                         <div class="form-group">
                             <label class="login__element--box--label">First Name</label>
