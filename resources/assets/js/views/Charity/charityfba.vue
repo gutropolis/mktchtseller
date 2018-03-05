@@ -85,7 +85,7 @@
 					
 					
     
-	<tr v-for="item in items">
+	<tr v-for="item in items" class="charity_detail_row">
 			
 				<div class="charity__listing row">
 						<figure class="charity__listing--figure  col-md-3">
