@@ -601,7 +601,7 @@ footer {
             &--pera {
                 padding-top: $space-s;
                 margin-bottom: 0px;
-                word-wrap: break;
+                word-wrap: break-word;
                 ul{
                     li{
                         list-style: disc;
