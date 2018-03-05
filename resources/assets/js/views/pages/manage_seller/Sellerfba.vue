@@ -48,7 +48,7 @@
 			
 			<div class="col-md-9">
 			
-				 <tr v-for="item in items">
+				 <tr v-for="item in items" class="charity_detail_row">
 
                  
                   
