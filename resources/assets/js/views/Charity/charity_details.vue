@@ -192,7 +192,7 @@
 				</div>
 			</div>
 			
-			{{create_message|json}}
+			
 		</div>		
 	
    </section>
