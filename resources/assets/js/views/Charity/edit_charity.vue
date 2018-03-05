@@ -42,10 +42,7 @@
                             <label class="login__element--box--label">Year in business</label>
                             <input type="text" placeholder="year in business" v-model="items.year_in_business" class="login__element--box--input">
                         </div>
-						<div class="form-group">
-                            <label class="login__element--box--label">Start up year</label>
-                            <input type="date" placeholder="Start up year" v-model="items.start_up_year"  class="login__element--box--input">
-                        </div>
+						
 						<div class="form-group">
                             <label class="login__element--box--label">Business Purpose</label>
                             <input type="text" placeholder="Purpose" v-model="items.business_purpose" class="login__element--box--input">
@@ -106,15 +103,15 @@
 </div>
 </template>
 <script>
-import AppNavbar from './navbar.vue' 
- import AppSidebar from './sidebar.vue'
+//import AppNavbar from './navbar.vue' 
+ import AppSidebar from '../pages/users/sidebar.vue'
 import Vue from 'vue'
  import VueFormWizard from 'vue-form-wizard'
  Vue.use(VueFormWizard)
  
  export default {
 	components: {
-            AppNavbar,  AppSidebar 
+              AppSidebar 
         },
   
         data() {

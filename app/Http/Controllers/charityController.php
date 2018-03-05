@@ -75,7 +75,7 @@ class charityController extends JoshController
 			'description'=>'required',
 			'location'=>'required',
 			'year_in_business'=>'required',
-			'start_up_year'=>'required',
+			
 			'business_purpose'=>'required',
 			'address'=>'required',
 			'phone_number'=>'required',
@@ -92,7 +92,7 @@ class charityController extends JoshController
 			'description'=> request('description'),
 			'location'=> request('location'),
 			'year_in_business'=> request('year_in_business'),
-			'start_up_year'=> request('start_up_year'),
+			
 			'business_purpose'=> request('business_purpose'),
 			'address'=> request('address'),
 			'phone_number'=> request('phone_number'),
@@ -129,7 +129,7 @@ class charityController extends JoshController
 			$charity->description = $request->get('description');
 			$charity->location = $request->get('location');
 			$charity->year_in_business= request('year_in_business');
-			$charity->start_up_year= request('start_up_year');
+			
 			$charity->business_purpose= request('business_purpose');
 			$charity->address=request('address');
 			$charity->phone_number= request('phone_number');
