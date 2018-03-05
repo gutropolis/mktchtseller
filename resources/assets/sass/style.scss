@@ -485,6 +485,7 @@ footer {
         .form-group {
             .form-control {
                 padding: $space-s+$space-vs;
+                color: $black-color;
             }
             .form-control:focus {
                 border-color: $orange-color;
