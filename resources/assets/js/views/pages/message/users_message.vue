@@ -118,8 +118,30 @@
               </div>
 			
               <div class="messages_outer--right_sec">
-             
-                 <ul class="messages_outer--right_sec--box">
+          
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+                 <ul class="messages_outer--right_sec--box" v-chat-scroll>
                     <div v-for="item in items">
 					   
 						<li v-if="item.sender_id!=user.id" class="messages_outer--right_sec--box--sent">
@@ -163,7 +185,7 @@ import AppNavbar from '../users/navbar.vue'
  import Vue from 'vue'
  import toogle from '../../../../js/toogle.js'
   import helper from '../../../services/helper'
- 
+  
     export default {
     components: {
             AppNavbar,  AppSidebar 

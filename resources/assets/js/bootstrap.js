@@ -10,6 +10,8 @@ Vue.use(VueRouter);
 window.axios = axios;
 window.Form = Form;
 
+import VueChatScroll from 'vue-chat-scroll'
+Vue.use(VueChatScroll)
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('auth_token');
