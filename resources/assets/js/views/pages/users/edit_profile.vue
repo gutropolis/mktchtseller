@@ -66,14 +66,19 @@
                                                 <label for="gender_female"> Female </label>
                                              </div>
                                           </div>
-
+											
+											 <div class="form-group">
+                                             <label class="login__element--box--label">Phone</label>
+                                             <input type="text" name="phone"  rows="3" v-model="profileForm.phone" class="login__element--box--input">
+                                          </div>
+										  
                                           <div class="form-group">
                                              <label class="login__element--box--label">Address</label>
                                              <textarea  type="text" name="address"  rows="3" v-model="profileForm.address" class="login__element--box--input"></textarea>
                                           </div>
                                           <div class="form-group">
                                              <label class="login__element--box--label">Postal</label>
-                                             <input type="number" name="postal" v-model="profileForm.postal"  class="login__element--box--input">
+                                             <input type="text" name="postal" v-model="profileForm.postal"  class="login__element--box--input">
                                           </div>
                                           <button type="submit" class="btn btn-info waves-effect waves-light m-t-10">Update</button>
                                        </form>
@@ -159,9 +164,10 @@
                       first_name : '',
                       last_name : '',
                       dob:'',
-   				bio:'',
-   				postal:'',
-   				address :'',
+					  bio:'',
+					  phone:'',
+					  postal:'',
+					  address :'',
                       gender : '',
                      
    			    
@@ -196,6 +202,7 @@
    			 this.profileForm.last_name = response.last_name;
    			 this.profileForm.dob = response.dob;
    			 this.profileForm.postal = response.postal;
+			  this.profileForm.phone = response.phone;
    			 this.profileForm.gender = response.gender;
    			 this.profileForm.bio = response.bio;
    		     this.profileForm.address = response.address;
