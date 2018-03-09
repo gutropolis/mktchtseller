@@ -15,9 +15,9 @@ class GsMessage extends Migration
     {
         Schema::create('gs_message', function (Blueprint $table) {
             $table->increments('id');
-			$table->int('inbox_id');
-			$table->int('sender_id');
-			$table->int('reciever_id');
+			$table->string('inbox_id');
+			$table->string('sender_id');
+			$table->string('reciever_id');
 			$table->string('message');
 			$table->string('reciever_read');
             $table->timestamps();
