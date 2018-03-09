@@ -30,10 +30,6 @@
 .red {
     background: $red-color;
 }
-  
-body{
-    overflow-x: hidden;
-}
 
 .main-nav {
     &-box {
@@ -601,7 +597,6 @@ footer {
             &--pera {
                 padding-top: $space-s;
                 margin-bottom: 0px;
-                word-wrap: break-word;
                 ul{
                     li{
                         list-style: disc;
@@ -617,9 +612,6 @@ footer {
                 height: 55px;
                 line-height: 55px;
                 position: relative;
-                @media screen and (max-width: $break-sm) {
-                    text-align: left;
-                }
                 p {
                     margin-bottom: 0px;
                     color: $grey-color9;
@@ -631,9 +623,6 @@ footer {
                     span {
                         font-weight: 600;
                         color: $black-color;
-                    }
-                    @media screen and (max-width: $break-sm){
-                        margin-left: 30px;
                     }
                 }
             }
@@ -2072,6 +2061,7 @@ footer {
                 max-height:700px;
                 min-height: 450px;
                 overflow-y: scroll;
+				padding-bottom: 40px;
                 
              &::-webkit-scrollbar-track
              {
@@ -2189,8 +2179,4 @@ footer {
         }
     }
     
-}
-
-.charity_detail_row{
-    display: block;
 }
