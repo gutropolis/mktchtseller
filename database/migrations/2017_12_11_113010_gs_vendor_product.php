@@ -22,6 +22,7 @@ class GsVendorProduct extends Migration
             $table->string('images');
             $table->string('units');
 			$table->string('organisation_id');
+			$table->string('post_type');
 			$table->string('tags');
             $table->string('user_id')->nullable();
             
