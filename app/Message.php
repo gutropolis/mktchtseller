@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
- protected $table="message";
+ protected $table="gs_message";
     protected $fillable = [
-   'title','message','reciever_id','post_id','post_type','reciever'
+   'inbox_id','sender_id','reciever_id','reciever_read','message'
     ];
 	public function author()
 	{
