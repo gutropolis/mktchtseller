@@ -82,8 +82,17 @@ use stdClass;
 		
 		foreach($messages as $message)
 		{
-			
-			$user=User::where('id',$message->reciever_id)->get();
+				$receiver_userid=0;
+			if($user->id==$message->reciever_id)
+				{
+				$receiver_userid=$message->sender_id;
+				}
+				else
+				{
+				$receiver_userid=$message->reciever_id;
+				}
+				
+			$user=User::where('id',$receiver_userid)->get();
 			
 			return response()->json($user);
 			
