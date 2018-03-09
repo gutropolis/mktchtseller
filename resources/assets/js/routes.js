@@ -184,7 +184,8 @@ let routes = [
 			},
 			
 			{
-				path : 'users_message',
+				name:'users_message',
+				path : '/users_message',
 				component:require('./views/pages/message/users_message')
 			},
         ]
