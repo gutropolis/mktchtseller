@@ -31,44 +31,45 @@
           <div class="chat_frame">
             
             <div class="messages_outer">
-              
+              <div v-for="item in info">
               <div class="messages_outer--left_sec">
                 <router-link to="/users_detail" class="messages_outer--left_sec--back_btn"><i class="fa fa-arrow-left" aria-hidden="true"></i></router-link>
                 <div class="messages_outer--left_sec--image_outer">
                   <figure class="messages_outer--left_sec--image_outer--image_box">
-                    <img src="../../../../images/profile-dashboard.jpg" class="messages_outer--left_sec--image_outer--image_box--image">
+                    <img :src="'/images/user/'+ item.avatar" class="messages_outer--left_sec--image_outer--image_box--image">
+					
                   </figure>
                 </div>
-                <div class="messages_outer--left_sec--user_name">Nikhil Singla</div>
+                <div class="messages_outer--left_sec--user_name">{{item.first_name}} {{item.last_name}}</div>
                 <ul class="messages_outer--left_sec--detail_sec">
                   
                     <li class="messages_outer--left_sec--detail_sec--detail clearfix">
                       <span class="messages_outer--left_sec--detail_sec--detail--title pull-left">User Name:</span>
-                      <span class="messages_outer--left_sec--detail_sec--detail--data pull-right">Ajay Thakur</span>
+                      <span class="messages_outer--left_sec--detail_sec--detail--data pull-right">{{item.first_name}} {{item.last_name}}</span>
                     </li>
                     <li class="messages_outer--left_sec--detail_sec--detail clearfix">
                       <span class="messages_outer--left_sec--detail_sec--detail--title pull-left">Email:</span>
-                      <span class="messages_outer--left_sec--detail_sec--detail--data pull-right">mail@example.com</span>
+                      <span class="messages_outer--left_sec--detail_sec--detail--data pull-right">{{item.email}}</span>
                     </li>
                     <li class="messages_outer--left_sec--detail_sec--detail clearfix">
                       <span class="messages_outer--left_sec--detail_sec--detail--title pull-left">Phone:</span>
-                      <span class="messages_outer--left_sec--detail_sec--detail--data pull-right">9988774455</span>
+                      <span class="messages_outer--left_sec--detail_sec--detail--data pull-right">{{item.phone}}</span>
                     </li>
                     <li class="messages_outer--left_sec--detail_sec--detail clearfix">
                       <span class="messages_outer--left_sec--detail_sec--detail--title pull-left">location:</span>
-                      <span class="messages_outer--left_sec--detail_sec--detail--data pull-right">Punjab</span>
+                      <span class="messages_outer--left_sec--detail_sec--detail--data pull-right">{{item.address}}</span>
                     </li>
 
                     <li class="messages_outer--left_sec--detail_sec--description">
                     <span class="messages_outer--left_sec--detail_sec--description--title">Description:</span>
-                    <span class="messages_outer--left_sec--detail_sec--description--data">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using.</span>
+                    <span class="messages_outer--left_sec--detail_sec--description--data">{{item.bio}}</span>
                   </li>
                     
                 </ul>
                 <div class="detail_icon">
                   <button type="button" class="detail_slide-toggle"><i class="fa fa-user" aria-hidden="true"></i></button>
                 </div>
-
+				
                 <div id="mobile_msg_detail" >
 
                     
@@ -78,98 +79,76 @@
                   <div class="mobile_message_outer--left_sec detail_box-inner">
                 <div class="mobile_message_outer--left_sec--image_outer">
                   <figure class="mobile_message_outer--left_sec--image_outer--image_box">
-                    <img src="../../../../images/profile-dashboard.jpg" class="mobile_message_outer--left_sec--image_outer--image_box--image">
+                      <img :src="'/images/user/'+ item.avatar"   class="mobile_message_outer--left_sec--image_outer--image_box--image">
                   </figure>
                 </div>
-                <div class="mobile_message_outer--left_sec--user_name">Nikhil Singla</div>
+                <div class="mobile_message_outer--left_sec--user_name">{{item.first_name}} {{item.last_name}}</div>
 
                 <ul class="mobile_message_outer--left_sec--detail_sec">
                  
                     <li class="mobile_message_outer--left_sec--detail_sec--detail clearfix">
                       <span class="mobile_message_outer--left_sec--detail_sec--detail--title pull-left">User Name:</span>
-                      <span class="mobile_message_outer--left_sec--detail_sec--detail--data pull-right">Ajay Thakur</span>
+                      <span class="mobile_message_outer--left_sec--detail_sec--detail--data pull-right">{{item.first_name}} {{item.last_name}}</span>
                     </li>
                     <li class="mobile_message_outer--left_sec--detail_sec--detail clearfix">
                       <span class="mobile_message_outer--left_sec--detail_sec--detail--title pull-left">Email:</span>
-                      <span class="mobile_message_outer--left_sec--detail_sec--detail--data pull-right">mail@example.com</span>
+                      <span class="mobile_message_outer--left_sec--detail_sec--detail--data pull-right">{{item.email}}</span>
                     </li>
                     <li class="mobile_message_outer--left_sec--detail_sec--detail clearfix">
                       <span class="mobile_message_outer--left_sec--detail_sec--detail--title pull-left">Phone:</span>
-                      <span class="mobile_message_outer--left_sec--detail_sec--detail--data pull-right">9988774455</span>
+                      <span class="mobile_message_outer--left_sec--detail_sec--detail--data pull-right">{{item.phone}}</span>
                     </li>
                     <li class="mobile_message_outer--left_sec--detail_sec--detail clearfix">
                       <span class="mobile_message_outer--left_sec--detail_sec--detail--title pull-left">location:</span>
-                      <span class="mobile_message_outer--left_sec--detail_sec--detail--data pull-right">Punjab</span>
+                      <span class="mobile_message_outer--left_sec--detail_sec--detail--data pull-right">{{item.address}}</span>
                     </li>
 
                      <li class="mobile_message_outer--left_sec--detail_sec--description">
                     <span class="mobile_message_outer--left_sec--detail_sec--description--title">Description:</span>
-                    <span class="mobile_message_outer--left_sec--detail_sec--description--data">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using.</span>
+                    <span class="mobile_message_outer--left_sec--detail_sec--description--data">{{item.bio}}</span>
                   </li>
                     
                 </ul>               
                  </div>
-
+				</div>
                 </div>
 
                </div>
 
               </div>
-
+			
               <div class="messages_outer--right_sec">
-                 
+             
                  <ul class="messages_outer--right_sec--box">
-                    
-                    <li class="messages_outer--right_sec--box--sent">
-                        <img class="messages_outer--right_sec--box--sent--image" src="../../../../images/profile-dashboard.jpg">
-                        <p class="messages_outer--right_sec--box--sent--chat">How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
-                    </li>
-
-                    <li class="messages_outer--right_sec--box--replies">
-                       <img class="messages_outer--right_sec--box--replies--image" src="../../../../images/profile-dashboard.jpg">
-                        <p class="messages_outer--right_sec--box--replies--chat">When you're backed against the wall, break the god damn thing down.</p>
-                    </li>
-                    <li class="messages_outer--right_sec--box--sent">
-                        <img class="messages_outer--right_sec--box--sent--image" src="../../../../images/profile-dashboard.jpg">
-                        <p class="messages_outer--right_sec--box--sent--chat">How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
-                    </li>
-
-                    <li class="messages_outer--right_sec--box--replies">
-                       <img class="messages_outer--right_sec--box--replies--image" src="../../../../images/profile-dashboard.jpg">
-                        <p class="messages_outer--right_sec--box--replies--chat">When you're backed against the wall, break the god damn thing down.</p>
-                    </li>
-
-                    <li class="messages_outer--right_sec--box--replies">
-                       <img class="messages_outer--right_sec--box--replies--image" src="../../../../images/profile-dashboard.jpg">
-                        <p class="messages_outer--right_sec--box--replies--chat">When you're backed against the wall, break the god damn thing down.</p>
-                    </li>
-                    <li class="messages_outer--right_sec--box--replies">
-                       <img class="messages_outer--right_sec--box--replies--image" src="../../../../images/profile-dashboard.jpg">
-                        <p class="messages_outer--right_sec--box--replies--chat">When you're backed against the wall, break the god damn thing down.</p>
-                    </li>
-                    
-                    <li class="messages_outer--right_sec--box--sent">
-                        <img class="messages_outer--right_sec--box--sent--image" src="../../../../images/profile-dashboard.jpg">
-                        <p class="messages_outer--right_sec--box--sent--chat">How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
-                    </li>
-
+                    <div v-for="item in items">
+					   
+						<li v-if="item.sender_id!=user.id" class="messages_outer--right_sec--box--sent">
+							<img class="messages_outer--right_sec--box--sent--image" src="../../../../images/profile-dashboard.jpg">
+							<p class="messages_outer--right_sec--box--sent--chat">{{item.message}}</p>
+						</li>
+						
+						 <li v-else class="messages_outer--right_sec--box--replies">
+						   <img class="messages_outer--right_sec--box--replies--image" :src="getAvatar">
+							<p class="messages_outer--right_sec--box--replies--chat">{{item.message}}</p>
+						</li>
+					</div> 
                   </ul>
-
+				
+					 <form  @submit.prevent="submit">
                     <div class="right_user_chat--message_input">
                       <div class="right_user_chat--message_input--wrap">
-                      <input type="text" placeholder="Write your message..." class="right_user_chat--message_input--wrap--text" />
+                      <input type="text" placeholder="Write your message..." class="right_user_chat--message_input--wrap--text" v-model="savechat.message" />
                      
-                      <button class="submit right_user_chat--message_input--wrap--button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                      <input type="submit" class="submit right_user_chat--message_input--wrap--button">
                       </div>
                     </div>
-
+						</form>
               </div>
-
-            </div>
-
+			
+			</div>
           </div>
-                            
-          
+                    			
+         
           </div>                  
                 </div>
             </div>
@@ -177,29 +156,87 @@
 </div>
 </div>
 </template>
-
+  
 <script>
 import AppNavbar from '../users/navbar.vue' 
  import AppSidebar from '../users/sidebar.vue'
  import Vue from 'vue'
  import toogle from '../../../../js/toogle.js'
+  import helper from '../../../services/helper'
+ 
     export default {
     components: {
             AppNavbar,  AppSidebar 
         },
     data() {
             return {
-        
-                 
+			info:[],
+			user:[],
+		    items:[],
+			 savechat:{  message:''  }			 
             }
+        },
+		created: function()
+        {
+			this.senderinfo();
+			this.fetchItem();
+            this.fetchItems();
         },
         mounted(){
         },
      
-     methods: {
-            },
-      
+
+	  methods: {
+             submit(e){
+				axios.post('/api/message/'+this.$route.params.id, this.savechat).then(response =>   { if(response.status===200) {
+   				 this.savechat.message = '';
+        
         }
+   	   });
+				 this.fetchItems();
+				
+            },
+			
+			senderinfo()
+			{
+				axios.get('/api/senderinfo/'+this.$route.params.id).then(response =>  {
+				 this.info = response.data;
+			})
+			},
+			
+			 fetchItems()
+            {
+				axios.get('/api/user_detail/'+this.$route.params.id).then(response =>  {
+                  this.items = response.data;
+				  
+              });
+            },
+		
+			
+			 fetchItem()
+            {
+				axios.get('/api/user_id').then(response =>  {
+                  this.user = response.data;
+				  
+              });
+            },
+			 getAuthUser(name) {
+    
+                return this.$store.getters.getAuthUser(name);
+    
+            },
+			
+			 },
+			 computed: {
+			
+            getAvatar(){
+                return '/images/user/'+this.getAuthUser('avatar');
+            }
+			
+        }
+      
+   
+		}
     
 </script>
 
