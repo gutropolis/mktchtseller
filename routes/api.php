@@ -98,6 +98,12 @@ Route::get('/search','charityController@search');
 
 //message part
 Route::get('/create_message','MessageController@index');
-Route::post('/create_message','MessageController@store');
+Route::post('/create_message','InboxController@store');
 Route::get('/get_user','UserController@index');
-Route::get('/recieve_messages','MessageController@message');
+Route::get('/get_inbox','InboxController@fetch');
+Route::get('/getmessage','InboxController@index');
+Route::get('/user_detail/{id}','InboxController@detail');
+Route::post('/message/{id}','InboxController@message');
+Route::get('/user_id','InboxController@user_id');
+Route::get('/senderinfo/{id}','InboxController@senderinfo');
+
