@@ -109,6 +109,7 @@ public function index(){
         $user->dob = request('dob');
         $user->gender = request('gender');
 		$user->address= request('address');
+		$user->phone= request('phone');
 		$user->postal= request('postal');
 		$user->bio = request('bio');
 	
