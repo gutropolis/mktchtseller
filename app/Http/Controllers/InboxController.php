@@ -7,6 +7,7 @@ use App\User;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use Hash;
+use App\Events\MessageSent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Redirect;
@@ -149,6 +150,7 @@ use stdClass;
 		'inbox_id' => $insertedId,
 		]);
 	}
+		
 		return response()->json(['message' => 'Message sent  Successfully']);  
 	}
 	public function message(Request $request,$id)
@@ -173,7 +175,7 @@ use stdClass;
 		'reciever_id' => $receiver_userid,
 		'inbox_id' => $id,
 		]);
-		//$message->save();
+		 broadcast(new MessageSent($user, $message))->toOthers();
 		return response()->json(['message' => 'Message sent  Successfully']);
 	}
 	public function user_id()
