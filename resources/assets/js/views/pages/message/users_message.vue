@@ -119,33 +119,11 @@
 			
               <div class="messages_outer--right_sec">
           
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
                  <ul class="messages_outer--right_sec--box" v-chat-scroll>
                     <div v-for="item in items">
 					   
-						<li v-if="item.sender_id!=user.id" class="messages_outer--right_sec--box--sent">
-							<img class="messages_outer--right_sec--box--sent--image" src="../../../../images/profile-dashboard.jpg">
+						<li v-if="item.sender_id!=user.id" v-for="items in info" class="messages_outer--right_sec--box--sent">
+							<img class="messages_outer--right_sec--box--sent--image" :src="'/images/user/'+ items.avatar">
 							<p class="messages_outer--right_sec--box--sent--chat">{{item.message}}</p>
 						</li>
 						
@@ -202,11 +180,20 @@ import AppNavbar from '../users/navbar.vue'
         {
 			this.senderinfo();
 			this.fetchItem();
-            this.fetchItems();
+         // this.fetchItems();
         },
-        mounted(){
-        },
-     
+         mounted(){
+    	this.fetchItems();
+        Echo.channel('chat')
+            .listen('MessageSent', (e) => {
+                this.items.push({
+                    message: e.message.message,
+                    user: e.user,
+					
+                })
+				console.log(this.items);
+      })
+    },
 
 	  methods: {
              submit(e){
@@ -230,7 +217,7 @@ import AppNavbar from '../users/navbar.vue'
             {
 				axios.get('/api/user_detail/'+this.$route.params.id).then(response =>  {
                   this.items = response.data;
-				  
+				 // console.log(this.items);
               });
             },
 		
