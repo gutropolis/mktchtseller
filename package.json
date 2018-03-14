@@ -58,5 +58,5 @@
         "vue-infinite-loading": "^2.2.3",
         "vue-range-slider": "^0.2.4",
         "vue-socket.io": "^2.1.1-b"
-      }
+      } 
 }
