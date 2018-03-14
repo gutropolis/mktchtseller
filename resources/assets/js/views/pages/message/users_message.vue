@@ -191,6 +191,7 @@ import AppNavbar from '../users/navbar.vue'
                     user: e.user,
 					
                 })
+				
 				console.log(this.items);
       })
     },
