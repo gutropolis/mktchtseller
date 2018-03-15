@@ -118,7 +118,7 @@ class UsersController extends JoshController
 			$user->city = $request->city;
 			$user->address = $request->address;
 			$user->postal = $request->postal;
-		
+			$user->phone = $request->phone;
 			$user->role=$selectedRoles;
 			$user->status='activated';
 		
@@ -211,7 +211,7 @@ class UsersController extends JoshController
 			$user->city = $request->city;
 			$user->address = $request->address;
 			$user->postal = $request->postal;
-		
+			$user->phone = $request->phone;
 			$user->role=$selectedRoles;
 			$user->status='activated';
 
