@@ -116,7 +116,7 @@
                                         <h2 class="hidden">&nbsp;</h2> <div class="form-group  {{ $errors->first('dob', 'has-error') }}">
                                             <label for="dob" class="col-sm-2 control-label">Date of Birth</label>
                                             <div class="col-sm-10">
-                                                <input id="dob" name="dob" type="text" class="form-control"
+                                                <input id="dob" name="dob" type="text" class="form-control" value="{!! old('dob') !!}
                                                        data-date-format="YYYY-MM-DD"
                                                        placeholder="yyyy-mm-dd"/>
                                             </div>
@@ -145,7 +145,15 @@
                                                 <span class="help-block">{{ $errors->first('pic_file', ':message') }}</span>
                                             </div>
                                         </div>
+									<div class="form-group {{ $errors->first('phone', 'has-error') }}">
+                                            <label for="phone" class="col-sm-2 control-label">Phone *</label>
+                                            <div class="col-sm-10">
+                                                <input id="phone" name="phone" type="text" placeholder="Phone Number"
+                                                       class="form-control required" value="{!! old('phone') !!}"/>
 
+                                                {!! $errors->first('phone', '<span class="help-block">:message</span>') !!}
+                                            </div>
+                                        </div>
 
                                         <div class="form-group">
                                             <label for="bio" class="col-sm-2 control-label">Bio <small>(brief intro) *</small></label>
@@ -155,6 +163,7 @@
                                             </div>
                                             {!! $errors->first('bio', '<span class="help-block">:message</span>') !!}
                                         </div>
+										
                                     </div>
                                     <div class="tab-pane" id="tab3" disabled="disabled">
                                         <div class="form-group {{ $errors->first('gender', 'has-error') }}">
