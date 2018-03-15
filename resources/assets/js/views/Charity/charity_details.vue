@@ -15,7 +15,7 @@
                <div class="col-md-8">
                   <div class="charity_inner row">
                      <div class="col-md-7 no-gutters">
-                        <figure class="charity_inner--figure"><img :src="'/images/charity/'+ create_message.images"></figure>
+                        <figure class="charity_inner--figure"><img src="../../../../assets/images/banner-right.jpg"></figure>
                      </div>
                      <div class="col-md-5">
                         <div class="charity_inner--content">
