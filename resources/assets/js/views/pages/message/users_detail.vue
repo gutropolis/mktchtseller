@@ -39,7 +39,7 @@
                               <div v-for="create_messages in create_message">
                                  <ul class="users_messages--users_area--box">
                                     <li class="users_messages--users_area--box--list">
-                                       <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" class="users_messages--users_area--box--list--link">
+                                       <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" @click="click()" class="users_messages--users_area--box--list--link">
                                           <div v-for="userinfo in create_messages.sender_detail" class="users_messages--users_area--box--list--link--image_outer">
                                              <figure class="users_messages--users_area--box--list--link--image_outer--image_box">
                                                 <img :src="'/images/user/'+ userinfo.avatar"  class="users_messages--users_area--box--list--link--image_outer--image_box--image">
@@ -48,7 +48,7 @@
                                           <p v-for="userinfo in create_messages.sender_detail" class="users_messages--users_area--box--list--link--user_name"> {{userinfo.first_name}}</p>
                                           <p class="users_messages--users_area--box--list--link--user_title">{{create_messages.subject}}</p>
                                           <p class="users_messages--users_area--box--list--link--date">{{create_messages.created_at}}</p>
-                                          <span>2</span>
+                                          <span>{{unread}}</span>
                                        </router-link>
                                     </li>
                                  </ul>
@@ -59,6 +59,7 @@
                   </div>
                </div>
             </div>
+			
          </section>
       </div>
    </div>
@@ -73,13 +74,13 @@
       data() {
               return {
    			 create_message:[],
-                   
+                   unread:[],
               }
    
           },
    	created: function()
              {
-   		
+				this.fetchunread();
      			this.fetchItem();
      			 	
              },
@@ -88,6 +89,26 @@
           },
        
        methods: {
+	   click(){
+		
+	   
+	   
+	   
+	   },
+		fetchunread()
+		{
+			axios.get('/api/unread').then(response=>{
+				this.unread=response.data;
+			
+			
+			
+			})
+		
+		},
+	   
+	   
+	   
+	   
    	 fetchItems()
                  {
      			
