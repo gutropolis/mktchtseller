@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group">
                             <label class="login__element--box--label">Description</label>
-                            <input type="text" placeholder="Description" v-model="savecharityform.description" class="login__element--box--input">
+                           <textarea  type="text" v-model="savecharityform.description" rows="3" placeholder="Description" class="login__element--box--input"></textarea>
                         </div>
 						  <div class="form-group">
                             <label class="login__element--box--label">Location</label>
@@ -52,13 +52,10 @@
 						</tab-content>
 						 <tab-content>
 						<div class="form-group">
-                            <label class="login__element--box--label">Year in business</label>
+                            <label class="login__element--box--label">Years in business</label>
                             <input type="text" placeholder="year in business" v-model="savecharityform.year_in_business" class="login__element--box--input">
                         </div>
-						<div class="form-group">
-                            <label class="login__element--box--label">Start up year</label>
-                            <input type="date" placeholder="Start up year" v-model="savecharityform.start_up_year"  class="login__element--box--input">
-                        </div>
+						
 						<div class="form-group">
                             <label class="login__element--box--label">Business Purpose</label>
                             <input type="text" placeholder="Purpose" v-model="savecharityform.business_purpose" class="login__element--box--input">
@@ -89,6 +86,7 @@
                             <label class="login__element--box--label">Tags</label>
                             <input type="text" placeholder="Tags" v-model="savecharityform.tags" class="login__element--box--input">
                         </div>
+						
 						
                     </tab-content>
 					</form-wizard>
