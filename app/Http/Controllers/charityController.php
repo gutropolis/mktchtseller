@@ -41,26 +41,7 @@ class charityController extends JoshController
  
 		return response()->json($charity);
     }
- public function data()
-    {
-        $charity = charity::get(['id', 'title', 'description', 'location','created_at']);
 
-        return DataTables::of($charity)
-            ->editColumn('created_at',function(charity $charity) {
-                return $charity->created_at->diffForHumans();
-            })
-            
-            ->addColumn('actions',function($charity) {
-                $actions = '<a href='. route('admin.charity.show', $charity->id) .'><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
-                            <a href='. route('admin.charity.edit', $charity->id) .'><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update user"></i></a>';
-                if ((Sentinel::getUser()->id != $charity->id) && ($charity->id != 1)) {
-                    $actions .= '<a href='. route('admin.charity.confirm-delete', $charity->id) .' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user"></i></a>';
-                }
-                return $actions;
-            })
-            ->rawColumns(['actions'])
-            ->make(true);
-    }
 	
 	
    
@@ -106,9 +87,9 @@ class charityController extends JoshController
 			]);
 			
 			$user = JWTAuth::parseToken()->authenticate();
-   $charity->user_id = $user->id; 
-   $charity->updated_by= $user->first_name; 
-   //$charity->updated_by = $user->first_name;
+			$charity->user_id = $user->id; 
+			$charity->updated_by= $user->first_name; 
+		  //$charity->updated_by = $user->first_name;
 			
         $charity->save();
 		
@@ -164,12 +145,12 @@ class charityController extends JoshController
 		$constraint->aspectRatio();
 		
 	});
-		$image_ads = Charity::find($id);
+		$image = Charity::find($id);
 		        $img->save($this->avatar_path.$filename.".".$extension);
 				
-        $image_ads->images = $filename.".".$extension;
-        $image_ads->save();
-	 return response()->json(['message' => 'Avatar updated!','profile' => $image_ads]);
+        $image->images = $filename.".".$extension;
+        $image->save();
+	 return response()->json(['message' => 'Avatar updated!','profile' => $image]);
     }
 	
 	public function charity_details(Request $request,$id=1)
