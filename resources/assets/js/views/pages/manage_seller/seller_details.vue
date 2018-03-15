@@ -22,7 +22,6 @@
                            <h4 class="charity_inner--content--heading">{{create_message.title}}</h4>
                            <p class="charity_inner--content--pera">Contrary to popular belief,Lorem Ipsum.</p>
                            <ul class="charity_inner--content--list">
-                              
                               <li class="charity_inner--content--list--item">
                                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                     viewBox="0 0 50.425 50.425" style="enable-background:new 0 0 50.425 50.425;" xml:space="preserve">
@@ -63,7 +62,7 @@
                         <div class="charity_profile--detail">
                            <h3 class="charity_profile--detail--heading">DETAIL:</h3>
                            <p class="charity_profile--detail-pera">
-                             <span v-html="create_message.description"></span> 
+                              <span v-html="create_message.description"></span> 
                            </p>
                            <div class="col-md-12">
                               <b-list-group class="charity__social--list">
@@ -182,16 +181,16 @@
    </div>
 </template>
 <script>
-   import InfiniteLoading from 'vue-infinite-loading';
+  import helper from '../../../services/helper'
    export default {
    	 components: {
-       InfiniteLoading,
+      
      },
      
            data() {
    		
                return {
-   		
+   		loginCheck: helper.checkLogin(),
    		   create_message:{},
                    
                }
@@ -209,13 +208,20 @@
            },
            methods: {
    			 submit1(e){
+     if(helper.checkLogin()){
                    axios.post('/api/create_message', this.create_message).then(response =>  {
                        toastr['success'](response.data.message);
                        
                    }).catch(error => {
                        toastr['error'](error.response.data.message);
                    });
-               },
+              
+   }
+   else{
+   toastr['success']("First You Login");
+   	this.$router.push('/login');
+   }
+     },
    		
               
    			
