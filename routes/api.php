@@ -106,4 +106,4 @@ Route::get('/user_detail/{id}','InboxController@detail');
 Route::post('/message/{id}','InboxController@message');
 Route::get('/user_id','InboxController@user_id');
 Route::get('/senderinfo/{id}','InboxController@senderinfo');
-
+Route::get('/unread','InboxController@unread');
