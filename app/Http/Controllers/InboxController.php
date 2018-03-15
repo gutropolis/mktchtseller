@@ -64,6 +64,11 @@ use stdClass;
 	public  function detail(Request $request,$id)
 	{
 		$user = JWTAuth::parseToken()->authenticate();
+		//update receiver_read message
+		$update=Message::where('inbox_id',$id)->where('reciever_id',$user->id)->update(['reciever_read' => 1 ]);
+		
+		
+		
 		$messages=Message::where('inbox_id',$id)->get();
 		$msgInbox=array();
 		foreach($messages as $message)
@@ -183,8 +188,17 @@ use stdClass;
 		$user = JWTAuth::parseToken()->authenticate();
 		return response()->json($user); 
 	}
-	public function getDeletedUsers()
+	
+	public function unread()
 	{
+			$user = JWTAuth::parseToken()->authenticate();
+			$inboxes=Inbox::where('reciever_id',$user->id)->orwhere('sender_id',$user->id)->get();
+			foreach($inboxes as $inbox)
+			{
+			$query=Message::where('inbox_id',$inbox->id)->where('reciever_read',0)->where('reciever_id',$user->id)->count();
+			}
+			
+			return response()->json($query); 
 	}
 	public function getModalDelete($id)
 	{
