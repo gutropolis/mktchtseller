@@ -89,7 +89,7 @@
 			
 				<div class="charity__listing row">
 						<figure class="charity__listing--figure  col-md-3">
-							<img :src="'/images/charity/'+ item.images" class="charity__listing--figure--image">
+							<img :src="images/download.jpg" class="charity__listing--figure--image">
 						</figure>	
 						
 						
