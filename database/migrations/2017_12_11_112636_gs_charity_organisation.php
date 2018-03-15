@@ -21,7 +21,7 @@ class GsCharityOrganisation extends Migration
             $table->string('location');
             $table->string('images');
             $table->string('year_in_business');
-            $table->string('start_up_year');
+            
             $table->string('business_purpose');
             $table->string('address');
             $table->string('phone_number');
