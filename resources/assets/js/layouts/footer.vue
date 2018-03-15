@@ -17,9 +17,9 @@
                         <ul>
                             <h4 class="footer_main--contant--heading">For Seller</h4>
                             <li class="footer_main--contant--listing"><router-link to="/" class="footer_main--contant--listing--anchor">Home</router-link></li>
-                            <li class="footer_main--contant--listing"><a href="#" class="footer_main--contant--listing--anchor">About</a></li>
+                            <li class="footer_main--contant--listing"><router-link to="/aboutus" class="footer_main--contant--listing--anchor">About</router-link></li>
                             <li class="footer_main--contant--listing">
-							<a href="#" class="footer_main--contant--listing--anchor">Seller Post</a></li>
+							<router-link to="/sellerfba" class="footer_main--contant--listing--anchor">Seller Post</router-link></li>
                             <li class="footer_main--contant--listing"><router-link to="/contact" class="footer_main--contant--listing--anchor">Contact Us</router-link></li>
                         </ul>
                     </div>
@@ -27,8 +27,8 @@
                         <ul>
                             <h4 class="footer_main--contant--heading">For Charity</h4>
                             <li class="footer_main--contant--listing"><router-link to="/" class="footer_main--contant--listing--anchor">Home</router-link></li>
-                            <li class="footer_main--contant--listing"><a href="#" class="footer_main--contant--listing--anchor">About</a></li>
-                            <li class="footer_main--contant--listing"><a href="#" class="footer_main--contant--listing--anchor">Charity Post</a></li>
+                            <li class="footer_main--contant--listing"><router-link to="/aboutus" class="footer_main--contant--listing--anchor">About</router-link></li>
+                            <li class="footer_main--contant--listing"><router-link to="/charityfba" class="footer_main--contant--listing--anchor">Charity Post</router-link></li>
                             <li class="footer_main--contant--listing"><router-link to="/contact" class="footer_main--contant--listing--anchor">Contact Us</router-link></li>
                         </ul>
                     </div>
