@@ -85,11 +85,11 @@
 					
 					
     
-	<tr v-for="item in items" class="charity_detail_row">
+	<div v-for="item in items" class="charity_detail_row">
 			
 				<div class="charity__listing row">
 						<figure class="charity__listing--figure  col-md-3">
-							<img src="images/download.jpg" class="charity__listing--figure--image">
+							<img :src="'/images/charity/'+ item.images" class="charity__listing--figure--image">
 						</figure>	
 						
 						
@@ -117,7 +117,7 @@
 						</div>	
 					
 				</div>
-				 </tr>
+				 </div>
 	
 	
 	<infinite-loading @infinite="infiniteHandler"></infinite-loading>
