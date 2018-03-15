@@ -165,6 +165,15 @@
                                                         </div>
                                                         {!! $errors->first('avatar', '<span class="help-block">:message</span>') !!}
                                                     </div>
+														<div class="form-group {{ $errors->first('phone', 'has-error') }}">
+                                            <label for="phone" class="col-sm-2 control-label">Phone *</label>
+                                            <div class="col-sm-10">
+                                                <input id="phone" name="phone" type="text" placeholder="Phone Number"
+                                                       class="form-control required" value="{!! old('phone',$user->phone) !!}"/>
+
+                                                {!! $errors->first('phone', '<span class="help-block">:message</span>') !!}
+                                            </div>
+                                        </div>
                                                 </div>
                                                 <div class="form-group  {{ $errors->first('pic', 'has-error') }}">
                                                     <label for="bio" class="col-sm-2 control-label">Bio <small>(brief intro)</small></label>
