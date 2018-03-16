@@ -86,7 +86,15 @@
                             <label class="login__element--box--label">Tags</label>
                             <input type="text" placeholder="Tags" v-model="savecharityform.tags" class="login__element--box--input">
                         </div>
-						
+						 <div class="form-group text-center m-t-20">
+                                          <span id="fileselector">
+                                          <label class="btn btn-info">
+                                          <input type="file" v-on:change="onImageChange" class="form-control">
+                                          </label>
+                                          </span>
+                                       </div>
+									    
+                                       
 						
                     </tab-content>
 					</form-wizard>
@@ -118,12 +126,22 @@ import Vue from 'vue'
 		
             return {
 			items:[],
+			image: '',
                 savecharityform: {
-					charity_type:'selected',
+					charity_type:'select',
 					charity_Category:'select',
                     title: '',
                     description: '',
                    location: '',
+				   year_in_business: '',
+				   business_purpose: '',
+				   address: '',
+				   phone_number: '',
+				   keyword: '',
+				   vision_statement: '',
+				   mission_statement: '',
+				   tags: '',
+				   
 				   
                     
                 }
@@ -138,12 +156,28 @@ import Vue from 'vue'
         },
         methods: {
             submit(e){
-                axios.post('/api/gs_charity_organisation', this.savecharityform).then(response =>  {
+			 let data = this.savecharityform;
+			 
+                axios.post('/api/gs_charity_organisation', {image: this.image, data}).then(response =>  {
                     toastr['success'](response.data.message);
                     this.$router.push('/charity_list');
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });
+            },
+			  onImageChange(e) {
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                let reader = new FileReader();
+                let vm = this;
+                reader.onload = (e) => {
+                    vm.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
             },
 			fetchItems()
 			{
