@@ -50,7 +50,7 @@ class charityController extends JoshController
        
          
 		$charity = Validator::make($request->all(), [
-            'charity_type'=>'required',
+           // 'charity_type'=>'required',
 			
 			'title' => 'required',
 			'description'=>'required',
@@ -66,25 +66,34 @@ class charityController extends JoshController
 			'tags'=>'required'
             
         ]);
-		if($charity->fails())
-            return response()->json(['message' => $charity->messages()->first()],422);
-			$charity=\App\charity::create([
-			'title'=> request('title'),
-			'description'=> request('description'),
-			'location'=> request('location'),
-			'year_in_business'=> request('year_in_business'),
-			
-			'business_purpose'=> request('business_purpose'),
-			'address'=> request('address'),
-			'phone_number'=> request('phone_number'),
-			'keyword'=> request('keyword'),
-			'vision_statement'=> request('vision_statement'),
-			'mission_statement'=> request('mission_statement'),
-			'tags'=> request('tags'),
-			'charity_type'=> request('charity_type'),
-			'post_type'=>'charity',
-			
-			]);
+			if($request->get('image'))
+				{
+					$image = $request->get('image');
+					$name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+					\Image::make($request->get('image'))->save(public_path('images/charity/').$name);
+				}
+
+
+		
+	
+
+		
+		  $charity = new \App\charity;
+		  $charity->charity_type=$request->input('data.charity_type');
+		$charity->title = $request->input('data.title');
+		$charity->description=$request->input('data.description');
+		$charity->location=$request->input('data.location');
+		$charity->business_purpose=$request->input('data.business_purpose');
+		$charity->year_in_business=$request->input('data.year_in_business');
+		$charity->address=$request->input('data.address');
+		$charity->address=$request->input('data.address');
+		$charity->phone_number=$request->input('data.phone_number');
+		$charity->keyword=$request->input('data.keyword');
+		$charity->vision_statement=$request->input('data.vision_statement');
+		$charity->mission_statement=$request->input('data.mission_statement');
+		$charity->tags=$request->input('data.tags');
+		$charity->images=$name;
+		$charity->post_type='charity';
 			
 			$user = JWTAuth::parseToken()->authenticate();
 			$charity->user_id = $user->id; 
