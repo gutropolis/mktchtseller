@@ -83,6 +83,13 @@
                             <label class="login__element--box--label">Tax_Id</label>
                             <input type="text" placeholder="Tax_Id" v-model="savesellerform.tax_id" class="login__element--box--input">
                         </div>
+						 <div class="form-group text-center m-t-20">
+                                          <span id="fileselector">
+                                          <label class="btn btn-info">
+                                          <input type="file" v-on:change="onImageChange" class="form-control">
+                                          </label>
+                                          </span>
+                                       </div>
 						
 						
                     </tab-content>
@@ -110,16 +117,22 @@
         },
         data() {
             return {
-				
+				image: '',
 				items:[],
                 savesellerform: {
-				business_type: 'select',
-				seller_Category:'select',
-				
-                    title: '',
-                    description: '',
-                   location: ''
-                    
+					business_type: 'select',
+					seller_Category:'select',
+					title: '',
+					description: '',
+					location: '',
+					year_in_business: '',
+					address: '',
+					phone_number: '',
+					keywords: '',
+					vision_statement: '',
+					mission_statement: '',
+                    tax_id: '',
+					
                 }
             }
         },
@@ -132,12 +145,27 @@
         },
         methods: {
             submit(e){
-                axios.post('/api/gs_seller_organisation', this.savesellerform).then(response =>  {
+			 let data = this.savesellerform;
+                axios.post('/api/gs_seller_organisation',{image: this.image, data}).then(response =>  {
                     toastr['success'](response.data.message);
                     this.$router.push('/product');
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });
+            },
+			  onImageChange(e) {
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                let reader = new FileReader();
+                let vm = this;
+                reader.onload = (e) => {
+                    vm.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
             },
 			fetchItems()
 			{
