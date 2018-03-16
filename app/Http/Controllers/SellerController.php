@@ -91,52 +91,33 @@ class SellerController extends Controller
     public function store(Request $request)
     {
 		
-        if ($file = $request->file('pic_file')) {
-            $extension = $file->extension()?: 'png';
-            $destinationPath = public_path() . '/uploads/seller/';
-            $safeName = str_random(10) . '.' . $extension;
-            $file->move($destinationPath, $safeName);
-            $request['pic'] = $safeName;
-        }
-		 $validation = Validator::make($request->all(), [
-            'title' => 'required',
-            'description' => 'required',
-            'location' => 'required',
-			'year_in_business' => 'required',
-			
-			'business_type' => 'required',
-			'address' => 'required',
-			'phone_number' => 'required',
-			'keywords' => 'required',
-			'vision_statement' => 'required',
-			'mission_statement' => 'required',
-			'tax_id' => 'required',
-			
-			
-            
-        ]);
+		if($request->get('image'))
+				{
+					$image = $request->get('image');
+					$name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+					\Image::make($request->get('image'))->save(public_path('images/seller/').$name);
+				}
 
-        if($validation->fails())
-            return response()->json(['message' => $validation->messages()->first()],422);
-       $seller = \App\Seller::create([
-            'title' => request('title'),
-            'description' => request('description'),
-            'location' => request('location'),
-			'year_in_business' => request('year_in_business'),
-			
-			'business_type' => request('business_type'),
-			'address' => request('address'),
-			'phone_number' => request('phone_number'),
-			'keywords' => request('keywords'),
-			'vision_statement' =>request('vision_statement'),
-			'mission_statement' => request('mission_statement'),
-			'tax_id' => request('tax_id'),
-			'post_type'=>'seller',
-			
-        ]);
-	   $user = JWTAuth::parseToken()->authenticate();
-		 $seller->user_id = $user->id;	
-		 $seller->updated_by = $user->first_name;	
+     
+        $seller = new \App\Seller;
+		$seller->business_type=$request->input('data.business_type');
+		$seller->title = $request->input('data.title');
+		$seller->description=$request->input('data.description');
+		$seller->location=$request->input('data.location');
+		
+		$seller->year_in_business=$request->input('data.year_in_business');
+		$seller->address=$request->input('data.address');
+		$seller->address=$request->input('data.address');
+		$seller->phone_number=$request->input('data.phone_number');
+		$seller->keywords=$request->input('data.keywords');
+		$seller->vision_statement=$request->input('data.vision_statement');
+		$seller->mission_statement=$request->input('data.mission_statement');
+		$seller->tax_id=$request->input('data.tax_id');
+		$seller->pic=$name;
+		$seller->post_type='seller';
+	    $user = JWTAuth::parseToken()->authenticate();
+	    $seller->user_id = $user->id;	
+		$seller->updated_by = $user->first_name;	
 
 	    $seller->save();
 	   
