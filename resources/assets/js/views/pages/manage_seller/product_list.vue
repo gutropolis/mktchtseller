@@ -17,7 +17,7 @@
                                  <tr>
                                     <th>Id</th>
                                     <th>Title</th>
-                                    <th>Description</th>
+                                   
                                     <th>ASIN</th>
                                     <th>Images</th>
 									<th>Units</th>
@@ -27,7 +27,6 @@
                                  <tr v-for="item in items">
                                     <td>{{item.id}}</td>
                                     <td>{{item.title}}</td>
-                                    <td v-html="item.description"></td>
                                     <td>{{item.asin_url}}</td>
                                     <td>
                                        <figure class="table-image"><img v-bind:src="item.images"></figure>
