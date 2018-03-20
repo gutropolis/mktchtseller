@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\my_ads;
+use App\charity;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use Hash;
@@ -40,7 +41,20 @@ class AdsController extends Controller
         return response()->json($show_ads);
     }
 
-	
+	public function charity()
+	{
+		$user = JWTAuth::parseToken()->authenticate();
+		$query=\App\charity::whereUserId($user->id);
+		$qu=$query->get();
+		return($qu);
+		
+		
+		
+		
+		
+		
+		
+	}
 	public function updateAvatar(Request $request){
         $validation = Validator::make($request->all(), [
             'avatar' => 'required|image'
@@ -116,25 +130,22 @@ class AdsController extends Controller
     public function store(Request $request)
     {
 	   
-        if ($file = $request->file('pic')) {
-            $extension = $file->extension()?: 'png';
-            $destinationPath = public_path() . '/uploads/sellerproduct/';
-            $safeName = str_random(10) . '.' . $extension;
-            $file->move($destinationPath, $safeName);
-            $request['images'] = $safeName;
-        }
+       if($request->get('image'))
+				{
+					$image = $request->get('image');
+					$name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+					\Image::make($request->get('image'))->save(public_path('images/charityads/').$name);
+				}
 		
-       
-      $validation = Validator::make($request->all(), [
-            'title' => 'required',
-            'description' => 'required',
-          
-			 
-        ]);
-
-        if($validation->fails())
-            return response()->json(['message' => $validation->messages()->first()],422);
-        $create_ads = new my_ads($request->all());
+      
+          $create_ads = new \App\my_ads;
+		 $create_ads->title=$request->input('data.title');
+		
+		$create_ads->description=$request->input('data.description');
+			$create_ads->location=$request->input('data.location');
+		  $create_ads->ads_type=$request->input('data.ads_type');
+		  
+		$create_ads->image=$name;
 		$user = JWTAuth::parseToken()->authenticate();
 		 $create_ads->user_id = $user->id;	
 	 
