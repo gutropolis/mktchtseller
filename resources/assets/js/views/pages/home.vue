@@ -4,11 +4,13 @@
     <section class="banner_element">
         <div class="row">
             <div class="col-md-6 banner_element--left">
-                <div class="banner_element--content row">
+                <div  class="banner_element--content row">
                     <h2 class="banner_element--content--heading">I am Seller</h2>
                     <p class="banner_element--content--pera">I would like to give my Poduct to charity in need. There he can post the Products.</p>
-                    <router-link to ="/login" class="banner_element--content--btn btn btn-border-white">Post My Products</router-link>
+                    <div v-if="loginCheck" class="banner_element--content--linkbox"><router-link to ="/product" class="banner_element--content--btn btn btn-border-white">Post My Products</router-link></div>
+					<div v-else class="banner_element--content--linkbox"><router-link to ="/login" class="banner_element--content--btn btn btn-border-white">Post My Products</router-link></div>
                 </div>
+				
             </div>
             <div class="col-md-6 banner_element--right">
                 <div class="banner_element--content banner_element--right--content row">
@@ -330,10 +332,14 @@
             <div class="sign__element--block">
                 <h3 class="sign__element--block--heading">Sign Up now!</h3>
                 <p class="sign__element--block--content">There are many variations of passages of Lorem Ipsum <span class="block_content">available, but the majority have suffered alteration in some</span> form, by injected humour.</p>
-                <div class="sign__element--block--btn">
-                    <router-link to="/register">Seller </router-link>
-                   <router-link to="/charityregister">Charity</router-link>
+                <div v-if="loginCheck" class="sign__element--block--btn">
+                    <router-link to="">Seller </router-link>
+                   <router-link to="">Charity</router-link>
                 </div>
+				<div v-else class="sign__element--block--btn">
+				 <router-link to="/register">Seller </router-link>
+                   <router-link to="/charityregister">Charity</router-link>
+				</div>
             </div>
         </div>
     </section>
@@ -342,11 +348,13 @@
   </div>   
 </template>
 <script>
+	import helper from '../../services/helper'
+	
     export default {
 	        data() {
 	selectcategory:'charity'
             return {
-			
+				 loginCheck: helper.checkLogin(),
                 searchform: {
 
                    searchlocation:'',
