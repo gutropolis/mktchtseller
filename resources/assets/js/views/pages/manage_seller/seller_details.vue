@@ -143,8 +143,8 @@
                      <div class="charity__element--block--content">
                         <form id="create_message" @submit.prevent="submit1">
                            <div class="form-group charity__element--block--content--box">
-                              <label class="charity__element--block--content--box--label">Title</label>
-                              <input type="text" name="msgtitle" v-model="create_message.msgtitle"  placeholder="Title"  class="login__element--box--input" />
+                              <label class="charity__element--block--content--box--label">Subject</label>
+                              <input type="text" name="msgtitle" v-model="create_message.msgtitle"  placeholder="Subject"  class="login__element--box--input" />
                            </div>
                            <input type="hidden" name="user_id" v-model="create_message.user_id"   class="login__element--box--input" />
                            <input type="hidden" name="id" v-model="create_message.id"   class="login__element--box--input" />
@@ -155,8 +155,13 @@
                               <textarea placeholder="Type your message here" v-model="create_message.message"  class="login__element--box--input" rows="5">
                               </textarea>
                            </div>
-                           <div class="form-group text-center">
-                              <input type="Submit" placeholder="" value="Send Message" class="btn btn-bg-orange login__element--box--button">
+                          <div class="form-group text-center" v-if="getrole === 'seller'" >
+                              <button :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
+							  
+                           </div>
+						   <div class="form-group text-center" v-if="getrole === 'charity'" >
+                              <button placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
+							  
                            </div>
                         </form>
                      </div>
@@ -190,6 +195,7 @@
            data() {
    		
                return {
+			    role:true,
    		loginCheck: helper.checkLogin(),
    		   create_message:{},
                    
@@ -247,7 +253,22 @@
    				 this.items=response.data;
                  });
                },
+			    getAuthUserrole(){
+               return this.$store.getters.getAuthUserrole;
+           },
+           getAuthUser(name){
+               return this.$store.getters.getAuthUser(name);
+           }
    			
-   			}
+   			},
+			 computed: {
+   getrole(){
+   	return this.getAuthUser('role');
+   },
+           getAvatar(){
+               return '/images/user/'+this.getAuthUser('avatar');
+           }
+       }
+			
    			}
 </script>
