@@ -79,6 +79,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'as' => 'admin.'], f
     //end Log viewer
     # Activity log
     Route::get('activity_log/data', 'JoshController@activityLogData')->name('activity_log.data');
+  
 //    Route::get('/', 'JoshController@index')->name('index');
 });
 
@@ -94,6 +95,9 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
         Route::post('passwordreset', 'UsersController@passwordreset')->name('passwordreset');
 
     });
+      Route::get('donation_list/data', 'DonationController@donation_listData')->name('donation_list.data');
+       Route::get('{donation}/delete', 'DonationController@destroy')->name('donation.delete');
+        Route::get('{donation}/confirm-delete', 'DonationController@getModalDelete')->name('donation.confirm-delete');
 	
 	//charity management
     Route::group([ 'prefix' => 'charity'], function () {
@@ -104,6 +108,11 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
 //        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
        // Route::post('passwordreset', 'charityController@passwordreset')->name('passwordreset');
     });
+
+    Route::resource('donation', 'DonationController');
+
+
+
 
     Route::resource('charity', 'charityController');
     
