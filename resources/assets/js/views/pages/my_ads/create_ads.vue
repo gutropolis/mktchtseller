@@ -15,12 +15,12 @@
 					
 					<div class="form-group">
 					   
-                            <label class="login__element--box--label">Ads Type</label>
+                            <label class="login__element--box--label">Select Organisation</label>
                             <select name="ads_type" v-model= "create_ads.ads_type" class="login__element--box--input">
 							<option value="select">Select .. </option>
 							
-							<option value="charity" >charity</option>
-								<option value="seller" >Seller</option>
+							<option v-for="item in items"  value:="item.title"  >{{item.title}}</option>
+							
 							
 							
 							
@@ -37,7 +37,7 @@
                        
 						<div class="form-group">
                             <label class="login__element--box--label">Image</label>
-                            <input type="file" name="image"  class="login__element--box--input">
+                            <input type="file"  v-on:change="onImageChange" class="login__element--box--input">
                         </div>
 						
 						<div class="form-group">
@@ -67,8 +67,8 @@
         },
 	data() {
             return {
-				items:[],
-				
+				items:{},
+				image: '',
                 create_ads: {
 					ads_type:'',
                     title: '',
@@ -82,13 +82,41 @@
             }
         },
        
-        
+        created: function()
+					  {
+						  this.fetchItems();
+					  },
        
         methods: {
+				 fetchItems()
+			 {
+				axios.get('/api/charities').then((response) => {
+				 this.items=response.data;
+				
+				});
+			},
+		
+		
+		 onImageChange(e) {
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                let reader = new FileReader();
+                let vm = this;
+                reader.onload = (e) => {
+                    vm.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+		
               submit(e){
-                axios.post('/api/create_ads', this.create_ads).then(response =>  {
+			   let data = this.create_ads;
+                axios.post('/api/create_ads',{image: this.image, data}).then(response =>  {
                     toastr['success'](response.data.message);
-                    this.$router.push('/product');
+                    this.$router.push('/my_ads');
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });
