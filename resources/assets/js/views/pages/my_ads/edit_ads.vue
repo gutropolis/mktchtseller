@@ -13,16 +13,17 @@
 					<div class="form-group">
 					   
                             <label class="login__element--box--label">Ads Type</label>
-                            <select name="ads_type" v-model= "create_ads.ads_type" class="login__element--box--input">
+                            <select  v-model="create_ads.ads_type" class="login__element--box--input">
+							
 							<option value="select">Select .. </option>
+							<option value:="create_ads.ads_type">{{create_ads.ads_type}}</option>
 							
-							<option value="charity" >charity</option>
-								<option value="seller" >Seller</option>
-							
-							
+							<option v-for="item in items" v-bind:value="item.title" >{{item.title}}</option>
+								
 							
 							</select>
                         </div>
+						
                         <div class="form-group">
                             <label class="login__element--box--label">Title</label>
                             <input type="text" name="title" v-model="create_ads.title" class="login__element--box--input">
@@ -33,6 +34,7 @@
                         </div>
                        
 						<div class="form-group">
+						
                             <label class="login__element--box--label">Image</label>
                             <input type="file" name="image"  class="login__element--box--input">
                         </div>
@@ -45,12 +47,11 @@
 					</div>
 					
 						
-						
-						
 						<input type="submit" value="Submit" class="btn btn-info waves-effect waves-light m-t-10">
 						  </form>
 						    </div>
 						  </div> 	
+						 
                 </div>
             </div>
 			</div> 
@@ -66,29 +67,36 @@
         },
 	data() {
             return {
-				
+				items:{},
                 create_ads: {}
             }
         },
        created: function()
         {
             this.fetchItems();
-			
+			this.fetchItem();
         },
         
        
         methods: {
+		fetchItem()
+			 {
+				axios.get('/api/charities').then((response) => {
+				 this.items=response.data;
+				
+				});
+			},
 		fetchItems(){
-                axios.get('/api/get_ad/'+this.$route.params.id).then(response=>{
+                axios.get('/api/charityads/'+this.$route.params.id).then(response=>{
                     this.create_ads = response.data;    
                 }).catch(error=>{
 			toastr['error'](error.response.data.message);
 			});
 			},
               update(){
-                axios.post('/api/get_ad/'+this.$route.params.id,this.create_ads).then(response =>  {
+                axios.post('/api/charityads/'+this.$route.params.id,this.create_ads).then(response =>  {
                     toastr['success'](response.data.message);
-                    this.$router.push('/product');
+                    this.$router.push('/my_ads');
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });
