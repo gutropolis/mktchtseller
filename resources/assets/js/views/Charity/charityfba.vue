@@ -21,45 +21,24 @@
 			      <form  id="searchform" @submit.prevent="submit">						
 						<div class="form-group charity__element--block--content--box">
 							<label class="charity__element--block--content--box--label">Select location</label>
-							<input type="text" placeholder="Location Select" class="charity__element--block--content--box--input" name="searchlocation" v-model="searchform.searchlocation">
+							<input type="text" placeholder="Select Location" class="charity__element--block--content--box--input" name="searchlocation" v-model="searchform.searchlocation">
 						</div>
-						<div class="form-group charity_element--block--content--box">
-							<label class="charity__element--block--content--box--label">Area Range</label>
-							<div class="range-slider">
-								<input class="range-slider__range" type="range" value="250" min="0" max="500" step="50">
-								<span class="range-slider__value">0</span>
-							</div>
-						</div>
-						<div class="form-group charity_element--block--content--box">
-							<label class="charity__element--block--content--box--label">Charity / Organisation</label>
-							<select class="charity__element--block--content--box--select">
-								<option value="1">Organisation 1</option>
-								<option value="1">Organisation 2</option>
-								<option value="1">Organisation 3</option>
-								<option value="1">Organisation 4</option>
-								<option value="1">Organisation 5</option>
-							</select>
-						</div>
+						
+						
+						        
+						
 						<div class="form-group charity__element--block--content--box">
-							<label class="charity__element--block--content--box--label">ASIS</label>
-							<select class="charity__element--block--content--box--select">
-								<option value="1">Organisation 1</option>
-								<option value="1">Organisation 2</option>
-								<option value="1">Organisation 3</option>
-								<option value="1">Organisation 4</option>
-								<option value="1">Organisation 5</option>
-							</select>
+							<label class="charity__element--block--content--box--label">Category</label>
+							 <select name="searchcategory" v-model="searchform.searchcategory" class="login__element--box--input">
+							 <option value="0"> Select ...</option>
+							 
+								<option v-for="charity in charity_type"  v-bind:value="charity.title">{{charity.title}}</option>
+								</select>
+							
+			
 						</div>
-						<div class="form-group charity__element--block--content--box">
-							<label class="charity__element--block--content--box--label">Units</label>
-							<select class="charity__element--block--content--box--select">
-								<option value="1">Organisation 1</option>
-								<option value="1">Organisation 2</option>
-								<option value="1">Organisation 3</option>
-								<option value="1">Organisation 4</option>
-								<option value="1">Organisation 5</option>
-							</select>
-						</div>
+						
+					
 						<div class="form-group charity_element--block--content--box">							
 							<input type="submit" value="SEARCH" class="charity__element--block--content--box--input btn btn-bg-orange">
 						</div>
@@ -111,7 +90,7 @@
 								<div class="charity__listing--content--address--location col-md-4 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Location:</span> {{ item.location }}</p></div>
 								<div class="charity__listing--content--address--location col-md-3 "><p><i class="fa fa-briefcase" aria-hidden="true"></i><span>ASIS:</span> 12345</p></div>
 								<div class="charity__listing--content--address--location col-md-2 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Unit:</span> 3</p></div>
-								<div class="charity__listing--content--address--location col-md-3 "><p><a href="#" class="btn btn-bg-orange btn-donate">Donate</a></p></div>
+								
 							</div>
 								
 						</div>	
@@ -149,8 +128,11 @@ export default {
             return {
 			items:[],
 			
+			charity_type: '',
                 searchform: {  
-                    
+                    searchlocation: '',
+					searchcategory: 'select',
+					
                 }
             }
         },
@@ -158,6 +140,7 @@ export default {
 		created: function()
         {
             this.fetchItems();
+			this.fetchItem();
         },
        
         
@@ -169,7 +152,7 @@ export default {
 			this.items=[];
 			//this.page=[];
                 axios.post('/api/search', this.searchform).then(response =>  {
-                    toastr['success'](response.data.message);
+                    toastr['success']("Seach Completed");
 					this.items = response.data;
 					//this.page=response.data.last_page;
                     this.$router.push('/charityfba');
@@ -185,18 +168,28 @@ export default {
         }
         this.items = this.items.concat(temp);
         $state.loaded();
-      }, 10000);
+      }, 60000);
     },
 			 fetchItems()
             {
 			
-              axios.get('/api/search').then(response =>  {
+              axios.get('/api/charities').then(response =>  {
 					
                   this.items = response.data;
 				  //this.page=response.data.data;
 				  
               });
-            }
+            },
+			 fetchItem()
+            {
+			
+              axios.get('/api/charity_type').then(response =>  {
+					
+                  this.charity_type = response.data;
+				  //this.page=response.data.data;
+				  
+              });
+            },
 			
 			}
 			}
