@@ -261,7 +261,7 @@ public function index(){
             $error = trans('users/message.user_not_found', compact('id'));
             return view('admin.layouts.modal_confirmation', compact('error', 'model', 'confirm_route'));
         }
-        $confirm_route = route('admin.users.delete', ['id' => $user->id]);
+        $confirm_route = route('admin.user.delete', ['id' => $user->id]);
         return view('admin.layouts.modal_confirmation', compact('error', 'model', 'confirm_route'));
     }
 
