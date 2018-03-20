@@ -5,7 +5,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\JoshController;
 use App\Http\Requests\charityRequest;
-use App\charity;
+use App\Charity;
 
 use App\Donation;
 use App\CharityCategory;
@@ -39,14 +39,14 @@ class charityController extends JoshController
 	 public function charity_list()
     {
 		
-		$charity=charity::all();
+		$charity=Charity::all();
  
 		return response()->json($charity);
     }
 	
 	public function product(Request $request,$id)
     {
-		$charity = charity::find($id);
+		$charity = Charity::find($id);
 		
 		$sellerproduct = Donation::create([
 			'product' => request('title'),		
@@ -141,7 +141,7 @@ class charityController extends JoshController
 	
 
 		
-		  $charity = new \App\charity;
+		  $charity = new \App\Charity;
 		  $charity->charity_type=$request->input('data.charity_type');
 		$charity->title = $request->input('data.title');
 		$charity->description=$request->input('data.description');
@@ -176,7 +176,7 @@ class charityController extends JoshController
 	public function update(Request $request,$id)
     { 	
 	
-        $charity = charity::find($id);
+        $charity = Charity::find($id);
 
             $charity->title = $request->get('title');
 			$charity->description = $request->get('description');
@@ -228,14 +228,14 @@ class charityController extends JoshController
 	public function charity_details(Request $request,$id=1)
     {
 		//$charity_details=CharityCategory::all();
-		$charity_details = charity::find($id);
+		$charity_details = Charity::find($id);
 		return response()->json($charity_details);	
     }
 	
     
     public function destroy($id)
 	{
-		 $charity = charity::find($id);
+		 $charity = Charity::find($id);
       $charity->delete();
 
      return response()->json(['message' => 'Data Deleted Successfully']);
