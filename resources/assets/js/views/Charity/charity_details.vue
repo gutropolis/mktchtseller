@@ -157,8 +157,8 @@
                      <div class="charity__element--block--content">
                         <form id="create_message"  @submit.prevent="submit1">
                            <div class="form-group charity__element--block--content--box">
-                              <label class="charity__element--block--content--box--label">Title</label>
-                              <input type="text" name="msgtitle" v-model="create_message.msgtitle"  placeholder="Title"  class="login__element--box--input" />
+                              <label class="charity__element--block--content--box--label">Subject</label>
+                              <input type="text" name="msgtitle" v-model="create_message.msgtitle"  placeholder="Subject"  class="login__element--box--input" />
                            </div>
                            <input type="hidden" name="user_id" v-model="create_message.user_id"   class="login__element--box--input" />
                            <input type="hidden" name="id" v-model="create_message.id"   class="login__element--box--input" />
@@ -169,12 +169,50 @@
                               <textarea placeholder="Type your message here" v-model="create_message.message"  class="login__element--box--input" rows="5">
                               </textarea>
                            </div>
-                           <div class="form-group text-center">
-                              <input type="Submit" placeholder="" value="Send Message" class="btn btn-bg-orange login__element--box--button">
+                           <div class="form-group text-center" v-if="getrole === 'charity'" >
+                              <button :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
+							  
+                           </div>
+						   <div class="form-group text-center" v-if="getrole === 'seller'" >
+                              <button placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
+							  
                            </div>
                         </form>
                      </div>
                   </div>
+				 <div class="charity_donation">
+				  <div v-if="getrole === 'seller'">
+				  <div class="charity_donation--box">
+               <p class="charity_donation--box--heading">Donate To This Charity</p>
+                  <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary"  class="btn btn-bg-orange login__element--box--button">Donate Now</b-btn>
+                  <b-modal id="modalPrevent"
+                     ref="modal"
+                     title="Donate to this Charity"
+					  @ok="handleSubmit"
+                     @shown="clearName">
+                     <form  id="prod" @submit.stop.prevent="handleSubmit">
+					  <div class="form-group">
+					   
+                            <label class="login__element--box--label">Select Product</label>
+                            <select name="title" v-model="prod.title"   required class="login__element--box--input">
+							<option value="select">Select .. </option>
+							
+							<option v-for="item in product" v-bind:value="item.title">{{item.title}}</option>
+							
+							
+							</select>
+                        </div>
+					 
+					 
+					 <label class="charity__element--block--content--box--label">Units</label>
+					<input type="text" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
+                   
+                     </form>
+                  </b-modal>
+               </div>
+				  </div>
+            </div>
+				  
                   <div class="helping__element">
                      <div class="helping__element--block">
                         <h5 class="helping__element--block--heading">Helping Center</h5>
@@ -203,7 +241,14 @@
            data() {
    		
                return {
-   		
+			   
+			   role:true,
+			  
+			prod:{
+			product: 'select',
+			units: ''
+			},
+	  product:[],
    			items:[],
    		   create_message:{},
                    loginCheck: helper.checkLogin()
@@ -215,13 +260,25 @@
            {
                this.fetchItems();
    			this.fetchItem();
-   			
+   			this.fetchproducts();
+			
            },
           
            
            mounted(){
            },
            methods: {
+		    clearName () {
+							this.name = ''
+						},
+      
+    handleSubmit () {
+      
+	  axios.post('/api/product/'+this.$route.params.id,this.prod).then(response => {
+			toastr['success'](response.data.message);
+	  })
+	  
+    },
    				
    			 submit1(e){
                    if(helper.checkLogin()){
@@ -261,8 +318,34 @@
    				  //this.page=response.data.data;
    				  
                  });
-               }
+               },
+			   fetchproducts()
+               {
    			
-   			}
-   			}
+                 axios.get('/api/product').then(response =>  {
+   					
+                     this.product = response.data;
+   				  //this.page=response.data.data;
+   				  
+                 });
+               },
+			   
+			    getAuthUserrole(){
+               return this.$store.getters.getAuthUserrole;
+           },
+           getAuthUser(name){
+               return this.$store.getters.getAuthUser(name);
+           }
+   			
+   			},
+			 computed: {
+   getrole(){
+   	return this.getAuthUser('role');
+   },
+           getAvatar(){
+               return '/images/user/'+this.getAuthUser('avatar');
+           }
+       }
+			
+		}	
 </script>
