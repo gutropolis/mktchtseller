@@ -26,6 +26,13 @@ export default {
         return false
       }
   },
+  Userrole(){
+        return axios.get('/api/user_role').then(response =>  {
+            return response.data;
+        }).catch(error => {
+            return error.response.data;
+        });
+    },
 
     check(){
         return axios.post('/api/auth/check').then(response =>  {
