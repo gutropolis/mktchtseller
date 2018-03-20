@@ -83,7 +83,13 @@
         color: $white-color;
         @media screen and (max-width: $break-sm) {
             padding: $space-m - $space-vs;
+			
+			
         }
+		&--linkbox{
+			margin:0px auto;
+			
+			}
         &--heading {
             text-align: center;
             margin: 0px auto;
@@ -2179,4 +2185,24 @@ footer {
         }
     }
     
+}
+
+.charity_donation{
+    text-align:center;
+    &--box{
+    padding: 20px 0px;
+    background: #fff;
+    @include box-shadow();
+    border: 1px solid $grey-color4;
+    margin-bottom: 40px;
+
+    &--heading{
+        margin: 0px;
+        margin-bottom: 20px;
+        font-size: 18px;
+    }
+    }
+    .modal.show .modal-dialog{
+        max-width: 700px;
+    }
 }
