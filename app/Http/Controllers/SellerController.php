@@ -3,6 +3,7 @@
 use App\Http\Controllers\JoshController;
 use App\Http\Requests\SellerRequest;
 use App\Seller;
+use App\Donation;
 use App\Http\Requests;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
@@ -125,12 +126,33 @@ class SellerController extends Controller
 		 return response()->json(['message' => 'You have registered successfully']);
     }
 
-    /**
-     * User update.
-     *
-     * @param  int $id
-     * @return View
-     */
+    public function donation_list()
+	
+	{
+		$user = JWTAuth::parseToken()->authenticate();
+		$donaters=Donation::where('seller_id',$user->id)->get();
+		return($donaters);
+			
+		
+	}
+  
+  	 public function edit_donation(Request $request,$id)
+    {
+		
+		$donation = Donation::find($id);
+		return ($donation);	
+    }
+	public function updatedonation(Request $request,$id)
+	{
+	$donation=Donation::find($id);
+	$donation->product=$request->get('product');
+	$donation->units=$request->get('units');
+
+	$donation->save();
+	return response()->json(['message' => 'Data update Successfully']);
+	}
+  
+  
   
 		 public function edit(Request $request,$id)
     {
