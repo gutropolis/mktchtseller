@@ -6,6 +6,8 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\JoshController;
 use App\Http\Requests\charityRequest;
 use App\charity;
+
+use App\Donation;
 use App\CharityCategory;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
@@ -41,6 +43,67 @@ class charityController extends JoshController
  
 		return response()->json($charity);
     }
+	
+	public function product(Request $request,$id)
+    {
+		$charity = charity::find($id);
+		
+		$sellerproduct = Donation::create([
+			'product' => request('title'),		
+			'units' => request('units'),
+	]);
+	$user = JWTAuth::parseToken()->authenticate();
+	$sellerproduct->seller_id = $user->id;
+	$sellerproduct->status="pending";
+	$sellerproduct->is_certify="0";
+	$sellerproduct->charity_organisation=$charity->title;
+	$sellerproduct->owner_charity=$charity->updated_by;
+	$sellerproduct->seller=$user->first_name;
+	$sellerproduct->save();
+		
+		return response()->json(['message' => 'Data Record Successfully']);
+		
+		
+    }
+	
+	public function donaters()
+	
+	{
+		$user = JWTAuth::parseToken()->authenticate();
+		$donaters=Donation::where('owner_charity',$user->first_name)->get();
+		return($donaters);
+			
+		
+	}
+		public function status(Request $request,$id)
+	
+	{
+		   $status = Donation::find($id);
+		$update=Donation::where('id',$id)->update(['status'=>request('status')]);
+		return($update);
+		
+		
+	}
+	    public function toggleStatus(Request $request,$id){
+        $task = Donation::find($id);
+
+        if(!$task)
+            return response()->json(['message' => 'Couldnot find task!'],422);
+
+        $task->is_certify = !$task->is_certify;
+        $task->save();
+
+        return response()->json(['message' => 'Task updated!']);
+    }
+	
+	
+	 public function charity_type()
+		{
+			
+			$charity=CharityCategory::where('parent_id','>','0')->get();
+	 
+			return response()->json($charity);
+		}
 
 	
 	
@@ -215,8 +278,11 @@ class charityController extends JoshController
 		
 		
 		$keyword=request('searchlocation');
+		$keyword1=request('searchcategory');
+		
 			//return response()->json($keyword);
-		$charity=charity::Where('location', 'like', '%' . $keyword . '%')->get();
+		$charity=charity::Where('location', $keyword)->orwhere('charity_type',$keyword1)->get();
+		
 		//return charity::paginate(4);
 		return response()->json($charity);
 		
