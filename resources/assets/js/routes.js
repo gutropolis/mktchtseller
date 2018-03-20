@@ -101,6 +101,7 @@ let routes = [
 				path : 'charity_organisation',
 				component:require('./views/Charity/charity_organisation')
 			},
+			
 			{
 				path : 'charity_category',
 				component:require('./views/Charity/charity_category')
@@ -114,6 +115,10 @@ let routes = [
 				name:'edit_charity',
 				path : '/edit_charity',
 				component:require('./views/Charity/edit_charity')
+			},
+			{
+				path : 'donaters',
+				component:require('./views/Charity/donaters_list')
 			},
 				
 			
@@ -148,6 +153,15 @@ let routes = [
 			{
 				path: '/product_list',
 				component:require('./views/pages/manage_seller/product_list')
+			},
+			{
+				name:'edit_donation',
+				path: '/edit_donation',
+				component:require('./views/pages/manage_seller/edit_donation')
+			},
+			{
+				path: '/donation_list',
+				component:require('./views/pages/manage_seller/donation_list')
 			},
 			{
 				name:'edit_product',
