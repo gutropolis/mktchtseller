@@ -59,10 +59,14 @@ Route::post('/update-seller/{id}','SellerController@updateSeller' );
 Route::delete('/seller_list/{id}','SellerController@destroy');
 Route::get('/vender_category','SellerCategoryController@index');
 Route::post('/vender_category','SellerCategoryController@store');
+Route::get('/donation/{id}','SellerController@edit_donation');
+Route::get('/donation_list','SellerController@donation_list');
+Route::post('/edit_donation/{id}','SellerController@updatedonation');
 
 //Charity Ads
 Route::post('/create_ads','AdsController@store');
 Route::get('/charityads/','AdsController@index');
+Route::get('/charities/','AdsController@charity');
 Route :: get('/charityads/{id}','AdsController@edit');
 Route::delete('/charityads/{id}','AdsController@destroy');
 Route :: post('/charityads/{id}','AdsController@update');
@@ -89,12 +93,19 @@ Route::post('/product/search', 'ProductController@formSearch');
 Route::get('/product_details/{id}','SellerproductController@product_details');
 Route::get('/productsearch','SellerproductController@products');
 Route::post('/productsearch','SellerproductController@search');
+Route::get('/product','SellerproductController@product');
+Route::post('/product/{id}','CharityController@product');
+
 
 //charity list
 Route::get('/charity_details/{id}','charityController@charity_details');
 Route::post('/search','charityController@search');
 Route::get('/search','charityController@search');
-
+Route::get('/charities','charityController@charity_list');
+Route::get('/charity_type','charityController@charity_type');
+Route::get('/donaters_list','CharityController@donaters');
+Route::post('/status/{id}','CharityController@status');
+Route::post('/certify/{id}','CharityController@toggleStatus');
 
 //message part
 Route::get('/create_message','MessageController@index');
@@ -107,3 +118,7 @@ Route::post('/message/{id}','InboxController@message');
 Route::get('/user_id','InboxController@user_id');
 Route::get('/senderinfo/{id}','InboxController@senderinfo');
 Route::get('/unread','InboxController@unread');
+
+
+
+
