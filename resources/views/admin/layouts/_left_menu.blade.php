@@ -110,9 +110,26 @@
         </ul>
     </li>
 		
+		 
 		
-		
-
+<li {!! (Request::is('admin/donation') || Request::is('admin/donation/create') || Request::is('admin/donation_profile') || Request::is('admin/donation/*') || Request::is('admin/donation_seller') ? 'class="active"' : '') !!}>
+        <a href="#">
+            <i class="livicon" data-name="seller" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
+               data-loop="true"></i>
+            <span class="title">Donation Data</span>
+            <span class="fa arrow"></span>
+        </a>
+         <ul class="sub-menu">
+            
+            <li {!! (Request::is('admin/donation') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/donation') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                  Donation List
+                </a>
+            </li>
+           
+        </ul>
+    </li>
 	<li {!! (Request::is('admin/seller') || Request::is('admin/seller/create') || Request::is('admin/seller_profile') || Request::is('admin/seller/*') || Request::is('admin/deleted_seller') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="seller" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
