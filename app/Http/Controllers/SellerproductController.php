@@ -44,6 +44,17 @@ $sellerproduct = SellerProduct::latest()->get();
 * @return mixed
 */
 
+	
+	public function product(Request $request)
+	{		
+	$user = JWTAuth::parseToken()->authenticate();
+	$query = SellerProduct::whereUserId($user->id);
+	$sellerproduct = $query->get();
+	return response()->json($sellerproduct);
+	}
+
+
+
 	public function search(Request $request)
 	{		
 	
