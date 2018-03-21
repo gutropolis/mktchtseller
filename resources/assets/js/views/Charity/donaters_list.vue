@@ -32,15 +32,8 @@
                                     <button v-if="item.is_certify==1" class="btn btn-success btn-sm" @click.prevent="toggleTaskStatus(item.id)" data-toggle="tooltip" title="Mark as Complete"><i class="fa fa-check"></i></button>
                                  </td>
                                  <td>
-                                 <!--  <b-dropdown id="ddown1" text="Pending" class="m-md-2">
-                                    <b-dropdown-item>Pending</b-dropdown-item>
-                                    <b-dropdown-item>In Progress</b-dropdown-item>
-                                    <b-dropdown-item>Confirmed</b-dropdown-item>
-                                  </b-dropdown> -->
-                                    <select name="status" v-model="status" v-on:change="status(item.id)">
-                                       <option value="pending" >
-                                          Pending
-                                       </option>
+                                    <select name="status"  v-model="item.status" v-on:change="status(item.id)">
+                                       <option value="pending">Pending</option>
                                        <option value="in progress">In Progress</option>
                                        <option value="confirmed">Confirmed</option>
                                     </select>
@@ -68,7 +61,10 @@
            data() {
    		
                return {
-  
+					item:
+					{
+						status: '',
+						},
    			
    			items:[],
                        
@@ -83,7 +79,7 @@
            },
            methods: {
    		status(id){
-   			axios.post('api/status/'+id,this.status).then(response=>{
+   			axios.post('api/status/'+id,this.item).then(response=>{
    			toastr['success']("Success");
    			
    			
