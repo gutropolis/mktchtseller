@@ -15,12 +15,12 @@
                <div class="col-md-8">
                   <div class="charity_inner row">
                      <div class="col-md-7 no-gutters">
-                        <figure class="charity_inner--figure"><img src="../../../../assets/images/banner-right.jpg"></figure>
+                        <figure class="charity_inner--figure"><img :src="'/images/charity/'+ create_message.images"></figure>
                      </div>
                      <div class="col-md-5">
                         <div class="charity_inner--content">
                            <h4 class="charity_inner--content--heading">{{create_message.title}}</h4>
-                           <p class="charity_inner--content--pera">Contrary to popular belief,Lorem Ipsum.</p>
+                           <p class="charity_inner--content--pera">{{create_message.keyword}}</p>
                            <ul class="charity_inner--content--list">
                               <li class="charity_inner--content--list--item">
                                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -49,7 +49,7 @@
                                           c0-1.051,0.888-1.939,1.939-1.939h5.172c1.051,0,1.939,0.888,1.939,1.939V11.313z"/>
                                     </g>
                                  </svg>
-                                 <span>ASIS:</span> 12345 
+                                 <span>Category:</span> {{create_message.business_purpose}} 
                               </li>
                               <li class="charity_inner--content--list--item">
                                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -67,7 +67,7 @@
                                           C365.013,362.667,346.56,354.987,332.587,341.013z"/>
                                     </g>
                                  </svg>
-                                 <span>Unit:</span> 3
+                                 <span>Years In Business :</span> {{create_message.year_in_business}}
                               </li>
                            </ul>
                         </div>
@@ -76,7 +76,15 @@
                         <div class="charity_profile--detail">
                            <h3 class="charity_profile--detail--heading">DETAIL:</h3>
                            <p class="charity_profile--detail-pera">
-                              The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. 
+                             {{create_message.description}} 
+                           </p>
+						    <h3 class="charity_profile--detail--heading">Mission:</h3>
+                           <p class="charity_profile--detail-pera">
+                             {{create_message.mission_statement}} 
+                           </p>
+						   <h3 class="charity_profile--detail--heading">Vision:</h3>
+                           <p class="charity_profile--detail-pera">
+                             {{create_message.vision_statement}} 
                            </p>
                            <div class="col-md-12">
                               <b-list-group class="charity__social--list">
