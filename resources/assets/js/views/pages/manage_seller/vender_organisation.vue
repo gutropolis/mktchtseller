@@ -83,9 +83,9 @@
                             <label class="login__element--box--label">Tax_Id</label>
                             <input type="text" placeholder="Tax_Id" v-model="savesellerform.tax_id" class="login__element--box--input">
                         </div>
-						 <div class="form-group text-center m-t-20">
-                                          <span id="fileselector">
-                                          <label class="btn btn-info">
+						 <div class="form-group">
+                                          <label class="login__element--box--label">Logo Upload</label>
+                                          
                                           <input type="file" v-on:change="onImageChange" class="form-control">
                                           </label>
                                           </span>
