@@ -16,7 +16,7 @@ Seller List
 {{-- Page content --}}
 @section('content')
 <section class="content-header">
-    <h1>Seller</h1>
+    <h1>Donation</h1>
     <ol class="breadcrumb">
         <li>
            <!-- <a href="{{ route('admin.dashboard') }}">-->
@@ -25,8 +25,8 @@ Seller List
                 Dashboard
             </a>
         </li>
-        <li><a href="#"> Seller</a></li>
-        <li class="active">Seller List</li>
+        <li><a href="#"> Donation</a></li>
+        <li class="active">Donation List</li>
     </ol>
 </section>
 
@@ -36,7 +36,7 @@ Seller List
         <div class="panel panel-primary ">
             <div class="panel-heading">
                 <h4 class="panel-title"> <i class="livicon" data-name="seller" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                    Seller List
+                    Donation List
                 </h4>
             </div>
             <br />
