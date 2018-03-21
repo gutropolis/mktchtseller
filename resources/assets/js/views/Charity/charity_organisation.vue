@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group">
                             <label class="login__element--box--label">Description</label>
-                           <textarea  type="text" v-model="savecharityform.description" rows="3" placeholder="Description" class="login__element--box--input"></textarea>
+                           <textarea  type="text" v-model="savecharityform.description" rows="5" placeholder="Description" class="login__element--box--input"></textarea>
                         </div>
 						  <div class="form-group">
                             <label class="login__element--box--label">Location</label>
