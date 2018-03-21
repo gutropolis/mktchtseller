@@ -89,24 +89,19 @@
                 </a>
             </li>
             <li {!! (Request::is('admin/charity') ? 'class="active" id="active"' : '') !!}>
-                <a href="{{ URL::to('admin/Charity') }}">
+                <a href="{{ URL::to('admin/charity') }}">
                     <i class="fa fa-angle-double-right"></i>
                     charity
                 </a>
             </li>
             <li {!! (Request::is('admin/charity/create') ? 'class="active" id="active"' : '') !!}>
-                <a href="{{ URL::to('admin/Charity/create') }}">
+                <a href="{{ URL::to('admin/charity/create') }}">
                     <i class="fa fa-angle-double-right"></i>
                     Add New charity
                 </a>
             </li>
          
-            <li {!! (Request::is('admin/deleted_users') ? 'class="active" id="active"' : '') !!}>
-                <a href="{{ URL::to('admin/deleted_users') }}">
-                    <i class="fa fa-angle-double-right"></i>
-                    Deleted charity
-                </a>
-            </li>
+           
         </ul>
     </li>
 		
