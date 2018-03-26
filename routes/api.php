@@ -74,15 +74,18 @@ Route::post('/update-avatar/{id}','AdsController@updateAvatar' );
 Route::post('/update-image','AdsController@updateImage' );
 
 //Charity organisation
-Route::get('/charity_organisation','charityController@index');
+Route::get('/charity_organisation','CharityController@index');
 Route::post('/charity_category','CharityCategoryController@store');
 Route::get('/charity_category','CharityCategoryController@index');
-Route::get('/charity_list','charityController@charity_list');
-Route::get('/edit_charity/{id}','charityController@edit');
-Route::post('/update-charity/{id}','charityController@updateCharity' );
-Route::post('/edit_charity/{id}','charityController@update');
-Route::delete('/charity_list/{id}','charityController@destroy');
-Route::resource('/gs_charity_organisation', 'charityController');
+Route::get('/charity_list','CharityController@charity_list');
+Route::get('/edit_charity/{id}','CharityController@edit');
+Route::post('/update-charity/{id}','CharityController@updateCharity' );
+Route::post('/edit_charity/{id}','CharityController@update');
+Route::delete('/charity_list/{id}','CharityController@destroy');
+Route::resource('/gs_charity_organisation', 'CharityController');
+Route::get('/edit_status/{id}','CharityController@edit_status');
+Route::post('/edit_status/{id}','CharityController@update_status');
+Route::get('/product_detail/{id}','CharityController@product_detail');
 
 });
 
@@ -97,6 +100,7 @@ Route::get('/product','SellerproductController@product');
 Route::post('/product/{id}','CharityController@product');
 
 
+
 //charity list
 Route::get('/charity_details/{id}','charityController@charity_details');
 Route::post('/search','charityController@search');
@@ -106,6 +110,7 @@ Route::get('/charity_type','charityController@charity_type');
 Route::get('/donaters_list','CharityController@donaters');
 Route::post('/status/{id}','CharityController@status');
 Route::post('/certify/{id}','CharityController@toggleStatus');
+
 
 //message part
 Route::get('/create_message','MessageController@index');
