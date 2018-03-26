@@ -6,7 +6,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\JoshController;
 use App\Http\Requests\charityRequest;
 use App\Charity;
-
+use App\Sellerproduct;
 use App\Donation;
 use App\CharityCategory;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
@@ -66,21 +66,47 @@ class charityController extends JoshController
 		
     }
 	
+	
 	public function donaters()
 	
 	{
-		$user = JWTAuth::parseToken()->authenticate();
-		$donaters=Donation::where('owner_charity',$user->first_name)->get();
-		return($donaters);
+		
+		//$user = JWTAuth::parseToken()->authenticate();
+		
+		
+		$donaters=Donation::all();
+		//return($donaters);
+		
+		foreach($donaters as $donate)
+		{
+			$image=Sellerproduct::where('id',$donate->product_id)->get();
+		}
+		
+		return response()->json(array('data1'=>$donaters,'data2'=>$image));	
 			
 		
 	}
+		public function product_detail($id)
+	
+	{
+		$product_detail=Sellerproduct::where('id',$id)->get();
+		return($product_detail);
+		
+		return response()->json($product_detail);
+		
+		
+	}
+		
+		
+		
+		
+		
 		public function status(Request $request,$id)
 	
 	{
 		   $status = Donation::find($id);
 		$update=Donation::where('id',$id)->update(['status'=>request('status')]);
-		return($update);
+		 return response()->json(['message' => 'Task updated!']);
 		
 		
 	}
@@ -172,6 +198,24 @@ class charityController extends JoshController
 		$charity_type=CharityCategory::all();
 		$charity = charity::find($id);
 		return response()->json(array('data1'=>$charity,'data2'=>$charity_type));	
+    }
+	public function edit_status(Request $request,$id)
+    {
+		
+		$status = Donation::find($id);
+		$product=Sellerproduct::where('title',$status->product)->get();
+		return response()->json(array('data1'=>$status,'data2'=>$product));
+    }
+	public function update_status(Request $request,$id)
+    {
+		
+		$status = Donation::find($id);
+		
+		$status->status=$request->get('status');
+		
+		$status->save();
+		
+		return response()->json(['message' => 'Data update Successfully']);	
     }
 	public function update(Request $request,$id)
     { 	
