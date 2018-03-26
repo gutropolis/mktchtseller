@@ -20,10 +20,16 @@
 					   
                             <label class="login__element--box--label">Charity Type</label>
                             <select name="charity_type" v-model="items.charity_type"  class="login__element--box--input">
+							<option value="select">Select .. </option>
 							<option value:="items.charity_type">{{items.charity_type}}</option>
 							<option  v-for="cat in category" v-if="cat.parent_id > 0" :value="cat.title">{{ cat.title }}</option>					
 							</select>
                         </div>
+						
+						
+						
+						
+						
                         <div class="form-group">
                             <label class="login__element--box--label">Title</label>
                             <input type="text" name="title" v-model="items.title" placeholder="Title" class="login__element--box--input"/>
