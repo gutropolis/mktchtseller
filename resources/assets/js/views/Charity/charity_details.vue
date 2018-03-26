@@ -177,10 +177,7 @@
                               <textarea placeholder="Type your message here" v-model="create_message.message"  class="login__element--box--input" rows="5">
                               </textarea>
                            </div>
-						<vue-recaptcha
-          ref="recaptcha"
-          sitekey="6LcE9U0UAAAAAC0clw61SdJeDtyb0U4N4XZZLN3A">
-        </vue-recaptcha>
+						
 
                            <div class="form-group text-center" v-if="getrole === 'charity'" >
                               <button :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
@@ -253,11 +250,11 @@
 
 
 <script>
-  import VueRecaptcha from 'vue-recaptcha'
+ 
    import helper from '../../services/helper'
    export default {
    	 components: {
-	'vue-recaptcha': VueRecaptcha
+	
      },
      
            data() {
