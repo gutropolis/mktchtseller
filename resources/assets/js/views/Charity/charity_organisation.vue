@@ -26,11 +26,16 @@
 							
 							</select>
                         </div>
+						
+					
+						
+						
+						
 						<div v-if="savecharityform.charity_Category !='select' "  class="form-group">
 					   
                             <label class="login__element--box--label">Charity Type</label>
                             <select name="charity_type"  v-model="savecharityform.charity_type" class="login__element--box--input">
-							<option value="selected" >Select .. </option>
+							<option value="select" >Select .. </option>
 							
 							<option  v-for="item in items" v-if="item.parent_id==savecharityform.charity_Category"  v-bind:value="item.title">{{ item.title }}</option>
 							
