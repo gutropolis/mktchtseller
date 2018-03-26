@@ -177,10 +177,16 @@
                               <textarea placeholder="Type your message here" v-model="create_message.message"  class="login__element--box--input" rows="5">
                               </textarea>
                            </div>
+						<vue-recaptcha
+          ref="recaptcha"
+          sitekey="6LcE9U0UAAAAAC0clw61SdJeDtyb0U4N4XZZLN3A">
+        </vue-recaptcha>
+
                            <div class="form-group text-center" v-if="getrole === 'charity'" >
                               <button :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
 							  
                            </div>
+						      
 						   <div class="form-group text-center" v-if="getrole === 'seller'" >
                               <button placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
 							  
@@ -202,10 +208,10 @@
 					  <div class="form-group">
 					   
                             <label class="login__element--box--label">Select Product</label>
-                            <select name="title" v-model="prod.title"   required class="login__element--box--input">
+                            <select name="title" v-model="prod.title"  required class="login__element--box--input">
 							<option value="select">Select .. </option>
 							
-							<option v-for="item in product" v-bind:value="item.title">{{item.title}}</option>
+							<option v-for="item in product"  v-bind:value="item.title">{{item.title}}</option>
 							
 							
 							</select>
@@ -240,20 +246,29 @@
       </section>
    </div>
 </template>
+<script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer>
+</script> 
+<script src="https://unpkg.com/vue-recaptcha@latest/dist/vue-recaptcha.js"></script>
+
+
+
 <script>
+  import VueRecaptcha from 'vue-recaptcha'
    import helper from '../../services/helper'
    export default {
    	 components: {
+	'vue-recaptcha': VueRecaptcha
      },
      
            data() {
+					  sitekey: '6LcE9U0UAAAAAC0clw61SdJeDtyb0U4N4XZZLN3A'
    		
                return {
 			   
 			   role:true,
 			  
 			prod:{
-			product: 'select',
+			title: 'select',
 			units: ''
 			},
 	  product:[],
@@ -276,6 +291,7 @@
            mounted(){
            },
            methods: {
+		 
 		    clearName () {
 							this.name = ''
 						},
