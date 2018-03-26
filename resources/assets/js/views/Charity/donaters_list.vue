@@ -14,29 +14,28 @@
                            <table id="example" class="table table-striped table-bordered table-box"" width="100%" cellspacing="0">
                               <tr>
                                  <th>ID</th>
+								 <th>Product Name</th>
                                  <th>Seller</th>
-                                 <th>Donate Product</th>
-                                 <th>Units</th>
                                  <th>Charity</th>
+								 <th>Units</th>
                                  <th>Certify</th>
                                  <th>Status</th>
                               </tr>
                               <tr v-for="item in items">
                                  <td>{{item.id}}</td>
+								 <td>{{item.product}}</td>
                                  <td>{{item.seller}}</td>
-                                 <td>{{item.product}}</td>
+								 <td>{{item.charity_organisation}}</td>
                                  <td>{{item.units}}</td>
-                                 <td>{{item.charity_organisation}}</td>
+                                
                                  <td>
                                     <button v-if="item.is_certify==0" class="btn btn-danger btn-sm" @click.prevent="toggleTaskStatus(item.id)" data-toggle="tooltip" title="Mark as Incomplete"><i class="fa fa-times"></i></button>
                                     <button v-if="item.is_certify==1" class="btn btn-success btn-sm" @click.prevent="toggleTaskStatus(item.id)" data-toggle="tooltip" title="Mark as Complete"><i class="fa fa-check"></i></button>
                                  </td>
                                  <td>
-                                    <select name="status"  v-model="item.status" v-on:change="status(item.id)">
-                                       <option value="pending">Pending</option>
-                                       <option value="in progress">In Progress</option>
-                                       <option value="confirmed">Confirmed</option>
-                                    </select>
+								 <router-link :to="{name: 'change_status', params: { id: item.id }}">
+								 {{item.status}}
+								 </router-link>
                                  </td>
                               </tr>
                            </table>
@@ -66,8 +65,8 @@
 						status: '',
 						},
    			
-   			items:[],
-                       
+   			items:{},
+               image:{},        
                    }
                },
    			
@@ -91,7 +90,8 @@
    			{
    			axios.get('api/donaters_list').then(response=>{
    			
-   			this.items=response.data;
+   			this.items=response.data.data1;
+			this.image=response.data.data2
    			
    			}).catch(error=>{
    			toastr['error'](error.response.data.message);
