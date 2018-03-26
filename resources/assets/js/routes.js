@@ -120,6 +120,11 @@ let routes = [
 				path : 'donaters',
 				component:require('./views/Charity/donaters_list')
 			},
+			{
+				name:'change_status',
+				path : 'change_status',
+				component:require('./views/Charity/change_status')
+			},
 				
 			
 			{
