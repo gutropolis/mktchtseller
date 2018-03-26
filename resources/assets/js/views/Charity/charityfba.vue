@@ -29,8 +29,8 @@
 						
 						<div class="form-group charity__element--block--content--box">
 							<label class="charity__element--block--content--box--label">Category</label>
-							 <select name="searchcategory" v-model="searchform.searchcategory" class="login__element--box--input">
-							 <option value="0"> Select ...</option>
+							 <select name="searchcategory"  v-model="searchform.searchcategory" class="login__element--box--input">
+							 <option value="select"> Select Category ...</option>
 							 
 								<option v-for="charity in charity_type"  v-bind:value="charity.title">{{charity.title}}</option>
 								</select>
@@ -126,14 +126,16 @@ export default {
         data() {
 		
             return {
-			items:[],
-			
-			charity_type: '',
-                searchform: {  
+			searchform: {  
                     searchlocation: '',
 					searchcategory: 'select',
 					
-                }
+                },
+			items:[],
+			
+			charity_type: '',
+
+                
             }
         },
 		
