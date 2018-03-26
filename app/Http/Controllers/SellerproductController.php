@@ -78,6 +78,7 @@ $sellerproduct = SellerProduct::latest()->get();
 	$sellerproduct = \App\Sellerproduct::create([
 	'title' => request('name'),
 	'description' => request('bulletPoints'),
+	'description_url' => request('description'),
 	'asin_url' => request('ASIN'),
 	'images' => request('image'),
 	'organisation_id'=>request('title'),
