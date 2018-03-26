@@ -109,19 +109,7 @@
 	   
 	   
 	   
-   	 fetchItems()
-                 {
-     			
-                  axios.get('/api/user_detail').then(response=>{
-     			
-     			this.create_message=response.data;
-     			
-     			
-     			}).catch(error=>{
-     			toastr['error'](error.response.data.message);
-     				  
-                   });
-                 },
+   	 
     
     fetchItem()
                  {
