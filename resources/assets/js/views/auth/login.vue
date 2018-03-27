@@ -50,7 +50,7 @@
     import GuestFooter from '../../layouts/guest-footer.vue'
 
     export default {
-	components: { VueRecaptcha },
+	components: {  },
         data() {
             return {
                 loginForm: {
