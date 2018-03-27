@@ -14,9 +14,7 @@
 	 <link href="css/toastr.min.css" rel="stylesheet" type="text/css">
 	  <link rel="stylesheet" href="css/vue-form-wizard.min.css">
   <link href="css/toastr.min.css" rel="stylesheet" type="text/css">
-   <script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer>
-</script>
- 
+   
  </head>
  <body >
         
