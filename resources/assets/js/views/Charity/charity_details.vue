@@ -183,7 +183,7 @@
                               <button :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
 							  
                            </div>
-						   <vue-recaptcha sitekey=""></vue-recaptcha>
+						  
 						      
 						   <div class="form-group text-center" v-if="getrole === 'seller'" >
                               <button placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
@@ -251,7 +251,7 @@
 
 
 <script>
-  import VueRecaptcha from 'vue-recaptcha'
+
    import helper from '../../services/helper'
    export default {
    	 components: {
@@ -260,7 +260,7 @@
      },
      
            data() {
-					  sitekey: '6LcE9U0UAAAAAC0clw61SdJeDtyb0U4N4XZZLN3A'
+					 
    		
                return {
 			   
