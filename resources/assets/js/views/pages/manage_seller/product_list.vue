@@ -24,8 +24,8 @@
                                     <th>Created On</th>
                                     <th>Action</th>
                                  </tr>
-                                 <tr v-for="item in items">
-                                    <td>{{item.id}}</td>
+                                 <tr v-for="(item,index) in items">
+                                    <td>{{index+1}}</td>
                                     <td>{{item.title}}</td>
                                     <td>{{item.asin_url}}</td>
                                     <td>
