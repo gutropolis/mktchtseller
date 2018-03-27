@@ -54,7 +54,7 @@ class charityController extends JoshController
 	]);
 	$user = JWTAuth::parseToken()->authenticate();
 	$sellerproduct->seller_id = $user->id;
-	$sellerproduct->status="pending";
+	$sellerproduct->status="0";
 	$sellerproduct->is_certify="0";
 	$sellerproduct->charity_organisation=$charity->title;
 	$sellerproduct->owner_charity=$charity->updated_by;
@@ -71,11 +71,13 @@ class charityController extends JoshController
 	
 	{
 		
-		//$user = JWTAuth::parseToken()->authenticate();
+		$date = new \DateTime();
+		$date->modify('-3 days');
+		$formatted_date = $date->format('Y-m-d H:i:s');
+		$donaters = Donation::where('created_at', '>',$formatted_date)->get();
 		
 		
-		$donaters=Donation::all();
-		//return($donaters);
+		
 		
 		foreach($donaters as $donate)
 		{
@@ -147,9 +149,10 @@ class charityController extends JoshController
 			'year_in_business'=>'required',
 			
 			'business_purpose'=>'required',
-			'address'=>'required',
+			'state'=>'required',
+			'zipcode'=> 'required',
 			'phone_number'=>'required',
-			'keyword'=>'required',
+			'website'=>'required',
 			'vision_statement'=>'required',
 			'mission_statement'=>'required',
 			'tags'=>'required'
@@ -162,25 +165,22 @@ class charityController extends JoshController
 					\Image::make($request->get('image'))->save(public_path('images/charity/').$name);
 				}
 
-
-		
-	
-
 		
 		  $charity = new \App\Charity;
-		  $charity->charity_type=$request->input('data.charity_type');
+		 $charity->charity_type=$request->input('data.charity_type');
 		$charity->title = $request->input('data.title');
 		$charity->description=$request->input('data.description');
 		$charity->location=$request->input('data.location');
 		$charity->business_purpose=$request->input('data.business_purpose');
 		$charity->year_in_business=$request->input('data.year_in_business');
-		$charity->address=$request->input('data.address');
-		$charity->address=$request->input('data.address');
-		$charity->phone_number=$request->input('data.phone_number');
-		$charity->keyword=$request->input('data.keyword');
+		$charity->state=$request->input('data.state');
+		$charity->years_inception=$request->input('data.years_inception');
+		$charity->zipcode=$request->input('data.zipcode');
+		$charity->website=$request->input('data.website');
 		$charity->vision_statement=$request->input('data.vision_statement');
 		$charity->mission_statement=$request->input('data.mission_statement');
 		$charity->tags=$request->input('data.tags');
+		$charity->phone_number= $request->input('data.phone_number');
 		$charity->images=$name;
 		$charity->post_type='charity';
 			
@@ -222,19 +222,21 @@ class charityController extends JoshController
 	
         $charity = Charity::find($id);
 
+
             $charity->title = $request->get('title');
 			$charity->description = $request->get('description');
 			$charity->location = $request->get('location');
-			$charity->year_in_business= request('year_in_business');
+			$charity->year_in_business= $request->get('year_in_business');
+			$charity->state= $request->get('state');
+			$charity->zipcode= $request->get('zipcode');
+			$charity->business_purpose= $request->get('business_purpose');
 			
-			$charity->business_purpose= request('business_purpose');
-			$charity->address=request('address');
-			$charity->phone_number= request('phone_number');
-			$charity->keyword= request('keyword');
-			$charity->vision_statement= request('vision_statement');
-			$charity->mission_statement= request('mission_statement');
-			$charity->tags=request('tags');
-			$charity->charity_type= request('charity_type');
+			$charity->phone_number= $request->get('phone_number');
+			$charity->website= $request->get('website');
+			$charity->vision_statement= $request->get('vision_statement');
+			$charity->mission_statement= $request->get('mission_statement');
+			$charity->tags= $request->get('tags');
+			$charity->charity_type= $request->get('charity_type');
 
         $charity->save();
 		
