@@ -23,8 +23,6 @@ let routes = [
                 path: '/forget_password',
                 component: require('./views/auth/forget_password')
             },
-			
-			
 			{
                 path: '/register',
                 component: require('./views/auth/register')
@@ -50,20 +48,14 @@ let routes = [
                 path: '/password/reset/:token',
                 component: require('./views/auth/reset')
             },
-			
-			{
-                path: '/contact',
-                component: require('./views/pages/contact')
-            },
 			{
 				path: '/aboutus',
                 component: require('./views/pages/aboutus')
 			},
-			
 			{
-				path: '/product',
-				component:require('./views/pages/manage_seller/seller_product')
-			},
+                path: '/contact',
+                component: require('./views/pages/contact')
+            },
 			{
 				path: '/charityfba',
                 component: require('./views/Charity/charityfba')
@@ -86,6 +78,20 @@ let routes = [
 				component:require('./views/pages/my_ads')
 			},
 			{
+				path : 'create_ads',
+				component:require('./views/pages/my_ads/create_ads')
+			},
+			
+			{
+				path : 'my_ads',
+				component:require('./views/pages/my_ads')
+			},
+				{ 
+				name : 'edit_ads',
+                path: '/edit',
+                component: require('./views/pages/my_ads/edit_ads')
+            },
+			{
 				path : 'my_notification',
 				component:require('./views/pages/my_notification')
 			},
@@ -94,10 +100,22 @@ let routes = [
 				component:require('./views/pages/message/my_message')
 			},
 			{
-				path : 'create_message',
-				component:require('./views/pages/message/create_message')
+				path : 'user_chat',
+				component:require('./views/pages/message/user_chat')
 			},
-             {
+			
+			{
+				path : 'users_detail',
+				component:require('./views/pages/message/users_detail')
+			},
+			
+			{
+				name:'users_message',
+				path : '/users_message',
+				component:require('./views/pages/message/users_message')
+			},
+			
+            {
 				path : 'charity_organisation',
 				component:require('./views/Charity/charity_organisation')
 			},
@@ -125,16 +143,25 @@ let routes = [
 				path : 'change_status',
 				component:require('./views/Charity/change_status')
 			},
-				
 			
 			{
 				name:'charity_details',
 				path : '/charity_details',
 				component:require('./views/Charity/charity_details')
 			},
+			
 			{
 				path: '/vender_organisation',
 				component:require('./views/pages/manage_seller/vender_organisation')
+			},
+			{
+				path: '/product',
+				component:require('./views/pages/manage_seller/seller_product')
+			},
+			{
+				name:'edit_product',
+				path : '/edit_product',
+				component:require('./views/pages/manage_seller/edit_product')
 			},
 			{
 				path : 'seller_category',
@@ -160,53 +187,17 @@ let routes = [
 				component:require('./views/pages/manage_seller/product_list')
 			},
 			{
-				name:'edit_donation',
-				path: '/edit_donation',
-				component:require('./views/pages/manage_seller/edit_donation')
-			},
-			{
 				path: '/donation_list',
 				component:require('./views/pages/manage_seller/donation_list')
 			},
 			{
-				name:'edit_product',
-				path : '/edit_product',
-				component:require('./views/pages/manage_seller/edit_product')
+				name:'edit_donation',
+				path: '/edit_donation',
+				component:require('./views/pages/manage_seller/edit_donation')
 			},
-			{
-				path : 'my_ads',
-				component:require('./views/pages/my_ads')
-			},
-				{ 
-				name : 'edit_ads',
-                path: '/edit',
-                component: require('./views/pages/my_ads/edit_ads')
-            },
-			{
-				path : 'create_ads',
-				component:require('./views/pages/my_ads/create_ads')
-			},
-			{
-				path : 'show_ads',
-				component:require('./views/pages/my_ads/show_ads')
-			},
-			
-			{
-				path : 'user_chat',
-				component:require('./views/pages/message/user_chat')
-			},
+		
 			
 			
-			{
-				path : 'users_detail',
-				component:require('./views/pages/message/users_detail')
-			},
-			
-			{
-				name:'users_message',
-				path : '/users_message',
-				component:require('./views/pages/message/users_message')
-			},
 			
         ]
     },
