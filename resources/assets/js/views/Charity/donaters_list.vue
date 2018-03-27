@@ -6,7 +6,7 @@
             <div class="col-md-9 dashboard">
                <div class="dashboard__content clearfix">
                   <div class="dashboard__content--head">
-                     <h3 class="dashboard__content--head--heading">Donaters List</h3>
+                     <h3 class="dashboard__content--head--heading">Donation List</h3>
                   </div>
                   <div>
                      <div class="panel-body">
@@ -19,10 +19,11 @@
                                  <th>Charity</th>
 								 <th>Units</th>
                                  <th>Certify</th>
-                                 <th>Status</th>
+								 <th>Status</th>
+                                 <th>Change Status</th>
                               </tr>
-                              <tr v-for="item in items">
-                                 <td>{{item.id}}</td>
+                              <tr v-for="(item,index) in items">
+                                 <td>{{index+1}}</td>
 								 <td>{{item.product}}</td>
                                  <td>{{item.seller}}</td>
 								 <td>{{item.charity_organisation}}</td>
@@ -32,13 +33,18 @@
                                     <button v-if="item.is_certify==0" class="btn btn-danger btn-sm" @click.prevent="toggleTaskStatus(item.id)" data-toggle="tooltip" title="Mark as Incomplete"><i class="fa fa-times"></i></button>
                                     <button v-if="item.is_certify==1" class="btn btn-success btn-sm" @click.prevent="toggleTaskStatus(item.id)" data-toggle="tooltip" title="Mark as Complete"><i class="fa fa-check"></i></button>
                                  </td>
+								 <td v-if="item.status== 0">Pending</td>
+								 <td v-if="item.status== 1">Accept</td>
+								 <td v-if="item.status== 2">Decline</td>
+								 
                                  <td>
 								 <router-link :to="{name: 'change_status', params: { id: item.id }}">
-								 {{item.status}}
+								Click Here
 								 </router-link>
                                  </td>
                               </tr>
                            </table>
+						   <pagination :data="items" v-on:pagination-change-page="fetchItems"></pagination>
                         </div>
                      </div>
                   </div>
@@ -49,11 +55,12 @@
    </div>
 </template>
 <script>
-   
+    import pagination from 'laravel-vue-pagination'
+    import helper from '../../services/helper'
     import AppSidebar from '../pages/users/sidebar.vue' 
        export default {
            components: {
-              AppSidebar 
+              AppSidebar ,pagination
            },
    
    
@@ -86,8 +93,11 @@
    		
    		
    		},
-   		fetchItems()
+   		fetchItems(page)
    			{
+			if (typeof page === 'undefined') {
+				page = 1;
+			}
    			axios.get('api/donaters_list').then(response=>{
    			
    			this.items=response.data.data1;
