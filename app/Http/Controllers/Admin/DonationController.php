@@ -47,16 +47,33 @@ class DonationController extends JoshController
      */
     public function donation_listData()
     {
-        $donation = Donation::get(['id', 'seller', 'product','units','charity_organisation','created_at']);
-         return DataTables::of($donation)
+		
+		
+        $donation = Donation::all();
+		foreach($donation as $donate)
+		{
+		if($donate->status==0)
+		{
+			 $donate->status="pending";
+			
+		}
+		elseif($donate->status==1){
+			
+			$donate->status="accept";
+			
+		}
+		else{
+			$donate->status="decline";
+		}
+		}         return DataTables::of($donation)
             ->editColumn('created_at',function(Donation $donation) {
-                return $donation->created_at->format('d F Y h:i');
+                return $donation->created_at->format('d F Y ');
             })
              ->addColumn('actions',function($donation) {
                 $actions = '<a href='. route('admin.donation.edit', $donation->id) .'><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update donation"></i></a>';
-                if ((Sentinel::getUser()->id != $donation->id) && ($donation->id != 1)) {
+                
                     $actions .= '<a href='. route('admin.donation.confirm-delete', $donation->id) .' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="donation-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete seller"></i></a>';
-                }
+                
                 return $actions;
             })
             ->rawColumns(['actions'])
