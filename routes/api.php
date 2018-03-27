@@ -39,18 +39,20 @@ Route::post('/user/change-password','AuthController@changePassword');
 
 
 //seller Product
-Route::delete('/task/{id}','SellerproductController@destroy');
-Route::post('/task/{id}','SellerproductController@update');
+Route:: post('/gs_seller_product', 'SellerproductController@store');
 Route::get('/task/{id}','SellerproductController@edit');
+Route::post('/task/{id}','SellerproductController@update');
+Route::delete('/task/{id}','SellerproductController@destroy');
 Route::get('/product_list','SellerproductController@index');
 Route::post('product/update-avatar','SellerproductController@updateAvatar');
 Route::post('product/remove-avatar','SellrproductController@removeAvatar');
 Route::resource('/gs_seller_product', 'SellerproductController');
-Route:: post('/gs_seller_product', 'SellerproductController@store');
+
 
 
 //Seller Organisation
 Route::resource('/gs_seller_organisation', 'SellerController');
+Route::post('/vender_category','SellerCategoryController@store');
 Route::get('/gs_seller_organisation', 'SellerController@index');
 Route::get('/seller_list','SellerController@seller_list');
 Route::get('/edit_seller/{id}','SellerController@edit');
@@ -58,7 +60,9 @@ Route::post('/edit_seller/{id}','SellerController@update');
 Route::post('/update-seller/{id}','SellerController@updateSeller' );
 Route::delete('/seller_list/{id}','SellerController@destroy');
 Route::get('/vender_category','SellerCategoryController@index');
-Route::post('/vender_category','SellerCategoryController@store');
+
+
+//Donation Seller
 Route::get('/donation/{id}','SellerController@edit_donation');
 Route::get('/donation_list','SellerController@donation_list');
 Route::post('/edit_donation/{id}','SellerController@updatedonation');
@@ -85,10 +89,13 @@ Route::delete('/charity_list/{id}','CharityController@destroy');
 Route::resource('/gs_charity_organisation', 'CharityController');
 Route::get('/edit_status/{id}','CharityController@edit_status');
 Route::post('/edit_status/{id}','CharityController@update_status');
-Route::get('/product_detail/{id}','CharityController@product_detail');
+
+//Donaters
+Route::get('/donaters_list','CharityController@donaters');
+Route::post('/status/{id}','CharityController@status');
+Route::post('/certify/{id}','CharityController@toggleStatus');
 
 });
-
 
 //Route::get('/product/search', 'ProductController@getSearchPage');
 Route::get('/product/search','ProductController@formsearch');
@@ -107,9 +114,7 @@ Route::post('/search','charityController@search');
 Route::get('/search','charityController@search');
 Route::get('/charities','charityController@charity_list');
 Route::get('/charity_type','charityController@charity_type');
-Route::get('/donaters_list','CharityController@donaters');
-Route::post('/status/{id}','CharityController@status');
-Route::post('/certify/{id}','CharityController@toggleStatus');
+
 
 
 //message part
