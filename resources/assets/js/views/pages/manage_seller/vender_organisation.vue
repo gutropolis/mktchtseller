@@ -58,8 +58,12 @@
                         </div>
 						
 						<div class="form-group">
-                            <label class="login__element--box--label">Address</label>
-                             <textarea  type="text"  v-model="savesellerform.address" rows="3" placeholder="Address" class="login__element--box--input"></textarea>
+                            <label class="login__element--box--label">State</label>
+                             <input  type="text"  v-model="savesellerform.state" placeholder="Fill State" class="login__element--box--input">
+                        </div>
+						<div class="form-group">
+                            <label class="login__element--box--label">Zipcode</label>
+                             <input  type="text"  v-model="savesellerform.zipcode" placeholder="Fill_Zipcode" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Phone Number</label>
@@ -68,8 +72,8 @@
 						  </tab-content>
 						    <tab-content>
 						<div class="form-group">
-                            <label class="login__element--box--label">Keyword</label>
-                            <input type="text" placeholder="Keywords" v-model="savesellerform.keywords" class="login__element--box--input">
+                            <label class="login__element--box--label">Website</label>
+                            <input type="text" placeholder="Website" v-model="savesellerform.website" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Vision</label>
@@ -126,9 +130,10 @@
 					description: '',
 					location: '',
 					year_in_business: '',
-					address: '',
+					state: '',
+					zipcode: '',
 					phone_number: '',
-					keywords: '',
+					website: '',
 					vision_statement: '',
 					mission_statement: '',
                     tax_id: '',
