@@ -11,7 +11,7 @@
                         
                                              
 
-						<form-wizard @on-complete="submit" shape="circle"  title="Add Your Organisation"
+						<form-wizard @on-complete="submit" shape="circle"  title="Add Your Organization"
                       subtitle="" color="#19b325">
                      
 					  <tab-content>
@@ -66,8 +66,16 @@
                             <input type="text" placeholder="Purpose" v-model="savecharityform.business_purpose" class="login__element--box--input">
                         </div>
 						<div class="form-group">
-                            <label class="login__element--box--label">Address</label>
-                             <textarea  type="text"  v-model="savecharityform.address" rows="3" placeholder="Address" class="login__element--box--input"></textarea>
+                            <label class="login__element--box--label">Years in inception</label>
+                            <input type="text" placeholder="Years_in _Inception" v-model="savecharityform.years_inception" class="login__element--box--input">
+                        </div>
+						<div class="form-group">
+                            <label class="login__element--box--label">State</label>
+                             <input type="text"  v-model="savecharityform.state" rows="3" placeholder="Fill The State" class="login__element--box--input">
+                        </div>
+						<div class="form-group">
+                            <label class="login__element--box--label">Zip Code</label>
+                             <input type="text"  v-model="savecharityform.zipcode" rows="3" placeholder=" Fill zipcode" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Phone Number</label>
@@ -76,8 +84,8 @@
 						</tab-content>
 						 <tab-content>
 						<div class="form-group">
-                            <label class="login__element--box--label">Keyword</label>
-                            <input type="text" placeholder="Keyword" v-model="savecharityform.keyword" class="login__element--box--input">
+                            <label class="login__element--box--label">Website</label>
+                            <input type="text" placeholder="Website" v-model="savecharityform.website" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Vision</label>
@@ -91,14 +99,18 @@
                             <label class="login__element--box--label">Tags</label>
                             <input type="text" placeholder="Tags" v-model="savecharityform.tags" class="login__element--box--input">
                         </div>
-						 <div class="form-group text-center m-t-20">
+						 <div class="form-group">
+						  <label class="login__element--box--label">Logo Upload</label>
                                           <span id="fileselector">
                                           <label class="btn btn-info">
                                           <input type="file" v-on:change="onImageChange" class="form-control">
                                           </label>
+										  
                                           </span>
                                        </div>
-									    
+								 <div class="col-md-6" v-if="image">
+                              <img :src="image" class="img-responsive" height="70" width="90">
+                           </div>	    
                                        
 						
                     </tab-content>
@@ -139,10 +151,12 @@ import Vue from 'vue'
                     description: '',
                    location: '',
 				   year_in_business: '',
+				   years_inception:'',
 				   business_purpose: '',
-				   address: '',
+				   state: '',
+				   zipcode:'',
 				   phone_number: '',
-				   keyword: '',
+				   website: '',
 				   vision_statement: '',
 				   mission_statement: '',
 				   tags: '',
