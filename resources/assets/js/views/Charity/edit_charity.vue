@@ -52,10 +52,18 @@
 						<div class="form-group">
                             <label class="login__element--box--label">Business Purpose</label>
                             <input type="text" placeholder="Purpose" v-model="items.business_purpose" class="login__element--box--input">
+						</div>
+                     	<div class="form-group">
+                            <label class="login__element--box--label">Years in inception</label>
+                            <input type="text" placeholder="Years_in _Inception" v-model="items.years_inception" class="login__element--box--input">
                         </div>
 						<div class="form-group">
-                            <label class="login__element--box--label">Address</label>
-                             <textarea  type="text" rows="3" v-model="items.address" placeholder="Address" class="login__element--box--input"></textarea>
+                            <label class="login__element--box--label">State</label>
+                             <input type="text"  v-model="items.state" rows="3" placeholder="Fill The State" class="login__element--box--input">
+                        </div>
+						<div class="form-group">
+                            <label class="login__element--box--label">Zip Code</label>
+                             <input type="text"  v-model="items.zipcode" rows="3" placeholder=" Fill zipcode" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Phone Number</label>
@@ -64,8 +72,8 @@
 						</tab-content>
 						 <tab-content>
 						<div class="form-group">
-                            <label class="login__element--box--label">Keyword</label>
-                            <input type="text" placeholder="Keyword" v-model="items.keyword" class="login__element--box--input">
+                            <label class="login__element--box--label">Website</label>
+                            <input type="text" placeholder="W" v-model="items.website" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Vision</label>
@@ -79,7 +87,7 @@
                             <label class="login__element--box--label">Tags</label>
                             <input type="text" placeholder="Tags" v-model="items.tags" class="login__element--box--input">
                         </div>
-						<h4 class="card-title">Upload Organisation Image</h4>
+						<h4 class="card-title">Upload Logo</h4>
                                        <div class="form-group text-center m-t-20">
                                           <span id="fileselector">
                                           <label class="btn btn-info">
