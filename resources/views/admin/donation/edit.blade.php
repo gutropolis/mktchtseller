@@ -118,9 +118,9 @@
                      <select name="status" class="form-control required" required>
                         <option value="{{$rol->status}}">{{$rol->status}}</option>
                      
-                        <option value="pending">--Pending</option>
-                         <option value="in progress">--In Progress</option>
-                          <option value="completed">--Completed</option>
+                        <option value="0">--Pending</option>
+                         <option value="1">--Accept</option>
+                          <option value="2">--No Thanks</option>
                        
                      </select>
                      {!! $errors->first('product', '<span class="help-block">:message</span>') !!}
