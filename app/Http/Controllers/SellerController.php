@@ -107,10 +107,10 @@ class SellerController extends Controller
 		$seller->location=$request->input('data.location');
 		
 		$seller->year_in_business=$request->input('data.year_in_business');
-		$seller->address=$request->input('data.address');
-		$seller->address=$request->input('data.address');
+		$seller->state=$request->input('data.state');
+		$seller->zipcode=$request->input('data.zipcode');
 		$seller->phone_number=$request->input('data.phone_number');
-		$seller->keywords=$request->input('data.keywords');
+		$seller->website=$request->input('data.website');
 		$seller->vision_statement=$request->input('data.vision_statement');
 		$seller->mission_statement=$request->input('data.mission_statement');
 		$seller->tax_id=$request->input('data.tax_id');
@@ -130,8 +130,12 @@ class SellerController extends Controller
 	
 	{
 		$user = JWTAuth::parseToken()->authenticate();
-		$donaters=Donation::where('seller_id',$user->id)->get();
-		return($donaters);
+		$pending=Donation::where('seller_id',$user->id)->where('status','0')->get();
+		//return($pending);
+		$accept=Donation::where('seller_id',$user->id)->where('status','1')->get();
+		
+		$decline=Donation::where('seller_id',$user->id)->where('status','2')->get();
+	return response()->json(array('data1'=>$pending,'data2'=>$accept,'data3'=>$decline));
 			
 		
 	}
@@ -197,9 +201,10 @@ class SellerController extends Controller
 			'year_in_business' => 'required',
 			
 			'business_type' => 'required',
-			'address' => 'required',
+			'state' => 'required',
+			'zipcode' => 'required',
 			'phone_number' => 'required',
-			'keywords' => 'required',
+			'website' => 'required',
 			'vision_statement' => 'required',
 			'mission_statement' => 'required',
 			'tax_id' => 'required',
@@ -217,11 +222,11 @@ class SellerController extends Controller
             $seller->description = $request->get('description');
             $seller->location = $request->get('location');
 			$seller->year_in_business = $request->get('year_in_business');
-		
 			$seller->business_type = $request->get('business_type');
-			$seller->address = $request->get('address');
+			$seller->state = $request->get('state');
+			$seller->zipcode = $request->get('zipcode');
 			$seller->phone_number = $request->get('phone_number');
-			$seller->keywords = $request->get('keywords');
+			$seller->website = $request->get('website');
 			$seller->vision_statement = $request->get('vision_statement');
 			$seller->mission_statement = $request->get('mission_statement');
 			$seller->tax_id = $request->get('tax_id');
