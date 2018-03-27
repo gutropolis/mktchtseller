@@ -27,11 +27,14 @@
                             <label class="login__element--box--label">Password</label>
                             <input type="password" placeholder="abc@123" v-model="loginForm.password" class="login__element--box--input">
                         </div>
+						
+                         <vue-recaptcha sitekey="6LfUIE8UAAAAANsXv_5zhm2izRRxKFG1j_W__lQc"></vue-recaptcha>
                         
-                        <p class="login__element--box--content"><router-link to="/forget_password" class="login__element--box--content--link">Don't remember your password?</router-link></p>
+						<p class="login__element--box--content"><router-link to="/forget_password" class="login__element--box--content--link">Don't remember your password?</router-link></p>
                         <div class="form-group text-center">
                             <input type="Submit" placeholder="" value="Login" class="btn btn-bg-orange login__element--box--button">
                         </div>
+						 <p class="login__element--box--content">Not a memeber yet? <router-link to="/register">Join Us</router-link></p>
                     </form>
                 </div>
 
@@ -42,10 +45,12 @@
 </template>
 
 <script>
+ import VueRecaptcha from 'vue-recaptcha'
     import helper from '../../services/helper'
     import GuestFooter from '../../layouts/guest-footer.vue'
 
     export default {
+	components: { VueRecaptcha },
         data() {
             return {
                 loginForm: {
