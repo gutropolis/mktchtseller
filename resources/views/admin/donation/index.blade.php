@@ -45,14 +45,21 @@ Seller List
                 <table class="table table-bordered width100" id="table">
                     <thead>
                         <tr class="filters">
-                           <th>Id</th>
+								<th>Id</th>
                                 <th>Seller Name</th>
                                 <th>Donated Product</th>
                                 <th>Units</th>
-                                <th>Charity Name</th>
+                                <th>Charity Organization</th>
+								<th>Status</th>
                                 <th>Created At</th>
                                 <th>Actions</th>
                         </tr>
+						
+						
+						
+						
+						
+						
                     </thead>
                     <tbody>
 
@@ -78,11 +85,13 @@ Seller List
             serverSide: true,
               ajax: '{!! route('admin.donation_list.data') !!}',
             columns: [
-                { data: 'id', name: 'id' },
+            { data: 'id', name: 'id' },
             { data: 'seller', name: 'Seller Name' },
             { data: 'product', name: 'Donated Product' },
             {data: 'units', name: 'units'},
             {data:'charity_organisation', name: 'Charity Name'},
+	
+			{data:'status',name:'status'},
             { data: 'created_at', name:'created_at'},
                 
                 { data: 'actions', name: 'actions', orderable: false, searchable: false }
