@@ -255,7 +255,7 @@
    import helper from '../../services/helper'
    export default {
    	 components: {
-	 VueRecaptcha
+	 
 	
      },
      
