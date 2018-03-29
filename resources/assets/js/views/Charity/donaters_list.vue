@@ -24,7 +24,7 @@
                               </tr>
                               <tr v-for="(item,index) in items">
                                  <td>{{index+1}}</td>
-								  <td v-for="product in name">{{product}}</td>
+								  <td>{{item.product_name}}</td>
                                  <td>{{item.seller}}</td>
 								 <td>{{item.charity_organisation}}</td>
                                  <td>{{item.units}}</td>
@@ -44,7 +44,7 @@
                                  </td>
                               </tr>
                            </table>
-						   <pagination :data="items" v-on:pagination-change-page="fetchItems"></pagination>
+						   
                         </div>
                      </div>
                   </div>
@@ -55,12 +55,12 @@
    </div>
 </template>
 <script>
-    import pagination from 'laravel-vue-pagination'
+   
     import helper from '../../services/helper'
     import AppSidebar from '../pages/users/sidebar.vue' 
        export default {
            components: {
-              AppSidebar ,pagination
+              AppSidebar 
            },
    
    
@@ -80,8 +80,7 @@
    			
    			created: function()
            {
-				this.fetchproductname();
-               this.fetchItems();
+		   this.fetchItems();
            },
            mounted(){
            },
@@ -95,20 +94,10 @@
    		
    		
    		},
-		fetchproductname()
-		{
-			axios.get('api/product_name').then(response=>{
-					this.name=response.data;
-			
-			
-			})
-		
-		},
-   		fetchItems(page)
+	
+   		fetchItems()
    			{
-			if (typeof page === 'undefined') {
-				page = 1;
-			}
+			
    			axios.get('api/donaters_list').then(response=>{
    			
    			this.items=response.data.data1;
