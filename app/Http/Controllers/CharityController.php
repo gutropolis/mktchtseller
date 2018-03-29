@@ -62,7 +62,7 @@ class charityController extends JoshController
 	$sellerproduct->owner_id=$charity->user_id;
 	$sellerproduct->seller=$user->first_name;
 	$sellerproduct->save();
-	$user_id=User::where('id',$charity->user_id)->pluck('id');
+	/*$user_id=User::where('id',$charity->user_id)->pluck('id');
 	
 
 	if($sellerproduct->save())
@@ -82,7 +82,7 @@ class charityController extends JoshController
 		
 		return response()->json(['message' => 'Data Record Successfully']);
 		
-	}
+	}*/
 		
 			
 			
