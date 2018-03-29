@@ -90,9 +90,18 @@ $sellerproduct = SellerProduct::latest()->get();
 	$query= Seller::where('user_id',$user->id)->first();
 	//$sellerproduct->organisation_id=$query->id;
 	$sellerproduct->user_id = $user->id;	
-	$sellerproduct->updated_by=$user->first_name;
+	$sellerproduct->updated_by=$user->full_name;
 	$sellerproduct->post_type= 'seller';
 	$sellerproduct->save();
+	if ($sellerproduct->save()) {
+                $success =trans('users/message.success.create');
+            activity($sellerproduct->updated_by)
+                ->performedOn($sellerproduct)
+                ->causedBy($sellerproduct)
+                ->log('Seller Add a Product by '.$sellerproduct->updated_by);
+            // Redirect to the home page with success menu
+            return response()->json(['message' => 'You have registered successfully.']);
+			}
 	return response()->json(['message' => 'Your Data Are Stored']);
 	}
 

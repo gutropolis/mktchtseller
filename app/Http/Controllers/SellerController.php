@@ -58,7 +58,7 @@ class SellerController extends Controller
 	 public function seller_list()
     {
 		$user = JWTAuth::parseToken()->authenticate();
-		$seller=Seller::where('user_id',$user->id)->latest()->get();
+		$seller=Seller::where('user_id',$user->id)->get();
  
 		return response()->json($seller);
     }
@@ -118,12 +118,21 @@ class SellerController extends Controller
 		$seller->post_type='seller';
 	    $user = JWTAuth::parseToken()->authenticate();
 	    $seller->user_id = $user->id;	
-		$seller->updated_by = $user->first_name;	
+		$seller->updated_by = $user->full_name;	
 
 	    $seller->save();
+		if ($seller->save()) {
+                $success =trans('users/message.success.create');
+            activity($seller->updated_by)
+                ->performedOn($seller)
+                ->causedBy($seller)
+                ->log('Seller Add a Company by '.$seller->updated_by);
+            // Redirect to the home page with success menu
+            return response()->json(['message' => 'You have registered successfully.']);
+			}
 	   
        
-		 return response()->json(['message' => 'You have registered successfully']);
+		 //return response()->json(['message' => 'You have registered successfully']);
     }
 
     public function donation_list()
@@ -190,31 +199,35 @@ class SellerController extends Controller
         $image_ads->save();
 	 return response()->json(['message' => 'Avatar updated!','profile' => $image_ads]);
     }
-
+public function updatelogo(Request $request,$id)
+	{
+		$validation = Validator::make($request->all(), [
+		'avatar' => 'required|image'
+		]);
+		if ($validation->fails())
+		return response()->json(['message' => $validation->messages()->first()],422);
+		$seller= new Seller;
+		if($seller->avatar && \File::exists($this->avatar_path.$seller->avatar))
+		\File::delete($this->avatar_path.$seller->avatar);
+		$extension = $request->file('avatar')->getClientOriginalExtension();
+		$filename = uniqid();
+		$file = $request->file('avatar')->move($this->avatar_path, $filename.".".$extension);
+		$img = \Image::make($this->avatar_path.$filename.".".$extension);
+		$img->resize(200, null, function ($constraint) {
+		$constraint->aspectRatio();
+		
+	});
+		$image = Seller::find($id);
+		        $img->save($this->avatar_path.$filename.".".$extension);
+				
+        $image->pic = $filename.".".$extension;
+        $image->save();
+	 return response()->json(['message' => 'Avatar updated!','profile' => $image]);
+    }
     
    public function update(Request $request,$id)
     { 	
-	$validation = Validator::make($request->all(), [
-            'title' => 'required',
-            'description' => 'required',
-            'location' => 'required',
-			'year_in_business' => 'required',
-			
-			'business_type' => 'required',
-			'state' => 'required',
-			'zipcode' => 'required',
-			'phone_number' => 'required',
-			'website' => 'required',
-			'vision_statement' => 'required',
-			'mission_statement' => 'required',
-			'tax_id' => 'required',
-			
-			
-            
-        ]);
-
-        if($validation->fails())
-            return response()->json(['message' => $validation->messages()->first()],422);
+	
 	
         $seller = Seller::find($id);
 
