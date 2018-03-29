@@ -8,6 +8,7 @@ use App\Http\Requests\charityRequest;
 use App\Charity;
 use App\Sellerproduct;
 use App\Donation;
+use App\User;
 use App\CharityCategory;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
@@ -58,13 +59,48 @@ class charityController extends JoshController
 	$sellerproduct->is_certify="0";
 	$sellerproduct->charity_organisation=$charity->title;
 	$sellerproduct->owner_charity=$charity->updated_by;
+	$sellerproduct->owner_id=$charity->user_id;
 	$sellerproduct->seller=$user->first_name;
 	$sellerproduct->save();
+	$user_id=User::where('id',$charity->user_id)->pluck('id');
+	
+
+	if($sellerproduct->save())
+	{
+		
+		$activity= new \App\Activity;
+		$activity->from_id = $user->id;
+		$activity->from_name=$user->first_name;
+		$activity->description='Donate Product to '.$sellerproduct->charity_organisation;
+		$activity->subject =$user->first_name . " Donate Product to ". $charity->updated_by. "Organization";
+		$activity->subject_url= "App\Activity";
+		
+		$activity->to_name = $charity->updated_by;
+		$activity->to_id=$user_id[0];
+		$activity->save();
+		
 		
 		return response()->json(['message' => 'Data Record Successfully']);
 		
+	}
+		
+			
+			
+			
+		
+		
 		
     }
+	public function product_name()
+	{
+		$donation=Donation::all();
+		foreach($donation as $donate)
+		{
+		$product_name=Sellerproduct::where('id',$donate->product)->pluck('title');
+		
+	}
+	return($product_name);
+	}
 	
 	
 	public function donaters()
@@ -186,10 +222,20 @@ class charityController extends JoshController
 			
 			$user = JWTAuth::parseToken()->authenticate();
 			$charity->user_id = $user->id; 
-			$charity->updated_by= $user->first_name; 
+			$charity->updated_by= $user->full_name; 
 		  //$charity->updated_by = $user->first_name;
 			
         $charity->save();
+		if ($charity->save()) {
+                $success =trans('users/message.success.create');
+            activity($charity->updated_by)
+                ->performedOn($charity)
+                ->causedBy($charity)
+                ->log('Charity Organisation Add Organisation by '.$charity->updated_by);
+            // Redirect to the home page with success menu
+            return response()->json(['message' => 'You have registered successfully.']);
+			}
+	   
 		
         return response()->json(['message' => 'Data Record Successfully']);
 	}
@@ -203,7 +249,7 @@ class charityController extends JoshController
     {
 		
 		$status = Donation::find($id);
-		$product=Sellerproduct::where('title',$status->product)->get();
+		$product=Sellerproduct::where('id',$status->product)->get();
 		return response()->json(array('data1'=>$status,'data2'=>$product));
     }
 	public function update_status(Request $request,$id)
@@ -298,15 +344,24 @@ class charityController extends JoshController
        
     }
 
-    /**
-     * Display specified user profile.
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function show($id)
+    
+    public function notification()
     {
-       
+		$user = JWTAuth::parseToken()->authenticate();
+	//$query = Donation::whereUserId($user->id);
+	$date = new \DateTime();
+		$date->modify('-3 days');
+		$formatted_date = $date->format('Y-m-d H:i:s');
+		
+       $product=Donation::where('status','0')->whereOwnerId($user->id)->orwhere('status','1')->where('created_at', '>',$formatted_date)->get();
+	  // return($product);
+		foreach($product as $pro)
+		{
+	  
+	   //return($product_detail);
+		}
+		$product_detail=Sellerproduct::where('id',$pro->product)->whereUserId($pro->seller_id)->get();
+		return response()->json(array('data1'=>$product,'data2'=>$product_detail));
 	}
 
     public function passwordreset( Request $request)
