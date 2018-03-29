@@ -165,7 +165,7 @@ import Vue from 'vue'
             uploadAvatar() {
                 let data = new FormData();
                 data.append('avatar', $('#avatarUpload')[0].files[0]);
-                axios.post('/api/update-charity/'+this.$route.params.id,data)
+                axios.post('/api/update-charity_logo/'+this.$route.params.id,data)
                 .then(response => {
                   
                  
