@@ -24,7 +24,7 @@
                               </tr>
                               <tr v-for="(item,index) in items">
                                  <td>{{index+1}}</td>
-								 <td>{{item.product}}</td>
+								  <td v-for="product in name">{{product}}</td>
                                  <td>{{item.seller}}</td>
 								 <td>{{item.charity_organisation}}</td>
                                  <td>{{item.units}}</td>
@@ -67,6 +67,7 @@
            data() {
    		
                return {
+			   name:{},
 					item:
 					{
 						status: '',
@@ -79,6 +80,7 @@
    			
    			created: function()
            {
+				this.fetchproductname();
                this.fetchItems();
            },
            mounted(){
@@ -93,6 +95,15 @@
    		
    		
    		},
+		fetchproductname()
+		{
+			axios.get('api/product_name').then(response=>{
+					this.name=response.data;
+			
+			
+			})
+		
+		},
    		fetchItems(page)
    			{
 			if (typeof page === 'undefined') {
