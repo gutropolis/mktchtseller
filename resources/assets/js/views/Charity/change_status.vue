@@ -27,7 +27,7 @@
                             <div class="donator_status--form_group">
                                 <label class="donator_status--form_group--control_label">Product</label>
                                 <div class="donator_status--form_group--control_data">
-                                     <div v-for="product in name" class="donator_status--form_group--control_data--lineup">{{product}}</div>
+                                     <div class="donator_status--form_group--control_data--lineup">{{items.product_name}}</div>
                                 </div> <!-- /controls -->
                             </div> <!-- /form-group -->
 							
@@ -47,10 +47,10 @@
                                      <div class="donator_status--form_group--control_data--lineup">{{prod.asin_url}}</div>
                                 </div> <!-- /controls -->
                             </div> <!-- /form-group -->
-							 <div v-for="prod in product" class="donator_status--form_group">
+							 <div  class="donator_status--form_group">
                                 <label class="donator_status--form_group--control_label">Units</label>
                                 <div class="donator_status--form_group--control_data">
-                                     <div class="donator_status--form_group--control_data--lineup">{{prod.units}}</div>
+                                     <div class="donator_status--form_group--control_data--lineup">{{items.units}}</div>
                                 </div> <!-- /controls -->
                             </div> <!-- /form-group -->
 
