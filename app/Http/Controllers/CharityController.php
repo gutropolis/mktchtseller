@@ -48,11 +48,10 @@ class charityController extends JoshController
 	public function product(Request $request,$id)
     {
 		$charity = Charity::find($id);
-		
-		$sellerproduct = Donation::create([
-			'product' => request('title'),		
-			'units' => request('units'),
-	]);
+		$sellerproduct=new \App\Donation;
+		$sellerproduct->product=$request->input('data.title');
+		$sellerproduct->product_name=$request->input('product_name');
+		$sellerproduct->units=$request->input('data.units');
 	$user = JWTAuth::parseToken()->authenticate();
 	$sellerproduct->seller_id = $user->id;
 	$sellerproduct->status="0";
@@ -92,15 +91,15 @@ class charityController extends JoshController
 		
 		
     }
-	public function product_name()
+	public function product_name($id)
 	{
-		$donation=Donation::all();
-		foreach($donation as $donate)
+		$product_name=Sellerproduct::where('id',$id)->pluck('title');
+		foreach($product_name as $product)
 		{
-		$product_name=Sellerproduct::where('id',$donate->product)->pluck('title');
+			return($product);
+		}
 		
-	}
-	return($product_name);
+	//return($product_name);
 	}
 	
 	
