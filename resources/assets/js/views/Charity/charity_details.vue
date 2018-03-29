@@ -209,7 +209,7 @@
                             <select name="title" v-model="prod.title"  required class="login__element--box--input">
 							<option value="select">Select .. </option>
 							
-							<option v-for="item in product"  v-bind:value="item.title">{{item.title}}</option>
+							<option v-for="item in product"  v-bind:value="item.id">{{item.title}}</option>
 							
 							
 							</select>
@@ -254,10 +254,7 @@
 
    import helper from '../../services/helper'
    export default {
-   	 components: {
-	 
-	
-     },
+   	 components: {},
      
            data() {
 					 
