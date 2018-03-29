@@ -343,7 +343,28 @@ class charityController extends JoshController
     {
        
     }
-
+	//
+public  function detail(Request $request,$id)
+	{
+		$user = JWTAuth::parseToken()->authenticate();
+		//update receiver_read message
+		$update=Message::where('inbox_id',$id)->where('reciever_id',$user->id)->update(['reciever_read' => 1 ]);
+		
+		
+		
+		$messages=Message::where('inbox_id',$id)->get();
+		$msgInbox=array();
+		foreach($messages as $message)
+		{
+			$user=User::where('id',$message->sender_id)->get();
+			$userArr = array();
+			$userArr['sender_detail']=$user;
+			$message['sender_detail']=$user;
+			array_push($msgInbox,$message);
+		}
+		return response()->json($msgInbox);
+	}
+	//
     
     public function notification()
     {
@@ -353,20 +374,32 @@ class charityController extends JoshController
 		$date->modify('-3 days');
 		$formatted_date = $date->format('Y-m-d H:i:s');
 		
-       $product=Donation::where('status','0')->whereOwnerId($user->id)->orwhere('status','1')->where('created_at', '>',$formatted_date)->get();
-	  // return($product);
+       $product=Donation::where('status','0')->whereOwnerId($user->id)->where('created_at', '>',$formatted_date)->orwhere('status','1')->get();
+	   
+	   $msgproduct=array();
 		foreach($product as $pro)
 		{
-	  
-	   //return($product_detail);
+			$product_detail=Sellerproduct::where('id',$pro->product)->whereUserId($pro->seller_id)->first();
+			//return($product_detail);
+			$prodArr=array();
+			$prodArr['product_detail']=$product;
+			$product_detail['product_detail']=$product;
+			array_push($msgproduct,$product_detail);
+	 
 		}
-		$product_detail=Sellerproduct::where('id',$pro->product)->whereUserId($pro->seller_id)->get();
-		return response()->json(array('data1'=>$product,'data2'=>$product_detail));
+		
+		return response()->json($msgproduct);
 	}
 
-    public function passwordreset( Request $request)
+    public function update_donation($id)
     {
-       
+       $donation = Donation::where('product',$id)->update(['status' => 1]);
+		return response()->json(['message' => 'Product are Accepted']);
+    }
+	 public function reject_donation($id)
+    {
+       $donation = Donation::where('product',$id)->update(['status' => 2]);
+		return response()->json(['message' => 'Product are Rejected']);
     }
 
     public function lockscreen($id)
