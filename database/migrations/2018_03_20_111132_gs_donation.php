@@ -16,7 +16,8 @@ class GsDonation extends Migration
         Schema::create('gs_donation', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('seller_id');
-			$table->text('product');
+			$table->string('product');
+			$table->text('product_name');
 			$table->string('seller');
 			$table->string('units');
 			$table->string('owner_charity');
