@@ -220,7 +220,6 @@
 			})
 		
 		},
-              
               toggleTaskStatus(id){
                   axios.post('api/certify/'+id).then((response) => {
                       this.fetchItems();
