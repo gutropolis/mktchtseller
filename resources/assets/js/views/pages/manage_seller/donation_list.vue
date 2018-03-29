@@ -25,7 +25,7 @@
                                     </tr>
                                     <tr v-for="(item,index) in pending">
                                        <td>{{index+1}}</td>
-                                       <td v-for="product in name">{{product}}</td>
+                                       <td>{{item.product_name}}</td>
                                        <td>{{item.units}}</td>
                                        <td>{{item.charity_organisation}}</td>
                                        <td v-if="item.status == 0">Pending</td>
@@ -73,7 +73,7 @@
                                     </tr>
                                     <tr v-for="(item,index) in accept">
                                        <td>{{index+1}}</td>
-                                       <td v-for="product in name">{{product}}</td>
+                                       <td>{{item.product_name}}</td>
                                        <td>{{item.units}}</td>
                                        <td>{{item.charity_organisation}}</td>
                                        <td v-if="item.status == 0">Pending</td>
@@ -121,7 +121,7 @@
                                     </tr>
                                     <tr v-for="(item,index) in decline">
                                        <td>{{index+1}}</td>
-                                        <td v-for="product in name">{{product}}</td>
+                                        <td>{{item.product_name}}</td>
                                        <td>{{item.units}}</td>
                                        <td>{{item.charity_organisation}}</td>
                                        <td v-if="item.status == 0">Pending</td>
@@ -184,7 +184,7 @@
    		
    		created: function()
           {
-			this.fetchproductname();
+			
               this.fetchItems();
           },
           mounted(){
@@ -211,16 +211,7 @@
    		toastr['error'](error.response.data.message);
    		});
    		},
-		fetchproductname()
-		{
-			axios.get('api/product_name').then(response=>{
-					this.name=response.data;
-			
-			
-			})
-		
-		},
-              toggleTaskStatus(id){
+		 toggleTaskStatus(id){
                   axios.post('api/certify/'+id).then((response) => {
                       this.fetchItems();
                   });
