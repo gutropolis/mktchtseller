@@ -95,6 +95,7 @@ Route::post('/edit_status/{id}','CharityController@update_status');
 Route::get('/donaters_list','CharityController@donaters');
 Route::post('/status/{id}','CharityController@status');
 Route::post('/certify/{id}','CharityController@toggleStatus');
+Route::get('/product_name/{id}','CharityController@product_name');
 
 });
 
