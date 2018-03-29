@@ -27,7 +27,7 @@
                             <div class="donator_status--form_group">
                                 <label class="donator_status--form_group--control_label">Product</label>
                                 <div class="donator_status--form_group--control_data">
-                                     <div class="donator_status--form_group--control_data--lineup">{{items.product}}</div>
+                                     <div v-for="product in name" class="donator_status--form_group--control_data--lineup">{{product}}</div>
                                 </div> <!-- /controls -->
                             </div> <!-- /form-group -->
 							
@@ -112,6 +112,7 @@
            data() {
    		
                return {
+			   name:{},
 			   product:[],
 					     items:{
 						  status:'select'},   
@@ -123,6 +124,7 @@
    			
    			created: function()
            {
+				this.fetchproductname();
                this.fetchItems();
            },
            mounted(){
@@ -139,6 +141,15 @@
    		
    		
    		},
+		fetchproductname()
+		{
+			axios.get('api/product_name').then(response=>{
+					this.name=response.data;
+			
+			
+			})
+		
+		},
 		 update()
             {
               axios.post('api/edit_status/'+this.$route.params.id,this.items).then(response =>  {
