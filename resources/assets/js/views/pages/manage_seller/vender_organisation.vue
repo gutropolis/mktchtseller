@@ -44,7 +44,7 @@
                         </div>
                         <div class="form-group">
                             <label class="login__element--box--label">Description</label>
-                            <input type="text" placeholder="Description"v-model="savesellerform.description" class="login__element--box--input">
+                             <textarea  type="text" v-model="savesellerform.description" rows="5" placeholder="Description" class="login__element--box--input"></textarea>
                         </div>
 						  <div class="form-group">
                             <label class="login__element--box--label">Location</label>
@@ -88,12 +88,17 @@
                             <input type="text" placeholder="Tax_Id" v-model="savesellerform.tax_id" class="login__element--box--input">
                         </div>
 						 <div class="form-group">
-                                          <label class="login__element--box--label">Logo Upload</label>
-                                          
+						  <label class="login__element--box--label">Logo Upload</label>
+                                          <span id="fileselector">
+                                          <label class="btn btn-info">
                                           <input type="file" v-on:change="onImageChange" class="form-control">
                                           </label>
+										  
                                           </span>
                                        </div>
+								 <div class="col-md-6" v-if="image">
+                              <img :src="image" class="img-responsive" height="70" width="90">
+                           </div>	    
 						
 						
                     </tab-content>
