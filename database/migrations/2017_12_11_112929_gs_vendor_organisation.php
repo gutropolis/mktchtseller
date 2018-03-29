@@ -22,13 +22,14 @@ class GsVendorOrganisation extends Migration
             $table->string('pic')->null;
             $table->string('year_in_business');
            
-			$table->string('address');
+			$table->string('state');
+			$table->string('zipcode');
             $table->string('mission_statement');
             $table->string('vision_statement');
             $table->string('tax_id');
             $table->string('business_type');
             $table->string('phone_number');
-			$table->string('keywords');
+			$table->string('website');
             $table->string('user_id')->nullable();
 			$table->string('post_type')->nullable();
             
