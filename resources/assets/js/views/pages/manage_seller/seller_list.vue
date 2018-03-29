@@ -81,6 +81,7 @@
 <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
 <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
 <script>
+
 import InfiniteLoading from 'vue-infinite-loading';
    import AppSidebar from '../users/sidebar.vue'
       export default {
