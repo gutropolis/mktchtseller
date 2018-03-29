@@ -57,6 +57,7 @@ Route::get('/gs_seller_organisation', 'SellerController@index');
 Route::get('/seller_list','SellerController@seller_list');
 Route::get('/edit_seller/{id}','SellerController@edit');
 Route::post('/edit_seller/{id}','SellerController@update');
+Route::post('/update-seller_logo/{id}','SellerController@updatelogo' );
 Route::post('/update-seller/{id}','SellerController@updateSeller' );
 Route::delete('/seller_list/{id}','SellerController@destroy');
 Route::get('/vender_category','SellerCategoryController@index');
@@ -83,7 +84,7 @@ Route::post('/charity_category','CharityCategoryController@store');
 Route::get('/charity_category','CharityCategoryController@index');
 Route::get('/charity_list','CharityController@charity_list');
 Route::get('/edit_charity/{id}','CharityController@edit');
-Route::post('/update-charity/{id}','CharityController@updateCharity' );
+Route::post('/update-charity_logo/{id}','CharityController@updateCharity' );
 Route::post('/edit_charity/{id}','CharityController@update');
 Route::delete('/charity_list/{id}','CharityController@destroy');
 Route::resource('/gs_charity_organisation', 'CharityController');
@@ -130,5 +131,6 @@ Route::get('/senderinfo/{id}','InboxController@senderinfo');
 Route::get('/unread','InboxController@unread');
 
 
-
-
+Route::get('/unread_msg','InboxController@unread_msg');
+Route::get('/product_notifcation','CharityController@notification');
+Route::get('/product_name','CharityController@product_name');
