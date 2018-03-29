@@ -206,7 +206,7 @@
 					  <div class="form-group">
 					   
                             <label class="login__element--box--label">Select Product</label>
-                            <select name="title" v-model="prod.title"  required class="login__element--box--input">
+                            <select name="title" v-model="prod.title" v-on:change="onChange"   class="login__element--box--input">
 							<option value="select">Select .. </option>
 							
 							<option v-for="item in product"  v-bind:value="item.id">{{item.title}}</option>
@@ -218,7 +218,7 @@
 					 
 					 <label class="charity__element--block--content--box--label">Units</label>
 					<input type="text" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
-                   
+                   <input type="hidden" name="product_name" v-model="prod.product_name" class="login__element--box--input" />
                      </form>
                   </b-modal>
                </div>
@@ -260,7 +260,7 @@
 					 
    		
                return {
-			   
+			   product_name:{},
 			   role:true,
 			  
 			prod:{
@@ -287,14 +287,27 @@
            mounted(){
            },
            methods: {
+		    onChange: function (){
+         	
+           axios.get('/api/product_name/'+this.prod.title)
+            .then(response=>{
+   			
+   			this.product_name=response.data;
+   			
+   			
+   			}).catch(error=>{
+   			toastr['error'](error.response.data.message);
+   				  
+                 });
+				 },
 		 
 		    clearName () {
 							this.name = ''
 						},
       
     handleSubmit () {
-      
-	  axios.post('/api/product/'+this.$route.params.id,this.prod).then(response => {
+       let data = this.prod;
+	  axios.post('/api/product/'+this.$route.params.id,{product_name: this.product_name, data}).then(response => {
 			toastr['success'](response.data.message);
 	  })
 	  
@@ -302,6 +315,7 @@
    				
    			 submit1(e){
                    if(helper.checkLogin()){
+				   
    				axios.post('/api/create_message', this.create_message).then(response =>  {
                        toastr['success'](response.data.message);
                        
