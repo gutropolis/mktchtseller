@@ -12,18 +12,16 @@
                        <form  @submit.prevent="proceed">
 					  <div class="form-group">
 					   
-                            <label class="login__element--box--label">Select Product</label>
-                            <select name="product" v-model="item.product" class="login__element--box--input">
-							<option value="select">Select .. </option>
-							<option value:="item.product">{{item.product}}</option>
-							
-							<option  v-for="products in product"  v-if="item.product != products.title" v-bind:value="products.title">{{ products.title }}</option>
-							
-							</select>
+                            <label class="login__element--box--label">Product Name</label>
+                          {{item.product_name}}
+                        </div>
+						<div class="form-group">
+						 <label class="login__element--box--label">Charity Organization</label>
+                          {{item.charity_organisation}}
                         </div>
 					 
 					   <div class="form-group">
-					 <label class="charity__element--block--content--box--label">Units</label>
+					 <label class="charity__element--block--content--box--label">Update Units</label>
 					<input type="text" name="units"  v-model="item.units" placeholder="Units"  class="login__element--box--input" />
                    </div>
 				    <div class="form-group text-center">
