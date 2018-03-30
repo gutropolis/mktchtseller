@@ -87,9 +87,9 @@
 								<p class="charity__listing--content--box--pera">{{item.description}}</p>
 							</div>
 							<div class="charity__listing--content--address row">
-								<div class="charity__listing--content--address--location col-md-4 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Location:</span> {{ item.location }}</p></div>
-								<div class="charity__listing--content--address--location col-md-3 "><p><i class="fa fa-briefcase" aria-hidden="true"></i><span>ASIS:</span> 12345</p></div>
-								<div class="charity__listing--content--address--location col-md-2 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Unit:</span> 3</p></div>
+								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Location:</span> {{ item.location }}</p></div>
+								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-briefcase" aria-hidden="true"></i><span>Category:</span> {{item.category}}</p></div>
+							
 								
 							</div>
 								
