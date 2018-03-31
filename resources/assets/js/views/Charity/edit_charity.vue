@@ -56,16 +56,17 @@
 						
 						
 						<div class="form-group">
-                            <label class="login__element--box--label">Locality</label>
-                             <input type="text"  v-model="address.locality" rows="3" placeholder="Fill The State" class="login__element--box--input">
+                            <label class="login__element--box--label">Location</label>
+                             <input type="text"  v-model="address.location" rows="3" placeholder="Fill The State" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Zip Code</label>
                              <input type="text"  v-model="address.postal_code" rows="3" placeholder=" Fill zipcode" class="login__element--box--input">
                         </div>
-						<div class="form-group">
+						<div class="form-group clearfix">
                             <label class="login__element--box--label">Phone Number</label>
-                            <input type="number" placeholder="Phone Number" v-model="address.phone_number" class="login__element--box--input">
+					<input type="text" placeholder="+91" v-model="address.area_code" class="login__element--box--input_areacode">
+                             <input type="number" placeholder="9999999999" v-model="address.phone_number"  class="login__element--box--input_phone_number">
                         </div>
 						</tab-content>
 						 <tab-content>
@@ -97,7 +98,7 @@
                                           <img :src="avatar" class="img-responsive" style="max-width:200px;">
                                        </div>
                                        <div class="text-center">
-                                          <button type="submit" class="btn btn-info waves-effect waves-light m-t-10" v-if="avatar" @click="uploadAvatar">Upload</button>
+                                          <button type="button" class="btn btn-danger waves-effect waves-light m-t-10"  v-if="avatar"  @click="uploadAvatar">Upload</button>
                                           <button type="button" class="btn btn-danger waves-effect waves-light m-t-10" v-if="avatar" @click="cancelUploadAvatar">Cancel Upload</button>
                                        </div>
                     </tab-content>
