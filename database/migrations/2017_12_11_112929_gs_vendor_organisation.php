@@ -23,7 +23,8 @@ class GsVendorOrganisation extends Migration
             $table->string('year_in_business');
            
 			$table->string('state');
-			$table->string('zipcode');
+			$table->string('postal_code');
+			$table->string('area_code')
             $table->string('mission_statement');
             $table->string('vision_statement');
             $table->string('tax_id');
