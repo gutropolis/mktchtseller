@@ -40,8 +40,7 @@
                         <tab-content>
                            <div class="form-group">
                               <label class="login__element--box--label">Select Address</label>
-                              <vue-google-autocomplete id="map" class="login__element--box--input" v-model="address.addr" placeholder="Start typing" v-on:placechanged="getAddressData">
-                              </vue-google-autocomplete>
+                              
                            </div>
                            <div class="form-group">
                               <label class="login__element--box--label">Locality</label>
@@ -106,7 +105,7 @@
    </div>
 </template>
 <script>
-   import VueGoogleAutocomplete from 'vue-google-autocomplete'
+   
    import AppNavbar from '../pages/users/navbar.vue' 
     import AppSidebar from '../pages/users/sidebar.vue'
     
@@ -116,7 +115,7 @@
     
     export default {
    	 components: {
-               AppNavbar,  AppSidebar ,VueGoogleAutocomplete
+               AppNavbar,  AppSidebar 
            },
      
            data() {
