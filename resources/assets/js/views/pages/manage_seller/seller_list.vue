@@ -22,8 +22,8 @@
                                  <th>LOCATION</th>
                                  <th>ACTION</th>
                               </tr>
-                              <tr v-for="item in items">
-                                 <td>{{item.id}}</td>
+                              <tr v-for="(item,index) in items">
+                                 <td>{{index+1}}</td>
                                  <td>{{item.title}}</td>
                                  <td>{{item.description}}</td>
                                  <td>{{item.location}}</td>
@@ -66,6 +66,7 @@
                                  </td>
                               </tr>
                            </table>
+						   <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                         </div>
                      </div>
                   </div>
@@ -86,7 +87,7 @@ import InfiniteLoading from 'vue-infinite-loading';
    import AppSidebar from '../users/sidebar.vue'
       export default {
           components: {
-               AppSidebar 
+               AppSidebar ,InfiniteLoading
 
           },
    
@@ -120,6 +121,16 @@ import InfiniteLoading from 'vue-infinite-loading';
    		toastr['error'](error.response.data.message);
    		});
    		},
+		infiniteHandler($state) {
+      setTimeout(() => {
+        const temp = [];
+        for (let i = this.items.length + 1; i <= this.items.length + 4; i++) {
+          temp.push(i);
+        }
+        this.items = this.items.concat(temp);
+        $state.loaded();
+      }, 90000);
+    },
 	
    		 deleteItem(id)
               {
