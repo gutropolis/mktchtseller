@@ -83,6 +83,7 @@ Route::get('/charity_organisation','CharityController@index');
 Route::post('/charity_category','CharityCategoryController@store');
 Route::get('/charity_category','CharityCategoryController@index');
 Route::get('/charity_list','CharityController@charity_list');
+Route::get('/charity_list_user','CharityController@charity_list_user');
 Route::get('/edit_charity/{id}','CharityController@edit');
 Route::post('/update-charity_logo/{id}','CharityController@updateCharity' );
 Route::post('/edit_charity/{id}','CharityController@update');
