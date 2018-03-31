@@ -46,46 +46,48 @@
                             <label class="login__element--box--label">Description</label>
                              <textarea  type="text" v-model="savesellerform.description" rows="5" placeholder="Description" class="login__element--box--input"></textarea>
                         </div>
-						  <div class="form-group">
-                            <label class="login__element--box--label">Location</label>
-                            <input type="text" placeholder="Location" v-model="savesellerform.location"  class="login__element--box--input">
-                        </div>
-						  </tab-content>
-						  <tab-content>
-						<div class="form-group">
+						 <div class="form-group">
                             <label class="login__element--box--label">Years in business</label>
                             <input type="text" placeholder="year in business" v-model="savesellerform.year_in_business" class="login__element--box--input">
                         </div>
+						  </tab-content>
+						  <tab-content>
 						
+						  <div class="form-group">
+                              <label class="login__element--box--label">Select Address</label>
+                              <vue-google-autocomplete id="map" class="login__element--box--input"  placeholder="Start typing" v-on:placechanged="getAddressData">
+                              </vue-google-autocomplete>
+                           </div>
 						<div class="form-group">
-                            <label class="login__element--box--label">State</label>
-                             <input  type="text"  v-model="savesellerform.state" placeholder="Fill State" class="login__element--box--input">
+                            <label class="login__element--box--label">Locality</label>
+                             <input  type="text"  v-model="address.locality" placeholder="Fill State" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Zipcode</label>
-                             <input  type="text"  v-model="savesellerform.zipcode" placeholder="Fill_Zipcode" class="login__element--box--input">
+                             <input  type="text"  v-model="address.postal_code" placeholder="Fill_Zipcode" class="login__element--box--input">
                         </div>
-						<div class="form-group">
-                            <label class="login__element--box--label">Phone Number</label>
-                            <input type="number" placeholder="Phone Number" v-model="savesellerform.phone_number" class="login__element--box--input">
-                        </div>
+						  <div class="form-group clearfix">
+                              <label class="login__element--box--label">Phone Number</label>
+                              <input type="text" placeholder="+91" v-model="address.area_code" class="login__element--box--input_areacode">
+                              <input type="number" placeholder="9999999999" v-model="address.phone_number" maxlength="10" class="login__element--box--input_phone_number">
+                           </div>
 						  </tab-content>
 						    <tab-content>
 						<div class="form-group">
                             <label class="login__element--box--label">Website</label>
-                            <input type="text" placeholder="Website" v-model="savesellerform.website" class="login__element--box--input">
+                            <input type="text" placeholder="Website" v-model="address.website" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Vision</label>
-                             <textarea  type="text" v-model="savesellerform.vision_statement" rows="3" placeholder="Statement" class="login__element--box--input"></textarea>
+                             <textarea  type="text" v-model="address.vision_statement" rows="3" placeholder="Statement" class="login__element--box--input"></textarea>
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Mission</label>
-                             <textarea  type="text" v-model="savesellerform.mission_statement"  rows="3" placeholder="Statement" class="login__element--box--input"></textarea>
+                             <textarea  type="text" v-model="address.mission_statement"  rows="3" placeholder="Statement" class="login__element--box--input"></textarea>
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Tax_Id</label>
-                            <input type="text" placeholder="Tax_Id" v-model="savesellerform.tax_id" class="login__element--box--input">
+                            <input type="text" placeholder="Tax_Id" v-model="address.tax_id" class="login__element--box--input">
                         </div>
 						 <div class="form-group">
 						  <label class="login__element--box--label">Logo Upload</label>
@@ -115,17 +117,18 @@
 </div>
 </template>
 <script>
- import AppNavbar from '../users/navbar.vue' 
+  import VueGoogleAutocomplete from 'vue-google-autocomplete'
  import AppSidebar from '../users/sidebar.vue'
  import Vue from 'vue'
  import VueFormWizard from 'vue-form-wizard'
  Vue.use(VueFormWizard)
  export default {
  components: {
-            AppNavbar,  AppSidebar 
+              AppSidebar,VueGoogleAutocomplete 
         },
         data() {
             return {
+			 address: '',
 				image: '',
 				items:[],
                 savesellerform: {
@@ -154,11 +157,16 @@
         mounted(){
         },
         methods: {
+		getAddressData: function (addressData, placeResultData, id) 
+					{
+						   this.address = addressData;
+					},
             submit(e){
-			 let data = this.savesellerform;
-                axios.post('/api/gs_seller_organisation',{image: this.image, data}).then(response =>  {
+			 let data1 = this.savesellerform;
+			  let data2 = this.address;
+                axios.post('/api/gs_seller_organisation',{image: this.image, data1,data2}).then(response =>  {
                     toastr['success'](response.data.message);
-                    this.$router.push('/product');
+                    this.$router.push('/seller_list');
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });
