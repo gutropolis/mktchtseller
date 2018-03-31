@@ -116,7 +116,7 @@
 </div>
 </template>
 <script>
-import VueGoogleAutocomplete from 'vue-google-autocomplete'
+
  import AppSidebar from '../pages/users/sidebar.vue'
 import Vue from 'vue'
  import VueFormWizard from 'vue-form-wizard'
@@ -124,7 +124,7 @@ import Vue from 'vue'
  
  export default {
 	components: {
-              AppSidebar ,VueGoogleAutocomplete
+              AppSidebar 
         },
   
         data() {
