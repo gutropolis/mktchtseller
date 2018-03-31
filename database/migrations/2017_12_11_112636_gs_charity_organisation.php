@@ -23,8 +23,8 @@ class GsCharityOrganisation extends Migration
             $table->string('year_in_business');
             $table->string('years_inception');
             $table->string('business_purpose');
-            $table->string('state');
-			$table->string('zipcode');
+            $table->string('area_code');
+			$table->string('postal_code');
             $table->string('phone_number');
             $table->string('website');
             $table->string('vision_statement');
