@@ -226,7 +226,7 @@ class charityController extends JoshController
 		$charity->website=$request->input('data1.website');
 		$charity->vision_statement=$request->input('data1.vision_statement');
 		$charity->mission_statement=$request->input('data1.mission_statement');
-		$charity->tags=$request->input('data1.tags');
+		$charity->tags=$request->input('data1.tags'); 
 		$charity->area_code=$request->input('data1.area_code');
 		$charity->phone_number= $request->input('data1.phone_number');
 		$charity->images=$name;
