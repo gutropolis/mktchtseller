@@ -151,18 +151,19 @@
                                                 {!! $errors->first('year_in_business', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
+										 <div class="form-group {{ $errors->first('year_in_business', 'has-error') }}">
+                                            <label for="years inception" class="col-sm-2 control-label">Years Inception *</label>
+                                            <div class="col-sm-10">
+                                                <input id="years_inception" name="years_inception" type="text" placeholder="year_inception"
+                                                       class="form-control required" value="{!! old('year_in_business') !!}"  required/>
+
+                                                {!! $errors->first('years_inception', '<span class="help-block">:message</span>') !!}
+                                            </div>
+                                        </div>
 										
 										
 										 <h2 class="hidden">&nbsp;</h2>
-											<div class="form-group  {{ $errors->first('start_up_year', 'has-error') }}">
-                                            <label for="start_up_year" class="col-sm-2 control-label">Start Up Year *</label>
-                                            <div class="col-sm-10">
-                                                <input id="dob" name="start_up_year" type="text" class="form-control"
-                                                       data-date-format="YYYY"
-                                                       placeholder="yyyy"  required/>
-                                            </div>
-                                            <span class="help-block">{{ $errors->first('start_up_year', ':message') }}</span>
-                                        </div>
+											
 										
 										<div class="form-group {{ $errors->first('business_purpose', 'has-error') }}">
                                             <label for="business_purpose" class="col-sm-2 control-label">Business Purpose*</label>
@@ -177,32 +178,34 @@
 										
 										
                                          <div class="form-group">
-                                            <label for="address" class="col-sm-2 control-label">Address <small>(brief intro) *</small></label>
+                                            <label for="address" class="col-sm-2 control-label">Phone Number <small>(brief intro) *</small></label>
                                             <div class="col-sm-10">
-                        <textarea name="address" id="address" placeholder="Address" required class="form-control resize_vertical"
-                                  rows="4">{!! old('address') !!}</textarea>
+											 <input type="text" id="area_code" placeholder="+91" name="area_code" class="login__element--box--input_areacode" required>
+											  <input type="number" id="phone_number" name="phone_number" placeholder="9999999999" class="login__element--box--input_phone_number" required>
+							
+								  
                                             </div>
-                                            {!! $errors->first('address', '<span class="help-block">:message</span>') !!}
+                                            {!! $errors->first('phone_number', '<span class="help-block">:message</span>') !!}
                                         </div>
                                     </div>
 									
                                     <div class="tab-pane" id="tab3" disabled="disabled">
                                        
-										<div class="form-group {{ $errors->first('phone_number', 'has-error') }}">
-                                            <label for="phone_number" class="col-sm-2 control-label">Phone Number*</label>
+										<div class="form-group {{ $errors->first('postal_code', 'has-error') }}">
+                                            <label for="postal_code" class="col-sm-2 control-label">Postal Code*</label>
                                             <div class="col-sm-10">
-                                                <input id="phone_number" name="phone_number" type="number" placeholder="phone_number"
-                                                       class="form-control required" value="{!! old('phone_number') !!}" required/>
+                                                <input id="postal_code" name="postal_code" type="number" placeholder="postal_code"
+                                                       class="form-control required" value="{!! old('postal_code') !!}" required/>
 
-                                                {!! $errors->first('phone_number', '<span class="help-block">:message</span>') !!}
+                                                {!! $errors->first('postal_code', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
                                        
                                          <div class="form-group">
-                                            <label for="keywords" class="col-sm-2 control-label">Keywords *</label>
+                                            <label for="keywords" class="col-sm-2 control-label">Website *</label>
                                             <div class="col-sm-10">
-                                                <input id="keyword" name="keyword" type="text" class="form-control"
-                                                      placeholder="Keyword" value="{!! old('keyword') !!}" required/>
+                                                <input id="website" name="website" type="text" class="form-control"
+                                                      placeholder="www.abc.com" value="{!! old('website') !!}" required/>
                                             </div>
                                             <span class="help-block">{{ $errors->first('tags', ':message') }}</span>
                                         </div>
