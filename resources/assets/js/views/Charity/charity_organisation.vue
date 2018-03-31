@@ -33,7 +33,7 @@
                            </div>
 						    <div class="form-group">
                               <label class="login__element--box--label">Years in business</label>
-                              <input type="text" placeholder="year in business" v-model="address.year_in_business" class="login__element--box--input">
+                              <input type="text" placeholder="year in business" v-model="savecharityform.year_in_business" class="login__element--box--input">
                            </div>
                            
                         </tab-content>
