@@ -128,7 +128,7 @@
                                                         <div class="fileinput fileinput-new" data-provides="fileinput">
                                                             <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
                                                                 @if($charity->images)
-                                                                    <img src="{!! url('/').'/uploads/charity/'.$charity->images !!}" alt="img"
+                                                                    <img src="{!! url('/').'/images/charity/'.$charity->images !!}" alt="img"
                                                                          class="img-responsive"/>
                                                                
                                                                 @endif
@@ -157,18 +157,18 @@
                                                 {!! $errors->first('year_in_business', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
-										
+											 <div class="form-group {{ $errors->first('years_inception', 'has-error') }}">
+                                            <label for="years_inception" class="col-sm-2 control-label">Year Inception *</label>
+                                            <div class="col-sm-10">
+                                                <input id="years_inception" name="years_inception" type="text" placeholder="year_inception"
+                                                       class="form-control required" value="{!! old('year_inception',$charity->years_inception) !!}" required/>
+
+                                                {!! $errors->first('years_inception', '<span class="help-block">:message</span>') !!}
+                                            </div>
+                                        </div>
 										
 										 <h2 class="hidden">&nbsp;</h2>
-											<div class="form-group  {{ $errors->first('start_up_year', 'has-error') }}">
-                                            <label for="start_up_year" class="col-sm-2 control-label">Start Up Year *</label>
-                                            <div class="col-sm-10">
-                                                <input id="dob" name="start_up_year" type="text" class="form-control"
-                                                       data-date-format="YYYY" value="{!! old('start_up_year', $charity->start_up_year) !!}"
-                                                       placeholder="yyyy" required />
-                                            </div>
-                                            <span class="help-block">{{ $errors->first('start_up_year', ':message') }}</span>
-                                        </div>
+											
 										
 										<div class="form-group {{ $errors->first('business_purpose', 'has-error') }}">
                                             <label for="business_purpose" class="col-sm-2 control-label">Business Purpose*</label>
@@ -182,14 +182,7 @@
 									
 										
 										
-                                        <div class="form-group">
-                                            <label for="address" class="col-sm-2 control-label">Address *</label>
-                                            <div class="col-sm-10">
-                        <textarea name="address" id="bio" required class="form-control resize_vertical"
-                                  rows="4">{!! old('address',$charity->address) !!}</textarea>
-                                            </div>
-                                            {!! $errors->first('address', '<span class="help-block">:message</span>') !!}
-                                        </div>
+                                       
                                     </div>
 									
                                     <div class="tab-pane" id="tab3" disabled="disabled">
@@ -197,20 +190,21 @@
 										<div class="form-group {{ $errors->first('phone_number', 'has-error') }}">
                                             <label for="phone_number" class="col-sm-2 control-label">Phone Number*</label>
                                             <div class="col-sm-10">
-                                                <input id="phone_number" name="phone_number" type="number" placeholder="phone_number"
-                                                       class="form-control required" value="{!! old('phone_number',$charity->phone_number) !!}" required />
+											<input type="text" id="area_code" placeholder="+91" name="area_code" class="login__element--box--input_areacode"  value="{!! old('area_code',$charity->area_code) !!}" required>
+											  <input type="number" id="phone_number" name="phone_number" placeholder="9999999999"   value="{!! old('phone_number',$charity->phone_number) !!}" required class="login__element--box--input_phone_number" >
+                                               
 
                                                 {!! $errors->first('phone_number', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
                                        
                                         <div class="form-group">
-                                            <label for="keyword" class="col-sm-2 control-label">Keyword*</label>
+                                            <label for="website" class="col-sm-2 control-label">Website*</label>
                                             <div class="col-sm-10">
-                                                <input id="keyword" name="keyword" type="text" class="form-control"
-                                                       value="{!! old('keyword',$charity->keyword) !!}" required/>
+                                                <input id="website" name="website" type="text" class="form-control"
+                                                       value="{!! old('website',$charity->website) !!}" required/>
                                             </div>
-                                            <span class="help-block">{{ $errors->first('keyword', ':message') }}</span>
+                                            <span class="help-block">{{ $errors->first('website', ':message') }}</span>
                                         </div>
 										  <div class="form-group">
                                             <label for="vision_statement" class="col-sm-2 control-label">Vision Statement *</label>
