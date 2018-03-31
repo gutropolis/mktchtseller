@@ -128,7 +128,7 @@
                                             <div class="col-sm-10">
                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
-                                                        <img src="{!! url('/').'/uploads/seller/'.$seller->pic !!}" alt="img"
+                                                        <img src="{!! url('/').'/images/seller/'.$seller->pic !!}" alt="img"
                                                                          class="img-responsive"/>
                                                     </div>
                                                     <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 200px;"></div>
@@ -137,7 +137,7 @@
                                     <span class="fileinput-new">Select image</span>
                                     <span class="fileinput-exists">Change</span>
                                    <input id="pic" name="pic_file" type="file"
-                                                               class="form-control" required/>
+                                                               class="form-control"/>
                                 </span>
                                                         <a href="#" class="btn btn-danger fileinput-exists"
                                                            data-dismiss="fileinput">Remove</a>
@@ -150,7 +150,7 @@
 
 										
 										 <div class="form-group {{ $errors->first('year_in_business', 'has-error') }}">
-                                            <label for="year_in_business" class="col-sm-2 control-label">Year in Business *</label>
+                                            <label for="year_in_business" class="col-sm-2 control-label">Years in Business *</label>
                                             <div class="col-sm-10">
                                                 <input id="year_in_business" name="year_in_business" placeholder="year_in_business" type="text"
                                                        class="form-control required year_in_business" value="{!! old('year_in_buisness'),$seller->year_in_business !!}" required/>
@@ -160,23 +160,15 @@
 										
 										
 										 <h2 class="hidden">&nbsp;</h2>
-											<div class="form-group  {{ $errors->first('start_up_year', 'has-error') }}">
-                                            <label for="start_up_year" class="col-sm-2 control-label">Start Up Year *</label>
-                                            <div class="col-sm-10">
-                                                <input id="dob" name="start_up_year" type="text" class="form-control"
-                                                       data-date-format="YYYY" value="{!! old('start_up_year', $seller->start_up_year) !!}"
-                                                       placeholder="yyyy" required/>
-                                            </div>
-                                            <span class="help-block">{{ $errors->first('start_up_year', ':message') }}</span>
-                                        </div>
+											
 										
 										 <div class="form-group">
-                                            <label for="address" class="col-sm-2 control-label">Address <small>(brief intro) *</small></label>
+                                            <label for="postal_code" class="col-sm-2 control-label">Postal Code <small>(brief intro) *</small></label>
                                             <div class="col-sm-10">
-                        <textarea name="address" id="address" required class="form-control resize_vertical"
-                                  rows="4">{!! old('address'),$seller->address !!}</textarea>
+                        <input type="number" name="postal_code" id="postal_code" required class="form-control resize_vertical"
+                                  rows="4" value="{!! old('postal_code'),$seller->postal_code !!}">
                                             </div>
-                                            {!! $errors->first('address', '<span class="help-block">:message</span>') !!}
+                                            {!! $errors->first('postal_code', '<span class="help-block">:message</span>') !!}
                                         </div>
                                     </div>
 									
@@ -185,6 +177,16 @@
                                      
 									
                                     <div class="tab-pane" id="tab3" disabled="disabled">
+									<div class="form-group {{ $errors->first('phone_number', 'has-error') }}">
+                                            <label for="description" class="col-sm-2 control-label">Phone Number *</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" id="area_code" placeholder="+91" name="area_code" value="{!! old('area_code'),$seller->area_code !!}"class="login__element--box--input_areacode" required>
+											  <input type="number" id="phone_number" name="phone_number" value="{!! old('phone_number'),$seller->phone_number !!}" placeholder="9999999999" class="login__element--box--input_phone_number" required>
+												
+
+                                                {!! $errors->first('phone_number', '<span class="help-block">:message</span>') !!}
+                                            </div>
+                                        </div>
                                        
 										 <div class="form-group">
                                             <label for="mission_statement" class="col-sm-2 control-label">Mission Statement <small>(brief intro) *</small></label>
@@ -215,26 +217,9 @@
                                                 {!! $errors->first('tax_id', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
-										<div class="form-group {{ $errors->first('user_id', 'has-error') }}">
-                                            <label for="user_id" class="col-sm-2 control-label">User Id *</label>
-                                            <div class="col-sm-10">
-                                                <input id="user_id" name="user_id" type="number" placeholder="user_id"
-                                                       class="form-control required" value="{!! old('user_id'),$seller->user_id !!}" required/>
-
-                                                {!! $errors->first('tax_id', '<span class="help-block">:message</span>') !!}
-                                            </div>
-                                        </div>
 										
 										
-										<div class="form-group {{ $errors->first('phone_number', 'has-error') }}">
-                                            <label for="description" class="col-sm-2 control-label">Phone Number *</label>
-                                            <div class="col-sm-10">
-                                                <input id="phone_number" name="phone_number" type="text" placeholder="phone_number"
-                                                       class="form-control required" value="{!! old('phone_number'),$seller->phone_number !!}" required />
-
-                                                {!! $errors->first('phone_number', '<span class="help-block">:message</span>') !!}
-                                            </div>
-                                        </div>
+										
                                         
                                     </div>
                                             <ul class="pager wizard">
