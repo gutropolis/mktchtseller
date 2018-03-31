@@ -196,7 +196,7 @@ class charityController extends JoshController
 			
 			'business_purpose'=>'required',
 			'locality'=>'required',
-			'zipcode'=> 'required',
+			'postal_code'=> 'required',
 			'phone_number'=>'required',
 			'website'=>'required',
 			'vision_statement'=>'required',
@@ -216,12 +216,12 @@ class charityController extends JoshController
 		 $charity->charity_type=$request->input('data2.charity_type');
 		$charity->title = $request->input('data2.title');
 		$charity->description=$request->input('data2.description');
-		$charity->location=$request->input('data2.location');
+		//$charity->location=$request->input('data2.location');
 		$charity->business_purpose=$request->input('data1.business_purpose');
 		$charity->year_in_business=$request->input('data1.year_in_business');
-		$charity->locality=$request->input('data1.locality');
+		//$charity->location=$request->input('data1.locality');
 		$charity->years_inception=$request->input('data1.years_inception');
-		//$charity->address =$request->input('data1.addr');
+		$charity->address =$request->input('data1.addr');
 		$charity->postal_code=$request->input('data1.postal_code');
 		$charity->website=$request->input('data1.website');
 		$charity->vision_statement=$request->input('data1.vision_statement');
@@ -285,9 +285,10 @@ class charityController extends JoshController
 			$charity->description = $request->get('description');
 			$charity->location = $request->get('location');
 			$charity->year_in_business= $request->get('year_in_business');
-			$charity->locality= $request->get('locality');
+			$charity->area_code= $request->get('area_code');
 			$charity->postal_code= $request->get('postal_code');
 			$charity->business_purpose= $request->get('business_purpose');
+			$charity->years_inception= $request->get('years_inception');
 			
 			$charity->phone_number= $request->get('phone_number');
 			$charity->website= $request->get('website');
