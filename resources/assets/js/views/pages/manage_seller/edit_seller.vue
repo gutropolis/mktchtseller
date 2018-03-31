@@ -41,17 +41,19 @@
 						 <tab-content>
 						
 						<div class="form-group">
-                            <label class="login__element--box--label">State</label>
-                             <input  type="text"  v-model="items.locality" placeholder="Fill_state" class="login__element--box--input">
+                            <label class="login__element--box--label">Location</label>
+                             <input  type="text"  v-model="items.location" placeholder="Location" class="login__element--box--input">
                         </div>
 						<div class="form-group">
-                            <label class="login__element--box--label">ZipCode</label>
+                            <label class="login__element--box--label">Postal_code</label>
                              <input  type="text"  v-model="items.postal_code" placeholder="Fill_Zipcode" class="login__element--box--input">
                         </div>
-						<div class="form-group">
+						<div class="form-group clearfix">
                             <label class="login__element--box--label">Phone Number</label>
-                            <input type="number" placeholder="Phone Number" v-model="items.phone_number" class="login__element--box--input">
+							<input type="text" placeholder="+91" v-model="items.area_code" class="login__element--box--input_areacode">
+                             <input type="number" placeholder="9999999999" v-model="items.phone_number"  class="login__element--box--input_phone_number">
                         </div>
+						
 						</tab-content>
 						 <tab-content>
 						<div class="form-group">
@@ -79,10 +81,11 @@
                                           </span>
                                        </div>
                                        <div class="form-group text-center">
-                                          <img :src="avatar" class="img-responsive" style="max-width:200px;">
+									
+                                         <img :src="avatar" class="img-responsive" style="max-width:200px;">
                                        </div>
                                        <div class="text-center">
-                                          <button type="submit" class="btn btn-info waves-effect waves-light m-t-10" v-if="avatar" @click="uploadAvatar">Upload</button>
+                                          <button type="button" class="btn btn-danger waves-effect waves-light m-t-10" v-if="avatar" @click="uploadAvatar">Upload</button>
                                           <button type="button" class="btn btn-danger waves-effect waves-light m-t-10" v-if="avatar" @click="cancelUploadAvatar">Cancel Upload</button>
                                        </div>
 						
