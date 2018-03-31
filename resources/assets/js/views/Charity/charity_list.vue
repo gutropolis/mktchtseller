@@ -23,8 +23,8 @@
                                     <th>LOCATION</th>
                                     <th>ACTION</th>
                                  </tr>
-                                 <tr v-for="item in items">
-                                    <td>{{item.id}}</td>
+                                 <tr v-for="(item,index) in items">
+                                    <td>{{index+1}}</td>
                                     <td>{{item.title}}</td>
                                     <td>{{item.description}}</td>
                                     <td>{{item.location}}</td>
@@ -67,6 +67,7 @@
                                     </td>
                                  </tr>
                               </table>
+							  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                            </div>
                         </div>
                      </div>
@@ -79,11 +80,12 @@
 </template>
 
 <script>
+import InfiniteLoading from 'vue-infinite-loading';
 import AppNavbar from '../pages/users/navbar.vue' 
  import AppSidebar from '../pages/users/sidebar.vue' 
     export default {
         components: {
-            AppNavbar,  AppSidebar 
+            AppNavbar,  AppSidebar ,InfiniteLoading
         },
 
 
@@ -108,7 +110,7 @@ import AppNavbar from '../pages/users/navbar.vue'
             
 			fetchItems()
 			{
-			axios.get('api/charity_list').then(response=>{
+			axios.get('api/charity_list_user').then(response=>{
 			
 			this.items=response.data;
 			this.loaded = true;
@@ -117,6 +119,16 @@ import AppNavbar from '../pages/users/navbar.vue'
 			toastr['error'](error.response.data.message);
 			});
 			},
+			 infiniteHandler($state) {
+      setTimeout(() => {
+        const temp = [];
+        for (let i = this.items.length + 1; i <= this.items.length + 4; i++) {
+          temp.push(i);
+        }
+        this.items = this.items.concat(temp);
+        $state.loaded();
+      }, 90000);
+    },
 			 deleteItem(id)
             {
                axios.delete('/api/charity_list/'+id).then(response => {
