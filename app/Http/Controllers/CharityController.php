@@ -221,7 +221,7 @@ class charityController extends JoshController
 		$charity->year_in_business=$request->input('data1.year_in_business');
 		//$charity->location=$request->input('data1.locality');
 		$charity->years_inception=$request->input('data1.years_inception');
-		$charity->address =$request->input('data1.addr');
+		//$charity->address =$request->input('data1.addr');
 		$charity->postal_code=$request->input('data1.postal_code');
 		$charity->website=$request->input('data1.website');
 		$charity->vision_statement=$request->input('data1.vision_statement');
