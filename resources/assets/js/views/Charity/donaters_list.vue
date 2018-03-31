@@ -44,7 +44,7 @@
                                  </td>
                               </tr>
                            </table>
-						   
+						   <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                         </div>
                      </div>
                   </div>
@@ -55,12 +55,12 @@
    </div>
 </template>
 <script>
-   
+   import InfiniteLoading from 'vue-infinite-loading';
     import helper from '../../services/helper'
     import AppSidebar from '../pages/users/sidebar.vue' 
        export default {
            components: {
-              AppSidebar 
+              AppSidebar ,InfiniteLoading
            },
    
    
@@ -93,7 +93,16 @@
    			});
    		
    		
-   		},
+   		},infiniteHandler($state) {
+      setTimeout(() => {
+        const temp = [];
+        for (let i = this.items.length + 1; i <= this.items.length + 4; i++) {
+          temp.push(i);
+        }
+        this.items = this.items.concat(temp);
+        $state.loaded();
+      }, 90000);
+    },
 	
    		fetchItems()
    			{
