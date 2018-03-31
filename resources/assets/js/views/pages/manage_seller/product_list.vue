@@ -72,6 +72,7 @@
                                     </td>
                                  </tr>
                               </table>
+							  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                            </div>
                         </div>
                      </div>
@@ -84,11 +85,12 @@
    </div>
 </template>
 <script>
+
 import InfiniteLoading from 'vue-infinite-loading';
    import AppSidebar from '../users/sidebar.vue'
    export default {
    components: {
-               AppSidebar 
+               AppSidebar ,InfiniteLoading
           },
    
           data() {
@@ -114,7 +116,16 @@ import InfiniteLoading from 'vue-infinite-loading';
 				toastr['error'](error.response.data.message);
 				});
 			},
-			
+			infiniteHandler($state) {
+      setTimeout(() => {
+        const temp = [];
+        for (let i = this.items.length + 1; i <= this.items.length + 4; i++) {
+          temp.push(i);
+        }
+        this.items = this.items.concat(temp);
+        $state.loaded();
+      }, 90000);
+    },
    	
    		 deleteTask(item){
                   axios.delete('/api/task/'+item.id).then(response => {
