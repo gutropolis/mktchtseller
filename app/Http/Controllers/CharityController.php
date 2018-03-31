@@ -34,7 +34,7 @@ class charityController extends JoshController
     {
 		
 		$charityparcategory=CharityCategory::all();
- 
+			
 		return response()->json($charityparcategory);
     }
 	 public function charity_list()
@@ -44,6 +44,16 @@ class charityController extends JoshController
  
 		return response()->json($charity);
     }
+	 public function charity_list_user()
+    {
+		$user = JWTAuth::parseToken()->authenticate();
+	$query = Charity::whereUserId($user->id);
+	$charity = $query->latest()->get();
+		
+ 
+		return $charity;
+    }
+	
 	
 	public function product(Request $request,$id)
     {
@@ -52,16 +62,16 @@ class charityController extends JoshController
 		$sellerproduct->product=$request->input('data.title');
 		$sellerproduct->product_name=$request->input('product_name');
 		$sellerproduct->units=$request->input('data.units');
-	$user = JWTAuth::parseToken()->authenticate();
-	$sellerproduct->seller_id = $user->id;
-	$sellerproduct->status="0";
-	$sellerproduct->is_certify="0";
-	$sellerproduct->charity_organisation=$charity->title;
-	$sellerproduct->owner_charity=$charity->updated_by;
-	$sellerproduct->owner_id=$charity->user_id;
-	$sellerproduct->seller=$user->first_name;
-	$sellerproduct->save();
-	return response()->json(['message' => 'Data Record Successfully']);
+		$user = JWTAuth::parseToken()->authenticate();
+		$sellerproduct->seller_id = $user->id;
+		$sellerproduct->status="0";
+		$sellerproduct->is_certify="0";
+		$sellerproduct->charity_organisation=$charity->title;
+		$sellerproduct->owner_charity=$charity->updated_by;
+		$sellerproduct->owner_id=$charity->user_id;
+		$sellerproduct->seller=$user->first_name;
+		$sellerproduct->save();
+		return response()->json(['message' => 'Data Record Successfully']);
 	/*$user_id=User::where('id',$charity->user_id)->pluck('id');
 	
 
@@ -185,7 +195,7 @@ class charityController extends JoshController
 			'year_in_business'=>'required',
 			
 			'business_purpose'=>'required',
-			'state'=>'required',
+			'locality'=>'required',
 			'zipcode'=> 'required',
 			'phone_number'=>'required',
 			'website'=>'required',
@@ -203,20 +213,22 @@ class charityController extends JoshController
 
 		
 		  $charity = new \App\Charity;
-		 $charity->charity_type=$request->input('data.charity_type');
-		$charity->title = $request->input('data.title');
-		$charity->description=$request->input('data.description');
-		$charity->location=$request->input('data.location');
-		$charity->business_purpose=$request->input('data.business_purpose');
-		$charity->year_in_business=$request->input('data.year_in_business');
-		$charity->state=$request->input('data.state');
-		$charity->years_inception=$request->input('data.years_inception');
-		$charity->zipcode=$request->input('data.zipcode');
-		$charity->website=$request->input('data.website');
-		$charity->vision_statement=$request->input('data.vision_statement');
-		$charity->mission_statement=$request->input('data.mission_statement');
-		$charity->tags=$request->input('data.tags');
-		$charity->phone_number= $request->input('data.phone_number');
+		 $charity->charity_type=$request->input('data2.charity_type');
+		$charity->title = $request->input('data2.title');
+		$charity->description=$request->input('data2.description');
+		$charity->location=$request->input('data2.location');
+		$charity->business_purpose=$request->input('data1.business_purpose');
+		$charity->year_in_business=$request->input('data1.year_in_business');
+		$charity->locality=$request->input('data1.locality');
+		$charity->years_inception=$request->input('data1.years_inception');
+		//$charity->address =$request->input('data1.addr');
+		$charity->postal_code=$request->input('data1.postal_code');
+		$charity->website=$request->input('data1.website');
+		$charity->vision_statement=$request->input('data1.vision_statement');
+		$charity->mission_statement=$request->input('data1.mission_statement');
+		$charity->tags=$request->input('data1.tags');
+		$charity->area_code=$request->input('data1.area_code');
+		$charity->phone_number= $request->input('data1.phone_number');
 		$charity->images=$name;
 		$charity->post_type='charity';
 			
@@ -273,8 +285,8 @@ class charityController extends JoshController
 			$charity->description = $request->get('description');
 			$charity->location = $request->get('location');
 			$charity->year_in_business= $request->get('year_in_business');
-			$charity->state= $request->get('state');
-			$charity->zipcode= $request->get('zipcode');
+			$charity->locality= $request->get('locality');
+			$charity->postal_code= $request->get('postal_code');
 			$charity->business_purpose= $request->get('business_purpose');
 			
 			$charity->phone_number= $request->get('phone_number');
