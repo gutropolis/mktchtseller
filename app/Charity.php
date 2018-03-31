@@ -16,7 +16,7 @@ class Charity extends Model
 
     protected $fillable = [
         'title','description','location','images','year_in_business',
-		'start_up_year','business_purpose','state','zipcode','phone_number','years_inception','address',
+		'start_up_year','business_purpose','state','postal_code','area_code','phone_number','years_inception','address',
 		'website','vision_statement','mission_statement','charity_type','tags','user_id','updated_by','post_type',
 		];
     

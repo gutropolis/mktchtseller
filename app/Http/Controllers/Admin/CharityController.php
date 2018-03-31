@@ -71,11 +71,13 @@ class charityController extends JoshController
 			'description'=> request('description'),
 			'location'=> request('location'),
 			'year_in_business'=> request('year_in_business'),
-			'start_up_year'=> request('start_up_year'),
+			'years_inception'=> request('years_inception'),
 			'business_purpose'=> request('business_purpose'),
-			'address'=> request('address'),
+			'postal_code'=> request('postal_code'),
+			'area_code' =>request('area_code'),
 			'phone_number'=> request('phone_number'),
-			'keyword'=> request('keyword'),
+			'website'=> request('website'),
+			
 			'vision_statement'=> request('vision_statement'),
 			'mission_statement'=> request('mission_statement'),
 			'tags'=> request('tags'),
@@ -100,16 +102,7 @@ class charityController extends JoshController
             $request['images'] = $safeName;
 			
 		 }
-        request()->validate([
-            'title' => 'required',
-			'description'=>'required',
-			'location'=>'required'
-           
-        ]);
-		
-		
-	
-	
+        
 		
 		
         Charity::find($id)->update($request->all());
