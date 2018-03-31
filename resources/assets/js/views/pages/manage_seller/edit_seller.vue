@@ -32,25 +32,21 @@
                             <label class="login__element--box--label">Description</label>
                            <textarea  type="text" v-model="items.description" rows="5" placeholder="Description" class="login__element--box--input"></textarea>
                         </div>
-						  <div class="form-group">
-                            <label class="login__element--box--label">Location</label>
-                            <input type="text" placeholder="Location" v-model="items.location" class="login__element--box--input">
-                        </div>
-						</tab-content>
-						 <tab-content>
 						<div class="form-group">
                             <label class="login__element--box--label">Years in business</label>
                             <input type="text" placeholder="year in business" v-model="items.year_in_business" class="login__element--box--input">
                         </div>
-						
+						  
+						</tab-content>
+						 <tab-content>
 						
 						<div class="form-group">
                             <label class="login__element--box--label">State</label>
-                             <input  type="text"  v-model="items.state" placeholder="Fill_state" class="login__element--box--input">
+                             <input  type="text"  v-model="items.locality" placeholder="Fill_state" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">ZipCode</label>
-                             <input  type="text"  v-model="items.zipcode" placeholder="Fill_Zipcode" class="login__element--box--input">
+                             <input  type="text"  v-model="items.postal_code" placeholder="Fill_Zipcode" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Phone Number</label>
