@@ -9,9 +9,7 @@
 
                     <div class="dashboard__content--outer">
                         
-                                             
-
-						<form-wizard @on-complete="updateitems" shape="circle"  title="Add Your Organisation"
+						<form-wizard @on-complete="updateaddress" shape="circle"  title="Add Your Organisation"
                       subtitle="" color="#19b325">
                      
 					  <tab-content>
@@ -19,9 +17,9 @@
 						<div  class="form-group">
 					   
                             <label class="login__element--box--label">Charity Type</label>
-                            <select name="charity_type" v-model="items.charity_type"  class="login__element--box--input">
+                            <select name="charity_type" v-model="address.charity_type"  class="login__element--box--input">
 							<option value="select">Select .. </option>
-							<option value:="items.charity_type">{{items.charity_type}}</option>
+							<option value:="address.charity_type">{{address.charity_type}}</option>
 							<option  v-for="cat in category" v-if="cat.parent_id > 0" :value="cat.title">{{ cat.title }}</option>					
 							</select>
                         </div>
@@ -32,60 +30,60 @@
 						
                         <div class="form-group">
                             <label class="login__element--box--label">Title</label>
-                            <input type="text" name="title" v-model="items.title" placeholder="Title" class="login__element--box--input"/>
+                            <input type="text" name="title" v-model="address.title" placeholder="Title" class="login__element--box--input"/>
                         </div>
                         <div class="form-group">
                             <label class="login__element--box--label">Description</label>
-                            <input type="text" placeholder="Description" v-model="items.description"  class="login__element--box--input">
+                            <input type="text" placeholder="Description" v-model="address.description"  class="login__element--box--input">
                         </div>
-						  <div class="form-group">
-                            <label class="login__element--box--label">Location</label>
-                            <input type="text" placeholder="Location" v-model="items.location" class="login__element--box--input">
-                        </div>
-						</tab-content>
-						 <tab-content>
 						<div class="form-group">
                             <label class="login__element--box--label">Year in business</label>
-                            <input type="text" placeholder="year in business" v-model="items.year_in_business" class="login__element--box--input">
+                            <input type="text" placeholder="year in business" v-model="address.year_in_business" class="login__element--box--input">
                         </div>
+						 
+						</tab-content>
+						 <tab-content>
+						
 						
 						<div class="form-group">
                             <label class="login__element--box--label">Business Purpose</label>
-                            <input type="text" placeholder="Purpose" v-model="items.business_purpose" class="login__element--box--input">
+                            <input type="text" placeholder="Purpose" v-model="address.business_purpose" class="login__element--box--input">
 						</div>
                      	<div class="form-group">
                             <label class="login__element--box--label">Years in inception</label>
-                            <input type="text" placeholder="Years_in _Inception" v-model="items.years_inception" class="login__element--box--input">
+                            <input type="text" placeholder="Years_in _Inception" v-model="address.years_inception" class="login__element--box--input">
                         </div>
+						
+						
 						<div class="form-group">
-                            <label class="login__element--box--label">State</label>
-                             <input type="text"  v-model="items.state" rows="3" placeholder="Fill The State" class="login__element--box--input">
+                            <label class="login__element--box--label">Locality</label>
+                             <input type="text"  v-model="address.locality" rows="3" placeholder="Fill The State" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Zip Code</label>
-                             <input type="text"  v-model="items.zipcode" rows="3" placeholder=" Fill zipcode" class="login__element--box--input">
+                             <input type="text"  v-model="address.postal_code" rows="3" placeholder=" Fill zipcode" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Phone Number</label>
-                            <input type="number" placeholder="Phone Number" v-model="items.phone_number" class="login__element--box--input">
+                            <input type="number" placeholder="Phone Number" v-model="address.phone_number" class="login__element--box--input">
                         </div>
 						</tab-content>
 						 <tab-content>
 						<div class="form-group">
                             <label class="login__element--box--label">Website</label>
-                            <input type="text" placeholder="W" v-model="items.website" class="login__element--box--input">
+                            <input type="text" placeholder="W" v-model="address.website" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Vision</label>
-                             <textarea  type="text"  rows="3" v-model="items.vision_statement" placeholder="Statement" class="login__element--box--input"></textarea>
+                             <textarea  type="text"  rows="3" v-model="address.vision_statement" placeholder="Statement" class="login__element--box--input"></textarea>
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Mission</label>
-                             <textarea  type="text" rows="3" v-model="items.mission_statement" placeholder="Statement" class="login__element--box--input"></textarea>
+                             <textarea  type="text" rows="3" v-model="address.mission_statement" placeholder="Statement" class="login__element--box--input"></textarea>
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Tags</label>
-                            <input type="text" placeholder="Tags" v-model="items.tags" class="login__element--box--input">
+                            <input type="text" placeholder="Tags" v-model="address.tags" class="login__element--box--input">
                         </div>
 						<h4 class="card-title">Upload Logo</h4>
                                        <div class="form-group text-center m-t-20">
@@ -117,7 +115,7 @@
 </div>
 </template>
 <script>
-//import AppNavbar from './navbar.vue' 
+import VueGoogleAutocomplete from 'vue-google-autocomplete'
  import AppSidebar from '../pages/users/sidebar.vue'
 import Vue from 'vue'
  import VueFormWizard from 'vue-form-wizard'
@@ -125,13 +123,14 @@ import Vue from 'vue'
  
  export default {
 	components: {
-              AppSidebar 
+              AppSidebar ,VueGoogleAutocomplete
         },
   
         data() {
             return {
+			address:'',
 			avatar: '',
-			items:{},
+			address:{},
 			category:[],
                     
                 }
@@ -140,12 +139,15 @@ import Vue from 'vue'
        
         created: function()
         {
-            this.fetchItems();
+            this.fetchaddress();
 			
         },
         mounted(){
         },
         methods: {
+		getAddressData: function (addressData, placeResultData, id) {
+            this.address = addressData;
+        },
            previewAvatar(e) {
                 let files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
@@ -177,19 +179,19 @@ import Vue from 'vue'
                 });
             },
            
-			fetchItems()
+			fetchaddress()
 			{
 			axios.get('api/edit_charity/'+this.$route.params.id).then(response=>{
 			
-			this.items=response.data.data1;
+			this.address=response.data.data1;
 			this.category=response.data.data2;
 			}).catch(error=>{
 			toastr['error'](error.response.data.message);
 			});
 			},
-			 updateitems()
+			 updateaddress()
             {
-              axios.post('api/edit_charity/'+this.$route.params.id,this.items).then(response =>  {
+              axios.post('api/edit_charity/'+this.$route.params.id,this.address).then(response =>  {
                     toastr['success'](response.data.message);
                     this.$router.push('/charity_list');
                 }).catch(error => {
