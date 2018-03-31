@@ -44,7 +44,7 @@
                               </vue-google-autocomplete>
                            </div>
                            <div class="form-group">
-                              <label class="login__element--box--label">Locality</label>
+                              <label class="login__element--box--label">Location</label>
                               <div class="message is-success" >
                               </div>
                               <input type="text"   v-model="address.locality" rows="3" placeholder="Fill Locality" class="login__element--box--input">
