@@ -49,7 +49,7 @@
                                           </div>
                                           <div class="form-group">
                                              <label class="login__element--box--label">Date Of Birth</label>
-                                             <datepicker v-model="profileForm.dob"  class="login__element--box--input"></datepicker>
+                                             <datepicker v-model="profileForm.dob"  class="login__element--box--input_dob"></datepicker>
                                           </div>
                                           <div class="form-group">
                                              <label class="login__element--box--label">Bio</label>
