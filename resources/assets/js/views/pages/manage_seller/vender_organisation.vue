@@ -55,8 +55,7 @@
 						
 						  <div class="form-group">
                               <label class="login__element--box--label">Select Address</label>
-                              <vue-google-autocomplete id="map" class="login__element--box--input"  placeholder="Start typing" v-on:placechanged="getAddressData">
-                              </vue-google-autocomplete>
+                             
                            </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Locality</label>
@@ -117,14 +116,14 @@
 </div>
 </template>
 <script>
-  import VueGoogleAutocomplete from 'vue-google-autocomplete'
+  
  import AppSidebar from '../users/sidebar.vue'
  import Vue from 'vue'
  import VueFormWizard from 'vue-form-wizard'
  Vue.use(VueFormWizard)
  export default {
  components: {
-              AppSidebar,VueGoogleAutocomplete 
+              AppSidebar 
         },
         data() {
             return {
