@@ -8,6 +8,7 @@
                   <div class="dashboard__content--head">
                      <h3 class="dashboard__content--head--heading">Donation List</h3>
                   </div>
+                  <div class="donation_top_tab">
                   <b-tabs>
                      <b-tab title="Pending" active>
                         <div>
@@ -53,6 +54,7 @@
                                        </td>
                                     </tr>
                                  </table>
+								  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                               </div>
                            </div>
                         </div>
@@ -101,6 +103,7 @@
                                        </td>
                                     </tr>
                                  </table>
+								  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                               </div>
                            </div>
                         </div>
@@ -149,11 +152,13 @@
                                        </td>
                                     </tr>
                                  </table>
+								  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                               </div>
                            </div>
                         </div>
                      </b-tab>
                   </b-tabs>
+               </div>
                </div>
             </div>
 			
@@ -162,11 +167,11 @@
    </div>
 </template>
 <script>
-   
+   import InfiniteLoading from 'vue-infinite-loading';
    import AppSidebar from '../../pages/users/sidebar.vue' 
       export default {
           components: {
-             AppSidebar
+             AppSidebar,InfiniteLoading
           },
    
    
@@ -199,6 +204,16 @@
    	
    	
    	},
+	infiniteHandler($state) {
+      setTimeout(() => {
+        const temp = [];
+        for (let i = this.items.length + 1; i <= this.items.length + 4; i++) {
+          temp.push(i);
+        }
+        this.items = this.items.concat(temp);
+        $state.loaded();
+      }, 90000);
+    },
    	fetchItems()
    		{
    		axios.get('api/donation_list').then(response=>{
