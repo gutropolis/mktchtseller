@@ -236,11 +236,11 @@ public function updatelogo(Request $request,$id)
 
             $seller->title = $request->get('title');
             $seller->description = $request->get('description');
-            $seller->locality = $request->get('locality');
+            $seller->location = $request->get('location');
 			$seller->year_in_business = $request->get('year_in_business');
 			$seller->business_type = $request->get('business_type');
 			//$seller->locality = $request->get('locality');
-			$seller->area_code=$request>get('area_code');
+			$seller->area_code=$request->get('area_code');
 			$seller->postal_code = $request->get('postal_code');
 			$seller->phone_number = $request->get('phone_number');
 			$seller->website = $request->get('website');
