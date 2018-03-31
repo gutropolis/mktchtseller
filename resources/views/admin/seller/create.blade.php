@@ -140,7 +140,7 @@
                                             </div>
                                         </div>
 											  <div class="form-group {{ $errors->first('year_in_business', 'has-error') }}">
-                                            <label for="year_in_business" class="col-sm-2 control-label">Year in Buisness *</label>
+                                            <label for="year_in_business" class="col-sm-2 control-label">Year in Business *</label>
                                             <div class="col-sm-10">
                                                 <input id="year_in_business" name="year_in_business" placeholder="year_in_business" type="number"
                                                        class="form-control required year_in_business" value="{!! old('year_in_business') !!}" required/>
@@ -150,34 +150,35 @@
 
 									   
 										<h2 class="hidden">&nbsp;</h2>
-									   <div class="form-group  {{ $errors->first('start_up_year', 'has-error') }}">
-                                            <label for="start_up_year" class="col-sm-2 control-label">Start Up Year</label>
-                                            <div class="col-sm-10">
-                                               <input id="dob" name="start_up_year" type="text" class="form-control"
-                                                       data-date-format="YYYY"
-                                                       placeholder="yyyy"  required/>
-                                            </div>
-                                            <span class="help-block">{{ $errors->first('start_up_year', ':message') }}</span>
-                                        </div>
-
+									 
                                         <div class="form-group">
-                                            <label for="address" class="col-sm-2 control-label">Address <small>(brief intro) *</small></label>
+                                            <label for="postal_code" class="col-sm-2 control-label">Postal Code </label>
                                             <div class="col-sm-10">
-                        <textarea name="address" id="address" placeholder="Address" required class="form-control resize_vertical"
-                                  rows="4">{!! old('address') !!}</textarea>
+                        <input type="text" name="postal_code" id="postal_code" placeholder="Address" required class="form-control resize_vertical"
+                                  rows="4" value="{!! old('postal_code') !!}">
                                             </div>
-                                            {!! $errors->first('address', '<span class="help-block">:message</span>') !!}
+                                            {!! $errors->first('postal_code', '<span class="help-block">:message</span>') !!}
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab3" disabled="disabled">
 									
-									  <div class="form-group {{ $errors->first('phone_number', 'has-error') }}">
-                                            <label for="Keywords" class="col-sm-2 control-label">Keywords *</label>
+									  <div class="form-group {{ $errors->first('website', 'has-error') }}">
+                                            <label for="website" class="col-sm-2 control-label">Website *</label>
                                             <div class="col-sm-10">
-                                                <input id="keywords" name="keywords" type="text" placeholder="Keywords"
-                                                       class="form-control required" value="{!! old('keywords') !!}" required/>
+                                                <input id="website" name="website" type="text" placeholder="www.abc.com"
+                                                       class="form-control required" value="{!! old('website') !!}" required/>
 
                                                 {!! $errors->first('keywords', '<span class="help-block">:message</span>') !!}
+                                            </div>
+                                        </div>
+										
+                                        <div class="form-group {{ $errors->first('phone_number', 'has-error') }}">
+                                            <label for="phone_number" class="col-sm-2 control-label">Phone Number *</label>
+                                            <div class="col-sm-10">
+                                             <input type="text" id="area_code" placeholder="+91" name="area_code" class="login__element--box--input_areacode" required>
+											  <input type="number" id="phone_number" name="phone_number" placeholder="9999999999" class="login__element--box--input_phone_number" required>
+
+                                                {!! $errors->first('phone_number', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
                                        
@@ -208,15 +209,6 @@
                                         </div>
 										
 
-                                        <div class="form-group {{ $errors->first('phone_number', 'has-error') }}">
-                                            <label for="phone_number" class="col-sm-2 control-label">Phone Number *</label>
-                                            <div class="col-sm-10">
-                                                <input id="phone_number" name="phone_number" type="number" placeholder="phone_number"
-                                                       class="form-control required" value="{!! old('phone_number') !!}" required/>
-
-                                                {!! $errors->first('phone_number', '<span class="help-block">:message</span>') !!}
-                                            </div>
-                                        </div>
 										
                                     </div>
                                     
