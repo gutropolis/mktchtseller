@@ -1014,7 +1014,7 @@ footer {
          }
             h4 {
                 font-size: 18px;
-                 @media screen and (max-width: $break-xs){
+                 @media screen and (max-width: $break-vs){
             font-size: 14px;
          }
             }
@@ -1048,12 +1048,57 @@ footer {
             width: 100%;
             font-size: 16px;
             text-align: left;
-            font-weight: 600;
+            font-weight: 600;            
         }
+        
         &--input {
             width: 100%;
             padding: $space-s;
 
+        }
+        &--input_dob {
+            width: 100%;
+            padding: 0PX;
+            
+                input{
+                    padding: 10px;
+                    width: 100%;
+                }
+            
+        }
+        
+        &--input_areacode {
+            width: 10%;
+            padding: $space-s;
+            float: left;
+                border: 1px solid #a9a9a9;
+            @media screen and (max-width: $break-sm){
+                width: 15%;
+            }
+            @media screen and (max-width: $break-xs){
+                width: 20%;
+            }
+            @media screen and (max-width: $break-vs){
+                width: 30%;
+            }
+
+            
+        }
+        &--input_phone_number {
+            width: 90%;
+            padding: $space-s;
+            float: left;
+                border-left: 0px !important;
+                 border: 1px solid #a9a9a9;
+            @media screen and (max-width: $break-sm){
+                width: 85%;
+            }
+            @media screen and (max-width: $break-xs){
+                width: 80%;
+            }
+            @media screen and (max-width: $break-vs){
+                width: 70%;
+            }
         }
         &--check {
             width: auto;
@@ -2310,4 +2355,29 @@ footer {
         }
     }
 
+}
+
+.donation_top_tab{
+    .nav-tabs{
+        padding-top: 20px;
+        border-bottom: 0px;
+    }
+    .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+        background: $orange-color;
+        border-bottom: 0px;
+        color: $white-color;
+        border-bottom: 1px solid $orange-color;
+    }
+}
+.btn-info{
+    background: transparent;
+    border-color: transparent;
+    &:hover{
+        background: transparent;
+         border-color: transparent;
+    }
+    .form-control{
+        padding: 10px;
+        color: #343434;
+    }
 }
