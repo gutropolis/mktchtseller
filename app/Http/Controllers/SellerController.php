@@ -57,9 +57,11 @@ class SellerController extends Controller
      */
 	 public function seller_list()
     {
+
+	
 		$user = JWTAuth::parseToken()->authenticate();
-		$seller=Seller::where('user_id',$user->id)->get();
- 
+		$query = Seller::whereUserId($user->id);
+		$seller = $query->latest()->get();
 		return response()->json($seller);
     }
    
@@ -101,19 +103,20 @@ class SellerController extends Controller
 
      
         $seller = new \App\Seller;
-		$seller->business_type=$request->input('data.business_type');
-		$seller->title = $request->input('data.title');
-		$seller->description=$request->input('data.description');
-		$seller->location=$request->input('data.location');
+		$seller->business_type=$request->input('data1.business_type');
+		$seller->title = $request->input('data1.title');
+		$seller->description=$request->input('data1.description');
+		$seller->location=$request->input('data2.locality');
 		
-		$seller->year_in_business=$request->input('data.year_in_business');
-		$seller->state=$request->input('data.state');
-		$seller->zipcode=$request->input('data.zipcode');
-		$seller->phone_number=$request->input('data.phone_number');
-		$seller->website=$request->input('data.website');
-		$seller->vision_statement=$request->input('data.vision_statement');
-		$seller->mission_statement=$request->input('data.mission_statement');
-		$seller->tax_id=$request->input('data.tax_id');
+		$seller->year_in_business=$request->input('data1.year_in_business');
+		//$seller->locality=$request->input('data2.locality');
+		$seller->phone_number=$request->input('data2.phone_number');
+		$seller->area_code=$request->input('data2.area_code');
+		$seller->postal_code=$request->input('data2.postal_code');
+		$seller->website=$request->input('data2.website');
+		$seller->vision_statement=$request->input('data2.vision_statement');
+		$seller->mission_statement=$request->input('data2.mission_statement');
+		$seller->tax_id=$request->input('data2.tax_id');
 		$seller->pic=$name;
 		$seller->post_type='seller';
 	    $user = JWTAuth::parseToken()->authenticate();
@@ -233,11 +236,12 @@ public function updatelogo(Request $request,$id)
 
             $seller->title = $request->get('title');
             $seller->description = $request->get('description');
-            $seller->location = $request->get('location');
+            $seller->locality = $request->get('locality');
 			$seller->year_in_business = $request->get('year_in_business');
 			$seller->business_type = $request->get('business_type');
-			$seller->state = $request->get('state');
-			$seller->zipcode = $request->get('zipcode');
+			//$seller->locality = $request->get('locality');
+			$seller->area_code=$request>get('area_code');
+			$seller->postal_code = $request->get('postal_code');
 			$seller->phone_number = $request->get('phone_number');
 			$seller->website = $request->get('website');
 			$seller->vision_statement = $request->get('vision_statement');
