@@ -105,7 +105,7 @@
                                           <img :src="avatar" class="img-responsive" style="max-width:200px;">
                                        </div>
                                        <div class="text-center">
-                                          <button type="submit" class="btn btn-info waves-effect waves-light m-t-10" v-if="avatar" @click="uploadAvatar">Upload</button>
+                                          <button type="submit" class="btn btn-success waves-effect waves-light m-t-10" v-if="avatar" @click="uploadAvatar">Upload</button>
                                           <button type="button" class="btn btn-danger waves-effect waves-light m-t-10" v-if="avatar" @click="cancelUploadAvatar">Cancel Upload</button>
                                        </div>
                                     </div>
