@@ -67,7 +67,7 @@
                                     <div class="notification__element--listing--content">
                                         <h4 class="charity__listing--content--box--heading">{{item.title}}</h4>
                                         <p>{{item.description}}</p>
-                                      <p><b>Location:</b> {{item.location}}</p>
+                                      
                                     </div>
                                 </div>
                                 <div class="notification__element--view--button">
