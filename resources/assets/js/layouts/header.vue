@@ -47,7 +47,7 @@
     
                         <li class="nav-item">
     
-                            <router-link to="/sellerfba" class="nav-link">Seller</router-link>
+                            <router-link to="/sellerfba" class="nav-link">Product</router-link>
     
                         </li>
     
