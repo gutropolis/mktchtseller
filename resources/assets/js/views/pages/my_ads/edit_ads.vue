@@ -29,7 +29,7 @@
                             <input type="text" name="title" v-model="create_ads.title" class="login__element--box--input">
                         </div>
 						<div class="form-group">
-                            <label class="login__element--box--label">Description</label>
+                            <label class="login__element--box--label">What type of item are your charity seeking?</label>
                              <textarea  type="text" name="description" v-model="create_ads.description"  rows="5"  class="login__element--box--input"></textarea>
                         </div>
                        
@@ -39,10 +39,6 @@
                             <input type="file" name="image"  class="login__element--box--input">
                         </div>
 						
-						<div class="form-group">
-                            <label class="login__element--box--label">Location</label>
-                             <input type="text" name="location" v-model="create_ads.location"  class="login__element--box--input">
-                        </div>
 						
 					</div>
 					
