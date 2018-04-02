@@ -19,7 +19,7 @@
                             <select name="ads_type" v-model= "create_ads.ads_type" class="login__element--box--input">
 							<option value="select">Select .. </option>
 							
-							<option v-for="item in items"  value:="item.title"  >{{item.title}}</option>
+							<option v-for="item in items"   v-bind:value="item.title">{{item.title}}</option>
 							
 							
 							
@@ -31,7 +31,7 @@
                             <input type="text" name="title" v-model="create_ads.title" class="login__element--box--input">
                         </div>
 						<div class="form-group">
-                            <label class="login__element--box--label">Description</label>
+                            <label class="login__element--box--label">What type of item are your charity seeking?</label>
                              <textarea  type="text" name="description" v-model="create_ads.description"  rows="5"  class="login__element--box--input"></textarea>
                         </div>
                        
@@ -40,14 +40,14 @@
                             <input type="file"  v-on:change="onImageChange" class="login__element--box--input">
                         </div>
 						
-						<div class="form-group">
-                            <label class="login__element--box--label">Location</label>
-                             <input type="text" name="location" v-model="create_ads.location"  class="login__element--box--input">
-                        </div>
+						 <div class="col-md-6" v-if="image">
+                              <img :src="image" class="img-responsive" height="100" width="120">
+                           </div>
 						
 					</div>
-			
-						<input type="submit" value="Submit" class="btn btn-info waves-effect waves-light m-t-10">
+			<div class="form-group">
+						<input type="submit" value="Submit" class="btn btn-success waves-effect waves-light m-t-10">
+						</div>
 						  </form>
 						   </div>
 						  </div> 	
@@ -73,8 +73,7 @@
 					ads_type:'',
                     title: '',
                     description: '',
-                   location: '',
-				   image:'',
+                  
 				  
 				   ads_type:'select'
                     
