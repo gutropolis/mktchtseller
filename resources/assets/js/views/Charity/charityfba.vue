@@ -19,10 +19,7 @@
 					<h5 class="charity__element--block--heading">Search Charity Posts</h5>
 					<div class="charity__element--block--content">
 			      <form  id="searchform" @submit.prevent="submit">						
-						<div class="form-group charity__element--block--content--box">
-							<label class="charity__element--block--content--box--label">Select location</label>
-							<input type="text" placeholder="Select Location" class="charity__element--block--content--box--input" name="searchlocation" v-model="searchform.searchlocation">
-						</div>
+						
 						
 						
 						        
@@ -32,7 +29,7 @@
 							 <select name="searchcategory"  v-model="searchform.searchcategory" class="login__element--box--input">
 							 <option value="select"> Select Category ...</option>
 							 
-								<option v-for="charity in charity_type"  v-bind:value="charity.title">{{charity.title}}</option>
+								<option v-for="charity in charity_type"  v-bind:value="charity.id">{{charity.title}}</option>
 								</select>
 							
 			
