@@ -36,7 +36,7 @@ class AdsController extends Controller
     {
 		$user = JWTAuth::parseToken()->authenticate();
 		 $query = \App\my_ads::whereUserId($user->id);
-		$show_ads = $query->get();
+		$show_ads = $query->latest()->get();
 		//$show_ads=my_ads::all();
         return response()->json($show_ads);
     }
@@ -142,7 +142,7 @@ class AdsController extends Controller
 		 $create_ads->title=$request->input('data.title');
 		
 		$create_ads->description=$request->input('data.description');
-			$create_ads->location=$request->input('data.location');
+			//$create_ads->location=$request->input('data.location');
 		  $create_ads->ads_type=$request->input('data.ads_type');
 		  
 		$create_ads->image=$name;
@@ -194,7 +194,7 @@ class AdsController extends Controller
 		$ads_update->title=$request->get('title');
 		$ads_update->description=$request->get('description');
 		$ads_update->image=$request->get('image');
-		$ads_update->location=$request->get('location');
+		//$ads_update->location=$request->get('location');
 		$ads_update->ads_type=$request->get('ads_type');
 		
 		$ads_update->save();
