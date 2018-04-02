@@ -33,7 +33,7 @@
                             <select name="business_type"  v-model="savesellerform.business_type" class="login__element--box--input">
 							<option value="select">Select .. </option>
 							
-							<option  v-for="item in items" v-if="item.parent_id==savesellerform.seller_Category"  v-bind:value="item.title">{{ item.title }}</option>
+							<option  v-for="item in items" v-if="item.parent_id==savesellerform.seller_Category"  v-bind:value="item.id">{{ item.title }}</option>
 							
 							
 							</select>
