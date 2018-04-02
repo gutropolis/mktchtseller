@@ -21,8 +21,8 @@
 					<div class="charity__element--block--content">
 					<form id="sellersearch"  @submit.prevent="submit">						
 						<div class="form-group charity__element--block--content--box">
-							<label class="charity__element--block--content--box--label">Product Name</label>
-							<input type="text" placeholder="Product Name" name="title" v-model="sellersearch.title" class="charity__element--block--content--box--input">
+							<label class="charity__element--block--content--box--label">Enter Search Below</label>
+							<input type="text" placeholder="Type Here" name="title" v-model="sellersearch.title" class="charity__element--block--content--box--input">
 						</div>
 						
 						
