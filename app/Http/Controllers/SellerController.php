@@ -174,7 +174,8 @@ class SellerController extends Controller
     {
 		$seller_type=SellerCategory::all();
 		$seller = Seller::find($id);
-		return response()->json(array('data1'=>$seller,'data2'=>$seller_type));	
+		$business_type = SellerCategory::where('id',$seller->business_type)->pluck('title');
+		return response()->json(array('data1'=>$seller,'data2'=>$seller_type,'data3'=>$business_type[0]));	
     }
        
     public function updateSeller(Request $request,$id)
