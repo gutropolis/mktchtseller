@@ -19,8 +19,8 @@
                             <label class="login__element--box--label">Charity Type</label>
                             <select name="charity_type" v-model="address.charity_type"  class="login__element--box--input">
 							<option value="select">Select .. </option>
-							<option value:="address.charity_type">{{address.charity_type}}</option>
-							<option  v-for="cat in category" v-if="cat.parent_id > 0" :value="cat.title">{{ cat.title }}</option>					
+							<option value:="">--{{charity_type}}</option>
+							<option  v-for="cat in category" v-if="cat.parent_id > 0" :value="cat.id">{{ cat.title }}</option>					
 							</select>
                         </div>
 						
@@ -133,6 +133,7 @@ import Vue from 'vue'
 			avatar: '',
 			address:{},
 			category:[],
+			charity_type:{},
                     
                 }
             },
@@ -186,6 +187,7 @@ import Vue from 'vue'
 			
 			this.address=response.data.data1;
 			this.category=response.data.data2;
+			this.charity_type=response.data.data3;
 			}).catch(error=>{
 			toastr['error'](error.response.data.message);
 			});
