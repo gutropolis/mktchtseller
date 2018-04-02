@@ -20,8 +20,8 @@
 					   
                             <label class="login__element--box--label">Company SubCategory </label>
                             <select name="business_type" v-model="items.business_type"  class="login__element--box--input">
-							<option value:="items.business_type">{{items.business_type}}</option>
-							<option  v-for="cat in category" v-if="cat.parent_id > 0" :value="cat.title">{{ cat.title }}</option>					
+							<option value:="">--{{business_type}}</option>
+							<option  v-for="cat in category" v-if="cat.parent_id > 0" :value="cat.id">{{ cat.title }}</option>					
 							</select>
                         </div>
                         <div class="form-group">
@@ -171,6 +171,7 @@ import Vue from 'vue'
 			
 			this.items=response.data.data1;
 			this.category=response.data.data2;
+			this.business_type=response.data.data3;
 			}).catch(error=>{
 			toastr['error'](error.response.data.message);
 			});
