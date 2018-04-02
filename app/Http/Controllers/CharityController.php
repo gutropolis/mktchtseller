@@ -253,9 +253,13 @@ class charityController extends JoshController
 	}
 	 public function edit(Request $request,$id)
     {
-		$charity_type=CharityCategory::all();
+		
+             $charityparcategory=CharityCategory::all();
+             
 		$charity = charity::find($id);
-		return response()->json(array('data1'=>$charity,'data2'=>$charity_type));	
+		$charity_type = CharityCategory::where('id',$charity->charity_type)->pluck('title');
+		
+		return response()->json(array('data1'=>$charity,'data2'=>$charityparcategory,'data3'=>$charity_type[0]));	
     }
 	public function edit_status(Request $request,$id)
     {
