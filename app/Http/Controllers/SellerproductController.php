@@ -6,6 +6,7 @@ use File;
 use Hash;
 use App\Http\Controllers\JoshController;
 use App\Sellerproduct;
+use App\Charity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Redirect;
@@ -108,7 +109,9 @@ $sellerproduct = SellerProduct::latest()->get();
 	public function edit($id)
 	{
 	$sellerproduct = sellerproduct::find($id);
-	return response()->json($sellerproduct);
+	$charity=Charity::where('id',$sellerproduct->organisation_id)->pluck('title');
+
+	return response()->json(array('data1'=>$sellerproduct,'data2'=>$charity[0]));	
 	}
 
 	public function update(Request $request,$id)
