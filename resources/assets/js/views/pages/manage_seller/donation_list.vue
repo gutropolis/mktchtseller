@@ -59,7 +59,7 @@
                            </div>
                         </div>
                      </b-tab>
-                     <b-tab title="Accept" >
+                     <b-tab title="Accepted" >
                         <div>
                            <div class="panel-body">
                               <div class="table-responsive">
