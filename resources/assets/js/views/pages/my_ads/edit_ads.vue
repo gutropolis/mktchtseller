@@ -26,11 +26,11 @@
 						
                         <div class="form-group">
                             <label class="login__element--box--label">Title</label>
-                            <input type="text" name="title" v-model="create_ads.title" class="login__element--box--input">
+                            <input type="text" name="title" v-model="create_ads.title" required class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">What type of item are your charity seeking?</label>
-                             <textarea  type="text" name="description" v-model="create_ads.description"  rows="5"  class="login__element--box--input"></textarea>
+                             <textarea  type="text" name="description" v-model="create_ads.description" required rows="5"  class="login__element--box--input"></textarea>
                         </div>
                        
 						<div class="form-group">
@@ -42,8 +42,9 @@
 						
 					</div>
 					
-						
-						<input type="submit" value="Submit" class="btn btn-info waves-effect waves-light m-t-10">
+						<div class="form-group">
+						<input type="submit" value="Submit" class="btn btn-success waves-effect waves-light m-t-10">
+						</div>
 						  </form>
 						    </div>
 						  </div> 	
