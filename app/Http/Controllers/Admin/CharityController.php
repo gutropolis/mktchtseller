@@ -132,6 +132,7 @@ class charityController extends JoshController
     {
 
              $charityparcategory=CharityCategory::all()->where('parent_id','=','0');
+			 $msgInbox=array();
              $charitycategory=CharityCategory::all()->where('parent_id','>','0');
 			
         return view('admin.charity.edit', compact('charity','charitycategory','charityparcategory'));
