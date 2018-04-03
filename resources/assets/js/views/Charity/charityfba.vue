@@ -21,19 +21,25 @@
 			      <form  id="searchform" @submit.prevent="submit">						
 						
 						
-						
 						        
 						
 						<div class="form-group charity__element--block--content--box">
-							<label class="charity__element--block--content--box--label">Category</label>
+							<label class="charity__element--block--content--box--label">Charity Type</label>
 							 <select name="searchcategory"  v-model="searchform.searchcategory" class="login__element--box--input">
-							 <option value="select"> Select Category ...</option>
-							 
-								<option v-for="charity in charity_type"  v-bind:value="charity.id">{{charity.title}}</option>
+							 <option value="select"> Select Charity Type ...</option>
+							   <option  v-for= "charity_cat in charity_category" v-if="charity_cat.parent_id==0"  v-bind:value="charity_cat.id" >{{charity_cat.title}}</option>
+								
 								</select>
 							
 			
 						</div>
+						<div v-if="searchform.searchcategory !='select' "  class="form-group">
+                              <label class="login__element--box--label">Select SubCategory</label>
+                              <select name="charity_type"  v-model="searchform.charity_type" class="login__element--box--input">
+                                 <option value="select" >Select .. </option>
+                                 <option  v-for="charity_cat in charity_category" v-if="charity_cat.parent_id==searchform.searchcategory"  v-bind:value="charity_cat.id">{{ charity_cat.title }}</option>
+                              </select>
+                           </div>
 						
 					
 						<div class="form-group charity_element--block--content--box">							
@@ -123,14 +129,17 @@ export default {
         data() {
 		
             return {
+			
 			searchform: {  
-                    searchlocation: '',
+                    
 					searchcategory: 'select',
+				charity_type:'select',
 					
                 },
 			items:[],
 			
-			charity_type: '',
+			charity_category: [],
+			charity_subcategory:[],
 
                 
             }
@@ -151,9 +160,10 @@ export default {
 			this.items=[];
 			//this.page=[];
                 axios.post('/api/search', this.searchform).then(response =>  {
-                    toastr['success']("Seach Completed");
+                    toastr['success']("Search Completed");
+
 					this.items = response.data;
-					//this.page=response.data.last_page;
+					
                     this.$router.push('/charityfba');
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
@@ -167,7 +177,7 @@ export default {
         }
         this.items = this.items.concat(temp);
         $state.loaded();
-      }, 60000);
+      }, 130000);
     },
 			 fetchItems()
             {
@@ -184,8 +194,8 @@ export default {
 			
               axios.get('/api/charity_type').then(response =>  {
 					
-                  this.charity_type = response.data;
-				  //this.page=response.data.data;
+                  this.charity_category = response.data.data1;
+				    this.charity_subcategory = response.data.data2;
 				  
               });
             },
