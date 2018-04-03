@@ -25,7 +25,7 @@
                             <select name="title"  v-model="items.title" required class="login__element--box--input">
 							<option value="select">Select .. </option>
 							
-							<option  v-for="items in item" v-bind:value="items.title">{{ items.title }}</option>
+							<option  v-for="items in item" v-bind:value="items.id">{{ items.title }}</option>
 							
 							
 							</select>
