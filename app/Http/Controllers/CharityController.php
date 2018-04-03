@@ -173,10 +173,12 @@ class charityController extends JoshController
 	
 	 public function charity_type()
 		{
+			 $charitycategory=CharityCategory::all();
+			 
+            
+			$charitysubcategory=CharityCategory::where('parent_id','>','0')->get();
+	 return response()->json(array('data1'=>$charitycategory,'data2'=>$charitysubcategory));	
 			
-			$charity=CharityCategory::where('parent_id','>','0')->get();
-	 
-			return response()->json($charity);
 		}
 
 	
@@ -428,11 +430,11 @@ public  function detail(Request $request,$id)
 	{
 		
 		
-		$keyword=request('searchlocation');
+		$keyword=request('charity_type');
 		$keyword1=request('searchcategory');
 		
 			//return response()->json($keyword);
-		$charity=charity::Where('location', $keyword)->orwhere('charity_type',$keyword1)->get();
+		$charity=charity::where('charity_type',$keyword)->get();
 		
 		//return charity::paginate(4);
 		return response()->json($charity);
