@@ -15,10 +15,9 @@
                             <label class="login__element--box--label">Ads Type</label>
                             <select  v-model="create_ads.ads_type" class="login__element--box--input">
 							
-							<option value="select">Select .. </option>
-							<option value:="create_ads.ads_type">{{create_ads.ads_type}}</option>
+							<option value:="">--{{charity}}</option>
 							
-							<option v-for="item in items" v-bind:value="item.title" >{{item.title}}</option>
+							<option v-for="item in items" v-if="create_ads.ads_type=item.id" v-bind:value="item.id" >{{item.title}}</option>
 								
 							
 							</select>
@@ -65,7 +64,8 @@
 	data() {
             return {
 				items:{},
-                create_ads: {}
+                create_ads: {},
+				charity:{},
             }
         },
        created: function()
@@ -85,7 +85,8 @@
 			},
 		fetchItems(){
                 axios.get('/api/charityads/'+this.$route.params.id).then(response=>{
-                    this.create_ads = response.data;    
+                    this.create_ads = response.data.data1;
+					this.charity = response.data.data2;
                 }).catch(error=>{
 			toastr['error'](error.response.data.message);
 			});
