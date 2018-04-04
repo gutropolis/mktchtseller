@@ -8,6 +8,7 @@ use App\Http\Requests\charityRequest;
 use App\Charity;
 use App\Sellerproduct;
 use App\Donation;
+use App\Events\MessageDonation;
 use App\User;
 use App\CharityCategory;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
@@ -71,6 +72,13 @@ class charityController extends JoshController
 		$sellerproduct->owner_id=$charity->user_id;
 		$sellerproduct->seller=$user->first_name;
 		$sellerproduct->save();
+		$seller=$sellerproduct->save();;
+	$user1=User::where('id',$sellerproduct->owner_id)->first();
+		
+		
+		broadcast(new MessageDonation($user,$user1,$seller))->toOthers();
+		
+		
 		return response()->json(['message' => 'Data Record Successfully']);
 	/*$user_id=User::where('id',$charity->user_id)->pluck('id');
 	
