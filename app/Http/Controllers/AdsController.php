@@ -167,7 +167,9 @@ class AdsController extends Controller
 		 public function edit($id)
     {
 		$edit_ads = my_ads::find($id);
-		return response()->json($edit_ads);
+		
+		$charity=charity::where('id',$edit_ads->ads_type)->pluck('title');
+		return response()->json(array('data1'=>$edit_ads,'data2'=>$charity[0]));	
    
     }
       public function destroy($id)
