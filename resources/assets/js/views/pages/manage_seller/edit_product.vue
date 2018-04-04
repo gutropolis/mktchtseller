@@ -20,12 +20,16 @@
                             <label class="login__element--box--label">Select Company</label>
                             <select name="company"   v-model="productForm.organisation_id"  required class="login__element--box--input">
 							<option value="select">Select .. </option>
-							<option value:="">{{charity}}</option>
-							<option  v-for="item in items" v-bind:value="item.id">{{ item.title }}</option>
+							<option value:="" >--{{seller}}</option>
+							<option  v-for="item in items" v-bind:value="item.id" v-if="productForm.organisation_id=item.id" >{{ item.title }}</option>
+							
 								
 							
 							</select>
                         </div>
+						
+						
+						
 					
 					
 					<div class="form-group ">
@@ -82,6 +86,7 @@
         },
         data() {
             return {
+			seller:{},
 			items:[],
 			charity:{},
 			productForm: {}
@@ -117,7 +122,7 @@
 		fetchItems(){
                 axios.get('/api/task/'+this.$route.params.id).then(response=>{
                     this.productForm = response.data.data1;
-					this.charity = response.data.data2;
+					this.seller = response.data.data2;
                 }).catch(error=>{
 			toastr['error'](error.response.data.message);
 			});
