@@ -8,7 +8,7 @@ class Inbox extends Model
 {
  protected $table="gs_messageinbox";
     protected $fillable = [
-   'sender_id','reciever_id','subject','post_id','post_type','subject'
+   'sender_id','reciever_id','subject','post_id','post_type','status'
     ];
 	public function author()
 	{
