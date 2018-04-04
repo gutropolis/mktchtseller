@@ -8,7 +8,7 @@ class my_ads extends Model
 {
  protected $table="my_ads";
     protected $fillable = [
-        'title','description','location','image','organisation_id','ads_type','views','like'
+        'title','description','image','organisation_id','ads_type','views','like'
     ];
 
 			public function author()
