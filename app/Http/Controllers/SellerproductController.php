@@ -108,10 +108,13 @@ $sellerproduct = SellerProduct::latest()->get();
 
 	public function edit($id)
 	{
+	
 	$sellerproduct = sellerproduct::find($id);
-	$charity=Charity::where('id',$sellerproduct->organisation_id)->pluck('title');
+	
+	$business_type = Seller::where('id',$sellerproduct->organisation_id)->pluck('title');
+	//return($business_type);
 
-	return response()->json(array('data1'=>$sellerproduct,'data2'=>$charity[0]));	
+	return response()->json(array('data1'=>$sellerproduct,'data2'=>$business_type[0]));		
 	}
 
 	public function update(Request $request,$id)
