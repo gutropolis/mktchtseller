@@ -39,7 +39,7 @@
                               <div v-for="create_messages in create_message">
                                  <ul class="users_messages--users_area--box">
                                     <li class="users_messages--users_area--box--list">
-                                       <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" @click="click()" class="users_messages--users_area--box--list--link">
+                                       <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" class="users_messages--users_area--box--list--link">
                                           <div v-for="userinfo in create_messages.sender_detail" class="users_messages--users_area--box--list--link--image_outer">
                                              <figure class="users_messages--users_area--box--list--link--image_outer--image_box">
                                                 <img :src="'/images/user/'+ userinfo.avatar"  class="users_messages--users_area--box--list--link--image_outer--image_box--image">
