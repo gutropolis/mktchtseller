@@ -26,7 +26,7 @@
                             <router-link to="/" class="nav-link" href="#">Home <span class="sr-only">(current)</span></router-link>
     
                         </li>
-    
+  
                         <li class="nav-item">
     
                             <router-link to="/aboutus">
@@ -41,8 +41,7 @@
     
                                 <a class="nav-link " href="#">Charity</a></router-link>
     
-    
-    
+   
                         </li>
     
                         <li class="nav-item">
@@ -89,11 +88,34 @@
                                         </svg>
                                         
                                      
-                                      <span>3</span>
+                                      <span>{{count}}</span>
                                   </div>
 
                                   </em>
                                 </template>
+								        <div class="admin__list--box">
+                                 <ul class="admin__lsit" id="dashboard-menu">
+                                <li class="admin__lsit--content--name"><div class="admin__lsit--content--notification"><img src="../../svg/notifications-button.svg" alt="user" class="profile-pic"></div> <h5>Messages</h5></li>
+                                <router-link to="/users_detail">
+                                    <li class="admin__lsit--content">
+									
+                                        <div v-for="it in item" class="notification">
+                                            <figure class="notification__profile"><img :src="'/images/user/'+it.avatar"></figure>
+                                            <div class="notification__content">
+                                                <h6 class="notification__content--heading">{{it.sender}}</h6>
+                                                <p class="notification__content--pera">{{it.text}}</p>
+                                                <p><span class="notification__content--time">{{it.time}}</span>
+                                             </p>
+                                            </div>
+                                        </div>
+									
+                                       
+                                    </li>
+							</router-link>
+                                   
+    
+                                </ul>
+                            </div>
                                 
                                  <div class="admin__list--box">
                                  <ul class="admin__lsit" id="dashboard-menu">
@@ -133,20 +155,7 @@
                                  <div class="admin__list--box">
                                  <ul class="admin__lsit" id="dashboard-menu">
                                 <li class="admin__lsit--content--name"><div class="admin__lsit--content--notification"><img src="../../svg/notifications-button.svg" alt="user" class="profile-pic"></div> <h5>Notification</h5></li>
-                                
-                                    <li class="admin__lsit--content">
-                                        <div class="notification">
-                                            <figure class="notification__profile"><img src="../../images/profile.jpg"></figure>
-                                            <div class="notification__content">
-                                                <h6 class="notification__content--heading">Jim Gray</h6>
-                                                <p class="notification__content--pera">Just see the my admin!</p>
-                                                <p><span class="notification__content--time">9:30 AM</span>
-                                                <span class="notification__content--ago">10 min ago</span></p>
-                                            </div>
-                                        </div>
-                                       
-                                    </li>
-    
+                               
                                     <li class="admin__lsit--content">
     
                                         <div class="notification">
@@ -220,11 +229,11 @@
                                     <li class="admin__lsit--content--name">
     
                                         <div class="admin__lsit--content--profile">
-    
+   
                                             <img :src="getAvatar" alt="user" class="profile-pic" />
     
                                         </div>
-    
+  
                                         <h5>{{getAuthUserFullName()}}</h5>  
                                     </li>
     
@@ -238,7 +247,9 @@
                                                 </router-link>
     
                                         </div>
-    
+						<div v-for="item in items">
+					
+						</div>
                                     </li>
     
                                     <li class="admin__lsit--content">
@@ -294,7 +305,7 @@
                 </div>
     
             </div>
-    
+			
         </nav>
     
     </header>
@@ -312,6 +323,9 @@
     
     
             return {
+			count:{},
+			
+			item:[],
 				items: [],
 				
                 loginCheck: helper.checkLogin()
@@ -322,12 +336,29 @@
     
         },
     
-        mounted() {},
+        mounted() {
+			
+		Echo.channel('chat')
+            .listen('MessageNotification', (e) => {
+                this.item.push({
+                    message: e.message.message,
+                    sender: e.user.full_name,
+					avatar: e.user.avatar,
+					reciever:e.user1.full_name,
+					text:e.txt,
+					time:e.message.created_at,
+					
+                })
+				
+				
+				console.log(this.item);
+      })
+		},
 		
 		  created: function() {
     
             this.fetchItems();
-    
+			this.fetchcount();
         },
     
     
@@ -346,6 +377,7 @@
                 })
     
             },
+			
 			fetchItems() {
     
                 axios.get('/api/auth/user').then((response) => {
@@ -359,6 +391,15 @@
     
     
             },
+			fetchcount(){
+				axios.get('/api/count').then((response)=> {
+					this.count=response.data;
+				
+				
+				})
+				
+			
+			},
 			
     
             getAuthUserFullName() {
