@@ -169,7 +169,6 @@ class SellerController extends Controller
 	}
   
   
-  
 		 public function edit(Request $request,$id)
     {
 		$seller_type=SellerCategory::all();
