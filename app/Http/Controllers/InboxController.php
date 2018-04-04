@@ -8,6 +8,7 @@ use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use Hash;
 use App\Events\MessageSent;
+use App\Events\MessageNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Redirect;
@@ -139,6 +140,8 @@ use stdClass;
 		'post_type'=>request('post_type'),
 		'reciever'=>request('updated_by'),
 		'sender_id' => $user->id,
+		'status' => '1',
+		
 		]);
 		$message->save();
 		$insertedId = $message->id;
@@ -153,9 +156,13 @@ use stdClass;
 		'reciever_id'=>$inbox_receiver_id,
 		'sender_id' => $inbox_sender_id,
 		'inbox_id' => $insertedId,
+		'receiver_read' => '0',
 		]);
 	}
-		
+	$user1=User::where('id',$message->reciever_id)->first();
+	
+			
+		broadcast(new MessageNotification($user,$user1,$message))->toOthers();
 		return response()->json(['message' => 'Message sent  Successfully']);  
 	}
 	public function message(Request $request,$id)
@@ -200,6 +207,23 @@ use stdClass;
 			
 			return response()->json($query); 
 	}
+	 public function count()
+	 {
+		 $user = JWTAuth::parseToken()->authenticate();
+		 $count=Inbox::where('status','1')->where('reciever_id',$user->id)->count();
+		
+		return($count);
+		 
+		 
+	 }	
+	 public function read($id)
+	 {
+		 	//$update=Message::where('inbox_id',$id)->where('reciever_id',$user->id)->update(['reciever_read' => 1 ]);
+			$update=Inbox::where('id',$id)->update(['status'=> 0]);
+			return($update);
+		 
+	 }	
+	
 	public function getModalDelete($id)
 	{
 	}
