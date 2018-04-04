@@ -27,10 +27,7 @@
                             <select name="ads_type" v-model= "create_ads.ads_type"  class="login__element--box--input">
 							<option value="select">Select .. </option>
 							
-							<option v-for="item in items"   v-bind:value="item.title">{{item.title}}</option>
-							
-							
-							
+							<option v-for="item in items"   v-bind:value="item.id">{{item.title}}</option>
 							
 							</select>
                         </div>
