@@ -138,3 +138,8 @@ Route::get('/unread_msg','InboxController@unread_msg');
 Route::get('/product_notifcation','CharityController@notification');
 Route::post('/update_donation/{id}', 'CharityController@update_donation');
 Route::post('/reject_donation/{id}', 'CharityController@reject_donation');
+
+
+Route::get('/count','InboxController@count');
+Route::post('/read/{id}','InboxController@read');
+
