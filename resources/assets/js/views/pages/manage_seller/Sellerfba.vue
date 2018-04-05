@@ -153,7 +153,7 @@ export default {
 					axios.get('api/product_category').then(response=>{
 					
 					this.category=response.data;
-					
+					console(this.category);
 					
 					}).catch(error=>{
 					toastr['error'](error.response.data.message);
