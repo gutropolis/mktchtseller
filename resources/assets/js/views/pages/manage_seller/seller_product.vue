@@ -30,6 +30,17 @@
 							
 							</select>
                         </div>
+						 <div class="form-group">
+					   
+                            <label class="login__element--box--label">Select Product Category</label>
+                            <select name="product_catgeory"  v-model="items.product_catgeory" required class="login__element--box--input">
+							<option value="select">Select .. </option>
+							
+							<option  v-for="product in category" v-bind:value="product.id">{{ product.title }}</option>
+							
+							
+							</select>
+                        </div>
 						   
 						   
 						   <div class="form-group ">
@@ -83,10 +94,12 @@
           },
           data() {
               return {
+			  category:[],
 			 
 			  item:[],
    				items:{
 				 title: 'select',
+				 category: 'select',
 				},
    					productform:{
    					 keywords: '',
@@ -98,6 +111,7 @@
 	  created: function()
           {
               this.fetchItems();
+			   this.fetchCategory();
           },
           
           mounted(){
@@ -115,6 +129,17 @@
 					});
 					},
    	
+	 fetchCategory()
+					{
+					axios.get('api/product_category').then(response=>{
+					
+					this.category=response.data;
+					
+					
+					}).catch(error=>{
+					toastr['error'](error.response.data.message);
+					});
+					},
    		
               submit1(e){
 			   const vm = this;
