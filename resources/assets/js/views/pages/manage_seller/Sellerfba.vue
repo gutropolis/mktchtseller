@@ -3,12 +3,7 @@
  <section class="page__head">
  
 		<div class="container">
-			<div class="page__head--content">
-				<h2 class="page__head--content--heading">Product listing</h2>
-				<router-link to="/"><a href="#" class="page__head--content--menu">Home </a> ></router-link>
-				<a href="#" class="page__head--content--menu">SellerPost</a>
-				
-			</div>
+			
 		</div>
    </section>
    <section class="equal charity__element">
@@ -20,11 +15,17 @@
 					<h5 class="charity__element--block--heading">Search Seller Posts</h5>
 					<div class="charity__element--block--content">
 					<form id="sellersearch"  @submit.prevent="submit">						
-						<div class="form-group charity__element--block--content--box">
-							<label class="charity__element--block--content--box--label">Enter Search Below</label>
-							<input type="text" placeholder="Type Here" name="title" v-model="sellersearch.title" class="charity__element--block--content--box--input">
-						</div>
 						
+						<div class="form-group charity__element--block--content--box">
+							<label class="charity__element--block--content--box--label">Products Category</label>
+							 <select name="searchcategory"  v-model="sellersearch.searchcategory" class="login__element--box--input">
+							 <option value="select"> Select ...</option>
+							   <option  v-for= "cat in category"   v-bind:value="cat.id" >{{cat.title}}</option>
+								
+								</select>
+							
+			
+						</div>
 						
 						
 						
@@ -73,7 +74,7 @@
 							<div class="charity__listing--content--address row">
 								<div class="charity__listing--content--address--location col-md-4"><p><i class="fa fa-briefcase" aria-hidden="true"></i> <span>ASIN: </span> {{item.asin_url}}</p></div>
 								<div class="charity__listing--content--address--location col-md-2 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Unit:</span> {{item.units}}</p></div>
-								<div class="charity__listing--content--address--location col-md-3 "><p><a href="#" class="btn btn-bg-orange btn-donate">Donate Units</a></p></div>
+								<div class="charity__listing--content--address--location col-md-3 "><p><a href="#" class="btn btn-bg-orange btn-donate">Request Units</a></p></div>
 							</div>
 							
 </div>						
@@ -104,9 +105,11 @@ export default {
         data() {
 		
             return {
+			category:{},
 			items:[],
 			
-                sellersearch: {  
+                sellersearch: { 
+				searchcategory:'select'			
                     
                 }
             }
@@ -114,6 +117,7 @@ export default {
 		
 		created: function()
         {
+		this.fetchCategory();
             this.fetchItems();
         },
        
@@ -142,8 +146,19 @@ export default {
         }
         this.items = this.items.concat(temp);
         $state.loaded();
-      }, 10000);
+      }, 90000);
     },
+	 fetchCategory()
+					{
+					axios.get('api/product_category').then(response=>{
+					
+					this.category=response.data;
+					
+					
+					}).catch(error=>{
+					toastr['error'](error.response.data.message);
+					});
+					},
 			 fetchItems()
             {
 			
