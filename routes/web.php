@@ -230,6 +230,13 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
         Route::get('{sellerCategory}/restore', 'SellerCategoryController@getRestore')->name('sellercategory.restore');
     });
     Route::resource('sellercategory', 'SellerCategoryController');
+	 /*routes for seller category*/
+    Route::group(['prefix' => 'productcategory'], function () {
+        Route::get('{productcategory}/delete', 'ProductCategoryController@destroy')->name('productcategory.delete');
+        Route::get('{productcategory}/confirm-delete', 'ProductCategoryController@getModalDelete')->name('prodcutcategory.confirm-delete');
+        Route::get('{productcategory}/restore', 'ProductCategoryController@getRestore')->name('productcategory.restore');
+    });
+    Route::resource('productcategory', 'ProductCategoryController');
 	
     /*routes for file*/
     Route::group(['prefix' => 'file'], function () {
