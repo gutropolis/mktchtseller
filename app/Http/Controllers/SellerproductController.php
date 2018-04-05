@@ -6,6 +6,7 @@ use File;
 use Hash;
 use App\Http\Controllers\JoshController;
 use App\Sellerproduct;
+use App\ProductCategory;
 use App\Charity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -53,16 +54,25 @@ $sellerproduct = SellerProduct::latest()->get();
 	$sellerproduct = $query->get();
 	return response()->json($sellerproduct);
 	}
-
+	
+	public function productcategory()
+	{
+		$productcategory=ProductCategory::all();
+		return response()->json($productcategory);
+		
+		
+	}
 
 
 	public function search(Request $request)
 	{		
 	
 	$keyword=request('title');
+	$keyword1=request('searchcategory');
 	
-	$sellerproduct=sellerproduct::Where('title', 'like', '%' . $keyword . '%')->latest()->get();
-	return response()->json($sellerproduct);
+	//$sellerproduct=sellerproduct::Where('title', 'like', '%' . $keyword . '%')->latest()->get();
+	$product=Sellerproduct::where('product_category',$keyword1)->get();
+	return response()->json($product);
 	}
 	public function product_details(Request $request,$id)
 	{
@@ -83,10 +93,13 @@ $sellerproduct = SellerProduct::latest()->get();
 	'asin_url' => request('ASIN'),
 	'images' => request('image'),
 	'organisation_id'=>request('title'),
+	'product_category'=>request('product_catgeory'),
 	'units'=> request('units'),
 	'tags' => request('tags'),
 	
 	]);
+	//return($sellerproduct);
+	//return($sellerproduct->productcategory);
 	$user = JWTAuth::parseToken()->authenticate();
 	$query= Seller::where('user_id',$user->id)->first();
 	//$sellerproduct->organisation_id=$query->id;
