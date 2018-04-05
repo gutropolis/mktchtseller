@@ -55,7 +55,7 @@ $sellerproduct = SellerProduct::latest()->get();
 	return response()->json($sellerproduct);
 	}
 	
-	public function productcategory()
+	public function product_category()
 	{
 		$category=ProductCategory::all();
 		return response()->json($category);
