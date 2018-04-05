@@ -131,11 +131,11 @@
    	
 	 fetchCategory()
 					{
-					axios.get('api/product_category').then(response=>{
+					axios.get('api/category').then(response=>{
 					
 					this.category=response.data;
 					
-					
+					console.log('my data here '+this.category);
 					}).catch(error=>{
 					toastr['error'](error.response.data.message);
 					});
