@@ -6,7 +6,7 @@
             <div class="col-md-6 banner_element--left">
                 <div  class="banner_element--content row">
                     <h2 class="banner_element--content--heading">I am Seller</h2>
-                    <p class="banner_element--content--pera">I would like to give my Poduct to charity in need. There he can post the Products.</p>
+                    <p class="banner_element--content--pera">I would like to give my Poduct to charity in need.</p>
                     <div v-if="loginCheck" class="banner_element--content--linkbox"><router-link to ="/product" class="banner_element--content--btn btn btn-border-white">Post My Products</router-link></div>
 					<div v-else class="banner_element--content--linkbox"><router-link to ="/login" class="banner_element--content--btn btn btn-border-white">Post My Products</router-link></div>
                 </div>
@@ -15,7 +15,7 @@
             <div class="col-md-6 banner_element--right">
                 <div class="banner_element--content banner_element--right--content row">
                     <h2 class="banner_element--content--heading">I am Charity</h2>
-                    <p class="banner_element--content--pera">We are need of Amazon Products to Help Our Cause.Here can Post Needs.</p>
+                    <p class="banner_element--content--pera">We are need of Amazon Products to Help Our Cause.</p>
                     <router-link to ="/login" class="banner_element--content--btn btn btn-border-white">Post Charity Needs</router-link>
                 </div>
             </div>
