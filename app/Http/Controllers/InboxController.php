@@ -223,6 +223,7 @@ use stdClass;
 			return($update);
 		 
 	 }	
+	 
 	
 	public function getModalDelete($id)
 	{
