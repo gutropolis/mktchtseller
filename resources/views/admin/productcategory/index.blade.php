@@ -87,8 +87,8 @@
 	<tr>
 	@foreach($productcategories as $productcategory)
 	
-	<td ><h3>--{{$productcategory->title}} </h3></td>
-	<td><h3>--{{$productcategory->description}} </h3></td>
+	<td >{{$productcategory->title}}</td>
+	<td>{{$productcategory->description}}</td>
 	<td><a href="{{ URL::to('admin/productcategory/' . $productcategory->id . '/edit' ) }}"><i class="livicon"
                                                                                                      data-name="edit"
                                                                                                      data-size="18"
