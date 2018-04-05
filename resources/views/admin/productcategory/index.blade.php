@@ -85,21 +85,21 @@
 	<th>Description</th>
 	 <th>Actions</th>
 	<tr>
-	@foreach($Category as $productcategory)
+	@foreach($productcategories as $cat)
 	
-	<td >{{$productcategory->title}}</td>
-	<td>{{$productcategory->description}}</td>
-	<td><a href="{{ URL::to('admin/productcategory/' . $productcategory->id . '/edit' ) }}"><i class="livicon"
+	<td >{{$cat->title}}</td>
+	<td>{{$cat->description}}</td>
+	<td><a href="{{ URL::to('admin/productcategory/' . $cat->id . '/edit' ) }}"><i class="livicon"
                                                                                                      data-name="edit"
                                                                                                      data-size="18"
                                                                                                      data-loop="true"
                                                                                                      data-c="#428BCA"
                                                                                                      data-hc="#428BCA"
-                                                                                                     title="@lang('sellercategory/table.update-blog')"></i></a>
-                                    <a href="{{ route('admin.productcategory.delete', $productcategory->id) }}"><i class="livicon" data-name="remove-alt"
+                                                                                                     title="@lang('ProductCategory/table.update-blog')"></i></a>
+                                    <a href="{{ route('admin.productcategory.delete', $cat->id) }}"><i class="livicon" data-name="remove-alt"
                                                                         data-size="18" data-loop="true" data-c="#f56954"
                                                                         data-hc="#f56954"
-                                                                        title="@lang('sellercategories/table.delete-blog')"></i></a></td>
+                                                                        title="@lang('Productcategories/table.delete-blog')"></i></a></td>
 	
 	</tr>
    @endforeach
