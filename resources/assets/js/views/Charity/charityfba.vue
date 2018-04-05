@@ -2,7 +2,11 @@
 <div>
  <section class="page__head">
 		<div class="container">
-			
+			<div class="page__head--content">
+				<h2 class="page__head--content--heading">Charity listing</h2>
+				
+				
+			</div>
 		</div>
    </section>
    <section class="equal charity__element">
