@@ -19,31 +19,19 @@ class ProductCategoryController extends JoshController
      */
     public function index()
     {
-        $productcategories = ProductCategory::all();
+        $Category = ProductCategory::all();
 		
 		//$subcategory= SellerCategory::all();
 		
 		
         // Show the page
-        return view('admin.productcategory.index',compact('productcategories'));
+        return view('admin.productcategory.index',compact('Category'));
     
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return view('admin.sellercategory.create');
-    }
+   
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
+   
     public function store(ProductCategoryRequest $request)
     {
         $productCategory = new ProductCategory($request->all());
