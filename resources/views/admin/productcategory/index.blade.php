@@ -85,7 +85,7 @@
 	<th>Description</th>
 	 <th>Actions</th>
 	<tr>
-	@foreach($productcategories as $productcategory)
+	@foreach($Category as $productcategory)
 	
 	<td >{{$productcategory->title}}</td>
 	<td>{{$productcategory->description}}</td>
