@@ -161,7 +161,7 @@
                </div>
                <div class="col-md-4">
                   <div class="charity__element--block">
-                     <h5 class="charity__element--block--heading">Message Communicate</h5>
+                     <h5 class="charity__element--block--heading">Ask This Charity A Question </h5>
                      <div class="charity__element--block--content">
                         <form id="create_message"  @submit.prevent="submit1">
                            <div class="form-group charity__element--block--content--box">
