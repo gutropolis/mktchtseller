@@ -2,12 +2,7 @@
 <div>
  <section class="page__head">
 		<div class="container">
-			<div class="page__head--content">
-				<h2 class="page__head--content--heading">Charity listing</h2>
-				<router-link to="/"><a href="#" class="page__head--content--menu">Home </a> ></router-link>
-				<a href="#" class="page__head--content--menu">Charityfba Post</a>
-				
-			</div>
+			
 		</div>
    </section>
    <section class="equal charity__element">
