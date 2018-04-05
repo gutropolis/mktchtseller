@@ -42,8 +42,13 @@ class charityController extends JoshController
     {
 		
 		$charity=Charity::all();
+		foreach ($charity as $char)
+		{
+		$category=CharityCategory::where('id',$char->charity_type)->pluck('title');
+		}
+		//return($category[0]);
  
-		return response()->json($charity);
+		 return response()->json(array('data1'=>$charity,'data2'=>$category[0]));
     }
 	 public function charity_list_user()
     {
