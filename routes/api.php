@@ -46,7 +46,7 @@ Route::delete('/task/{id}','SellerproductController@destroy');
 Route::get('/product_list','SellerproductController@index');
 Route::post('product/update-avatar','SellerproductController@updateAvatar');
 Route::post('product/remove-avatar','SellerproductController@removeAvatar');
-Route::get('/product_category','SellerproductController@product_category');
+
 Route::resource('/gs_seller_product', 'SellerproductController');
 
 
@@ -110,7 +110,7 @@ Route::post('/productsearch','SellerproductController@search');
 Route::get('/product','SellerproductController@product');
 Route::post('/product/{id}','CharityController@product');
 
-
+Route::get('/product_category','SellerproductController@product_category');
 
 //charity list
 Route::get('/charity_details/{id}','charityController@charity_details');
