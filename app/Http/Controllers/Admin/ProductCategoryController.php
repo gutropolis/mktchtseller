@@ -12,20 +12,13 @@ use App\Http\Requests\ProductCategoryRequest;
 class ProductCategoryController extends JoshController
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
+    
     public function index()
     {
-        $productcategories = ProductCategory::all();
+        $category = ProductCategory::all();
+		return($category);
 		
-		//$subcategory= SellerCategory::all();
-		
-		
-        // Show the page
-        return view('admin.productcategory.index',compact('productcategories'));
+        return view('admin.productcategory.index',compact('category'));
     
     }
 
