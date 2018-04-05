@@ -21,10 +21,7 @@ class ProductCategoryController extends JoshController
     {
         $Category = ProductCategory::all();
 		
-		//$subcategory= SellerCategory::all();
 		
-		
-        // Show the page
         return view('admin.productcategory.index',compact('Category'));
     
     }
