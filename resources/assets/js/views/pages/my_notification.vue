@@ -39,7 +39,7 @@
                                     <div class="notification__element--listing--content">
                                       <h4><a v-bind:href="item.description_url">{{item.title}}</a></h4></a>
                                         
-                                      
+                                    <p> Donated By:- {{item.updated_by}} </p>
                                     </div>
                                 </div>
                                 <div class="notification__element--view--button">
