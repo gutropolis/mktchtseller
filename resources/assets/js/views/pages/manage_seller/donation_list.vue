@@ -157,6 +157,9 @@
                            </div>
                         </div>
                      </b-tab>
+					  <b-tab title="Completed">
+					  </b-tab>
+					 
                   </b-tabs>
                </div>
                </div>
