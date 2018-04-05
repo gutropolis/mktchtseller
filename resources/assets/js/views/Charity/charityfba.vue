@@ -90,7 +90,7 @@
 							</div>
 							<div class="charity__listing--content--address row">
 								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Location:</span> {{ item.location }}</p></div>
-								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-briefcase" aria-hidden="true"></i><span>Category:</span> {{item.category}}</p></div>
+								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-briefcase" aria-hidden="true"></i><span>Category:</span> {{category}}</p></div>
 							
 								
 							</div>
@@ -128,6 +128,7 @@ export default {
         data() {
 		
             return {
+			category:{},
 			
 			searchform: {  
                     
@@ -183,8 +184,8 @@ export default {
 			
               axios.get('/api/charities').then(response =>  {
 					
-                  this.items = response.data;
-				  //this.page=response.data.data;
+                  this.items = response.data.data1;
+				  this.category=response.data.data2;
 				  
               });
             },
