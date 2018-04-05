@@ -76,7 +76,7 @@ class charityController extends JoshController
 	$user1=User::where('id',$sellerproduct->owner_id)->first();
 		
 		
-		broadcast(new MessageDonation($user,$user1,$seller))->toOthers();
+	//	broadcast(new MessageDonation($user,$user1,$seller))->toOthers();
 		
 		
 		return response()->json(['message' => 'Data Record Successfully']);
@@ -135,10 +135,10 @@ class charityController extends JoshController
 		
 		foreach($donaters as $donate)
 		{
-			$image=Sellerproduct::where('id',$donate->product_id)->get();
+			//$image=Sellerproduct::where('id',$donate->product_id)->get();
 		}
 		
-		return response()->json(array('data1'=>$donaters,'data2'=>$image));	
+		return response()->json(array('data1'=>$donaters));	
 			
 		
 	}
