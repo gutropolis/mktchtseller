@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use\App\Http\Controllers\JoshController;
-use App\PCategory;
+use App\ProductCategory;
 use App\Http\Requests;
 use Sentinel;
 use App\Http\Requests\ProductCategoryRequest;
@@ -12,13 +12,20 @@ use App\Http\Requests\ProductCategoryRequest;
 class ProductCategoryController extends JoshController
 {
 
-    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
     public function index()
     {
-        $category = PCategory::get();
-		return($category);
+        $productcategories = ProductCategory::all();
 		
-        return view('admin.productcategory.index',compact('category'));
+		//$subcategory= SellerCategory::all();
+		
+		
+        // Show the page
+        return view('admin.productcategory.index',compact('productcategories'));
     
     }
 
