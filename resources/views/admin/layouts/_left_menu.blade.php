@@ -139,7 +139,12 @@
                     Seller Category
                 </a>
             </li>
-			
+			 <li {!! (Request::is('admin/productcategory') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/productcategory') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Products Category
+                </a>
+            </li>
 			
 			
 			<li {!! (Request::is('admin/seller') ? 'class="active" id="active"' : '') !!}>
