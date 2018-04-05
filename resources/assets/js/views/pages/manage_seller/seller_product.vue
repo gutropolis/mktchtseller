@@ -99,7 +99,7 @@
 			  item:[],
    				items:{
 				 title: 'select',
-				 category: 'select',
+				 product_catgeory: 'select',
 				},
    					productform:{
    					 keywords: '',
@@ -131,11 +131,11 @@
    	
 	 fetchCategory()
 					{
-					axios.get('api/category').then(response=>{
+					axios.get('api/product_category').then(response=>{
 					
 					this.category=response.data;
 					
-					console.log('my data here '+this.category);
+					
 					}).catch(error=>{
 					toastr['error'](error.response.data.message);
 					});
