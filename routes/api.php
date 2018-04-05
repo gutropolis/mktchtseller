@@ -45,8 +45,8 @@ Route::post('/task/{id}','SellerproductController@update');
 Route::delete('/task/{id}','SellerproductController@destroy');
 Route::get('/product_list','SellerproductController@index');
 Route::post('product/update-avatar','SellerproductController@updateAvatar');
-Route::post('product/remove-avatar','SellrproductController@removeAvatar');
-Route::get('/product_category','SellerproductController@productcategory');
+Route::post('product/remove-avatar','SellerproductController@removeAvatar');
+Route::get('/product_category','SellerproductController@product_category');
 Route::resource('/gs_seller_product', 'SellerproductController');
 
 
