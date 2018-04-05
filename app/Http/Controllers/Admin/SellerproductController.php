@@ -34,6 +34,14 @@ class SellerproductController extends JoshController
         return view('admin.sellerproduct.index', compact('cms'));
     }
 
+	public function product_category()
+    {
+		
+        return view('admin.sellerproduct.product_category');
+    }
+	
+	
+	
     /*
      * Pass data through ajax call
      */
@@ -78,13 +86,7 @@ class SellerproductController extends JoshController
     public function store(Request $request)
     {
 	   
-        if ($file = $request->file('pic')) {
-            $extension = $file->extension()?: 'png';
-            $destinationPath = public_path() . '/uploads/sellerproduct/';
-            $safeName = str_random(10) . '.' . $extension;
-            $file->move($destinationPath, $safeName);
-            $request['images'] = $safeName;
-        }
+    
 		
        
        $sellerproduct = new Sellerproduct($request->all());
