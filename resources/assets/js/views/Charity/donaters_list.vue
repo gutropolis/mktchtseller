@@ -6,7 +6,7 @@
             <div class="col-md-9 dashboard">
                <div class="dashboard__content clearfix">
                   <div class="dashboard__content--head">
-                     <h3 class="dashboard__content--head--heading">Donation List</h3>
+                     <h3 class="dashboard__content--head--heading">Donations</h3>
                   </div>
                   <div>
                      <div class="panel-body">
