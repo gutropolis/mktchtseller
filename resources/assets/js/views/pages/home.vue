@@ -56,121 +56,54 @@
 	<div>
 		<section class="recent__post">
         <div class="container">
-            <div class="recent__post--content">
-                <h4 class="recent__post--content--heading">Recently Added Post's</h4>
-            </div>
-            <div class="recent__post--tab">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#profile" role="tab" data-toggle="tab">Charity</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#buzz" role="tab" data-toggle="tab">Products</a>
-                    </li>
-                </ul>
-
-                <!-- Tab panes -->
-                <div class="tab-content main-tab-content">
-                    <div role="tabpanel" >
-                        <div class="recent__post--tab--content row">
+            <b-card no-body>
+  <b-tabs card>
+    <b-tab title="Charity" active>
+        <div v-for="item in items" class="recent__post--tab--content row">
                             <div class="col-sm-2 col-md-2 col-lg-2">
-                                <figure class="recent__post--tab--figure"><img src="images/download.jpg" class="recent__post--tab--figure--images"></figure>
+                                <figure class="recent__post--tab--figure"><img :src="'/images/charity/'+ item.images" class="recent__post--tab--figure--images"></figure>
                             </div>
                             <div class="col-sm-6 col-md-6 col-lg-7">
                                 <article class="recent__post--tab--content-block">
-                                    <h6 class="recent__post--tab--content--block--heading">Charity Life</h6>
-                                    <p class="recent__post--tab--content--block--pera">Contrary to popular belief, Lorem Ipsum.</p>
-                                    <p class="recent__post--tab--content--block--pera"><strong>Unit</strong> 5 Location: Delhi, India</p>
+                                    <h6 class="recent__post--tab--content--block--heading">{{item.title}}</h6>
+                                    <p class="recent__post--tab--content--block--pera">{{item.description}}</p>
+                                    <p class="recent__post--tab--content--block--pera"><strong>Purpose</strong> {{item.business_purpose}} <strong>Location:</strong> {{item.location}}</p>
                                 </article>
                             </div>
-                            <div class="col-sm-3 col-md-3 col-lg-2">
-                                <a href="#" class="btn btn-border-orange">Donate Now</a>
+                            <div class="col-sm-3 col-md-3 col-lg-2"> 
+                             <router-link :to="{name: 'charity_details', params: { id: item.id }}" class="btn btn-border-orange">Donate Now</router-link>
                             </div>
-                            <div class="col-sm-1 col-md-1 col-lg-1">
-                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                            </div>
+                            
                         </div>
-                        <div class="recent__post--tab--content row">
-                            <div class="col-md-2">
-                                <figure class="recent__post--tab--figure"><img src="images/download.jpg" class="recent__post--tab--figure--images"></figure>
+						  <div class="text-center equal">
+                            <router-link to="/charityfba" class="btn btn-border-orange">View More</router-link>
+                        </div>
+						
+    </b-tab>
+    <b-tab title="Product">
+        <div v-for="product in products"class="recent__post--tab--content row">
+                            <div class="col-sm-2 col-md-2 col-lg-2">
+                                <figure class="recent__post--tab--figure"><img v-bind:src="product.images" class="recent__post--tab--figure--images"></figure>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-sm-6 col-md-6 col-lg-7">
                                 <article class="recent__post--tab--content-block">
-                                    <h6 class="recent__post--tab--content--block--heading">Charity Life</h6>
-                                    <p class="recent__post--tab--content--block--pera">Contrary to popular belief, Lorem Ipsum.</p>
-                                    <p class="recent__post--tab--content--block--pera"><strong>Unit</strong> 5 Location: Delhi, India</p>
+                                    <h6 class="recent__post--tab--content--block--heading">{{product.title}}</h6>
+                                    
+                                    <p class="recent__post--tab--content--block--pera"><strong>Unit: </strong>{{product.units}}   <strong>ASIN:</strong> {{product.asin_url}}</p>
                                 </article>
                             </div>
-                            <div class="col-md-2">
-                                <a href="#" class="btn btn-border-orange">Donate Now</a>
+							 <div class="col-sm-3 col-md-3 col-lg-2"> 
+                             <router-link :to="{name: 'seller_details', params: { id: product.id }}" class="btn btn-border-orange">View Details</router-link>
                             </div>
-                            <div class="col-md-1">
-                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                            </div>
+                            
                         </div>
-                        <div class="recent__post--tab--content row">
-                            <div class="col-md-2">
-                                <figure class="recent__post--tab--figure"><img src="images/download.jpg" class="recent__post--tab--figure--images"></figure>
-                            </div>
-                            <div class="col-md-7">
-                                <article class="recent__post--tab--content-block">
-                                    <h6 class="recent__post--tab--content--block--heading">Charity Life</h6>
-                                    <p class="recent__post--tab--content--block--pera">Contrary to popular belief, Lorem Ipsum.</p>
-                                    <p class="recent__post--tab--content--block--pera"><strong>Unit</strong> 5 Location: Delhi, India</p>
-                                </article>
-                            </div>
-                            <div class="col-md-2">
-                                <a href="#" class="btn btn-border-orange">Donate Now</a>
-                            </div>
-                            <div class="col-md-1">
-                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                            </div>
+						<div class="text-center equal">
+                            <router-link to="/sellerfba" class="btn btn-border-orange">View More</router-link>
                         </div>
-                        <div class="recent__post--tab--content row">
-                            <div class="col-md-2">
-                                <figure class="recent__post--tab--figure"><img src="images/download.jpg" class="recent__post--tab--figure--images"></figure>
-                            </div>
-                            <div class="col-md-7">
-                                <article class="recent__post--tab--content-block">
-                                    <h6 class="recent__post--tab--content--block--heading">Charity Life</h6>
-                                    <p class="recent__post--tab--content--block--pera">Contrary to popular belief, Lorem Ipsum.</p>
-                                    <p class="recent__post--tab--content--block--pera"><strong>Unit</strong> 5 Location: Delhi, India</p>
-                                </article>
-                            </div>
-                            <div class="col-md-2">
-                                <a href="#" class="btn btn-border-orange">Donate Now</a>
-                            </div>
-                            <div class="col-md-1">
-                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                        <div class="recent__post--tab--content row">
-                            <div class="col-md-2">
-                                <figure class="recent__post--tab--figure"><img src="images/download.jpg" class="recent__post--tab--figure--images"></figure>
-                            </div>
-                            <div class="col-md-7">
-                                <article class="recent__post--tab--content-block">
-                                    <h6 class="recent__post--tab--content--block--heading">Charity Life</h6>
-                                    <p class="recent__post--tab--content--block--pera">Contrary to popular belief, Lorem Ipsum.</p>
-                                    <p class="recent__post--tab--content--block--pera"><strong>Unit</strong> 5 Location: Delhi, India</p>
-                                </article>
-                            </div>
-                            <div class="col-md-2">
-                                <a href="#" class="btn btn-border-orange">Donate Now</a>
-                            </div>
-                            <div class="col-md-1">
-                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center equal">
-                            <a href="#" class="btn btn-border-orange">View More</a>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="buzz"></div>
-                    <div role="tabpanel" class="tab-pane fade" id="references"></div>
-                </div>
+    </b-tab>
+  </b-tabs>
+</b-card>
 
-            </div>
         </div>
     </section>
 	</div>
@@ -350,6 +283,8 @@
 	        data() {
 	selectcategory:'charity'
             return {
+			items:{},
+			products:{},
 				 loginCheck: helper.checkLogin(),
                 searchform: {
 
@@ -363,9 +298,36 @@
 	
         mounted() {
         },
+		created(){
+		this.fetchItems();
+		this.fetchProducts();
+		},
 		methods: {
+		fetchItems()
+            {
+			
+              axios.get('/api/charities').then(response =>  {
+					
+                  this.items = response.data.data1;
+				  
+				  
+              });
+            },
+		
+		 fetchProducts()
+            {
+			
+              axios.get('/api/productsearch').then(response =>  {
+					
+                  this.products = response.data;
+				
+				  
+              });
+            },
+		
 		submit:function(msg)
 		{
+			
 		
 		     axios.post('/api/search', this.searchform).then(response =>  {
                     
