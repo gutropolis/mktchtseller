@@ -115,21 +115,51 @@
 }
 
 .search__form {
+    &--outer{
+        display: flex;
+        width: 80%;
+        padding: 30px 15px;
+        margin: 0px auto;
+        box-shadow: 0px 0px 19px 0px #d4d4d4;
+    
+       &--box_btn{
+            flex:20%;
+
+            &--btn{
+                display: inline-block;
+                width: 100%;
+                height: 50px;
+                vertical-align: middle;
+                padding: 14px;
+            }
+        }
+
+        .form-group{
+            padding: 0px 10px;
+            margin: 0px;
+        }
+        &--box{
+            flex: 40%;
+
+            &--area{
+                width: 100%;
+                padding: 10px;
+                height: 50px;
+            }
+        }
+    }
     &--heading {
-        padding-bottom: $space-m;
+        padding-bottom: 20px;
+        text-align: center;
+
+        
     }
-    &--area {
-        width: 100%;
-        padding: $space-s;
+    &--sub_heading{
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 30px;
     }
-    &--btn {
-        background: $orange-color;
-        border-color: $orange-color;
-        width: 200px;
-        padding: $space-s;
-        display: inline-block;
-        cursor: pointer;
-    }
+    
 }
 
 .main-tab-content {
@@ -138,6 +168,51 @@
 }
 
 .recent__post {
+
+    .card{
+        border: 0px;
+    }
+
+    .card-header{
+        padding: 0px;    
+        background: transparent;   
+        border: 0px;
+    }
+
+    .card-header-tabs{
+        margin-right: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+        border-bottom: 0;
+        margin: 0px auto 50px auto;
+        width: 300px;
+        border-radius: 100px;
+        background: #fff;
+        box-shadow: 0px 0px 50px 15px gainsboro;
+        overflow: hidden;
+        display: flex;
+    }
+    .nav-tabs .nav-item{
+        flex: 50%;
+        border-radius: 100px;
+        height: 50px;
+    }
+    .nav-tabs .nav-link{
+        height: 50px;
+        vertical-align: sub;
+        padding: 15px;
+        text-align: center;
+        border: 0px;
+    }
+
+    .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+        color: #ffffff;
+        background-color: #faa41a;
+        border-color: transparent;
+        border: none;
+        border-radius: 100px;
+    }
+
     &--content {
         &--heading {
             text-align: center;
@@ -145,10 +220,86 @@
             padding-bottom: $space-m;
         }
     }
+    .post_contant_inner{
+        display: block;
+    }
+
     &--tab {
         &--content {
-            padding: $space-m;
-            border-bottom: 1px solid $grey-color4;
+            display: inline-block;
+            width: 47%;
+            float: left;
+            padding: 10px;
+            box-shadow: 0px 3px 25px 5px #cccccc80;
+            margin: 10px;
+
+            &--img_box{
+                width: 20%;
+                display: inline-block;
+                height: auto;
+                float: left;
+                margin-right: 10px;
+                min-height: 150px;
+
+                &--figure{
+                    margin: 0px;
+
+                    &--images{
+                         width: auto;
+                         height: 100px;
+                    }
+                }
+            }
+
+            &--detail_box{
+                display: inline-block;
+                width: 50%;
+                float:left;
+
+                &--block{
+                    &--heading{
+                        font-size: 16px;
+                        font-weight: 600;
+                        text-transform: capitalize;
+                        margin-bottom: 5px;
+                    }
+
+                    &--pera{
+                        font-size: 14px;
+                        margin-bottom: 5px;
+                        text-transform: capitalize;
+                        font-weight: 100;
+                    }
+
+                    &--pera_box{
+                        font-size: 14px;
+                        margin-bottom: 5px;
+                        text-transform: capitalize;
+                        
+                        span{
+                            display: block;
+                            margin-bottom: 0px;
+                        }
+                    }
+                }
+            }
+
+            &--btn_outer{
+                display: inline-block;
+                width: 25%;
+                text-align: center;
+                margin-top: 20px;
+                float: left;
+                margin-left: 10px;
+
+                &--donate_btn{
+                    a{
+                        width: 100%;
+                        font-size: 14px;
+                    }
+                }
+            }
+           
             &--block {
                 &--heading {
                     font-size: 18px;
@@ -162,18 +313,7 @@
                 padding: $space-s;
             }
         }
-        &--figure {
-            margin: 0px;
-            position: relative;
-            border-radius: 100%;
-            width: 90px;
-            height: 90px;
-            overflow: hidden;
-            &--images {
-                overflow: hidden;
-                max-width: 100%;
-            }
-        }
+        
     }
 }
 

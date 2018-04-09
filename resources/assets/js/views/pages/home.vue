@@ -26,11 +26,12 @@
         <div class="container">
             <div class="search__form">
                 <h4 class="search__form--heading">Search Products or Find a Charity</h4>
-                <form id="searchform" class="row">
+                <p class="search__form--sub_heading">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                <form id="searchform" class="search__form--outer">
                    
-                    <div class="col-md-4">
+                    <div class="search__form--outer--box">
                         <div class="form-group">
-                            <select placeholder="Search Keywords" v-model="searchform.selectcategory" class="search__form--area">
+                            <select placeholder="Search Keywords" v-model="searchform.selectcategory" class="search__form--outer--box--area">
                                     <option value="">Select Charity/Products</option>
                                     <option value="seller">Select Products</option>
                                     <option value="charity">Select Charity</option>
@@ -38,15 +39,15 @@
                                 </select>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="search__form--outer--box">
                         <div class="form-group">
-                            <input type="text" placeholder="Search Keywords" class="search__form--area">
+                            <input type="text" placeholder="Search Keywords" class="search__form--outer--box--area">
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="search__form--outer--box_btn">
                         <div class="form-group">
-                            <a href="javascript:void()" class="search__form--btn btn btn-primary " v-on:click="submit(searchform.selectcategory)" >Submit</a></td>
+                            <a href="javascript:void()" class="search__form--outer--box_btn--btn btn btn-primary " v-on:click="submit(searchform.selectcategory)" >Submit</a></td>
                         </div>
                     </div>
                 </form>
@@ -59,53 +60,61 @@
             <b-card no-body>
   <b-tabs card>
     <b-tab title="Charity" active>
+        <div class="post_contant_inner clearfix">
         <div v-for="item in items" class="recent__post--tab--content row">
-                            <div class="col-sm-2 col-md-2 col-lg-2">
-                                <figure class="recent__post--tab--figure"><img :src="'/images/charity/'+ item.images" class="recent__post--tab--figure--images"></figure>
+            
+                            <div class="recent__post--tab--content--img_box">
+                                <figure class="recent__post--tab--content--img_box--figure"><img :src="'/images/charity/'+ item.images" class="recent__post--tab--content--img_box--figure--images"></figure>
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-7">
-                                <article class="recent__post--tab--content-block">
-                                    <h6 class="recent__post--tab--content--block--heading">{{item.title}}</h6>
-                                    <p class="recent__post--tab--content--block--pera">{{item.description}}</p>
-                                    <p class="recent__post--tab--content--block--pera"><strong>Purpose</strong> {{item.business_purpose}} <strong>Location:</strong> {{item.location}}</p>
+                            <div class="recent__post--tab--content--detail_box">
+                                <article class="recent__post--tab--content--detail_box--block">
+                                    <h6 class="recent__post--tab--content--detail_box--block--heading">{{item.title}}</h6>
+                                    <p class="recent__post--tab--content--detail_box--block--pera">{{item.description}}</p>
+                                    <p class="recent__post--tab--content--detail_box--block--pera_box"><span><strong>Purpose:</strong> {{item.business_purpose}} </span>  <span><strong>Location:</strong> {{item.location}}</span></p>
                                 </article>
                             </div>
-							 <div v-if="loginCheck">
-                            <div class="col-sm-3 col-md-3 col-lg-2"> 
+							 <div v-if="loginCheck" class="recent__post--tab--content--btn_outer">
+                            <div class="recent__post--tab--content--btn_outer--donate_btn"> 
                              <router-link :to="{name: 'charity_details', params: { id: item.id }}" class="btn btn-border-orange">Donate Now</router-link>
                             </div>
 							</div>
-							<div v-else>
-                              <div class="col-sm-3 col-md-3 col-lg-2"> 
+							<div v-else class="recent__post--tab--content--btn_outer">
+                              <div class="recent__post--tab--content--btn_outer--donate_btn"> 
                              <router-link to="/login" class="btn btn-border-orange">Donate Now</router-link>
                             </div>
                         </div>
 						</div>
+                    </div>
 						  <div class="text-center equal">
                             <router-link to="/charityfba" class="btn btn-border-orange">View More</router-link>
                         </div>
 						
     </b-tab>
-    <b-tab title="Product">
-        <div v-for="product in products"class="recent__post--tab--content row">
-                            <div class="col-sm-2 col-md-2 col-lg-2">
-                                <figure class="recent__post--tab--figure"><img v-bind:src="product.images" class="recent__post--tab--figure--images"></figure>
+    <b-tab title="Products" active>
+        <div class="post_contant_inner clearfix">
+        <div v-for="product in products" class="recent__post--tab--content row">
+            
+                            <div class="recent__post--tab--content--img_box">
+                                <figure class="recent__post--tab--content--img_box--figure"><img v-bind:src="product.images" class="recent__post--tab--content--img_box--figure--images"></figure>
                             </div>
-                            <div class="col-sm-6 col-md-6 col-lg-7">
-                                <article class="recent__post--tab--content-block">
-                                    <h6 class="recent__post--tab--content--block--heading">{{product.title}}</h6>
-                                    
-                                    <p class="recent__post--tab--content--block--pera"><strong>Unit: </strong>{{product.units}}   <strong>ASIN:</strong> {{product.asin_url}}</p>
+                            <div class="recent__post--tab--content--detail_box">
+                                <article class="recent__post--tab--content--detail_box--block">
+                                    <h6 class="recent__post--tab--content--detail_box--block--heading">{{product.title}}</h6>
+                                    <p class="recent__post--tab--content--detail_box--block--pera_box"><span><strong>Unit: </strong>{{product.units}} </span>  <span><strong>ASIN:</strong> {{product.asin_url}}</span></p>
                                 </article>
                             </div>
-							 <div class="col-sm-3 col-md-3 col-lg-2"> 
+                             <div class="recent__post--tab--content--btn_outer">
+                            <div class="recent__post--tab--content--btn_outer--donate_btn"> 
                              <router-link :to="{name: 'seller_details', params: { id: product.id }}" class="btn btn-border-orange">View Details</router-link>
                             </div>
-                            
+                            </div>
+                           
                         </div>
-						<div class="text-center equal">
+                    </div>
+                          <div class="text-center equal">
                             <router-link to="/sellerfba" class="btn btn-border-orange">View More</router-link>
                         </div>
+                        
     </b-tab>
   </b-tabs>
 </b-card>
