@@ -80,7 +80,7 @@
                                              <label class="login__element--box--label">Postal</label>
                                              <input type="text" name="postal" v-model="profileForm.postal"  class="login__element--box--input">
                                           </div>
-                                          <button type="submit" class="btn btn-info waves-effect waves-light m-t-10">Update</button>
+                                          <button type="submit" class="btn btn-success waves-effect waves-light m-t-10">Update</button>
                                        </form>
                                     </div>
                                  </div>
