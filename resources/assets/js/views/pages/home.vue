@@ -22,7 +22,7 @@
 
         </div>
     </section>
-	<section class="equal">
+	<section class="equal search_section">
         <div class="container">
             <div class="search__form">
                 <h4 class="search__form--heading">Search Products or Find a Charity</h4>
@@ -60,6 +60,7 @@
             <b-card no-body>
   <b-tabs card>
     <b-tab title="Charity" active>
+        <h1 class="tab_heading_top "> Recent Charity Posts</h1>
         <div class="post_contant_inner clearfix">
         <div v-for="item in items" class="recent__post--tab--content row">
             
@@ -91,6 +92,7 @@
 						
     </b-tab>
     <b-tab title="Products" active>
+        <h1 class="tab_heading_top "> Recent Sellers Posts</h1>
         <div class="post_contant_inner clearfix">
         <div v-for="product in products" class="recent__post--tab--content row">
             
