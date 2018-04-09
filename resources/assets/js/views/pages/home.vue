@@ -32,7 +32,7 @@
                     <div class="search__form--outer--box">
                         <div class="form-group">
                             <select placeholder="Search Keywords" v-model="searchform.selectcategory" class="search__form--outer--box--area">
-                                    <option value="">Select Charity/Products</option>
+                                    <option value="">Select Types</option>
                                     <option value="seller">Select Products</option>
                                     <option value="charity">Select Charity</option>
                                     
