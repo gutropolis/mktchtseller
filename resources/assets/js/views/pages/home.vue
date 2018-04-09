@@ -27,12 +27,8 @@
             <div class="search__form">
                 <h4 class="search__form--heading">Search Products or Find a Charity</h4>
                 <form id="searchform" class="row">
-                    <div class="col-md-3">
-                        <div class="form-group ">
-                            <input type="text" name="searchlocation" placeholder="Search Location" v-model="searchform.searchlocation"class="search__form--area">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
+                   
+                    <div class="col-md-4">
                         <div class="form-group">
                             <select placeholder="Search Keywords" v-model="searchform.selectcategory" class="search__form--area">
                                     <option value="">Select Charity/Products</option>
@@ -42,13 +38,13 @@
                                 </select>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <input type="text" placeholder="Search Keywords" class="search__form--area">
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <a href="javascript:void()" class="search__form--btn btn btn-primary " v-on:click="submit(searchform.selectcategory)" >Submit</a></td>
                         </div>
@@ -378,12 +374,12 @@
 					{
 					
                     this.$router.push('/charityfba');
-					toastr['success'](response.data.message);
+					toastr['success']("Process Completed");
 					}
 					else if (msg=='seller')
 					{
 					 this.$router.push('/sellerfba');
-					 toastr['success'](response.data.message);
+					 toastr['success']("Process Completed");
 					}
 					else{
 					toastr['error']('Please select one option');
