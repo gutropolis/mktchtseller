@@ -20,7 +20,7 @@
                      <div class="col-md-5">
                         <div class="charity_inner--content">
                            <h4 class="charity_inner--content--heading">{{create_message.title}}</h4>
-                           <p class="charity_inner--content--pera">Contrary to popular belief,Lorem Ipsum.</p>
+                          
                            <ul class="charity_inner--content--list">
                               <li class="charity_inner--content--list--item">
                                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -61,7 +61,10 @@
                      <div class="col-12 no-gutters">
                         <div class="charity_profile--detail">
                            <h3 class="charity_profile--detail--heading">DETAIL:</h3>
-                           <p class="charity_profile--detail-pera">
+						 
+						   
+						   
+                           <p class="charity__listing--content--box--pera">
                               <span v-html="create_message.description"></span> 
                            </p>
                            <div class="col-md-12">
