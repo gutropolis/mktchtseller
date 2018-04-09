@@ -90,7 +90,7 @@
 							</div>
 							<div class="charity__listing--content--address row">
 								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Location:</span> {{ item.location }}</p></div>
-								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-briefcase" aria-hidden="true"></i><span>Category:</span> {{category}}</p></div>
+								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-briefcase" aria-hidden="true"></i><span>Purpose:</span> {{item.business_purpose}}</p></div>
 							
 								
 							</div>
