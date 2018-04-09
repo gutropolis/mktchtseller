@@ -70,11 +70,17 @@
                                     <p class="recent__post--tab--content--block--pera"><strong>Purpose</strong> {{item.business_purpose}} <strong>Location:</strong> {{item.location}}</p>
                                 </article>
                             </div>
+							 <div v-if="loginCheck">
                             <div class="col-sm-3 col-md-3 col-lg-2"> 
                              <router-link :to="{name: 'charity_details', params: { id: item.id }}" class="btn btn-border-orange">Donate Now</router-link>
                             </div>
-                            
+							</div>
+							<div v-else>
+                              <div class="col-sm-3 col-md-3 col-lg-2"> 
+                             <router-link to="/login" class="btn btn-border-orange">Donate Now</router-link>
+                            </div>
                         </div>
+						</div>
 						  <div class="text-center equal">
                             <router-link to="/charityfba" class="btn btn-border-orange">View More</router-link>
                         </div>
@@ -159,7 +165,7 @@
                                 <g>
                                     <g id="icons_2_">
                                         <g>
-                                            <polygon points="269.784,70.73 276.471,70.73 273.253,59.671 			"/>
+                                            <polygon points="269.784,70.73 276.471,70.73 273.253,59.671 "/>
                                             <path d="M177.491,54.892c-0.833-0.853-1.75-1.454-2.729-1.786c-1.018-0.346-1.955-0.521-2.787-0.521
                                                 c-0.836,0-1.774,0.175-2.792,0.521c-0.977,0.332-1.893,0.934-2.728,1.786c-0.848,0.869-1.58,2.104-2.179,3.672
                                                 c-0.603,1.583-0.91,3.677-0.91,6.226c0,2.551,0.308,4.645,0.91,6.226c0.599,1.569,1.331,2.805,2.179,3.673
