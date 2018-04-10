@@ -19,7 +19,15 @@
 					<h5 class="charity__element--block--heading">Search Seller Posts</h5>
 					<div class="charity__element--block--content">
 					<form id="sellersearch"  @submit.prevent="submit">						
-						
+						<div class="form-group charity__element--block--content--box">
+							<label class="charity__element--block--content--box--label">Keyword</label>
+							 <input type="text" name="keyword"  v-model="sellersearch.keyword" class="login__element--box--input">
+							 
+								
+								
+							
+			
+						</div>
 						<div class="form-group charity__element--block--content--box">
 							<label class="charity__element--block--content--box--label">Products Category</label>
 							 <select name="searchcategory"  v-model="sellersearch.searchcategory" class="login__element--box--input">
@@ -86,7 +94,9 @@
 				
 				</tr>
 				
-			<infinite-loading @infinite="infiniteHandler"></infinite-loading>
+			<infinite-loading @infinite="infiniteHandler">
+			<span slot="no-more" >There is no more records!!</span>
+			</infinite-loading>
 		</div>
 		
 		</div>
@@ -113,7 +123,8 @@ export default {
 			items:[],
 			
                 sellersearch: { 
-				searchcategory:'select'			
+				searchcategory:'select'	,
+				keyword:'',
                     
                 }
             }
@@ -127,6 +138,19 @@ export default {
        
         
         mounted(){
+		   this.keywords = this.$route.query.keyword;
+		   this.sellersearch.keyword= this.keywords ;
+		    axios.post('/api/productsearch', this.sellersearch).then(response =>  {
+                    toastr['success']("Search Completed");
+
+					this.items = response.data;
+					
+                   
+                }).catch(error => {
+                    toastr['error'](error.response.data.message);
+                });
+			
+			console.log(this.$route.query.keyword);
         },
         methods: {
 		
@@ -148,10 +172,16 @@ export default {
         for (let i = this.items.length + 1; i <= this.items.length + 4; i++) {
           temp.push(i);
         }
-        this.items = this.items.concat(temp);
         $state.loaded();
-      }, 90000);
-    },
+						if(this.items.length>=templength){
+							
+							this.items = this.items.concat(temp);
+							
+						}else{
+						   $state.complete();
+						}
+					  }, 1300);
+			},
 	 fetchCategory()
 					{
 					axios.get('api/product_category').then(response=>{
