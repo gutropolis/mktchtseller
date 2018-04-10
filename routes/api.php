@@ -113,11 +113,12 @@ Route::post('/product/{id}','CharityController@product');
 Route::get('/product_category','SellerproductController@product_category');
 
 //charity list
-Route::get('/charity_details/{id}','charityController@charity_details');
-Route::post('/search','charityController@search');
-Route::get('/search','charityController@search');
-Route::get('/charities','charityController@charity_list');
-Route::get('/charity_type','charityController@charity_type');
+Route::get('/charity_details/{id}','CharityController@charity_details');
+Route::post('/search','CharityController@search');
+
+Route::get('/search','CharityController@search');
+Route::get('/charities','CharityController@charity_list');
+Route::get('/charity_type','CharityController@charity_type');
 
 
 
