@@ -1,10 +1,17 @@
 <template>
     <div>
-    	<router-view></router-view>
+    	<app-header></app-header>
+	
+		<router-view></router-view>
+		<app-footer></app-footer>
     </div>
 </template>
 
 <script>
+import AppHeader from './header.vue' 
+
+ import AppFooter from './footer.vue'
+  import helper from '../services/helper'
     export default {
         methods : {
             notification(){
@@ -18,6 +25,9 @@
                 });
             }
         },
+		 components: {
+            AppHeader,AppFooter 
+        }, 
         mounted() {
         	$('body').removeClass('fix-header fix-sidebar card-no-border');
             this.notification();
