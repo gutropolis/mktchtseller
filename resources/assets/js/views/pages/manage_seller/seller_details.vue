@@ -4,8 +4,7 @@
          <div class="container">
             <div class="page__head--content">
                <h2 class="page__head--content--heading">Product Details</h2>
-               <router-link to="/"><a href="#" class="page__head--content--menu">Home </a> ></router-link>
-               <a href="#" class="page__head--content--menu">Sellerfba Post</a>
+               
             </div>
          </div>
       </section>
