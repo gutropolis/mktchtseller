@@ -152,7 +152,7 @@
                            <div class="col-12">
                               <div class="charity__request">
                                  <b-link class="charity__request--cancel btn">Cancel</b-link>
-                                 <router-link to="/charity_detail1" class="charity__request--send btn-bg-orange btn">Send Request</router-link>
+                                 <router-link to="" class="charity__request--send btn-bg-orange btn">Send Request</router-link>
                               </div>
                            </div>
                         </div>
