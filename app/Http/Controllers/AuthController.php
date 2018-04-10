@@ -199,11 +199,10 @@ $user->save();
             'email' => request('email'),
             'token' => $token
         ]);
-        //$user->notify(new PasswordReset($user,$token));
+        $user->notify(new PasswordReset($user,$token));
 
         return response()->json(['message' => 'We have sent reminder email. Please check your inbox!']);
     }
-
     public function validatePasswordReset(Request $request){
         $validate_password_request = \DB::table('password_resets')->where('token','=',request('token'))->first();
 
