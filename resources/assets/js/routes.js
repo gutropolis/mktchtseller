@@ -2,69 +2,12 @@ import VueRouter from 'vue-router'
 import helper from './services/helper' 
 
 let routes = [
-    {
-        path: '/',
+{
+        path: '/home',
         component: require('./layouts/default-page'),
-        meta: { requiresGuest: true },
+        meta: { requiresAuth: true },
         children: [
-			{
-                path: '/',
-                component: require('./views/pages/home')
-            },
-			{
-                path: '/home',
-                component: require('./views/pages/home')
-            },
-			{
-                path: '/login',
-                component: require('./views/auth/login')
-            },
-			{
-                path: '/forget_password',
-                component: require('./views/auth/forget_password')
-            },
-			{
-                path: '/register',
-                component: require('./views/auth/register')
-            },
-			{
-                path: '/charityregister',
-                component: require('./views/auth/charityregister')
-            },
-			{
-                path: '/social',
-                component: require('./views/auth/social-auth')
-            },
-			{
-                path: '/select_role',
-                component: require('./views/auth/select_role')
-            },
-			
-			{
-                path: '/auth/:token/activate',
-                component: require('./views/auth/activate')
-            },
-            {
-                path: '/password/reset/:token',
-                component: require('./views/auth/reset')
-            },
-			{
-				path: '/aboutus',
-                component: require('./views/pages/aboutus')
-			},
-			{
-                path: '/contact',
-                component: require('./views/pages/contact')
-            },
-			{
-				path: '/charityfba',
-                component: require('./views/Charity/charityfba')
-			},
-			{
-				path: '/sellerfba',
-				component:require('./views/pages/manage_seller/Sellerfba')
-			},
-			{
+             {
 				path : '/my_account',
 				component:require('./views/pages/users/my_account')
 			},
@@ -144,11 +87,7 @@ let routes = [
 				component:require('./views/Charity/change_status')
 			},
 			
-			{
-				name:'charity_details',
-				path : '/charity_details',
-				component:require('./views/Charity/charity_details')
-			},
+			
 			
 			{
 				path: '/vender_organisation',
@@ -172,11 +111,7 @@ let routes = [
 				path : 'seller_list',
 				component:require('./views/pages/manage_seller/seller_list')
 			},
-			{
-				name:'seller_details',
-				path : 'seller_details',
-				component:require('./views/pages/manage_seller/seller_details')
-			},
+			
 			{
 				name:'edit_seller',
 				path : '/edit_seller',
@@ -200,6 +135,84 @@ let routes = [
 				path: '/edit_donation',
 				component:require('./views/pages/manage_seller/edit_donation')
 			},
+        ]
+    },
+	
+	
+	
+    {
+        path: '/',
+        component: require('./layouts/guest-page'),
+        meta: { requiresGuest: true },
+        children: [
+			{
+                path: '/',
+                component: require('./views/pages/home')
+            },
+			{
+                path: '/home',
+                component: require('./views/pages/home')
+            },
+			{
+                path: '/login',
+                component: require('./views/auth/login')
+            },
+			{
+                path: '/forget_password',
+                component: require('./views/auth/forget_password')
+            },
+			{
+                path: '/register',
+                component: require('./views/auth/register')
+            },
+			{
+                path: '/charityregister',
+                component: require('./views/auth/charityregister')
+            },
+			{
+                path: '/social',
+                component: require('./views/auth/social-auth')
+            },
+			{
+                path: '/select_role',
+                component: require('./views/auth/select_role')
+            },
+			
+			{
+                path: '/auth/:token/activate',
+                component: require('./views/auth/activate')
+            },
+            {
+                path: '/password/reset/:token',
+                component: require('./views/auth/reset')
+            },
+			{
+				path: '/aboutus',
+                component: require('./views/pages/aboutus')
+			},
+			{
+                path: '/contact',
+                component: require('./views/pages/contact')
+            },
+			{
+				path: '/charityfba',
+                component: require('./views/Charity/charityfba')
+			},
+			{
+				name:'charity_details',
+				path : '/charity_details',
+				component:require('./views/Charity/charity_details')
+			},
+			{
+				path: '/sellerfba',
+				component:require('./views/pages/manage_seller/Sellerfba')
+			},
+			{
+				name:'seller_details',
+				path : 'seller_details',
+				component:require('./views/pages/manage_seller/seller_details')
+			},
+			
 		
 			
 			
