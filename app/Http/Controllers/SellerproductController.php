@@ -32,6 +32,7 @@ protected $avatar_path = 'images/charityads/';
 	$sellerproduct = $query->latest()->get();
 	return response()->json($sellerproduct );
 	}
+	
 		public function products()
 	{
 	
