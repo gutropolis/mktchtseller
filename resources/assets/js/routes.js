@@ -3,7 +3,7 @@ import helper from './services/helper'
 
 let routes = [
 {
-        path: '/home',
+        path: '/dashboard',
         component: require('./layouts/default-page'),
         meta: { requiresAuth: true },
         children: [
@@ -15,19 +15,13 @@ let routes = [
 				path : '/edit_account',
 				component:require('./views/pages/users/edit_profile')
 			},
-			
 			{
-				path : 'my_ads',
+				path : '/my_ads',
 				component:require('./views/pages/my_ads')
 			},
 			{
-				path : 'create_ads',
+				path : '/create_ads',
 				component:require('./views/pages/my_ads/create_ads')
-			},
-			
-			{
-				path : 'my_ads',
-				component:require('./views/pages/my_ads')
 			},
 				{ 
 				name : 'edit_ads',
@@ -35,20 +29,20 @@ let routes = [
                 component: require('./views/pages/my_ads/edit_ads')
             },
 			{
-				path : 'my_notification',
+				path : '/my_notification',
 				component:require('./views/pages/my_notification')
 			},
 			{
-				path : 'my_message',
+				path : '/my_message',
 				component:require('./views/pages/message/my_message')
 			},
 			{
-				path : 'user_chat',
+				path : '/user_chat',
 				component:require('./views/pages/message/user_chat')
 			},
 			
 			{
-				path : 'users_detail',
+				path : '/users_detail',
 				component:require('./views/pages/message/users_detail')
 			},
 			
@@ -59,17 +53,17 @@ let routes = [
 			},
 			
             {
-				path : 'charity_organisation',
+				path : '/charity_organisation',
 				component:require('./views/Charity/charity_organisation')
 			},
 			
 			{
-				path : 'charity_category',
+				path : '/charity_category',
 				component:require('./views/Charity/charity_category')
 			},
 			{
 				name:'charity_list',
-				path : 'charity_list',
+				path : '/charity_list',
 				component:require('./views/Charity/charity_list')
 			},
 			{
@@ -78,12 +72,12 @@ let routes = [
 				component:require('./views/Charity/edit_charity')
 			},
 			{
-				path : 'donaters',
+				path : '/donaters',
 				component:require('./views/Charity/donaters_list')
 			},
 			{
 				name:'change_status',
-				path : 'change_status',
+				path : '/change_status',
 				component:require('./views/Charity/change_status')
 			},
 			
@@ -103,12 +97,12 @@ let routes = [
 				component:require('./views/pages/manage_seller/edit_product')
 			},
 			{
-				path : 'seller_category',
+				path : '/seller_category',
 				component:require('./views/pages/manage_seller/seller_category')
 			},
 			{
 				name:'seller_list',
-				path : 'seller_list',
+				path : '/seller_list',
 				component:require('./views/pages/manage_seller/seller_list')
 			},
 			
