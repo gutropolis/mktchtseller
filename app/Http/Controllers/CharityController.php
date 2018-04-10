@@ -50,14 +50,14 @@ class charityController extends JoshController
  
 		 return response()->json(array('data1'=>$charity,'data2'=>$category[0]));
     }
-	 public function charity_list_user()
+	 public function charity_list_user(Request $request)
     {
 		$user = JWTAuth::parseToken()->authenticate();
 	$query = Charity::whereUserId($user->id);
-	$charity = $query->latest()->get();
+	$charity = $query->get();
 		
  
-		return $charity;
+		return response()->json($charity);
     }
 	
 	
@@ -434,10 +434,10 @@ public  function detail(Request $request,$id)
 		return response()->json(['message' => 'Product are Rejected']);
     }
 
-    public function lockscreen($id)
+    public function searchform(Request $reguest)
 	{
-
-        
+		$keyword=request('keyword');
+		return $keyword;
     }
 	public function search(Request $reguest)
 	{
