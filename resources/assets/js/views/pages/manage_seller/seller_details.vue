@@ -171,6 +171,38 @@
                         </form>
                      </div>
                   </div>
+				 <div class="charity_donation">
+				  <div v-if="getrole === 'charity'">
+				  <div class="charity_donation--box">
+               <p class="charity_donation--box--heading">Request For Donation</p>
+                  <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary"  class="btn btn-bg-orange login__element--box--button">Request Units</b-btn>
+                  <b-modal id="modalPrevent"
+                     ref="modal"
+                     title="Donate to this Charity"
+					  @ok="handleSubmit"
+                     @shown="clearName">
+                     <form  id="prod" @submit.stop.prevent="handleSubmit">
+					  <div class="form-group">
+					   
+                            <label class="login__element--box--label">Select Charity To Need This Product</label>
+                            <select name="title" v-model="prod.title" v-on:change="onChange"   class="login__element--box--input">
+							<option value="select">Select .. </option>
+							
+							<option v-for="item in charities"  v-bind:value="item.id">{{item.title}}</option>
+							
+							
+							</select>
+                        </div>
+					 
+					 
+					 <label class="charity__element--block--content--box--label">Units</label>
+					<input type="text" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
+                   <input type="hidden" name="charity_name" v-model="prod.charity_name" class="login__element--box--input" />
+                     </form>
+                  </b-modal>
+               </div>
+				  </div>
+            </div>
                   <div class="helping__element">
                      <div class="helping__element--block">
                         <h5 class="helping__element--block--heading">Helping Center</h5>
@@ -201,6 +233,14 @@
            data() {
    		
                return {
+			   charities:{},
+			    charity_name:{},
+			   prod:{
+			title: 'select',
+			units: '',
+			
+			},
+			   
 			    role:true,
    		loginCheck: helper.checkLogin(),
    		   create_message:{},
@@ -212,13 +252,47 @@
            {
                this.fetchItems();
    			this.fetchItem();
-   			
+   			this.fetchCharity();
            },
           
            
            mounted(){
            },
            methods: {
+		   onChange: function (){
+         	
+           axios.get('/api/charity_name/'+this.prod.title)
+            .then(response=>{
+   			
+   			this.charity_name=response.data;
+   			
+   			
+   			}).catch(error=>{
+   			toastr['error'](error.response.data.message);
+   				  
+                 });
+				 },
+		   fetchCharity()
+			{
+			axios.get('api/charity_list_user').then(response=>{
+			
+			this.charities=response.data;
+			
+			
+			}).catch(error=>{
+			toastr['error'](error.response.data.message);
+			});
+			},
+			clearName () {
+							this.name = ''
+						},
+      handleSubmit () {
+        let data = this.prod;
+	  axios.post('/api/request_unit/'+this.$route.params.id,{charity_name: this.charity_name, data}).then(response => {
+			toastr['success'](response.data.message);
+	  })
+	  
+    },
    			 submit1(e){
      if(helper.checkLogin()){
                    axios.post('/api/create_message', this.create_message).then(response =>  {
