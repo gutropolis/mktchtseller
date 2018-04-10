@@ -372,7 +372,7 @@
     
                     this.$store.dispatch('resetAuthUserDetail');
                     this.$router.replace('/');
-					window.location.reload();
+					//window.location.reload();
     
                 })
     
