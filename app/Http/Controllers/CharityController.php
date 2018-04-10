@@ -59,7 +59,13 @@ class charityController extends JoshController
  
 		return response()->json($charity);
     }
+	public function charities_list(Request $request)
+	{		
 	
+	$query = Charity::all();
+	
+	return response()->json($query);
+	}
 	
 	public function product(Request $request,$id)
     {
