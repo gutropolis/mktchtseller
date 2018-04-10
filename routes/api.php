@@ -108,6 +108,7 @@ Route::get('/product_details/{id}','SellerproductController@product_details');
 Route::get('/productsearch','SellerproductController@products');
 Route::post('/productsearch','SellerproductController@search');
 Route::get('/product','SellerproductController@product');
+Route::get('/charities_list','CharityController@charities_list');
 Route::post('/product/{id}','CharityController@product');
 
 Route::get('/product_category','SellerproductController@product_category');
