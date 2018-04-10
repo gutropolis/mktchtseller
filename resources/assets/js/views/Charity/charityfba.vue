@@ -112,7 +112,8 @@
 					
 				</div>
 				 </div>
-	
+
+				 
 	
 	<infinite-loading @infinite="infiniteHandler">
 	<span slot="no-more" >There is no more records!!</span>
@@ -157,7 +158,7 @@ export default {
 			
 			charity_category: [],
 			charity_subcategory:[],
-
+			  temp:[]
                 
             }
         },
@@ -188,6 +189,10 @@ export default {
         methods: {
 		
             submit(e){
+			   
+			   this.fetchRecords();
+            },
+			fetchRecords(){
 			this.items=[];
 			//this.page=[];
                 axios.post('/api/search', this.searchform).then(response =>  {
@@ -199,22 +204,27 @@ export default {
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });
-            },
-			 infiniteHandler($state) {
-					  setTimeout(() => {
-						const temp = [];
-						for (let i = this.items.length + 1; i <= this.items.length + 4; i++) {
-						  temp.push(i);
-						}
-						$state.loaded();
-						if(this.items.length>=templength){
-							
-							this.items = this.items.concat(temp);
-							
-						}else{
-						   $state.complete();
-						}
-					  }, 1300);
+			
+			},
+		 
+			 
+	   infiniteHandler($state) {
+						  axios.get('/api/search', {
+							params: {
+							  page: this.list.length / 20 + 1,
+							},
+						  }).then(({ data }) => {
+							if (data.hits.length) {
+							  this.list = this.list.concat(data.hits);
+							  $state.loaded();
+							  if (this.list.length / 20 === 10) {
+								$state.complete();
+							  }
+							} else {
+							  $state.complete();
+							}
+						  });
+						 
 			},
 			 fetchItems()
             {
