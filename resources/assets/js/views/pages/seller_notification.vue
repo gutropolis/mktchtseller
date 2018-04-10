@@ -27,7 +27,7 @@
                            </g>
                        </svg>Home</a>
                     </div>
-                    <div class="dashboard__content--outer clearfix">
+                    <div v-for="item in items" class="dashboard__content--outer clearfix" >
                         <div class="notification__element clearfix">
                             <div class="notification__element-bottom">
                                
@@ -36,57 +36,24 @@
                             <div class="notification__element--view">
                               
                                 <div class="notification__element--listing">
-                                    <figure class="notification__element--listing--figure">
-                                        <img src="images/download.jpg" class="notification__element--listing--figure--image">
+                                    <figure v-for="charity in item.sender_detail" class="notification__element--listing--figure" >
+                                       <img class="notification__element--listing--figure--image" :src="'/images/charity/'+charity.images">
                                     </figure>
-                                    <div class="notification__element--listing--content">
-                                        <h4>Charity Life</h4>
-                                        <p>Contrary to popular belief, Lorem Ipsum.</p>
-                                        <p><strong>Unit:</strong> 5 <strong>Location:</strong> Delhi, India</p>
+									
+                                    <div  v-for="charity in item.sender_detail"  class="notification__element--listing--content">
+                                        <router-link :to="{name: 'charity_details', params: { id: charity.id }}" ><h4>{{charity.title}}</h4></router-link>
+                                        
+                                        <p><strong>Charity Needed This Product:</strong> {{item.product}} </p><p><strong>Units Required:</strong> {{item.units}}</p>
                                     </div>
                                 </div>
                                 <div class="notification__element--view--button">
                                    
-									 <button class="btn notification__element--view--button--content text-White  green">Accept</button>
-									  <button class="btn notification__element--view--button--content  text-White red">Reject</button>
+									 <button class="btn notification__element--view--button--content text-White  green" v-on:click="update(item.id)" >Accept</button>
+									  <button class="btn notification__element--view--button--content  text-White red" v-on:click="reject(item.id)">Reject</button>
                                 </div>
                             </div>
-                            <div class="notification__element--view">
-                                
-                                <div class="notification__element--listing">
-                                    <figure class="notification__element--listing--figure">
-                                        <img src="images/download.jpg" class="notification__element--listing--figure--image">
-                                    </figure>
-                                    <div class="notification__element--listing--content">
-                                        <h4>Charity Life</h4>
-                                        <p>Contrary to popular belief, Lorem Ipsum.</p>
-                                        <p><strong>Unit:</strong> 5 <strong>Location:</strong> Delhi, India</p>
-                                    </div>
-                                </div>
-                                <div class="notification__element--view--button">
-                                   
-									 <button class="btn notification__element--view--button--content text-White green">Accept</button>
-									  <button class="btn notification__element--view--button--content text-White red">Reject</button>
-                                </div>
-                            </div>
-                            <div class="notification__element--view">
-                                
-                                <div class="notification__element--listing">
-                                    <figure class="notification__element--listing--figure">
-                                        <img src="images/download.jpg" class="notification__element--listing--figure--image">
-                                    </figure>
-                                    <div class="notification__element--listing--content">
-                                        <h4>Charity Life</h4>
-                                        <p>Contrary to popular belief, Lorem Ipsum.</p>
-                                        <p><strong>Unit:</strong> 5 <strong>Location:</strong> Delhi, India</p>
-                                    </div>
-                                </div>
-                                <div class="notification__element--view--button">
-                                   
-									 <button class="btn notification__element--view--button--content text-White green">Accept</button>
-									  <button class="btn notification__element--view--button--content text-White red">Reject</button>
-                                </div>
-                            </div>
+                           
+                            
 
                         </div>
                     </div>
@@ -108,14 +75,44 @@ import AppNavbar from './users/navbar.vue'
         },
 		data() {
             return {
-				
+				items:{},
                  
             }
         },
         mounted(){
         },
+		 created(){
+		 this.fetchItems();
 		 
+		 
+		 },
 		 methods: {
+				fetchItems()
+		 {
+             axios.get('/api/request_unit').then((response) => {
+                 this.items=response.data;
+					
+              }) 
+			  
+            },
+			reject(id){
+				axios.post('api/reject_request/'+id).then(response =>  {
+                    toastr['success'](response.data.message);
+                   // this.items=response.data;
+                })
+			 
+			
+			
+			},
+			update(id){
+				axios.post('api/update_request/'+id).then(response =>  {
+                    toastr['success'](response.data.message);
+                    
+                })
+			 
+			
+			
+			},
             },
 			
         }
