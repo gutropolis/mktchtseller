@@ -84,7 +84,7 @@ Route::get('/charity_organisation','CharityController@index');
 Route::post('/charity_category','CharityCategoryController@store');
 Route::get('/charity_category','CharityCategoryController@index');
 Route::get('/charity_list','CharityController@charity_list');
-Route::get('/charity_list_user','CharityController@charity_list_user');
+
 Route::get('/edit_charity/{id}','CharityController@edit');
 Route::post('/update-charity_logo/{id}','CharityController@updateCharity' );
 Route::post('/edit_charity/{id}','CharityController@update');
@@ -121,6 +121,7 @@ Route::get('/charity_type','charityController@charity_type');
 
 
 
+
 //message part
 Route::get('/create_message','MessageController@index');
 Route::post('/create_message','InboxController@store');
@@ -143,4 +144,11 @@ Route::post('/reject_donation/{id}', 'CharityController@reject_donation');
 
 Route::get('/count','InboxController@count');
 Route::post('/read/{id}','InboxController@read');
-
+Route::post('request_unit/{id}','SellerController@request_store');
+Route::get('request_unit','SellerController@units');
+Route::get('/charity_name/{id}','SellerController@charity_name');
+Route::post('/reject_request/{id}', 'SellerController@reject_request');
+Route::post('/update_request/{id}', 'SellerController@update_request');
+Route::post('/searchform', 'CharityController@searchform');
+Route::get('/searchform', 'CharityController@searchform');
+Route::get('/charity_list_user','CharityController@charity_list_user');
