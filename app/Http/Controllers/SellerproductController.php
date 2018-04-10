@@ -64,17 +64,44 @@ $sellerproduct = SellerProduct::latest()->get();
 		
 		
 	}
-
+	public function search_product(Request $request)
+	{		
+	
+	}
 
 	public function search(Request $request)
 	{		
 	
-	$keyword=request('title');
-	$keyword1=request('searchcategory');
+
+	$keyword=request('keyword');
+		$product_category=request('product_category');
+		$searchcategory=request('searchcategory');
+	$keyword=request('keyword');
 	
-	//$sellerproduct=sellerproduct::Where('title', 'like', '%' . $keyword . '%')->latest()->get();
-	$product=Sellerproduct::where('product_category',$keyword1)->get();
-	return response()->json($product);
+		
+		/* Search Parameter */
+					
+			$query = Sellerproduct::query();
+
+			// From Laravel 5.4 you can pass the same condition value as a parameter
+			$query->when(request('keyword', false), function ($q, $keyword) { 
+				return  $q->where('title', 'LIKE', '%'. $keyword .'%');
+			});
+			/*$query->when(request('keyword', false), function ($query, $keyword) { 
+				return    $query->where('description', 'LIKE', '%'. $keyword .'%');
+			});*/
+	
+		
+		
+		/* end here  */
+		
+		
+			//return response()->json($keyword);
+		$sellerproduct=$query->get();
+
+		
+		//return charity::paginate(4);
+		return response()->json($sellerproduct);
 	}
 	public function product_details(Request $request,$id)
 	{
