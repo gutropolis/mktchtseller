@@ -32,16 +32,16 @@
                     <div class="search__form--outer--box">
                         <div class="form-group">
                             <select placeholder="Search Keywords" v-model="searchform.selectcategory" class="search__form--outer--box--area">
-                                    <option value="">Select Types</option>
-                                    <option value="seller">Select Products</option>
-                                    <option value="charity">Select Charity</option>
+                                    <option value="">Types</option>
+                                    <option value="product"> Products</option>
+                                    <option value="charity"> Charity</option>
                                     
                                 </select>
                         </div>
                     </div>
                     <div class="search__form--outer--box">
                         <div class="form-group">
-                            <input type="text" placeholder="Search Keywords" class="search__form--outer--box--area">
+                            <input type="text"  name="keyword" placeholder="Search Keywords"  v-model="searchform.keyword" class="search__form--outer--box--area">
                         </div>
                     </div>
 
@@ -62,7 +62,7 @@
     <b-tab title="Charity" active>
         <h1 class="tab_heading_top "> Recent Charity Posts</h1>
         <div class="post_contant_inner clearfix">
-        <div v-for="item in items" class="recent__post--tab--content row">
+        <div v-for="item in charity" class="recent__post--tab--content row">
             
                             <div class="recent__post--tab--content--img_box">
                                 <figure class="recent__post--tab--content--img_box--figure"><img :src="'/images/charity/'+ item.images" class="recent__post--tab--content--img_box--figure--images"></figure>
@@ -300,12 +300,13 @@
 	        data() {
 	selectcategory:'charity'
             return {
-			items:{},
+			
+			charity:{},
 			products:{},
 				 loginCheck: helper.checkLogin(),
                 searchform: {
 
-                   searchlocation:'',
+                keyword:'',
 				  selectcategory:''
                     
                 }
@@ -325,7 +326,7 @@
 			
               axios.get('/api/charities').then(response =>  {
 					
-                  this.items = response.data.data1;
+                  this.charity = response.data.data1;
 				  
 				  
               });
@@ -346,16 +347,19 @@
 		{
 			
 		
-		     axios.post('/api/search', this.searchform).then(response =>  {
+		     axios.post('/api/searchform', this.searchform).then(response =>  {
                     
 					
 					if(msg=='charity')
 					{
 					
-                    this.$router.push('/charityfba');
+                    this.$router.push('/charityfba',+this.searchform.keyword);
+					
 					toastr['success']("Process Completed");
+					
+					
 					}
-					else if (msg=='seller')
+					else if (msg=='product')
 					{
 					 this.$router.push('/sellerfba');
 					 toastr['success']("Process Completed");
