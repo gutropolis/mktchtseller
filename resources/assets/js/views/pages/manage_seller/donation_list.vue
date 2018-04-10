@@ -21,7 +21,7 @@
                                        <th>Units</th>
                                        <th>Charity</th>
                                        <th>Status</th>
-                                       <th>Created_On</th>
+                                       <th>Created On</th>
                                        <th>Action</th>
                                     </tr>
                                     <tr v-for="(item,index) in pending">
@@ -70,7 +70,7 @@
                                        <th>Units</th>
                                        <th>Charity</th>
                                        <th>Status</th>
-                                       <th>Created_On</th>
+                                       <th>Created On</th>
                                        <th>Action</th>
                                     </tr>
                                     <tr v-for="(item,index) in accept">
@@ -119,7 +119,7 @@
                                        <th>Units</th>
                                        <th>Charity Organization</th>
                                        <th>Status</th>
-                                       <th>Created_On</th>
+                                       <th>Created On</th>
                                        <th>Action</th>
                                     </tr>
                                     <tr v-for="(item,index) in decline">
