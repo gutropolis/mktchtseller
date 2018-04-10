@@ -343,26 +343,26 @@
               });
             },
 		
-		submit:function(msg)
+		submit:function(type)
 		{
 			
 		
 		     axios.post('/api/searchform', this.searchform).then(response =>  {
                     
 					
-					if(msg=='charity')
+					if(type=='charity')
 					{
-					
-                    this.$router.push('/charityfba',+this.searchform.keyword);
+					  this.$router.push({path:'charityfba',query:{ keyword: this.searchform.keyword}});
+                     
 					
 					toastr['success']("Process Completed");
 					
 					
 					}
-					else if (msg=='product')
+					else if (type=='product')
 					{
-					 this.$router.push('/sellerfba');
-					 toastr['success']("Process Completed");
+					  this.$router.push({path:'sellerfba',query:{ keyword: this.searchform.keyword}}); 
+					  toastr['success']("Process Completed");
 					}
 					else{
 					toastr['error']('Please select one option');
