@@ -437,17 +437,36 @@ public  function detail(Request $request,$id)
     public function searchform(Request $reguest)
 	{
 		$keyword=request('keyword');
-		return $keyword;
+		return($keyword);
     }
 	public function search(Request $reguest)
 	{
+	 
+		$keyword=request('keyword');
+		$charity_type=request('charity_type');
+		$searchcategory=request('searchcategory');
 		
 		
-		$keyword=request('charity_type');
-		$keyword1=request('searchcategory');
+		/* Search Parameter */
+					
+			$query = Charity::query();
+
+			// From Laravel 5.4 you can pass the same condition value as a parameter
+			$query->when(request('keyword', false), function ($q, $keyword) { 
+				return  $q->where('title', 'LIKE', '%'. $keyword .'%');
+			});
+			/*$query->when(request('keyword', false), function ($query, $keyword) { 
+				return    $query->where('description', 'LIKE', '%'. $keyword .'%');
+			});*/
+	
+		
+		
+		/* end here  */
+		
 		
 			//return response()->json($keyword);
-		$charity=charity::where('charity_type',$keyword)->get();
+		$charity=$query->get();
+
 		
 		//return charity::paginate(4);
 		return response()->json($charity);
