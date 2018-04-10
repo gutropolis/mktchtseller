@@ -18,7 +18,16 @@
 					<h5 class="charity__element--block--heading">Search Charity Posts</h5>
 					<div class="charity__element--block--content">
 			      <form  id="searchform" @submit.prevent="submit">						
-						
+								<div class="form-group charity__element--block--content--box">
+							<label class="charity__element--block--content--box--label">Keywords</label>
+							 <input type="text" name="keywords"  v-model="searchform.keyword" class="login__element--box--input">
+							 <option value="select"> Select Charity Type ...</option>
+							   <option  v-for= "charity_cat in charity_category" v-if="charity_cat.parent_id==0"  v-bind:value="charity_cat.id" >{{charity_cat.title}}</option>
+								
+								</select>
+							
+			
+						</div>
 						
 						        
 						
@@ -32,6 +41,11 @@
 							
 			
 						</div>
+						
+						
+						
+						
+						
 						<div v-if="searchform.searchcategory !='select' "  class="form-group">
                               <label class="login__element--box--label">Select SubCategory</label>
                               <select name="charity_type"  v-model="searchform.charity_type" class="login__element--box--input">
@@ -149,6 +163,7 @@ export default {
         {
             this.fetchItems();
 			this.fetchItem();
+			//this.fetchresult();
         },
        
         
@@ -199,6 +214,15 @@ export default {
 				  
               });
             },
+			/*fetchresult(){
+				axios.get('/api/searchform').then(response =>  {
+					
+                  this.items = response.data;
+				   
+				  
+              });
+			
+			}*/
 			
 			}
 			}
