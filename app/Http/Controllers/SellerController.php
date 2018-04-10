@@ -4,6 +4,9 @@ use App\Http\Controllers\JoshController;
 use App\Http\Requests\SellerRequest;
 use App\Seller;
 use App\Donation;
+use App\Sellerproduct;
+use App\Units;
+use App\Charity;
 use App\Http\Requests;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
@@ -40,6 +43,69 @@ class SellerController extends Controller
 		$seller=SellerCategory::all();
         return response()->json($seller);
     }
+	
+	
+	public function request_store(Request $request,$id)
+    {
+		$sellerproduct = Sellerproduct::find($id);
+		$units=new \App\Units;
+		$user = JWTAuth::parseToken()->authenticate();
+		$units->charity_id=$request->input('data.title');
+		$units->product=$sellerproduct->title;
+		$units->image=$sellerproduct->images;
+		$units->charity_owner=$user->full_name;
+		$units->units=$request->input('data.units');
+		
+		$units->charity_name=$request->input('charity_name');
+		$units->product_id = $sellerproduct->id;
+		$units->status="0";
+		
+		$units->save();
+
+		
+		
+
+		
+		
+		return response()->json(['message' => 'Data Record Successfully']);
+	
+		
+    }
+	public function update_request($id)
+    {
+       $unit = Units::where('id',$id)->update(['status' => 1]);
+		return response()->json(['message' => 'Product are Accepted']);
+    }
+	 public function reject_request($id)
+    {
+       $donation = Units::where('id',$id)->update(['status' => 2]);
+		return response()->json(['message' => 'Product are Rejected']);
+    }
+
+		public function charity_name($id)
+	{
+		$charity_name=Charity::where('id',$id)->pluck('title');
+		foreach($charity_name as $charity)
+		{
+			return($charity);
+		}
+	}
+	public function units(){
+			$units=Units::where('status',0)->orwhere('status','1')->get();
+		$msgInbox=array();
+		foreach($units as $unit)
+		{
+			$charity=Charity::where('id',$unit->charity_id)->get();
+			$userArr = array();
+			$userArr['sender_detail']=$charity;
+			$unit['sender_detail']=$charity;
+			array_push($msgInbox,$unit);
+		}
+			return response()->json($msgInbox);
+		
+		
+	}
+	
 		
 	 public function seller_details(Request $request,$id)
     {
