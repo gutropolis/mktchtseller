@@ -19,8 +19,8 @@
 					<div class="charity__element--block--content">
 			      <form  id="searchform" @submit.prevent="submit">						
 								<div class="form-group charity__element--block--content--box">
-							<label class="charity__element--block--content--box--label">Keywords</label>
-							 <input type="text" name="keywords"  v-model="searchform.keyword" class="login__element--box--input">
+							<label class="charity__element--block--content--box--label">Keyword</label>
+							 <input type="text" name="keyword"  v-model="searchform.keyword" class="login__element--box--input">
 							 
 								
 								
@@ -114,7 +114,10 @@
 				 </div>
 	
 	
-	<infinite-loading @infinite="infiniteHandler"></infinite-loading>
+	<infinite-loading @infinite="infiniteHandler">
+	<span slot="no-more" >There is no more records!!</span>
+	
+	</infinite-loading>
 	
   					
 					
@@ -141,12 +144,13 @@ export default {
         data() {
 		
             return {
+			
 			category:{},
 			
 			searchform: {  
-                    
-					searchcategory: 'select',
-				charity_type:'select',
+               keyword :'',  
+			 	searchcategory: '',
+				charity_type:'',
 					
                 },
 			items:[],
@@ -167,6 +171,19 @@ export default {
        
         
         mounted(){
+		   this.keywords = this.$route.query.keyword;
+		   this.searchform.keyword= this.keywords ;
+		    axios.post('/api/search', this.searchform).then(response =>  {
+                    toastr['success']("Search Completed");
+
+					this.items = response.data;
+					
+                   
+                }).catch(error => {
+                    toastr['error'](error.response.data.message);
+                });
+			
+			console.log(this.$route.query.keyword);
         },
         methods: {
 		
@@ -184,15 +201,21 @@ export default {
                 });
             },
 			 infiniteHandler($state) {
-      setTimeout(() => {
-        const temp = [];
-        for (let i = this.items.length + 1; i <= this.items.length + 4; i++) {
-          temp.push(i);
-        }
-        this.items = this.items.concat(temp);
-        $state.loaded();
-      }, 130000);
-    },
+					  setTimeout(() => {
+						const temp = [];
+						for (let i = this.items.length + 1; i <= this.items.length + 4; i++) {
+						  temp.push(i);
+						}
+						$state.loaded();
+						if(this.items.length>=templength){
+							
+							this.items = this.items.concat(temp);
+							
+						}else{
+						   $state.complete();
+						}
+					  }, 1300);
+			},
 			 fetchItems()
             {
 			
