@@ -355,14 +355,14 @@
 					  this.$router.push({path:'charityfba',query:{ keyword: this.searchform.keyword}});
                      
 					
-					toastr['success']("Process Completed");
+					//toastr['success']("Process Completed");
 					
 					
 					}
 					else if (type=='product')
 					{
 					  this.$router.push({path:'sellerfba',query:{ keyword: this.searchform.keyword}}); 
-					  toastr['success']("Process Completed");
+					  //toastr['success']("Process Completed");
 					}
 					else{
 					toastr['error']('Please select one option');
