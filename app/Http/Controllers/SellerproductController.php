@@ -87,9 +87,9 @@ $sellerproduct = SellerProduct::latest()->get();
 			$query->when(request('keyword', false), function ($q, $keyword) { 
 				return  $q->where('title', 'LIKE', '%'. $keyword .'%');
 			});
-			/*$query->when(request('keyword', false), function ($query, $keyword) { 
-				return    $query->where('description', 'LIKE', '%'. $keyword .'%');
-			});*/
+			$query->when(request('searchcategory', false), function ($q, $searchcategory) { 
+				return    $q->where('product_category', $searchcategory);
+			});
 	
 		
 		
