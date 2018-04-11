@@ -20,7 +20,7 @@
 			      <form  id="searchform" @submit.prevent="submit">						
 								<div class="form-group charity__element--block--content--box">
 							<label class="charity__element--block--content--box--label">Keyword</label>
-							 <input type="text" name="keyword"  v-model="searchform.keyword" class="login__element--box--input">
+							 <input type="text" name="keyword" placeholder="keyword" v-model="searchform.keyword" class="login__element--box--input">
 							 
 								
 								
@@ -33,7 +33,7 @@
 						<div class="form-group charity__element--block--content--box">
 							<label class="charity__element--block--content--box--label">Charity Type</label>
 							 <select name="searchcategory"  v-model="searchform.searchcategory" class="login__element--box--input">
-							 <option value="select"> Select Charity Type ...</option>
+							 <option value="" disabled hidden> Select Charity Type ...</option>
 							   <option  v-for= "charity_cat in charity_category" v-if="charity_cat.parent_id==0"  v-bind:value="charity_cat.id" >{{charity_cat.title}}</option>
 								
 								</select>
@@ -41,14 +41,10 @@
 			
 						</div>
 						
-						
-						
-						
-						
-						<div v-if="searchform.searchcategory !='select' "  class="form-group">
+						<div v-if="searchform.searchcategory !='' "  class="form-group">
                               <label class="login__element--box--label">Select SubCategory</label>
                               <select name="charity_type"  v-model="searchform.charity_type" class="login__element--box--input">
-                                 <option value="select" >Select .. </option>
+                                 <option value="" disabled hidden >Select .. </option>
                                  <option  v-for="charity_cat in charity_category" v-if="charity_cat.parent_id==searchform.searchcategory"  v-bind:value="charity_cat.id">{{ charity_cat.title }}</option>
                               </select>
                            </div>
@@ -175,7 +171,7 @@ export default {
 		   this.keywords = this.$route.query.keyword;
 		   this.searchform.keyword= this.keywords ;
 		    axios.post('/api/search', this.searchform).then(response =>  {
-                    toastr['success']("Search Completed");
+                  //  toastr['success']("Search Completed");
 
 					this.items = response.data;
 					
@@ -196,7 +192,7 @@ export default {
 			this.items=[];
 			//this.page=[];
                 axios.post('/api/search', this.searchform).then(response =>  {
-                    toastr['success']("Search Completed");
+                   
 
 					this.items = response.data;
 					
