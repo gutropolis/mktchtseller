@@ -131,10 +131,10 @@
                            </div>
                            <div class="col-12">
                               <div v-if="loginCheck" class="charity__request">
-                                                   <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary"   class="charity__request--send btn-bg-orange btn">Request Units</b-btn>
+                                                   <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary"   class="charity__request--send btn-bg-orange btn">Sent Request</b-btn>
                   <b-modal id="modalPrevent"
                      ref="modal"
-                     title="Donate to this Charity"
+                     title="Sent Request"
 					  @ok="handleSubmit"
                      @shown="clearName">
                      <form  id="prod" @submit.stop.prevent="handleSubmit">
@@ -159,7 +159,8 @@
                                 
                               </div>
 							  <div v-else class="charity__request">
-							   <router-link to="/login" class="charity__request--send btn-bg-orange btn">Send Request</router-link>
+							  <router-link :to="{ path: '/login', query: { route: 'seller_detail'+this.$route.params.id }}" class="charity__request--send btn-bg-orange btn">Send Request</router-link>
+							  
 							   </div>
                            </div>
                         </div>
