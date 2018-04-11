@@ -168,7 +168,7 @@
                </div>
                <div class="col-md-4">
                   <div class="charity__element--block">
-                     <h5 class="charity__element--block--heading">Message Communicate</h5>
+                     <h5 class="charity__element--block--heading">Message This Seller</h5>
                      <div class="charity__element--block--content">
                         <form id="create_message" @submit.prevent="submit1">
                            <div class="form-group charity__element--block--content--box">
@@ -185,6 +185,12 @@
                               </textarea>
 							  
                            </div>
+						   <div class="form-group text-center" v-if="!loginCheck" >
+                              <router-link to="/login" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</router-link>
+							  
+                           </div>
+						   
+						   
                           <div class="form-group text-center" v-if="getrole === 'seller'" >
                               <button :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
 							  
