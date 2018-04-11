@@ -315,7 +315,7 @@
    	fetchItem()
                {
    			
-                axios.get('api/product_details/'+this.$route.params.id).then(response=>{
+                axios.get('/api/product_details/'+this.$route.params.id).then(response=>{
    			
    			this.create_message=response.data;
    			
