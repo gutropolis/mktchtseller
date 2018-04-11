@@ -96,6 +96,7 @@ let routes = [
 				path : '/edit_product',
 				component:require('./views/pages/manage_seller/edit_product')
 			},
+			
 			{
 				path : '/seller_category',
 				component:require('./views/pages/manage_seller/seller_category')
@@ -194,7 +195,7 @@ let routes = [
 			},
 			{
 				name:'charity_details',
-				path : '/charity_details/:id',
+				path : '/charity_details:id',
 				component:require('./views/Charity/charity_details')
 			},
 			{
@@ -204,7 +205,7 @@ let routes = [
 			{
 				 //path: '/task/:id/edit',
 				name:'seller_details',
-				path : '/seller_details/:id',
+				path : '/seller_details:id',
 				component:require('./views/pages/manage_seller/seller_details')
 			},
 			
