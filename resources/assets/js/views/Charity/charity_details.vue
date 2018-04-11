@@ -177,7 +177,10 @@
                               <textarea placeholder="Type your message here" v-model="create_message.message"  class="login__element--box--input" rows="5">
                               </textarea>
                            </div>
-						
+						 <div class="form-group text-center" v-if="!loginCheck" >
+                              <router-link to="/login" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</router-link>
+							  
+                           </div>
 
                            <div class="form-group text-center" v-if="getrole === 'charity'" >
                               <button :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
