@@ -275,7 +275,7 @@
 				 },
 		   fetchCharity()
 			{
-			axios.get('api/charities_list').then(response=>{
+			axios.get('/api/charities_list').then(response=>{
 			
 			this.charities=response.data;
 			
