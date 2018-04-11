@@ -461,9 +461,9 @@ public  function detail(Request $request,$id)
 			$query->when(request('keyword', false), function ($q, $keyword) { 
 				return  $q->where('title', 'LIKE', '%'. $keyword .'%');
 			});
-			/*$query->when(request('keyword', false), function ($query, $keyword) { 
-				return    $query->where('description', 'LIKE', '%'. $keyword .'%');
-			});*/
+			$query->when(request('charity_type', false), function ($q, $charity_type) { 
+				return    $q->where('charity_type',$charity_type)->get();
+			});
 	
 		
 		
