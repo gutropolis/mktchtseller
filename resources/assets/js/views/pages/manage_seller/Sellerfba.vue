@@ -79,7 +79,7 @@
 							
 							<div class="charity__listing--content--box">
 												 
-								<router-link :to="{name: 'seller_details', params: { id: item.id }}" ><h4 class="charity__listing--content--box--heading">{{item.title}}</h4></router-link>
+								<router-link :to="{name: 'seller_details', params: {id: item.id}}" ><h4 class="charity__listing--content--box--heading">{{item.title}}</h4></router-link>
 								
 								<p class="charity__listing--content--box--pera"><span v-html="item.description"></span></p>
 							</div>
