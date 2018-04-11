@@ -241,7 +241,7 @@
     
                                         <div class="admin__lsit--content--detail">
     
-                                            <router-link to = "my_account" class="admin__lsit--content--detail--link">
+                                            <router-link to = "/my_account" class="admin__lsit--content--detail--link">
                                             <img src="../../svg/user.svg">
                                                 My Account
                                                 </router-link>
