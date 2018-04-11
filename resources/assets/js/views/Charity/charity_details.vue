@@ -151,7 +151,7 @@
                            </div>
                            <div class="col-12">
                               <div class="charity__request">
-                                 <b-link class="charity__request--cancel btn">Cancel</b-link>
+                               
                                  <router-link to="" class="charity__request--send btn-bg-orange btn">Send Request</router-link>
                               </div>
                            </div>
@@ -335,7 +335,7 @@
    	fetchItem()
                {
    		
-                axios.get('api/charity_details/'+this.$route.params.id).then(response=>{
+                axios.get('/api/charity_details/'+this.$route.params.id).then(response=>{
    			
    			this.create_message=response.data;
    			
