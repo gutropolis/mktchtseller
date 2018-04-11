@@ -104,7 +104,7 @@ Route::get('/product_name/{id}','CharityController@product_name');
 //Route::get('/product/search', 'ProductController@getSearchPage');
 Route::get('/product/search','ProductController@formsearch');
 Route::post('/product/search', 'ProductController@formSearch');
-Route::get('product_details/{id}','SellerproductController@product_details');
+Route::get('/product_details/{id}','SellerproductController@product_details');
 Route::get('/productsearch','SellerproductController@products');
 Route::post('/productsearch','SellerproductController@search');
 Route::get('/product','SellerproductController@product');
@@ -114,7 +114,7 @@ Route::post('/product/{id}','CharityController@product');
 Route::get('/product_category','SellerproductController@product_category');
 
 //charity list
-Route::get('charity_details/{id}','CharityController@charity_details');
+Route::get('/charity_details/{id}','CharityController@charity_details');
 Route::post('/search','CharityController@search');
 
 Route::get('/search','CharityController@search');
