@@ -21,7 +21,7 @@
 					<form id="sellersearch"  @submit.prevent="submit">						
 						<div class="form-group charity__element--block--content--box">
 							<label class="charity__element--block--content--box--label">Keyword</label>
-							 <input type="text" name="keyword"  v-model="sellersearch.keyword" class="login__element--box--input">
+							 <input type="text" placeholder="keyword" name="keyword"  v-model="sellersearch.keyword" class="login__element--box--input">
 							 
 								
 								
@@ -30,8 +30,8 @@
 						</div>
 						<div class="form-group charity__element--block--content--box">
 							<label class="charity__element--block--content--box--label">Products Category</label>
-							 <select name="searchcategory"  v-model="sellersearch.searchcategory" class="login__element--box--input">
-							 <option value="select"> Select ...</option>
+							 <select name="searchcategory"  placeholder="select" v-model="sellersearch.searchcategory" class="login__element--box--input">
+							 <option value="" disabled hidden> Select ...</option>
 							   <option  v-for= "cat in category"   v-bind:value="cat.id" >{{cat.title}}</option>
 								
 								</select>
@@ -123,7 +123,7 @@ export default {
 			items:[],
 			
                 sellersearch: { 
-				searchcategory:'select'	,
+				searchcategory:''	,
 				keyword:'',
                     
                 }
@@ -141,7 +141,7 @@ export default {
 		   this.keywords = this.$route.query.keyword;
 		   this.sellersearch.keyword= this.keywords ;
 		    axios.post('/api/productsearch', this.sellersearch).then(response =>  {
-                    toastr['success']("Search Completed");
+                    //toastr['success']("Search Completed");
 
 					this.items = response.data;
 					
@@ -158,7 +158,7 @@ export default {
 			this.items=[];
 			//this.page=[];
                 axios.post('/api/productsearch', this.sellersearch).then(response =>  {
-                    toastr['success']("Search Completed");
+                   // toastr['success']("Search Completed");
 					this.items = response.data;
 				
                     this.$router.push('/sellerfba');
