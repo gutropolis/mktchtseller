@@ -171,12 +171,12 @@
                                        <input type="hidden" name="charity_name" v-model="prod.charity_name" class="login__element--box--input" />
                                     </form>
                                  </b-modal>
-								  <router-link to="/sellerfba" class="charity__request--cancel btn">Back</router-link>
+								
                               </div>
 							  </div>
                               <div v-else class="charity__request">
                                  <router-link :to="{ path: '/login',query: {redurl:'seller_details'+this.$route.params.id}}" class="charity__request--send btn-bg-orange btn">Send Request</router-link>
-								  <router-link to="/sellerfba" class="charity__request--cancel btn">Back</router-link>
+								 
                               </div>
                           
 						  </div>
