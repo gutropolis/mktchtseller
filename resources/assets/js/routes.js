@@ -1,5 +1,8 @@
 import VueRouter from 'vue-router'
 import helper from './services/helper' 
+import sellerDetail from  './views/pages/manage_seller/seller_details'
+
+
 
 let routes = [
 {
@@ -130,10 +133,9 @@ let routes = [
 				path: '/edit_donation',
 				component:require('./views/pages/manage_seller/edit_donation')
 			},
+			
         ]
     },
-	
-	
 	
     {
         path: '/',
@@ -203,15 +205,10 @@ let routes = [
 				component:require('./views/pages/manage_seller/Sellerfba')
 			},
 			{
-				 //path: '/task/:id/edit',
-				name:'seller_details',
+				 name:'seller_details',
 				path : '/seller_details:id',
-				component:require('./views/pages/manage_seller/seller_details')
+				component:sellerDetail
 			},
-			
-		
-			
-			
 			
         ]
     },
@@ -229,10 +226,10 @@ let routes = [
 ];
 
 const router = new VueRouter({
-	 
-	routes,
-    linkActiveClass: 'active',
-    mode: 'history'
+		mode: 'history',
+	  linkActiveClass: 'active',
+	  routes
+   
 });
 
 router.beforeEach((to, from, next) => {
@@ -246,6 +243,7 @@ router.beforeEach((to, from, next) => {
             return next()
         })
     }
+	
 	
 
  return next()
