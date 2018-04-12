@@ -23,12 +23,26 @@ import AppHeader from './header.vue'
                     var type = $(this).data('toastr'),message = $(this).data('message'),title = $(this).data('title');
                     toastr[type](message, title);
                 });
-            }
+            },
+			getAuthUser(name){
+                return this.$store.getters.getAuthUser(name);
+            },
         },
 		 components: {
             AppHeader,AppFooter 
         }, 
         mounted() {
+				if(!this.getAuthUser('email')){
+                helper.authUser().then(response => {
+                    this.$store.dispatch('setAuthUserDetail',{
+                        first_name: response.user.first_name,
+                        last_name: response.user.last_name,
+                        email: response.user.email,
+                        avatar:response.user.avatar,
+						role:response.user.role,
+                    });
+                });
+            }
         	$('body').removeClass('fix-header fix-sidebar card-no-border');
             this.notification();
         },
