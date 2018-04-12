@@ -20,6 +20,7 @@ export default {
 	
 	checkLogin() {
     const token = localStorage.getItem('auth_token')
+	console.log(token);
    if (token) {
         return true
       } else {
