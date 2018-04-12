@@ -1,8 +1,5 @@
 import VueRouter from 'vue-router'
 import helper from './services/helper' 
-import sellerDetail from  './views/pages/manage_seller/seller_details'
-
-
 
 let routes = [
 {
@@ -137,6 +134,8 @@ let routes = [
         ]
     },
 	
+	
+	
     {
         path: '/',
         component: require('./layouts/guest-page'),
@@ -205,9 +204,10 @@ let routes = [
 				component:require('./views/pages/manage_seller/Sellerfba')
 			},
 			{
-				 name:'seller_details',
+				
+				name:'seller_details',
 				path : '/seller_details:id',
-				component:sellerDetail
+				component:require('./views/pages/manage_seller/seller_details')
 			},
 			
         ]
@@ -226,10 +226,10 @@ let routes = [
 ];
 
 const router = new VueRouter({
-		mode: 'history',
-	  linkActiveClass: 'active',
-	  routes
-   
+	 
+	routes,
+    linkActiveClass: 'active',
+    mode: 'history'
 });
 
 router.beforeEach((to, from, next) => {
