@@ -70,10 +70,10 @@
                 axios.post('/api/auth/login', this.loginForm).then(response =>  {
                     localStorage.setItem('auth_token',response.data.token);
                     axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('auth_token');
-				window.location.reload();
+				
 					if(this.$route.query.redurl)
 					{
-					
+					window.location.reload();
 					   this.$router.push(this.$route.query.redurl);
 					}
 					else{
