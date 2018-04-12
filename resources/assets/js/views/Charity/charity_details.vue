@@ -186,7 +186,7 @@
                         <form id="create_message"  @submit.prevent="submit1">
                            <div class="form-group charity__element--block--content--box">
                               <label class="charity__element--block--content--box--label">Subject</label>
-                              <input type="text" name="msgtitle" v-model="create_message.msgtitle"  placeholder="Subject"  class="login__element--box--input" />
+                              <input type="text" name="msgtitle" v-model="create_message.msgtitle" required placeholder="Subject"  class="login__element--box--input" />
                            </div>
                            <input type="hidden" name="user_id" v-model="create_message.user_id"   class="login__element--box--input" />
                            <input type="hidden" name="id" v-model="create_message.id"   class="login__element--box--input" />
@@ -194,11 +194,11 @@
                            <input type="hidden" name="updated_by" v-model="create_message.updated_by"   class="login__element--box--input" />
                            <div class="form-group charity__element--block--content--box">
                               <label class="charity__element--block--content--box--label">Message</label>
-                              <textarea placeholder="Type your message here" v-model="create_message.message"  class="login__element--box--input" rows="5">
+                              <textarea placeholder="Type your message here" required v-model="create_message.message"  class="login__element--box--input" rows="5">
                               </textarea>
                            </div>
                            <div class="form-group text-center" v-if="!loginCheck" >
-                              <router-link to="/login" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</router-link>
+                             <router-link :to="{ path: '/login',query: {redurl:'charity_details'+this.$route.params.id}}" class="btn btn-bg-orange login__element--box--button">Send Message</router-link>
                            </div>
                            <div class="form-group text-center" v-if="getrole === 'charity'" >
                               <button :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
