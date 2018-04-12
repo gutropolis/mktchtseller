@@ -75,16 +75,12 @@
                                     <p class="recent__post--tab--content--detail_box--block--pera_box"><span><strong>Purpose:</strong> {{item.business_purpose}} </span>  <span><strong>Location:</strong> {{item.location}}</span></p>
                                 </article>
                             </div>
-							 <div v-if="loginCheck" class="recent__post--tab--content--btn_outer">
+							 <div class="recent__post--tab--content--btn_outer">
                             <div class="recent__post--tab--content--btn_outer--donate_btn"> 
-                             <router-link :to="{name: 'charity_details', params: { id: item.id }}" class="btn btn-border-orange">Donate Now</router-link>
+                             <router-link :to="{name: 'charity_details', params: { id: item.id }}" class="btn btn-border-orange">View Info</router-link>
                             </div>
 							</div>
-							<div v-else class="recent__post--tab--content--btn_outer">
-                              <div class="recent__post--tab--content--btn_outer--donate_btn"> 
-                             <router-link to="/login" class="btn btn-border-orange">Donate Now</router-link>
-                            </div>
-                        </div>
+							
 						</div>
                     </div>
 						  <div class="text-center equal">
@@ -108,7 +104,7 @@
                             </div>
                              <div class="recent__post--tab--content--btn_outer">
                             <div class="recent__post--tab--content--btn_outer--donate_btn"> 
-                             <router-link :to="{name: 'seller_details', params: { id: product.id }}" class="btn btn-border-orange">View Details</router-link>
+                             <router-link :to="{name: 'seller_details', params: { id: product.id }}" class="btn btn-border-orange">View Product</router-link>
                             </div>
                             </div>
                            
