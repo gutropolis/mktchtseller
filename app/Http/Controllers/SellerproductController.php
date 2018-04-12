@@ -107,7 +107,9 @@ $sellerproduct = SellerProduct::latest()->get();
 	{
 	// Show the page
 	$product_details=sellerproduct::find($id);
-	return response()->json($product_details);
+	$product_category=ProductCategory::where('id',$product_details->product_category)->first();
+	
+	return response()->json(array('data1'=>$product_details,'data2'=>$product_category));
 	}
 
 
