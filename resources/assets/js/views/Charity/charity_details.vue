@@ -3,9 +3,8 @@
       <section class="page__head">
          <div class="container">
             <div class="page__head--content">
-               <h2 class="page__head--content--heading">Charity listing</h2>
-               <router-link to="/"><a href="#" class="page__head--content--menu">Home </a> ></router-link>
-               <a href="#" class="page__head--content--menu">Charityfba Post</a>
+               <h2 class="page__head--content--heading">Charity Details</h2>
+              
             </div>
          </div>
       </section>
@@ -76,15 +75,15 @@
                         <div class="charity_profile--detail">
                            <h3 class="charity_profile--detail--heading">DETAIL:</h3>
                            <p class="charity_profile--detail-pera">
-                             {{create_message.description}} 
+                              {{create_message.description}} 
                            </p>
-						    <h3 class="charity_profile--detail--heading">Mission:</h3>
+                           <h3 class="charity_profile--detail--heading">Mission:</h3>
                            <p class="charity_profile--detail-pera">
-                             {{create_message.mission_statement}} 
+                              {{create_message.mission_statement}} 
                            </p>
-						   <h3 class="charity_profile--detail--heading">Vision:</h3>
+                           <h3 class="charity_profile--detail--heading">Vision:</h3>
                            <p class="charity_profile--detail-pera">
-                             {{create_message.vision_statement}} 
+                              {{create_message.vision_statement}} 
                            </p>
                            <div class="col-md-12">
                               <b-list-group class="charity__social--list">
@@ -149,11 +148,17 @@
                                  </b-list-group-item>
                               </b-list-group>
                            </div>
-                           <div class="col-12">
-                              <div class="charity__request">
-                               
-                                 <router-link to="" class="charity__request--send btn-bg-orange btn">Send Request</router-link>
+                           
+                               <div class="col-12">
+                              <div v-if="loginCheck" class="charity__request">
+							  <div v-if="getrole=='seller'">
+                                  <router-link to="" class="charity__request--send btn-bg-orange btn   orangebtn">Invite charities to partake in the donation</router-link>
                               </div>
+							  </div>
+                              <div v-else class="charity__request">
+                                 <router-link :to="{ path: '/login',query: {redurl:'charity_details'+this.$route.params.id}}" class="charity__request--send btn-bg-orange btn orangebtn">Invite charities to partake in the donation</router-link>
+                              </div>
+                           
                            </div>
                         </div>
                      </div>
@@ -177,57 +182,44 @@
                               <textarea placeholder="Type your message here" v-model="create_message.message"  class="login__element--box--input" rows="5">
                               </textarea>
                            </div>
-						 <div class="form-group text-center" v-if="!loginCheck" >
+                           <div class="form-group text-center" v-if="!loginCheck" >
                               <router-link to="/login" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</router-link>
-							  
                            </div>
-
                            <div class="form-group text-center" v-if="getrole === 'charity'" >
                               <button :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
-							  
                            </div>
-						  
-						      
-						   <div class="form-group text-center" v-if="getrole === 'seller'" >
+                           <div class="form-group text-center" v-if="getrole === 'seller'" >
                               <button placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
-							  
                            </div>
                         </form>
                      </div>
                   </div>
-				 <div class="charity_donation">
-				  <div v-if="getrole === 'seller'">
-				  <div class="charity_donation--box">
-               <p class="charity_donation--box--heading">Donate To This Charity</p>
-                  <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary"  class="btn btn-bg-orange login__element--box--button">Donate Now</b-btn>
-                  <b-modal id="modalPrevent"
-                     ref="modal"
-                     title="Donate to this Charity"
-					  @ok="handleSubmit"
-                     @shown="clearName">
-                     <form  id="prod" @submit.stop.prevent="handleSubmit">
-					  <div class="form-group">
-					   
-                            <label class="login__element--box--label">Select Product</label>
-                            <select name="title" v-model="prod.title" v-on:change="onChange"   class="login__element--box--input">
-							<option value="select">Select .. </option>
-							
-							<option v-for="item in product"  v-bind:value="item.id">{{item.title}}</option>
-							
-							
-							</select>
+                  <div class="charity_donation">
+                     <div v-if="getrole === 'seller'">
+                        <div class="charity_donation--box">
+                           <p class="charity_donation--box--heading">Donate To This Charity</p>
+                           <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary"  class="btn btn-bg-orange login__element--box--button">Donate Now</b-btn>
+                           <b-modal id="modalPrevent"
+                              ref="modal"
+                              title="Donate to this Charity"
+                              @ok="handleSubmit"
+                              @shown="clearName">
+                              <form  id="prod" @submit.stop.prevent="handleSubmit">
+                                 <div class="form-group">
+                                    <label class="login__element--box--label">Select Product</label>
+                                    <select name="title" v-model="prod.title" v-on:change="onChange"   class="login__element--box--input">
+                                       <option value="select">Select .. </option>
+                                       <option v-for="item in product"  v-bind:value="item.id">{{item.title}}</option>
+                                    </select>
+                                 </div>
+                                 <label class="charity__element--block--content--box--label">Units</label>
+                                 <input type="text" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
+                                 <input type="hidden" name="product_name" v-model="prod.product_name" class="login__element--box--input" />
+                              </form>
+                           </b-modal>
                         </div>
-					 
-					 
-					 <label class="charity__element--block--content--box--label">Units</label>
-					<input type="text" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
-                   <input type="hidden" name="product_name" v-model="prod.product_name" class="login__element--box--input" />
-                     </form>
-                  </b-modal>
-               </div>
-				  </div>
-            </div>
-				  
+                     </div>
+                  </div>
                   <div class="helping__element">
                      <div class="helping__element--block">
                         <h5 class="helping__element--block--heading">Helping Center</h5>
@@ -247,30 +239,25 @@
       </section>
    </div>
 </template>
-<script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer>
-</script> 
+<script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer></script> 
 <script src="https://unpkg.com/vue-recaptcha@latest/dist/vue-recaptcha.js"></script>
-
-
-
 <script>
-
    import helper from '../../services/helper'
    export default {
    	 components: {},
      
            data() {
-					 
+   		 
    		
                return {
-			   product_name:{},
-			   role:true,
-			  
-			prod:{
-			title: 'select',
-			units: ''
-			},
-	  product:[],
+      product_name:{},
+      role:true,
+     
+   prod:{
+   title: 'select',
+   units: ''
+   },
+   product:[],
    			items:[],
    		   create_message:{},
                    loginCheck: helper.checkLogin()
@@ -283,15 +270,14 @@
                this.fetchItems();
    			this.fetchItem();
    			this.fetchproducts();
-			
+   
            },
           
            
            mounted(){
            },
            methods: {
-		    onChange: function (){
-         	
+      onChange: function (){
            axios.get('/api/product_name/'+this.prod.title)
             .then(response=>{
    			
@@ -302,23 +288,23 @@
    			toastr['error'](error.response.data.message);
    				  
                  });
-				 },
-		 
-		    clearName () {
-							this.name = ''
-						},
+   	 },
+   
+      clearName () {
+   				this.name = ''
+   			},
       
     handleSubmit () {
        let data = this.prod;
-	  axios.post('/api/product/'+this.$route.params.id,{product_name: this.product_name, data}).then(response => {
-			toastr['success'](response.data.message);
-	  })
-	  
+   axios.post('/api/product/'+this.$route.params.id,{product_name: this.product_name, data}).then(response => {
+   toastr['success'](response.data.message);
+   })
+   
     },
    				
    			 submit1(e){
                    if(helper.checkLogin()){
-				   
+   	   
    				axios.post('/api/create_message', this.create_message).then(response =>  {
                        toastr['success'](response.data.message);
                        
@@ -352,22 +338,22 @@
                  axios.get('/api/search').then(response =>  {
    					
                      this.items = response.data;
-   				  //this.page=response.data.data;
+   				  
    				  
                  });
                },
-			   fetchproducts()
+      fetchproducts()
                {
    			
                  axios.get('/api/product').then(response =>  {
    					
                      this.product = response.data;
-   				  //this.page=response.data.data;
+   				 
    				  
                  });
                },
-			   
-			    getAuthUserrole(){
+      
+       getAuthUserrole(){
                return this.$store.getters.getAuthUserrole;
            },
            getAuthUser(name){
@@ -375,7 +361,7 @@
            }
    			
    			},
-			 computed: {
+    computed: {
    getrole(){
    	return this.getAuthUser('role');
    },
@@ -383,6 +369,6 @@
                return '/images/user/'+this.getAuthUser('avatar');
            }
        }
-			
-		}	
+   
+   }	
 </script>
