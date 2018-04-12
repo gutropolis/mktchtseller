@@ -33,25 +33,43 @@
                                     </g>
                                  </svg>
                                  <span>ASIN:</span> {{create_message.asin_url}}
+								
                               </li>
-                              <li class="charity_inner--content--list--item">
+ </li>
+							  <li class="charity_inner--content--list--item">
                                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                    viewBox="0 0 469.333 469.333" style="enable-background:new 0 0 469.333 469.333;" xml:space="preserve">
+                                    viewBox="0 0 50.425 50.425" style="enable-background:new 0 0 50.425 50.425;" xml:space="preserve">
                                     <g>
-                                       <path d="M234.56,128c23.573,0,42.667-19.093,42.667-42.667c0-8-2.24-15.573-6.08-21.973L234.56,0l-36.587,63.36
-                                          c-3.84,6.4-6.08,13.973-6.08,21.973C191.893,108.907,210.987,128,234.56,128z"/>
-                                       <path d="M362.56,192L362.56,192H255.893v-42.667h-42.667V192H106.56c-35.307,0-64,28.693-64,64v32.853
-                                          c0,23.04,18.773,41.813,41.813,41.813c11.2,0,21.653-4.373,29.547-12.267l45.653-45.547l45.547,45.44
-                                          c15.787,15.787,43.307,15.787,59.093,0l45.653-45.44l45.547,45.44c7.893,7.893,18.347,12.267,29.547,12.267
-                                          c23.04,0,41.813-18.773,41.813-41.813V256C426.56,220.693,397.867,192,362.56,192z"/>
-                                       <path d="M332.587,341.013L332.587,341.013l-22.933-22.933l-23.04,22.933c-27.84,27.84-76.48,27.84-104.32,0L159.36,318.08
-                                          l-23.04,22.933c-13.76,13.973-32.213,21.653-51.947,21.653c-15.467,0-29.867-4.907-41.813-13.12V448
-                                          c0,11.733,9.6,21.333,21.333,21.333h341.333c11.733,0,21.333-9.6,21.333-21.333v-98.453c-11.947,8.213-26.24,13.12-41.813,13.12
-                                          C365.013,362.667,346.56,354.987,332.587,341.013z"/>
+                                       <path d="M43.96,28.768H30.384v6.465H20.04v-6.465H6.465c-2.485,0-4.747-0.947-6.465-2.49v14.773c0,3.556,2.909,6.465,6.465,6.465
+                                          H43.96c3.556,0,6.465-2.909,6.465-6.465V26.277C48.707,27.821,46.445,28.768,43.96,28.768z"/>
+                                    </g>
+                                    <g>
+                                       <path d="M34.263,11.313V9.374c0-3.556-2.909-6.465-6.465-6.465h-5.172c-3.556,0-6.465,2.909-6.465,6.465v1.939H0v7.758
+                                          c0,3.556,2.909,6.465,6.465,6.465H43.96c3.556,0,6.465-2.909,6.465-6.465v-7.758H34.263z M29.737,11.313h-9.05V9.374
+                                          c0-1.051,0.888-1.939,1.939-1.939h5.172c1.051,0,1.939,0.888,1.939,1.939V11.313z"/>
                                     </g>
                                  </svg>
-                                 <span>Unit:</span> {{create_message.units}}
+                                 <span>Units:</span> {{create_message.units}}
+								
                               </li>
+							 
+							  <li class="charity_inner--content--list--item">
+                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    viewBox="0 0 50.425 50.425" style="enable-background:new 0 0 50.425 50.425;" xml:space="preserve">
+                                    <g>
+                                       <path d="M43.96,28.768H30.384v6.465H20.04v-6.465H6.465c-2.485,0-4.747-0.947-6.465-2.49v14.773c0,3.556,2.909,6.465,6.465,6.465
+                                          H43.96c3.556,0,6.465-2.909,6.465-6.465V26.277C48.707,27.821,46.445,28.768,43.96,28.768z"/>
+                                    </g>
+                                    <g>
+                                       <path d="M34.263,11.313V9.374c0-3.556-2.909-6.465-6.465-6.465h-5.172c-3.556,0-6.465,2.909-6.465,6.465v1.939H0v7.758
+                                          c0,3.556,2.909,6.465,6.465,6.465H43.96c3.556,0,6.465-2.909,6.465-6.465v-7.758H34.263z M29.737,11.313h-9.05V9.374
+                                          c0-1.051,0.888-1.939,1.939-1.939h5.172c1.051,0,1.939,0.888,1.939,1.939V11.313z"/>
+                                    </g>
+                                 </svg>
+                                 <span>Category:</span> {{category.title}}
+								
+                              </li>
+							 
                            </ul>
                         </div>
                      </div>
@@ -153,10 +171,12 @@
                                        <input type="hidden" name="charity_name" v-model="prod.charity_name" class="login__element--box--input" />
                                     </form>
                                  </b-modal>
+								  <router-link to="/sellerfba" class="charity__request--cancel btn">Back</router-link>
                               </div>
 							  </div>
                               <div v-else class="charity__request">
                                  <router-link :to="{ path: '/login',query: {redurl:'seller_details'+this.$route.params.id}}" class="charity__request--send btn-bg-orange btn">Send Request</router-link>
+								  <router-link to="/sellerfba" class="charity__request--cancel btn">Back</router-link>
                               </div>
                           
 						  </div>
@@ -224,6 +244,7 @@
     		
                 return {
    	   charities:{},
+	   category:{},
    	    charity_name:{},
    	   prod:{
    	title: 'select',
@@ -278,13 +299,13 @@
    				},
        handleSubmit () {
          let data = this.prod;
-    axios.post('/api/request_unit/'+this.$route.params.id,{charity_name: this.charity_name, data}).then(response => {
-   	toastr['success'](response.data.message);
-    })
+			axios.post('/api/request_unit/'+this.$route.params.id,{charity_name: this.charity_name, data}).then(response => {
+			toastr['success'](response.data.message);
+					})
     
-     },
+			},
     			 submit1(e){
-      if(helper.checkLogin()){
+				if(helper.checkLogin()){
                     axios.post('/api/create_message', this.create_message).then(response =>  {
                         toastr['success'](response.data.message);
                         
@@ -306,7 +327,8 @@
     			
                  axios.get('/api/product_details/'+this.$route.params.id).then(response=>{
     			
-    			this.create_message=response.data;
+    			this.create_message=response.data.data1;
+				this.category=response.data.data2;
     			
     			
     			}).catch(error=>{
