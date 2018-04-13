@@ -165,12 +165,12 @@
                            </div>
                            
                                <div class="col-12">
-                              <div v-if="loginCheck" class="charity__request">
+                              <div v-if="getrole ==='seller'" class="charity__request">
 							  <div v-if="getrole=='seller'">
                                   <router-link to="" class="charity__request--send btn-bg-orange btn   orangebtn">Invite charities to partake in the donation</router-link>
                               </div>
 							  </div>
-                              <div v-else class="charity__request">
+                              <div v-if="getrole =='' "class="charity__request">
                                  <router-link :to="{ path: '/login',query: {redurl:'charity_details'+this.$route.params.id}}" class="charity__request--send btn-bg-orange btn orangebtn">Invite charities to partake in the donation</router-link>
                               </div>
                            
@@ -197,15 +197,17 @@
                               <textarea placeholder="Type your message here" required v-model="create_message.message"  class="login__element--box--input" rows="5">
                               </textarea>
                            </div>
-                           <div class="form-group text-center" v-if="!loginCheck" >
-                             <router-link :to="{ path: '/login',query: {redurl:'charity_details'+this.$route.params.id}}" class="btn btn-bg-orange login__element--box--button">Send Message</router-link>
+                            <div class="form-group text-center" v-if="getrole ==''" >
+                              <router-link :to="{ path: '/login',query: {redurl:'seller_details'+this.$route.params.id}}" class="btn btn-bg-orange login__element--box--button">Send Message</router-link>
                            </div>
-                           <div class="form-group text-center" v-if="getrole === 'charity'" >
-                              <button :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
-                           </div>
-                           <div class="form-group text-center" v-if="getrole === 'seller'" >
-                              <button placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
-                           </div>
+                           <div v-else >
+                              <div v-if="getrole== 'charity'" class="form-group text-center">
+                                 <button   :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
+                              </div>
+							   <div v-if="getrole== 'seller'" class="form-group text-center">
+                                 <button   placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
+                              </div>
+							  </div>
                         </form>
                      </div>
                   </div>
