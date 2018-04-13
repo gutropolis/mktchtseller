@@ -170,8 +170,7 @@
                                           My Account
                                        </router-link>
                                     </div>
-                                    <div v-for="item in items">
-                                    </div>
+                                  
                                  </li>
                                  <li class="admin__lsit--content">
                                     <div class="admin__lsit--content--detail">
@@ -247,22 +246,8 @@
    
    created: function() {
    
-           this.fetchItems();
-		   this.fetchcount();
+          
 		  
-		   /*
-		       this.loginCheck = helper.check() ;
-			   helper.check().then(response => {
-					if(!response){
-						this.loginCheck = false ;
-					}else{
-					this.loginCheck = true ;
-					} 
-				})
-		   
-		   
-		   cosole.log(helper.check());
-		   */
 		   
        },
    
@@ -279,18 +264,8 @@
                })
            },
    
-   fetchItems() {
-   
-               axios.get('/api/auth/user').then((response) => {
-                   this.items = response.data;
-               });
-           },
-		   fetchcount()
-		   {
-			   axios.get('/api/count').then((response)=> {
-				this.count=response.data;
-			})
-		   },
+  
+		  
            getAuthUserFullName() {
                return this.$store.getters.getAuthUserFullName;
            },
