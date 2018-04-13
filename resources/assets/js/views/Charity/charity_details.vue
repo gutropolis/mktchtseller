@@ -165,10 +165,33 @@
                            </div>
                            
                                <div class="col-12">
+							    <div class="charity_donation">
                               <div v-if="getrole ==='seller'" class="charity__request">
 							  <div v-if="getrole=='seller'">
-                                  <router-link to="" class="charity__request--send btn-bg-orange btn   orangebtn">Invite charities to partake in the donation</router-link>
+                                 <div class="charity_donation--box">
+                          
+                           <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Invite Charity To Pretake in the Donation</b-btn>
+                           <b-modal id="modalPrevent"
+                              ref="modal"
+                              title="Invite To Donate Charity"
+                              @ok="handleSubmit"
+                              @shown="clearName">
+                              <form  id="prod" @submit.stop.prevent="handleSubmit">
+                                 <div class="form-group">
+                                    <label class="login__element--box--label">Select Product</label>
+                                    <select name="title" v-model="prod.id" v-on:change="onChange"   class="login__element--box--input">
+                                       <option value="select">Select .. </option>
+                                       <option v-for="item in product"  v-bind:value="item.id">{{item.title}}</option>
+                                    </select>
+                                 </div>
+                                 <label class="charity__element--block--content--box--label">Units</label>
+                                 <input type="number" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
+                                 <input type="hidden" name="product_name" v-model="prod.product_name" class="login__element--box--input" />
+                              </form>
+                           </b-modal>
+                        </div>
                               </div>
+							  </div>
 							  </div>
                               <div v-if="getrole =='' "class="charity__request">
                                  <router-link :to="{ path: '/login',query: {redurl:'charity_details'+this.$route.params.id}}" class="charity__request--send btn-bg-orange btn orangebtn">Invite charities to partake in the donation</router-link>
@@ -211,32 +234,7 @@
                         </form>
                      </div>
                   </div>
-                  <div class="charity_donation">
-                     <div v-if="getrole === 'seller'">
-                        <div class="charity_donation--box">
-                           <p class="charity_donation--box--heading">Donate To This Charity</p>
-                           <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary"  class="btn btn-bg-orange login__element--box--button">Donate Now</b-btn>
-                           <b-modal id="modalPrevent"
-                              ref="modal"
-                              title="Donate to this Charity"
-                              @ok="handleSubmit"
-                              @shown="clearName">
-                              <form  id="prod" @submit.stop.prevent="handleSubmit">
-                                 <div class="form-group">
-                                    <label class="login__element--box--label">Select Product</label>
-                                    <select name="title" v-model="prod.title" v-on:change="onChange"   class="login__element--box--input">
-                                       <option value="select">Select .. </option>
-                                       <option v-for="item in product"  v-bind:value="item.id">{{item.title}}</option>
-                                    </select>
-                                 </div>
-                                 <label class="charity__element--block--content--box--label">Units</label>
-                                 <input type="text" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
-                                 <input type="hidden" name="product_name" v-model="prod.product_name" class="login__element--box--input" />
-                              </form>
-                           </b-modal>
-                        </div>
-                     </div>
-                  </div>
+                
                   <div class="helping__element">
                      <div class="helping__element--block">
                         <h5 class="helping__element--block--heading">Helping Center</h5>
@@ -256,8 +254,7 @@
       </section>
    </div>
 </template>
-<script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer></script> 
-<script src="https://unpkg.com/vue-recaptcha@latest/dist/vue-recaptcha.js"></script>
+
 <script>
    import helper from '../../services/helper'
    export default {
@@ -267,18 +264,18 @@
    		 
    		
                return {
-      product_name:{},
-      role:true,
-     
-   prod:{
-   title: 'select',
-   units: ''
-   },
-   product:[],
-   			items:[],
-   		   create_message:{},
-                   loginCheck: helper.checkLogin()
-               }
+					  product_name:{},
+					  role:true,
+					 
+					  prod:{
+							  title: 'select',
+							  units: ''
+							},
+					product:[],
+					items:[],
+					create_message:{},
+					loginCheck: helper.checkLogin()
+					  }
    			 
            },
    		
@@ -294,13 +291,10 @@
            mounted(){
            },
            methods: {
-      onChange: function (){
-           axios.get('/api/product_name/'+this.prod.title)
+			onChange: function (){
+           axios.get('/api/product_name/'+this.prod.id)
             .then(response=>{
-   			
-   			this.product_name=response.data;
-   			
-   			
+   			this.prod=response.data;
    			}).catch(error=>{
    			toastr['error'](error.response.data.message);
    				  
@@ -313,7 +307,7 @@
       
     handleSubmit () {
        let data = this.prod;
-   axios.post('/api/product/'+this.$route.params.id,{product_name: this.product_name, data}).then(response => {
+   axios.post('/api/product/'+this.$route.params.id,{data}).then(response => {
    toastr['success'](response.data.message);
    })
    
