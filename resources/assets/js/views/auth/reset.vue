@@ -1,6 +1,7 @@
 <template>
+<div>
     <section id="wrapper">
-        <div class="login-register" style="background-image:url(/images/background/background.jpg);">
+      
             <div class="login-box card">
             <div class="card-body">
                 <h3 class="box-title m-b-20 text-center">Reset Password</h3>
@@ -35,15 +36,16 @@
                     </div>
                 </div>
             </div>
-            <guest-footer></guest-footer>
+           
           </div>
-        </div>
+        
 
     </section>
+	</div>
 </template>
 
 <script>
-    import GuestFooter from '../../layouts/guest-footer.vue'
+   
     export default {
         data() {
             return {
@@ -59,7 +61,7 @@
             }
         },
         components: {
-            GuestFooter
+            
         },
         mounted(){
             axios.post('/api/auth/validate-password-reset',{
