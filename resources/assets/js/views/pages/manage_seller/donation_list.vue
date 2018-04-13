@@ -26,9 +26,9 @@
                                     </tr>
                                     <tr v-for="(item,index) in pending">
                                        <td>{{index+1}}</td>
-                                       <td>{{item.product_name}}</td>
+                                       <td v-for="product in item.product_detail">{{product}}</td>
                                        <td>{{item.units}}</td>
-                                       <td>{{item.charity_organisation}}</td>
+                                       <td v-for="charity in item.charity_detail">{{charity}}</td>
                                        <td v-if="item.status == 0">Pending</td>
                                        <td v-if="item.status == 1">Accept</td>
                                        <td v-if="item.status == 2">Decline</td>
@@ -75,9 +75,9 @@
                                     </tr>
                                     <tr v-for="(item,index) in accept">
                                        <td>{{index+1}}</td>
-                                       <td>{{item.product_name}}</td>
+                                      <td v-for="product in item.product_detail">{{product}}</td>
                                        <td>{{item.units}}</td>
-                                       <td>{{item.charity_organisation}}</td>
+                                      <td v-for="charity in item.charity_detail">{{charity}}</td>
                                        <td v-if="item.status == 0">Pending</td>
                                        <td v-if="item.status == 1">Accept</td>
                                        <td v-if="item.status == 2">Decline</td>
@@ -124,9 +124,9 @@
                                     </tr>
                                     <tr v-for="(item,index) in decline">
                                        <td>{{index+1}}</td>
-                                        <td>{{item.product_name}}</td>
+                                        <td v-for="product in item.product_detail">{{product}}</td>
                                        <td>{{item.units}}</td>
-                                       <td>{{item.charity_organisation}}</td>
+                                      <td v-for="charity in item.charity_detail">{{charity}}</td>
                                        <td v-if="item.status == 0">Pending</td>
                                        <td v-if="item.status == 1">Accept</td>
                                        <td v-if="item.status == 2">Decline</td>
@@ -222,8 +222,8 @@
    		axios.get('api/donation_list').then(response=>{
    		
    		this.pending=response.data.data1;
-   this.accept=response.data.data2;
-   this.decline=response.data.data3;
+		this.accept=response.data.data2;
+		this.decline=response.data.data3;
    		
    		}).catch(error=>{
    		toastr['error'](error.response.data.message);
