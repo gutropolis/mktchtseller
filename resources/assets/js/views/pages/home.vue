@@ -45,7 +45,7 @@
                             <input type="text"  name="keyword" placeholder="Search Keywords"  v-model="searchform.keyword" class="search__form--outer--box--area">
                         </div>
                     </div>
-
+						
                     <div class="search__form--outer--box_btn">
                         <div class="form-group">
                             <a href="javascript:void()" class="search__form--outer--box_btn--btn btn btn-primary " v-on:click="submit(searchform.selectcategory)" >Submit</a></td>
@@ -351,18 +351,14 @@
 					{
 					  this.$router.push({path:'charityfba',query:{ keyword: this.searchform.keyword}});
                      
-					
-					//toastr['success']("Process Completed");
-					
-					
 					}
 					else if (type=='product')
 					{
 					  this.$router.push({path:'sellerfba',query:{ keyword: this.searchform.keyword}}); 
-					  //toastr['success']("Process Completed");
+					 
 					}
 					else{
-					toastr['error']('Please select one option');
+					toastr['error']('Please select a Type');
 					}
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
