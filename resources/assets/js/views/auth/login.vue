@@ -70,17 +70,25 @@
                 axios.post('/api/auth/login', this.loginForm).then(response =>  {
                     localStorage.setItem('auth_token',response.data.token);
                     axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('auth_token');
-				
+				  toastr['success'](response.data.message);
 					if(this.$route.query.redurl)
 					{
-					window.location.reload();
-					   this.$router.push(this.$route.query.redurl);
+					  helper.check().then(response => {
+							if(!response){
+								return next({ path : '/login'})
+							}else{
+								window.location.href=this.$route.query.redurl;
+							}
+
+							 
+						})
+									
 					}
 					else{
 					this.$router.push('/my_account');
 					}
 					
-                    toastr['success'](response.data.message);
+                  
 					 
                    
                 }).catch(error => {
