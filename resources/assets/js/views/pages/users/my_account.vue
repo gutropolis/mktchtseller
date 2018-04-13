@@ -75,89 +75,25 @@
        components: {
                AppNavbar,  AppSidebar 
            },
-       
-       
+
            data() {
        
+				   return {
+							items: []
+						}
        
-       
-               return {
-       
-       
-       
-       
-       
-       
-       
-                   items: []
-       
-       
-       
-               }
-       
-       
-       
-           },
-       
-       
+				},
        
            mounted() {},
        
-       
-       
            created: function() {
        
+						this.fetchItems();
        
-       
-               this.fetchItems();
-       
-       
-       
-           },
-       
-       
+					},
        
            methods: {
        
-       
-       
-               logout() {
-       
-       
-       
-                   axios.post('/api/auth/logout').then(response => {
-       
-       
-       
-                       localStorage.removeItem('auth_token');
-       
-       
-       
-                       axios.defaults.headers.common['Authorization'] = null;
-       
-       
-       
-                       toastr['success'](response.data.message);
-       
-       
-       
-                       this.$router.push('/');
-       
-       
-       
-                   }).catch(error => {
-       
-       
-       
-                       console.log(error);
-       
-       
-       
-                   });
-       
-       
-       
-               },
    			 getAuthUserFullName(){
                    return this.$store.getters.getAuthUserFullName;
                },
@@ -169,18 +105,9 @@
                fetchItems() {
        
                    axios.get('/api/auth/user').then((response) => {
-       
-       
-                       this.items = response.data;
-       
-       
+					this.items = response.data;
                    });
-       
-       
-       
                },
-       
-       
        
            },
    		 computed: {
