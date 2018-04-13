@@ -84,24 +84,16 @@
 						
 						
 						<div class="col-md-9 charity__listing--content">
-							<div class="charity__listing--content--icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
-							
-							
-							
 							
 							<div class="charity__listing--content--box">
-							
-							
-													 
+											 
 								<router-link :to="{name: 'charity_details', params: { id: item.id }}" ><h4 class="charity__listing--content--box--heading">{{item.title}}</h4></router-link>
 								<h6 class="charity__listing--content--box--subheading">{{item.keyword}}</h6>
 								<p class="charity__listing--content--box--pera">{{item.description}}</p>
 							</div>
 							<div class="charity__listing--content--address row">
 								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Location:</span> {{ item.location }}</p></div>
-								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-briefcase" aria-hidden="true"></i><span>Purpose:</span> {{item.business_purpose}}</p></div>
-							
-								
+								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-briefcase" aria-hidden="true"></i><span>Purpose:</span> {{item.business_purpose}}</p></div>	
 							</div>
 								
 						</div>	
