@@ -149,33 +149,33 @@
 						   
 						   
 						   
-						   
-                              <div v-if="loginCheck" class="charity__request">
-							  <div v-if="getrole === 'charity'"> 
-                                 <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary"  class="charity__request--send btn-bg-orange btn">Sent Request</b-btn>
-                                 <b-modal id="modalPrevent"
-                                    ref="modal"
-                                    title="Sent Request"
-                                    @ok="handleSubmit"
-                                    @shown="clearName">
-                                    <form  id="prod" @submit.stop.prevent="handleSubmit">
-                                       <div class="form-group">
-                                          <label class="login__element--box--label">Select Charity To Need This Product</label>
-                                          <select name="title" v-model="prod.title" v-on:change="onChange"   class="login__element--box--input">
-                                             <option value="select">Select .. </option>
-                                             <option v-for="item in charities"  v-bind:value="item.id">{{item.title}}</option>
-                                          </select>
-                                       </div>
-                                       <label class="charity__element--block--content--box--label">Units</label>
-                                       <input type="text" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
-                                       <input type="hidden" name="charity_name" v-model="prod.charity_name" class="login__element--box--input" />
-                                    </form>
-                                 </b-modal>
-								
-                              </div>
+						    
+                              <div v-if="getrole ==='charity'" class="charity__request">
+									  <div v-if="getrole === 'charity'"> 
+										 <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary"  class="btn btn-bg-orange login__element--box--button">Sent Request</b-btn>
+										 <b-modal id="modalPrevent"
+											ref="modal"
+											title="Sent Request"
+											@ok="handleSubmit"
+											@shown="clearName">
+											<form  id="prod" @submit.stop.prevent="handleSubmit">
+											   <div class="form-group">
+												  <label class="login__element--box--label">Select Charity To Need This Product</label>
+												  <select name="title" v-model="prod.title" v-on:change="onChange"   class="login__element--box--input">
+													 <option value="select">Select .. </option>
+													 <option v-for="item in charities"  v-bind:value="item.id">{{item.title}}</option>
+												  </select>
+											   </div>
+											   <label class="charity__element--block--content--box--label">Units</label>
+											   <input type="text" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
+											   <input type="hidden" name="charity_name" v-model="prod.charity_name" class="login__element--box--input" />
+											</form>
+										 </b-modal>
+										
+									  </div>
 							  </div>
-                              <div v-else class="charity__request">
-                                 <router-link :to="{ path: '/login',query: {redurl:'seller_details'+this.$route.params.id}}" class="charity__request--send btn-bg-orange btn">Send Request</router-link>
+                              <div  v-if="getrole =='' " class="charity__request">
+                                 <router-link :to="{ path: '/login',query: {redurl:'seller_details'+this.$route.params.id}}" class="btn btn-bg-orange login__element--box--button">Send Request</router-link>
 								 
                               </div>
                           
@@ -185,7 +185,7 @@
                   </div>
                </div>
                <div class="col-md-4">
-                  <div class="charity__element--block">
+                  <div class="charity__element--block"    >
                      <h5 class="charity__element--block--heading">Message This Seller</h5>
                      <div class="charity__element--block--content">
                         <form id="create_message" @submit.prevent="submit1">
@@ -202,20 +202,22 @@
                               <textarea placeholder="Type your message here" required v-model="create_message.message"  class="login__element--box--input" rows="5">
                               </textarea>
                            </div>
-                           <div class="form-group text-center" v-if="!loginCheck" >
+                           <div class="form-group text-center" v-if="getrole ==''" >
                               <router-link :to="{ path: '/login',query: {redurl:'seller_details'+this.$route.params.id}}" class="btn btn-bg-orange login__element--box--button">Send Message</router-link>
-                           </div>
-                           <div class="form-group text-center" v-if="getrole === 'charity'" >
-                              <button  placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
-                           </div>
-                           <div class="form-group text-center" v-if="getrole === 'seller'" >
-                              <button :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
+                           </div><div v-else >
+									   <div v-if="getrole== 'seller'" class="form-group text-center">
+										  <button   :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
+									   </div>
+									   <div v-if="getrole== 'charity'" class="form-group text-center">
+										  <button   placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
+									   </div>
                            </div>
                         </form>
                      </div>
                   </div>
                   <div class="helping__element">
                      <div class="helping__element--block">
+					 {{getrole }}
                         <h5 class="helping__element--block--heading">Helping Center</h5>
                      </div>
                      <p class="helping__element--pera">All the Lorem Ipsum generat on the Internet tend to repeat predefined chunks as necesa.</p>
@@ -242,25 +244,29 @@
       
             data() {
     		
-                return {
-   	   charities:{},
-	   category:{},
-   	    charity_name:{},
-   	   prod:{
-   	title: 'select',
-   	units: '',
-   	
-   	},
-   	   
-   	    role:true,
-    		loginCheck: helper.checkLogin(),
-    		   create_message:{},
-                    
+                return {					
+										
+											role:true,
+											 btnDisable :false,
+										 
+											create_message:{},
+                                           // this.checkLoginRs(),
+											charities:{},
+											category:{},
+											charity_name:{},
+										     prod:{
+													title: 'select',
+													units: '', 
+												},
+										    
                 }
             },
     		
+			
+			
+			
     		created: function()
-            {
+            { 
                 this.fetchItems();
     			this.fetchItem();
     			this.fetchCharity();
@@ -268,21 +274,23 @@
            
             
             mounted(){
+			   
             },
             methods: {
-      onChange: function (){
-          	
-            axios.get('/api/charity_name/'+this.prod.title)
-             .then(response=>{
-    			
-    			this.charity_name=response.data;
-    			
-    			
-    			}).catch(error=>{
-    			toastr['error'](error.response.data.message);
-    				  
-                  });
-   		 },
+		
+			  onChange: function (){
+					
+					axios.get('/api/charity_name/'+this.prod.title)
+					 .then(response=>{
+						
+						this.charity_name=response.data;
+						
+						
+						}).catch(error=>{
+						toastr['error'](error.response.data.message);
+							  
+						  });
+				 },
       fetchCharity()
    	{
    	axios.get('/api/charities_list').then(response=>{
@@ -305,7 +313,7 @@
     
 			},
     			 submit1(e){
-				if(helper.checkLogin()){
+				
                     axios.post('/api/create_message', this.create_message).then(response =>  {
                         toastr['success'](response.data.message);
                         
@@ -313,11 +321,7 @@
                         toastr['error'](error.response.data.message);
                     });
                
-    }
-    else{
-    toastr['success']("First You Login");
-    	this.$router.push('/login');
-    }
+   
       },
     		
                
@@ -345,7 +349,7 @@
     				 this.items=response.data;
                   });
                 },
-   	    getAuthUserrole(){
+   	       getAuthUserrole(){
                 return this.$store.getters.getAuthUserrole;
             },
             getAuthUser(name){
@@ -354,13 +358,14 @@
     			
     			},
    	 computed: {
-    getrole(){
-    	return this.getAuthUser('role');
-    },
-            getAvatar(){
-                return '/images/user/'+this.getAuthUser('avatar');
-            }
+ 
+          getrole(){
+   	return this.getAuthUser('role');
+   },
+			
+			
+			
         }
    	
-    			}
+}
 </script>
