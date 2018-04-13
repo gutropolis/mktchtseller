@@ -19,7 +19,7 @@
                              <div class="donator_status--form_group">
                                 <label class="donator_status--form_group--control_label">Seller Name</label>
                                 <div class="donator_status--form_group--control_data">
-                                     <div class="donator_status--form_group--control_data--lineup">{{items.seller}}</div>
+                                     <div class="donator_status--form_group--control_data--lineup">{{product.updated_by}}</div>
                                 </div> <!-- /controls -->
                             </div> <!-- /form-group -->
 							
@@ -27,24 +27,24 @@
                             <div class="donator_status--form_group">
                                 <label class="donator_status--form_group--control_label">Product</label>
                                 <div class="donator_status--form_group--control_data">
-                                     <div class="donator_status--form_group--control_data--lineup">{{items.product_name}}</div>
+                                     <div class="donator_status--form_group--control_data--lineup">{{product.title}}</div>
                                 </div> <!-- /controls -->
                             </div> <!-- /form-group -->
 							
-							<div v-for="prod in product" class="donator_status--form_group">
+							<div  class="donator_status--form_group">
                                 <label class="donator_status--form_group--control_label">Product Image</label>
                                 <div class="donator_status--form_group--control_data">
                                      <div class="donator_status--form_group--control_data--lineup"><figure class="charity__listing--figure col-md-3">
-							<a v-bind:href="prod.description_url"><img  class="charity__listing--figure--image" v-bind:src="prod.images"></a>
+							<a v-bind:href="product.description_url"><img  class="charity__listing--figure--image" v-bind:src="product.images"></a>
 							
 						</figure>	</div>
                                 </div> <!-- /controls -->
                             </div> <!-- /form-group -->
 
-                            <div v-for="prod in product" class="donator_status--form_group">
+                            <div  class="donator_status--form_group">
                                 <label class="donator_status--form_group--control_label">ASIN</label>
                                 <div class="donator_status--form_group--control_data">
-                                     <div class="donator_status--form_group--control_data--lineup">{{prod.asin_url}}</div>
+                                     <div class="donator_status--form_group--control_data--lineup">{{product.asin_url}}</div>
                                 </div> <!-- /controls -->
                             </div> <!-- /form-group -->
 							 <div  class="donator_status--form_group">
@@ -57,7 +57,7 @@
                             <div class="donator_status--form_group">
                                 <label class="donator_status--form_group--control_label">Charity Name</label>
                                 <div class="donator_status--form_group--control_data">
-                                     <div class="donator_status--form_group--control_data--lineup">{{items.charity_organisation}}</div>
+                                     <div class="donator_status--form_group--control_data--lineup">{{charity.title}}</div>
                                 </div> <!-- /controls -->
                             </div> <!-- /form-group -->
 
@@ -101,7 +101,6 @@
    </div>
 </template>
 <script>
-   
     import AppSidebar from '../pages/users/sidebar.vue' 
        export default {
            components: {
@@ -114,6 +113,7 @@
                return {
 			   name:{},
 			   product:[],
+			   charity:[],
 					     items:{
 						  status:'select'},   
 						 item:{
@@ -166,6 +166,7 @@
 			
 			this.items=response.data.data1;
 			this.product=response.data.data2;
+			this.charity=response.data.data3;
 			
 			}).catch(error=>{
 			toastr['error'](error.response.data.message);
