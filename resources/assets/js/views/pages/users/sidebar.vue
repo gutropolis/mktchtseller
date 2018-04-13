@@ -85,7 +85,7 @@
                            c17.85-2.55,30.6-15.3,35.7-30.6c2.55-5.101,5.1-12.75,5.1-20.4h-102C216.75,499.8,239.7,522.75,267.75,522.75z"/>
                      </g>
                   </svg>
-                  Notifications
+                  Notifications  <span>   {{unread_notification}}</span>
                </router-link>
             </li>
                <li class="proflie__element--detail--list--item">
@@ -262,7 +262,7 @@
                            </g>
                         </g>
                      </svg>
-                    Pending/Completed Donations
+                   Donation Status
                   </router-link>
                </li>
                
@@ -324,7 +324,7 @@
    export default {
    data() {
    return {
-   
+			unread_notification:{},
    
    charity:''		
    }
@@ -332,7 +332,21 @@
    
        mounted() {
        },
+	   created: function()
+           {
+               this.fetchnotification();
+           },
        methods : {
+			fetchnotification(){
+				axios.get('api/unread_charity_notification').then(response=>{
+   			
+   			this.unread_notification=response.data;
+			console.log(this.unread_notification);
+   			
+   			})
+			
+			
+			},
            logout(){
                helper.logout().then(() => {
                    this.$store.dispatch('resetAuthUserDetail');
