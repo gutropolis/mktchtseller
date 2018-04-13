@@ -191,15 +191,16 @@
                         <form id="create_message" @submit.prevent="submit1">
                            <div class="form-group charity__element--block--content--box">
                               <label class="charity__element--block--content--box--label">Subject</label>
-                              <input type="text" name="msgtitle" v-model="create_message.msgtitle" required  placeholder="Subject"  class="login__element--box--input" />
+                              <input type="text" name="subject" v-model="create_message.subject"   placeholder="Subject"  class="login__element--box--input" />
                            </div>
+						   
                            <input type="hidden" name="user_id" v-model="create_message.user_id"   class="login__element--box--input" />
                            <input type="hidden" name="id" v-model="create_message.id"   class="login__element--box--input" />
                            <input type="hidden" name="post_type" v-model="create_message.post_type"   class="login__element--box--input" />
                            <input type="hidden" name="updated_by" v-model="create_message.updated_by"   class="login__element--box--input" />
                            <div class="form-group charity__element--block--content--box">
                               <label class="charity__element--block--content--box--label">Message</label>
-                              <textarea placeholder="Type your message here" required v-model="create_message.message"  class="login__element--box--input" rows="5">
+                              <textarea placeholder="Type your message here"  v-model="create_message.message"  class="login__element--box--input" rows="5">
                               </textarea>
                            </div>
                            <div class="form-group text-center" v-if="getrole ==''" >
@@ -217,7 +218,7 @@
                   </div>
                   <div class="helping__element">
                      <div class="helping__element--block">
-					 {{getrole }}
+					 
                         <h5 class="helping__element--block--heading">Helping Center</h5>
                      </div>
                      <p class="helping__element--pera">All the Lorem Ipsum generat on the Internet tend to repeat predefined chunks as necesa.</p>
