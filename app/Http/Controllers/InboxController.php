@@ -109,6 +109,16 @@ use stdClass;
 	}
 	public function store(Request $request)
 	{
+		$validation = Validator::make($request->all(), [
+            'subject' => 'required',
+            'message' => 'required',
+            
+        ]);
+
+        if($validation->fails())
+        	return response()->json(['message' => $validation->messages()->first()],422);
+		
+		
 		$post_id=request('post_id');
 		$post_type=request('post_type');
 		$user = JWTAuth::parseToken()->authenticate();
