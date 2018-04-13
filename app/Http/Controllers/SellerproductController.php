@@ -64,10 +64,7 @@ $sellerproduct = SellerProduct::latest()->get();
 		
 		
 	}
-	public function search_product(Request $request)
-	{		
 	
-	}
 
 	public function search(Request $request)
 	{		
