@@ -24,9 +24,9 @@
                               </tr>
                               <tr v-for="(item,index) in items">
                                  <td>{{index+1}}</td>
-								  <td>{{item.product_name}}</td>
-                                 <td>{{item.seller}}</td>
-								 <td>{{item.charity_organisation}}</td>
+								  <td v-for="product in item.product_detail">{{product.title}}</td>
+                                 <td v-for="product in item.product_detail">{{product.updated_by}}</td>
+								 <td v-for="charity in item.charity_detail">{{charity.title}}</td>
                                  <td>{{item.units}}</td>
                                 
                                  <td>
@@ -44,7 +44,7 @@
                                  </td>
                               </tr>
                            </table>
-						   <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+						  
                         </div>
                      </div>
                   </div>
@@ -101,7 +101,7 @@
         }
         this.items = this.items.concat(temp);
         $state.loaded();
-      }, 90000);
+      }, 150000);
     },
 	
    		fetchItems()
@@ -109,8 +109,8 @@
 			
    			axios.get('api/donaters_list').then(response=>{
    			
-   			this.items=response.data.data1;
-			this.image=response.data.data2
+   			this.items=response.data;
+			
    			
    			}).catch(error=>{
    			toastr['error'](error.response.data.message);
