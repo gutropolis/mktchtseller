@@ -31,102 +31,63 @@ class charityController extends JoshController
 
  protected $avatar_path = 'images/charity/';   
 
-    public function index()
-    {
-		
-		$charityparcategory=CharityCategory::all();
-			
-		return response()->json($charityparcategory);
-    }
-	 public function charity_list()
-    {
-		
-		$charity=Charity::all();
-		foreach ($charity as $char)
+		public function index()
 		{
-		$category=CharityCategory::where('id',$char->charity_type)->pluck('title');
+			
+			$charityparcategory=CharityCategory::all();
+				
+			return response()->json($charityparcategory);
 		}
-		//return($category[0]);
- 
-		 return response()->json(array('data1'=>$charity,'data2'=>$category[0]));
+	 public function charity_list()
+		{
+		
+			$charity=Charity::all();
+			foreach ($charity as $char)
+			{
+			$category=CharityCategory::where('id',$char->charity_type)->pluck('title');
+			}
+	
+			return response()->json(array('data1'=>$charity,'data2'=>$category[0]));
     }
 	 public function charity_list_user(Request $request)
     {
 		$user = JWTAuth::parseToken()->authenticate();
-	$query = Charity::whereUserId($user->id);
-	$charity = $query->get();
+		$query = Charity::whereUserId($user->id);
+			$charity = $query->get();
 		
- 
 		return response()->json($charity);
     }
 	public function charities_list(Request $request)
 	{		
 	
-	$query = Charity::all();
-	
-	return response()->json($query);
+		$query = Charity::all();
+		return response()->json($query);
 	}
 	
 	public function product(Request $request,$id)
     {
 		$charity = Charity::find($id);
-		$sellerproduct=new \App\Donation;
-		$sellerproduct->product=$request->input('data.title');
-		$sellerproduct->product_name=$request->input('product_name');
-		$sellerproduct->units=$request->input('data.units');
 		$user = JWTAuth::parseToken()->authenticate();
+		$sellerproduct=new \App\Donation;
 		$sellerproduct->seller_id = $user->id;
+		$sellerproduct->product_id=$request->input('data.id');
+		$sellerproduct->charity_id=$charity->user_id;
+		$sellerproduct->post_id=$charity->id;
+		$sellerproduct->units=$request->input('data.units');
 		$sellerproduct->status="0";
 		$sellerproduct->is_certify="0";
-		$sellerproduct->charity_organisation=$charity->title;
-		$sellerproduct->owner_charity=$charity->updated_by;
-		$sellerproduct->owner_id=$charity->user_id;
-		$sellerproduct->seller=$user->first_name;
 		$sellerproduct->save();
 		$seller=$sellerproduct->save();;
-	$user1=User::where('id',$sellerproduct->owner_id)->first();
-		
-		
-	//	broadcast(new MessageDonation($user,$user1,$seller))->toOthers();
-		
-		
-		return response()->json(['message' => 'Data Record Successfully']);
-	/*$user_id=User::where('id',$charity->user_id)->pluck('id');
 	
-
-	if($sellerproduct->save())
-	{
-		
-		$activity= new \App\Activity;
-		$activity->from_id = $user->id;
-		$activity->from_name=$user->first_name;
-		$activity->description='Donate Product to '.$sellerproduct->charity_organisation;
-		$activity->subject =$user->first_name . " Donate Product to ". $charity->updated_by. "Organization";
-		$activity->subject_url= "App\Activity";
-		
-		$activity->to_name = $charity->updated_by;
-		$activity->to_id=$user_id[0];
-		$activity->save();
-		
-		
-		
-		
-	}*/
-		
-			
-			
-			
-		
-		
+		return response()->json(['message' => 'Your Request for Charity donation Submitted.Charity Will Respond you as Soon']);
 		
     }
 	public function product_name($id)
 	{
-		$product_name=Sellerproduct::where('id',$id)->pluck('title');
-		foreach($product_name as $product)
-		{
-			return($product);
-		}
+		$product_name=Sellerproduct::where('id',$id)->first();
+		
+			return($product_name);
+		
 		
 	//return($product_name);
 	}
@@ -141,15 +102,23 @@ class charityController extends JoshController
 		$formatted_date = $date->format('Y-m-d H:i:s');
 		$donaters = Donation::where('created_at', '>',$formatted_date)->get();
 		
-		
+		$donatersdata=array();
 		
 		
 		foreach($donaters as $donate)
 		{
-			//$image=Sellerproduct::where('id',$donate->product_id)->get();
+			$product=Sellerproduct::where('id',$donate->product_id)->get();
+			$charity=Charity::where('id',$donate->charity_id)->get();
+			$product_detail = array();
+			$product_detail['product_detail']=$product;
+			$product_detail['charity_detail']=$charity;
+			
+			$donate['product_detail']=$product;
+			$donate['charity_detail']=$charity;
+			array_push($donatersdata,$donate);
 		}
 		
-		return response()->json(array('data1'=>$donaters));	
+		return response()->json($donatersdata);	
 			
 		
 	}
@@ -196,7 +165,7 @@ class charityController extends JoshController
 			 
             
 			$charitysubcategory=CharityCategory::where('parent_id','>','0')->get();
-	 return response()->json(array('data1'=>$charitycategory,'data2'=>$charitysubcategory));	
+			return response()->json(array('data1'=>$charitycategory,'data2'=>$charitysubcategory));	
 			
 		}
 
@@ -286,8 +255,10 @@ class charityController extends JoshController
     {
 		
 		$status = Donation::find($id);
-		$product=Sellerproduct::where('id',$status->product)->get();
-		return response()->json(array('data1'=>$status,'data2'=>$product));
+		$product=Sellerproduct::where('id',$status->product_id)->first();
+		$charity=Charity::where('id',$status->charity_id)->first();
+		
+		return response()->json(array('data1'=>$status,'data2'=>$product,'data3'=>$charity));
     }
 	public function update_status(Request $request,$id)
     {
@@ -377,66 +348,87 @@ class charityController extends JoshController
     }
 
    
-    public function getRestore($id)
+    public function unread_notification()
     {
-       
+       $unread_notification=Donation::where('charity_read',0)->count();
+	  return response()->json($unread_notification);
     }
-	//
-public  function detail(Request $request,$id)
-	{
-		$user = JWTAuth::parseToken()->authenticate();
-		//update receiver_read message
-		$update=Message::where('inbox_id',$id)->where('reciever_id',$user->id)->update(['reciever_read' => 1 ]);
-		
-		
-		
-		$messages=Message::where('inbox_id',$id)->get();
-		$msgInbox=array();
-		foreach($messages as $message)
-		{
-			$user=User::where('id',$message->sender_id)->get();
-			$userArr = array();
-			$userArr['sender_detail']=$user;
-			$message['sender_detail']=$user;
-			array_push($msgInbox,$message);
-		}
-		return response()->json($msgInbox);
-	}
-	//
+	
+
     
     public function notification()
     {
 		$user = JWTAuth::parseToken()->authenticate();
-	//$query = Donation::whereUserId($user->id);
-	$date = new \DateTime();
-		$date->modify('-3 days');
-		$formatted_date = $date->format('Y-m-d H:i:s');
+	
+			$date = new \DateTime();
+				$date->modify('-3 days');
+				$formatted_date = $date->format('Y-m-d H:i:s');
 		
-       $product=Donation::where('status','0')->whereOwnerId($user->id)->where('created_at', '>',$formatted_date)->orwhere('status','1')->get();
-	   
-	   $msgproduct=array();
+       $product=Donation::where('status','0')->wherecharityId($user->id)->where('created_at', '>',$formatted_date)->get();
+	  
+	   $detail=array();
 		foreach($product as $pro)
 		{
-			$product_detail=Sellerproduct::where('id',$pro->product)->whereUserId($pro->seller_id)->first();
-			//return($product_detail);
-			$prodArr=array();
-			$prodArr['product_detail']=$product;
+			
+			$product=Sellerproduct::where('id',$pro->product_id)->get();
+			
+			$charity=Charity::where('id',$pro->charity_id)->get();
+			$product_detail = array();
 			$product_detail['product_detail']=$product;
-			array_push($msgproduct,$product_detail);
-	 
+			$product_detail['charity_detail']=$charity;
+			
+			$pro['product_detail']=$product;
+			$pro['charity_detail']=$charity;
+			array_push($detail,$pro);
+			
 		}
 		
-		return response()->json($msgproduct);
+		  $product=Donation::where('status','1')->wherecharityId($user->id)->where('created_at', '>',$formatted_date)->get();
+		$acceptproduct=array();
+		foreach($product as $pro)
+		{
+			
+			$product=Sellerproduct::where('id',$pro->product_id)->get();
+			
+			$charity=Charity::where('id',$pro->charity_id)->get();
+			$product_detail = array();
+			$product_detail['product_detail']=$product;
+			$product_detail['charity_detail']=$charity;
+			
+			$pro['product_detail']=$product;
+			$pro['charity_detail']=$charity;
+			array_push($acceptproduct,$pro);
+			
+		}
+		$product=Donation::where('status','2')->wherecharityId($user->id)->where('created_at', '>',$formatted_date)->get();
+		$declineproduct=array();
+		foreach($product as $pro)
+		{
+			
+			$product=Sellerproduct::where('id',$pro->product_id)->get();
+			
+			$charity=Charity::where('id',$pro->charity_id)->get();
+			$product_detail = array();
+			$product_detail['product_detail']=$product;
+			$product_detail['charity_detail']=$charity;
+			
+			$pro['product_detail']=$product;
+			$pro['charity_detail']=$charity;
+			array_push($declineproduct,$pro);
+			
+		}
+		return response()->json(array('data1'=>$detail,'data2'=>$acceptproduct,'data3'=>$declineproduct));
 	}
 
     public function update_donation($id)
     {
-       $donation = Donation::where('product',$id)->update(['status' => 1]);
+	
+       $donation = Donation::where('id',$id)->update(['status' => 1,'charity_read' => 1]);
 		return response()->json(['message' => 'Product are Accepted']);
     }
 	 public function reject_donation($id)
     {
-       $donation = Donation::where('product',$id)->update(['status' => 2]);
+       $donation = Donation::where('id',$id)->update(['status' => 2,'charity_read' => 1]);
 		return response()->json(['message' => 'Product are Rejected']);
     }
 
