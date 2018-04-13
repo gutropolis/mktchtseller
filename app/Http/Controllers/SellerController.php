@@ -209,11 +209,64 @@ class SellerController extends Controller
 	{
 		$user = JWTAuth::parseToken()->authenticate();
 		$pending=Donation::where('seller_id',$user->id)->where('status','0')->get();
-		//return($pending);
+		
+		$pendingstatus=array();
+		foreach($pending as $pend)
+		{
+			
+			$product=Sellerproduct::where('id',$pend->product_id)->pluck('title');
+			//return($product[0]);
+			$charity=Charity::where('id',$pend->charity_id)->pluck('title');
+			$product_detail = array();
+			$product_detail['product_detail']=$product;
+			$product_detail['charity_detail']=$charity;
+			
+			$pend['product_detail']=$product;
+			$pend['charity_detail']=$charity;
+			array_push($pendingstatus,$pend);
+			
+		}
+	
 		$accept=Donation::where('seller_id',$user->id)->where('status','1')->get();
+		$acceptstatus=array();
+		foreach($accept as $acc)
+		{
+			
+			$product=Sellerproduct::where('id',$acc->product_id)->pluck('title');
+			//return($product[0]);
+			$charity=Charity::where('id',$acc->charity_id)->pluck('title');
+			$product_detail = array();
+			$product_detail['product_detail']=$product;
+			$product_detail['charity_detail']=$charity;
+			
+			$acc['product_detail']=$product;
+			$acc['charity_detail']=$charity;
+			array_push($acceptstatus,$acc);
+			
+		}
 		
 		$decline=Donation::where('seller_id',$user->id)->where('status','2')->get();
-	return response()->json(array('data1'=>$pending,'data2'=>$accept,'data3'=>$decline));
+		$declinestatus=array();
+		foreach($decline as $dec)
+		{
+			
+			$product=Sellerproduct::where('id',$dec->product_id)->pluck('title');
+			//return($product[0]);
+			$charity=Charity::where('id',$dec->charity_id)->pluck('title');
+			$product_detail = array();
+			$product_detail['product_detail']=$product;
+			$product_detail['charity_detail']=$charity;
+			
+			$dec['product_detail']=$product;
+			$dec['charity_detail']=$charity;
+			array_push($declinestatus,$dec);
+			
+		}
+		
+		
+		
+		
+	return response()->json(array('data1'=>$pendingstatus,'data2'=>$acceptstatus,'data3'=>$declinestatus));
 			
 		
 	}
