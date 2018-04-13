@@ -30,7 +30,7 @@
                   </li>
                </ul>
                <div class=" my-2 my-lg-0 user_profile_dropdown">
-                  <div v-if="loginCheck==true">
+                  <div v-if="loginCheck === true">
                      <b-navbar-nav>
                         <b-nav-item-dropdown right>
                            <!-- Using button-content slot -->
@@ -219,13 +219,14 @@
    item:[],
    items: [],
    
-               loginCheck: helper.checkLogin(),
-			
+                  loginCheck : helper.checkLogin()
+			  
    
            }
        },
    
        mounted() {
+	   
    
    Echo.channel('chat')
            .listen('MessageNotification', (e) => {
@@ -248,18 +249,33 @@
    
            this.fetchItems();
 		   this.fetchcount();
+		  
+		   /*
+		       this.loginCheck = helper.check() ;
+			   helper.check().then(response => {
+					if(!response){
+						this.loginCheck = false ;
+					}else{
+					this.loginCheck = true ;
+					} 
+				})
+		   
+		   
+		   cosole.log(helper.check());
+		   */
+		   
        },
    
    
        methods: {
-   
+            
            logout() {
    
                helper.logout().then(() => {
    
                    this.$store.dispatch('resetAuthUserDetail');
                    this.$router.replace('/');
-   	window.location.reload();
+                	window.location.reload();
                })
            },
    
