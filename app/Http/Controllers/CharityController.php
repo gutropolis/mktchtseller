@@ -71,7 +71,7 @@ class charityController extends JoshController
 		$sellerproduct=new \App\Donation;
 		$sellerproduct->seller_id = $user->id;
 		$sellerproduct->product_id=$request->input('data.id');
-		$sellerproduct->charity_id=$charity->user_id;
+		$sellerproduct->charity_id=$charity->id;
 		$sellerproduct->post_id=$charity->id;
 		$sellerproduct->units=$request->input('data.units');
 		$sellerproduct->status="0";
