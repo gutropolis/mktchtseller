@@ -142,7 +142,7 @@
                                  </b-list-group-item>
                               </b-list-group>
                            </div>
-						   
+						 <!--
                            <div class="col-12">
 						   
 						   
@@ -180,6 +180,7 @@
                               </div>
                           
 						  </div>
+						  -->
                         </div>
                      </div>
                   </div>
