@@ -73,6 +73,7 @@ class charityController extends JoshController
 		$sellerproduct->product_id=$request->input('data.id');
 		$sellerproduct->charity_id=$charity->id;
 		$sellerproduct->post_id=$charity->id;
+		$sellerproduct->charity_owner_id=$charity->user_id;
 		$sellerproduct->units=$request->input('data.units');
 		$sellerproduct->status="0";
 		$sellerproduct->is_certify="0";
@@ -364,7 +365,7 @@ class charityController extends JoshController
 				$date->modify('-3 days');
 				$formatted_date = $date->format('Y-m-d H:i:s');
 		
-       $product=Donation::where('status','0')->wherecharityId($user->id)->where('created_at', '>',$formatted_date)->get();
+       $product=Donation::where('status','0')->where('charity_owner_id',$user->id)->where('created_at', '>',$formatted_date)->get();
 	  
 	   $detail=array();
 		foreach($product as $pro)
@@ -383,7 +384,8 @@ class charityController extends JoshController
 			
 		}
 		
-		  $product=Donation::where('status','1')->wherecharityId($user->id)->where('created_at', '>',$formatted_date)->get();
+		
+		  $product=Donation::where('status','1')->where('charity_owner_id',$user->id)->where('created_at', '>',$formatted_date)->get();
 		$acceptproduct=array();
 		foreach($product as $pro)
 		{
@@ -400,7 +402,7 @@ class charityController extends JoshController
 			array_push($acceptproduct,$pro);
 			
 		}
-		$product=Donation::where('status','2')->wherecharityId($user->id)->where('created_at', '>',$formatted_date)->get();
+		$product=Donation::where('status','2')->where('charity_owner_id',$user->id)->where('created_at', '>',$formatted_date)->get();
 		$declineproduct=array();
 		foreach($product as $pro)
 		{
