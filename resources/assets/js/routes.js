@@ -77,7 +77,7 @@ let routes = [
 			},
 			{
 				name:'change_status',
-				path : '/change_status',
+				path : '/change_status:id',
 				component:require('./views/Charity/change_status')
 			},
 			
