@@ -169,10 +169,10 @@ use stdClass;
 		'receiver_read' => '0',
 		]);
 	}
-	$user1=User::where('id',$message->reciever_id)->first();
+	//$user1=User::where('id',$message->reciever_id)->first();
 	
 			
-		broadcast(new MessageNotification($user,$user1,$message))->toOthers();
+		//broadcast(new MessageNotification($user,$user1,$message))->toOthers();
 		return response()->json(['message' => 'Message sent  Successfully']);  
 	}
 	public function message(Request $request,$id)
