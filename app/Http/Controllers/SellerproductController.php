@@ -94,7 +94,7 @@ $sellerproduct = SellerProduct::latest()->get();
 		
 		
 			//return response()->json($keyword);
-		$sellerproduct=$query->get();
+		$sellerproduct=$query->latest()->get();
 
 		
 		//return charity::paginate(4);
