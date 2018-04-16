@@ -38,7 +38,7 @@
 								 <td v-if="item.status== 2">Decline</td>
 								 
                                  <td>
-								 <router-link :to="{name: 'change_status', params: { id: item.id }}">
+								 <router-link :to="{name: 'change_statusw', params: { id: item.id }}">
 								Click Here
 								 </router-link>
                                  </td>
