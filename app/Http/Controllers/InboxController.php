@@ -124,7 +124,7 @@ use stdClass;
 		$user = JWTAuth::parseToken()->authenticate();
 		//$inbox->id=0;
 		$inboxmsg=Inbox::where('sender_id',$user->id)->orwhere('reciever_id',$user->id)->where('post_id',$post_id)->where('post_type',$post_type)->first();
-		if ($inboxmsg != null) {
+		if ($inboxmsg != null &&  $inboxmsg->post_id == $post_id) {
 		$inbox=Inbox::where('sender_id',$user->id)->orwhere('reciever_id',$user->id)->where('post_id',$post_id)->where('post_type',$post_type)->first();
 		if(count($inbox->id) > 0)
 		{
@@ -197,7 +197,10 @@ use stdClass;
 		'reciever_id' => $receiver_userid,
 		'inbox_id' => $id,
 		]);
-		 broadcast(new MessageSent($user, $message))->toOthers();
+		$user_reciever=User::where('id', $receiver_userid)->get();
+		
+		
+		 broadcast(new MessageSent($user, $message,$user_reciever));
 		return response()->json(['message' => 'Message sent  Successfully']);
 	}
 	public function user_id()
