@@ -60,7 +60,7 @@ class charityController extends JoshController
 	public function charities_list(Request $request)
 	{		
 	
-		$query = Charity::all();
+		$query = Charity::latest()->get();
 		return response()->json($query);
 	}
 	
@@ -435,11 +435,7 @@ class charityController extends JoshController
 		return response()->json(['message' => 'Product are Rejected']);
     }
 
-    public function searchform(Request $reguest)
-	{
-		$keyword=request('keyword');
-		return($keyword);
-    }
+    
 	public function search(Request $reguest)
 	{
 	 
@@ -466,7 +462,7 @@ class charityController extends JoshController
 		
 		
 			//return response()->json($keyword);
-		$charity=$query->get();
+		$charity=$query->latest()->get();
 
 		
 		//return charity::paginate(4);
