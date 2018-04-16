@@ -56,7 +56,7 @@
                                              <textarea  type="text" name="bio"  rows="3" v-model="profileForm.bio" class="login__element--box--input"></textarea>
                                           </div>
                                           <div class="form-group">
-                                             <label for="">Gender</label>
+                                             <label class="login__element--box--label">Gender</label>
                                              <div class="radio radio-info">
                                                 <input type="radio" value="male" id="gender_male" v-model="profileForm.gender" :checked="profileForm.gender === 'male'">
                                                 <label for="gender_male"> Male </label>
@@ -115,15 +115,15 @@
                                        <h4 class="card-title">Change Password</h4>
                                        <form @submit.prevent="changePassword">
                                           <div class="form-group">
-                                             <label for="">Current Password</label>
+                                             <label class="login__element--box--label">Current Password</label>
                                              <input type="password" value="" v-model="passwordForm.current_password" class="login__element--box--input">
                                           </div>
                                           <div class="form-group">
-                                             <label for="">New Password</label>
+                                             <label class="login__element--box--label">New Password</label>
                                              <input  class="login__element--box--input" type="password" value="" v-model="passwordForm.new_password">
                                           </div>
                                           <div class="form-group">
-                                             <label for="">Confirm Password</label>
+                                             <label class="login__element--box--label">Confirm Password</label>
                                              <input  class="login__element--box--input" type="password" value="" v-model="passwordForm.new_password_confirmation">
                                           </div>
                                           <button type="submit" class="btn btn-info waves-effect waves-light m-t-10">Change Password</button>
@@ -272,7 +272,7 @@
               }
    			
           },
-   	computed: {
+		computed: {
               defaultAvatar(){
                   return this.getAuthUser('avatar') !== 'avatar.png' ? true : false;
               }
