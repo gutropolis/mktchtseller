@@ -351,7 +351,8 @@ class charityController extends JoshController
    
     public function unread_notification()
     {
-       $unread_notification=Donation::where('charity_read',0)->count();
+		$user = JWTAuth::parseToken()->authenticate();
+       $unread_notification=Donation::where('charity_read',0)->where('charity_owner_id',$user->id)->count();
 	  return response()->json($unread_notification);
     }
 	
