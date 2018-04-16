@@ -16,12 +16,13 @@ class GsDonation extends Migration
         Schema::create('gs_donation', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('seller_id');
-			$table->string('product');
-			$table->text('product_name');
-			$table->string('seller');
+			$table->string('product_id');
+			$table->string('post_id');
+			$table->string('charity_id');
+			$table->string('charity_owner_id');
 			$table->string('units');
-			$table->string('owner_charity');
-			$table->string('charity_organisation');
+			$table->string('seller_read');
+			$table->string('charity_read');
 			$table->string('status');
 			$table->string('is_certify');
             $table->timestamps();
