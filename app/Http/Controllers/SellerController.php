@@ -227,7 +227,7 @@ class SellerController extends Controller
 			
 		}
 	
-		$accept=Donation::where('seller_id',$user->id)->where('status','1')->get();
+		$accept=Donation::where('seller_id',$user->id)->where('status','1')->where('is_certify','0')->get();
 		$acceptstatus=array();
 		foreach($accept as $acc)
 		{
@@ -262,11 +262,27 @@ class SellerController extends Controller
 			array_push($declinestatus,$dec);
 			
 		}
+		$complete=Donation::where('seller_id',$user->id)->where('is_certify','1')->where('progress','100')->where('status','1')->get();
+		$completestatus=array();
+		foreach($complete as $comp)
+		{
+			
+			$product=Sellerproduct::where('id',$comp->product_id)->pluck('title');
+			//return($product[0]);
+			$charity=Charity::where('id',$comp->charity_id)->pluck('title');
+			$product_detail = array();
+			$product_detail['product_detail']=$product;
+			$product_detail['charity_detail']=$charity;
+			
+			$comp['product_detail']=$product;
+			$comp['charity_detail']=$charity;
+			array_push($completestatus,$comp);
+			
+		}
 		
 		
 		
-		
-	return response()->json(array('data1'=>$pendingstatus,'data2'=>$acceptstatus,'data3'=>$declinestatus));
+	return response()->json(array('data1'=>$pendingstatus,'data2'=>$acceptstatus,'data3'=>$declinestatus,'data4'=>$completestatus));
 			
 		
 	}
