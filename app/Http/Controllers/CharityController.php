@@ -267,6 +267,7 @@ class charityController extends JoshController
 		$status = Donation::find($id);
 		
 		$status->status=$request->get('status');
+		$status->progress=$request->get('progress');
 		
 		$status->save();
 		
