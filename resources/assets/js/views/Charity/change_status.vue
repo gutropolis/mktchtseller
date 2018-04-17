@@ -61,7 +61,12 @@
                                 </div> <!-- /controls -->
                             </div> <!-- /form-group -->
 
-                           
+                            <div class="donator_status--form_group--control_data">
+                    <label class="donator_status--form_group--control_label">Progress ({{items.progress}}%)</label>
+					 <div class="donator_status--form_group--control_data">
+                    <range-slider class="slider" min="0" max="100" step="1" v-model="items.progress" @change="sliderChange"></range-slider>
+                </div>
+				</div>
 
                             <div class="donator_status--form_group">
                                 <label for="status_id" class="donator_status--form_group--control_label">Status</label>
@@ -102,9 +107,11 @@
 </template>
 <script>
     import AppSidebar from '../pages/users/sidebar.vue' 
+	import RangeSlider from 'vue-range-slider'
+	 import 'vue-range-slider/dist/vue-range-slider.css'
        export default {
            components: {
-              AppSidebar 
+              AppSidebar,RangeSlider 
            },
    
    
@@ -115,7 +122,9 @@
 			   product:[],
 			   charity:[],
 					     items:{
-						  status:'select'},   
+						  status:'select',
+						  progress:0
+						  },   
 						 item:{
 						
 						 }
@@ -124,12 +133,15 @@
    			
    			created: function()
            {
-				this.fetchproductname();
+				
                this.fetchItems();
            },
            mounted(){
            },
            methods: {
+		   sliderChange(value){
+                this.items.progress = value;
+            },
    		status(id){
    			axios.post('api/status/'+id,this.items).then(response=>{
    			
@@ -141,15 +153,7 @@
    		
    		
    		},
-		fetchproductname()
-		{
-			axios.get('api/product_name').then(response=>{
-					this.name=response.data;
-			
-			
-			})
-		
-		},
+	
 		 update()
             {
               axios.post('api/edit_status/'+this.$route.params.id,this.items).then(response =>  {
