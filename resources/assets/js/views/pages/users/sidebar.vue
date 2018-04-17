@@ -159,7 +159,7 @@
             </div>
             <div v-else>
 			 <li class="proflie__element--detail--list--item">
-               <router-link to="/seller_notification" class="proflie__element--detail--list--item--link">
+               <router-link to="/donation_list" class="proflie__element--detail--list--item--link">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="535.5px" height="535.5px" viewBox="0 0 535.5 535.5" style="enable-background:new 0 0 535.5 535.5;" xml:space="preserve">
                      <g id="notifications-on">
                         <path d="M142.8,53.55l-35.7-35.7C45.9,63.75,5.1,135.15,0,216.75h51C56.1,147.9,89.25,89.25,142.8,53.55z M484.5,216.75h51
@@ -230,42 +230,7 @@
                       Product List
                   </router-link>
                </li>
-               <li class="proflie__element--detail--list--item">
-                  <router-link to="/donation_list" class="proflie__element--detail--list--item--link">
-                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 512.002 512.002" style="enable-background:new 0 0 512.002 512.002;" xml:space="preserve">
-                        <g>
-                           <g>
-                              <polygon points="426.227,275.384 311.953,275.384 359.144,322.389 473.418,322.389       "/>
-                           </g>
-                        </g>
-                        <g>
-                           <g>
-                              <polygon points="85.775,275.384 38.583,322.389 152.847,322.389 200.036,275.384      "/>
-                           </g>
-                        </g>
-                        <g>
-                           <g>
-                              <path d="M349.595,368.615c-6.111,0-11.977-2.424-16.309-6.737l-54.159-53.944v204.067h133.54V368.615H349.595z"/>
-                           </g>
-                        </g>
-                        <g>
-                           <g>
-                              <path d="M178.706,361.877c-4.331,4.315-10.198,6.738-16.312,6.738H99.341v143.386h133.54V307.915L178.706,361.877z"/>
-                           </g>
-                        </g>
-                        <g>
-                           <g>
-                              <path d="M303.13,0c-17.844,0-35.627,8.382-47.12,21.982C244.5,8.382,226.711,0,208.88,0c-32.4,0-57.554,25.146-57.554,57.554
-                                 c0,45.02,35.571,72.268,90.011,120.408l14.671,12.674l14.666-12.674c54.43-48.141,90.004-80.59,90.004-120.408
-                                 C360.677,25.146,335.533,0,303.13,0z"/>
-                           </g>
-                        </g>
-                     </svg>
-                   Donation Status
-                  </router-link>
-               </li>
-               
+              
                
                <li class="proflie__element--detail--list--item">
                   <router-link to="" v-b-toggle.collapse5 class="proflie__element--detail--list--item--link">
