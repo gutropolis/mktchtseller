@@ -18,6 +18,7 @@
                                  <th>Seller</th>
                                  <th>Charity</th>
 								 <th>Units</th>
+								 <th>Progress</th>
                                  <th>Certify</th>
 								 <th>Status</th>
                                  <th>Change Status</th>
@@ -28,6 +29,12 @@
                                  <td v-for="product in item.product_detail">{{product.updated_by}}</td>
 								 <td v-for="charity in item.charity_detail">{{charity.title}}</td>
                                  <td>{{item.units}}</td>
+								 <td>
+                                            
+                                              
+                                        
+                                            {{ item.progress }} %
+                                        </td>
                                 
                                  <td>
                                     <button v-if="item.is_certify==0" class="btn btn-danger btn-sm" @click.prevent="toggleTaskStatus(item.id)" data-toggle="tooltip" title="Mark as Incomplete"><i class="fa fa-times"></i></button>
@@ -38,7 +45,7 @@
 								 <td v-if="item.status== 2">Decline</td>
 								 
                                  <td>
-								 <router-link :to="{name: 'change_statusw', params: { id: item.id }}">
+								 <router-link :to="{name: 'change_status', params: { id: item.id }}">
 								Click Here
 								 </router-link>
                                  </td>
