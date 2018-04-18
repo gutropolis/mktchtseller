@@ -39,28 +39,69 @@
                                      </div>
                                 </div>
                             </div>
-
+							
                             <div class="col-md-7">
+							<form id="contact" @submit.prevent="submit">
                                 <div class="contact_form">
                                         <div class="form-group">                                           
-                                            <input type="text" class="form-control" id="name" placeholder="First Name">
+                                            <input type="text" class="login__element--box--input" name="first_name" id="name" v-model="contact.first_name" placeholder="First Name">
                                         </div>
                                         <div class="form-group">                                            
-                                            <input type="text" class="form-control" id="company" placeholder="Company">
+                                            <input type="text" class="login__element--box--input" id="company" v-model="contact.company" placeholder="Company">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="email" placeholder="example@email.com">
+                                            <input type="text" class="login__element--box--input" id="email" v-model="contact.email" placeholder="example@email.com">
+                                        </div>
+										<div class="form-group">
+                                            <input type="text" class="login__element--box--input" id="email" v-model="contact.subject" placeholder="subject">
                                         </div>
                                         <div class="form-group">                                                
-                                            <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="Your message.."></textarea>
+                                            <textarea class="login__element--box--input" id="exampleTextarea" rows="3" v-model="contact.message" placeholder="Your message.."></textarea>
                                         </div>
                                         <div class="btn-container">
                                                 <button type="submit" class="btn sub_button">Submit</button>
                                         </div> 
                                 </div>
+								</form>
                             </div>
+							
                         </div>
                     </div>
                 </section>
 				</div>
 </template>
+<script>
+	import helper from '../../services/helper'
+	
+    export default {
+	        data() {
+	
+            return {
+			
+			contact:{
+				first_name:'',
+				company:'',
+				email:'',
+				message:'',
+			}
+            }
+        },
+		
+	
+        mounted() {
+        },
+		
+		methods: {
+		
+		 submit(e){
+                axios.post('/api/post_contact', this.contact).then(response =>  {
+                    toastr['success'](response.data.message);
+                    this.$router.push('/vender_organisation');
+                }).catch(error => {
+                    toastr['error'](error.response.data.message);
+                });
+            },
+		}
+		
+    }
+</script>
