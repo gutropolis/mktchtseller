@@ -81,7 +81,7 @@ class charityController extends JoshController
 		
 		
 		
-		$sellerproduct->save();
+		
 		
 		$sender_user=User::where('id',$sellerproduct->seller_id)->first();
 		
@@ -94,6 +94,7 @@ class charityController extends JoshController
 		{
 			$message->to($reciever_user->email)->subject('Donate!');
 		});
+		$sellerproduct->save();
 		return response()->json(['message' => 'Your Request for Charity donation Submitted.Charity Will Respond you as Soon']);
 		
     }
