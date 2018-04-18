@@ -21,6 +21,7 @@ class GsDonation extends Migration
 			$table->string('charity_id');
 			$table->string('charity_owner_id');
 			$table->string('units');
+			$table->string('progress');
 			$table->string('seller_read');
 			$table->string('charity_read');
 			$table->string('status');
