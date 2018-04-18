@@ -43,7 +43,7 @@ class Activation extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = url('/auth/'.$this->user->activation_token.'/activate');
+        $url = url('/auth'.$this->user->activation_token);
 
         return (new MailMessage)
                     ->greeting('Hello!')
