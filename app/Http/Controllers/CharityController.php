@@ -53,7 +53,7 @@ class charityController extends JoshController
     {
 		$user = JWTAuth::parseToken()->authenticate();
 		$query = Charity::whereUserId($user->id);
-			$charity = $query->get();
+			$charity = $query->latest()->get();
 		
 		return response()->json($charity);
     }
