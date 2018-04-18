@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div  class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-<div style="border:1px solid #fff;width:1000px;height:40px;text-align:center;padding:10px;margin-left:200px;background-color:lightgray"><h1  style="color:blue;font-size:20px;">Hello!</h1></div>
+<div style="border:1px solid #fff;width:1000px;height:40px;padding:10px;margin-left:200px;background-color:lightgray"><h1 style="color:blue;font-size:20px; text-align:center">Charity Fba!</h1></div>
 </div>
                 
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -12,10 +12,7 @@
 				  Email ID:- {{ $sender_user->email }}
 				</h2><br />
 				<h2 style="font-size:15px;margin-left:200px">User Name:- {{ $sender_user->full_name }}</h2><br />
-				
-				
-				
-			<a href= "{{url('users_detail')}}">Click To Communicate </a>
+			<a href= "{{url('users_detail')}}"><button> Click To Communicate</button> </a>
 				
 </div>
 </div>
