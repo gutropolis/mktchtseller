@@ -114,7 +114,6 @@ use stdClass;
             'message' => 'required',
             
         ]);
-
         if($validation->fails())
         	return response()->json(['message' => $validation->messages()->first()],422);
 		
@@ -168,11 +167,18 @@ use stdClass;
 		'inbox_id' => $insertedId,
 		'receiver_read' => '0',
 		]);
+		$sender_user=User::where('id',$message->sender_id)->first();
+		$reciever_user=User::where('id',$message->reciever_id)->first();
+		
+		 $data = array('message'=>$message, 'sender_user'=>$sender_user,'reciever_user'=>$reciever_user);
+		 
+		Mail::send('emails.message', $data , function($message) use ($reciever_user)
+		{
+			$message->to($reciever_user->email)->subject('Communicate!');
+		});
+		
 	}
-	//$user1=User::where('id',$message->reciever_id)->first();
 	
-			
-		//broadcast(new MessageNotification($user,$user1,$message))->toOthers();
 		return response()->json(['message' => 'Message sent  Successfully']);  
 	}
 	public function message(Request $request,$id)
