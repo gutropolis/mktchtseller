@@ -114,8 +114,7 @@ class AuthController extends Controller
 			'role'=> 'seller',
 			
         ]);
-		Mail::to('singla.nikhil4@gmail.com')
-            ->send(new Activation($user));
+		
 
         $user->activation_token = generateUuid();
 		
