@@ -175,11 +175,11 @@ let routes = [
             },
 			
 			{
-                path: '/auth/:token/activate',
+                path: '/auth:token',
                 component: require('./views/auth/activate')
             },
             {
-                path: '/password/reset/:token',
+                path: '/password:token',
                 component: require('./views/auth/reset')
             },
 			{
