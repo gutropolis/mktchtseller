@@ -207,12 +207,12 @@ class charityController extends JoshController
 		 $charity->charity_type=$request->input('data2.charity_type');
 		$charity->title = $request->input('data2.title');
 		$charity->description=$request->input('data2.description');
-		//$charity->location=$request->input('data2.location');
+	
 		$charity->business_purpose=$request->input('data1.business_purpose');
 		$charity->year_in_business=$request->input('data2.year_in_business');
 		$charity->location=$request->input('data1.locality');
 		$charity->years_inception=$request->input('data1.years_inception');
-		//$charity->address =$request->input('data1.addr');
+		
 		$charity->postal_code=$request->input('data1.postal_code');
 		$charity->website=$request->input('data1.website');
 		$charity->vision_statement=$request->input('data1.vision_statement');
@@ -235,8 +235,17 @@ class charityController extends JoshController
                 ->performedOn($charity)
                 ->causedBy($charity)
                 ->log('Charity Organisation Add Organisation by '.$charity->updated_by);
-            // Redirect to the home page with success menu
-            return response()->json(['message' => 'You have registered successfully.']);
+           
+           $charityId = $charity->id;
+		$charity = Charity::where('id',$charityId)->first();
+		
+		
+		$user = JWTAuth::parseToken()->authenticate();
+		 $data = array('charity'=>$charity, 'user'=>$user);
+		Mail::send('emails.charity', $data , function($message)
+		{
+			$message->to('singla.nikhil4@gmail.com', 'Nikhil Singla')->subject('Welcome!');
+		});
 			}
 	   
 		
