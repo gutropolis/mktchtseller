@@ -32,9 +32,9 @@ class Activation extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail'];  
     }
-
+//
     /**
      * Get the mail representation of the notification.
      *
