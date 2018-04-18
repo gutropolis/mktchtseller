@@ -70,16 +70,30 @@ class charityController extends JoshController
 		$user = JWTAuth::parseToken()->authenticate();
 		$sellerproduct=new \App\Donation;
 		$sellerproduct->seller_id = $user->id;
-		$sellerproduct->product_id=$request->input('data.id');
+		$sellerproduct->product_id=$request->input('id');
 		$sellerproduct->charity_id=$charity->id;
 		$sellerproduct->post_id=$charity->id;
 		$sellerproduct->charity_owner_id=$charity->user_id;
-		$sellerproduct->units=$request->input('data.units');
+		$sellerproduct->units=$request->input('units');
 		$sellerproduct->status="0";
 		$sellerproduct->is_certify="0";
+		$sellerproduct->progress="0";
+		
+		
+		
 		$sellerproduct->save();
-		$seller=$sellerproduct->save();;
-	
+		
+		$sender_user=User::where('id',$sellerproduct->seller_id)->first();
+		
+		
+		$reciever_user=User::where('id',$sellerproduct->charity_owner_id)->first();
+		$product=Sellerproduct::where('id',$sellerproduct->product_id)->first();
+		
+	 $data = array('sellerproduct'=>$sellerproduct, 'sender_user'=>$sender_user,'reciever_user'=>$reciever_user,'product'=>$product);
+		 Mail::send('emails.donate', $data , function($message) use ($reciever_user)
+		{
+			$message->to($reciever_user->email)->subject('Donate!');
+		});
 		return response()->json(['message' => 'Your Request for Charity donation Submitted.Charity Will Respond you as Soon']);
 		
     }
