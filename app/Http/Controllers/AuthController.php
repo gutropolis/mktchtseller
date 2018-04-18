@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Validator;
+
+ use Mail;
+ use App\Mail\Contact;
+ use stdClass;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\Activation;
 use App\Notifications\Activated;
@@ -105,20 +109,23 @@ class AuthController extends Controller
             'email' => request('email'),
 			'first_name'=>request('first_name'),
 			'last_name'=>request('last_name'),
-            'status' => 'activated',
+           'status' => 'pending_activation',
             'password' => bcrypt(request('password')),
 			'role'=> 'seller',
 			
         ]);
-		//$user = new  \App\User($request->all());
+		Mail::to('singla.nikhil4@gmail.com')
+            ->send(new Activation($user));
 
         $user->activation_token = generateUuid();
 		
         $user->save();
-		//$user->notify(new Activation($user));
-         //return response()->json(['message' => 'You have registered successfully. Please check your email for activation!']);
+		
+		
+		$user->notify(new Activation($user));
+         return response()->json(['message' => 'You have registered successfully. Please check your email for activation!']);
 
-        return response()->json(['message' => 'You have registered successfully.']);
+      //  return response()->json(['message' => 'You have registered successfully.']);
 
         
     }
@@ -140,7 +147,7 @@ class AuthController extends Controller
             'email' => request('email'),
 			'first_name'=>request('first_name'),
 			'last_name'=>request('last_name'),
-            'status' => 'activated',
+            'status' => 'pending_activation',
             'password' => bcrypt(request('password')),
 			'role'=> 'charity',
 			
@@ -150,17 +157,38 @@ class AuthController extends Controller
         $user->activation_token = generateUuid();
 		
         $user->save();
-$user->save();
-		//$user->notify(new Activation($user));
-         //return response()->json(['message' => 'You have registered successfully. Please check your email for activation!']);
 
-        return response()->json(['message' => 'You have registered successfully.']);
+		$user->notify(new Activation($user));
+         return response()->json(['message' => 'You have registered successfully. Please check your email for activation!']);
+
+       // return response()->json(['message' => 'You have registered successfully.']);
 
         
 
         
     }
 
+	public function postContact(Request $request)
+    {
+        $data = new stdClass();
+
+        // Data to be used on the email view
+        $data->contact_name = $request->get('first_name');
+        $data->contact_email = $request->get('email');
+		$data->contact_subject = $request->get('subject');
+		$data->contact_company = $request->get('company');
+        $data->contact_msg = $request->get('message');
+
+        // Send the activation code through email
+        Mail::to('singla.nikhil4@gmail.com')
+            ->send(new Contact($data));
+
+        //Redirect to contact page
+         return response()->json(['message' => 'Your information collected sucesfully.We communicate you as soon.ThankYou']);
+    }
+
+	
+	
     public function activate($activation_token){
         $user = \App\User::whereActivationToken($activation_token)->first();
 
