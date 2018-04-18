@@ -126,7 +126,7 @@
                                              <label class="login__element--box--label">Confirm Password</label>
                                              <input  class="login__element--box--input" type="password" value="" v-model="passwordForm.new_password_confirmation">
                                           </div>
-                                          <button type="submit" class="btn btn-info waves-effect waves-light m-t-10">Change Password</button>
+                                          <button type="submit" class="btn btn-success waves-effect waves-light m-t-10">Change Password</button>
                                        </form>
                                     </div>
                                  </div>
