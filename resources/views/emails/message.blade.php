@@ -11,8 +11,8 @@
                    <h2 style="font-size:15px;margin-left:200px">
 				  Email ID:- {{ $sender_user->email }}
 				</h2><br />
-				<div style="font-size:15px;margin-left:200px">User Name:- {{ $sender_user->full_name }}</div><br />
-				<div style="font-size:15px;margin-left:200px">Subject:- </div><br />
+				<h2 style="font-size:15px;margin-left:200px">User Name:- {{ $sender_user->full_name }}</h2><br />
+				
 				
 				
 			<a href= "{{url('users_detail')}}">Click To Communicate </a>
