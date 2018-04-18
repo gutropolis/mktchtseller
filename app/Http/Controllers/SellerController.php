@@ -188,18 +188,31 @@ class SellerController extends Controller
 	    $user = JWTAuth::parseToken()->authenticate();
 	    $seller->user_id = $user->id;	
 		$seller->updated_by = $user->full_name;	
-
+			 
 	    $seller->save();
-		if ($seller->save()) {
+			if ($seller->save()) {
                 $success =trans('users/message.success.create');
             activity($seller->updated_by)
                 ->performedOn($seller)
                 ->causedBy($seller)
                 ->log('Seller Add a Company by '.$seller->updated_by);
             // Redirect to the home page with success menu
-            return response()->json(['message' => 'You have registered successfully.']);
+           
 			}
-	   
+		$sellerId = $seller->id;
+		$seller = Seller::where('id',$sellerId)->first();
+		
+		
+		$user = JWTAuth::parseToken()->authenticate();
+		 $data = array('seller'=>$seller, 'user'=>$user);
+		Mail::send('emails.seller', $data , function($message)
+		{
+			$message->to('singla.nikhil4@gmail.com', 'Nikhil Singla')->subject('Welcome!');
+		});
+			
+	
+			
+	    return response()->json(['message' => 'You have registered successfully.']);
        
 		 //return response()->json(['message' => 'You have registered successfully']);
     }
