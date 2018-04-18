@@ -9,19 +9,22 @@
                     <form class="form-horizontal form-material" id="resetform" @submit.prevent="submit">
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input type="text" name="email" class="form-control" placeholder="Email" v-model="resetForm.email"> </div>
+							 <label class="login__element--box--label">Email</label>
+                                <input type="text" name="email" class="login__element--box--input" placeholder="Email" v-model="resetForm.email"> </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <input type="password" name="password" class="form-control" placeholder="Password" v-model="resetForm.password"> </div>
+							 <label class="login__element--box--label">Password</label>
+                                <input type="password" name="password" class="login__element--box--input"  placeholder="Password" v-model="resetForm.password"> </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <input type="password" name="password" class="form-control" placeholder="Password" v-model="resetForm.password_confirmation"> </div>
+							 <label class="login__element--box--label">Confirm Password</label>
+                                <input type="password" name="password" class="login__element--box--input"  placeholder="Password" v-model="resetForm.password_confirmation"> </div>
                         </div>
                         <div class="form-group text-center m-t-20">
                             <div class="col-xs-12">
-                                <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Reset Password</button>
+                                <button class="btn btn-bg-orange login__element--box--button" type="submit">Reset Password</button>
                             </div>
                         </div>
                     </form>
