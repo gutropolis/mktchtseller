@@ -39,6 +39,17 @@ class charityController extends JoshController
 				
 			return response()->json($charityparcategory);
 		}
+		public function charites()
+		{
+		
+			$charity=Charity::latest()->limit(6)->get();
+			foreach ($charity as $char)
+			{
+			$category=CharityCategory::where('id',$char->charity_type)->pluck('title');
+			}
+	
+			return response()->json(array('data1'=>$charity,'data2'=>$category[0]));
+    }
 	 public function charity_list()
 		{
 		
