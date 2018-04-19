@@ -159,3 +159,4 @@ Route::post('/searchform', 'CharityController@searchform');
 Route::get('/searchform', 'CharityController@searchform');
 Route::get('/charity_list_user','CharityController@charity_list_user');
 Route::post('/post_contact','AuthController@postContact');
+Route::get('/show_charities','charityController@charites');
