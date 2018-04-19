@@ -72,7 +72,7 @@
                                     </td>
                                  </tr>
 								 <tr>
-								 <td v-if="items.length === 0">
+								 <td v-if="items.length === 0" colspan="7">
 									<h4  style="text-align:center;" >No results</h4>
 										</td>
 										</tr>
