@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Redirect;
 use Sentinel;
+use App\Settings;
 use URL;
 use View;
 use Yajra\DataTables\DataTables;
@@ -167,10 +168,21 @@ use stdClass;
 		'inbox_id' => $insertedId,
 		'receiver_read' => '0',
 		]);
+		$admin_email=Settings::first();
+		
+		
 		$sender_user=User::where('id',$message->sender_id)->first();
 		$reciever_user=User::where('id',$message->reciever_id)->first();
 		
+		$admin_email=Settings::pluck('admin_email');
+		$admin=$admin_email[0];
+		
 		 $data = array('message'=>$message, 'sender_user'=>$sender_user,'reciever_user'=>$reciever_user);
+		 
+		Mail::send('emails.message', $data , function($message) use($admin)
+		{
+			$message->to($admin)->subject('Request For Communication!');
+		});
 		 
 		Mail::send('emails.message', $data , function($message) use ($reciever_user)
 		{
