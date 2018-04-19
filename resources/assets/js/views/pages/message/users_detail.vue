@@ -30,11 +30,7 @@
                      </div>
                      <div class="chat_frame">
                         <div class="users_messages">
-                           <div class="users_messages--search_bar">
-                              <form>
-                                 <input type="text" name="search" placeholder="Search.." class="users_messages--search_bar--area">
-                              </form>
-                           </div>
+                          
                            <div class="users_messages--users_area">
                               <div v-for="create_messages in create_message">
                                  <ul class="users_messages--users_area--box">
