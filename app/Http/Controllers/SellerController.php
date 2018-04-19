@@ -13,6 +13,7 @@ use File;
 use Hash;
 use App\SellerCategory;
 use Illuminate\Http\Request;
+use App\Settings;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Input;
 use Redirect;
@@ -204,10 +205,13 @@ class SellerController extends Controller
 		
 		
 		$user = JWTAuth::parseToken()->authenticate();
+		$admin_email=Settings::pluck('admin_email');
+		$admin=$admin_email[0];
+		
 		 $data = array('seller'=>$seller, 'user'=>$user);
-		Mail::send('emails.seller', $data , function($message)
+		Mail::send('emails.seller', $data , function($message) use($admin)
 		{
-			$message->to('singla.nikhil4@gmail.com', 'Nikhil Singla')->subject('Welcome!');
+			$message->to($admin)->subject('Welcome!');
 		});
 			
 	
