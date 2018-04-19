@@ -11,6 +11,7 @@ use App\Donation;
 use App\Events\MessageDonation;
 use App\User;
 use App\CharityCategory;
+Use App\Settings;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use Hash;
@@ -252,10 +253,13 @@ class charityController extends JoshController
 		
 		
 		$user = JWTAuth::parseToken()->authenticate();
+		
+		$admin_email=Settings::pluck('admin_email');
+		$admin=$admin_email[0];
 		 $data = array('charity'=>$charity, 'user'=>$user);
-		Mail::send('emails.charity', $data , function($message)
+		Mail::send('emails.charity', $data , function($message) use($admin)
 		{
-			$message->to('singla.nikhil4@gmail.com', 'Nikhil Singla')->subject('Welcome!');
+			$message->to($admin)->subject('Welcome!');
 		});
 			}
 	   
