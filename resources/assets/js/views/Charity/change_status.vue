@@ -68,19 +68,7 @@
                 </div>
 				</div>
 
-                            <div class="donator_status--form_group">
-                                <label for="status_id" class="donator_status--form_group--control_label">Status</label>
-                                <div class="donator_status--form_group--control_data">
-									<select name="status" v-model="items.status" class="donator_status--form_group--control_data--select">
-									<option value="select" class="donator_status--form_group--control_data--select--option">Select .. </option>
-									<option value="0" class="donator_status--form_group--control_data--select--option">Pending..</option>
-                                   <option value="1" class="donator_status--form_group--control_data--select--option">Accept..</option>
-								   <option value="2" class="donator_status--form_group--control_data--select--option">No Thanks..</option>
-								   </select>
-
-                                </div> <!-- /controls -->
-                            </div> <!-- /form-group -->
-
+                           
 
 
                             <div class="donator_status--form_group">
