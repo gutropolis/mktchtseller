@@ -321,7 +321,7 @@
 		fetchItems()
             {
 			
-              axios.get('/api/charities').then(response =>  {
+              axios.get('/api/show_charities').then(response =>  {
 					
                   this.charity = response.data.data1;
 				  
