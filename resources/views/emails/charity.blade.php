@@ -14,6 +14,7 @@
 								<h2 style="font-size:15px;margin-left:200px">Location:- {{ $charity->location }}</h2><br /> 
 								<h2 style="font-size:15px;margin-left:200px">Contact:- {{$charity->area_code}}{{ $charity->phone_number }}</h2></div>
 				
+				<a href= "{{url('admin/charity/'.$charity->id.'/edit')}}">Click To See That Charity</a>
 </div>
 </div>
 </div>
