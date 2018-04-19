@@ -79,10 +79,6 @@ class charityController extends JoshController
 		$sellerproduct->is_certify="0";
 		$sellerproduct->progress="0";
 		
-		
-		
-		
-		
 		$sender_user=User::where('id',$sellerproduct->seller_id)->first();
 		
 		
@@ -294,6 +290,9 @@ class charityController extends JoshController
 		$status->progress=$request->get('progress');
 		
 		$status->save();
+		$donation=Donation::where('id',$id)->first();
+		$reciever_user=User::where('id',$donation->seller_id)->first();
+		$charity_detail=Charity::where('id',$donation->post_id)->first();
 		
 		return response()->json(['message' => 'Data update Successfully']);	
     }
@@ -452,11 +451,46 @@ class charityController extends JoshController
     {
 	
        $donation = Donation::where('id',$id)->update(['status' => 1,'charity_read' => 1]);
+	   $donation_detail=Donation::where('id',$id)->first();
+	   $reciever_user=User::where('id',$donation_detail->seller_id)->first();
+	   $charity_detail=Charity::where('id',$donation_detail->post_id)->first();
+	   
+	   	 $data = array('donation_detail'=>$donation_detail, 'charity_detail'=>$charity_detail,'reciever_user'=>$reciever_user);
+		 
+		Mail::send('emails.accept_donation', $data , function($message) use ($reciever_user)
+		{
+			$message->to($reciever_user->email)->subject('Notify!');
+		});
+	   
+	   
+	   
+	   
 		return response()->json(['message' => 'Product are Accepted']);
     }
 	 public function reject_donation($id)
     {
        $donation = Donation::where('id',$id)->update(['status' => 2,'charity_read' => 1]);
+	    $donation_detail=Donation::where('id',$id)->first();
+	   $reciever_user=User::where('id',$donation_detail->seller_id)->first();
+	   $charity_detail=Charity::where('id',$donation_detail->post_id)->first();
+	   
+	   	 $data = array('donation_detail'=>$donation_detail, 'charity_detail'=>$charity_detail,'reciever_user'=>$reciever_user);
+		 
+		 Mail::send('emails.reject_donation', $data , function($message) use ($reciever_user)
+		{
+			$message->to('singla.nikhil4@outlook.com')->subject('Admin!');
+			
+			
+		});
+		 
+		Mail::send('emails.reject_donation', $data , function($message) use ($reciever_user)
+		{
+			$message->to($reciever_user->email)->subject('Notify!');
+			
+			
+		});
+	   
+	   
 		return response()->json(['message' => 'Product are Rejected']);
     }
 
