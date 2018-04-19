@@ -6,6 +6,7 @@ use File;
 use Hash;
 use App\Http\Controllers\JoshController;
 use App\Sellerproduct;
+use App\Settings;
 use App\ProductCategory;
 use App\Charity;
 use Illuminate\Http\Request;
@@ -126,22 +127,36 @@ $sellerproduct = SellerProduct::latest()->get();
 	'tags' => request('tags'),
 	
 	]);
-	//return($sellerproduct);
-	//return($sellerproduct->productcategory);
+	
 	$user = JWTAuth::parseToken()->authenticate();
 	$query= Seller::where('user_id',$user->id)->first();
-	//$sellerproduct->organisation_id=$query->id;
+	
 	$sellerproduct->user_id = $user->id;	
 	$sellerproduct->updated_by=$user->full_name;
 	$sellerproduct->post_type= 'seller';
 	$sellerproduct->save();
+	$sellerproductId = $sellerproduct->id;
+	$sellerproduct = Sellerproduct::where('id',$sellerproductId)->first();
+	$seller=Seller::where('id',$sellerproduct->organisation_id)->first();
+	
+	$user = JWTAuth::parseToken()->authenticate();
+		$admin_email=Settings::pluck('admin_email');
+		$admin=$admin_email[0];
+		
+		 $data = array('sellerproduct'=>$sellerproduct,'seller'=>$seller ,'user'=>$user);
+		Mail::send('emails.sellerproduct', $data , function($message) use($admin)
+		{
+			$message->to($admin)->subject('Add Product!');
+		});
+	
+	
 	if ($sellerproduct->save()) {
                 $success =trans('users/message.success.create');
             activity($sellerproduct->updated_by)
                 ->performedOn($sellerproduct)
                 ->causedBy($sellerproduct)
                 ->log('Seller Add a Product by '.$sellerproduct->updated_by);
-            // Redirect to the home page with success menu
+            
             return response()->json(['message' => 'You have registered successfully.']);
 			}
 	return response()->json(['message' => 'Your Data Are Stored']);
