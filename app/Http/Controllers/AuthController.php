@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Validator;
-
+use App\Settings;
  use Mail;
  use App\Mail\Contact;
  use stdClass;
@@ -178,8 +178,11 @@ class AuthController extends Controller
 		$data->contact_company = $request->get('company');
         $data->contact_msg = $request->get('message');
 
+		$admin_email=Settings::pluck('admin_email');
+		$admin=$admin_email[0];
+		
         // Send the activation code through email
-        Mail::to('singla.nikhil4@gmail.com')
+        Mail::to($admin)
             ->send(new Contact($data));
 
         //Redirect to contact page
