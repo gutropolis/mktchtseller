@@ -419,7 +419,14 @@ public function updatelogo(Request $request,$id)
         return view('admin.deleted_seller', compact('seller'));
     }
 
+ public function destroy_donation($id)
+	{
+		 $donation = Donation::find($id);
+      $donation->delete();
 
+     return response()->json(['message' => 'Data Deleted Successfully']);
+    
+    }
   
 
     public function destroy($id)
