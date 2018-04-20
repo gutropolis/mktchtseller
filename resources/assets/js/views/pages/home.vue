@@ -89,7 +89,7 @@
 						
     </b-tab>
     <b-tab title="Products" active>
-        <h1 class="tab_heading_top "> Recent Sellers Posts</h1>
+        <h1 class="tab_heading_top "> Recent Seller Posts</h1>
         <div class="post_contant_inner clearfix">
         <div v-for="product in products" class="recent__post--tab--content row">
             
@@ -99,7 +99,7 @@
                             <div class="recent__post--tab--content--detail_box">
                                 <article class="recent__post--tab--content--detail_box--block">
                                     <h6 class="recent__post--tab--content--detail_box--block--heading">{{product.title}}</h6>
-                                    <p class="recent__post--tab--content--detail_box--block--pera_box"><span><strong>Unit: </strong>{{product.units}} </span>  <span><strong>ASIN:</strong> {{product.asin_url}}</span></p>
+                                    <p class="recent__post--tab--content--detail_box--block--pera_box"><span><strong>Units: </strong>{{product.units}} </span>  <span><strong>ASIN:</strong> {{product.asin_url}}</span></p>
                                 </article>
                             </div>
                              <div class="recent__post--tab--content--btn_outer">
