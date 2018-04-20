@@ -24,7 +24,7 @@
                               </select>
                            </div>
                            <div class="form-group">
-                              <label class="login__element--box--label">Title</label>
+                              <label class="login__element--box--label">Charity Name</label>
                               <input type="text" name="title" v-model="savecharityform.title"  required placeholder="Title" class="login__element--box--input"/>
                            </div>
                            <div class="form-group">
