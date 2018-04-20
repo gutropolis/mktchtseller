@@ -76,6 +76,13 @@ class charityController extends JoshController
 		return response()->json($query);
 	}
 	
+	public function fetch_charity(Request $request)
+	{		
+			$user = JWTAuth::parseToken()->authenticate();
+		$charity = Charity::where('user_id',$user->id)->get();
+		return response()->json($charity);
+	}
+	
 	public function product(Request $request,$id)
     {
 		$charity = Charity::find($id);
