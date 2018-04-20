@@ -85,7 +85,7 @@
 							</div>
 							<div class="charity__listing--content--address row">
 								<div class="charity__listing--content--address--location col-md-4"><p><i class="fa fa-briefcase" aria-hidden="true"></i> <span>ASIN: </span> {{item.asin_url}}</p></div>
-								<div class="charity__listing--content--address--location col-md-2 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Unit:</span> {{item.units}}</p></div>
+								<div class="charity__listing--content--address--location col-md-3 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Unit:</span> {{item.units}}</p></div>
 							
 							</div>
 							
