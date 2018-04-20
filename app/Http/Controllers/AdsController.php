@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\my_ads;
-use App\charity;
+use App\Charity;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use Hash;
@@ -44,7 +44,7 @@ class AdsController extends Controller
 	public function charity()
 	{
 		$user = JWTAuth::parseToken()->authenticate();
-		$query=\App\charity::whereUserId($user->id);
+		$query=\App\Charity::whereUserId($user->id);
 		$qu=$query->get();
 		return($qu);
 		
@@ -168,7 +168,7 @@ class AdsController extends Controller
     {
 		$edit_ads = my_ads::find($id);
 		
-		$charity=charity::where('id',$edit_ads->ads_type)->pluck('title');
+		$charity=Charity::where('id',$edit_ads->ads_type)->pluck('title');
 		return response()->json(array('data1'=>$edit_ads,'data2'=>$charity[0]));	
    
     }
