@@ -308,7 +308,7 @@
     handleSubmit () {
        let data = this.prod;
    axios.post('/api/product/'+this.$route.params.id,this.prod).then(response => {
-   toastr['success'](response.data);
+   toastr['success'](response.data.message);
    })
    
     },
