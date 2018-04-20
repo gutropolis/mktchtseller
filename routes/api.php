@@ -69,6 +69,7 @@ Route::get('/vender_category','SellerCategoryController@index');
 Route::get('/donation/{id}','SellerController@edit_donation');
 Route::get('/donation_list','SellerController@donation_list');
 Route::post('/edit_donation/{id}','SellerController@updatedonation');
+Route::delete('/delete_donation/{id}','SellerController@destroy_donation');
 
 //Charity Ads
 Route::post('/create_ads','AdsController@store');
@@ -123,6 +124,7 @@ Route::post('/search','CharityController@search');
 
 Route::get('/search','CharityController@search');
 Route::get('/charities','CharityController@charity_list');
+Route::get('/charity_name','CharityController@fetch_charity');
 Route::get('/charity_type','CharityController@charity_type');
 
 
@@ -139,6 +141,10 @@ Route::post('/message/{id}','InboxController@message');
 Route::get('/user_id','InboxController@user_id');
 Route::get('/senderinfo/{id}','InboxController@senderinfo');
 Route::get('/unread','InboxController@unread');
+
+Route::get('/unread_message','InboxController@unread_message');
+
+
 
 Route::get('/product_name','CharityController@product_name');
 Route::get('/unread_msg','InboxController@unread_msg');
