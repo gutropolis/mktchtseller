@@ -71,7 +71,7 @@
                            </div>
 						   <div class="form-group ">
                               <label class="login__element--box--label">Tags</label>
-                              <input type="text" name="tags" class="login__element--box--input" required placeholder="tags" v-model="items.tags">
+                             <vue-tags-input  name="tag" v-model="items.tags" :tags="tags" @tags-changed="newTags => tags = newTags"/>
                            </div>
                            <div class="form-group text-center">
                               <input type="Submit" placeholder="" value="Save" class="btn btn-bg-orange login__element--box--button">
@@ -88,18 +88,22 @@
 </template>
 <script>
    import AppSidebar from '../users/sidebar.vue'
+   import VueTagsInput from '@johmun/vue-tags-input';
    export default {
     components: {
-              AppSidebar 
+              AppSidebar ,VueTagsInput
           },
           data() {
               return {
+			  tag:'',
 			  category:[],
-			 
+			  tags: [],
 			  item:[],
    				items:{
 				 title: 'select',
 				 product_catgeory: 'select',
+				tags:'',
+				
 				},
    					productform:{
    					 keywords: '',
@@ -178,7 +182,10 @@
                   });
               },
    		 submit(e){
-                  axios.post('/api/gs_seller_product',this.items).then(response =>  {
+						 let data1 = this.tags;
+						 
+						
+                  axios.post('/api/gs_seller_product', {image: this.items, data1}).then(response =>  {
                       toastr['success'](response.data.message);
                       this.$router.push('/product_list');
                   }).catch(error => {
