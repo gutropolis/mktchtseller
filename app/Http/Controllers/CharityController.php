@@ -289,7 +289,7 @@ class charityController extends JoshController
 		
              $charityparcategory=CharityCategory::all();
              
-		$charity = charity::find($id);
+		$charity = Charity::find($id);
 		$charity_type = CharityCategory::where('id',$charity->charity_type)->pluck('title');
 		
 		return response()->json(array('data1'=>$charity,'data2'=>$charityparcategory,'data3'=>$charity_type[0]));	
