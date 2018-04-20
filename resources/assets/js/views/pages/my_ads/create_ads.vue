@@ -101,7 +101,7 @@ import VeeValidate from 'vee-validate'
       },
 				 fetchItems()
 			 {
-				axios.get('/api/charities').then((response) => {
+				axios.get('/api/charity_name').then((response) => {
 				 this.items=response.data;
 				
 				});
