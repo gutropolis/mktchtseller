@@ -113,20 +113,25 @@ $sellerproduct = SellerProduct::latest()->limit(6)->get();
 
 	public function store(Request $request)
 	{
+		
+		$data=$request->input('data1.tags');
 
-            
-	$sellerproduct = \App\Sellerproduct::create([
-	'title' => request('name'),
-	'description' => request('bulletPoints'),
-	'description_url' => request('description'),
-	'asin_url' => request('ASIN'),
-	'images' => request('image'),
-	'organisation_id'=>request('title'),
-	'product_category'=>request('product_catgeory'),
-	'units'=> request('units'),
-	'tags' => request('tags'),
+		
+		
+			
+	$sellerproduct = new \App\Sellerproduct;
+	$sellerproduct->title = $request->input('image.name');
+	$sellerproduct->description = $request->input('image.bulletPoints');
+	$sellerproduct->description_url = $request->input('image.description');
+	$sellerproduct->asin_url = $request->input('image.ASIN');
+	$sellerproduct->images = $request->input('image.image');
+	$sellerproduct->organisation_id = $request->input('image.title');
+	$sellerproduct->product_category = $request->input('image.product_catgeory');
+	$sellerproduct->units = $request->input('image.units');
+	$sellerproduct->tags = $request->input('data1.tags');
 	
-	]);
+	
+	
 	
 	$user = JWTAuth::parseToken()->authenticate();
 	$query= Seller::where('user_id',$user->id)->first();
