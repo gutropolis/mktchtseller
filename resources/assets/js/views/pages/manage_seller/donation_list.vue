@@ -140,6 +140,7 @@
                                        <th>Charity </th>
 									   <th>Progress Status</th>
                                        <th>Status</th>
+									   <th>Tax Document</th>
                                        <th>Created On</th>
                                        
                                     </tr>
@@ -150,8 +151,9 @@
                                       <td v-for="charity in item.charity_detail">{{charity}}</td>
 									  <td>{{item.progress}} % </td>
                                        <td v-if="item.status == 0">Pending</td>
-                                       <td v-if="item.status == 1">Accept</td>
+                                       <td v-if="item.status == 1">Accepted</td>
                                        <td v-if="item.status == 2">Decline</td>
+									   <td></td>
                                        <td>{{item.created_at}}</td>
                                        
                                     </tr>
