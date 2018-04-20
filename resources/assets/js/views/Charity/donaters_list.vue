@@ -37,8 +37,10 @@
                                         </td>
                                 
                                  <td>
-                                    <button v-if="item.is_certify==0" class="btn btn-danger btn-sm" @click.prevent="toggleTaskStatus(item.id)" data-toggle="tooltip" title="Mark as Incomplete"><i class="fa fa-times"></i></button>
-                                    <button v-if="item.is_certify==1" class="btn btn-success btn-sm" @click.prevent="toggleTaskStatus(item.id)" data-toggle="tooltip" title="Mark as Complete"><i class="fa fa-check"></i></button>
+								  <click-confirm yes-class="btn btn-success" no-class="btn btn-danger">
+                                    <button v-if="item.is_certify==0" class="btn btn-danger btn-sm" @click.prevent="toggleTaskStatus(item.id)" data-toggle="tooltip" title="Mark as complete"><i class="fa fa-times"></i></button>
+                                    <button v-if="item.is_certify==1" class="btn btn-success btn-sm" @click.prevent="toggleTaskStatus(item.id)" data-toggle="tooltip" title="Mark as Incomplete"><i class="fa fa-check"></i></button>
+									  </click-confirm>
                                  </td>
 								 <td v-if="item.status== 0">Pending</td>
 								 <td v-if="item.status== 1">Accept</td>
@@ -62,12 +64,13 @@
    </div>
 </template>
 <script>
-   import InfiniteLoading from 'vue-infinite-loading';
+   import InfiniteLoading from 'vue-infinite-loading'
+    import ClickConfirm from 'click-confirm'
     import helper from '../../services/helper'
     import AppSidebar from '../pages/users/sidebar.vue' 
        export default {
            components: {
-              AppSidebar ,InfiniteLoading
+              AppSidebar ,InfiniteLoading,ClickConfirm
            },
    
    
