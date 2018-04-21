@@ -44,7 +44,7 @@
                                           <p v-for="userinfo in create_messages.sender_detail" class="users_messages--users_area--box--list--link--user_name"> {{userinfo.first_name}}</p>
                                           <p class="users_messages--users_area--box--list--link--user_title">{{create_messages.subject}}</p>
                                           <p class="users_messages--users_area--box--list--link--date">{{create_messages.created_at}}</p>
-                                          <span>{{unread}}</span>
+                                          
                                        </router-link>
                                     </li>
                                  </ul>
@@ -70,13 +70,13 @@
       data() {
               return {
    			 create_message:[],
-                   unread:[],
+                   //unread:[],
               }
    
           },
    	created: function()
              {
-				this.fetchunread();
+				//this.fetchunread();
      			this.fetchItem();
      			 	
              },
@@ -91,7 +91,7 @@
 	   
 	   
 	   },
-		fetchunread()
+		/*fetchunread()
 		{
 			axios.get('/api/unread').then(response=>{
 				this.unread=response.data;
@@ -100,7 +100,7 @@
 			
 			})
 		
-		},
+		},*/
 	   
 	   
 	   
