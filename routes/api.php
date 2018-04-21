@@ -165,4 +165,6 @@ Route::post('/searchform', 'CharityController@search');
 Route::get('/searchform', 'CharityController@search');
 Route::get('/charity_list_user','CharityController@charity_list_user');
 Route::post('/post_contact','AuthController@postContact');
-Route::get('/show_charities','charityController@charites');
+Route::get('/show_charities','CharityController@charites');
+Route::get('/message_notification','InboxController@message_notification');
+Route::get('/user_notification','InboxController@user_notification');
