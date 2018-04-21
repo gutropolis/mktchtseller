@@ -65,6 +65,12 @@
                                     </b-link>
                                  </td>
                               </tr>
+							  <tr>
+								 <td v-if="items.length === 0" colspan="7">
+									<h4  style="text-align:center;" >No results</h4>
+										</td>
+										</tr>
+							  
                            </table>
 						   <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                         </div>
