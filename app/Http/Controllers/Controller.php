@@ -11,7 +11,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 	
-	public function AddUserActivityFeed($from, $to, $subject, $post_id,$link) {
+	public function AddUserActivityFeed($sender_id, $reciever_id, $subject, $post_id,$link) {
 					//to=request('to');
 					//$subject=request('subject'); 
 					//$post_id=request('post_id');
@@ -21,8 +21,8 @@ class Controller extends BaseController
 					$created_at=date('Y-m-d h:i:s');
 		
 					$activityfeed = \App\User_Activity::create([
-						   'from'=> $from,
-						   'to'=> $to,
+						   'sender_id'=> $sender_id,
+						   'reciever_id'=> $reciever_id,
 						   'subject'=> $subject,
 						   'post_id'=> $post_id,
 						    'link'=> $link,
