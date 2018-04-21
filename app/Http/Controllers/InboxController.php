@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Inbox;
 use App\Message;
 use App\User;
+use App\User_Activity;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use Hash;
@@ -193,6 +194,56 @@ use stdClass;
 	
 		return response()->json(['message' => 'Message sent  Successfully']);  
 	}
+	
+		public function message_notification()
+	{
+		
+		$user = JWTAuth::parseToken()->authenticate();
+		if(intval($user->id)> 0 ){
+				
+		$query=Message::select('gs_message.created_at','gs_message.reciever_id','users.role','gs_message.inbox_id','gs_message.sender_id','users.first_name','users.last_name','users.avatar')->join('users','gs_message.sender_id','=','users.id')->where('gs_message.reciever_read','0')->where('gs_message.reciever_id',$user->id)->get();
+		
+			return($query);
+		}else{
+			return 0;
+		}
+	}
+		public function user_notification()
+	{
+		
+	/*	select 
+`gs_user_activity_feed`.`created_on`, 
+`gs_user_activity_feed`.`from`, 
+`gs_user_activity_feed`.`to`, 
+`gs_user_activity_feed`.`subject`, 
+`gs_user_activity_feed`.`link`,
+`gs_user_activity_feed`.`read_to`,
+`gs_user_activity_feed`.`post_id`,
+`users`.`first_name` 
+from `gs_user_activity_feed` 
+inner join `users` 
+on `gs_user_activity_feed`.`from` = `users`.`id` 
+where `gs_user_activity_feed`.`read_to` = 0 and `gs_user_activity_feed`.`to` = '3'*/
+		
+		
+		
+		$user = JWTAuth::parseToken()->authenticate();
+		if(intval($user->id)> 0 ){
+				
+		$query=User_Activity::select('gs_user_activity_feed.created_at','gs_user_activity_feed.from','gs_user_activity_feed.link','gs_user_activity_feed.read_to','gs_user_activity_feed.post_id','users.role','gs_user_activity_feed.to','gs_user_activity_feed.subject','users.first_name','users.last_name','users.avatar')->join('users','gs_user_activity_feed.from','=','users.id')->where('gs_user_activity_feed.read_to','0')->where('gs_user_activity_feed.to',$user->id)->get();
+		
+			return($query);
+		}else{
+			return 0;
+		}
+	}
+	
+	 
+	
+	
+	
+	
+	
 	public function message(Request $request,$id)
 	{
 		$user = JWTAuth::parseToken()->authenticate();
@@ -227,6 +278,17 @@ use stdClass;
 		return response()->json($user); 
 	}
 	
+	public function unread_message()
+	{
+			$user = JWTAuth::parseToken()->authenticate();
+			$inboxes=Inbox::where('reciever_id',$user->id)->orwhere('status','1')->count();
+			
+			
+			return response()->json($inboxes); 
+	}
+	
+	
+	
 	public function unread()
 	{
 			$user = JWTAuth::parseToken()->authenticate();
@@ -256,6 +318,8 @@ use stdClass;
 	 }	
 	 
 	
+		 
+	 
 	public function getModalDelete($id)
 	{
 	}
