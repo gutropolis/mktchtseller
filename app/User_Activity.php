@@ -8,7 +8,7 @@ class User_Activity extends Model
 {
  protected $table="gs_user_activity_feed";
     protected $fillable = [
-					'from','to','subject','post_id','link','read_to','read_by_admin',
+					'sender_id','reciever_id','subject','post_id','link','read_to','read_by_admin',
     ];
 	public function author()
 	{
