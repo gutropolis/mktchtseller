@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use App\Http\Controllers\JoshController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\charityRequest;
 use App\Charity;
 use App\Sellerproduct;
@@ -27,7 +27,7 @@ Use App\Mail\Restore;
 use stdClass;
 
 
-class charityController extends JoshController
+class charityController extends Controller
 {
 
  protected $avatar_path = 'images/charity/';   
@@ -110,6 +110,24 @@ class charityController extends JoshController
 			$message->to($reciever_user->email)->subject('Donate!');
 		});
 		$sellerproduct->save();
+		
+		$actvity=new Controller;
+	$actvity->AddUserActivityFeed($sellerproduct->seller_id,$sellerproduct->charity_owner_id,'Invite to Donate Product',$sellerproduct->post_id,'/donaters');
+	
+	
+	
+		if ($sellerproduct->save()) {
+                $success =trans('users/message.success.create');
+            activity($sender_user->fullname)
+                ->performedOn($sellerproduct)
+                ->causedBy($sellerproduct)
+                ->log('Invite Charity to Donate Product '.$product->title);
+            
+            return response()->json(['message' => 'You have registered successfully.']);
+			}
+		
+		
+		
 		return response()->json(['message' => 'Your Request for Charity donation Submitted.Charity Will Respond you as Soon']);
 		
     }
@@ -312,9 +330,8 @@ class charityController extends JoshController
 		$status->progress=$request->get('progress');
 		
 		$status->save();
-		$donation=Donation::where('id',$id)->first();
-		$reciever_user=User::where('id',$donation->seller_id)->first();
-		$charity_detail=Charity::where('id',$donation->post_id)->first();
+	$actvity=new Controller;
+	$actvity->AddUserActivityFeed($status->charity_owner_id,$status->seller_id,'Update Your Status of Donating Product',$status->post_id,'/donaters');
 		
 		return response()->json(['message' => 'Data update Successfully']);	
     }
@@ -475,6 +492,7 @@ class charityController extends JoshController
        $donation = Donation::where('id',$id)->update(['status' => 1,'charity_read' => 1]);
 	   $donation_detail=Donation::where('id',$id)->first();
 	   $reciever_user=User::where('id',$donation_detail->seller_id)->first();
+	   $sender_user=User::where('id',$donation_detail->charity_owner_id)->first();
 	   $charity_detail=Charity::where('id',$donation_detail->post_id)->first();
 	   
 	   	 $data = array('donation_detail'=>$donation_detail, 'charity_detail'=>$charity_detail,'reciever_user'=>$reciever_user);
@@ -483,8 +501,8 @@ class charityController extends JoshController
 		{
 			$message->to($reciever_user->email)->subject('Notify!');
 		});
-	   
-	   
+	$actvity=new Controller;
+	$actvity->AddUserActivityFeed($donation_detail->charity_owner_id,$donation_detail->seller_id,'Accept Your Donating product',$donation_detail->post_id,'/donaters');
 	   
 	   
 		return response()->json(['message' => 'Product are Accepted']);
@@ -512,7 +530,8 @@ class charityController extends JoshController
 			
 		});
 	   
-	   
+	   $actvity=new Controller;
+	$actvity->AddUserActivityFeed($donation_detail->charity_owner_id,$donation_detail->seller_id,'Reject Your Donating product',$donation_detail->post_id,'/donaters');
 		return response()->json(['message' => 'Product are Rejected']);
     }
 
