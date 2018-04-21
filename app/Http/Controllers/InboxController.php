@@ -230,7 +230,7 @@ where `gs_user_activity_feed`.`read_to` = 0 and `gs_user_activity_feed`.`to` = '
 		$user = JWTAuth::parseToken()->authenticate();
 		if(intval($user->id)> 0 ){
 				
-		$query=User_Activity::select('gs_user_activity_feed.created_at','gs_user_activity_feed.from','gs_user_activity_feed.link','gs_user_activity_feed.read_to','gs_user_activity_feed.post_id','users.role','gs_user_activity_feed.to','gs_user_activity_feed.subject','users.first_name','users.last_name','users.avatar')->join('users','gs_user_activity_feed.from','=','users.id')->where('gs_user_activity_feed.read_to','0')->where('gs_user_activity_feed.to',$user->id)->get();
+		$query=User_Activity::select('gs_user_activity_feed.created_at','gs_user_activity_feed.sender_id','gs_user_activity_feed.link','gs_user_activity_feed.read_to','gs_user_activity_feed.post_id','users.role','gs_user_activity_feed.receiver_id','gs_user_activity_feed.subject','users.first_name','users.last_name','users.avatar')->join('users','gs_user_activity_feed.sender_id','=','users.id')->where('gs_user_activity_feed.read_to','0')->where('gs_user_activity_feed.reciever_id',$user->id)->get();
 		
 			return($query);
 		}else{
