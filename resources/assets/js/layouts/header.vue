@@ -48,35 +48,49 @@
                                              c0.182,0.208,0.16,0.523-0.048,0.705L17.342,17.355C16.836,17.797,16.171,18.018,15.506,18.018z"/>
                                        </g>
                                     </svg>
-                                    <span>3</span>
+                                    <span  v-if="messageCount > 0" >{{messageCount}}</span>
                                  </div>
                               </em>
                            </template>
                            <div class="admin__list--box">
                               <ul class="admin__lsit" id="dashboard-menu">
                                  <li class="admin__lsit--content--name">
-                                    <div class="admin__lsit--content--notification"><img src="../../svg/notifications-button.svg" alt="user" class="profile-pic"></div>
+                                    <div class="admin__lsit--content--notification"><img src="../../svg/envelope.svg" alt="user" class="profile-pic"></div>
                                     <h5>Messages</h5>
                                  </li>
-                                 <router-link to="/users_detail">
-                                    <li class="admin__lsit--content">
-                                       <div v-for="it in item" class="notification">
+                                
+                                    <li class="admin__lsit--content"  v-if="messageCount > 0" >
+                                       <div v-for="it in messageArr" class="notification">
+									     <router-link :to="{name: 'users_message', params: { id: it.inbox_id }}"  >
+										
                                           <figure class="notification__profile"><img :src="'/images/user/'+it.avatar"></figure>
                                           <div class="notification__content">
-                                             <h6 class="notification__content--heading">{{it.sender}}</h6>
+										  <p class="notification__content--pera">{{it.first_name}}{{it.last_name}} sent you message
+										  
+										  <span v-if="it.role=='charity'" >for their Charity</span>
+										  <span v-else >for their Product</span>
+										  <span>{{ it.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span>
+										  </p>
+										 
+										  <!--
+                                             <h6 class="notification__content--heading">{{it.first_name}}{{it.last_name}}</h6>
                                              <p class="notification__content--pera">{{it.text}}</p>
                                              <p><span class="notification__content--time">{{it.time}}</span>
                                              </p>
+										-->
                                           </div>
+										  </router-link>
                                        </div>
                                     </li>
-                                 </router-link>
+									 <li  v-else class="admin__lsit--content"   >
+                                       <div   class="notification">
+									      No Message
+                                       </div>
+                                    </li>
+                                 
                               </ul>
                            </div>
-                           <div class="admin__list--box">
-                              <ul class="admin__lsit" id="dashboard-menu">
-                              </ul>
-                           </div>
+                           
                         </b-nav-item-dropdown>
                         <b-nav-item-dropdown right>
                            <!-- Using button-content slot -->
@@ -91,7 +105,7 @@
                                              c-73.95,17.85-127.5,81.6-127.5,160.65V357l-51,51v25.5h433.5V408L420.75,357z"/>
                                        </g>
                                     </svg>
-                                    <span>3</span>
+                                    <span  v-if="messageNotification > 0" >{{messageNotification}}</span>
                                  </div>
                               </em>
                            </template>
@@ -101,42 +115,29 @@
                                     <div class="admin__lsit--content--notification"><img src="../../svg/notifications-button.svg" alt="user" class="profile-pic"></div>
                                     <h5>Notification</h5>
                                  </li>
-                                 <li class="admin__lsit--content">
-                                    <div class="notification">
-                                       <figure class="notification__profile"><img src="../../images/profile.jpg"></figure>
-                                       <div class="notification__content">
-                                          <h6 class="notification__content--heading">Jim Gray</h6>
-                                          <p class="notification__content--pera">Just see the my admin!</p>
-                                          <p><span class="notification__content--time">9:30 AM</span>
-                                             <span class="notification__content--ago">10 min ago</span>
+                                 <li class="admin__lsit--content" v-if="messageNotification > 0">
+								  <div v-for="it in notificationArr" class="notification">
+                                   
+                                      <figure class="notification__profile"><img :src="'/images/user/'+it.avatar"></figure>
+                                          <div class="notification__content">
+										  <p class="notification__content--pera">{{it.first_name}}{{it.last_name}}  {{ it.subject }}
+										  
+										  <span v-if="it.role=='charity'" ></span>
+										  <span v-else > </span>
+										  <span>{{ it.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span>
+										 
                                           </p>
                                        </div>
-                                    </div>
-                                 </li>
-                                 <li class="admin__lsit--content">
-                                    <div class="notification">
-                                       <figure class="notification__profile"><img src="../../images/profile.jpg"></figure>
-                                       <div class="notification__content">
-                                          <h6 class="notification__content--heading">Jim Gray</h6>
-                                          <p class="notification__content--pera">Just see the my admin!</p>
-                                          <p><span class="notification__content--time">9:30 AM</span>
-                                             <span class="notification__content--ago">10 min ago</span>
-                                          </p>
+										  </router-link>
                                        </div>
-                                    </div>
-                                 </li>
-                                 <li class="admin__lsit--content">
-                                    <div class="notification">
-                                       <figure class="notification__profile"><img src="../../images/profile.jpg"></figure>
-                                       <div class="notification__content">
-                                          <h6 class="notification__content--heading">Jim Gray</h6>
-                                          <p class="notification__content--pera">Just see the my admin!</p>
-                                          <p><span class="notification__content--time">9:30 AM</span>
-                                             <span class="notification__content--ago">10 min ago</span>
-                                          </p>
+                                    </li>
+									 <li  v-else class="admin__lsit--content"   >
+                                       <div   class="notification">
+									      No Notification
                                        </div>
-                                    </div>
                                  </li>
+                                 
+                                 
                               </ul>
                            </div>
                         </b-nav-item-dropdown>
@@ -213,12 +214,14 @@
    
    
            return {
-   count:{},
+		   messageArr:[],
+			notificationArr:[],
    
    item:[],
    items: [],
-   
-                  loginCheck : helper.checkLogin()
+   messageCount:'',
+   messageNotification:'',
+   loginCheck : helper.checkLogin()
 			  
    
            }
@@ -227,26 +230,14 @@
        mounted() {
 	   
    
-   Echo.channel('chat')
-           .listen('MessageNotification', (e) => {
-               this.item.push({
-                   message: e.message.message,
-                   sender: e.user.full_name,
-					avatar: e.user.avatar,
-					reciever:e.user1.full_name,
-					text:e.txt,
-					time:e.message.created_at,
+  
    	
-               })
-   
-   
-   console.log(this.item);
-     })
+            
    },
    
    created: function() {
-   
-          
+   this.fetchmessage();
+   this.fetchnotification();   
 		  
 		   
        },
@@ -263,8 +254,39 @@
                 	window.location.reload();
                })
            },
+		   
+		    fetchmessage()
+			{
+              axios.get('/api/message_notification').then((response) => {
+			  if(response.data.length > 0 ){
+				this.messageCount=response.data.length;
+				this.messageArr=response.data;
+			  }
+			  
+                
+				
+					
+              }) 
    
   
+		  },
+			fetchnotification()
+			{
+				axios.get('/api/user_notification').then((response) => {
+			  if(response.data.length > 0 ){
+				this.messageNotification=response.data.length;
+				console.log(this.messageNotification);
+				this.notificationArr=response.data;
+			
+			}
+			
+		 })
+		 },
+		  
+		  
+		  
+		  
+		  
 		  
            getAuthUserFullName() {
                return this.$store.getters.getAuthUserFullName;
@@ -275,7 +297,11 @@
                return this.$store.getters.getAuthUser(name);
            }
        },
-   
+			
+			
+			
+			
+			
         computed: {
            getAvatar(){
                return '/images/user/'+this.getAuthUser('avatar');
