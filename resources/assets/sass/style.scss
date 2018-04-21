@@ -124,7 +124,11 @@
         padding: 30px 15px;
         margin: 0px auto;
         box-shadow: 0px 0px 19px 0px #d4d4d4;
-    
+		@media screen and (max-width: $break-sm) {
+           display:block;
+		   width:100%;
+			
+        }
        &--box_btn{
             flex:20%;
 
@@ -140,10 +144,16 @@
         .form-group{
             padding: 0px 10px;
             margin: 0px;
+			@media screen and (max-width: $break-sm) {
+			margin-bottom:15px;
+        }
         }
         &--box{
             flex: 40%;
-
+			@media screen and (max-width: $break-sm) {
+           
+			
+        }
             &--area{
                 width: 100%;
                 padding: 10px;
@@ -260,7 +270,7 @@
                 height: auto;
                 float: left;
                 margin-right: 10px;
-                min-height: 160px;
+                min-height: 110px;
 
                 @media screen and (max-width: $break-lg){
                      min-height: 150px;
@@ -1098,15 +1108,23 @@ font-size:15px;
 .notification {
     position: relative;
     padding: $space-s;
+	    display: flex;
+    align-items: center;
+	border-bottom: 1px solid #f4f4f4;
     &__profile {
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         position: absolute;
         border-radius: 100%;
         overflow: hidden;
+		    margin: 0px;
     }
     &__content {
         padding-left: $space-xl;
+		&--pera
+		{
+			margin:0px;
+		}
         &--ago {
             float: right;
         }
@@ -1501,6 +1519,17 @@ font-size:15px;
     @media screen and (max-width:$break-sm){
         width: 100%;
     }
+	&:before{
+	    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #dadada;
+    top: -10px;
+    right: 15px;
+	}
 }
 
 .user_profile_dropdown{
@@ -1524,10 +1553,12 @@ font-size:15px;
         &--name {
             background: $grey-color2;
             width: 100%;
-            padding: $space-s+$space-vs $space-s !important;
+            padding: $space-s $space-s !important;
+			display: flex;
+			align-items: center;
             h5 {
                 color: $grey-color5;
-                font-size: 18px;
+                font-size: 16px;
                 font-weight: 600;
             }
         }
@@ -1543,13 +1574,12 @@ font-size:15px;
             margin-top: -9px;
         }
         &--notification {
-            width: 25px;
-            height: 25px;
-            border-radius: 100%;
-            overflow: hidden;
+            width: 20px;
+            height: 20x;
+           
             float: left;
             margin-right: $space-s+$space-vs;
-            margin-top: -5px;
+            
             img {}
         }
         &--detail {
