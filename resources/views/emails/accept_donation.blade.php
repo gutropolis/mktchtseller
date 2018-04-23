@@ -13,7 +13,7 @@
 				  <p style="font-size:13px;">Progress Status :- {{ $donation_detail->progress }} % </p><br />
 				
 				
-				<p><a href= "{{url('my_notification')}}" style="font-size: 14px;
+			<p><a href= "{{url('my_notification')}}" style="font-size: 14px;
 			background: #e8870b;
 			border: 1px solid #e8870b;
 			padding: 10px;
