@@ -209,7 +209,7 @@
    import helper from '../services/helper'
    
    import Vue from 'vue'
-  
+   Vue.use(require('vue-moment'));
    export default {
     components: {
             
