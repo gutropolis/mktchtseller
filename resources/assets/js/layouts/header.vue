@@ -124,7 +124,7 @@
 										  
 										  <span v-if="it.role=='charity'" ></span>
 										  <span v-else > </span>
-										  <span>{{ it.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span>
+										  <span>{{ it.created_at |  moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span>
 										 
                                           </p>
                                        </div>
@@ -207,10 +207,15 @@
 </template>
 <script>
    import helper from '../services/helper'
-   
+   import moment from 'moment'
+   import Vue from 'vue'
+   Vue.use(require('vue-moment'));
    export default {
-   
+    components: {
+            moment
+        },
        data() {
+
    
    
            return {
