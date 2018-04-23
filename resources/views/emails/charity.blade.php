@@ -15,13 +15,13 @@
 								<p style="font-size:13px;"><strong>Contact:-</strong> {{$charity->area_code}}{{ $charity->phone_number }}</p></div>
 				
 				<p><a href= "{{url('admin/charity/'.$charity->id.'/edit')}}" style="font-size: 14px;
-    background: #e8870b;
-    border: 1px solid #e8870b;
-    padding: 10px;
-    display: inline-block;
-    border-radius: 5px;
-    color: #fff;
-    text-decoration: none;">Click To See That Charity</a></p>
+					background: #e8870b;
+					border: 1px solid #e8870b;
+					padding: 10px;
+					display: inline-block;
+					border-radius: 5px;
+					color: #fff;
+					text-decoration: none;">Click To See That Charity</a></p>
 </div>
 </div>
 </div>
