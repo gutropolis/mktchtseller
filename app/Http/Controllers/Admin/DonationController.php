@@ -8,7 +8,8 @@ use App\Charity;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use Hash;
-
+use App\Seller;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Redirect;
@@ -50,6 +51,8 @@ class DonationController extends JoshController
 		
 		
         $donation = Donation::all();
+		
+		
 		foreach($donation as $donate)
 		{
 		if($donate->status==0)
@@ -65,6 +68,12 @@ class DonationController extends JoshController
 		else{
 			$donate->status="decline";
 		}
+		$seller_name=User::where('id',$donate->seller_id)->pluck('first_name');
+		$donate->seller=$seller_name[0];
+		$product=Sellerproduct::where('id',$donate->product_id)->pluck('title');
+		$donate->product=$product[0];
+		$charity=Charity::where('id',$donate->charity_id)->pluck('title');
+		$donate->charity_organisation=$charity[0];
 		}         return DataTables::of($donation)
             ->editColumn('created_at',function(Donation $donation) {
                 return $donation->created_at->format('d F Y ');
