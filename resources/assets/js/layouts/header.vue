@@ -207,12 +207,12 @@
 </template>
 <script>
    import helper from '../services/helper'
-   import moment from 'moment'
+   
    import Vue from 'vue'
    Vue.use(require('vue-moment'));
    export default {
     components: {
-            moment
+            
         },
        data() {
 
