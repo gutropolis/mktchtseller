@@ -25,7 +25,7 @@ class User extends Authenticatable {
 	 */
     use Taggable;
 
-	protected $fillable =['first_name', 'last_name', 'email', 'status','role','phone','avatar', 'password'];
+	protected $fillable =['id','first_name', 'last_name', 'email', 'status','role','phone','avatar', 'password'];
 	protected $guarded = ['id'];
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -61,4 +61,8 @@ public function profile()
 		{
 			return $this->belongsTo('user_id','user_name');
 		}
+		public function messages()
+{
+  return $this->hasMany(Message::class);
+}
 }
