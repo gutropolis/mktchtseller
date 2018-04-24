@@ -269,7 +269,7 @@ where `gs_user_activity_feed`.`read_to` = 0 and `gs_user_activity_feed`.`to` = '
 		$user_reciever=User::where('id', $receiver_userid)->get();
 		
 		
-		 broadcast(new MessageSent($user, $message,$user_reciever));
+		 event(new MessageSent($message));
 		return response()->json(['message' => 'Message sent  Successfully']);
 	}
 	public function user_id()
