@@ -176,27 +176,47 @@ import AppNavbar from '../users/navbar.vue'
 			 savechat:{  message:''  }			 
             }
         },
+		  props: ['userId'],
 		created: function()
         {
+			this.fetchMessage();
 			this.senderinfo();
 			this.fetchItem();
-         // this.fetchItems();
+        
         },
          mounted(){
     	this.fetchItems();
-        Echo.channel('chat')
-            .listen('MessageSent', (e) => {
-                this.items.push({
-                    message: e.message.message,
-                    user: e.user,
-					
-                })
-				
-				console.log(this.items);
-      })
+       
     },
 
 	  methods: {
+			fetchMessage(){
+			axios.get('/api/user_id').then(response =>  {
+                
+				  this.user_id=response.data.id;
+				console.log("Userid login"+this.user_id);
+			
+		 Echo.channel('chat'+this.user_id)
+            .listen('MessageSent', (e) => {
+			if(this.user_id==e.user.reciever_id)
+			{
+                this.items.push({
+                    message: e.user.message,
+                    sender_id: e.user.sender_id,
+                })
+				
+				}
+      })
+	  console.log("user_detail"+this.user_id);
+			})
+			
+			
+			},
+	  
+	  
+	  
+	  
+	  
              submit(e){
 				axios.post('/api/message/'+this.$route.params.id, this.savechat).then(response =>   { if(response.status===200) {
    				 this.savechat.message = '';
@@ -218,7 +238,7 @@ import AppNavbar from '../users/navbar.vue'
             {
 				axios.get('/api/user_detail/'+this.$route.params.id).then(response =>  {
                   this.items = response.data;
-				 // console.log(this.items);
+				
               });
             },
 		
@@ -227,6 +247,8 @@ import AppNavbar from '../users/navbar.vue'
             {
 				axios.get('/api/user_id').then(response =>  {
                   this.user = response.data;
+				  this.user_id=response.data.id;
+				  console.log("User_id ="+this.user.id);
 				  
               });
             },
