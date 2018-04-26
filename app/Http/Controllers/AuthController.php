@@ -118,10 +118,16 @@ class AuthController extends Controller
 
         $user->activation_token = generateUuid();
 		
-        $user->save();
+      $data=array('user'=>$user);
 		
 		
-		$user->notify(new Activation($user));
+		Mail::send('emails.activation', $data, function($message) use($user)
+		{
+			$message->to($user->email)->subject('Activate Your Charity FBA Account!');
+		});
+		
+		  $user->save();
+			
          return response()->json(['message' => 'You have registered successfully. Please check your email for activation!']);
 
       //  return response()->json(['message' => 'You have registered successfully.']);
@@ -155,9 +161,13 @@ class AuthController extends Controller
 
         $user->activation_token = generateUuid();
 		
-        $user->save();
+         $data=array('user'=>$user);
 
-		$user->notify(new Activation($user));
+		Mail::send('emails.activation', $data, function($message) use($user)
+		{
+			$message->to($user->email)->subject('Activate Your Charity FBA Account!');
+		});
+		 $user->save();
          return response()->json(['message' => 'You have registered successfully. Please check your email for activation!']);
 
        // return response()->json(['message' => 'You have registered successfully.']);
@@ -205,7 +215,12 @@ class AuthController extends Controller
 
         $user->status = 'activated';
         $user->save();
-        $user->notify(new Activated($user));
+        $data=array('user'=>$user);
+
+		Mail::send('emails.activated', $data, function($message) use($user)
+		{
+			$message->to($user->email)->subject('Your Account Activated!');
+		});
 
         return response()->json(['message' => 'Your account has been activated!']);
     }
