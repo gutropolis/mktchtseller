@@ -28,44 +28,44 @@
                               <input type="text" name="title" v-model="savecharityform.title"  required placeholder="Title" class="login__element--box--input"/>
                            </div>
                            <div class="form-group">
-                              <label class="login__element--box--label">Description</label>
+                              <label class="login__element--box--label">Tell Us About Your Organization</label>
                               <textarea  type="text" v-model="savecharityform.description" rows="5" placeholder="Description" class="login__element--box--input"></textarea>
-                           </div>
-						    <div class="form-group">
-                              <label class="login__element--box--label">Years in business</label>
-                              <input type="text" placeholder="year in business" v-model="savecharityform.year_in_business" class="login__element--box--input">
-                           </div>
-                           
+                           </div> 
                         </tab-content>
                         <tab-content>
-                           <div class="form-group">
-                              <label class="login__element--box--label">Select Address</label>
+						 <div class="form-group">
+                              <label class="login__element--box--label">Shipping Address For Organization <div class="info-btn">
+							  <b-btn v-b-popover.hover="'This address should be the physical mailing address that sellers can send goods/products to.'" title="Info">
+								<i class="fa fa-info-circle" style="font-size:20px"></i>
+							  </b-btn>
+							</div></label>
                               <vue-google-autocomplete id="map" class="login__element--box--input" v-model="address.addr" placeholder="Start typing" v-on:placechanged="getAddressData">
                               </vue-google-autocomplete>
                            </div>
-                           <div class="form-group">
-                              <label class="login__element--box--label">Location</label>
-                              <div class="message is-success" >
-                              </div>
-                              <input type="text"   v-model="address.locality" rows="3" placeholder="Fill Locality" class="login__element--box--input">
+						 <div class="form-group">
+                              <label class="login__element--box--label">Country</label>
+                              <input type="text" placeholder="Country" v-model="address.country" class="login__element--box--input">
                            </div>
+                           <div class="form-group">
+                              <label class="login__element--box--label">State</label>
+                              <input type="text" placeholder="State" v-model="address.administrative_area_level_1" class="login__element--box--input">
+                           </div>
+						    <div class="form-group">
+                              <label class="login__element--box--label">City</label>
+                              <input type="text" placeholder="City" v-model="address.locality" class="login__element--box--input">
+                           </div>
+                          
+            
                            <div class="form-group">
                               <label class="login__element--box--label">Zip Code</label>
                               <input type="text"  v-model="address.postal_code" rows="3" placeholder="Fill The Zipcode" class="login__element--box--input">
                            </div>
                           
-                           <div class="form-group">
-                              <label class="login__element--box--label">Business Purpose</label>
-                              <input type="text" placeholder="Purpose" v-model="address.business_purpose" class="login__element--box--input">
-                           </div>
-                           <div class="form-group">
-                              <label class="login__element--box--label">Years in inception</label>
-                              <input type="text" placeholder="Years_in _Inception" v-model="address.years_inception" class="login__element--box--input">
-                           </div>
+                          
                            <div class="form-group clearfix">
                               <label class="login__element--box--label">Phone Number</label>
                               <input type="text" placeholder="+91" v-model="address.area_code" class="login__element--box--input_areacode">
-                              <input type="number" placeholder="9999999999" v-model="address.phone_number" maxlength="10" class="login__element--box--input_phone_number">
+                               <input type="number" placeholder="123456789" v-model="address.phone_number" class="login__element--box--input_phone_number">
                            </div>
                         </tab-content>
                         <tab-content>
@@ -82,8 +82,12 @@
                               <textarea  type="text" v-model="address.mission_statement"  rows="3" placeholder="Statement" class="login__element--box--input"></textarea>
                            </div>
                            <div class="form-group">
-                              <label class="login__element--box--label">Tags</label>
-                              <input type="text" placeholder="Tags" v-model="address.tags" class="login__element--box--input">
+                              <label class="login__element--box--label">Tags <div class="info-btn">
+							  <b-btn v-b-popover.hover="'Please try to use tags that a general audience will understand'" title="Info">
+								<i class="fa fa-info-circle" style="font-size:20px"></i>
+							  </b-btn>
+							</div></label>
+                              <vue-tags-input  name="tags" v-model="tag" :tags="tags"   @tags-changed="newTags => tags = newTags"/>
                            </div>
                            <div class="form-group">
                               <label class="login__element--box--label">Logo Upload</label>
@@ -109,19 +113,22 @@
    import VueGoogleAutocomplete from 'vue-google-autocomplete'
    import AppNavbar from '../pages/users/navbar.vue' 
     import AppSidebar from '../pages/users/sidebar.vue'
-    
+    import VueTagsInput from '@johmun/vue-tags-input'
    import Vue from 'vue'
     import VueFormWizard from 'vue-form-wizard'
     Vue.use(VueFormWizard)
+
     
     export default {
    	 components: {
-               AppNavbar,  AppSidebar ,VueGoogleAutocomplete
+               AppNavbar,  AppSidebar ,VueGoogleAutocomplete,VueTagsInput
            },
      
            data() {
    		
                return {
+			    tag: '',
+				tags: [],
    			 address: '',
    			items:[],
    			image: '',
@@ -130,15 +137,16 @@
 						charity_Category:'select',
 					     title: '',
 						 description: '',
-						 location: '',
+						
 			
 							},
 					address: {
 					area_code:'',
-   					year_in_business: '',
-					years_inception:'',
-					business_purpose: '',
-					locality: '',
+   					country: '',
+					state:'',
+					city: '',
+					tag: '',
+
    				    zipcode:'',
    				    phone_number: '',
    				    website: '',
