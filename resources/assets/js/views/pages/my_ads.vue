@@ -9,7 +9,7 @@
             <div class="col-md-9 dashboard">
                 <div class="dashboard__content clearfix">
                     <div class="dashboard__content--head">
-                        <h3 class="dashboard__content--head--heading">My Ad's</h3>
+                        <h3 class="dashboard__content--head--heading">My Requests</h3>
                         <a href="#" class="dashboard__content--head--link"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="460.298px" height="460.297px" viewBox="0 0 460.298 460.297" style="enable-background:new 0 0 460.298 460.297;"
                             xml:space="preserve">
@@ -51,7 +51,7 @@
 		C147.097,447.637,146.36,447.193,145.734,446.572z"/>
 </g>
 
-</svg>Create Ads</b-button>
+</svg>Create Request</b-button>
                                     
 							 
                                 </div>
