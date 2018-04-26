@@ -14,6 +14,7 @@ use App\CharityCategory;
 Use App\Settings;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
+use App\Events\DonationStatusChanged;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -246,8 +247,8 @@ class charityController extends Controller
 			if($request->get('image'))
 				{
 					$image = $request->get('image');
-					$name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-					\Image::make($request->get('image'))->save(public_path('images/charity/').$name);
+					$image = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+					\Image::make($request->get('image'))->save(public_path('images/charity/').$image);
 				}
 
 		
@@ -256,10 +257,10 @@ class charityController extends Controller
 		$charity->title = $request->input('data2.title');
 		$charity->description=$request->input('data2.description');
 	
-		$charity->business_purpose=$request->input('data1.business_purpose');
-		$charity->year_in_business=$request->input('data2.year_in_business');
-		$charity->location=$request->input('data1.locality');
-		$charity->years_inception=$request->input('data1.years_inception');
+		
+		$charity->country=$request->input('data1.country');
+		$charity->state=$request->input('data1.administrative_area_level_1');
+		$charity->city=$request->input('data1.locality');
 		
 		$charity->postal_code=$request->input('data1.postal_code');
 		$charity->website=$request->input('data1.website');
@@ -268,7 +269,7 @@ class charityController extends Controller
 		$charity->tags=$request->input('data1.tags'); 
 		$charity->area_code=$request->input('data1.area_code');
 		$charity->phone_number= $request->input('data1.phone_number');
-		$charity->images=$name;
+		$charity->images=$image;
 		$charity->post_type='charity';
 			
 			$user = JWTAuth::parseToken()->authenticate();
@@ -496,14 +497,20 @@ class charityController extends Controller
 	   $charity_detail=Charity::where('id',$donation_detail->post_id)->first();
 	   
 	   	 $data = array('donation_detail'=>$donation_detail, 'charity_detail'=>$charity_detail,'reciever_user'=>$reciever_user);
+		  
+		  $admin_email=Settings::pluck('admin_email');
+		$admin=$admin_email[0];
 		 
+		Mail::send('emails.accept_donation', $data , function($message) use($admin)
+		{
+			$message->to($admin)->subject('Welcome!');
+		});
 		Mail::send('emails.accept_donation', $data , function($message) use ($reciever_user)
 		{
 			$message->to($reciever_user->email)->subject('Notify!');
 		});
-	$actvity=new Controller;
-	$actvity->AddUserActivityFeed($donation_detail->charity_owner_id,$donation_detail->seller_id,'Accept Your Donating product',$donation_detail->post_id,'/donaters');
-	   
+			$actvity=new Controller;
+			$actvity->AddUserActivityFeed($donation_detail->charity_owner_id,$donation_detail->seller_id,'Accept Your Donating product',$donation_detail->post_id,'/donaters');
 	   
 		return response()->json(['message' => 'Product are Accepted']);
     }
@@ -516,12 +523,16 @@ class charityController extends Controller
 	   
 	   	 $data = array('donation_detail'=>$donation_detail, 'charity_detail'=>$charity_detail,'reciever_user'=>$reciever_user);
 		 
-		 Mail::send('emails.reject_donation', $data , function($message) use ($reciever_user)
+		 $admin_email=Settings::pluck('admin_email');
+		$admin=$admin_email[0];
+		 
+		Mail::send('emails.reject_donation', $data , function($message) use($admin)
 		{
-			$message->to('singla.nikhil4@outlook.com')->subject('Admin!');
-			
-			
+			$message->to($admin)->subject('Welcome!');
 		});
+		 
+		 
+		
 		 
 		Mail::send('emails.reject_donation', $data , function($message) use ($reciever_user)
 		{
