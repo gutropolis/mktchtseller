@@ -2603,3 +2603,17 @@ font-size:15px;
         color: #343434;
     }
 }
+.info-btn
+{
+	display:inline-block;
+	button{
+		background:transparent;
+		color:$black-color;
+		padding:0px;
+		border:none;
+		&:hover{
+			background:none;
+			color:$black-color;
+		}
+	}
+}
