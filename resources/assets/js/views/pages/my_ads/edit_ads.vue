@@ -12,7 +12,7 @@
 					<div class="col-md-6">
 					<div class="form-group">
 					   
-                            <label class="login__element--box--label">Ads Type</label>
+                            <label class="login__element--box--label">Organisation</label>
                             <select  v-model="create_ads.ads_type" class="login__element--box--input">
 							
 							<option value:="">--{{charity}}</option>
