@@ -9,7 +9,7 @@
                     <div class="dashboard__content--outer">   
 					<div class="dashboard__content--description">
                         
-                            <h3 class="dashboard__content--description--heading">Create Your Ads</h3>
+                            <h3 class="dashboard__content--description--heading">Create Here Request</h3>
                      <form class="form-horizontal form-material" id="create_ads" @submit.prevent="submit">
 					<div class="col-md-6">
 					<p v-if="errors.length">
@@ -51,7 +51,7 @@
 						
 					</div>
 			<div class="form-group">
-						<input type="submit" value="Submit" class="btn btn-success waves-effect waves-light m-t-10">
+						<input type="submit" value="Request Products" class="btn btn-success waves-effect waves-light m-t-10">
 						</div>
 						  </form>
 						   </div>
