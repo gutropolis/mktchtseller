@@ -18,11 +18,11 @@ class GsCharityOrganisation extends Migration
 			$table->increments('id');
             $table->string('title');
             $table->string('description');
-            $table->string('location');
+            $table->string('city');
             $table->string('images');
-            $table->string('year_in_business');
-            $table->string('years_inception');
-            $table->string('business_purpose');
+            $table->string('country');
+            $table->string('state');
+            
             $table->string('area_code');
 			$table->string('postal_code');
             $table->string('phone_number');
