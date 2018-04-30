@@ -35,7 +35,12 @@
               <div class="messages_outer--left_sec">
                 <router-link to="/users_detail" class="messages_outer--left_sec--back_btn"><i class="fa fa-arrow-left" aria-hidden="true"></i></router-link>
                 <div class="messages_outer--left_sec--image_outer">
-                  <figure class="messages_outer--left_sec--image_outer--image_box">
+				
+                  <figure class="messages_outer--left_sec--image_outer--image_box" v-if="item.avatar==null">
+                    <img :src="'/images/user/avatar.png'" class="messages_outer--left_sec--image_outer--image_box--image">
+					
+                  </figure>
+				   <figure class="messages_outer--left_sec--image_outer--image_box" v-if="item.avatar!=null">
                     <img :src="'/images/user/'+ item.avatar" class="messages_outer--left_sec--image_outer--image_box--image">
 					
                   </figure>
@@ -78,7 +83,10 @@
 
                   <div class="mobile_message_outer--left_sec detail_box-inner">
                 <div class="mobile_message_outer--left_sec--image_outer">
-                  <figure class="mobile_message_outer--left_sec--image_outer--image_box">
+                  <figure class="mobile_message_outer--left_sec--image_outer--image_box" v-if="item.avatar==null">
+                      <img :src="'/images/user/avatar.png'"   class="mobile_message_outer--left_sec--image_outer--image_box--image">
+                  </figure>
+				   <figure class="mobile_message_outer--left_sec--image_outer--image_box" v-if="item.avatar!='null'">
                       <img :src="'/images/user/'+ item.avatar"   class="mobile_message_outer--left_sec--image_outer--image_box--image">
                   </figure>
                 </div>
@@ -123,7 +131,8 @@
                     <div v-for="item in items">
 					   
 						<li v-if="item.sender_id!=user.id" v-for="items in info" class="messages_outer--right_sec--box--sent">
-							<img class="messages_outer--right_sec--box--sent--image" :src="'/images/user/'+ items.avatar">
+							<img v-if="items.avatar==null" class="messages_outer--right_sec--box--sent--image" :src="'/images/user/avatar.png'">
+							<img v-if="items.avatar!=null" class="messages_outer--right_sec--box--sent--image" :src="'/images/user/'+items.avatar">
 							<p class="messages_outer--right_sec--box--sent--chat">{{item.message}}</p>
 						</li>
 						
