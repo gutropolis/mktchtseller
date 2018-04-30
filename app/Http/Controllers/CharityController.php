@@ -270,7 +270,7 @@ class charityController extends Controller
 		$charity->country=$request->input('data1.country');
 		$charity->state=$request->input('data1.administrative_area_level_1');
 		$charity->city=$request->input('data1.locality');
-		$charity->address=$request->input('data2.address');
+		//$charity->address=$request->input('data2.address');
 		$charity->postal_code=$request->input('data1.postal_code');
 		$charity->website=$request->input('data1.website');
 		$charity->vision_statement=$request->input('data1.vision_statement');
