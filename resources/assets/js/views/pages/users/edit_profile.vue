@@ -41,11 +41,11 @@
                                        <form class="form-horizontal form-material"  @submit.prevent="updateProfile">
                                           <div class="form-group">
                                              <label class="login__element--box--label">First Name</label>
-                                             <input type="text" name="first_name" v-model="profileForm.first_name" class="login__element--box--input">
+                                             <input type="text" name="first_name" pattern="[A-Za-z]{}" v-model="profileForm.first_name" class="login__element--box--input">
                                           </div>
                                           <div class="form-group">
                                              <label class="login__element--box--label">Last Name</label>
-                                             <input type="text" name="last_name"  v-model="profileForm.last_name" class="login__element--box--input">
+                                             <input type="text" name="last_name" pattern="[A-Za-z]{}"  v-model="profileForm.last_name" class="login__element--box--input">
                                           </div>
                                           <div class="form-group">
                                              <label class="login__element--box--label">Date Of Birth</label>
@@ -69,7 +69,7 @@
 											
 											 <div class="form-group">
                                              <label class="login__element--box--label">Phone</label>
-                                             <input type="text" name="phone"  rows="3" v-model="profileForm.phone" class="login__element--box--input">
+                                             <input type="text" name="phone" required pattern="[0-9][0-9]{9}" rows="3" v-model="profileForm.phone" class="login__element--box--input">
                                           </div>
 										  
                                           <div class="form-group">
