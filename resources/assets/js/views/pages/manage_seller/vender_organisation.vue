@@ -68,7 +68,7 @@
                         </div>
 							<div class="form-group">
                             <label class="login__element--box--label">State</label>
-                             <input  type="text"  v-model="address.administrative_area_level_1" placeholder="Country" class="login__element--box--input">
+                             <input  type="text"  v-model="address.administrative_area_level_1" placeholder="State" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">city</label>
