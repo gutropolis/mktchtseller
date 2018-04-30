@@ -40,17 +40,18 @@
 						</tab-content>
 						 <tab-content>
 						
-						<div class="form-group">
-                            <label class="login__element--box--label">Location</label>
-                             <input  type="text"  v-model="items.city" placeholder="Location" class="login__element--box--input">
-                        </div>
+						
 						<div class="form-group">
                             <label class="login__element--box--label">Country</label>
-                             <input  type="text"  v-model="items.country" placeholder="Location" class="login__element--box--input">
+                             <input  type="text"  v-model="items.country" placeholder="Country" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">State</label>
-                             <input  type="text"  v-model="items.state" placeholder="Location" class="login__element--box--input">
+                             <input  type="text"  v-model="items.state" placeholder="State" class="login__element--box--input">
+                        </div>
+						<div class="form-group">
+                            <label class="login__element--box--label">City</label>
+                             <input  type="text"  v-model="items.city" placeholder="City" class="login__element--box--input">
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Postal_code</label>
