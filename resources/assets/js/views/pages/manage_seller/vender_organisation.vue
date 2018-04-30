@@ -43,7 +43,7 @@
                             <input type="text" name="title" v-model="savesellerform.title" required   placeholder="Title" class="login__element--box--input">
                         </div>
                         <div class="form-group">
-                            <label class="login__element--box--label">Description</label>
+                            <label class="login__element--box--label">Tell Us About Your Business</label>
                              <textarea  type="text" v-model="savesellerform.description" rows="5" placeholder="Description" class="login__element--box--input"></textarea>
                         </div>
 						 <div class="form-group">
@@ -54,12 +54,24 @@
 						  <tab-content>
 						
 						  <div class="form-group">
-                              <label class="login__element--box--label">Select Address</label>
+                              <label class="login__element--box--label">Address Of you Business <div class="info-btn">
+							  <b-btn v-b-popover.hover="'This address should be the physical mailing address that sellers can send goods/products to.'" title="Info">
+								<i class="fa fa-info-circle" style="font-size:20px"></i>
+							  </b-btn>
+							</div></label>
                               <vue-google-autocomplete id="map" class="login__element--box--input"  placeholder="Start typing" v-on:placechanged="getAddressData">
                               </vue-google-autocomplete>
                            </div>
+						   	<div class="form-group">
+                            <label class="login__element--box--label">Country</label>
+                             <input  type="text"  v-model="address.country" placeholder="Country" class="login__element--box--input">
+                        </div>
+							<div class="form-group">
+                            <label class="login__element--box--label">State</label>
+                             <input  type="text"  v-model="address.administrative_area_level_1" placeholder="Country" class="login__element--box--input">
+                        </div>
 						<div class="form-group">
-                            <label class="login__element--box--label">Locality</label>
+                            <label class="login__element--box--label">city</label>
                              <input  type="text"  v-model="address.locality" placeholder="Fill State" class="login__element--box--input">
                         </div>
 						<div class="form-group">
