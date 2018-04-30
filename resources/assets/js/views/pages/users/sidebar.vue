@@ -161,6 +161,19 @@
             </div>
             <div v-else>
 			 <li class="proflie__element--detail--list--item">
+               <router-link to="users_detail" v-b-toggle.collapse7 class="proflie__element--detail--list--item--link">
+                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
+                     <g>
+                        <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
+                        <path d="M304.5,270.3l-52.8,48.2c-4.1,3.8-10.5,3.8-14.6,0l-52-48.2l-165.6,131h451L304.5,270.3z"/>
+                        <polygon points="244.6,296.7 472.8,88.7 16.4,88.7 		"/>
+                        <polygon points="320,256.3 490,390.4 490,101.1 		"/>
+                     </g>
+                  </svg>
+                  Messages <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_message}}</span> 
+               </router-link>
+            </li>
+			 <li class="proflie__element--detail--list--item">
                <router-link to="/donation_list" class="proflie__element--detail--list--item--link">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="535.5px" height="535.5px" viewBox="0 0 535.5 535.5" style="enable-background:new 0 0 535.5 535.5;" xml:space="preserve">
                      <g id="notifications-on">
