@@ -15,8 +15,8 @@ class Charity extends Model
     protected $table = 'gs_charity_organisation';
 
     protected $fillable = [
-        'title','description','location','images','year_in_business',
-		'start_up_year','business_purpose','state','postal_code','area_code','phone_number','years_inception','address',
+        'title','description','location','images','country',
+		'state','city','postal_code','area_code','phone_number','address',
 		'website','vision_statement','mission_statement','charity_type','tags','user_id','updated_by','post_type',
 		];
     
