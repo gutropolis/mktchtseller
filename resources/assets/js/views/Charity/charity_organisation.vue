@@ -39,7 +39,7 @@
 								<i class="fa fa-info-circle" style="font-size:20px"></i>
 							  </b-btn>
 							</div></label>
-                              <vue-google-autocomplete id="map" class="login__element--box--input" v-model="address.address" placeholder="Start typing" v-on:placechanged="getAddressData">
+                              <vue-google-autocomplete id="map" class="login__element--box--input" v-model="address.addr" placeholder="Start typing" v-on:placechanged="getAddressData">
                               </vue-google-autocomplete>
                            </div>
 						 <div class="form-group">
@@ -146,7 +146,7 @@
 					state:'',
 					city: '',
 					tag: '',
-					address:'',
+
    				    zipcode:'',
    				    phone_number: '',
    				    website: '',
@@ -177,7 +177,7 @@
    			 
                    axios.post('/api/gs_charity_organisation', {image: this.image, data1,data2,data3}).then(response =>  {
                        toastr['success'](response.data.message);
-                       this.$router.push('/charity_list');
+                       //this.$router.push('/charity_list');
                    }).catch(error => {
                        toastr['error'](error.response.data.message);
                    });
