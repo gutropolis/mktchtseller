@@ -71,6 +71,11 @@
                            </div>
 						   <div class="form-group ">
                               <label class="login__element--box--label">Tags</label>
+							  <div class="info-btn">
+							  <b-btn v-b-popover.hover="'Please try to use tags that a general audience will understand'" title="Info">
+								<i class="fa fa-info-circle" style="font-size:20px"></i>
+							  </b-btn>
+							</div>
                              <vue-tags-input  name="tag" v-model="items.tags" :tags="tags" @tags-changed="newTags => tags = newTags"/>
                            </div>
                            <div class="form-group text-center">
