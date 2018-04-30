@@ -253,6 +253,15 @@ class charityController extends Controller
 
 		
 		  $charity = new \App\Charity;
+		// $tags =  implode(',', $request->input('data3.text'));
+			//$charity->tags= $tags;
+			// print_r($request->data3('text'));
+			//return($request->data3);	
+			
+			
+		
+		  
+		  
 		 $charity->charity_type=$request->input('data2.charity_type');
 		$charity->title = $request->input('data2.title');
 		$charity->description=$request->input('data2.description');
@@ -261,16 +270,25 @@ class charityController extends Controller
 		$charity->country=$request->input('data1.country');
 		$charity->state=$request->input('data1.administrative_area_level_1');
 		$charity->city=$request->input('data1.locality');
-		
+		$charity->address=$request->input('data2.address');
 		$charity->postal_code=$request->input('data1.postal_code');
 		$charity->website=$request->input('data1.website');
 		$charity->vision_statement=$request->input('data1.vision_statement');
 		$charity->mission_statement=$request->input('data1.mission_statement');
-		$charity->tags=$request->input('data1.tags'); 
+		 
 		$charity->area_code=$request->input('data1.area_code');
 		$charity->phone_number= $request->input('data1.phone_number');
 		$charity->images=$image;
 		$charity->post_type='charity';
+		
+		//$tag=array();
+		foreach($request->data3 as $data  )
+			{
+				$tag[]=$data['text'];			
+			}
+			
+			$tagsss=implode(" , ", $tag);
+			$charity->tags=$tagsss;
 			
 			$user = JWTAuth::parseToken()->authenticate();
 			$charity->user_id = $user->id; 
@@ -344,21 +362,18 @@ class charityController extends Controller
 
             $charity->title = $request->get('title');
 			$charity->description = $request->get('description');
-			$charity->location = $request->get('location');
-			$charity->year_in_business= $request->get('year_in_business');
+			$charity->country = $request->get('country');
+			$charity->state= $request->get('state');
 			$charity->area_code= $request->get('area_code');
 			$charity->postal_code= $request->get('postal_code');
-			$charity->business_purpose= $request->get('business_purpose');
-			$charity->years_inception= $request->get('years_inception');
-			
+			$charity->city= $request->get('city');
 			$charity->phone_number= $request->get('phone_number');
 			$charity->website= $request->get('website');
 			$charity->vision_statement= $request->get('vision_statement');
 			$charity->mission_statement= $request->get('mission_statement');
 			$charity->tags= $request->get('tags');
 			$charity->charity_type= $request->get('charity_type');
-
-        $charity->save();
+			$charity->save();
 		
         return response()->json(['message' => 'Data update Successfully']);
         
