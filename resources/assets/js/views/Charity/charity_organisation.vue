@@ -39,7 +39,7 @@
 								<i class="fa fa-info-circle" style="font-size:20px"></i>
 							  </b-btn>
 							</div></label>
-                              <vue-google-autocomplete id="map" class="login__element--box--input" v-model="address.addr" placeholder="Start typing" v-on:placechanged="getAddressData">
+                              <vue-google-autocomplete id="map" class="login__element--box--input" v-model="address.address" placeholder="Start typing" v-on:placechanged="getAddressData">
                               </vue-google-autocomplete>
                            </div>
 						 <div class="form-group">
@@ -87,7 +87,7 @@
 								<i class="fa fa-info-circle" style="font-size:20px"></i>
 							  </b-btn>
 							</div></label>
-                              <vue-tags-input  name="tags" v-model="tag" :tags="tags"   @tags-changed="newTags => tags = newTags"/>
+                              <vue-tags-input  name="tags[]" v-model="tag"    @tags-changed="newTags => tags = newTags"/>
                            </div>
                            <div class="form-group">
                               <label class="login__element--box--label">Logo Upload</label>
@@ -146,7 +146,7 @@
 					state:'',
 					city: '',
 					tag: '',
-
+					address:'',
    				    zipcode:'',
    				    phone_number: '',
    				    website: '',
@@ -173,8 +173,9 @@
                submit(e){
    			 let data1 = this.address;
 			 let data2= this.savecharityform;
+			 let data3=this.tags;
    			 
-                   axios.post('/api/gs_charity_organisation', {image: this.image, data1,data2}).then(response =>  {
+                   axios.post('/api/gs_charity_organisation', {image: this.image, data1,data2,data3}).then(response =>  {
                        toastr['success'](response.data.message);
                        this.$router.push('/charity_list');
                    }).catch(error => {
