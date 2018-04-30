@@ -27,7 +27,7 @@
                                     <td>{{index+1}}</td>
                                     <td>{{item.title}}</td>
                                     <td>{{item.description}}</td>
-                                    <td>{{item.location}}</td>
+                                    <td>{{item.city}}</td>
                                     <td>
                                        <router-link :to="{name: 'edit_charity', params: { id: item.id }}" class="table-icon" >
                                           <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
