@@ -36,39 +36,36 @@
                             <label class="login__element--box--label">Description</label>
                             <input type="text" placeholder="Description" v-model="address.description"  class="login__element--box--input">
                         </div>
-						<div class="form-group">
-                            <label class="login__element--box--label">Year in business</label>
-                            <input type="text" placeholder="year in business" v-model="address.year_in_business" class="login__element--box--input">
-                        </div>
 						 
 						</tab-content>
-						 <tab-content>
+						   <tab-content>
 						
-						
-						<div class="form-group">
-                            <label class="login__element--box--label">Business Purpose</label>
-                            <input type="text" placeholder="Purpose" v-model="address.business_purpose" class="login__element--box--input">
-						</div>
-                     	<div class="form-group">
-                            <label class="login__element--box--label">Years in inception</label>
-                            <input type="text" placeholder="Years_in _Inception" v-model="address.years_inception" class="login__element--box--input">
-                        </div>
-						
-						
-						<div class="form-group">
-                            <label class="login__element--box--label">Location</label>
-                             <input type="text"  v-model="address.location" rows="3" placeholder="Fill The State" class="login__element--box--input">
-                        </div>
-						<div class="form-group">
-                            <label class="login__element--box--label">Zip Code</label>
-                             <input type="text"  v-model="address.postal_code" rows="3" placeholder=" Fill zipcode" class="login__element--box--input">
-                        </div>
-						<div class="form-group clearfix">
-                            <label class="login__element--box--label">Phone Number</label>
-					<input type="text" placeholder="+91" v-model="address.area_code" class="login__element--box--input_areacode">
-                             <input type="number" placeholder="9999999999" v-model="address.phone_number"  class="login__element--box--input_phone_number">
-                        </div>
-						</tab-content>
+						 <div class="form-group">
+                              <label class="login__element--box--label">Country</label>
+                              <input type="text" placeholder="Country" v-model="address.country" class="login__element--box--input">
+                           </div>
+                           <div class="form-group">
+                              <label class="login__element--box--label">State</label>
+                              <input type="text" placeholder="State" v-model="address.state" class="login__element--box--input">
+                           </div>
+						    <div class="form-group">
+                              <label class="login__element--box--label">City</label>
+                              <input type="text" placeholder="City" v-model="address.city" class="login__element--box--input">
+                           </div>
+                          
+            
+                           <div class="form-group">
+                              <label class="login__element--box--label">Zip Code</label>
+                              <input type="text"  v-model="address.postal_code" rows="3" placeholder="Fill The Zipcode" class="login__element--box--input">
+                           </div>
+                          
+                          
+                           <div class="form-group clearfix">
+                              <label class="login__element--box--label">Phone Number</label>
+                              <input type="text" placeholder="+91" v-model="address.area_code" class="login__element--box--input_areacode">
+                               <input type="number" placeholder="123456789" v-model="address.phone_number" class="login__element--box--input_phone_number">
+                           </div>
+                        </tab-content>
 						 <tab-content>
 						<div class="form-group">
                             <label class="login__element--box--label">Website</label>
@@ -84,7 +81,7 @@
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Tags</label>
-                            <input type="text" placeholder="Tags" v-model="address.tags" class="login__element--box--input">
+                           <input type="text" name="tags" v-model="address.tags"  class="login__element--box--input"> 
                         </div>
 						<h4 class="card-title">Upload Logo</h4>
                                        <div class="form-group text-center m-t-20">
@@ -118,17 +115,21 @@
 <script>
 
  import AppSidebar from '../pages/users/sidebar.vue'
-import Vue from 'vue'
+ import VueTagsInput from '@johmun/vue-tags-input'
+   
+ import Vue from 'vue'
  import VueFormWizard from 'vue-form-wizard'
  Vue.use(VueFormWizard)
  
  export default {
 	components: {
-              AppSidebar 
-        },
+              AppSidebar ,VueTagsInput
+           },
+        
   
         data() {
             return {
+			tags:[],
 			address:'',
 			avatar: '',
 			address:{},
@@ -194,6 +195,7 @@ import Vue from 'vue'
 			},
 			 updateaddress()
             {
+
               axios.post('api/edit_charity/'+this.$route.params.id,this.address).then(response =>  {
                     toastr['success'](response.data.message);
                     this.$router.push('/charity_list');
