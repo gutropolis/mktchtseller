@@ -48,7 +48,7 @@
                                              c0.182,0.208,0.16,0.523-0.048,0.705L17.342,17.355C16.836,17.797,16.171,18.018,15.506,18.018z"/>
                                        </g>
                                     </svg>
-                                    <span  v-if="messageCount > 0" >{{messageCount}}</span>
+                                    <span  v-if="msgnotification.length > 0" >{{msgnotification.length}}</span>
                                  </div>
                               </em>
                            </template>
@@ -59,16 +59,15 @@
                                     <h5>Messages</h5>
                                  </li>
                                 
-                                    <li class="admin__lsit--content"  v-if="messageCount > 0" >
-                                       <div v-for="it in messageArr" class="notification">
-									     <router-link :to="{name: 'users_message', params: { id: it.inbox_id }}"  >
+                                    <li class="admin__lsit--content"  v-if="msgnotification.length > 0" >
+                                       <div v-for="it in msgnotification" class="notification">
+									       <router-link :to="it.url">
 										
                                           <figure class="notification__profile"><img :src="'/images/user/'+it.avatar"></figure>
                                           <div class="notification__content">
-										  <p class="notification__content--pera">{{it.first_name}}{{it.last_name}} sent you message
+										  <p class="notification__content--pera">{{it.first_name}} {{it.last_name}} sent you message
 										  
-										  <span v-if="it.role=='charity'" >for their Charity</span>
-										  <span v-else >for their Product</span>
+										 
 										  <span>{{ it.created_at | moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span>
 										  </p>
 										 
@@ -105,7 +104,7 @@
                                              c-73.95,17.85-127.5,81.6-127.5,160.65V357l-51,51v25.5h433.5V408L420.75,357z"/>
                                        </g>
                                     </svg>
-                                    <span  v-if="messageNotification > 0" >{{messageNotification}}</span>
+                                    <span  v-if="notifications.length > 0" >{{notifications.length}}</span>
                                  </div>
                               </em>
                            </template>
@@ -115,15 +114,14 @@
                                     <div class="admin__lsit--content--notification"><img src="../../svg/notifications-button.svg" alt="user" class="profile-pic"></div>
                                     <h5>Notification</h5>
                                  </li>
-                                 <li class="admin__lsit--content" v-if="messageNotification > 0">
-								  <div v-for="it in notificationArr" class="notification">
-                                   
+                                 <li class="admin__lsit--content" v-if="notifications.length > 0">
+								  <div v-for="it in notifications" class="notification">
+                                     <router-link :to="it.url">
                                       <figure class="notification__profile"><img :src="'/images/user/'+it.avatar"></figure>
                                           <div class="notification__content">
 										  <p class="notification__content--pera">{{it.first_name}}{{it.last_name}}  {{ it.subject }}
 										  
-										  <span v-if="it.role=='charity'" ></span>
-										  <span v-else > </span>
+										  
 										  <span>{{ it.created_at |  moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span>
 										 
                                           </p>
@@ -132,7 +130,7 @@
                                        </div>
                                     </li>
 									 <li  v-else class="admin__lsit--content"   >
-                                       <div   class="notification">
+                                       <div class="notification">
 									      No Notification
                                        </div>
                                  </li>
@@ -219,36 +217,82 @@
    
    
            return {
-		   messageArr:[],
-			notificationArr:[],
+		    notifications: [],
+			msgnotification:[],
+		  // messageArr:[],
+			//notificationArr:[],
    
-   item:[],
-   items: [],
-   messageCount:'',
-   messageNotification:'',
-   loginCheck : helper.checkLogin()
+			   item:[],
+			   items: [],
+			   messageCount:'',
+			   messageNotification:'',
+			   loginCheck : helper.checkLogin()
 			  
    
            }
        },
    
-       mounted() {
-	   
-   
-  
-   	
+		 mounted() {
+		 this.fetchItems();
+		 this.fetchMessageNotification();
             
-   },
-   
-   created: function() {
-   this.fetchmessage();
-   this.fetchnotification();   
+          
+        },
+			created: function() {
+			   //this.fetchmessage();
+			   //this.fetchnotification();   
 		  
 		   
        },
    
    
        methods: {
+	   fetchItems(){
+			axios.get('/api/user_id').then(response =>  {
+				  this.user_id=response.data.id;
+		 Echo.channel('donation_status'+this.user_id)
+            .listen('DonationStatusChanged', (e) => {
+			
+			if(this.user_id==e.activityfeed.reciever_id)
+			{
+                this.notifications.push({
+                    subject: e.activityfeed.subject,
+					created_at: e.activityfeed.created_at,
+                    first_name: e.sender_user.first_name,
+					last_name:e.sender_user.last_name,
+					avatar:e.sender_user.avatar,
+					 url: '/donation_list',
+                })
+				
+				}
+				
+				
+      })
+	  })
+	  },
+	   fetchMessageNotification(){
+			axios.get('/api/user_id').then(response =>  {
+				  this.user_id=response.data.id;
+		 Echo.channel('message_status'+this.user_id)
+            .listen('MessageStatus', (e) => {
+			
+			if(this.user_id==e.active.reciever_id)
+			{
+                this.msgnotification.push({
+                    subject: e.active.subject,
+					created_at: e.active.created_at,
+                    first_name: e.sender_user.first_name,
+					last_name:e.sender_user.last_name,
+					avatar:e.sender_user.avatar,
+					 url: '/user_detail',
+                })
+				
+				}
+				
+				
+      })
+	  })
+	  },
             
            logout() {
    
@@ -260,7 +304,7 @@
                })
            },
 		   
-		    fetchmessage()
+		   /* fetchmessage()
 			{
               axios.get('/api/message_notification').then((response) => {
 			  if(response.data.length > 0 ){
@@ -274,11 +318,11 @@
               }) 
    
   
-		  },
-			fetchnotification()
+		  },*/
+			/*fetchnotification()
 			{
 				axios.get('/api/user_notification').then((response) => {
-			  if(response.data.length > 0 ){
+				if(response.data.length > 0 ){
 				this.messageNotification=response.data.length;
 				console.log(this.messageNotification);
 				this.notificationArr=response.data;
@@ -286,12 +330,7 @@
 			}
 			
 		 })
-		 },
-		  
-		  
-		  
-		  
-		  
+		 },*/
 		  
            getAuthUserFullName() {
                return this.$store.getters.getAuthUserFullName;
@@ -302,11 +341,6 @@
                return this.$store.getters.getAuthUser(name);
            }
        },
-			
-			
-			
-			
-			
         computed: {
            getAvatar(){
                return '/images/user/'+this.getAuthUser('avatar');
