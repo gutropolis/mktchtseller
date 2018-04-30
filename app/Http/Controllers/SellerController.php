@@ -173,8 +173,9 @@ class SellerController extends Controller
 		$seller->business_type=$request->input('data1.business_type');
 		$seller->title = $request->input('data1.title');
 		$seller->description=$request->input('data1.description');
-		$seller->location=$request->input('data2.locality');
-		
+		$seller->city=$request->input('data2.locality');
+		$seller->country=$request->input('data2.country');
+		$seller->state=$request->input('data2.administrative_area_level_1');
 		$seller->year_in_business=$request->input('data1.year_in_business');
 		//$seller->locality=$request->input('data2.locality');
 		$seller->phone_number=$request->input('data2.phone_number');
@@ -388,10 +389,12 @@ public function updatelogo(Request $request,$id)
 
             $seller->title = $request->get('title');
             $seller->description = $request->get('description');
-            $seller->location = $request->get('location');
+            //$seller->location = $request->get('location');
 			$seller->year_in_business = $request->get('year_in_business');
 			$seller->business_type = $request->get('business_type');
-			//$seller->locality = $request->get('locality');
+			$seller->city = $request->get('city');
+			$seller->country = $request->get('country');
+			$seller->state = $request->get('state');
 			$seller->area_code=$request->get('area_code');
 			$seller->postal_code = $request->get('postal_code');
 			$seller->phone_number = $request->get('phone_number');
