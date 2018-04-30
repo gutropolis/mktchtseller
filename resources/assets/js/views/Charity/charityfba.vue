@@ -21,10 +21,6 @@
 								<div class="form-group charity__element--block--content--box">
 							<label class="charity__element--block--content--box--label">Keyword</label>
 							 <input type="text" name="keyword" placeholder="keyword" v-model="searchform.keyword" class="login__element--box--input">
-							 
-								
-								
-							
 			
 						</div>
 						
@@ -88,12 +84,12 @@
 							<div class="charity__listing--content--box">
 											 
 								<router-link :to="{name: 'charity_details', params: { id: item.id }}" ><h4 class="charity__listing--content--box--heading">{{item.title}}</h4></router-link>
-								<h6 class="charity__listing--content--box--subheading">{{item.keyword}}</h6>
-								<p class="charity__listing--content--box--pera">{{item.description}}</p>
+								
+								<p class="charity__listing--content--box--pera">{{item.website}}</p>
 							</div>
 							<div class="charity__listing--content--address row">
-								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Location:</span> {{ item.location }}</p></div>
-								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-briefcase" aria-hidden="true"></i><span>Purpose:</span> {{item.business_purpose}}</p></div>	
+								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Country:</span> {{ item.country }}</p></div>
+								<div class="charity__listing--content--address--location col-md-12 "><p><i class="fa fa-briefcase" aria-hidden="true"></i><span>City:</span> {{item.city}}</p></div>	
 							</div>
 								
 						</div>	
@@ -195,24 +191,23 @@ export default {
 			},
 		 
 			 
-	   infiniteHandler($state) {
-						  axios.get('/api/search', {
-							params: {
-							  page: this.list.length / 20 + 1,
-							},
-						  }).then(({ data }) => {
-							if (data.hits.length) {
-							  this.list = this.list.concat(data.hits);
-							  $state.loaded();
-							  if (this.list.length / 20 === 10) {
-								$state.complete();
-							  }
-							} else {
-							  $state.complete();
-							}
-						  });
-						 
-			},
+	  infiniteHandler($state) {
+      axios.get('/api/search', {
+        params: {
+          page: this.items.length / 20 + 1,
+        },
+      }).then(({ data }) => {
+        if (data.hits.length) {
+          this.items = this.items.concat(data.hits);
+          $state.loaded();
+          if (this.items.length / 20 === 10) {
+            $state.complete();
+          }
+        } else {
+          $state.complete();
+        }
+      });
+    },
 			 fetchItems()
             {
 			
@@ -233,15 +228,7 @@ export default {
 				  
               });
             },
-			/*fetchresult(){
-				axios.get('/api/searchform').then(response =>  {
-					
-                  this.items = response.data;
-				   
-				  
-              });
 			
-			}*/
 			
 			}
 			}
