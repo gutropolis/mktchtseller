@@ -128,7 +128,17 @@ $sellerproduct = SellerProduct::latest()->limit(6)->get();
 	$sellerproduct->organisation_id = $request->input('image.title');
 	$sellerproduct->product_category = $request->input('image.product_catgeory');
 	$sellerproduct->units = $request->input('image.units');
-	$sellerproduct->tags = $request->input('data1.tags');
+	
+	foreach($request->data1 as $data  )
+			{
+				$tag[]=$data['text'];			
+			}
+			
+			$tagsss=implode(" , ", $tag);
+			
+	
+	
+	$sellerproduct->tags = $tagsss;;
 	
 	
 	
