@@ -33,7 +33,7 @@
                                           C45.576,13.08,46.321,24.468,41.099,31.431z"/>
                                     </g>
                                  </svg>
-                                 <span>Location:</span>{{create_message.location}} 
+                                 <span>Country:</span>{{create_message.country}} 
                               </li>
                               <li class="charity_inner--content--list--item">
                                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -48,7 +48,7 @@
                                           c0-1.051,0.888-1.939,1.939-1.939h5.172c1.051,0,1.939,0.888,1.939,1.939V11.313z"/>
                                     </g>
                                  </svg>
-                                 <span>Purpose:</span> {{create_message.business_purpose}} 
+                                 <span>City:</span> {{create_message.city}} 
                               </li>
 							   <li class="charity_inner--content--list--item">
                                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -63,7 +63,7 @@
                                           c0-1.051,0.888-1.939,1.939-1.939h5.172c1.051,0,1.939,0.888,1.939,1.939V11.313z"/>
                                     </g>
                                  </svg>
-                                 <span>Contact:</span> {{create_message.phone_number}} 
+                                 <span>Contact:</span> {{create_message.area_code}} {{create_message.phone_number}} 
                               </li>
                               <li class="charity_inner--content--list--item">
                                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -81,7 +81,7 @@
                                           C365.013,362.667,346.56,354.987,332.587,341.013z"/>
                                     </g>
                                  </svg>
-                                 <span>Years In Business :</span> {{create_message.year_in_business}}
+                                 <span>Website :</span> {{create_message.website}}
                               </li>
                            </ul>
                         </div>
