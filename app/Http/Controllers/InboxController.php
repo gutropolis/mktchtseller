@@ -145,7 +145,7 @@ use stdClass;
 	}	
 	else{
 		$message=\App\Inbox::create([
-		'subject'=>request('title'),
+		'subject'=>request('message'),
 		'reciever_id'=>request('user_id'),
 		'post_id'=>request('id'),
 		'post_type'=>request('post_type'),
@@ -163,7 +163,7 @@ use stdClass;
 		'reciever_id'=>$inbox_receiver_id,
 		'sender_id' => $user->id,
 		}*/
-		'message'=>request('title'),
+		'message'=>request('message'),
 		'reciever_id'=>$inbox_receiver_id,
 		'sender_id' => $inbox_sender_id,
 		'inbox_id' => $insertedId,
@@ -191,6 +191,8 @@ use stdClass;
 		});
 		
 	}
+	$actvity=new Controller;
+	$actvity->AddUserActivityFeed($message->sender_id,$message->reciever_id,'Wants To Communicate',$message->post_id,'/user_detail');
 	
 		return response()->json(['message' => 'Message sent  Successfully']);  
 	}
@@ -211,19 +213,19 @@ use stdClass;
 		public function user_notification()
 	{
 		
-	/*	select 
-`gs_user_activity_feed`.`created_on`, 
-`gs_user_activity_feed`.`from`, 
-`gs_user_activity_feed`.`to`, 
-`gs_user_activity_feed`.`subject`, 
-`gs_user_activity_feed`.`link`,
-`gs_user_activity_feed`.`read_to`,
-`gs_user_activity_feed`.`post_id`,
-`users`.`first_name` 
-from `gs_user_activity_feed` 
-inner join `users` 
-on `gs_user_activity_feed`.`from` = `users`.`id` 
-where `gs_user_activity_feed`.`read_to` = 0 and `gs_user_activity_feed`.`to` = '3'*/
+				/*	select 
+			`gs_user_activity_feed`.`created_on`, 
+			`gs_user_activity_feed`.`from`, 
+			`gs_user_activity_feed`.`to`, 
+			`gs_user_activity_feed`.`subject`, 
+			`gs_user_activity_feed`.`link`,
+			`gs_user_activity_feed`.`read_to`,
+			`gs_user_activity_feed`.`post_id`,
+			`users`.`first_name` 
+			from `gs_user_activity_feed` 
+			inner join `users` 
+			on `gs_user_activity_feed`.`from` = `users`.`id` 
+			where `gs_user_activity_feed`.`read_to` = 0 and `gs_user_activity_feed`.`to` = '3'*/
 		
 		
 		
