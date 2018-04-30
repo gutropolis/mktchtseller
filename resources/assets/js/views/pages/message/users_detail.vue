@@ -37,13 +37,17 @@
                                     <li class="users_messages--users_area--box--list">
                                        <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" class="users_messages--users_area--box--list--link">
                                           <div v-for="userinfo in create_messages.sender_detail" class="users_messages--users_area--box--list--link--image_outer">
-                                             <figure class="users_messages--users_area--box--list--link--image_outer--image_box">
+											
+											<figure class="users_messages--users_area--box--list--link--image_outer--image_box" v-if="userinfo.avatar==null">
+                                                <img :src="'/images/user/avatar.png'"  class="users_messages--users_area--box--list--link--image_outer--image_box--image">
+                                             </figure>
+											 <figure class="users_messages--users_area--box--list--link--image_outer--image_box" v-if="userinfo.avatar!=null">
                                                 <img :src="'/images/user/'+ userinfo.avatar"  class="users_messages--users_area--box--list--link--image_outer--image_box--image">
                                              </figure>
                                           </div>
                                           <p v-for="userinfo in create_messages.sender_detail" class="users_messages--users_area--box--list--link--user_name"> {{userinfo.first_name}}</p>
                                           <p class="users_messages--users_area--box--list--link--user_title">{{create_messages.subject}}</p>
-                                          <p class="users_messages--users_area--box--list--link--date">{{create_messages.created_at}}</p>
+                                          <p class="users_messages--users_area--box--list--link--date">{{ create_messages.created_at |  moment("dddd, MMMM Do YYYY, h:mm a") }}</p>
                                           
                                        </router-link>
                                     </li>
@@ -63,6 +67,7 @@
 <script>
    import AppSidebar from '../users/sidebar.vue'
    import Vue from 'vue'
+    Vue.use(require('vue-moment'));
       export default {
       components: {
                AppSidebar 
@@ -85,29 +90,8 @@
           },
        
        methods: {
-	   click(){
-		
-	   
-	   
-	   
-	   },
-		/*fetchunread()
-		{
-			axios.get('/api/unread').then(response=>{
-				this.unread=response.data;
-			
-			
-			
-			})
-		
-		},*/
-	   
-	   
-	   
-	   
-   	 
-    
-    fetchItem()
+	
+		fetchItem()
                  {
      			
                   axios.get('/api/get_inbox').then(response=>{
