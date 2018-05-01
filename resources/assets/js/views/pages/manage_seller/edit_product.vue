@@ -53,7 +53,7 @@
                        
                     </div>
 					  <div class="form-group ">
-                        <label class="login__element--box--label">Tags</label>
+                        <label class="login__element--box--label tag-element">Tags</label>
 						<div class="info-btn">
 							  <b-btn v-b-popover.hover="'Please try to use tags that a general audience will understand'" title="Info">
 								<i class="fa fa-info-circle" style="font-size:20px"></i>
