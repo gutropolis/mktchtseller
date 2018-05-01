@@ -38,6 +38,7 @@
 							
 							</select>
                         </div>
+						
                         <div class="form-group">
                             <label class="login__element--box--label">Title</label>
                             <input type="text" name="title" v-model="savesellerform.title" required   placeholder="Title" class="login__element--box--input">
