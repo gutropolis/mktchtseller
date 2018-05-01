@@ -70,13 +70,15 @@
                               <input type="text" name="units" class="login__element--box--input" required  placeholder="units" v-model="items.units">
                            </div>
 						   <div class="form-group ">
-                              <label class="login__element--box--label">Tags</label>
+                              <label class="login__element--box--label tag-element">Tags</label>
 							  <div class="info-btn">
 							  <b-btn v-b-popover.hover="'Please try to use tags that a general audience will understand'" title="Info">
 								<i class="fa fa-info-circle" style="font-size:20px"></i>
 							  </b-btn>
 							</div>
+							<div class="multiple_vlue">
                              <vue-tags-input  name="tag" v-model="items.tags" :tags="tags" @tags-changed="newTags => tags = newTags"/>
+							 </div>
                            </div>
                            <div class="form-group text-center">
                               <input type="Submit" placeholder="" value="Save" class="btn btn-bg-orange login__element--box--button">
