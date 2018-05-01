@@ -1258,7 +1258,11 @@ font-size:15px;
             width: 100%;
             font-size: 16px;
             text-align: left;
-            font-weight: 600;            
+            font-weight: 600; 
+				&.tag-element
+				{
+				width:auto;
+				}
         }
         
         &--input {
@@ -2615,5 +2619,12 @@ font-size:15px;
 			background:none;
 			color:$black-color;
 		}
+	}
+}
+.multiple_vlue
+{
+	.vue-tags-input{
+		width:100%;
+		max-width:100% !important;
 	}
 }
