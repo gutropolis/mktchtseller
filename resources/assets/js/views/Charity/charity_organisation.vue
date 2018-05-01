@@ -177,7 +177,7 @@
    			 
                    axios.post('/api/gs_charity_organisation', {image: this.image, data1,data2,data3}).then(response =>  {
                        toastr['success'](response.data.message);
-                       //this.$router.push('/charity_list');
+                       this.$router.push('/charity_list');
                    }).catch(error => {
                        toastr['error'](error.response.data.message);
                    });
