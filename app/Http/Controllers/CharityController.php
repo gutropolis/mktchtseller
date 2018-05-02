@@ -11,7 +11,7 @@ use App\Donation;
 use App\Events\MessageDonation;
 use App\User;
 use App\CharityCategory;
-Use App\Settings;
+use App\Settings;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use App\Events\DonationStatusChanged;
@@ -253,14 +253,6 @@ class charityController extends Controller
 
 		
 		  $charity = new \App\Charity;
-		// $tags =  implode(',', $request->input('data3.text'));
-			//$charity->tags= $tags;
-			// print_r($request->data3('text'));
-			//return($request->data3);	
-			
-			
-		
-		  
 		  
 		 $charity->charity_type=$request->input('data2.charity_type');
 		$charity->title = $request->input('data2.title');
