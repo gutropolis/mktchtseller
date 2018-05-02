@@ -74,7 +74,7 @@
         </ul>
 		</li>
 		
-		<li {!! (Request::is('admin/charity') || Request::is('admin/charity/create') || Request::is('admin/user_profile') || Request::is('admin/charity/*') || Request::is('admin/deleted_users') ? 'class="active"' : '') !!}>
+		<li {!! (Request::is('admin/charity') || Request::is('admin/charity/create') || Request::is('admin/charity/charity_requests') || Request::is('admin/user_profile') || Request::is('admin/charity/*') || Request::is('admin/deleted_users') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="charity" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
                data-loop="true"></i>
@@ -85,13 +85,13 @@
 		 <li {!! (Request::is('admin/charitycategory') ? 'class="active" id="active"' : '') !!}>
                 <a href="{{ URL::to('admin/charitycategory') }}">
                     <i class="fa fa-angle-double-right"></i>
-                    Category
+                    Charity Category
                 </a>
             </li>
             <li {!! (Request::is('admin/charity') ? 'class="active" id="active"' : '') !!}>
                 <a href="{{ URL::to('admin/charity') }}">
                     <i class="fa fa-angle-double-right"></i>
-                    charity
+                    Charity List
                 </a>
             </li>
             <li {!! (Request::is('admin/charity/create') ? 'class="active" id="active"' : '') !!}>
@@ -104,6 +104,12 @@
                 <a href="{{ URL::to('admin/donation') }}">
                     <i class="fa fa-angle-double-right"></i>
                   Donation List
+                </a>
+            </li>
+         <li {!! (Request::is('admin/charityrequests') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/charityrequests') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Charity Request
                 </a>
             </li>
          
