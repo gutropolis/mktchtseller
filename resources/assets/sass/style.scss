@@ -1268,6 +1268,8 @@ font-size:15px;
         &--input {
             width: 100%;
             padding: $space-s;
+			border-radius:5px;
+			border:1px solid #555;
 
         }
         &--input_dob {
@@ -1280,7 +1282,7 @@ font-size:15px;
                 }
             
         }
-        
+     
         &--input_areacode {
             width: 10%;
             padding: $space-s;
@@ -2621,6 +2623,10 @@ font-size:15px;
 		}
 	}
 }
+.has-icon-right i
+{
+	color:red;
+}
 .multiple_vlue
 {
 	.vue-tags-input{
@@ -2628,3 +2634,30 @@ font-size:15px;
 		max-width:100% !important;
 	}
 }
+.help.is-danger{
+		color:red;
+	}
+	.step_button
+		{
+			width:100%;
+			display:flex;
+			button{
+			    font-size: 20px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    background: #faa41a;
+    color: #fff;
+    width: 120px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+	cursor:pointer;
+			}
+			.btn-prev{
+				margin-right:auto;
+			}
+			.btn-next{
+			margin-left:auto;
+			}
+		}
