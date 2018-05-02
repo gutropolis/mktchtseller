@@ -14,10 +14,8 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 	
 	public function AddUserActivityFeed($sender_id, $reciever_id, $subject, $post_id,$link) {
-					//to=request('to');
-					//$subject=request('subject'); 
-					//$post_id=request('post_id');
-					//$link=request('link');
+					
+
 					$read_to= '0';
 					$read_by_admin='0';
 					$created_at=date('Y-m-d h:i:s');
@@ -35,7 +33,7 @@ class Controller extends BaseController
 					$activityfeed->save();
 					$sender_user=User::where('id',$activityfeed->sender_id)->first();
 					
-						event(new MessageStatus($activityfeed,$sender_user));
+					event(new MessageStatus($activityfeed,$sender_user));
 					  event(new DonationStatusChanged($activityfeed,$sender_user));
 					 return($activityfeed);
 	   
