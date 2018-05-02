@@ -9,7 +9,7 @@
                     <div class="dashboard__content--outer">   
 					<div class="dashboard__content--description">
                         
-                            <h3 class="dashboard__content--description--heading">Create Here Request</h3>
+                            <h3 class="dashboard__content--description--heading">Create  Request</h3>
                      <form class="form-horizontal form-material" id="create_ads" @submit.prevent="submit">
 					<div class="col-md-6">
 					<p v-if="errors.length">
