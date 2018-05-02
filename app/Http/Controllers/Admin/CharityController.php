@@ -128,6 +128,17 @@ class charityController extends JoshController
          return view('admin.charity.create', compact('charitycategory','charityparcategory'));
 
     }
+	
+	 public function charity_requests()
+    {
+	
+         return view('admin.charity.charity_requests');
+
+    }
+	
+	
+	
+	
 	 public function edit(Charity $charity)
     {
 
@@ -226,7 +237,7 @@ class charityController extends JoshController
     public function show($id)
     {
        
-$charity = Charity::find($id);
+		$charity = Charity::find($id);
         return view('admin.charity.show',compact('charity'));
     }
 
