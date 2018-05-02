@@ -1,14 +1,22 @@
-<?php 
+<?php
+
 namespace App\Http\Controllers;
-
-
-
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\charityRequest;
 use App\my_ads;
 use App\Charity;
+use App\Sellerproduct;
+
+use App\Events\MessageDonation;
+use App\User;
+
+use App\Settings;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
+use App\Events\DonationStatusChanged;
 use Hash;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Redirect;
@@ -19,20 +27,11 @@ use Yajra\DataTables\DataTables;
 use Validator;
 Use App\Mail\Restore;
 use stdClass;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Facades\JWTAuth;
-//use JWTAuth;
+
 
 class AdsController extends Controller
 {
-
-    /**
-     * Show a list of all the users.
-     *
-     * @return View
-     */
-
-     public function index()
+	 public function index()
     {
 		$user = JWTAuth::parseToken()->authenticate();
 		 $query = \App\my_ads::whereUserId($user->id);
@@ -40,7 +39,6 @@ class AdsController extends Controller
 		//$show_ads=my_ads::all();
         return response()->json($show_ads);
     }
-
 	public function charity()
 	{
 		$user = JWTAuth::parseToken()->authenticate();
@@ -48,86 +46,8 @@ class AdsController extends Controller
 		$qu=$query->get();
 		return($qu);
 		
-		
-		
-		
-		
-		
-		
 	}
-	public function updateAvatar(Request $request){
-        $validation = Validator::make($request->all(), [
-            'avatar' => 'required|image'
-        ]);
-
-        if ($validation->fails())
-            return response()->json(['message' => $validation->messages()->first()],422);
-
-       	$sellerproduct=Seller::all();
-
-        if($sellerproduct->avatar && \File::exists($this->avatar_path.$sellerproduct->avatar))
-            \File::delete($this->avatar_path.$sellerproduct->avatar);
-
-        $extension = $request->file('avatar')->getClientOriginalExtension();
-        $filename = uniqid();
-        $file = $request->file('avatar')->move($this->avatar_path, $filename.".".$extension);
-        $img = \Image::make($this->avatar_path.$filename.".".$extension);
-        $img->resize(200, null, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-        $img->save($this->avatar_path.$filename.".".$extension);
-        $sellerproduct->avatar = $filename.".".$extension;
-        $sellerproduct->save();
-
-        return response()->json(['message' => 'Avatar updated!','profile' => $sellerproduct]);
-    }
-
-	
-    /*
-     * Pass data through ajax call
-     */
-    /**
-     * @return mixed
-     */
-    public function data()
-    {		
-        $seller = Seller::get(['id','title', 'description', 'location', 'year_in_buisness','created_at']);
-		
-        return DataTables::of($seller)
-            ->editColumn('created_at',function(Seller $seller) {
-                return $seller->created_at->diffForHumans();
-            })
-           
-	
-            ->addColumn('actions',function($seller) {
-                $actions = '<a href='. route('admin.seller.show', $seller->id) .'><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view seller"></i></a>
-                            <a href='. route('admin.seller.edit', $seller->id) .'><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update seller"></i></a>';
-                if ((Sentinel::getUser()->id != $seller->id) && ($seller->id != 1)) {
-                    $actions .= '<a href='. route('admin.seller.confirm-delete', $seller->id) .' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="seller-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete seller"></i></a>';
-                }
-                return $actions;
-            })
-            ->rawColumns(['actions'])
-            ->make(true);
-    }
-
-    /**
-     * Create new user
-     *
-     * @return View
-     */
-    public function create()
-    {
-		
-        return view('admin.sellerproduct.create');
-    }
-
-    /**
-     * User create form processing.
-     *
-     * @return Redirect
-     */
-    public function store(Request $request)
+	public function store(Request $request)
     {
 	   
        if($request->get('image'))
@@ -138,33 +58,52 @@ class AdsController extends Controller
 				}
 		
       
-          $create_ads = new \App\my_ads;
-		 $create_ads->title=$request->input('data.title');
+			$create_ads = new \App\my_ads;
+			$create_ads->title=$request->input('data.title');
+			$create_ads->description=$request->input('data.description');			
+			$create_ads->ads_type=$request->input('data.ads_type');
+			$create_ads->image=$name;
+			$user = JWTAuth::parseToken()->authenticate();
+			$create_ads->user_id = $user->id;	
+			 $create_ads->status="0";
+			$create_ads->save();
+			$create_adsId = $create_ads->id;
+	$create_ads = my_ads::where('id',$create_adsId)->first();
+	
+	
+	$user = JWTAuth::parseToken()->authenticate();
+		$admin_email=Settings::pluck('admin_email');
+		$admin=$admin_email[0];
 		
-		$create_ads->description=$request->input('data.description');
-			//$create_ads->location=$request->input('data.location');
-		  $create_ads->ads_type=$request->input('data.ads_type');
-		  
-		$create_ads->image=$name;
-		$user = JWTAuth::parseToken()->authenticate();
-		 $create_ads->user_id = $user->id;	
+		 $data = array('create_ads'=>$create_ads,'user'=>$user);
+		Mail::send('emails.request', $data , function($message) use($admin)
+		{
+			$message->to($admin)->subject('Charity Request!');
+		});
 	 
-       $create_ads->save();
-	   
-       
 		 return response()->json(['message' => 'Your Ads sucessfully Added']);
     }
+	 public function activate($activation_token){
+        $request = \App\my_ads::whereActivationToken($activation_token)->first();
 
-    
+       
 
-    /**
-     * User update.
-     *
-     * @param  int $id
-     * @return View
-     */
-  
-		 public function edit($id)
+       
+
+        $request->status = '1';
+        $request->save();
+        
+
+        return response()->json(['message' => 'Charity request has been activated!']);
+    }
+
+	
+	
+	
+	
+	
+	
+	 public function edit($id)
     {
 		$edit_ads = my_ads::find($id);
 		
@@ -204,69 +143,5 @@ class AdsController extends Controller
 
     
 	}
-
-    /**
-     * Show a list of all the deleted users.
-     *
-     * @return View
-     */
-    public function getDeletedseller()
-    {
-		$sellerproduct = Sellerproduct::onlyTrashed()->get();
-
-        // Show the page
-        return view('admin.deleted_sellerproduct', compact('sellerproduct'));
-    }
-
-
-    /**
-     * Delete Confirm
-     *
-     * @param   int $id
-     * @return  View
-     */
-    public function getModalDelete($id)
-    {
-       $model = 'gs_vendor_product';
-        $confirm_route = $error = null;
-       
-        $confirm_route = route('admin.sellerproduct.delete', [$id]);
-        return view('admin.layouts.modal_confirmation', compact('error', 'model', 'confirm_route')); 
-    }
-
-    
-  
-
-    /**
-     * Restore a deleted user.
-     *
-     * @param  int $id
-     * @return Redirect
-     */
-    public function getRestore($id)
-    {
-    }
-
-    /**
-     * Display specified user profile.
-     *
-     * @param  int $id
-     * @return Response
-     */
-     public function show($id)
-    {
-       
-		$seller = Seller::find($id);
-        return view('admin.seller.show',compact('seller'));
-    }
-    public function passwordreset( Request $request)
-    {
-       
-    }
-
-    public function lockscreen($id)
-	{
-
-        
-}
+ 
 }
