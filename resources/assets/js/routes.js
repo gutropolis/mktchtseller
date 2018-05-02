@@ -19,6 +19,7 @@ let routes = [
 				path : '/my_ads',
 				component:require('./views/pages/my_ads')
 			},
+			
 			{
 				path : '/create_ads',
 				component:require('./views/pages/my_ads/create_ads')
@@ -68,7 +69,7 @@ let routes = [
 			},
 			{
 				name:'edit_charity',
-				path : '/edit_charity',
+				path : '/edit_charity:id',
 				component:require('./views/Charity/edit_charity')
 			},
 			{
