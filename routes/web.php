@@ -104,17 +104,15 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
         Route::get('data', 'charityController@data')->name('charity.data');
         Route::get('{charity}/delete', 'charityController@destroy')->name('charity.delete');
         Route::get('{charity}/confirm-delete', 'charityController@getModalDelete')->name('charity.confirm-delete');
-        //Route::get('{user}/restore', 'charityController@getRestore')->name('restore.user');
-//        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
-       // Route::post('passwordreset', 'charityController@passwordreset')->name('passwordreset');
+       
     });
-
+Route::resource('charity', 'CharityController');
     Route::resource('donation', 'DonationController');
 
 
 
 
-    Route::resource('charity', 'CharityController');
+    
     
         Route::get('deleted_users',['before' => 'Sentinel', 'uses' => 'charityController@getDeletedUsers'])->name('deleted_users');
 		
@@ -237,6 +235,19 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
         Route::get('{productcategory}/restore', 'ProductCategoryController@getRestore')->name('productcategory.restore');
     });
     Route::resource('productcategory', 'ProductCategoryController');
+	
+	
+	Route::group(['prefix' => 'charityrequests'], function () {
+        Route::get('{charityrequests}/delete', 'CharityRequestController@destroy')->name('charityrequests.delete');
+		 Route::get('{charityrequests}/accept', 'CharityRequestController@accept')->name('charityrequests.accept');
+		  Route::get('{charityrequests}/deactivate', 'CharityRequestController@deactivate')->name('charityrequests.deactivate');
+		 
+        Route::get('{charityrequests}/confirm-delete', 'CharityRequestController@getModalDelete')->name('prodcutcategory.confirm-delete');
+        Route::get('{charityrequests}/restore', 'CharityRequestController@getRestore')->name('productcategory.restore');
+    });
+    Route::resource('charityrequests','CharityRequestController');
+	
+	
 	
     /*routes for file*/
     Route::group(['prefix' => 'file'], function () {
