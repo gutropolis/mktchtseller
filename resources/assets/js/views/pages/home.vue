@@ -60,24 +60,25 @@
         <div class="container">
             <b-card no-body>
   <b-tabs card>
-    <b-tab title="Charity" active>
+    <b-tab title="Requests" active>
         <h1 class="tab_heading_top "> Recent Charity Posts</h1>
         <div class="post_contant_inner clearfix">
-        <div v-for="item in charity" class="recent__post--tab--content row">
+        <div v-for="item in request" class="recent__post--tab--content row">
             
-                            <div class="recent__post--tab--content--img_box">
-                                <figure class="recent__post--tab--content--img_box--figure"><img :src="'/images/charity/'+ item.images" class="recent__post--tab--content--img_box--figure--images"></figure>
+                            <div v-for="charity in item.charity_detail" class="recent__post--tab--content--img_box">
+                                <figure class="recent__post--tab--content--img_box--figure"><img :src="'/images/charity/'+ charity.images" class="recent__post--tab--content--img_box--figure--images"></figure>
                             </div>
                             <div class="recent__post--tab--content--detail_box">
                                 <article class="recent__post--tab--content--detail_box--block">
-                                    <h6 class="recent__post--tab--content--detail_box--block--heading">{{item.title}}</h6>
-                                    <p class="recent__post--tab--content--detail_box--block--pera">{{item.description}}</p>
-                                    <p class="recent__post--tab--content--detail_box--block--pera_box"><span><strong>Purpose:</strong> {{item.business_purpose}} </span>  <span><strong>Location:</strong> {{item.location}}</span></p>
+								<h6  class="recent__post--tab--content--detail_box--block--heading"> {{item.title}} </h6>
+								 <p v-for="charity in item.charity_detail" class="recent__post--tab--content--detail_box--block--pera_box"><span><strong>Charity Name: </strong>{{charity.title}}</span></p>
+								 <p v-for="charity in item.charity_detail" class="recent__post--tab--content--detail_box--block--pera_box">  <span><strong>Country: </strong> {{charity.country}}</span> <span><strong>City: </strong> {{charity.city}}</span></p> 
+                                  
                                 </article>
                             </div>
 							 <div class="recent__post--tab--content--btn_outer">
-                            <div class="recent__post--tab--content--btn_outer--donate_btn"> 
-                             <router-link :to="{name: 'charity_details', params: { id: item.id }}" class="btn btn-border-orange">View Info</router-link>
+                            <div v-for="charity in item.charity_detail" class="recent__post--tab--content--btn_outer--donate_btn"> 
+                             <router-link :to="{name: 'charity_details', params: { id: charity.id }}" class="btn btn-border-orange">View Info</router-link>
                             </div>
 							</div>
 							
@@ -298,7 +299,7 @@
 	selectcategory:'charity'
             return {
 			
-			charity:{},
+			request:{},
 			products:{},
 				 loginCheck: helper.checkLogin(),
                 searchform: {
@@ -321,9 +322,9 @@
 		fetchItems()
             {
 			
-              axios.get('/api/show_charities').then(response =>  {
+              axios.get('/api/show_charities_request').then(response =>  {
 					
-                  this.charity = response.data.data1;
+                  this.request = response.data;
 				  
 				  
               });
