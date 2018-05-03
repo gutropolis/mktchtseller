@@ -120,7 +120,7 @@ Route::post('/product/{id}','CharityController@product');
 Route::get('/product_category','SellerproductController@product_category');
 
 //charity list
-Route::get('/charity_details/{id}','CharityController@charity_details');
+Route::get('/charity_request_details/{id}','AdsController@charity_request_details');
 Route::post('/search','CharityController@search');
 
 Route::get('/search','CharityController@search');
@@ -166,6 +166,6 @@ Route::post('/searchform', 'CharityController@search');
 Route::get('/searchform', 'CharityController@search');
 Route::get('/charity_list_user','CharityController@charity_list_user');
 Route::post('/post_contact','AuthController@postContact');
-Route::get('/show_charities','CharityController@charites');
+Route::get('/show_charities_request','AdsController@requests');
 Route::get('/message_notification','InboxController@message_notification');
 Route::get('/user_notification','InboxController@user_notification');
