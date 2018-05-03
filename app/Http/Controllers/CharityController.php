@@ -70,12 +70,12 @@ class charityController extends Controller
 		
 		return response()->json($charity);
     }
-	public function charities_list(Request $request)
+	/*public function charities_list(Request $request)
 	{		
 	
 		$query = Charity::latest()->get();
 		return response()->json($query);
-	}
+	}*/
 	
 	public function fetch_charity(Request $request)
 	{		
