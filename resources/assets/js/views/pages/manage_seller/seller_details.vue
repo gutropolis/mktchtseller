@@ -293,7 +293,8 @@
 							  
 						  });
 				 },
-      fetchCharity()
+      
+	  /*fetchCharity()
    	{
    	axios.get('/api/charities_list').then(response=>{
    	
@@ -313,7 +314,7 @@
 			toastr['success'](response.data.message);
 					})
     
-			},
+			},*/
     			 submit1(e){
 				
                     axios.post('/api/create_message', this.create_message).then(response =>  {
