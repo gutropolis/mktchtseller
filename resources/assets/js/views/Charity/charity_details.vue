@@ -13,7 +13,7 @@
             <div class="row">
                <div class="col-md-8">
                   <div class="charity_inner row">
-                     <div class="col-md-7 no-gutters">
+                     <div  class="col-md-7 no-gutters">
                         <figure class="charity_inner--figure"><img :src="'/images/charity/'+ create_message.images"></figure>
                      </div>
                      <div class="col-md-5">
@@ -21,6 +21,8 @@
                            <h4 class="charity_inner--content--heading">{{create_message.title}}</h4>
                          
                            <ul class="charity_inner--content--list">
+						  
+						   
                               <li class="charity_inner--content--list--item">
                                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                     viewBox="0 0 54.757 54.757" style="enable-background:new 0 0 54.757 54.757;" xml:space="preserve">
@@ -250,6 +252,7 @@
       </section>
       <section>
          <div class="container">
+		
          </div>
       </section>
    </div>
@@ -264,6 +267,8 @@
    		 
    		
                return {
+			   image:'',
+					request:[],
 					  product_name:{},
 					  role:true,
 					 
@@ -273,7 +278,7 @@
 							},
 					product:[],
 					items:[],
-					create_message:{},
+					create_message:[],
 					loginCheck: helper.checkLogin()
 					  }
    			 
@@ -332,9 +337,9 @@
    	fetchItem()
                {
    		
-                axios.get('/api/charity_details/'+this.$route.params.id).then(response=>{
-   			
-   			this.create_message=response.data;
+                axios.get('/api/charity_request_details/'+this.$route.params.id).then(response=>{
+					this.request=response.data.data1;
+					this.create_message=response.data.data2;
    			
    			
    			}).catch(error=>{
