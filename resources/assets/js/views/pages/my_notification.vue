@@ -150,7 +150,7 @@
 			update(id){
 				axios.post('api/update_donation/'+id).then(response =>  {
                     toastr['success'](response.data.message);
-                    
+                    this.fetchItems();
                 })
 			 
 			
@@ -159,7 +159,7 @@
 			reject(id){
 				axios.post('api/reject_donation/'+id).then(response =>  {
                     toastr['success'](response.data.message);
-                    
+                    this.fetchItems();
                 })
 			 
 			
