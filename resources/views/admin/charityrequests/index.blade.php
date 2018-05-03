@@ -69,10 +69,10 @@ Charity Requests
 						
 						 <td>
 						 @if(  $cat->status =="0")
-							<a class="active_icon" href="{{ URL::to('admin/charityrequests/' . $cat->id . '/accept' ) }}"><i class="fa fa-check-square " title="Click To Activate charity request"></i></a>	
+							<a class="active_icon" href="{{ URL::to('admin/charityrequests/' . $cat->id . '/accept' ) }}"><i class="active_icon fa fa-times " title="Click To Activate charity request"></i></a>	
 							@else
 								
-								<a class="active_icon" href="{{ URL::to('admin/charityrequests/' . $cat->id . '/deactivate' ) }}"><i class="active_icon fa fa-times" title="Click To Deactivate Charity request"></i></a>
+								<a class="active_icon" href="{{ URL::to('admin/charityrequests/' . $cat->id . '/deactivate' ) }}"><i class="fa fa-check-square " title="Click To Deactivate Charity request"></i></a>
 							
 							 @endif
 								</a>
