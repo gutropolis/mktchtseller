@@ -47,6 +47,41 @@ class AdsController extends Controller
 		return($qu);
 		
 	}
+		public function requests()
+		{
+						
+			$request=my_ads::where('status',1)->get();
+			//return($request);
+			$requestarr=array();
+			
+			
+			foreach($request as $req)
+			{
+			
+			$charities = Charity::where('id',$req->charity_organisation)->get();
+			$charitiesArr = array();
+			$charitiesArr['charity_detail']=$charities;
+			$req['charity_detail']=$charities;
+			array_push($requestarr,$req);
+			
+			
+			}
+			return response()->json($requestarr);
+			
+			
+			
+			
+		}
+	
+	public function charity_request_details(Request $request,$id)
+    {
+		
+		$charity_details = Charity::where('id',$id)->first();
+		//return($charity_details);
+		$request=my_ads::where('charity_organisation',$charity_details->id)->first();
+		return response()->json(array('data1'=>$request,'data2'=>$charity_details));	
+    }
+	
 	public function store(Request $request)
     {
 	   
@@ -61,7 +96,7 @@ class AdsController extends Controller
 			$create_ads = new \App\my_ads;
 			$create_ads->title=$request->input('data.title');
 			$create_ads->description=$request->input('data.description');			
-			$create_ads->ads_type=$request->input('data.ads_type');
+			$create_ads->charity_organisation=$request->input('data.ads_type');
 			$create_ads->image=$name;
 			$user = JWTAuth::parseToken()->authenticate();
 			$create_ads->user_id = $user->id;	
