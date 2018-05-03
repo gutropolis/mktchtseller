@@ -114,8 +114,14 @@ $sellerproduct = SellerProduct::latest()->limit(6)->get();
 	public function store(Request $request)
 	{
 		
-		$data=$request->input('data1.tags');
-
+			if($request->get('image.image'))
+				{
+					$image = $request->get('image.image');
+					$name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+					\Image::make($request->get('image'))->save(public_path('images/product/').$name);
+					return($image);
+				}
+	
 		
 		
 			
@@ -128,7 +134,7 @@ $sellerproduct = SellerProduct::latest()->limit(6)->get();
 	$sellerproduct->organisation_id = $request->input('image.title');
 	$sellerproduct->product_category = $request->input('image.product_catgeory');
 	$sellerproduct->units = $request->input('image.units');
-	
+	$data=$request->input('data1.tags');
 	foreach($request->data1 as $data  )
 			{
 				$tag[]=$data['text'];			
