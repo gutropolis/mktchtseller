@@ -62,8 +62,11 @@
                                     <li class="admin__lsit--content"  v-if="msgnotification.length > 0" >
                                        <div v-for="it in msgnotification" class="notification">
 									       <router-link :to="it.url">
-										
-                                          <figure class="notification__profile"><img :src="'/images/user/'+it.avatar"></figure>
+										   
+                                          <figure class="notification__profile" v-if="it.avatar==null">
+										  <img :src="'/images/user/avatar.png'" ></figure>
+										  <figure class="notification__profile" v-if="it.avatar!=null"> 
+										  <img :src="'/images/user/'+it.avatar"></figure>
                                           <div class="notification__content">
 										  <p class="notification__content--pera">{{it.first_name}} {{it.last_name}} sent you message
 										  
@@ -117,7 +120,10 @@
                                  <li class="admin__lsit--content" v-if="notifications.length > 0">
 								  <div v-for="it in notifications" class="notification">
                                      <router-link :to="it.url">
-                                      <figure class="notification__profile"><img :src="'/images/user/'+it.avatar"></figure>
+                                      <figure class="notification__profile" v-if="it.avatar==null">
+										  <img :src="'/images/user/avatar.png'" ></figure>
+										  <figure class="notification__profile" v-if="it.avatar!=null"> 
+										  <img :src="'/images/user/'+it.avatar"></figure>
                                           <div class="notification__content">
 										  <p class="notification__content--pera">{{it.first_name}}{{it.last_name}}  {{ it.subject }}
 										  
