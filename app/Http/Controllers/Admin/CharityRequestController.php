@@ -135,7 +135,7 @@ class CharityRequestController extends JoshController
 			$charity_request= my_ads::find($id);
 			$charity_request->title=request('title');
 			$charity_request->description=request('description');
-			$charity_request->image=$safeName;
+			//$charity_request->image=$safeName;
 			$charity_request->save();
 			$request= my_ads::all();
 		   return view('admin.charityrequests.index',compact('request'))->with('no', 1);
