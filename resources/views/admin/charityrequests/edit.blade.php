@@ -68,7 +68,7 @@
 								   'description', ':message') }}</span>
                        </div>
                  </div>
-                     <div class="form-group {{ $errors->first('image', 'has-error') }}">
+				 {{--   <div class="form-group {{ $errors->first('image', 'has-error') }}">
                                                     <label for="pic" class="col-sm-2 control-label">Image </label>
                                                     <div class="col-sm-10">
                                                         <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -91,7 +91,7 @@
                                                         </div>
                                                         {!! $errors->first('image', '<span class="help-block">:message</span>') !!}
                                                     </div>
-                                                </div> 
+				 </div> --}}
                        
                        
                        
