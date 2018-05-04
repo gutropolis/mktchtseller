@@ -270,7 +270,7 @@
    		created: function()
            {
                this.fetchItems();
-   			this.fetchItem();
+   			
    			this.fetchproducts();
 				
            },
@@ -278,6 +278,7 @@
            
           mounted(){
 		 this.attribute = this.$route.query;
+		 this.fetchItem();
 		 console.log("Request id"+this.$route.query);
 		 console.log("id"+this.$route.params.id);
 		 
