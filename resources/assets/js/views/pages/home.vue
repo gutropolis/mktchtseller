@@ -70,15 +70,15 @@
                             </div>
                             <div class="recent__post--tab--content--detail_box">
                                 <article class="recent__post--tab--content--detail_box--block">
-								<h6  class="recent__post--tab--content--detail_box--block--heading"> {{item.title}} </h6>
-								 <p v-for="charity in item.charity_detail" class="recent__post--tab--content--detail_box--block--pera_box"><span><strong>Charity Name: </strong>{{charity.title}}</span></p>
-								 <p v-for="charity in item.charity_detail" class="recent__post--tab--content--detail_box--block--pera_box">  <span><strong>Country: </strong> {{charity.country}}</span> <span><strong>City: </strong> {{charity.city}}</span></p> 
-                                  
+								<h6  class="recent__post--tab--content--detail_box--block--heading" > {{item.title}} </h6>
+								 <p class="recent__post--tab--content--detail_box--block--pera_box">{{item.description}}</p>
+								 <p class="recent__post--tab--content--detail_box--block--pera_box"><strong>{{item.created_at |  moment("MMMM Do YYYY, h:mm a")}}</strong></p>
+								  
                                 </article>
                             </div>
 							 <div class="recent__post--tab--content--btn_outer">
                             <div v-for="charity in item.charity_detail" class="recent__post--tab--content--btn_outer--donate_btn"> 
-                             <router-link :to="{name: 'charity_details', params: { id: charity.id }}" class="btn btn-border-orange">View Info</router-link>
+                             <router-link :to="{name: 'charity_details', params: { id: charity.id },query:item.id}"  class="btn btn-border-orange">View Info</router-link>
                             </div>
 							</div>
 							
@@ -292,8 +292,10 @@
   </div>   
 </template>
 <script>
+
 	import helper from '../../services/helper'
-	
+	import Vue from 'vue'
+	Vue.use(require('vue-moment'));
     export default {
 	        data() {
 	selectcategory:'charity'
