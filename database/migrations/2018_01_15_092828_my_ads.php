@@ -16,15 +16,15 @@ class MyAds extends Migration
         Schema::create('my_ads', function(Blueprint $table)
 		{
             $table->increments('id');
-            $table->string('title')->default();
+            $table->string('title')->->nullable()();
             
-            $table->string('description')->default();
-            $table->string('image')->default();
-            $table->string('user_id')->default();
-            $table->string('location')->default();
-            $table->string('ads_type')->default();
-            $table->string('views')->default();
-            $table->string('like')->default();
+            $table->string('description')->->nullable()();
+           
+            $table->string('user_id')->->nullable()();
+           
+            $table->string('charity_organisation')->->nullable()();
+            $table->string('views')->->nullable()();
+            $table->string('like')->->nullable()();
            
                         
             $table->timestamps();
