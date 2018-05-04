@@ -76,6 +76,9 @@ Route::delete('/delete_donation/{id}','SellerController@destroy_donation');
 Route::post('/create_ads','AdsController@store');
 Route::get('/charityads/','AdsController@index');
 Route::get('/charities/','AdsController@charity');
+Route::get('/requests','AdsController@request_list');
+Route::get('/requests/{id}','AdsController@request_charities');
+
 Route :: get('/charityads/{id}','AdsController@edit');
 Route::delete('/charityads/{id}','AdsController@destroy');
 Route :: post('/charityads/{id}','AdsController@update');
