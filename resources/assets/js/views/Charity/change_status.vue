@@ -61,7 +61,7 @@
                                 </div> <!-- /controls -->
                             </div> <!-- /form-group -->
 
-                            <div class="donator_status--form_group--control_data">
+                            <div class="donator_status--form_group">
                     <label class="donator_status--form_group--control_label">Progress ({{items.progress}}%)</label>
 					 <div class="donator_status--form_group--control_data">
                     <range-slider class="slider" min="0" max="100" step="1" v-model="items.progress" @change="sliderChange"></range-slider>
