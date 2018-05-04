@@ -125,7 +125,7 @@ class SellerproductController extends JoshController
     {
          if ($file = $request->file('images')) {
             $extension = $file->extension()?: 'png';
-            $destinationPath = public_path() . '/uploads/sellerproduct/';
+            $destinationPath = public_path() . '/images/sellerproduct/';
             $safeName = str_random(10) . '.' . $extension;
    
             $file->move($destinationPath, $safeName);
@@ -133,8 +133,12 @@ class SellerproductController extends JoshController
    
    }
         
-  
-        Sellerproduct::find($id)->update($request->all());
+	$sellerproduct=Sellerproduct::find($id);
+	$sellerproduct->title=request('title');
+	$sellerproduct->description=request('description');
+	$sellerproduct->images = $safeName;
+	$sellerproduct->save();
+      
         return redirect()->route('admin.sellerproduct.index')
                         ->with('success','Update Seller  successfully');
 
