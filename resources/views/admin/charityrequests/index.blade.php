@@ -48,9 +48,7 @@ Charity Requests
                             <th>ID</th>
                             <th>Title</th>
                             <th>Description</th>
-                            <th>Image</th>
-                            
-                            <th>Created At</th>
+                           <th>Created At</th>
                             <th>Status</th>
 							<th>Action</th>
                         </tr>
@@ -59,13 +57,7 @@ Charity Requests
 						<td>{{ $no++ }}</td>
 						<td>{{ $cat->title }}</td>
 						<td>{{ $cat->description }}</td>
-						<td>
-                           <div class="img-file">
-                             <img src="{{ asset('images/charityads/' . $cat->image) }}" alt="img"
-                                 height="60px" width="60px" />
-                           </div>
-                        </td>
-						<td>{{ $cat->created_at }}</td>
+						<td>{{ \Carbon\Carbon::parse($cat->created_at)->format('d/m/Y ')}}</td>
 						
 						 <td>
 						 @if(  $cat->status =="0")
