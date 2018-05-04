@@ -35,10 +35,22 @@ class AdsController extends Controller
     {
 		$user = JWTAuth::parseToken()->authenticate();
 		 $query = \App\my_ads::whereUserId($user->id);
-		$show_ads = $query->latest()->get();
-		//$show_ads=my_ads::all();
-        return response()->json($show_ads);
+		$requests = $query->latest()->get();
+		$requestsArr=array();
+		
+		foreach($requests as $request){
+		
+			$charities = Charity::where('id',$request->charity_organisation)->get();
+			$charitiesArr = array();
+			$charitiesArr['charity_detail']=$charities;
+			$request['charity_detail']=$charities;
+			array_push($requestsArr,$request);
+			
+		}
+		
+        return response()->json($requestsArr);
     }
+	
 	public function charity()
 	{
 		$user = JWTAuth::parseToken()->authenticate();
@@ -79,25 +91,41 @@ class AdsController extends Controller
 		$charity_details = Charity::where('id',$id)->first();
 		//return($charity_details);
 		$request=my_ads::where('charity_organisation',$charity_details->id)->first();
-		return response()->json(array('data1'=>$request,'data2'=>$charity_details));	
+		$request_list=my_ads::where('charity_organisation',$charity_details->id)->get();
+		
+		return response()->json(array('data1'=>$request,'data2'=>$charity_details,'data3'=>$request_list));	
     }
+	
+	public function request_charities(Request $request,$id)
+    {
+		$request=my_ads::where('id',$id)->first();
+		
+		$charity_details = Charity::where('id',$request->charity_organisation)->first();
+	
+		$request_list=my_ads::where('charity_organisation',$charity_details->id)->get();
+		
+		return response()->json(array('data1'=>$request,'data2'=>$charity_details,'data3'=>$request_list));	
+    }
+	
+	
+	
 	
 	public function store(Request $request)
     {
 	   
-       if($request->get('image'))
+      /* if($request->get('image'))
 				{
 					$image = $request->get('image');
 					$name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
 					\Image::make($request->get('image'))->save(public_path('images/charityads/').$name);
-				}
+				}*/
 		
       
 			$create_ads = new \App\my_ads;
-			$create_ads->title=$request->input('data.title');
-			$create_ads->description=$request->input('data.description');			
-			$create_ads->charity_organisation=$request->input('data.ads_type');
-			$create_ads->image=$name;
+			$create_ads->title=$request['title'];
+			$create_ads->description=$request['description'];			
+			$create_ads->charity_organisation=$request['ads_type'];
+			//$create_ads->image=$name;
 			$user = JWTAuth::parseToken()->authenticate();
 			$create_ads->user_id = $user->id;	
 			 $create_ads->status="0";
@@ -141,9 +169,10 @@ class AdsController extends Controller
 	 public function edit($id)
     {
 		$edit_ads = my_ads::find($id);
-		
-		$charity=Charity::where('id',$edit_ads->ads_type)->pluck('title');
-		return response()->json(array('data1'=>$edit_ads,'data2'=>$charity[0]));	
+		 
+		$charity=Charity::all();
+			
+		return response()->json(array('data1'=>$edit_ads,'data2'=>$charity));	
    
     }
       public function destroy($id)
@@ -169,9 +198,7 @@ class AdsController extends Controller
        $ads_update=my_ads::find($id);
 		$ads_update->title=$request->get('title');
 		$ads_update->description=$request->get('description');
-		$ads_update->image=$request->get('image');
-		//$ads_update->location=$request->get('location');
-		$ads_update->ads_type=$request->get('ads_type');
+		$ads_update->charity_organisation=$request->get('charity_organisation');
 		
 		$ads_update->save();
      return response()->json(['message' => 'Data update Successfully']);
