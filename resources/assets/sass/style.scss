@@ -2525,9 +2525,7 @@ font-size:15px;
     text-align:center;
     &--box{
     padding: 20px 0px;
-    background: #fff;
-    @include box-shadow();
-    border: 1px solid $grey-color4;
+    background: #fff;  
     margin-bottom: 40px;
 
     &--heading{
