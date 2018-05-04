@@ -33,23 +33,27 @@
                         </div>
                         <div class="form-group">
                             <label class="login__element--box--label">Title</label>
-                            <input type="text" name="title" v-model="create_ads.title" required class="login__element--box--input">
+                            <input type="text" name="title" v-model="create_ads.title" v-validate="'required'"  class="login__element--box--input">
+							 <i v-show="errors.has('title')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('title')" class="help is-danger">{{ errors.first('title') }}</span>
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">What type of item are your charity seeking?</label>
-                             <textarea  type="text" name="description" v-model="create_ads.description" required rows="5"  class="login__element--box--input"></textarea>
+                             <textarea  type="text" name="description" v-model="create_ads.description" v-validate="'required'"  rows="5"  class="login__element--box--input"></textarea>
+							  <i v-show="errors.has('description')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('description')" class="help is-danger">{{ errors.first('description') }}</span>
                         </div>
                        
-						<div class="form-group">
+						<!--<div class="form-group">
                             <label class="login__element--box--label">Image</label>
                             <input type="file"  v-on:change="onImageChange" required class="login__element--box--input">
                         </div>
 						
 						 <div class="col-md-6" v-if="image">
                               <img :src="image" class="img-responsive" height="100" width="120">
-                           </div>
+                           </div>-->
 						
-					</div>
+					</div> 
 			<div class="form-group">
 						<input type="submit" value="Request Products" class="btn btn-success waves-effect waves-light m-t-10">
 						</div>
@@ -74,7 +78,7 @@ import VeeValidate from 'vee-validate'
 	
             return {
 				items:{},
-				image: '',
+			//	image: '',
                 create_ads: {
 					ads_type:'',
                     title: '',
@@ -93,12 +97,7 @@ import VeeValidate from 'vee-validate'
 					  },
        
         methods: {
-		 validateBeforeSubmit(e) {
-        this.$validator.validateAll();
-        if (!this.errors.any()) {
-            this.submitForm()
-        }
-      },
+		
 				 fetchItems()
 			 {
 				axios.get('/api/charity_name').then((response) => {
@@ -124,16 +123,20 @@ import VeeValidate from 'vee-validate'
             },
 		
               submit(e){
+			  this.$validator.validateAll().then((result) => {
+			  if(result)
+			  {
 			   let data = this.create_ads;
-                axios.post('/api/create_ads',{image: this.image, data}).then(response =>  {
+                axios.post('/api/create_ads',this.create_ads).then(response =>  {
                     toastr['success'](response.data.message);
                     this.$router.push('/my_ads');
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
-                });
-            },
+                })
+				}
+            });
 			
-			
+			}
         }
     }
 	
