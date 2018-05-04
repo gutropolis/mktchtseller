@@ -26,7 +26,7 @@ let routes = [
 			},
 				{ 
 				name : 'edit_ads',
-                path: '/edit',
+                path: '/edit:id',
                 component: require('./views/pages/my_ads/edit_ads')
             },
 			{
