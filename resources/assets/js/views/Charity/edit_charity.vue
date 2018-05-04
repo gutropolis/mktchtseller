@@ -20,7 +20,7 @@
                                  <p class="control has-icon has-icon-right">
                                     <select name="charity_type" v-model="address.charity_type" v-validate="'required|not_in:Choose' "class="login__element--box--input" type="text" placeholder="charity_type">
                                        <option value="select" >Select .. </option>
-                                       <op<option  v-for="cat in category" v-if="cat.parent_id > 0" :value="cat.id">{{ cat.title }}</option>	
+                                       <option  v-for="cat in category" v-if="cat.parent_id > 0" :value="cat.id">{{ cat.title }}</option>	
                                     </select>
                                     <i v-show="errors.has('charity_type')" class="fa fa-warning"></i>
                                     <span v-show="errors.has('charity_type')" class="help is-danger">{{ errors.first('charity_type') }}</span>
