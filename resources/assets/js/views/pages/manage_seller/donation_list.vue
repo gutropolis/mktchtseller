@@ -26,11 +26,11 @@
 									   <th>Action</th>
                                       
                                     </tr>
-                                    <tr v-for="(item,index) in pending">
+                                    <tr v-for="(item,index) in pending.data">
                                        <td>{{index+1}}</td>
-                                       <td v-for="product in item.product_detail">{{product}}</td>
+                                       <td>{{item.product}}</td>
                                        <td>{{item.units}}</td>
-                                       <td v-for="charity in item.charity_detail">{{charity}}</td>
+                                       <td>{{item.charity}}</td>
 									   <td>{{item.progress}} %</td>
                                        <td v-if="item.status == 0">Pending</td>
                                        <td v-if="item.status == 1">Accept</td>
@@ -57,14 +57,32 @@
                                      
                                     </tr>
 									<tr>
+									
 								 <td v-if="pending.length === 0" colspan="8	">
 									<h4  style="text-align:center;" >No results</h4>
 										</td>
 										</tr>
                                  </table>
-								  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+								
                               </div>
                            </div>
+						   <div class="row">
+                                <div class="col-md-12 pagination_box">
+                                    <pagination :data="accept" :limit=3 v-on:pagination-change-page="fetchItems"></pagination>
+									<select name="pageLength" class="page_option" v-model="filterUserForm.pageLength" @change="fetchItems" v-if="accept.total">
+                                            <option value="5">5 per page</option>
+                                            <option value="10">10 per page</option>
+                                            <option value="25">25 per page</option>
+                                            <option value="100">100 per page</option>
+                                        </select>
+                                </div>
+                                
+                            </div>
+						   
+						   
+						   
+						   
+						   
                         </div>
                      </b-tab>
                      <b-tab title="Accepted" >
@@ -82,11 +100,11 @@
                                        <th>Created On</th>
                                        
                                     </tr>
-                                    <tr v-for="(item,index) in accept">
+                                    <tr v-for="(item,index) in accept.data">
                                        <td>{{index+1}}</td>
-                                      <td v-for="product in item.product_detail">{{product}}</td>
+                                      <td>{{item.product}}</td>
                                        <td>{{item.units}}</td>
-                                      <td v-for="charity in item.charity_detail">{{charity}}</td>
+                                      <td>{{item.charity}}</td>
 									  <td>{{item.progress}} % </td>
                                        <td v-if="item.status == 0">Pending</td>
                                        <td v-if="item.status == 1">Accept</td>
@@ -100,9 +118,21 @@
 										</td>
 										</tr>
                                  </table>
-								  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+								  
                               </div>
                            </div>
+						    <div class="row">
+                                <div class="col-md-12 pagination_box">
+                                    <pagination :data="accept" :limit=3 v-on:pagination-change-page="fetchItems"></pagination>
+									<select name="pageLength" class="page_option" v-model="filterUserForm.pageLength" @change="fetchItems" v-if="accept.total">
+                                            <option value="5">5 per page</option>
+                                            <option value="10">10 per page</option>
+                                            <option value="25">25 per page</option>
+                                            <option value="100">100 per page</option>
+                                        </select>
+                                </div>
+                                
+                            </div>
                         </div>
                      </b-tab>
                      <b-tab title="Declined">
@@ -120,11 +150,11 @@
                                        <th>Created On</th>
                                       
                                     </tr>
-                                    <tr v-for="(item,index) in decline">
+                                    <tr v-for="(item,index) in decline.data">
                                        <td>{{index+1}}</td>
-                                        <td v-for="product in item.product_detail">{{product}}</td>
+                                        <td>{{item.product}}</td>
                                        <td>{{item.units}}</td>
-                                      <td v-for="charity in item.charity_detail">{{charity}}</td>
+                                      <td>{{item.charity}}</td>
 									  <td>{{item.progress}} % </td>
                                        <td v-if="item.status == 0">Pending</td>
                                        <td v-if="item.status == 1">Accept</td>
@@ -138,9 +168,21 @@
 										</td>
 										</tr>
                                  </table>
-								  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+								 
                               </div>
                            </div>
+						   <div class="row">
+                                <div class="col-md-12 pagination_box">
+                                    <pagination :data="decline" :limit=3 v-on:pagination-change-page="fetchItems"></pagination>
+									<select name="pageLength" class="page_option" v-model="filterUserForm.pageLength" @change="fetchItems" v-if="decline.total">
+                                            <option value="5">5 per page</option>
+                                            <option value="10">10 per page</option>
+                                            <option value="25">25 per page</option>
+                                            <option value="100">100 per page</option>
+                                        </select>
+                                </div>
+                                
+                            </div>
                         </div>
                      </b-tab>
 					  <b-tab title="Completed">
@@ -159,11 +201,11 @@
                                        <th>Created On</th>
                                        
                                     </tr>
-                                    <tr v-for="(item,index) in completed">
+                                    <tr v-for="(item,index) in completed.data">
                                        <td>{{index+1}}</td>
-                                        <td v-for="product in item.product_detail">{{product}}</td>
+                                        <td>{{item.product}}</td>
                                        <td>{{item.units}}</td>
-                                      <td v-for="charity in item.charity_detail">{{charity}}</td>
+                                      <td>{{item.charity}}</td>
 									  <td>{{item.progress}} % </td>
                                        <td v-if="item.status == 0">Pending</td>
                                        <td v-if="item.status == 1">Accepted</td>
@@ -178,9 +220,21 @@
 										</td>
 										</tr>
                                  </table>
-								  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+								 
                               </div>
                            </div>
+						   <div class="row">
+                                <div class="col-md-12 pagination_box">
+                                    <pagination :data="completed" :limit=3 v-on:pagination-change-page="fetchItems"></pagination>
+									<select name="pageLength" class="page_option" v-model="filterUserForm.pageLength" @change="fetchItems" v-if="completed.total">
+                                            <option value="5">5 per page</option>
+                                            <option value="10">10 per page</option>
+                                            <option value="25">25 per page</option>
+                                            <option value="100">100 per page</option>
+                                        </select>
+                                </div>
+                                
+                            </div>
                         </div>
 					  </b-tab>
 					 
@@ -194,23 +248,33 @@
    </div>
 </template>
 <script>
-   import InfiniteLoading from 'vue-infinite-loading';
+import helper from '../../../services/helper'
+import pagination from 'laravel-vue-pagination'
+
+  
    import AppSidebar from '../../pages/users/sidebar.vue' 
       export default {
           components: {
-             AppSidebar,InfiniteLoading
+             AppSidebar,pagination
           },
    
    
           data() {
    	
               return {
+			  filterUserForm: {
+                   // sortBy : 'title',
+                    order: 'desc',
+                    status: '',
+                    title: '',
+                    pageLength: 5
+                },
    
    		name:{},
-  pending:[],
-   accept:[],
-   decline:[],
-   completed:[],
+  pending:{},
+   accept:{},
+   decline:{},
+   completed:{},
                       
                   }
               },
@@ -232,24 +296,20 @@
    	
    	
    	},
-	infiniteHandler($state) {
-      setTimeout(() => {
-        const temp = [];
-        for (let i = this.items.length + 1; i <= this.items.length + 4; i++) {
-          temp.push(i);
-        }
-        this.items = this.items.concat(temp);
-        $state.loaded();
-      }, 90000);
-    },
-   	fetchItems()
+	
+   	fetchItems(page)
    		{
-   		axios.get('api/donation_list').then(response=>{
+		if (typeof page === 'undefined') {
+                    page = 1;
+                }
+				let url = helper.getFilterURL(this.filterUserForm);
+   		axios.get('api/donation_list?page=' + page + url).then(response=>{
    		
    		this.pending=response.data.data1;
 		this.accept=response.data.data2;
 		this.decline=response.data.data3;
 		this.completed=response.data.data4;
+	
    		
    		}).catch(error=>{
    		toastr['error'](error.response.data.message);
