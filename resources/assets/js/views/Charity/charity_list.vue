@@ -23,7 +23,7 @@
                                     <th>LOCATION</th>
                                     <th>ACTION</th>
                                  </tr>
-                                 <tr v-for="(item,index) in items">
+                                 <tr v-for="(item,index) in items.data">
                                     <td>{{index+1}}</td>
                                     <td>{{item.title}}</td>
                                     <td>{{item.description}}</td>
@@ -66,11 +66,28 @@
                                        </b-link>
                                     </td>
                                  </tr>
+								 <tr>
+								 <td v-if="items.length === 0" colspan="7">
+									<h4  style="text-align:center;" >No results</h4>
+										</td>
+										</tr>
                               </table>
-							  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+							   
                            </div>
                         </div>
                      </div>
+					 <div class="row">
+                                <div class="col-md-12 pagination_box">
+                                    <pagination :data="items" :limit=3 v-on:pagination-change-page="fetchItems"></pagination>
+									<select name="pageLength" class="page_option" v-model="filterUserForm.pageLength" @change="fetchItems" v-if="items.total">
+                                            <option value="5">5 per page</option>
+                                            <option value="10">10 per page</option>
+                                            <option value="25">25 per page</option>
+                                            <option value="100">100 per page</option>
+                                        </select>
+                                </div>
+                                
+                            </div>
                   </div>
                </div>
             </div>
@@ -80,19 +97,27 @@
 </template>
 
 <script>
-import InfiniteLoading from 'vue-infinite-loading';
-import AppNavbar from '../pages/users/navbar.vue' 
+
+import helper from '../../services/helper'
+import pagination from 'laravel-vue-pagination'
  import AppSidebar from '../pages/users/sidebar.vue' 
     export default {
         components: {
-            AppNavbar,  AppSidebar ,InfiniteLoading
+            pagination,  AppSidebar 
         },
 
 
         data() {
 		
             return {
-			items:[],
+			items:{},
+			filterUserForm: {
+                   // sortBy : 'title',
+                    order: 'desc',
+                    status: '',
+                    title: '',
+                    pageLength: 5
+                },
 			 loaded: false,
                 
                     
@@ -108,27 +133,23 @@ import AppNavbar from '../pages/users/navbar.vue'
         methods: {
             
             
-			fetchItems()
+			fetchItems(page)
 			{
-			axios.get('api/charity_list_user').then(response=>{
+			if (typeof page === 'undefined') {
+                    page = 1;
+                }
+				 let url = helper.getFilterURL(this.filterUserForm);
+			axios.get('api/charity_list_user?page=' + page + url).then(response=>{
 			
 			this.items=response.data;
+			console.log(this.items);
 			this.loaded = true;
 			
 			}).catch(error=>{
 			toastr['error'](error.response.data.message);
 			});
 			},
-			 infiniteHandler($state) {
-      setTimeout(() => {
-        const temp = [];
-        for (let i = this.items.length + 1; i <= this.items.length + 4; i++) {
-          temp.push(i);
-        }
-        this.items = this.items.concat(temp);
-        $state.loaded();
-      }, 90000);
-    },
+			 
 			 deleteItem(id)
             {
                axios.delete('/api/charity_list/'+id).then(response => {
