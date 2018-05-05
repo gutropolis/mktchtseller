@@ -42,6 +42,13 @@ export default {
             return response.data.authenticated;
         });
     },
+	LoginCheck(){
+        return axios.get('/api/auth/check').then(response =>  {
+            return !!response.data.authenticated;
+        }).catch(error =>{
+            return response.data.authenticated;
+        });
+    },
 
     getFilterURL(data){
         let url = '';
