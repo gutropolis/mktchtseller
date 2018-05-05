@@ -128,7 +128,7 @@ class SellerController extends Controller
 	
 		$user = JWTAuth::parseToken()->authenticate();
 		$query = Seller::whereUserId($user->id);
-		$seller = $query->latest()->get();
+		$seller = $query->latest()->paginate(request('pageLength'));
 		return response()->json($seller);
     }
    
@@ -226,77 +226,17 @@ class SellerController extends Controller
 	
 	{
 		$user = JWTAuth::parseToken()->authenticate();
-		$pending=Donation::where('seller_id',$user->id)->where('status','0')->get();
 		
-		$pendingstatus=array();
-		foreach($pending as $pend)
-		{
-			
-			$product=Sellerproduct::where('id',$pend->product_id)->pluck('title');
-			//return($product[0]);
-			$charity=Charity::where('id',$pend->charity_id)->pluck('title');
-			$product_detail = array();
-			$product_detail['product_detail']=$product;
-			$product_detail['charity_detail']=$charity;
-			
-			$pend['product_detail']=$product;
-			$pend['charity_detail']=$charity;
-			array_push($pendingstatus,$pend);
-			
-		}
+		
+		$pendingstatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','0')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
+		
+		$acceptstatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','1')->where('gs_donation.is_certify','0')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
+		
+		$declinestatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','2')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
+		
+		$completestatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','2')->where('gs_donation.is_certify','1')->where('progress','100')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
+		
 	
-		$accept=Donation::where('seller_id',$user->id)->where('status','1')->where('is_certify','0')->get();
-		$acceptstatus=array();
-		foreach($accept as $acc)
-		{
-			
-			$product=Sellerproduct::where('id',$acc->product_id)->pluck('title');
-			//return($product[0]);
-			$charity=Charity::where('id',$acc->charity_id)->pluck('title');
-			$product_detail = array();
-			$product_detail['product_detail']=$product;
-			$product_detail['charity_detail']=$charity;
-			
-			$acc['product_detail']=$product;
-			$acc['charity_detail']=$charity;
-			array_push($acceptstatus,$acc);
-			
-		}
-		
-		$decline=Donation::where('seller_id',$user->id)->where('status','2')->get();
-		$declinestatus=array();
-		foreach($decline as $dec)
-		{
-			
-			$product=Sellerproduct::where('id',$dec->product_id)->pluck('title');
-			//return($product[0]);
-			$charity=Charity::where('id',$dec->charity_id)->pluck('title');
-			$product_detail = array();
-			$product_detail['product_detail']=$product;
-			$product_detail['charity_detail']=$charity;
-			
-			$dec['product_detail']=$product;
-			$dec['charity_detail']=$charity;
-			array_push($declinestatus,$dec);
-			
-		}
-		$complete=Donation::where('seller_id',$user->id)->where('is_certify','1')->where('progress','100')->where('status','1')->get();
-		$completestatus=array();
-		foreach($complete as $comp)
-		{
-			
-			$product=Sellerproduct::where('id',$comp->product_id)->pluck('title');
-			//return($product[0]);
-			$charity=Charity::where('id',$comp->charity_id)->pluck('title');
-			$product_detail = array();
-			$product_detail['product_detail']=$product;
-			$product_detail['charity_detail']=$charity;
-			
-			$comp['product_detail']=$product;
-			$comp['charity_detail']=$charity;
-			array_push($completestatus,$comp);
-			
-		}
 		
 		
 		
