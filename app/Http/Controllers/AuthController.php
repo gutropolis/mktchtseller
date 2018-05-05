@@ -127,7 +127,7 @@ class AuthController extends Controller
         ]);
 		
 
-        $create_ads->activation_token = generateUuid();
+        $user->activation_token = generateUuid();
 		
       $data=array('user'=>$user);
 		
