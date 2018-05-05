@@ -16,7 +16,7 @@ Route::get('/login','AuthController@authenticate');
 Route::post('/logout','AuthController@logout');
 Route::get('/check','AuthController@check');
 Route::post('/check','AuthController@check');
-Route::get('/check','AuthController@check');
+Route::get('/login_check','AuthController@login_check');
 Route::post('/register','AuthController@register');
 Route::post('/charityregister','AuthController@charityregister');
 Route::get('/register','AuthController@register');
