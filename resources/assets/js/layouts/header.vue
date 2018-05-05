@@ -30,7 +30,8 @@
                   </li>
                </ul>
                <div class=" my-2 my-lg-0 user_profile_dropdown">
-                  <div v-if="loginCheck === true">
+			   
+                  <div v-if="check == true">
                      <b-navbar-nav>
                         <b-nav-item-dropdown right>
                            <!-- Using button-content slot -->
@@ -198,7 +199,7 @@
                         </b-nav-item-dropdown>
                      </b-navbar-nav>
                   </div>
-                  <div v-else>
+                  <div v-if="check==false">
                      <router-link to="/register" class="btn join_btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Join Us </router-link>
                      <router-link to="/login" class="btn sign_btn"><img src="images/sign-arrow.png">Sign In </router-link>
                   </div>
@@ -223,6 +224,7 @@
    
    
            return {
+		   check:{},
 		    notifications: [],
 			msgnotification:[],
 		  // messageArr:[],
@@ -232,8 +234,8 @@
 			   items: [],
 			   messageCount:'',
 			   messageNotification:'',
-			   loginCheck : helper.LoginCheck()
-			
+			 
+			  
    
            }
        },
@@ -245,8 +247,7 @@
           
         },
 			created: function() {
-			   //this.fetchmessage();
-			   //this.fetchnotification();   
+			   this.LoginCheck();   
 		  
 		   
        },
@@ -297,6 +298,13 @@
 				
 				
       })
+	  })
+	  },
+	  LoginCheck(){
+		 axios.get('/api/auth/login_check').then((response) => {
+				this.check=response.data;
+	  
+	  
 	  })
 	  },
             
