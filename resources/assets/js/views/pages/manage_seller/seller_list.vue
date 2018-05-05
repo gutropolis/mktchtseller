@@ -78,18 +78,15 @@
                   </div>
 				  <div class="row">
                                 <div class="col-md-12 pagination_box">
-                                    <pagination :data="items" :limit=3  v-on:pagination-change-page="fetchItems"></pagination>
-                                </div>
-                                <div class="col-md-2" pagination_box>
-                                    
-                                        <select name="pageLength" class="form-control" v-model="filterUserForm.pageLength" @change="fetchItems" v-if="items.total">
+                                    <pagination :data="items" :limit=3 v-on:pagination-change-page="fetchItems"></pagination>
+									<select name="pageLength" class="page_option" v-model="filterUserForm.pageLength" @change="fetchItems" v-if="items.total">
                                             <option value="5">5 per page</option>
                                             <option value="10">10 per page</option>
                                             <option value="25">25 per page</option>
                                             <option value="100">100 per page</option>
                                         </select>
-
                                 </div>
+                                
                             </div>
 				  
 				
