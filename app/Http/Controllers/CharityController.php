@@ -66,9 +66,9 @@ class charityController extends Controller
     {
 		$user = JWTAuth::parseToken()->authenticate();
 		$query = Charity::whereUserId($user->id);
-			$charity = $query->latest()->get();
-		
-		return response()->json($charity);
+			$charity = $query->latest()->paginate(request('pageLength'));
+
+		return $charity;
     }
 	/*public function charities_list(Request $request)
 	{		
@@ -150,26 +150,13 @@ class charityController extends Controller
 		$date = new \DateTime();
 		$date->modify('-3 days');
 		$formatted_date = $date->format('Y-m-d H:i:s');
-		$donaters = Donation::where('created_at', '>',$formatted_date)->get();
 		
-		$donatersdata=array();
+		$donaters=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.updated_by as seller','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.is_certify','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.created_at', '>',$formatted_date)->paginate(request('pageLength'));
 		
 		
-		foreach($donaters as $donate)
-		{
-			$product=Sellerproduct::where('id',$donate->product_id)->get();
-			$charity=Charity::where('id',$donate->charity_id)->get();
-			$product_detail = array();
-			$product_detail['product_detail']=$product;
-			$product_detail['charity_detail']=$charity;
-			
-			$donate['product_detail']=$product;
-			$donate['charity_detail']=$charity;
-			array_push($donatersdata,$donate);
-		}
+		return($donaters);
 		
-		return response()->json($donatersdata);	
-			
+		
 		
 	}
 		public function product_detail($id)
@@ -226,24 +213,7 @@ class charityController extends Controller
     {
        
          
-		$charity = Validator::make($request->all(), [
-           // 'charity_type'=>'required',
-			
-			'title' => 'required',
-			'description'=>'required',
-			'location'=>'required',
-			'year_in_business'=>'required',
-			
-			'business_purpose'=>'required',
-			'locality'=>'required',
-			'postal_code'=> 'required',
-			'phone_number'=>'required',
-			'website'=>'required',
-			'vision_statement'=>'required',
-			'mission_statement'=>'required',
-			'tags'=>'required'
-            
-        ]);
+		
 			if($request->get('image'))
 				{
 					$image = $request->get('image');
