@@ -9,9 +9,9 @@
                      <h3 class="dashboard__content--head--heading">Notification of Invited Charities By Sellers</h3>
                   </div>
                   <div class="donation_top_tab">
-                  <b-tabs>
+                  <b-tabs class="">
                      <b-tab title="Pending" active>
-                        <div>
+                        <div class="">
                            <div class="panel-body">
                               <div class="table-responsive">
                                   <div class="dashboard__content--outer clearfix">
@@ -41,6 +41,11 @@
 								 
                               </div>
                            </div>
+						    <div v-if="items.length === 0">
+								 
+									<h4  style="text-align:center;" >Not Avilable Pending Donation Notification </h4>
+									
+										</div>
                         </div>
                      </b-tab>
                      <b-tab title="Accepted" >
@@ -70,6 +75,11 @@
 								 
                               </div>
                            </div>
+						    <div v-if="items.length === 0">
+								 
+									<h4  style="text-align:center;" >Not Avilable Any Accepted Donation Notification </h4>
+									
+										</div>
                         </div>
                      </b-tab>
                      <b-tab title="Declined">
@@ -99,6 +109,11 @@
 								 
                               </div>
                            </div>
+						   <div v-if="items.length === 0">
+								 
+									<h4  style="text-align:center;" >Not Able Any Rejected Donation Notification </h4>
+									
+										</div>
                         </div>
                      </b-tab>
 					
