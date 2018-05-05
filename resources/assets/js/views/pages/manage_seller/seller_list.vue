@@ -22,7 +22,7 @@
                                  <th>LOCATION</th>
                                  <th>ACTION</th>
                               </tr>
-                              <tr v-for="(item,index) in items">
+                              <tr v-for="(item,index) in items.data">
                                  <td>{{index+1}}</td>
                                  <td>{{item.title}}</td>
                                  <td>{{item.description}}</td>
@@ -65,18 +65,32 @@
                                     </b-link>
                                  </td>
                               </tr>
-							  <tr>
+							<tr>
 								 <td v-if="items.length === 0" colspan="7">
 									<h4  style="text-align:center;" >No results</h4>
 										</td>
 										</tr>
 							  
                            </table>
-						   <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+						  
                         </div>
                      </div>
                   </div>
-				  
+				  <div class="row">
+                                <div class="col-md-12 pagination_box">
+                                    <pagination :data="items" :limit=3  v-on:pagination-change-page="fetchItems"></pagination>
+                                </div>
+                                <div class="col-md-2" pagination_box>
+                                    
+                                        <select name="pageLength" class="form-control" v-model="filterUserForm.pageLength" @change="fetchItems" v-if="items.total">
+                                            <option value="5">5 per page</option>
+                                            <option value="10">10 per page</option>
+                                            <option value="25">25 per page</option>
+                                            <option value="100">100 per page</option>
+                                        </select>
+
+                                </div>
+                            </div>
 				  
 				
                </div>
@@ -85,15 +99,14 @@
       </section>
    </div>
 </template>
-<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
-<script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
-<script>
 
-import InfiniteLoading from 'vue-infinite-loading';
+<script>
+import helper from '../../../services/helper'
+import pagination from 'laravel-vue-pagination'
    import AppSidebar from '../users/sidebar.vue'
       export default {
           components: {
-               AppSidebar ,InfiniteLoading
+               AppSidebar ,pagination
 
           },
    
@@ -101,6 +114,13 @@ import InfiniteLoading from 'vue-infinite-loading';
           data() {
    	
               return {
+			  filterUserForm: {
+                   // sortBy : 'title',
+                    order: 'desc',
+                    status: '',
+                    title: '',
+                    pageLength: 5
+                },
    		items:[],
               loaded: false,
                       
@@ -116,9 +136,13 @@ import InfiniteLoading from 'vue-infinite-loading';
           methods: {
               
               
-   		fetchItems()
+   		fetchItems(page)
    		{
-   		axios.get('api/seller_list').then(response=>{
+		if (typeof page === 'undefined') {
+                    page = 1;
+                }
+				 let url = helper.getFilterURL(this.filterUserForm);
+   		axios.get('api/seller_list?page=' + page + url).then(response=>{
    		
    		this.items=response.data;
    		 this.loaded = true;
@@ -127,17 +151,7 @@ import InfiniteLoading from 'vue-infinite-loading';
    		toastr['error'](error.response.data.message);
    		});
    		},
-		infiniteHandler($state) {
-      setTimeout(() => {
-        const temp = [];
-        for (let i = this.items.length + 1; i <= this.items.length + 4; i++) {
-          temp.push(i);
-        }
-        this.items = this.items.concat(temp);
-        $state.loaded();
-      }, 200000);
-    },
-	
+		
    		 deleteItem(id)
               {
                  axios.delete('/api/seller_list/'+id).then(response => {
