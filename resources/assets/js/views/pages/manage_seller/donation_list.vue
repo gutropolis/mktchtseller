@@ -56,6 +56,11 @@
                                        </b-link></td>
                                      
                                     </tr>
+									<tr>
+								 <td v-if="pending.length === 0" colspan="8	">
+									<h4  style="text-align:center;" >No results</h4>
+										</td>
+										</tr>
                                  </table>
 								  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                               </div>
@@ -89,6 +94,11 @@
                                        <td>{{item.created_at}}</td>
                                      
                                     </tr>
+									<tr>
+								 <td v-if="accept.length === 0" colspan="7">
+									<h4  style="text-align:center;" >No results</h4>
+										</td>
+										</tr>
                                  </table>
 								  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                               </div>
@@ -122,6 +132,11 @@
                                        <td>{{item.created_at}}</td>
                                       
                                     </tr>
+									<tr>
+								 <td v-if="decline.length === 0" colspan="7">
+									<h4  style="text-align:center;" >No results</h4>
+										</td>
+										</tr>
                                  </table>
 								  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                               </div>
@@ -157,6 +172,11 @@
                                        <td>{{item.created_at}}</td>
                                        
                                     </tr>
+									<tr>
+								 <td v-if="completed.length === 0" colspan="8">
+									<h4  style="text-align:center;" >No results</h4>
+										</td>
+										</tr>
                                  </table>
 								  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                               </div>
