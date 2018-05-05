@@ -72,6 +72,17 @@ class AuthController extends Controller
         return response(['authenticated' => true]);
     }
 
+	 public function login_check()
+    {
+        try {
+            JWTAuth::parseToken()->authenticate();
+        } catch (JWTException $e) {
+            return response()->json(false);
+        }
+
+        return response()->json(true);
+    }
+
     public function logout()
     {
 
