@@ -30,10 +30,7 @@
 								 <td v-for="charity in item.charity_detail">{{charity.title}}</td>
                                  <td>{{item.units}}</td>
 								 <td>
-                                            
-                                              
-                                        
-                                            {{ item.progress }} %
+                                      {{ item.progress }} %
                                         </td>
                                 
                                  <td>
@@ -52,6 +49,11 @@
 								 </router-link>
                                  </td>
                               </tr>
+							   <tr>
+								 <td v-if="items.length === 0" colspan="9">
+									<h4  style="text-align:center;" >No results</h4>
+										</td>
+										</tr>
                            </table>
 						  
                         </div>
