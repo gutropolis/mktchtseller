@@ -232,8 +232,8 @@
 			   items: [],
 			   messageCount:'',
 			   messageNotification:'',
-			   loginCheck : helper.checkLogin()
-			  
+			   loginCheck : helper.LoginCheck()
+			
    
            }
        },
