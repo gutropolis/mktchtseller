@@ -26,7 +26,7 @@
                               <div v-if="savecharityform.charity_Category !='select' ">
                                  <label class="login__element--box--label">Charity Type</label>
                                  <p class="control has-icon has-icon-right">
-                                    <select name="charity_type" v-model="savecharityform.charity_type" v-validate="'required|not_in:Choose' "class="login__element--box--input" type="text" placeholder="charity_type">
+                                    <select name="charity_type" v-model="savecharityform.charity_type" v-validate="'required|not_in:Choose' " class="login__element--box--input" type="text" placeholder="charity_type">
                                        <option value="select" >Select .. </option>
                                        <option  v-for="item in items" v-if="item.parent_id==savecharityform.charity_Category"  v-bind:value="item.id">{{ item.title }}</option>
                                     </select>
