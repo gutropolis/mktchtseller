@@ -2732,3 +2732,14 @@ font-size:15px;
 	
 	}
 }
+.pagination_box
+{
+	display:flex;
+	justify-content:center;
+	padding:0px 30px;
+	.page_option
+	{
+		    margin-left: auto;
+			padding:5px;
+	}
+}
