@@ -30,7 +30,7 @@ protected $avatar_path = 'images/charityads/';
 	{
 	$user = JWTAuth::parseToken()->authenticate();
 	$query = SellerProduct::whereUserId($user->id);
-	$sellerproduct = $query->latest()->get();
+	$sellerproduct = $query->latest()->paginate(request('pageLength'));
 	return response()->json($sellerproduct );
 	}
 	
@@ -140,11 +140,11 @@ $sellerproduct = SellerProduct::latest()->limit(6)->get();
 				$tag[]=$data['text'];			
 			}
 			
-			$tagsss=implode(" , ", $tag);
+			$tagss=implode(" , ", $tag);
 			
 	
 	
-	$sellerproduct->tags = $tagsss;;
+	$sellerproduct->tags = $tagss;
 	
 	
 	
