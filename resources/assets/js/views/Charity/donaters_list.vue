@@ -23,15 +23,13 @@
 								 <th>Status</th>
                                  <th>Change Status</th>
                               </tr>
-                              <tr v-for="(item,index) in items">
+                              <tr v-for="(item,index) in items.data">
                                  <td>{{index+1}}</td>
-								  <td v-for="product in item.product_detail">{{product.title}}</td>
-                                 <td v-for="product in item.product_detail">{{product.updated_by}}</td>
-								 <td v-for="charity in item.charity_detail">{{charity.title}}</td>
+								  <td>{{item.product}}</td>
+                                 <td>{{item.seller}}</td>
+								 <td>{{item.charity}}</td>
                                  <td>{{item.units}}</td>
-								 <td>
-                                      {{ item.progress }} %
-                                        </td>
+								 <td>{{ item.progress }} %</td>
                                 
                                  <td>
 								  <click-confirm yes-class="btn btn-success" no-class="btn btn-danger">
@@ -58,6 +56,23 @@
 						  
                         </div>
                      </div>
+					   <div class="row">
+                                <div class="col-md-12 pagination_box">
+                                    <pagination :data="items" :limit=3 v-on:pagination-change-page="fetchItems"></pagination>
+									<select name="pageLength" class="page_option" v-model="filterUserForm.pageLength" @change="fetchItems" v-if="items.total">
+                                            <option value="5">5 per page</option>
+                                            <option value="10">10 per page</option>
+                                            <option value="25">25 per page</option>
+                                            <option value="100">100 per page</option>
+                                        </select>
+                                </div>
+                                
+                            </div>
+					 
+					 
+					 
+					 
+					 
                   </div>
                </div>
             </div>
@@ -66,19 +81,26 @@
    </div>
 </template>
 <script>
-   import InfiniteLoading from 'vue-infinite-loading'
+   import pagination from 'laravel-vue-pagination'
     import ClickConfirm from 'click-confirm'
     import helper from '../../services/helper'
     import AppSidebar from '../pages/users/sidebar.vue' 
        export default {
            components: {
-              AppSidebar ,InfiniteLoading,ClickConfirm
+              AppSidebar ,ClickConfirm,pagination
            },
    
    
            data() {
    		
                return {
+			   filterUserForm: {
+                   // sortBy : 'title',
+                    order: 'desc',
+                    status: '',
+                    title: '',
+                    pageLength: 5
+                },
 			   name:{},
 					item:
 					{
@@ -86,7 +108,7 @@
 						},
    			
    			items:{},
-               image:{},        
+                      
                    }
                },
    			
@@ -105,21 +127,14 @@
    			});
    		
    		
-   		},infiniteHandler($state) {
-      setTimeout(() => {
-        const temp = [];
-        for (let i = this.items.length + 1; i <= this.items.length + 4; i++) {
-          temp.push(i);
-        }
-        this.items = this.items.concat(temp);
-        $state.loaded();
-      }, 150000);
-    },
-	
-   		fetchItems()
+   		},
+   		fetchItems(page)
    			{
-			
-   			axios.get('api/donaters_list').then(response=>{
+			if (typeof page === 'undefined') {
+                    page = 1;
+                }
+				let url = helper.getFilterURL(this.filterUserForm);
+   			axios.get('api/donaters_list?page=' + page + url).then(response=>{
    			
    			this.items=response.data;
 			
