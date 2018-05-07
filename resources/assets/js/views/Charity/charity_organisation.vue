@@ -45,9 +45,9 @@
                            </div>
                            <div class="column is-12">
                               <label class="login__element--box--label">Tell Us About Your Organization</label>
-                              <p class="control has-icon has-icon-right">
-                                 <input col="5" name="description" v-model="savecharityform.description" v-validate="'required:true'" class="login__element--box--input" type="text" placeholder="description">
-                                 <i v-show="errors.has('description')" class="fa fa-warning"></i>
+							    <p class="control has-icon has-icon-right">
+                             <textarea  type="text" v-model="savecharityform.description" name="description" v-validate="'required:true'" rows="5" placeholder="Description" class="login__element--box--input"></textarea>
+							  <i v-show="errors.has('description')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('description')" class="help is-danger">{{ errors.first('description') }}</span>
                               </p>
                            </div>
@@ -68,34 +68,34 @@
                               <p class="control has-icon has-icon-right">
                                  <vue-google-autocomplete id="map" class="login__element--box--input"  v-model="address.addr" placeholder="Start typing" v-on:placechanged="getAddressData">
                                  </vue-google-autocomplete>
-                                 <i v-show="errors.has('country')" class="fa fa-warning"></i>
-                                 <span v-show="errors.has('country')" class="help is-danger">{{ errors.first('country') }}</span>
+                                
                               </p>
                            </div>
                            <div class="column is-12">
                               <label class="login__element--box--label">Country</label>
                               <p class="control has-icon has-icon-right">
-                                 <input  name="country" v-model="address.country" v-validate="'required'" class="login__element--box--input" type="text" placeholder="country">
+                                 <input  name="country" v-model="address.country" v-validate="'required:true'" class="login__element--box--input" type="text" placeholder="country">
                                  <i v-show="errors.has('country')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('country')" class="help is-danger">{{ errors.first('country') }}</span>
                               </p>
                            </div>
-                           <div class="column is-12">
+                       <div class="column is-12">
                               <label class="login__element--box--label">State</label>
                               <p class="control has-icon has-icon-right">
-                                 <input  name="state" v-model="address.administrative_area_level_1" v-validate="'required'" class="login__element--box--input" type="text" placeholder="state">
+                                 <input type="text"  name="state" v-model="address.administrative_area_level_1"  v-validate="'required:true'" class="login__element--box--input" placeholder="state">
                                  <i v-show="errors.has('state')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('state')" class="help is-danger">{{ errors.first('state') }}</span>
                               </p>
                            </div>
-                           <div class="column is-12">
-                              <label class="login__element--box--label">City</label>
-                              <p class="control has-icon has-icon-right">
-                                 <input name="city" v-model="address.locality" v-validate="'required'" class="login__element--box--input" type="text" placeholder="city">
-                                 <i v-show="errors.has('city')" class="fa fa-warning"></i>
+                         <div class="column is-12">
+                            <label class="login__element--box--label">City</label>
+							<p class="control has-icon has-icon-right">
+                             <input  type="text"  v-validate="'required:true'"  name="city" v-model="address.locality" placeholder="city" class="login__element--box--input">
+							  <i v-show="errors.has('city')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('city')" class="help is-danger">{{ errors.first('city') }}</span>
-                              </p>
-                           </div>
+								 
+								 </p>
+                        </div>
                            <div class="column is-12">
                               <label class="login__element--box--label">ZipCode</label>
                               <p class="control has-icon has-icon-right">
@@ -105,7 +105,7 @@
                               </p>
                            </div>
                            <div class="column is-12">
-                              <label class="login__element--box--label">Phone Nummber</label>
+                              <label class="login__element--box--label">Phone Number</label>
                               <p class="control has-icon has-icon-right clearfix">
                                  <input type="text" placeholder="+91" v-model="address.area_code" v-validate="'required'" class="login__element--box--input_areacode">
                                  <input  name="phone_number" v-model="address.phone_number" v-validate="'required|numeric'" class="login__element--box--input_phone_number" type="text" placeholder="phone_number">
@@ -119,30 +119,30 @@
                            </div>
                         </div>
                         <div v-if="step === 3">
-                           <div class="column is-12">
-                              <label class="login__element--box--label">Vision</label>
-                              <p class="control has-icon has-icon-right">
-                                 <input name="vision_statement" v-model="address.vision_statement" v-validate="'required'" class="login__element--box--input" type="text" placeholder="vision_statement">
-                                 <i v-show="errors.has('vision_statement')" class="fa fa-warning"></i>
-                                 <span v-show="errors.has('vision_statement')" class="help is-danger">{{ errors.first('vision_statement') }}</span>
-                              </p>
-                           </div>
-                           <div class="column is-12">
+                          <div class="column is-12">
                               <label class="login__element--box--label">Website</label>
                               <p class="control has-icon has-icon-right">
-                                 <input name="website" v-model="address.website" v-validate="'required'" class="login__element--box--input" type="text" placeholder="website">
+                                 <input  name="website" v-model="address.website" v-validate="'required'" class="login__element--box--input" type="text" placeholder="website">
                                  <i v-show="errors.has('website')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('website')" class="help is-danger">{{ errors.first('website') }}</span>
                               </p>
                            </div>
-                           <div class="column is-12">
-                              <label class="login__element--box--label">Mission</label>
-                              <p class="control has-icon has-icon-right">
-                                 <input name="mission_statement" v-model="address.mission_statement" v-validate="'required'" class="login__element--box--input" type="text" placeholder="mission_statement">
-                                 <i v-show="errors.has('mission_statement')" class="fa fa-warning"></i>
+						 <div class="form-group">
+                            <label class="login__element--box--label">Vision Statement</label>
+							  <p class="control has-icon has-icon-right">
+                             <textarea  type="text" v-model="address.vision_statement" name="vision_statement" v-validate="'required:true'" rows="5" placeholder="vision_statement" class="login__element--box--input"></textarea>
+							  <i v-show="errors.has('vision_statement')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('vision_statement')" class="help is-danger">{{ errors.first('vision_statement') }}</span>
+								 </p>
+                        </div>
+						<div class="form-group">
+                            <label class="login__element--box--label">Mission Statement</label>
+							  <p class="control has-icon has-icon-right">
+                             <textarea  type="text" v-model="address.mission_statement" name="mission_statement" v-validate="'required:true'" rows="5" placeholder="mission_statement" class="login__element--box--input"></textarea>
+							  <i v-show="errors.has('mission_statement')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('mission_statement')" class="help is-danger">{{ errors.first('mission_statement') }}</span>
-                              </p>
-                           </div>
+								 </p>
+                        </div>
                            <div class="column is-12">
                               <label class="login__element--box--label">Tags
                               <div class="info-btn">
@@ -151,7 +151,7 @@
                                  </b-btn>
                               </div></label>
                               <p class="control has-icon has-icon-right">
-                                 <vue-tags-input  name="tags[]" v-model="tag" @tags-changed="newTags => tags = newTags"/>
+                                 <vue-tags-input  name="tags[]" v-model="tag" @tags-changed="newTags => tags = newTags" v-validate="'required:true'" class="login__element--box--input"/>
                               </p>
                            </div>
                            <div class="column is-12">
