@@ -110,27 +110,27 @@
                                  <span v-show="errors.has('website')" class="help is-danger">{{ errors.first('website') }}</span>
                               </p>
                            </div>
-                           <div class="column is-12">
-                              <label class="login__element--box--label">Vision</label>
-                              <p class="control has-icon has-icon-right">
-                                 <input type="text" name="vision_statement" v-model="items.vision_statement" v-validate="'required:true'" class="login__element--box--input"  placeholder="vision_statement">
-                                 <i v-show="errors.has('vision_statement')" class="fa fa-warning"></i>
+                           <div class="form-group">
+                            <label class="login__element--box--label">Vision Statement</label>
+							  <p class="control has-icon has-icon-right">
+                             <textarea  type="text" v-model="items.vision_statement" name="vision_statement" v-validate="'required:true'" rows="5" placeholder="vision_statement" class="login__element--box--input"></textarea>
+							  <i v-show="errors.has('vision_statement')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('vision_statement')" class="help is-danger">{{ errors.first('vision_statement') }}</span>
-                              </p>
-                           </div>
+								 </p>
+                        </div>
                          
-                           <div class="column is-12">
-                              <label class="login__element--box--label">Mission</label>
-                              <p class="control has-icon has-icon-right">
-                                 <input type="text" name="mission_statement" v-model="items.mission_statement" v-validate="'required'" class="login__element--box--input"  placeholder="mission_statement">
-                                 <i v-show="errors.has('mission_statement')" class="fa fa-warning"></i>
+                           						<div class="form-group">
+                            <label class="login__element--box--label">Mission Statement</label>
+							  <p class="control has-icon has-icon-right">
+                             <textarea  type="text" v-model="items.mission_statement" name="mission_statement" v-validate="'required:true'" rows="5" placeholder="mission_statement" class="login__element--box--input"></textarea>
+							  <i v-show="errors.has('mission_statement')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('mission_statement')" class="help is-danger">{{ errors.first('mission_statement') }}</span>
-                              </p>
-                           </div>
-						 <div class="column is-12">
-                              <label class="login__element--box--label">TaxId</label>
+								 </p>
+                        </div>
+						<div class="column is-12">
+                              <label class="login__element--box--label">Tax Id</label>
                               <p class="control has-icon has-icon-right">
-                                 <input type="text" name="tax_id" v-model="items.tax_id" v-validate="'required'" class="login__element--box--input"  placeholder="tax_id">
+                                 <input  name="tax_id" v-model="items.tax_id" v-validate="'required'" class="login__element--box--input" type="text" placeholder="tax_id">
                                  <i v-show="errors.has('tax_id')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('tax_id')" class="help is-danger">{{ errors.first('tax_id') }}</span>
                               </p>
