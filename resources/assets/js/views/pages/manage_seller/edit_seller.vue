@@ -11,10 +11,9 @@
                         
                                              
 
-						<form-wizard @on-complete="updateitems" shape="circle"  title="Add Your Organisation"
-                      subtitle="" color="#19b325">
+						 <form @on-complete="updateitems">
                      
-					  <tab-content>
+					  <div v-if="step === 1" >
 					  
 						<div  class="form-group">
 					   
@@ -26,61 +25,116 @@
                         </div>
                         <div class="form-group">
                             <label class="login__element--box--label">Title</label>
-                            <input type="text" name="title" v-model="items.title" placeholder="Title" class="login__element--box--input"/>
+							 <p class="control has-icon has-icon-right">
+                            <input type="text" name="title" v-validate="'required:true'" v-model="items.title" placeholder="Title" class="login__element--box--input"/>
+							 <i v-show="errors.has('title')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('title')" class="help is-danger">{{ errors.first('title') }}</span>
+								 </p>
                         </div>
                         <div class="form-group">
-                            <label class="login__element--box--label">Description</label>
-                           <textarea  type="text" v-model="items.description" rows="5" placeholder="Description" class="login__element--box--input"></textarea>
+                            <label class="login__element--box--label">Tell Us About Your Organization</label>
+							 
+							 <p class="control has-icon has-icon-right">
+                           <textarea  type="text" v-model="items.description" name="description" v-validate="'required:true'"  rows="5" placeholder="Description" class="login__element--box--input"></textarea>
+						   <i v-show="errors.has('description')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('description')" class="help is-danger">{{ errors.first('description') }}</span>
+								 </p>
+						   
                         </div>
 						<div class="form-group">
                             <label class="login__element--box--label">Years in business</label>
-                            <input type="text" placeholder="year in business" v-model="items.year_in_business" class="login__element--box--input">
+							 <p class="control has-icon has-icon-right">
+                            <input type="text" placeholder="year in business" v-model="items.year_in_business" v-validate="'required:true'" name="year_in_business" class="login__element--box--input">
+							 <i v-show="errors.has('year_in_business')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('year_in_business')" class="help is-danger">{{ errors.first('year_in_business') }}</span>
+								 </p>
                         </div>
-						  
-						</tab-content>
-						 <tab-content>
-						
-						
-						<div class="form-group">
-                            <label class="login__element--box--label">Country</label>
-                             <input  type="text"  v-model="items.country" placeholder="Country" class="login__element--box--input">
+						   <div class="step_button">
+                              <button @click.prevent="validateBeforeSubmit()" class="button is-primary">Next</button>
+                           </div>
+						</div>
+						 <div v-if="step === 2">
+                          
+                           <div class="column is-12">
+                              <label class="login__element--box--label">Country</label>
+                              <p class="control has-icon has-icon-right">
+                                 <input  name="country" v-model="items.country" v-validate="'required'" class="login__element--box--input" type="text" placeholder="country">
+                                 <i v-show="errors.has('country')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('country')" class="help is-danger">{{ errors.first('country') }}</span>
+                              </p>
+                           </div>
+                           <div class="column is-12">
+                              <label class="login__element--box--label">State</label>
+                              <p class="control has-icon has-icon-right">
+                                 <input  name="state" v-model="items.state" v-validate="'required'" class="login__element--box--input" type="text" placeholder="state">
+                                 <i v-show="errors.has('state')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('state')" class="help is-danger">{{ errors.first('state') }}</span>
+                              </p>
+                           </div>
+                           <div class="column is-12">
+                              <label class="login__element--box--label">City</label>
+                              <p class="control has-icon has-icon-right">
+                                 <input name="city" v-model="items.city" v-validate="'required'" class="login__element--box--input" type="text" placeholder="city">
+                                 <i v-show="errors.has('city')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('city')" class="help is-danger">{{ errors.first('city') }}</span>
+                              </p>
+                           </div>
+                           <div class="column is-12">
+                              <label class="login__element--box--label">ZipCode</label>
+                              <p class="control has-icon has-icon-right">
+                                 <input  name="zipcode" v-model="items.postal_code" v-validate="'required'" class="login__element--box--input" type="text" placeholder="zipcode">
+                                 <i v-show="errors.has('zipcode')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('zipcode')" class="help is-danger">{{ errors.first('zipcode') }}</span>
+                              </p>
+                           </div>
+                           <div class="column is-12">
+                              <label class="login__element--box--label">Phone Nummber</label>
+                              <p class="control has-icon has-icon-right clearfix">
+                                 <input type="text" placeholder="+91" v-model="items.area_code" v-validate="'required'" class="login__element--box--input_areacode">
+                                 <input  name="phone_number" v-model="items.phone_number" v-validate="'required|numeric'" class="login__element--box--input_phone_number" type="text" placeholder="phone_number">
+                                 <i v-show="errors.has('phone_number')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('phone_number')" class="help is-danger">{{ errors.first('phone_number') }}</span>
+                              </p>
+                           </div>
+                           <div class="step_button">
+                              <button @click.prevent="prev()" class="btn-prev">Previous</button>
+                              <button @click.prevent="validateBeforeSubmit()" class="button-next">Next</button>
+                           </div>
                         </div>
-						<div class="form-group">
-                            <label class="login__element--box--label">State</label>
-                             <input  type="text"  v-model="items.state" placeholder="State" class="login__element--box--input">
-                        </div>
-						<div class="form-group">
-                            <label class="login__element--box--label">City</label>
-                             <input  type="text"  v-model="items.city" placeholder="City" class="login__element--box--input">
-                        </div>
-						<div class="form-group">
-                            <label class="login__element--box--label">Postal_code</label>
-                             <input  type="text"  v-model="items.postal_code" placeholder="Fill_Zipcode" class="login__element--box--input">
-                        </div>
-						<div class="form-group clearfix">
-                            <label class="login__element--box--label">Phone Number</label>
-							<input type="text" placeholder="+91" v-model="items.area_code" class="login__element--box--input_areacode">
-                             <input type="number" placeholder="9999999999" v-model="items.phone_number"  class="login__element--box--input_phone_number">
-                        </div>
-						
-						</tab-content>
-						 <tab-content>
-						<div class="form-group">
-                            <label class="login__element--box--label">Website</label>
-                            <input type="text" placeholder="website" v-model="items.website" class="login__element--box--input">
-                        </div>
-						<div class="form-group">
-                            <label class="login__element--box--label">Vision</label>
-                             <textarea  type="text"  rows="3" v-model="items.vision_statement" placeholder="Statement" class="login__element--box--input"></textarea>
-                        </div>
-						<div class="form-group">
-                            <label class="login__element--box--label">Mission</label>
-                             <textarea  type="text" rows="3" v-model="items.mission_statement" placeholder="Statement" class="login__element--box--input"></textarea>
-                        </div>
-						<div class="form-group">
-                            <label class="login__element--box--label">Tax_Id</label>
-                            <input type="text" placeholder="Tax_id" v-model="items.tax_id" class="login__element--box--input">
-                        </div>
+						 <div v-if="step === 3">
+						 <div class="column is-12">
+                              <label class="login__element--box--label">Website</label>
+                              <p class="control has-icon has-icon-right">
+                                 <input type="text" name="website" v-model="items.website" v-validate="'required:true'" class="login__element--box--input"  placeholder="website">
+                                 <i v-show="errors.has('website')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('website')" class="help is-danger">{{ errors.first('website') }}</span>
+                              </p>
+                           </div>
+                           <div class="column is-12">
+                              <label class="login__element--box--label">Vision</label>
+                              <p class="control has-icon has-icon-right">
+                                 <input type="text" name="vision_statement" v-model="items.vision_statement" v-validate="'required:true'" class="login__element--box--input"  placeholder="vision_statement">
+                                 <i v-show="errors.has('vision_statement')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('vision_statement')" class="help is-danger">{{ errors.first('vision_statement') }}</span>
+                              </p>
+                           </div>
+                         
+                           <div class="column is-12">
+                              <label class="login__element--box--label">Mission</label>
+                              <p class="control has-icon has-icon-right">
+                                 <input type="text" name="mission_statement" v-model="items.mission_statement" v-validate="'required'" class="login__element--box--input"  placeholder="mission_statement">
+                                 <i v-show="errors.has('mission_statement')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('mission_statement')" class="help is-danger">{{ errors.first('mission_statement') }}</span>
+                              </p>
+                           </div>
+						 <div class="column is-12">
+                              <label class="login__element--box--label">TaxId</label>
+                              <p class="control has-icon has-icon-right">
+                                 <input type="text" name="tax_id" v-model="items.tax_id" v-validate="'required'" class="login__element--box--input"  placeholder="tax_id">
+                                 <i v-show="errors.has('tax_id')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('tax_id')" class="help is-danger">{{ errors.first('tax_id') }}</span>
+                              </p>
+                           </div>
 						 <h4 class="card-title">Upload Logo</h4>
                                        <div class="form-group text-center m-t-20">
                                           <span id="fileselector">
@@ -97,9 +151,14 @@
                                           <button type="button" class="btn btn-danger waves-effect waves-light m-t-10" v-if="avatar" @click="uploadAvatar">Upload</button>
                                           <button type="button" class="btn btn-danger waves-effect waves-light m-t-10" v-if="avatar" @click="cancelUploadAvatar">Cancel Upload</button>
                                        </div>
+									    <div class="step_button">
+                              <button @click.prevent="prev()" class="btn-prev">Previous</button>
+                              <button @click.prevent="updateitems()" class="button" type="button">Finish</button>
+                           </div>
+					  </div>
 						
-                    </tab-content>
-					</form-wizard>
+                    
+					</form>
                        
                     </div>
 					
@@ -125,9 +184,11 @@ import Vue from 'vue'
         },
   
         data() {
-            return {
+            return { 
+			step:1,
 			avatar: '',
 			items:{},
+			business_type:{},
 			category:[],
                     
                 }
@@ -142,6 +203,25 @@ import Vue from 'vue'
         mounted(){
         },
         methods: {
+		prev() {
+							this.step--;
+						},
+				 next() {
+				   this.step++;
+				 },
+			 validateBeforeSubmit() {
+			   this.$validator.validateAll().then((result) => {
+				 if (result) {
+				  this.next();
+		   
+		   }
+   
+   	
+   
+   
+        
+       });
+     },
 		 previewAvatar(e) {
                 let files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
@@ -187,15 +267,16 @@ import Vue from 'vue'
 			},
 			 updateitems()
             {
-			
+			 this.$validator.validateAll().then((result) => {
               axios.post('api/edit_seller/'+this.$route.params.id,this.items).then(response =>  {
                     toastr['success'](response.data.message);
                     this.$router.push('/seller_list');
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });
-                }
+                })
             }
+			}
 			
 			
 		
