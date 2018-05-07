@@ -72,7 +72,7 @@
                                 <article class="recent__post--tab--content--detail_box--block">
 								<h6  class="recent__post--tab--content--detail_box--block--heading" > {{item.title}} </h6>
 								 <p class="recent__post--tab--content--detail_box--block--pera_box">{{item.description}}</p>
-								 <p class="recent__post--tab--content--detail_box--block--pera_box"><strong>{{item.created_at |  moment("MMMM Do YYYY, h:mm a")}}</strong></p>
+								 <p class="recent__post--tab--content--detail_box--block--pera_box"><strong>{{item.created_at |  moment("MMMM Do YYYY")}}</strong></p>
 								  
                                 </article>
                             </div>
