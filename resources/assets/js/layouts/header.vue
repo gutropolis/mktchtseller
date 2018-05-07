@@ -291,7 +291,7 @@
                     first_name: e.sender_user.first_name,
 					last_name:e.sender_user.last_name,
 					avatar:e.sender_user.avatar,
-					 url: '/user_detail',
+					 url: '/users_detail',
                 })
 				
 				}
