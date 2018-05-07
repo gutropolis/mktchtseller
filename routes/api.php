@@ -59,6 +59,8 @@ Route::resource('/gs_seller_organisation', 'SellerController');
 Route::post('/vender_category','SellerCategoryController@store');
 Route::get('/gs_seller_organisation', 'SellerController@index');
 Route::get('/seller_list','SellerController@list_seller');
+Route::get('/companies','SellerController@seller_list');
+
 Route::get('/edit_seller/{id}','SellerController@edit');
 Route::post('/edit_seller/{id}','SellerController@update');
 Route::post('/update-seller_logo/{id}','SellerController@updatelogo' );
