@@ -191,7 +191,7 @@ import AppNavbar from '../users/navbar.vue'
 			this.fetchMessage();
 			this.senderinfo();
 			this.fetchItem();
-        
+        this.click();
         },
          mounted(){
     	this.fetchItems();
@@ -199,6 +199,14 @@ import AppNavbar from '../users/navbar.vue'
     },
 
 	  methods: {
+	  click()
+	   {
+			axios.get('api/inboxstatus/'+this.$route.params.id).then(response =>  {
+                        //toastr['success'](response.data.message);
+	   
+	   
+	   });
+	   },
 			fetchMessage(){
 			axios.get('/api/user_id').then(response =>  {
                 
