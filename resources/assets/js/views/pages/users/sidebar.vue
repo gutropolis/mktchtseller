@@ -313,12 +313,16 @@
    },
    
        mounted() {
+	   this.fetchmessage_charity();
+		   this.fetchmessage_seller();
+				
+               this.fetchnotification();
        },
 	   created: function()
            {
 		   this.fetchmessage_charity();
 		   this.fetchmessage_seller();
-				this.fetchmessage();
+				
                this.fetchnotification();
            },
        methods : {
@@ -326,7 +330,7 @@
 				axios.get('api/unread_charity_notification').then(response=>{
    			
    			this.unread_notification=response.data;
-			console.log(this.unread_notification);
+			console.log("Notification"+this.unread_notification);
    			
    			})
 			
