@@ -17,7 +17,7 @@ class GsCms extends Migration
 		{
 			$table->increments('id');
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('meta_keyword');
 			$table->string('meta_desc');
 			$table->string('meta_title');
