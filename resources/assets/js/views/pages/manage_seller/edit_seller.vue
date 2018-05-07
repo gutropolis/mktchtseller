@@ -105,7 +105,7 @@
 						 <div class="column is-12">
                               <label class="login__element--box--label">Website</label>
                               <p class="control has-icon has-icon-right">
-                                 <input type="text" name="website" v-model="items.website" v-validate="'required:true'" class="login__element--box--input"  placeholder="website">
+                                 <input  name="website" v-model="items.website" v-validate="'required'" class="login__element--box--input" type="text" placeholder="website">
                                  <i v-show="errors.has('website')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('website')" class="help is-danger">{{ errors.first('website') }}</span>
                               </p>
@@ -130,7 +130,7 @@
 						<div class="column is-12">
                               <label class="login__element--box--label">Tax Id</label>
                               <p class="control has-icon has-icon-right">
-                                 <input  name="tax_id" v-model="items.tax_id" v-validate="'required'" class="login__element--box--input" type="text" placeholder="tax_id">
+                                 <input  type="text"  v-model="items.tax_id" name="tax_id" v-validate="'required'" class="login__element--box--input"  placeholder="tax_id">
                                  <i v-show="errors.has('tax_id')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('tax_id')" class="help is-danger">{{ errors.first('tax_id') }}</span>
                               </p>
