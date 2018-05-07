@@ -277,7 +277,7 @@
             <div class="sign__element--block">
                 <h3 class="sign__element--block--heading">Sign Up now!</h3>
                 <p class="sign__element--block--content">There are many variations of passages of Lorem Ipsum <span class="block_content">available, but the majority have suffered alteration in some</span> form, by injected humour.</p>
-                <div v-if="loginCheck" class="sign__element--block--btn">
+                <div v-if="check==true" class="sign__element--block--btn">
                     <router-link to="">Seller </router-link>
                    <router-link to="">Charity</router-link>
                 </div>
@@ -301,10 +301,10 @@
 	        data() {
 	selectcategory:'charity'
             return {
-			
+			check:{},
 			request:{},
 			products:{},
-				 loginCheck: helper.checkLogin(),
+				 
                 searchform: {
 
                 keyword:'',
@@ -320,8 +320,16 @@
 		created(){
 		this.fetchItems();
 		this.fetchProducts();
+		this.LoginCheck();
 		},
 		methods: {
+		LoginCheck(){
+		 axios.get('/api/auth/login_check').then((response) => {
+				this.check=response.data;
+	  
+	  
+	  })
+	  },
 		fetchItems()
             {
 			
