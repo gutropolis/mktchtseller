@@ -118,7 +118,7 @@ import pagination from 'laravel-vue-pagination'
                     title: '',
                     pageLength: 5
                 },
-   		items:[],
+   		items:{},
               loaded: false,
                       
                   }
@@ -139,9 +139,10 @@ import pagination from 'laravel-vue-pagination'
                     page = 1;
                 }
 				 let url = helper.getFilterURL(this.filterUserForm);
-   		axios.get('api/seller_list?page=' + page + url).then(response=>{
+   		axios.get('api/companies?page=' + page + url).then(response=>{
    		
    		this.items=response.data;
+		console.log(this.items);
    		 this.loaded = true;
    		
    		}).catch(error=>{
