@@ -120,11 +120,14 @@ use stdClass;
         	return response()->json(['message' => $validation->messages()->first()],422);
 		
 		
-		$post_id=request('post_id');
+		$post_id=request('id');
+		
 		$post_type=request('post_type');
 		$user = JWTAuth::parseToken()->authenticate();
 		//$inbox->id=0;
-		$inboxmsg=Inbox::where('sender_id',$user->id)->orwhere('reciever_id',$user->id)->where('post_id',$post_id)->where('post_type',$post_type)->first();
+		$inboxmsg=Inbox::where('sender_id',$user->id)->where('post_id',$post_id)->orwhere('reciever_id',$user->id)->where('post_type',$post_type)->first();
+	
+		//return($inboxmsg);
 		if ($inboxmsg != null) {
 		$inbox=Inbox::where('sender_id',$user->id)->orwhere('reciever_id',$user->id)->where('post_id',$post_id)->where('post_type',$post_type)->first();
 		if(count($inbox->id) > 0)
