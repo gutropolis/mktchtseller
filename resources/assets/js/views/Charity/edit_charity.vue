@@ -38,7 +38,7 @@
                            <div class="column is-12">
                               <label class="login__element--box--label">Tell Us About Your Organization</label>
                               <p class="control has-icon has-icon-right">
-                                 <input col="5" name="description" v-model="address.description" v-validate="'required:true'" class="login__element--box--input" type="text" placeholder="description">
+                                 <textarea   rows="5" name="description" v-model="address.description" v-validate="'required:true'" class="login__element--box--input" type="text" placeholder="description"></textarea>
                                  <i v-show="errors.has('description')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('description')" class="help is-danger">{{ errors.first('description') }}</span>
                               </p>
@@ -96,6 +96,14 @@
                            </div>
                         </div>
                         <div v-if="step === 3">
+						  <div class="column is-12">
+                              <label class="login__element--box--label">Website</label>
+                              <p class="control has-icon has-icon-right">
+                                 <input name="website" v-model="address.website" v-validate="'required'" class="login__element--box--input" type="text" placeholder="website">
+                                 <i v-show="errors.has('website')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('website')" class="help is-danger">{{ errors.first('website') }}</span>
+                              </p>
+                           </div>
                            <div class="column is-12">
                               <label class="login__element--box--label">Vision</label>
                               <p class="control has-icon has-icon-right">
@@ -104,14 +112,7 @@
                                  <span v-show="errors.has('vision_statement')" class="help is-danger">{{ errors.first('vision_statement') }}</span>
                               </p>
                            </div>
-                           <div class="column is-12">
-                              <label class="login__element--box--label">Website</label>
-                              <p class="control has-icon has-icon-right">
-                                 <input name="website" v-model="address.website" v-validate="'required'" class="login__element--box--input" type="text" placeholder="website">
-                                 <i v-show="errors.has('website')" class="fa fa-warning"></i>
-                                 <span v-show="errors.has('website')" class="help is-danger">{{ errors.first('website') }}</span>
-                              </p>
-                           </div>
+                         
                            <div class="column is-12">
                               <label class="login__element--box--label">Mission</label>
                               <p class="control has-icon has-icon-right">
