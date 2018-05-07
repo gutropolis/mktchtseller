@@ -26,7 +26,7 @@ let routes = [
 			},
 				{ 
 				name : 'edit_ads',
-                path: '/edit:id',
+                path: '/edit_ads:id',
                 component: require('./views/pages/my_ads/edit_ads')
             },
 			{
@@ -110,7 +110,7 @@ let routes = [
 			
 			{
 				name:'edit_seller',
-				path : '/edit_seller',
+				path : '/edit_seller:id',
 				component:require('./views/pages/manage_seller/edit_seller')
 			},
 			{
