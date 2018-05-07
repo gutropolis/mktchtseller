@@ -122,6 +122,15 @@ class SellerController extends Controller
     /**
      * @return mixed
      */
+	  public function list_seller()
+    {
+
+	
+		$user = JWTAuth::parseToken()->authenticate();
+		$query = Seller::whereUserId($user->id);
+		$seller = $query->latest()->get();
+		return response()->json($seller);
+    }
 	 public function seller_list()
     {
 
