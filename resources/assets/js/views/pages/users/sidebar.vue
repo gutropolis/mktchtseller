@@ -65,7 +65,7 @@
                         <polygon points="320,256.3 490,390.4 490,101.1 		"/>
                      </g>
                   </svg>
-                  Messages <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_message}}</span> 
+                  Messages <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_message_charity}}</span> 
                </router-link>
             </li>
                <li class="proflie__element--detail--list--item">
@@ -170,7 +170,7 @@
                         <polygon points="320,256.3 490,390.4 490,101.1 		"/>
                      </g>
                   </svg>
-                  Messages <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_message}}</span> 
+                  Messages <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_message_seller}}</span> 
                </router-link>
             </li>
 			 <li class="proflie__element--detail--list--item">
@@ -304,7 +304,8 @@
    export default {
    data() {
    return {
-			unread_message:{},
+			unread_message_charity:{},
+			unread_message_seller:{},
 			unread_notification:{},
    
    charity:''		
@@ -315,6 +316,8 @@
        },
 	   created: function()
            {
+		   this.fetchmessage_charity();
+		   this.fetchmessage_seller();
 				this.fetchmessage();
                this.fetchnotification();
            },
@@ -330,10 +333,19 @@
 			
 			},
 			
-			fetchmessage(){
-					axios.get('api/unread_message').then(response=>{
+			fetchmessage_charity(){
+					axios.get('api/unread_message_charity').then(response=>{
    			
-							this.unread_message=response.data;
+							this.unread_message_charity=response.data;
+							console.log(this.unread_message);
+   			
+   			})
+			
+			},
+			fetchmessage_seller(){
+					axios.get('api/unread_message_seller').then(response=>{
+   			
+							this.unread_message_seller=response.data;
 							console.log(this.unread_message);
    			
    			})
