@@ -22,65 +22,52 @@
                            <div class="form-group">
 					   
                             <label class="login__element--box--label">Select Company</label>
-                            <select name="title"  v-model="items.title" v-validate="'required|not_in:Choose'" class="login__element--box--input">
+                            <select name="title"  v-model="items.title" required class="login__element--box--input">
 							<option value="select">Select .. </option>
 							
 							<option  v-for="items in item" v-bind:value="items.id">{{ items.title }}</option>
 							
 							
 							</select>
-							<i v-show="errors.has('company')" class="fa fa-warning"></i>
-                                 <span v-show="errors.has('company')" class="help is-danger">{{ errors.first('company') }}</span>
                         </div>
 						 <div class="form-group">
 					   
                             <label class="login__element--box--label">Select Product Category</label>
-                            <select name="product_category"  v-model="items.product_catgeory" v-validate="'required|not_in:Choose'" class="login__element--box--input">
+                            <select name="product_catgeory"  v-model="items.product_catgeory" required class="login__element--box--input">
 							<option value="select">Select .. </option>
 							
 							<option  v-for="product in category" v-bind:value="product.id">{{ product.title }}</option>
 							
 							
 							</select>
-							<i v-show="errors.has('company')" class="fa fa-warning"></i>
-                                 <span v-show="errors.has('category')" class="help is-danger">{{ errors.first('ctaegory') }}</span>
                         </div>
 						   
 						   
 						   <div class="form-group ">
                               <label class="login__element--box--label">Title</label>
-                              <input type="text" name="title" class="login__element--box--input" v-validate="'required:true'" placeholder="Title" v-model="items.name">
-							  <i v-show="errors.has('title')" class="fa fa-warning"></i>
-                                 <span v-show="errors.has('title')" class="help is-danger">{{ errors.first('title') }}</span>
+                              <input type="text" name="title" class="login__element--box--input" required placeholder="Title" v-model="items.name">
                            </div>
                            <input type="hidden" name="organisation_id" v-model="items.organisation_id"   class="login__element--box--input" />
                            <div class="form-group ">
                               <label class="login__element--box--label">ASIN</label>
-                              <input type="text" name="asin" class="login__element--box--input" v-validate="'required:true'"   placeholder="ASIN" v-model="items.ASIN">
-							   <i v-show="errors.has('asin')" class="fa fa-warning"></i>
-                                 <span v-show="errors.has('asin')" class="help is-danger">{{ errors.first('asin') }}</span>
+                              <input type="text" name="asin" class="login__element--box--input" required   placeholder="ASIN" v-model="items.ASIN">
                            </div>
 						 
                            <div class="form-group">
                               <label class="login__element--box--label">Description</label>
-                              <textarea  type="text" name="description" v-html="items.bulletPoints" v-model="items.bulletPoints" v-validate="'required:true'" rows="7" placeholder="Description" class="login__element--box--input"></textarea>
-                            <i v-show="errors.has('description')" class="fa fa-warning"></i>
-                                 <span v-show="errors.has('description')" class="help is-danger">{{ errors.first('description') }}</span>
+                              <textarea  type="text" v-html="items.bulletPoints" v-model="items.bulletPoints" required rows="7" placeholder="BulletPoints" class="login__element--box--input"></textarea>
+                           
                            </div>
                            <div class="form-group ">
                               <label class="login__element--box--label">Image</label>
-                              <input type="hidden" name="image" class="login__element--box--input"  v-validate="'required:true'" placeholder="image" v-model="items.image">
+                              <input type="hidden" name="image" class="login__element--box--input"  required placeholder="image" v-model="items.image">
 							
 							<img v-bind:src="items.image"  height="100px" width="50px">
-                           
-						   </div>
+                           </div>
 						   
                            <div class="form-group ">
                               <label class="login__element--box--label">How Many Units do you want to donate?</label>
-                              <input type="text" name="units" class="login__element--box--input" v-validate="'required:true'"  placeholder="units" v-model="items.units">
-							  
-							  <i v-show="errors.has('units')" class="fa fa-warning"></i>
-                                 <span v-show="errors.has('units')" class="help is-danger">{{ errors.first('units') }}</span>
+                              <input type="text" name="units" class="login__element--box--input" required  placeholder="units" v-model="items.units">
                            </div>
 						   <div class="form-group ">
                               <label class="login__element--box--label tag-element">Tags</label>
@@ -90,8 +77,7 @@
 							  </b-btn>
 							</div>
 							<div class="multiple_vlue">
-                             <vue-tags-input  name="tag"  v-model="items.tags" :tags="tags" @tags-changed="newTags => tags = newTags"/>
-							 
+                             <vue-tags-input  name="tag" v-model="items.tags" :tags="tags" @tags-changed="newTags => tags = newTags"/>
 							 </div>
                            </div>
                            <div class="form-group text-center">
@@ -203,8 +189,8 @@
                   });
               },
    		 submit(e){
-		  this.$validator.validateAll().then((result) => {
 						 let data1 = this.tags;
+						 
 						
                   axios.post('/api/gs_seller_product', {image: this.items, data1}).then(response =>  {
                       toastr['success'](response.data.message);
@@ -214,8 +200,8 @@
 						toastr['error'](error.response.data.message);
 					  }
                   });
-              });
-   		   }
+              },
+   		   
           }
       }
 </script>
