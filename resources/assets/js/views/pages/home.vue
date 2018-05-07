@@ -101,6 +101,7 @@
                                 <article class="recent__post--tab--content--detail_box--block">
                                     <h6 class="recent__post--tab--content--detail_box--block--heading">{{product.title}}</h6>
                                     <p class="recent__post--tab--content--detail_box--block--pera_box"><span><strong>Units: </strong>{{product.units}} </span>  <span><strong>ASIN:</strong> {{product.asin_url}}</span></p>
+									<p class="recent__post--tab--content--detail_box--block--pera_box"><strong>{{item.created_at |  moment("MMMM Do YYYY, h:mm a")}}</strong></p>
                                 </article>
                             </div>
                              <div class="recent__post--tab--content--btn_outer">
