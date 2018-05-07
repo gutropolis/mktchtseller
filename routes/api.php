@@ -148,8 +148,10 @@ Route::post('/message/{id}','InboxController@message');
 Route::get('/user_id','InboxController@user_id');
 Route::get('/senderinfo/{id}','InboxController@senderinfo');
 Route::get('/unread','InboxController@unread');
+Route::get('/inboxstatus/{id}','InboxController@update_inbox_status');
 
-Route::get('/unread_message','InboxController@unread_message');
+Route::get('/unread_message_seller','InboxController@unread_message_seller');
+Route::get('/unread_message_charity','InboxController@unread_message_charity');
 
 
 
