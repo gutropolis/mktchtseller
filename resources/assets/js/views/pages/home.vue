@@ -7,7 +7,7 @@
                 <div  class="banner_element--content row">
                     <h2 class="banner_element--content--heading">I am Seller</h2>
                     <p class="banner_element--content--pera col-md-12">I would like to give my Poduct to charity in need.</p>
-                    <div v-if="loginCheck" class="banner_element--content--linkbox col-md-12"><router-link to ="/charityfba" class="banner_element--content--btn btn btn-border-white">Post My Products</router-link></div>
+                    <div v-if="check==true" class="banner_element--content--linkbox col-md-12"><router-link to ="/charityfba" class="banner_element--content--btn btn btn-border-white">Post My Products</router-link></div>
 					<div v-else class="banner_element--content--linkbox"><router-link to ="/login" class="banner_element--content--btn btn btn-border-white">Post My Products</router-link></div>
                 </div>
 				
@@ -16,7 +16,7 @@
                 <div class="banner_element--content banner_element--right--content row">
                     <h2 class="banner_element--content--heading col-md-12">I am Charity</h2>
                     <p class="banner_element--content--pera col-md-12">We are need of Amazon Products to Help Our Cause.</p>
-					 <div v-if="loginCheck" class="banner_element--content--linkbox col-md-12"><router-link to ="/sellerfba" class="banner_element--content--btn btn btn-border-white">Post My Products</router-link></div>
+					 <div v-if="check==true" class="banner_element--content--linkbox col-md-12"><router-link to ="/sellerfba" class="banner_element--content--btn btn btn-border-white">Post My Products</router-link></div>
                   <div v-else class="banner_element--content--linkbox"> <router-link to ="/login" class="banner_element--content--btn btn btn-border-white">Post Charity Needs</router-link></div>
                 </div>
             </div>
@@ -301,6 +301,7 @@
 	        data() {
 	selectcategory:'charity'
             return {
+			
 			check:{},
 			request:{},
 			products:{},
