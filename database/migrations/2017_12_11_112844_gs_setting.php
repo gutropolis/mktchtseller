@@ -16,19 +16,19 @@ class GsSetting extends Migration
         Schema::create('gs_setting', function(Blueprint $table)
 		{
             $table->increments('id');
-            $table->string('site_title')->default();
+            $table->string('site_title')->nullable();
             
-            $table->string('description')->default();
-            $table->string('keyword')->default();
-            $table->string('site_url')->default();
-            $table->string('site_logo')->default();
-            $table->string('base_url')->default();
-            $table->string('admin_email')->default();
-            $table->string('upload_path')->default();
-            $table->string('smtp_server')->default();
-            $table->string('smtp_user')->default();
-            $table->string('smtp_password')->default();
-            $table->string('smtp_host')->default();
+            $table->string('description')->nullable();
+            $table->string('keyword')->nullable();
+            $table->string('site_url')->nullable();
+            $table->string('site_logo')->nullable();
+            $table->string('base_url')->nullable();
+            $table->string('admin_email')->nullable();
+            $table->string('upload_path')->nullable();
+            $table->string('smtp_server')->nullable();
+            $table->string('smtp_user')->nullable();
+            $table->string('smtp_password')->nullable();
+            $table->string('smtp_host')->nullable();
                         
             $table->timestamps();
             
