@@ -148,7 +148,7 @@ use stdClass;
 	}	
 	else{
 		$message=\App\Inbox::create([
-		'subject'=>request('message'),
+		'subject'=>request('title'),
 		'reciever_id'=>request('user_id'),
 		'post_id'=>request('id'),
 		'post_type'=>request('post_type'),
@@ -246,7 +246,13 @@ use stdClass;
 	 
 	
 	
-	
+	public function update_inbox_status($id)
+	{
+		$update=Inbox::where('id',$id)->update(['status'=> 0]);
+		return $update;
+		
+		
+	}
 	
 	
 	public function message(Request $request,$id)
@@ -292,6 +298,23 @@ use stdClass;
 			return response()->json($inboxes); 
 	}
 	
+		public function unread_message_seller()
+	{
+			$user = JWTAuth::parseToken()->authenticate();
+			$unread_seller=Inbox::where('reciever_id',$user->id)->where('status','1')->where('post_type','seller')->count();
+			
+			
+			return response()->json($unread_seller); 
+	}
+	
+		public function unread_message_charity()
+	{
+			$user = JWTAuth::parseToken()->authenticate();
+			$unread_charity=Inbox::where('reciever_id',$user->id)->where('status','1')->where('post_type','charity')->count();
+			
+			
+			return response()->json($unread_charity); 
+	}
 	
 	
 	public function unread()
