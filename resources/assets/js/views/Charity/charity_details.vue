@@ -17,7 +17,7 @@
 				<div class="charity_request_content" ><h3>Charity Requests</h3>					<div class="charity_request_content--inner">
 					<h4>{{request.title}}</h4>
 					<p>{{request.description}}</p>
-					 <p class="recent__post--tab--content--detail_box--block--pera_box"><strong>{{request.created_at |  moment("MMMM Do YYYY, h:mm a")}}</strong></p>
+					 <p class="recent__post--tab--content--detail_box--block--pera_box"><strong>{{request.created_at |  moment("MMMM Do YYYY, h:mm A")}}</strong></p>
 					</div>
 					</div>
 				</div>
@@ -39,7 +39,7 @@
                               </li>
                               <li class="charity_inner--content--list--item">
                                 
-                                 <span>City:</span> {{create_message.city}} 
+                                 <span>Location:</span> {{create_message.city}} ,{{create_message.state}} 
                               </li>
 							   <li class="charity_inner--content--list--item">
                                  
