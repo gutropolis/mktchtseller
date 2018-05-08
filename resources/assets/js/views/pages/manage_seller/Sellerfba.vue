@@ -81,11 +81,14 @@
 												 
 								<router-link :to="{name: 'seller_details', params: {id: item.id}}" ><h4 class="charity__listing--content--box--heading">{{item.title}}</h4></router-link>
 								
-								<p class="charity__listing--content--box--pera"><span v-html="item.description"></span></p>
+								<div v-if="item.description.length>=50">
+								<p class="charity__listing--content--box--pera"><span v-html="item.description.substring(0,300)+'.......'"></span></p>
+								</div>
 							</div>
 							<div class="charity__listing--content--address row">
-								<div class="charity__listing--content--address--location col-md-4"><p><i class="fa fa-briefcase" aria-hidden="true"></i> <span>ASIN: </span> {{item.asin_url}}</p></div>
-								<div class="charity__listing--content--address--location col-md-3 "><p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Unit:</span> {{item.units}}</p></div>
+								<div class="charity__listing--content--address--location col-md-4"><p><span>ASIN: </span> {{item.asin_url}}</p></div>
+								<div class="charity__listing--content--address--location col-md-3 "><p><span>Unit:</span> {{item.units}}</p></div>
+								<div class="charity__listing--content--address--location col-md-4 "><p><span>Post On:</span> {{item.created_at | moment("MMMM Do YYYY")}}</p></div>
 							
 							</div>
 							
