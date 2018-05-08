@@ -43,7 +43,7 @@
                            </div>
 						    <div v-if="items.length === 0">
 								 
-									<h4  style="text-align:center;" >Not Avilable Pending Donation Notification </h4>
+									<h4  style="text-align:center;" >No Result Found Here</h4>
 									
 										</div>
                         </div>
@@ -75,9 +75,9 @@
 								 
                               </div>
                            </div>
-						    <div v-if="items.length === 0">
+						    <div v-if="accept_items.length === 0">
 								 
-									<h4  style="text-align:center;" >Not Avilable Any Accepted Donation Notification </h4>
+									<h4  style="text-align:center;" >No Result Found Here</h4>
 									
 										</div>
                         </div>
@@ -109,9 +109,9 @@
 								 
                               </div>
                            </div>
-						   <div v-if="items.length === 0">
+						   <div v-if="decline_items.length === 0">
 								 
-									<h4  style="text-align:center;" >Not Able Any Rejected Donation Notification </h4>
+									<h4  style="text-align:center;" >No Result Found</h4>
 									
 										</div>
                         </div>
@@ -155,9 +155,11 @@
 		 {
              axios.get('/api/charity_notification').then((response) => {
                  this.items=response.data.data1;
+				// console.log('length'+response.data.data1.length);
+				
 				 this.accept_items=response.data.data2;
 				 this.decline_items=response.data.data3;
-					
+				
               }) 
 			  
             },

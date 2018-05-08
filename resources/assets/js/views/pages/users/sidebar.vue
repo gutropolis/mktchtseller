@@ -327,10 +327,8 @@
        methods : {
 			fetchnotification(){
 				axios.get('api/unread_charity_notification').then(response=>{
-   			
-   			this.unread_notification=response.data;
-			console.log("Notification"+this.unread_notification);
-   			
+				this.unread_notification=response.data;
+			
    			})
 			
 			
