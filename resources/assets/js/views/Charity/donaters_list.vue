@@ -48,7 +48,7 @@
                                  </td>
                               </tr>
 							   <tr>
-								 <td v-if="items.length === 0" colspan="9">
+								 <td v-if="itemslength == 0" colspan="9">
 									<h4  style="text-align:center;" >No results</h4>
 										</td>
 										</tr>
@@ -94,6 +94,7 @@
            data() {
    		
                return {
+			   itemslength:{},
 			   filterUserForm: {
                    // sortBy : 'title',
                     order: 'desc',
@@ -136,8 +137,9 @@
 				let url = helper.getFilterURL(this.filterUserForm);
    			axios.get('api/donaters_list?page=' + page + url).then(response=>{
    			
-   			this.items=response.data;
-			
+   			this.items=response.data.data1;
+			this.itemslength=response.data.data2;
+			console.log(this.itemslength);
    			
    			}).catch(error=>{
    			toastr['error'](error.response.data.message);
