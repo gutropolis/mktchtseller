@@ -550,13 +550,23 @@ class charityController extends Controller
 		
 		/* end here  */
 		
-		
-			//return response()->json($keyword);
-		$charity=$query->latest()->get();
+		$charity=$query->get();
+		$charityArr=array();
+		foreach($charity as $charities)
+		{
+			$category=CharityCategory::where('id',$charities->charity_type)->get();
+			$categoryArr = array();
+			$categoryArr['category']=$category;
+			$charities['category']=$category;
+			array_push($charityArr,$charities);
+			
+			
+			
+			
+		}
 
 		
-		//return charity::paginate(4);
-		return response()->json($charity);
+	return response()->json($charityArr);
 		
 	}
 
