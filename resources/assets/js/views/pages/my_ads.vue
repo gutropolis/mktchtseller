@@ -76,7 +76,18 @@
                         </div>
                      </div>
                   </div>
+				    <div v-if="items.length === 0">
+								 
+									<h4  style="text-align:center;" >No Result Found</h4>
+									
+										</div>
                </div>
+			   
+                       
+			   
+			   
+			   
+			   
             </div>
          </section>
       </div>
@@ -124,6 +135,7 @@
    		 {
                  axios.get('/api/charityads').then((response) => {
                     this.items=response.data;
+					
    				 this.loaded = true;
    					
                  }) 
