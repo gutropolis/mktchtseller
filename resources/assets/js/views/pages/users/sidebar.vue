@@ -336,8 +336,7 @@
 			
 			fetchmessage_charity(){
 					axios.get('api/unread_message_charity').then(response=>{
-   			
-							this.unread_message_charity=response.data;
+					this.unread_message_charity=response.data;
 							
    			
    			})
