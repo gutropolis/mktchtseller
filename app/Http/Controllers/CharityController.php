@@ -550,7 +550,7 @@ class charityController extends Controller
 		
 		/* end here  */
 		
-		$charity=$query->get();
+		$charity=$query->latest()->get();
 		$charityArr=array();
 		foreach($charity as $charities)
 		{
@@ -559,9 +559,6 @@ class charityController extends Controller
 			$categoryArr['category']=$category;
 			$charities['category']=$category;
 			array_push($charityArr,$charities);
-			
-			
-			
 			
 		}
 
