@@ -52,10 +52,10 @@
                <div class="col-md-9">
                   <div v-for="item in items" class="charity_detail_row">
                      <div class="charity__listing row">
-                        <figure class="charity__listing--figure  col-md-3">
+                        <figure class="charity__listing--figure  col-md-2">
                            <img :src="'/images/charity/'+ item.images" class="charity__listing--figure--image">
                         </figure>
-                        <div class="col-md-9 charity__listing--content">
+                        <div class="col-md-10 charity__listing--content">
                            <div class="charity__listing--content--box">
                               <router-link :to="{name: 'charity_details', params: { id: item.id }}" >
                                  <h4 class="charity__listing--content--box--heading">{{item.title}}</h4>
@@ -63,13 +63,17 @@
                               <p class="charity__listing--content--box--pera">{{item.website}}</p>
                            </div>
                            <div class="charity__listing--content--address row">
-                              <div class="charity__listing--content--address--location col-md-12 ">
+                              <div class="charity__listing--content--address--location col-md-5 ">
                                  <p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Location:</span> {{ item.city }} , {{item.state}}</p>
                               </div>
-                             
-							  <div v-for="category in item.category" class="charity__listing--content--address--location col-md-12 ">
-                                 <p><i class="fa fa-briefcase" aria-hidden="true"></i><span>Category:</span> {{category.title}}</p>
+							  <div class="charity__listing--content--address--location col-md-7 ">
+                                 <p><i class="fa fa-calendar" aria-hidden="true"></i><span>Post On:</span> {{ item.created_at }} </p>
                               </div>
+                             <div v-for="category in item.category" class="charity__listing--content--address--location col-md-5">  <p class=""><i class="fa fa-globe" aria-hidden="true"></i><span>Website:</span>  {{item.website}}</p></div>
+							  <div v-for="category in item.category" class="charity__listing--content--address--location col-md-7 ">
+                                 <p><i class="fa fa-tags" aria-hidden="true"></i><span>Category:</span> {{category.title}}</p>
+                              </div>
+							 
                            </div>
                         </div>
                      </div>
@@ -157,7 +161,7 @@
              page: this.items.length / 20 + 1,
            },
          }).then(({ data }) => {
-           if (data.hits.length) {
+           if (response.data.hits.length) {
              this.items = this.items.concat(data.hits);
              $state.loaded();
              if (this.items.length / 20 === 10) {
