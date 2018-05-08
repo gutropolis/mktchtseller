@@ -153,8 +153,10 @@ class charityController extends Controller
 		
 		$donaters=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.updated_by as seller','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.is_certify','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.created_at', '>',$formatted_date)->paginate(request('pageLength'));
 		
+		$donatersLength=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.updated_by as seller','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.is_certify','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.created_at', '>',$formatted_date)->count();
 		
-		return($donaters);
+		
+		return response()->json(array('data1'=>$donaters,'data2'=>$donatersLength));
 		
 		
 		
