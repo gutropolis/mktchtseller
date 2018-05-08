@@ -150,7 +150,6 @@
                                        <option v-for="item in product"  v-bind:value="item.id">{{item.title}}</option>
                                     </select>
                                  </div>
-								 {{item.title.length}}
                                  <label class="charity__element--block--content--box--label">Units</label>
                                  <input type="number" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
                                  <input type="hidden" name="product_name" v-model="prod.product_name" class="login__element--box--input" />
