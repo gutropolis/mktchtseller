@@ -58,7 +58,7 @@
                                     </tr>
 									<tr>
 									
-								 <td v-if="pending.length === 0" colspan="8	">
+								 <td v-if="pendingLength == 0" colspan="8	">
 									<h4  style="text-align:center;" >No results</h4>
 										</td>
 										</tr>
@@ -113,7 +113,7 @@
                                      
                                     </tr>
 									<tr>
-								 <td v-if="accept.length === 0" colspan="7">
+								 <td v-if="acceptLength == 0" colspan="7">
 									<h4  style="text-align:center;" >No results</h4>
 										</td>
 										</tr>
@@ -163,7 +163,7 @@
                                       
                                     </tr>
 									<tr>
-								 <td v-if="decline.length === 0" colspan="7">
+								 <td v-if="declineLength == 0" colspan="7">
 									<h4  style="text-align:center;" >No results</h4>
 										</td>
 										</tr>
@@ -215,7 +215,7 @@
                                        
                                     </tr>
 									<tr>
-								 <td v-if="completed.length === 0" colspan="8">
+								 <td v-if="completeLength <= 0" colspan="8">
 									<h4  style="text-align:center;" >No results</h4>
 										</td>
 										</tr>
@@ -275,7 +275,11 @@ import pagination from 'laravel-vue-pagination'
    accept:{},
    decline:{},
    completed:{},
-                      
+       pendingLength:{},
+	   acceptLength:{},
+	   declineLength:{},
+	   completeLength:{},
+	   
                   }
               },
    		
@@ -306,10 +310,14 @@ import pagination from 'laravel-vue-pagination'
    		axios.get('api/donation_list?page=' + page + url).then(response=>{
    		
    		this.pending=response.data.data1;
+		
 		this.accept=response.data.data2;
 		this.decline=response.data.data3;
 		this.completed=response.data.data4;
-	
+		this.pendingLength=response.data.data5;
+		this.acceptLength=response.data.data6;
+		this.declineLength=response.data.data7;
+		this.completeLength=response.data.data8;
    		
    		}).catch(error=>{
    		toastr['error'](error.response.data.message);
