@@ -150,6 +150,7 @@
                                        <option v-for="item in product"  v-bind:value="item.id">{{item.title}}</option>
                                     </select>
                                  </div>
+								 {{item.title.length}}
                                  <label class="charity__element--block--content--box--label">Units</label>
                                  <input type="number" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
                                  <input type="hidden" name="product_name" v-model="prod.product_name" class="login__element--box--input" />
@@ -167,7 +168,9 @@
                         </div>
                      </div>
                   </div>
-				  <div v-if="similiar!=''">
+				
+			   </div>
+			     <div v-if="similiar!=''">
 				  <div class="similar-request"><h2>Charity Requests</h2></div>
 				  <div v-for="request in similiar"class="detail-description">
 				  
@@ -179,7 +182,6 @@
 					</div>
 				  </div>
                </div>
-			   </div>
 			   </div>
                <div class="col-md-4">
                   <div class="charity__element--block">
