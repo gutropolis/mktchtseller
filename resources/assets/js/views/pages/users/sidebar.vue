@@ -315,8 +315,7 @@
        mounted() {
 	   this.fetchmessage_charity();
 		   this.fetchmessage_seller();
-				
-               this.fetchnotification();
+		 this.fetchnotification();
        },
 	   created: function()
            {
@@ -341,7 +340,7 @@
 					axios.get('api/unread_message_charity').then(response=>{
    			
 							this.unread_message_charity=response.data;
-							console.log(this.unread_message);
+							
    			
    			})
 			
@@ -350,7 +349,7 @@
 					axios.get('api/unread_message_seller').then(response=>{
    			
 							this.unread_message_seller=response.data;
-							console.log(this.unread_message);
+							
    			
    			})
 			
