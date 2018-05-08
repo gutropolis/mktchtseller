@@ -268,7 +268,7 @@
                     first_name: e.sender_user.first_name,
 					last_name:e.sender_user.last_name,
 					avatar:e.sender_user.avatar,
-					 url: '/donation_list',
+					 url: '/my_notification',
                 })
 				
 				}
