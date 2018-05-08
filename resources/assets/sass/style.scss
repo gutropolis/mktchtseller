@@ -795,7 +795,10 @@ font-size:15px;
     &--figure {
         margin-bottom: 0px;
         padding-bottom: 0px;
-        &--image{width:80%;}
+            height: 115px;
+    position: relative;
+    overflow: hidden;
+    margin: 10px 0px;
     }
     
     &--content {
@@ -810,17 +813,17 @@ font-size:15px;
         }
         border-left:1px solid $lt-gray-color;
         &--box {
-            padding: $space-s;
+            padding: $space-s 0px;
             &--heading {
                 text-transform: uppercase;
-                padding-bottom: $space-s;
+                padding-bottom: 0;
                 font-size: 20px;
             }
             &--subheading {
                 color: $orange-color;
             }
             &--pera {
-                padding-top: $space-s;
+                padding-top: $space-vs;
                 margin-bottom: 0px;
                 ul{
                     li{
@@ -830,12 +833,11 @@ font-size:15px;
             }
         }
         &--address {
-            border-top: 1px solid $lt-gray-color;
+            //border-top: 1px solid $lt-gray-color;
             &--location {
-                border-top: 1px solid $lt-gray-color;
+               // border-top: 1px solid $lt-gray-color;
                 text-align: left;
-                height: 55px;
-                line-height: 55px;
+                line-height: 30px;
                 position: relative;
                 p {
                     margin-bottom: 0px;
@@ -843,7 +845,7 @@ font-size:15px;
                     i {
                         position: absolute;
                         left: 10px;
-                        top: 20px;
+                        top: 8px;
                     }
                     span {
                         font-weight: 600;
@@ -1497,7 +1499,7 @@ font-size:15px;
     svg {
         width: 25px;
         height: auto;
-        fill: $grey-color2;
+        fill: $grey-color5;
     }
 }
 .admin__element {
@@ -2693,11 +2695,12 @@ font-size:15px;
 	display:flex;
     padding: 10px;
 	 margin-bottom: 20px;
+	 align-item:center;
 	figure{
 		    margin-bottom: 0px;
-    width: 25%;
+    width: 15%;
     margin-right: 20px;
-    flex: 0 0 25%;
+    flex: 0 0 15%;
 	}
 	h3{
 		font-size:20px;
