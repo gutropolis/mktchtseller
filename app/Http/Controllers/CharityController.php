@@ -394,8 +394,12 @@ class charityController extends Controller
    
     public function unread_notification()
     {
+		$date = new \DateTime();
+				$date->modify('-3 days');
+				$formatted_date = $date->format('Y-m-d H:i:s');
+				
 		$user = JWTAuth::parseToken()->authenticate();
-       $unread_notification=Donation::where('charity_read',0)->where('status','0')->where('charity_owner_id',$user->id)->count();
+       $unread_notification=Donation::where('charity_read',0)->where('status','0')->where('charity_owner_id',$user->id)->where('created_at', '>',$formatted_date)->count();
 	  return response()->json($unread_notification);
     }
 	
