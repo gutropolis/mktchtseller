@@ -11,9 +11,9 @@
          <div class="container">
             <div class="row">
                <div class="col-md-8">
-                  <div class="charity_inner row">
+                  <div class="charity_inner seller_inner row">
                      <div class="col-md-6 no-gutters">
-                        <figure class="charity_inner--figure">	<img  class="charity__listing--figure--image"  v-bind:src="create_message.images"></figure>
+                        <figure class="charity_inner--figure seller_inner--figure">	<img  class="charity__listing--figure--image seller_inner--figure--images"  v-bind:src="create_message.images"></figure>
                      </div>
                      <div class="col-md-5">
                         <div class="charity_inner--content">
@@ -24,7 +24,7 @@
                                  <span>ASIN:</span> {{create_message.asin_url}}
 								
                               </li>
- </li>
+ 
 							  <li class="charity_inner--content--list--item">
                                  
                                  <span>Units:</span> {{create_message.units}}
