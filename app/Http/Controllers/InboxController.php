@@ -32,7 +32,7 @@ use stdClass;
 	public function fetch()
 		{
 			$user = JWTAuth::parseToken()->authenticate();
-			$inboxes=Inbox::where('reciever_id',$user->id)->orwhere('sender_id',$user->id)->orderBy('updated_at','asc')->get();
+			$inboxes=Inbox::where('reciever_id',$user->id)->orwhere('sender_id',$user->id)->orderBy('created_at','dsc')->get();
 			$msgInbox=array();
 			foreach($inboxes as $inbox)
 			{ 
