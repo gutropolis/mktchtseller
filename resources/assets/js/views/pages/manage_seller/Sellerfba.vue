@@ -67,10 +67,10 @@
                   
                    
                 
-				<div class="charity__listing row">
+				<div class="charity__listing seller_listing row">
 				
-						<figure class="charity__listing--figure col-md-3">
-							<img  class="charity__listing--figure--image" v-bind:src="item.images">
+						<figure class="charity__listing--figure seller_listing--figure  col-md-3">
+							<img  class="charity__listing--figure--image seller_listing--figure--image" v-bind:src="item.images">
 							
 						</figure>	
 						
