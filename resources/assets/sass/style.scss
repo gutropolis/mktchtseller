@@ -826,6 +826,7 @@ font-size:15px;
                 padding-top: $space-vs;
                 margin-bottom: 0px;
                 ul{
+					padding-left:20px;
                     li{
                         list-style: disc;
                     }
@@ -2744,5 +2745,24 @@ font-size:15px;
 	{
 		    margin-left: auto;
 			padding:5px;
+	}
+}
+.seller_listing
+{
+	&--figure{
+		height:auto;
+		&--image{
+		
+		}
+	}
+}
+.seller_inner
+{
+	&--figure
+	{
+	&--images
+	{
+		height:250px;
+	}
 	}
 }
