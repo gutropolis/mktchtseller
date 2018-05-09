@@ -47,10 +47,11 @@
                                           </div>
                                           <p v-for="userinfo in create_messages.sender_detail" class="users_messages--users_area--box--list--link--user_name"> {{userinfo.first_name}}</p>
                                           <p class="users_messages--users_area--box--list--link--user_title">{{create_messages.subject}}</p>
-                                          <p class="users_messages--users_area--box--list--link--date">{{ create_messages.created_at |  moment("dddd, MMMM Do YYYY, h:mm a") }}</p>
+                                          <p class="users_messages--users_area--box--list--link--date">{{ create_messages.created_at |  moment("MMMM Do YYYY, h:mm a") }}</p>
                                           
                                        </router-link>
                                     </li>
+									
                                  </ul>
                               </div>
                            </div>
