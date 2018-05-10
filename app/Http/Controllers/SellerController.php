@@ -237,7 +237,7 @@ class SellerController extends Controller
 		$user = JWTAuth::parseToken()->authenticate();
 		
 		
-		$pendingstatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','0')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
+		$pendingstatus=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','0')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
 		
 		$pendingLength=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','0')->where('gs_donation.seller_id',$user->id)->count();
 		
@@ -382,7 +382,8 @@ public function updatelogo(Request $request,$id)
  public function destroy_donation($id)
 	{
 		 $donation = Donation::find($id);
-      $donation->delete();
+		 
+			$donation->delete();
 
      return response()->json(['message' => 'Data Deleted Successfully']);
     
