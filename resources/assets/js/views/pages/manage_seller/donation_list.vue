@@ -36,7 +36,8 @@
                                        <td v-if="item.status == 1">Accept</td>
                                        <td v-if="item.status == 2">Decline</td>
                                        <td>{{item.created_at}}</td>
-									   <td> <b-link class="table-icon" @click.prevent="deleteTask(item)">
+									  
+									   <td> <b-link class="table-icon" @click.prevent="deleteTask(item.id)">
                                           <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                              width="774.266px" height="774.266px" viewBox="0 0 774.266 774.266" style="enable-background:new 0 0 774.266 774.266;"
                                              xml:space="preserve">
@@ -271,14 +272,14 @@ import pagination from 'laravel-vue-pagination'
                 },
    
    		name:{},
-  pending:{},
-   accept:{},
-   decline:{},
-   completed:{},
-       pendingLength:{},
-	   acceptLength:{},
-	   declineLength:{},
-	   completeLength:{},
+	  pending:{},
+	   accept:{},
+	   decline:{},
+	   completed:{},
+		pendingLength:{},
+		   acceptLength:{},
+		   declineLength:{},
+		   completeLength:{},
 	   
                   }
               },
@@ -292,7 +293,7 @@ import pagination from 'laravel-vue-pagination'
           },
           methods: {
    	status(id){
-   		axios.post('api/status/'+id,this.status).then(response=>{
+   		axios.post('/api/status/'+id,this.status).then(response=>{
    		toastr['success']("Success");
    		
    		
@@ -307,7 +308,7 @@ import pagination from 'laravel-vue-pagination'
                     page = 1;
                 }
 				let url = helper.getFilterURL(this.filterUserForm);
-   		axios.get('api/donation_list?page=' + page + url).then(response=>{
+   		axios.get('/api/donation_list?page=' + page + url).then(response=>{
    		
    		this.pending=response.data.data1;
 		
@@ -323,8 +324,8 @@ import pagination from 'laravel-vue-pagination'
    		toastr['error'](error.response.data.message);
    		});
    		},
-		deleteTask(item){
-                  axios.delete('/api/delete_donation/'+item.id).then(response => {
+		deleteTask(id){
+                  axios.delete('/api/delete_donation/'+id).then(response => {
                       toastr['success'](response.data.message);
    				this.loaded = true;
    				this.fetchItems();
@@ -335,7 +336,7 @@ import pagination from 'laravel-vue-pagination'
               },
 		
 		 toggleTaskStatus(id){
-                  axios.post('api/certify/'+id).then((response) => {
+                  axios.post('/api/certify/'+id).then((response) => {
                       this.fetchItems();
                   });
               }
