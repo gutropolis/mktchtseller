@@ -2078,12 +2078,14 @@ font-size:15px;
                     padding: 0px 10px 0px 10px;
                     width: 100%;
                     position: relative;
+					display:flex;
+					align-items:center;
                                                      
                     
                     &--image_outer{
-                        width: 180px;;
-                        float: left;
+               
                         margin-top: 5px;
+						flex:0 0 20%;
                         @media screen and (max-width:$break-lg){
                             width:100px;
                         }
@@ -2109,16 +2111,14 @@ font-size:15px;
 
                     }
                     &--user_name{
-                        width: 180px;
-                        float: left;
-                        margin-top: 25px;
-                        font-size: 18px;
-                        font-weight: 700;
+						flex:0 0 20%;
+                        font-size: 16px;
+                        font-weight: 400;
                         color: $grey-color7;
                         margin-bottom: 0px;
                         @media screen and (max-width:$break-lg){
                             font-size: 16px;
-                            width: 150px;
+                            
                             margin-top: 15px;
                         }
                         @media screen and (max-width:$break-md){
@@ -2127,9 +2127,7 @@ font-size:15px;
                         
                     }
                     &--user_title{
-                        width: 250px;
-                        float: left;
-                        margin-top: 25px;
+                        flex:0 0 40%;
                         font-size: 14px;
                         font-weight: 500;
                         color: $grey-color5;
@@ -2148,9 +2146,7 @@ font-size:15px;
                         }
                     }
                     &--date{
-                        width: 170px;
-                        float: left;
-                        margin-top: 25px;
+                       flex:0 0 0 20%;
                         font-size: 14px;
                         font-weight: 500;
                         color: $grey-color5;
@@ -2765,4 +2761,8 @@ font-size:15px;
 		height:250px;
 	}
 	}
+}
+.font-strong
+{
+font-weight:600;
 }
