@@ -38,7 +38,7 @@
 									  </click-confirm>
                                  </td>
 								 <td v-if="item.status== 0">Pending</td>
-								 <td v-if="item.status== 1">Accept</td>
+								 <td v-if="item.status== 1">Accepted</td>
 								 <td v-if="item.status== 2">Decline</td>
 								 
                                  <td>
@@ -121,7 +121,7 @@
            },
            methods: {
    		status(id){
-   			axios.post('api/status/'+id,this.item).then(response=>{
+   			axios.post('/api/status/'+id,this.item).then(response=>{
    			toastr['success']("Success");
    			
    			
@@ -135,7 +135,7 @@
                     page = 1;
                 }
 				let url = helper.getFilterURL(this.filterUserForm);
-   			axios.get('api/donaters_list?page=' + page + url).then(response=>{
+   			axios.get('/api/donaters_list?page=' + page + url).then(response=>{
    			
    			this.items=response.data.data1;
 			this.itemslength=response.data.data2;
@@ -147,7 +147,7 @@
    			},
                
                toggleTaskStatus(id){
-                   axios.post('api/certify/'+id).then((response) => {
+                   axios.post('/api/certify/'+id).then((response) => {
                        this.fetchItems();
                    });
                }
