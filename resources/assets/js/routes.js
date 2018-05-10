@@ -26,7 +26,7 @@ let routes = [
 			},
 				{ 
 				name : 'edit_ads',
-                path: '/edit_ads:id',
+                path: '/edit_ads/:id',
                 component: require('./views/pages/my_ads/edit_ads')
             },
 			{
@@ -49,7 +49,7 @@ let routes = [
 			
 			{
 				name:'users_message',
-				path : '/users_message:id',
+				path : '/users_message/:id',
 				component:require('./views/pages/message/users_message')
 			},
 			
@@ -69,7 +69,7 @@ let routes = [
 			},
 			{
 				name:'edit_charity',
-				path : '/edit_charity:id',
+				path : '/edit_charity/:id',
 				component:require('./views/Charity/edit_charity')
 			},
 			{
@@ -78,7 +78,7 @@ let routes = [
 			},
 			{
 				name:'change_status',
-				path : '/change_status:id',
+				path : '/change_status/:id',
 				component:require('./views/Charity/change_status')
 			},
 			
@@ -94,7 +94,7 @@ let routes = [
 			},
 			{
 				name:'edit_product',
-				path : '/edit_product',
+				path : '/edit_product/:id',
 				component:require('./views/pages/manage_seller/edit_product')
 			},
 			
@@ -110,7 +110,7 @@ let routes = [
 			
 			{
 				name:'edit_seller',
-				path : '/edit_seller:id',
+				path : '/edit_seller/:id',
 				component:require('./views/pages/manage_seller/edit_seller')
 			},
 			{
@@ -176,7 +176,7 @@ let routes = [
             },
 			
 			{
-                path: '/auth:token',
+                path: '/auth/:token',
                 component: require('./views/auth/activate')
             },
             {
@@ -197,7 +197,7 @@ let routes = [
 			},
 			{
 				name:'charity_details',
-				path : '/charity_details:id',
+				path : '/charity_details/:id',
 				component:require('./views/Charity/charity_details')
 			},
 			{
@@ -207,7 +207,7 @@ let routes = [
 			{
 				
 				name:'seller_details',
-				path : '/seller_details:id',
+				path : '/seller_details/:id',
 				component:require('./views/pages/manage_seller/seller_details')
 			},
 			
