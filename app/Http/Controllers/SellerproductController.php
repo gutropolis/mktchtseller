@@ -116,7 +116,7 @@ protected $avatar_path = 'images/charityads/';
 		
 			if($request->get('image.image'))
 				{
-					$image = $request->get('image.image');
+					$image = $request->get('items.image');
 					$name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
 					\Image::make($request->get('image'))->save(public_path('images/product/').$name);
 					return($image);
@@ -126,14 +126,15 @@ protected $avatar_path = 'images/charityads/';
 		
 			
 	$sellerproduct = new \App\Sellerproduct;
-	$sellerproduct->title = $request->input('image.name');
-	$sellerproduct->description = $request->input('image.bulletPoints');
-	$sellerproduct->description_url = $request->input('image.description');
-	$sellerproduct->asin_url = $request->input('image.ASIN');
-	$sellerproduct->images = $request->input('image.image');
-	$sellerproduct->organisation_id = $request->input('image.title');
-	$sellerproduct->product_category = $request->input('image.product_catgeory');
-	$sellerproduct->units = $request->input('image.units');
+	$sellerproduct->title = $request->input('items.name');
+	$sellerproduct->description = $request->input('items.bulletPoints');
+	$sellerproduct->description_url = $request->input('items.description');
+	$sellerproduct->asin_url = $request->input('items.ASIN');
+	$sellerproduct->images = $request->input('items.image');
+	$sellerproduct->organisation_id = $request->input('items.title');
+	$sellerproduct->product_category = $request->input('items.product_catgeory');
+	$sellerproduct->units = $request->input('items.units');
+	$sellerproduct->price = $request->input('items.offer_price');
 	$data=$request->input('data1.tags');
 	foreach($request->data1 as $data  )
 			{
@@ -202,6 +203,7 @@ protected $avatar_path = 'images/charityads/';
 	$sellerproduct->asin_url=$request->get('asin_url');
 	$sellerproduct->organisation_id=$request->get('organisation_id');
 	$sellerproduct->units=$request->get('units');
+	$sellerproduct->price=$request->get('price');
 	$sellerproduct->tags=$request->get('tags');
 	$sellerproduct->save();
 	return response()->json(['message' => 'Data update Successfully']);
