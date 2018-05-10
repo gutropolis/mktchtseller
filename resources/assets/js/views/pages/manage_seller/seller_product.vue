@@ -64,7 +64,17 @@
 							
 							<img v-bind:src="items.image"  height="100px" width="50px">
                            </div>
-						   
+						    <div class="form-group ">
+                              <label class="login__element--box--label tag-element">Per Unit Cost</label>
+							  <div class="info-btn">
+							  <b-btn v-b-popover.hover="'This is the per unit maufacturing cost plus shipping cost to send to amazon'" title="Info">
+								<i class="fa fa-info-circle" style="font-size:20px"></i>
+							  </b-btn>
+							</div>
+							<div class="multiple_vlue">
+                             <input type="text" name="offer_price" class="login__element--box--input" required  placeholder="units" v-model="items.offer_price">
+							 </div>
+                           </div>
                            <div class="form-group ">
                               <label class="login__element--box--label">How Many Units do you want to donate?</label>
                               <input type="text" name="units" class="login__element--box--input" required  placeholder="units" v-model="items.units">
@@ -80,6 +90,7 @@
                              <vue-tags-input  name="tag" v-model="items.tags" :tags="tags" @tags-changed="newTags => tags = newTags"/>
 							 </div>
                            </div>
+						  
                            <div class="form-group text-center">
                               <input type="Submit" placeholder="" value="Save" class="btn btn-bg-orange login__element--box--button">
                            </div>
@@ -109,7 +120,7 @@
    				items:{
 				 title: 'select',
 				 product_catgeory: 'select',
-				tags:'',
+					tags:'',
 				
 				},
    					productform:{
@@ -192,7 +203,7 @@
 						 let data1 = this.tags;
 						 
 						
-                  axios.post('/api/gs_seller_product', {image: this.items, data1}).then(response =>  {
+                  axios.post('/api/gs_seller_product', {items: this.items, data1}).then(response =>  {
                       toastr['success'](response.data.message);
                       this.$router.push('/product_list');
                   }).catch(error => {
