@@ -6,7 +6,7 @@
                     <div class="col-md-4">
                         <div class="footer_main--contant">
                             <div class="footer_main--contant--logo_main">
-                                <a href="#" class="footer_main--contant--logo_main--logo" id="logo"><img src="images/logo.png"></a>
+                                <a href="#" class="footer_main--contant--logo_main--logo" id="logo"><img src="/images/logo.png"></a>
                             </div>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc est justo, aliquam nec tempor fermentum, commodo et libero. Quisque et rutrum arcu. Vivamus dictum tincidunt magna id euismod. Nam sollicitudin mi quis orci lobortis
                                 feugiat.
@@ -51,11 +51,11 @@
         </div>
     </footer>
 </template>
- <script src="js/jquery.min.js"></script>
-     <script src="js/jquery.min.js"></script>
-    <script src="js/tether.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-	<script src="s/paccordion.js"></script>
+ <script src="/js/jquery.min.js"></script>
+     <script src="/js/jquery.min.js"></script>
+    <script src="/js/tether.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+	<script src="/js/paccordion.js"></script>
 <script>
     export default {
         mounted() {
