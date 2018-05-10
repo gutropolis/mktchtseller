@@ -26,8 +26,7 @@
 	<section class="equal search_section">
         <div class="container">
             <div class="search__form">
-                <h4 class="search__form--heading">Search Products or Find a Charity</h4>
-                <p class="search__form--sub_heading">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                <h4 class="search__form--heading">Search Products or Find a Charity Needs</h4>
                 <form id="searchform" class="search__form--outer">
                    
                     <div class="search__form--outer--box">
@@ -35,7 +34,7 @@
                             <select placeholder="Search Keywords" v-model="searchform.selectcategory" class="search__form--outer--box--area">
                                     <option value="">Types</option>
                                     <option value="product"> Products</option>
-                                    <option value="charity"> Charity</option>
+                                    <option value="charity"> Charity Needs</option>
                                     
                                 </select>
                         </div>
@@ -60,7 +59,7 @@
         <div class="container">
             <b-card no-body>
   <b-tabs card>
-    <b-tab title="Requests" active>
+    <b-tab title="Charity Needs" active>
         <h1 class="tab_heading_top "> Recent Charity Posts</h1>
         <div class="post_contant_inner clearfix">
         <div v-for="item in request" class="recent__post--tab--content row">
