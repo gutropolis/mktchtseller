@@ -13,7 +13,7 @@ return [
 	
 	// Locale
 	// Options: 'co.uk', 'com', 'ca', 'com.br', 'de', 'es', 'fr', 'in', 'it', 'co.jp', 'com.mx'
-	'locale' => 'com',
+	'locale' => 'in',
 	
 	// Available Locales
 	'available_locales' => [
