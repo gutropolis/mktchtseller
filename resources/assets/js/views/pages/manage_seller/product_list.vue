@@ -32,7 +32,7 @@
                                        <figure class="table-image"><img v-bind:src="item.images"></figure>
                                     </td>
 									<td>{{item.units}}</td>
-                                    <td>{{item.created_at}}</td>
+                                    <td>{{item.created_at |  moment("MMMM Do YYYY")}}</td>
                                     <td>
                                        <router-link :to="{name: 'edit_product', params: { id: item.id }}" class="table-icon" >
                                           <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -109,7 +109,9 @@
 import helper from '../../../services/helper'
 import pagination from 'laravel-vue-pagination'
    import AppSidebar from '../users/sidebar.vue'
-   export default {
+   import Vue from 'vue'
+Vue.use(require('vue-moment')); 
+ export default {
    components: {
                AppSidebar ,pagination
           },
