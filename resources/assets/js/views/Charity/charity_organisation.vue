@@ -293,7 +293,7 @@
    
    fetchItems()
     			{
-    			axios.get('api/charity_organisation',this.address).then(response=>{
+    			axios.get('/api/charity_organisation',this.address).then(response=>{
     			
     			this.items=response.data;
     			
