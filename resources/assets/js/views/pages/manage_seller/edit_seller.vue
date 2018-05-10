@@ -256,7 +256,7 @@ import Vue from 'vue'
            
 			fetchItems()
 			{
-			axios.get('api/edit_seller/'+this.$route.params.id).then(response=>{
+			axios.get('/api/edit_seller/'+this.$route.params.id).then(response=>{
 			
 			this.items=response.data.data1;
 			this.category=response.data.data2;
