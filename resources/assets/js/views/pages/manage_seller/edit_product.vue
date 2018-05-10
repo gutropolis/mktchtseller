@@ -6,9 +6,8 @@
             <app-sidebar></app-sidebar>
             <div class="col-md-9 dashboard">
                 <div class="dashboard__content clearfix">
-                
                     <div class="dashboard__content--outer">
-                        
+
                         <div class="dashboard__content--description">
                             <hr>
                             
@@ -16,41 +15,32 @@
                      <form class="form-horizontal form-material" id="productForm" @submit.prevent="proceed">
                     <h3 class="box-title m-b-20">Edit Product</h3>
 					 <div class="form-group">
-					   
-                            <label class="login__element--box--label">Select Company</label>
+					   <label class="login__element--box--label">Select Company</label>
                             <select name="company"   v-model="productForm.organisation_id"  required class="login__element--box--input">
 							<option value="select">Select .. </option>
 							<option value:="" >--{{seller}}</option>
 							<option  v-for="item in items" v-bind:value="item.id" v-if="productForm.organisation_id=item.id" >{{ item.title }}</option>
-							
-								
-							
 							</select>
                         </div>
-						
-						
-						
-					
-					
 					<div class="form-group ">
                         <label class="login__element--box--label">Title</label>
                             <input type="text" name="title" class="login__element--box--input" required  placeholder="Title" v-model="productForm.title">
-                      
                     </div>
                     <div class="form-group ">
                         <label class="login__element--box--label">Description</label>
                             <textarea  type="text" v-html="productForm.bulletPoints" v-model="productForm.description" required  rows="7" placeholder="Description" class="login__element--box--input"></textarea>
-                       
                     </div>
 					<div class="form-group ">
                         <label class="login__element--box--label">ASIN</label>
                             <input type="text" name="asin_url" class="login__element--box--input" required  placeholder="ASIN" v-model="productForm.asin_url">
-                       
+                    </div>
+					<div class="form-group ">
+                        <label class="login__element--box--label">Per Unit Cost</label>
+                            <input type="text" name="units" class="login__element--box--input" required placeholder="units" v-model="productForm.price">
                     </div>
                    <div class="form-group ">
                         <label class="login__element--box--label">UNITS</label>
                             <input type="text" name="units" class="login__element--box--input" required placeholder="units" v-model="productForm.units">
-                       
                     </div>
 					  <div class="form-group ">
                         <label class="login__element--box--label tag-element">Tags</label>
