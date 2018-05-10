@@ -131,7 +131,7 @@
                 this.items.progress = value;
             },
    		status(id){
-   			axios.post('api/status/'+id,this.items).then(response=>{
+   			axios.post('/api/status/'+id,this.items).then(response=>{
    			
 			toastr['success']("Success");
 			
@@ -144,7 +144,7 @@
 	
 		 update()
             {
-              axios.post('api/edit_status/'+this.$route.params.id,this.items).then(response =>  {
+              axios.post('/api/edit_status/'+this.$route.params.id,this.items).then(response =>  {
                     toastr['success'](response.data.message);
 					this.$router.push('/donaters');
                  
@@ -154,7 +154,7 @@
                 },
    		fetchItems()
 			{
-			axios.get('api/edit_status/'+this.$route.params.id).then(response=>{
+			axios.get('/api/edit_status/'+this.$route.params.id).then(response=>{
 			
 			this.items=response.data.data1;
 			this.product=response.data.data2;
