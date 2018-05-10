@@ -268,7 +268,7 @@ import Vue from 'vue'
 			 updateitems()
             {
 			 this.$validator.validateAll().then((result) => {
-              axios.post('api/edit_seller/'+this.$route.params.id,this.items).then(response =>  {
+              axios.post('/api/edit_seller/'+this.$route.params.id,this.items).then(response =>  {
                     toastr['success'](response.data.message);
                     this.$router.push('/seller_list');
                 }).catch(error => {
