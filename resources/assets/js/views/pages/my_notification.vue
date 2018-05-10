@@ -6,7 +6,7 @@
             <div class="col-md-9 dashboard">
                <div class="dashboard__content clearfix">
                   <div class="dashboard__content--head">
-                     <h3 class="dashboard__content--head--heading">Notification of Invited Charities By Sellers</h3>
+                     <h3 class="dashboard__content--head--heading">Donation Notification</h3>
                   </div>
                   <div class="donation_top_tab">
                   <b-tabs class="">
