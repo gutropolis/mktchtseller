@@ -63,11 +63,7 @@
 						  <div v-if="step === 2">
 						
 						  <div class="form-group">
-                              <label class="login__element--box--label">Address Of you Business <div class="info-btn">
-							  <b-btn v-b-popover.hover="'This address should be the physical mailing address that sellers can send goods/products to.'" title="Info">
-								<i class="fa fa-info-circle" style="font-size:20px"></i>
-							  </b-btn>
-							</div></label>
+                              <label class="login__element--box--label">Address Of Your Business</label>
                               <vue-google-autocomplete id="map" class="login__element--box--input"  placeholder="Start typing" v-on:placechanged="getAddressData">
                               </vue-google-autocomplete>
                            </div>
