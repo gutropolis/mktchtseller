@@ -258,7 +258,7 @@
            
 			fetchaddress()
 			{
-			axios.get('api/edit_charity/'+this.$route.params.id).then(response=>{
+			axios.get('/api/edit_charity/'+this.$route.params.id).then(response=>{
 			
 			this.address=response.data.data1;
 			this.category=response.data.data2;
@@ -270,7 +270,7 @@
 			 updateaddress()
             {
 				 this.$validator.validateAll().then((result) => {
-              axios.post('api/edit_charity/'+this.$route.params.id,this.address).then(response =>  {
+              axios.post('/api/edit_charity/'+this.$route.params.id,this.address).then(response =>  {
                     toastr['success'](response.data.message);
                     this.$router.push('/charity_list');
                 }).catch(error => {
