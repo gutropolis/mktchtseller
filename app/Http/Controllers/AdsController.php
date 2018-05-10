@@ -90,7 +90,8 @@ class AdsController extends Controller
 		
 		$charity_details = Charity::where('id',$id)->first();
 		//return($charity_details);
-		$request=my_ads::where('charity_organisation',$charity_details->id)->first();
+		$request=my_ads::where('charity_organisation',$charity_details->id)->where('id','!=',$id)->first();
+		return($request);
 		$request_list=my_ads::where('charity_organisation',$charity_details->id)->get();
 		
 		return response()->json(array('data1'=>$request,'data2'=>$charity_details,'data3'=>$request_list));	
@@ -102,7 +103,7 @@ class AdsController extends Controller
 		
 		$charity_details = Charity::where('id',$request->charity_organisation)->first();
 	
-		$request_list=my_ads::where('charity_organisation',$charity_details->id)->get();
+		$request_list=my_ads::where('charity_organisation',$charity_details->id)->where('id','!=',$id)->get();
 		
 		return response()->json(array('data1'=>$request,'data2'=>$charity_details,'data3'=>$request_list));	
     }
