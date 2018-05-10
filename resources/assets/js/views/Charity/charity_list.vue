@@ -139,7 +139,7 @@ import pagination from 'laravel-vue-pagination'
                     page = 1;
                 }
 				 let url = helper.getFilterURL(this.filterUserForm);
-			axios.get('api/charity_list_user?page=' + page + url).then(response=>{
+			axios.get('/api/charity_list_user?page=' + page + url).then(response=>{
 			
 			this.items=response.data;
 			console.log(this.items);
