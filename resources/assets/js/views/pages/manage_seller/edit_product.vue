@@ -114,7 +114,7 @@
         methods: {
 		 fetchItem()
 					{
-					axios.get('api/seller_list').then(response=>{
+					axios.get('/api/seller_list').then(response=>{
 					
 					this.items=response.data;
 					
