@@ -25,7 +25,7 @@ return [
 		'es',
 		'fr',
 		'in',
-		'it',
+		'it',   
 		'co.jp',
 		'com.mx'
 		],
