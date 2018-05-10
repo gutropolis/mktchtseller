@@ -269,7 +269,7 @@
             },
 			fetchItems()
 			{
-			axios.get('api/gs_seller_organisation',this.savesellerform).then(response=>{
+			axios.get('/api/gs_seller_organisation',this.savesellerform).then(response=>{
 			
 			this.items=response.data;
 			
