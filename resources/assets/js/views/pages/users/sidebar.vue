@@ -91,7 +91,7 @@
                               C22.736,23.643,22.253,23.145,21.656,23.145z"/>
                         </g>
                      </svg>
-                     My Requests
+                    Our Needs
                   </router-link>
                </li>
             </div>
@@ -154,7 +154,7 @@
                            </g>
                         </g>
                      </svg>
-                     Donation Lists
+                     Donations
                   </router-link>
                </li>
                
@@ -326,7 +326,7 @@
            },
        methods : {
 			fetchnotification(){
-				axios.get('api/unread_charity_notification').then(response=>{
+				axios.get('/api/unread_charity_notification').then(response=>{
 				this.unread_notification=response.data;
 			
    			})
@@ -335,7 +335,7 @@
 			},
 			
 			fetchmessage_charity(){
-					axios.get('api/unread_message_charity').then(response=>{
+					axios.get('/api/unread_message_charity').then(response=>{
 					this.unread_message_charity=response.data;
 							
    			
@@ -343,7 +343,7 @@
 			
 			},
 			fetchmessage_seller(){
-					axios.get('api/unread_message_seller').then(response=>{
+					axios.get('/api/unread_message_seller').then(response=>{
    			
 							this.unread_message_seller=response.data;
 							
