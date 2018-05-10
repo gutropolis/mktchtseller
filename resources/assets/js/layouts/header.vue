@@ -3,7 +3,7 @@
    <header class="header_element">
       <nav class="navbar navbar-toggleable-md navbar-light bg-light navbar-expand-md">
          <div class="container">
-            <router-link to="/" class="navbar-brand" href="#"><img src="images/logo.png"></router-link>
+            <router-link to="/" class="navbar-brand" href="#"><img src="/images/logo.png"></router-link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -201,7 +201,7 @@
                   </div>
                   <div v-if="check==false">
                      <router-link to="/register" class="btn join_btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Join Us </router-link>
-                     <router-link to="/login" class="btn sign_btn"><img src="images/sign-arrow.png">Sign In </router-link>
+                     <router-link to="/login" class="btn sign_btn"><img src="/images/sign-arrow.png">Sign In </router-link>
                   </div>
                </div>
             </div>
