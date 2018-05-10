@@ -7,8 +7,8 @@
                    <p style="font-size:13px;">Email ID:- {{ $user->email }}</p>
 				   <p style="font-size:13px;">User Name:- {{ $user->full_name }}</p>
 				   <p style="font-size:13px;">Organisation_Name:- {{ $seller->title }}</p>
-				<p style="font-size:13px;">Location:- {{ $seller->location }}</p>
-				<p style="font-size:13px;">Contact:- {{$seller->area_code}}{{ $seller->phone_number }}</p></div>
+				<p style="font-size:13px;">Location:- {{ $seller->city }},{{$seller->state}}</p>
+				<p style="font-size:13px;">Contact:- {{$seller->area_code}} {{ $seller->phone_number }}</p></div>
 			<p><a href= "{{url('admin/seller/'.$seller->id.'/edit')}}" style="font-size: 14px;
 			background: #e8870b;
 			border: 1px solid #e8870b;
