@@ -13,7 +13,9 @@ class GsUserActivityFeed extends Migration
      */
     public function up()
     {
-       $table->increments('id');
+		 Schema::create('gs_user_activity_feed', function(Blueprint $table)
+		{
+			$table->increments('id');
             $table->string('from');
             $table->string('to');
             $table->string('subject');
@@ -23,6 +25,7 @@ class GsUserActivityFeed extends Migration
             $table->string('read_by_admin');
             $table->string('area_code');
 			$table->timestamps();
+		});
     }
 
     /**
