@@ -237,7 +237,7 @@
                return {
       charity_request:[],
        myAttribute: 'null',
-      image:'',
+      images:'',
       similiar:[],
    		request:{},
    		  product_name:{},
@@ -249,7 +249,8 @@
    				},
    		product:[],
    		items:[],
-   		create_message:[],
+   		create_message:{
+		},
    		loginCheck: helper.checkLogin()
    		  }
    			 
@@ -265,10 +266,10 @@
           
            
           mounted(){
-   this.attribute = this.$route.query;
-   this.fetchItem();
-   console.log("Request id"+this.$route.query);
-   console.log("id"+this.$route.params.id);
+		this.attribute = this.$route.query;
+		this.fetchItem();
+		console.log("Request id"+this.$route.query);
+		console.log("id"+this.$route.params.id);
    
         },
            methods: {
