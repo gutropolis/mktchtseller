@@ -20,23 +20,14 @@
                            <h4 class="charity_inner--content--heading">{{create_message.title}}</h4>
                            <ul class="charity_inner--content--list">
                               <li class="charity_inner--content--list--item">
-                                
                                  <span>ASIN:</span> {{create_message.asin_url}}
-								
                               </li>
- 
-							  <li class="charity_inner--content--list--item">
-                                 
+                              <li class="charity_inner--content--list--item">
                                  <span>Units:</span> {{create_message.units}}
-								
                               </li>
-							 
-							  <li class="charity_inner--content--list--item">
-                                 
+                              <li class="charity_inner--content--list--item">
                                  <span>Category:</span> {{category.title}}
-								
                               </li>
-							 
                            </ul>
                         </div>
                      </div>
@@ -109,45 +100,6 @@
                                  </b-list-group-item>
                               </b-list-group>
                            </div>
-						 <!--
-                           <div class="col-12">
-						   
-						   
-						   
-						   
-						   
-						    
-                              <div v-if="getrole ==='charity'" class="charity__request">
-									  <div v-if="getrole === 'charity'"> 
-										 <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary"  class="btn btn-bg-orange login__element--box--button">Sent Request</b-btn>
-										 <b-modal id="modalPrevent"
-											ref="modal"
-											title="Sent Request"
-											@ok="handleSubmit"
-											@shown="clearName">
-											<form  id="prod" @submit.stop.prevent="handleSubmit">
-											   <div class="form-group">
-												  <label class="login__element--box--label">Select Charity To Need This Product</label>
-												  <select name="title" v-model="prod.title" v-on:change="onChange"   class="login__element--box--input">
-													 <option value="select">Select .. </option>
-													 <option v-for="item in charities"  v-bind:value="item.id">{{item.title}}</option>
-												  </select>
-											   </div>
-											   <label class="charity__element--block--content--box--label">Units</label>
-											   <input type="text" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
-											   <input type="hidden" name="charity_name" v-model="prod.charity_name" class="login__element--box--input" />
-											</form>
-										 </b-modal>
-										
-									  </div>
-							  </div>
-                              <div  v-if="getrole =='' " class="charity__request">
-                                 <router-link :to="{ path: '/login',query: {redurl:'seller_details'+this.$route.params.id}}" class="btn btn-bg-orange login__element--box--button">Send Request</router-link>
-								 
-                              </div>
-                          
-						  </div>
-						  -->
                         </div>
                      </div>
                   </div>
@@ -161,7 +113,6 @@
                               <label class="charity__element--block--content--box--label">Subject</label>
                               <input type="text" name="subject" v-model="create_message.subject"   placeholder="Subject"  class="login__element--box--input" />
                            </div>
-						   
                            <input type="hidden" name="user_id" v-model="create_message.user_id"   class="login__element--box--input" />
                            <input type="hidden" name="id" v-model="create_message.id"   class="login__element--box--input" />
                            <input type="hidden" name="post_type" v-model="create_message.post_type"   class="login__element--box--input" />
@@ -173,20 +124,20 @@
                            </div>
                            <div class="form-group text-center" v-if="getrole ==''" >
                               <router-link :to="{ path: '/login',query: {redurl:'seller_details'+this.$route.params.id}}" class="btn btn-bg-orange login__element--box--button">Send Message</router-link>
-                           </div><div v-else >
-									   <div v-if="getrole== 'seller'" class="form-group text-center">
-										  <button   :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
-									   </div>
-									   <div v-if="getrole== 'charity'" class="form-group text-center">
-										  <button   placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
-									   </div>
+                           </div>
+                           <div v-else >
+                              <div v-if="getrole== 'seller'" class="form-group text-center">
+                                 <button   :disabled="role" placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
+                              </div>
+                              <div v-if="getrole== 'charity'" class="form-group text-center">
+                                 <button   placeholder="" class="btn btn-bg-orange login__element--box--button">Send Message</button>
+                              </div>
                            </div>
                         </form>
                      </div>
                   </div>
                   <div class="helping__element">
                      <div class="helping__element--block">
-					 
                         <h5 class="helping__element--block--heading">Helping Center</h5>
                      </div>
                      <p class="helping__element--pera">All the Lorem Ipsum generat on the Internet tend to repeat predefined chunks as necesa.</p>
@@ -206,136 +157,113 @@
 </template>
 <script>
    import helper from '../../../services/helper'
-    export default {
-    	 components: {
-       
-      },
-      
-            data() {
-    		
-                return {					
-										
-											role:true,
-											 btnDisable :false,
-										 
-											create_message:{},
-                                           // this.checkLoginRs(),
-											charities:{},
-											category:{},
-											charity_name:{},
-										     prod:{
-													title: 'select',
-													units: '', 
-												},
-										    
-                }
-            },
-    		
-			
-			
-			
-    		created: function()
-            { 
-                this.fetchItems();
-    			this.fetchItem();
-    			this.fetchCharity();
-            },
-           
-            
-            mounted(){
-			   
-            },
-            methods: {
-		
-			  onChange: function (){
-					
-					axios.get('/api/charity_name/'+this.prod.title)
-					 .then(response=>{
-						
-						this.charity_name=response.data;
-						
-						
-						}).catch(error=>{
-						toastr['error'](error.response.data.message);
-							  
-						  });
-				 },
-      
-	  /*fetchCharity()
-   	{
-   	axios.get('/api/charities_list').then(response=>{
-   	
-   	this.charities=response.data;
-   	
-   	
-   	}).catch(error=>{
-   	toastr['error'](error.response.data.message);
-   	});
-   	},
-   	clearName () {
-   					this.name = ''
-   				},
-       handleSubmit () {
-         let data = this.prod;
-			axios.post('/api/request_unit/'+this.$route.params.id,{charity_name: this.charity_name, data}).then(response => {
-			toastr['success'](response.data.message);
-					})
-    
-			},*/
-    			 submit1(e){
-				
-                    axios.post('/api/create_message', this.create_message).then(response =>  {
-                        toastr['success'](response.data.message);
-                        
-                    }).catch(error => {
-                        toastr['error'](error.response.data.message);
-                    });
-               
+   export default {
+       components: {
    
-      },
-    		
-               
-    			
-    	fetchItem()
-                {
-    			
-                 axios.get('/api/product_details/'+this.$route.params.id).then(response=>{
-    			
-    			this.create_message=response.data.data1;
-				this.category=response.data.data2;
-    			
-    			
-    			}).catch(error=>{
-    			toastr['error'](error.response.data.message);
-    				  
-                  });
-                },
-    	
-    			 fetchItems()
-    			 {
-                 
-                  axios.get('/api/sellersearch',this.sellersearch).then((response) => {
-                     
-    				 this.items=response.data;
-                  });
-                },
-   	       getAuthUserrole(){
-                return this.$store.getters.getAuthUserrole;
-            },
-            getAuthUser(name){
-                return this.$store.getters.getAuthUser(name);
-            }
-    			
-    			},
-   	 computed: {
- 
-          getrole(){
-   	return this.getAuthUser('role');
-   },
-			
-			
-			
-        }
-   	
-}
+       },
+   
+       data() {
+   
+           return {
+   
+               role: true,
+               btnDisable: false,
+   
+               create_message: {},
+             
+               charities: {},
+               category: {},
+               charity_name: {},
+               prod: {
+                   title: 'select',
+                   units: '',
+               },
+   
+           }
+       },
+   
+   
+   
+   
+       created: function() {
+           this.fetchItems();
+           this.fetchItem();
+           this.fetchCharity();
+       },
+   
+   
+       mounted() {
+   
+       },
+       methods: {
+   
+           onChange: function() {
+   
+               axios.get('/api/charity_name/' + this.prod.title)
+                   .then(response => {
+   
+                       this.charity_name = response.data;
+   
+   
+                   }).catch(error => {
+                       toastr['error'](error.response.data.message);
+   
+                   });
+           },
+   
+   
+           submit1(e) {
+   
+               axios.post('/api/create_message', this.create_message).then(response => {
+                   toastr['success'](response.data.message);
+   
+               }).catch(error => {
+                   toastr['error'](error.response.data.message);
+               });
+   
+   
+           },
+   
+   
+   
+           fetchItem() {
+   
+               axios.get('/api/product_details/' + this.$route.params.id).then(response => {
+   
+                   this.create_message = response.data.data1;
+                   this.category = response.data.data2;
+   
+   
+               }).catch(error => {
+                   toastr['error'](error.response.data.message);
+   
+               });
+           },
+   
+           fetchItems() {
+   
+               axios.get('/api/sellersearch', this.sellersearch).then((response) => {
+   
+                   this.items = response.data;
+               });
+           },
+           getAuthUserrole() {
+               return this.$store.getters.getAuthUserrole;
+           },
+           getAuthUser(name) {
+               return this.$store.getters.getAuthUser(name);
+           }
+   
+       },
+       computed: {
+   
+           getrole() {
+               return this.getAuthUser('role');
+           },
+   
+   
+   
+       }
+   
+   }
 </script>
