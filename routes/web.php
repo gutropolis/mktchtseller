@@ -297,7 +297,7 @@ Route::resource('charity', 'CharityController');
     Route::post('task/{task}/delete', 'TaskController@delete')->name('delete');
 
 });
- 
+    
 
 
 
