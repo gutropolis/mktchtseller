@@ -133,20 +133,27 @@
 						<li v-if="item.sender_id!=user.id" v-for="items in info" class="messages_outer--right_sec--box--sent">
 							<div class="messages_outer--right_sec--box--sent--avatar"><img v-if="items.avatar==null" class="messages_outer--right_sec--box--sent--image" :src="'/images/user/avatar.png'">
 							<img v-if="items.avatar!=null" class="messages_outer--right_sec--box--sent--image" :src="'/images/user/'+items.avatar"></div>
+							<div class="messages_outer--right_sec--box--chatbox">
 							<div class="messages_outer--right_sec--box--sent--chat">
 							<p >{{item.message}} </p>
 							<span>{{items.created_at |moment("dddd, h:mm, MMM-Do-YYYY")}}</span>
 							</div>
 							<p class="messages_outer--right_sec--box--sent--time">5min ago</p> 
+							</div>
 						</li>
 						
 						 <li v-else class="messages_outer--right_sec--box--replies">
+							<div class="messages_outer--right_sec--box--replies--avatar">
 						   <img class="messages_outer--right_sec--box--replies--image" :src="getAvatar">
+						   </div>
+						   <div class="messages_outer--right_sec--box--replies--chatbox">
 						   <div class="messages_outer--right_sec--box--replies--chat">
+						   
 							<p class="">{{item.message}}</p>
 							<span>{{items.created_at |moment("dddd, h:mm, MMM-Do-YYYY")}}</span>
 							</div>
 							<p class="messages_outer--right_sec--box--sent--time">5min ago</p> 
+							</div>
 						</li>
 					</div> 
                   </ul>
