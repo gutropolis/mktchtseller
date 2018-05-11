@@ -151,7 +151,7 @@
                                     </div>
                                  </div>
                                  <div v-if="getrole =='' "class="charity__request">
-                                    <router-link :to="{ path: '/login',query: {redurl:'charity_details'+this.$route.params.id}}" class="charity__request--send btn-bg-orange btn orangebtn">Invite charities to partake in the donation</router-link>
+                                    <router-link :to="{ path: '/login',query: {redurl:'/charity_details/'+this.$route.params.id}}" class="charity__request--send btn-bg-orange btn orangebtn">Invite charities to partake in the donation</router-link>
                                  </div>
                               </div>
                            </div>
@@ -191,7 +191,7 @@
                               </textarea>
                            </div>
                            <div class="form-group text-center" v-if="getrole ==''" >
-                              <router-link :to="{ path: '/login',query: {redurl:'seller_details'+this.$route.params.id}}" class="btn btn-bg-orange login__element--box--button">Send Message</router-link>
+                              <router-link :to="{ path: '/login',query: {redurl:'/charity_details/'+this.$route.params.id}}" class="btn btn-bg-orange login__element--box--button">Send Message</router-link>
                            </div>
                            <div v-else >
                               <div v-if="getrole== 'charity'" class="form-group text-center">
