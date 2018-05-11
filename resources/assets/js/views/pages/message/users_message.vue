@@ -128,17 +128,25 @@
               <div class="messages_outer--right_sec">
           
                  <ul class="messages_outer--right_sec--box" v-chat-scroll>
-                    <div v-for="item in items">
+                    <div v-for="item in items" class="clearfix">
 					   
 						<li v-if="item.sender_id!=user.id" v-for="items in info" class="messages_outer--right_sec--box--sent">
-							<img v-if="items.avatar==null" class="messages_outer--right_sec--box--sent--image" :src="'/images/user/avatar.png'">
-							<img v-if="items.avatar!=null" class="messages_outer--right_sec--box--sent--image" :src="'/images/user/'+items.avatar">
-							<p class="messages_outer--right_sec--box--sent--chat">{{item.message}}</p>
+							<div class="messages_outer--right_sec--box--sent--avatar"><img v-if="items.avatar==null" class="messages_outer--right_sec--box--sent--image" :src="'/images/user/avatar.png'">
+							<img v-if="items.avatar!=null" class="messages_outer--right_sec--box--sent--image" :src="'/images/user/'+items.avatar"></div>
+							<div class="messages_outer--right_sec--box--sent--chat">
+							<p >{{item.message}} </p>
+							<span>{{items.created_at |moment("dddd, h:mm, MMM-Do-YYYY")}}</span>
+							</div>
+							<p class="messages_outer--right_sec--box--sent--time">5min ago</p> 
 						</li>
 						
 						 <li v-else class="messages_outer--right_sec--box--replies">
 						   <img class="messages_outer--right_sec--box--replies--image" :src="getAvatar">
-							<p class="messages_outer--right_sec--box--replies--chat">{{item.message}}</p>
+						   <div class="messages_outer--right_sec--box--replies--chat">
+							<p class="">{{item.message}}</p>
+							<span>{{items.created_at |moment("dddd, h:mm, MMM-Do-YYYY")}}</span>
+							</div>
+							<p class="messages_outer--right_sec--box--sent--time">5min ago</p> 
 						</li>
 					</div> 
                   </ul>
@@ -148,7 +156,7 @@
                       <div class="right_user_chat--message_input--wrap">
                       <input type="text" placeholder="Write your message..." class="right_user_chat--message_input--wrap--text" v-model="savechat.message" />
                      
-                      <input type="submit" class="submit right_user_chat--message_input--wrap--button">
+                      <button type="submit" class="submit right_user_chat--message_input--wrap--button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                       </div>
                     </div>
 						</form>
@@ -179,115 +187,113 @@ import AppNavbar from '../users/navbar.vue'
         },
     data() {
             return {
-			info:[],
-			user:[],
-		    items:[],
-			 savechat:{  message:''  }			 
+   info:[],
+   user:[],
+      items:[],
+    savechat:{  message:''  }    
             }
         },
-		  props: ['userId'],
-		created: function()
+    props: ['userId'],
+  created: function()
         {
-			this.fetchMessage();
-			this.senderinfo();
-			this.fetchItem();
-			this.click();
+   this.fetchMessage();
+   this.senderinfo();
+   this.fetchItem();
+   this.click();
         },
          mounted(){
-    	this.fetchItems();
+     this.fetchItems();
        
     },
 
-	  methods: {
-	  click()
-	   {
-			axios.get('api/inboxstatus/'+this.$route.params.id).then(response =>  {
+   methods: {
+   click()
+    {
+   axios.post('api/inboxstatus/'+this.$route.params.id).then(response =>  {
                         //toastr['success'](response.data.message);
-	   
-	   
-	   });
-	   },
-			fetchMessage(){
-			axios.get('/api/user_id').then(response =>  {
+    
+    
+    });
+    },
+   fetchMessage(){
+   axios.get('/api/user_id').then(response =>  {
                 
-				  this.user_id=response.data.id;
-				console.log("Userid login"+this.user_id);
-			
-		 Echo.channel('chat'+this.user_id)
+      this.user_id=response.data.id;
+    console.log("Userid login"+this.user_id);
+   
+   Echo.channel('chat'+this.user_id)
             .listen('MessageSent', (e) => {
-			if((this.user_id == e.user.reciever_id) && (this.$route.params.id == e.user.inbox_id))
-			{
+   if((this.user_id == e.user.reciever_id) && (this.$route.params.id == e.user.inbox_id))
+   {
                 this.items.push({
                     message: e.user.message,
                     sender_id: e.user.sender_id,
                 })
-				
-				}
+    
+    }
       })
-	  //console.log("user_detail"+this.user_id);
-			})
-			
-			
-			},
-	  
-	  
-	  
-	  
-	  
+   //console.log("user_detail"+this.user_id);
+   })
+   
+   
+   },
+   
+   
+   
+   
+   
              submit(e){
-				axios.post('/api/message/'+this.$route.params.id, this.savechat).then(response =>   { if(response.status===200) {
-   				 this.savechat.message = '';
+    axios.post('/api/message/'+this.$route.params.id, this.savechat).then(response =>   { if(response.status===200) {
+        this.savechat.message = '';
         
         }
-   	   });
-				 this.fetchItems();
-				
+       });
+     this.fetchItems();
+    
             },
-			
-			senderinfo()
-			{
-				axios.get('/api/senderinfo/'+this.$route.params.id).then(response =>  {
-				 this.info = response.data;
-			})
-			},
-			
-			
-			 fetchItems()
+   
+   senderinfo()
+   {
+    axios.get('/api/senderinfo/'+this.$route.params.id).then(response =>  {
+     this.info = response.data;
+   })
+   },
+   
+   
+    fetchItems()
             {
-				axios.get('/api/user_detail/'+this.$route.params.id).then(response =>  {
+    axios.get('/api/user_detail/'+this.$route.params.id).then(response =>  {
                   this.items = response.data;
-				
+    
               });
             },
-		
-			
-			 fetchItem()
+  
+   
+    fetchItem()
             {
-				axios.get('/api/user_id').then(response =>  {
+    axios.get('/api/user_id').then(response =>  {
                   this.user = response.data;
-				  this.user_id=response.data.id;
-				  //console.log("User_id ="+this.user.id);
-				  
+      this.user_id=response.data.id;
+      //console.log("User_id ="+this.user.id);
+      
               });
             },
-			 getAuthUser(name) {
+    getAuthUser(name) {
     
                 return this.$store.getters.getAuthUser(name);
     
             },
-			
-			 },
-			 computed: {
-			
+   
+    },
+    computed: {
+   
             getAvatar(){
                 return '/images/user/'+this.getAuthUser('avatar');
             }
-			
+   
         }
       
    
-		}
+  }
     
 </script>
-
-        
