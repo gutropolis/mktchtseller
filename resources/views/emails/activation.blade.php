@@ -6,10 +6,10 @@
             <h1 style="color:blue;font-size:20px;padding:0px;margin:0px;color:#fff;">Charity FBA!</h1>
          </div>
 		 <p style="font-size:13px;">Hello!</p>
-         <p style="font-size:13px;">Thank you for registering an account with us.</p>
+         <p style="font-size:13px;">Thank you for registering an account For <strong style="text-transform:uppercase ">{{$user->role}}</strong> with us.</p>
 			<p style="font-size:13px;">Click on the link below to verify your email!</p>
 		 
-		  <p><a href= "{{url('/auth'.$user->activation_token)}}"  style="font-size: 14px;
+		  <p><a href= "{{url('/auth/'.$user->activation_token)}}"  style="font-size: 14px;
          background: #e8870b;
          border: 1px solid #e8870b;
          padding: 10px;
