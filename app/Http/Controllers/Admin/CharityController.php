@@ -35,7 +35,7 @@ class charityController extends JoshController
     }
  public function data()
     {
-        $charity = Charity::get(['id', 'title', 'description', 'location','images','created_at']);
+        $charity = Charity::get(['id', 'title', 'description', 'state','city','images','created_at']);
 
         return DataTables::of($charity)
             ->editColumn('created_at',function(charity $charity) {
