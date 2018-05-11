@@ -29,6 +29,7 @@ use stdClass;
 			$inbox=Inbox::pluck('reciever_id'); 
 			return response()->json($inbox);
 		}
+		
 	public function fetch()
 		{
 			$user = JWTAuth::parseToken()->authenticate();
@@ -281,8 +282,12 @@ use stdClass;
 		
 		
 		 event(new MessageSent($message));
-		return response()->json(['message' => 'Message sent  Successfully']);
+		 $actvity=new Controller;
+	$actvity->AddMessageActivityFeed($message->sender_id,$message->reciever_id,'Wants To Communicate',$message->post_id,'/users_detail');
+	
+		return response()->json(['message' => 'Message sent  Successfully']);  
 	}
+		
 	public function user_id()
 	{
 		$user = JWTAuth::parseToken()->authenticate();
