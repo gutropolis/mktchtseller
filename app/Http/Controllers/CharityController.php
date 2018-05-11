@@ -188,10 +188,9 @@ class charityController extends Controller
 	    public function toggleStatus(Request $request,$id){
         $task = Donation::find($id);
 
-        if(!$task)
-            return response()->json(['message' => 'Couldnot find task!'],422);
+       
 
-        $task->is_certify = !$task->is_certify;
+        $task->is_certify = "1";
         $task->save();
 
         return response()->json(['message' => 'Task updated!']);
