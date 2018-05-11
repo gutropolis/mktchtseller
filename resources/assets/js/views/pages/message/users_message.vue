@@ -191,7 +191,7 @@ import AppNavbar from '../users/navbar.vue'
 			this.fetchMessage();
 			this.senderinfo();
 			this.fetchItem();
-        this.click();
+			this.click();
         },
          mounted(){
     	this.fetchItems();
@@ -215,7 +215,7 @@ import AppNavbar from '../users/navbar.vue'
 			
 		 Echo.channel('chat'+this.user_id)
             .listen('MessageSent', (e) => {
-			if(this.user_id==e.user.reciever_id)
+			if((this.user_id == e.user.reciever_id) && (this.$route.params.id == e.user.inbox_id))
 			{
                 this.items.push({
                     message: e.user.message,
@@ -224,7 +224,7 @@ import AppNavbar from '../users/navbar.vue'
 				
 				}
       })
-	  console.log("user_detail"+this.user_id);
+	  //console.log("user_detail"+this.user_id);
 			})
 			
 			
@@ -251,6 +251,7 @@ import AppNavbar from '../users/navbar.vue'
 			})
 			},
 			
+			
 			 fetchItems()
             {
 				axios.get('/api/user_detail/'+this.$route.params.id).then(response =>  {
@@ -265,7 +266,7 @@ import AppNavbar from '../users/navbar.vue'
 				axios.get('/api/user_id').then(response =>  {
                   this.user = response.data;
 				  this.user_id=response.data.id;
-				  console.log("User_id ="+this.user.id);
+				  //console.log("User_id ="+this.user.id);
 				  
               });
             },
