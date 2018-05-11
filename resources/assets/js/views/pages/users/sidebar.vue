@@ -56,7 +56,7 @@
                   </b-collapse>
                </li>
 			     <li class="proflie__element--detail--list--item">
-               <router-link to="users_detail" v-b-toggle.collapse7 class="proflie__element--detail--list--item--link">
+               <router-link to="/users_detail" v-b-toggle.collapse7 class="proflie__element--detail--list--item--link">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
                      <g>
                         <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
@@ -161,7 +161,7 @@
             </div>
             <div v-else>
 			 <li class="proflie__element--detail--list--item">
-               <router-link to="users_detail" v-b-toggle.collapse7 class="proflie__element--detail--list--item--link">
+               <router-link to="/users_detail" v-b-toggle.collapse7 class="proflie__element--detail--list--item--link">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
                      <g>
                         <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
