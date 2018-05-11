@@ -48,7 +48,7 @@ Seller List
                             <th>ID</th>
                             <th>Title</th>
                             <th>Description</th>
-                            <th>Loaction</th>
+                            <th>State</th>
                             <th>Year in Buisness</th>
                             <th>Created At</th>
 							
@@ -82,7 +82,7 @@ Seller List
                 { data: 'id', name: 'id' },
                 { data: 'title', name: 'tile' },
                 { data: 'description', name: 'decription' },
-                { data: 'location', name: 'location' },
+                { data: 'state', name: 'state' },
                 { data: 'year_in_business', name: 'year_in_business'},
                 { data: 'created_at', name:'created_at'},
 				
