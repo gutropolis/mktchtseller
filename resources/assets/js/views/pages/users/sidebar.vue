@@ -161,33 +161,32 @@
             </div>
             <div v-else>
 			 <li class="proflie__element--detail--list--item">
-               <router-link to="/users_detail" v-b-toggle.collapse7 class="proflie__element--detail--list--item--link">
-                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
-                     <g>
-                        <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
-                        <path d="M304.5,270.3l-52.8,48.2c-4.1,3.8-10.5,3.8-14.6,0l-52-48.2l-165.6,131h451L304.5,270.3z"/>
-                        <polygon points="244.6,296.7 472.8,88.7 16.4,88.7 		"/>
-                        <polygon points="320,256.3 490,390.4 490,101.1 		"/>
-                     </g>
-                  </svg>
-                  Messages <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_message_seller}}</span> 
-               </router-link>
-            </li>
-			 <li class="proflie__element--detail--list--item">
-               <router-link to="/donation_list" class="proflie__element--detail--list--item--link">
-                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="535.5px" height="535.5px" viewBox="0 0 535.5 535.5" style="enable-background:new 0 0 535.5 535.5;" xml:space="preserve">
-                     <g id="notifications-on">
-                        <path d="M142.8,53.55l-35.7-35.7C45.9,63.75,5.1,135.15,0,216.75h51C56.1,147.9,89.25,89.25,142.8,53.55z M484.5,216.75h51
-                           c-5.1-81.6-43.35-153-104.55-198.9l-35.7,35.7C446.25,89.25,479.4,147.9,484.5,216.75z M433.5,229.5
-                           c0-79.05-53.55-142.8-127.5-160.65V51c0-20.4-17.85-38.25-38.25-38.25c-20.4,0-38.25,17.85-38.25,38.25v17.85
-                           C155.55,86.7,102,150.45,102,229.5v140.25l-51,51v25.5h433.5v-25.5l-51-51V229.5z M267.75,522.75c2.55,0,7.65,0,10.2,0
-                           c17.85-2.55,30.6-15.3,35.7-30.6c2.55-5.101,5.1-12.75,5.1-20.4h-102C216.75,499.8,239.7,522.75,267.75,522.75z"/>
-                     </g>
-                  </svg>
-                  Notifications
-               </router-link>
-            </li>
-			<li class="proflie__element--detail--list--item">
+                  <router-link to="" v-b-toggle.collapse5 class="proflie__element--detail--list--item--link">
+                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512px" height="512px">
+                        <g>
+                           <g>
+                              <path d="M486.647,391.189c-51.2-26.948-90.359-41.899-125.133-47.812l3.789-5.205c1.485-2.039,1.988-4.634,1.374-7.083    l-7.919-31.684c21.222-29.935,33.775-67.328,33.775-102.784v-59.733C392.533,61.606,331.281,0.354,256,0.354    S119.467,61.606,119.467,136.887v59.733c0,35.456,12.553,72.849,33.775,102.784l-7.919,31.684    c-0.614,2.449-0.111,5.043,1.374,7.083l3.789,5.205c-34.773,5.914-73.933,20.864-125.133,47.812    C9.719,399.415,0,415.509,0,433.207v69.905c0,4.719,3.823,8.533,8.533,8.533h204.8h0.008l84.924-0.077    c0.137,0.009,0.265,0.077,0.401,0.077h204.8c4.71,0,8.533-3.814,8.533-8.533v-69.905C512,415.509,502.281,399.415,486.647,391.189    z M136.533,196.621v-59.733c0-65.877,53.589-119.467,119.467-119.467S375.467,71.01,375.467,136.887v59.733    c0,38.426-13.594,72.243-33.698,97.604c-0.307,0.29-0.691,0.478-0.947,0.802c-2.935,3.755-5.973,7.296-9.105,10.624    c-0.017,0.017-0.034,0.034-0.051,0.051c-2.065,2.202-4.233,4.156-6.374,6.161c-20.855,18.799-45.636,29.824-69.291,29.824    c-23.654,0-48.435-11.025-69.291-29.824c-2.142-2.005-4.309-3.959-6.374-6.161c-0.017-0.017-0.034-0.034-0.051-0.051    c-3.132-3.328-6.17-6.869-9.105-10.624c-0.256-0.324-0.64-0.512-0.947-0.802C150.127,268.864,136.533,235.046,136.533,196.621z     M277.001,418.487h-42.001L256,371.23L277.001,418.487z M162.842,331.354l3.831-15.309c0.026,0.026,0.043,0.043,0.068,0.068    c20.617,22.426,46.857,38.229,76.442,41.822c0.009,0,0.026,0.009,0.043,0.009l-23.151,52.105L162.842,331.354z M222.882,494.571    l6.613-59.017h53.009l0.606,5.402l6.007,53.555L222.882,494.571z M291.925,410.048l-23.151-52.105    c0.009,0,0.026-0.009,0.043-0.009c29.585-3.593,55.825-19.396,76.442-41.822l0.068-0.068l3.823,15.309L291.925,410.048z" fill="#FFFFFF"/>
+                           </g>
+                        </g>
+                     </svg>
+                     Seller
+                  </router-link>
+                  <b-link class="dropdown__arrow" v-b-toggle.collapse5><i class="fa fa-angle-down" aria-hidden="true"></i></b-link>
+                  <b-collapse  id="collapse5" class=""  >
+                     <ul class="drop_menu">
+                        <li class="drop_menu--list">
+                           <router-link to="/vender_organisation" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Add Company</router-link>
+                        </li>
+                        <li class="drop_menu--list">
+                           <router-link to="/seller_list" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> My Companies</router-link>
+                        </li>
+                        <li class="drop_menu--list">
+                           <router-link to="" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Tax Documents</router-link>
+                        </li>
+                     </ul>
+                  </b-collapse>
+               </li>
+			   <li class="proflie__element--detail--list--item">
                   <router-link to="/product" class="proflie__element--detail--list--item--link">
                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         width="510px" height="510px" viewBox="0 0 510 510" style="enable-background:new 0 0 510 510;" xml:space="preserve">
@@ -203,7 +202,7 @@
                      Add Product
                   </router-link>
                </li>
-			   <li class="proflie__element--detail--list--item">
+			    <li class="proflie__element--detail--list--item">
                   <router-link to="/product_list" class="proflie__element--detail--list--item--link">
                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -246,33 +245,34 @@
                   </router-link>
                </li>
               
-               
-               <li class="proflie__element--detail--list--item">
-                  <router-link to="" v-b-toggle.collapse5 class="proflie__element--detail--list--item--link">
-                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512px" height="512px">
-                        <g>
-                           <g>
-                              <path d="M486.647,391.189c-51.2-26.948-90.359-41.899-125.133-47.812l3.789-5.205c1.485-2.039,1.988-4.634,1.374-7.083    l-7.919-31.684c21.222-29.935,33.775-67.328,33.775-102.784v-59.733C392.533,61.606,331.281,0.354,256,0.354    S119.467,61.606,119.467,136.887v59.733c0,35.456,12.553,72.849,33.775,102.784l-7.919,31.684    c-0.614,2.449-0.111,5.043,1.374,7.083l3.789,5.205c-34.773,5.914-73.933,20.864-125.133,47.812    C9.719,399.415,0,415.509,0,433.207v69.905c0,4.719,3.823,8.533,8.533,8.533h204.8h0.008l84.924-0.077    c0.137,0.009,0.265,0.077,0.401,0.077h204.8c4.71,0,8.533-3.814,8.533-8.533v-69.905C512,415.509,502.281,399.415,486.647,391.189    z M136.533,196.621v-59.733c0-65.877,53.589-119.467,119.467-119.467S375.467,71.01,375.467,136.887v59.733    c0,38.426-13.594,72.243-33.698,97.604c-0.307,0.29-0.691,0.478-0.947,0.802c-2.935,3.755-5.973,7.296-9.105,10.624    c-0.017,0.017-0.034,0.034-0.051,0.051c-2.065,2.202-4.233,4.156-6.374,6.161c-20.855,18.799-45.636,29.824-69.291,29.824    c-23.654,0-48.435-11.025-69.291-29.824c-2.142-2.005-4.309-3.959-6.374-6.161c-0.017-0.017-0.034-0.034-0.051-0.051    c-3.132-3.328-6.17-6.869-9.105-10.624c-0.256-0.324-0.64-0.512-0.947-0.802C150.127,268.864,136.533,235.046,136.533,196.621z     M277.001,418.487h-42.001L256,371.23L277.001,418.487z M162.842,331.354l3.831-15.309c0.026,0.026,0.043,0.043,0.068,0.068    c20.617,22.426,46.857,38.229,76.442,41.822c0.009,0,0.026,0.009,0.043,0.009l-23.151,52.105L162.842,331.354z M222.882,494.571    l6.613-59.017h53.009l0.606,5.402l6.007,53.555L222.882,494.571z M291.925,410.048l-23.151-52.105    c0.009,0,0.026-0.009,0.043-0.009c29.585-3.593,55.825-19.396,76.442-41.822l0.068-0.068l3.823,15.309L291.925,410.048z" fill="#FFFFFF"/>
-                           </g>
-                        </g>
-                     </svg>
-                     Seller
-                  </router-link>
-                  <b-link class="dropdown__arrow" v-b-toggle.collapse5><i class="fa fa-angle-down" aria-hidden="true"></i></b-link>
-                  <b-collapse  id="collapse5" class=""  >
-                     <ul class="drop_menu">
-                        <li class="drop_menu--list">
-                           <router-link to="/vender_organisation" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Add Company</router-link>
-                        </li>
-                        <li class="drop_menu--list">
-                           <router-link to="/seller_list" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> My Companies</router-link>
-                        </li>
-                        <li class="drop_menu--list">
-                           <router-link to="" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Tax Documents</router-link>
-                        </li>
-                     </ul>
-                  </b-collapse>
-               </li>
+			 <li class="proflie__element--detail--list--item">
+               <router-link to="/users_detail" v-b-toggle.collapse7 class="proflie__element--detail--list--item--link">
+                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
+                     <g>
+                        <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
+                        <path d="M304.5,270.3l-52.8,48.2c-4.1,3.8-10.5,3.8-14.6,0l-52-48.2l-165.6,131h451L304.5,270.3z"/>
+                        <polygon points="244.6,296.7 472.8,88.7 16.4,88.7 		"/>
+                        <polygon points="320,256.3 490,390.4 490,101.1 		"/>
+                     </g>
+                  </svg>
+                  Messages <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_message_seller}}</span> 
+               </router-link>
+            </li>
+			 <li class="proflie__element--detail--list--item">
+               <router-link to="/donation_list" class="proflie__element--detail--list--item--link">
+                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="535.5px" height="535.5px" viewBox="0 0 535.5 535.5" style="enable-background:new 0 0 535.5 535.5;" xml:space="preserve">
+                     <g id="notifications-on">
+                        <path d="M142.8,53.55l-35.7-35.7C45.9,63.75,5.1,135.15,0,216.75h51C56.1,147.9,89.25,89.25,142.8,53.55z M484.5,216.75h51
+                           c-5.1-81.6-43.35-153-104.55-198.9l-35.7,35.7C446.25,89.25,479.4,147.9,484.5,216.75z M433.5,229.5
+                           c0-79.05-53.55-142.8-127.5-160.65V51c0-20.4-17.85-38.25-38.25-38.25c-20.4,0-38.25,17.85-38.25,38.25v17.85
+                           C155.55,86.7,102,150.45,102,229.5v140.25l-51,51v25.5h433.5v-25.5l-51-51V229.5z M267.75,522.75c2.55,0,7.65,0,10.2,0
+                           c17.85-2.55,30.6-15.3,35.7-30.6c2.55-5.101,5.1-12.75,5.1-20.4h-102C216.75,499.8,239.7,522.75,267.75,522.75z"/>
+                     </g>
+                  </svg>
+                  Notifications
+               </router-link>
+            </li>
+			
             </div>
             <li class="proflie__element--detail--list--item">
                <a href="#" @click.prevent="logout" class="proflie__element--detail--list--item--link">
