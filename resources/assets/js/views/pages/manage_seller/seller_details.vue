@@ -123,7 +123,7 @@
                               </textarea>
                            </div>
                            <div class="form-group text-center" v-if="getrole ==''" >
-                              <router-link :to="{ path: '/login',query: {redurl:'seller_details'+this.$route.params.id}}" class="btn btn-bg-orange login__element--box--button">Send Message</router-link>
+                              <router-link :to="{ path: '/login',query: {redurl:'/seller_details/'+this.$route.params.id}}" class="btn btn-bg-orange login__element--box--button">Send Message</router-link>
                            </div>
                            <div v-else >
                               <div v-if="getrole== 'seller'" class="form-group text-center">
