@@ -290,3 +290,4 @@ import AppNavbar from '../users/navbar.vue'
     
 </script>
 
+        
