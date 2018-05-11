@@ -82,7 +82,7 @@ Charity List
                 { data: 'id', name: 'id' },
                 { data: 'title', name: 'title' },
                 { data: 'description', name: 'description' },
-                { data: 'location', name: 'location' },
+                { data: 'state', name: 'location' },
                
                 { data: 'created_at', name:'created_at'},
                 { data: 'actions', name: 'actions', orderable: false, searchable: false }
