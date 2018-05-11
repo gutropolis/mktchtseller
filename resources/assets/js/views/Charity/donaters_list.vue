@@ -11,32 +11,33 @@
                   <div>
                      <div class="panel-body">
                         <div class="table-responsive">
+						 <div>
+								  
+                                   
+                                    <button  class="btn btn-success btn-lg" @click.prevent="toggleTaskStatus(checkNames)" data-toggle="tooltip" title="Click Here To Certify">Certify</button>
+									 
+                                 </div>
                            <table id="example" class="table table-striped table-bordered table-box"" width="100%" cellspacing="0">
                               <tr>
-                                 <th>ID</th>
+                                 <th><input type="checkbox"></th>
 								 <th>Product Name</th>
                                  <th>Seller</th>
                                  <th>Charity</th>
 								 <th>Units</th>
 								 <th>Progress</th>
-                                 <th>Certify</th>
+                                
 								 <th>Status</th>
                                  <th>Change Status</th>
                               </tr>
                               <tr v-for="(item,index) in items.data">
-                                 <td>{{index+1}}</td>
+                                 <td><input type="checkbox" :value="item.id" v-model="checkNames"> </td>
 								  <td>{{item.product}}</td>
                                  <td>{{item.seller}}</td>
 								 <td>{{item.charity}}</td>
                                  <td>{{item.units}}</td>
 								 <td>{{ item.progress }} %</td>
                                 
-                                 <td>
-								  <click-confirm yes-class="btn btn-success" no-class="btn btn-danger">
-                                    <button v-if="item.is_certify==0" class="btn btn-danger btn-sm" @click.prevent="toggleTaskStatus(item.id)" data-toggle="tooltip" title="Mark as complete"><i class="fa fa-times"></i></button>
-                                    <button v-if="item.is_certify==1" class="btn btn-success btn-sm" @click.prevent="toggleTaskStatus(item.id)" data-toggle="tooltip" title="Mark as Incomplete"><i class="fa fa-check"></i></button>
-									  </click-confirm>
-                                 </td>
+                                 
 								 <td v-if="item.status== 0">Pending</td>
 								 <td v-if="item.status== 1">Accepted</td>
 								 <td v-if="item.status== 2">Decline</td>
@@ -53,7 +54,7 @@
 										</td>
 										</tr>
                            </table>
-						  
+						 
                         </div>
                      </div>
 					   <div class="row">
@@ -94,6 +95,7 @@
            data() {
    		
                return {
+			   checkNames:[],
 			   itemslength:{},
 			   filterUserForm: {
                    // sortBy : 'title',
@@ -146,8 +148,9 @@
    			});
    			},
                
-               toggleTaskStatus(id){
-                   axios.post('/api/certify/'+id).then((response) => {
+               toggleTaskStatus(checkNames){
+                   axios.post('/api/certify/'+checkNames).then((response) => {
+				   toastr['success'](response.data.message);
                        this.fetchItems();
                    });
                }
