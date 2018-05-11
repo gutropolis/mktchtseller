@@ -1936,11 +1936,13 @@ font-size:15px;
         }
         &--box{
             &--sent{
-                display: inline-block;
-                clear: both;
-                float: left;
-                margin: 15px 15px 5px 15px;
-                width: calc(100% - 25px);
+                    display: flex;
+					clear: both;
+					margin: 0px;
+					width: 100%;
+					padding: 5px 10px;
+					background: #f1f1f1;
+					max-width: 450px;
                 &--image{
                     width: 25px;
                     height: 25px;
@@ -1950,12 +1952,10 @@ font-size:15px;
                 }
                 &--chat{
                     display: inline-block;
-                    padding: 10px 15px;
-                    border-radius: 20px;
+                    padding: 10px 15px;                    
                     max-width: 300px;
                     line-height: 130%;
-                    color:$white-color;
-                    background: $blue-color;
+                    color:$black-color;                   
                     float:left;
                 }
             }
@@ -1963,8 +1963,9 @@ font-size:15px;
                 display: inline-block;
                 clear: both;
                 float: left;
-                margin: 15px 15px 5px 15px;
-                width: calc(100% - 25px);
+                margin:0;
+                width: 100%;
+				padding:0px 10px;
                 &--image{
                     width: 25px;
                     height: 25px;
@@ -1978,8 +1979,7 @@ font-size:15px;
                     border-radius: 20px;
                     max-width: 300px;
                     line-height: 130%;
-                    color:$white-color;
-                    background: $green-color;
+                    color:$black-color;                    
                     float:right;
                 }
             }
@@ -2001,6 +2001,7 @@ font-size:15px;
                 font-size: 0.8em;
                 color: $grey-color5;
                 background:$grey-color2;
+				font-size:16px;
             }
             
             &--button{
@@ -2392,6 +2393,7 @@ font-size:15px;
         float: left;
         overflow: hidden;
         position: relative;
+		
         @media screen and (max-width:$break-md){
             width: 100%;
         }
@@ -2400,6 +2402,7 @@ font-size:15px;
                 max-height:700px;
                 min-height: 450px;
                 overflow-y: scroll;
+				padding:$space-n;
 				padding-bottom: 40px;
                 
              &::-webkit-scrollbar-track
@@ -2424,64 +2427,153 @@ font-size:15px;
              @media screen and (max-width:$break-md){
                  height: 78vh;
              }
+			 &--chatbox{
+			 display: flex;
+				padding: $space-s;
+					background: $grey-color;
+					max-width: 450px;
+					position:relative;					
+					margin-bottom:20px;
+					    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.17);
+					border-radius: 5px;
+					margin-right:auto;
+					    padding-right: $space-l + $space-s + $space-vs;
+					&:before{
+						       content: '';
+							position: absolute;
+							border-right: 17px solid #f4f5fd;
+							border-bottom: 17px solid transparent;
+							left: -13px;
+							top: 5px;
+					}
+					&:after{
+						       content: '';
+							position: absolute;
+							border-right: 12px solid #cccccc69;
+							border-bottom: 12px solid transparent;
+							left: -13px;
+							top: 7px;
+							z-index: -1;
+					}
+			 }
                 &--sent{
-                    display: inline-block;
-                    clear: both;
-                    float: left;
-                    margin: 15px 15px 5px 15px;
-                    width: calc(100% - 25px);
+                    
+					clear: both;
+					margin: 0px;
+					width: 100%;
+
+					
+					
                     @media screen and (max-width:$break-vs){
                         margin: 15px 15px 5px 20px;
                     }
-                    &--image{
-                        width: 25px;
-                        height: 25px;
+                    &--avatar{
+                        width: 40px;
+                        height: 40px;
                         border-radius: 100px;
                         float: left;
-                        margin: 6px 8px 0 0;
+                        margin-right: $space-m;
+						overflow:hidden;
+
                     }
                     &--chat{
-                        display: inline-block;
-                        padding: 10px 15px;
-                        border-radius: 20px;
-                        max-width: 300px;
-                        line-height: 130%;
-                        color:$white-color;
-                        background: $blue-color;
-                        float:left;
+                       padding: 0px;					
+						line-height: 130%;
+						color: $black-color;
+						margin-bottom: 0px;
                         @media screen and (max-width:$break-vs){
                             width:250px;
                         }
+						p{
+							margin-bottom:0px;							
+						}
+						span
+							{
+								font-size: 12px;
+								color:$grey-color9;
+								display: inline-block;
+							}
                     }
+					&--time
+					{
+						
+						padding-left: $space-s ;
+						font-size:12px;
+						color:$grey-color9;
+						margin-bottom:0px;
+						    margin-left: auto;
+							position: absolute;
+						right: 10px;
+						top: 10px;
+					}
                 }
                 &--replies{
-                    display: inline-block;
-                    clear: both;
-                    float: left;
-                    margin: 15px 15px 5px 15px;
-                    width: calc(100% - 25px);
+                     display: flex;
+					clear: both;
+					margin: 0px;
+					width: 100%;
+					flex-direction:row-reverse;
+
+				&--chatbox{
+						display: flex;
+						padding: 10px 10px;
+						background: rgba(139, 195, 74, 0.25);
+						max-width: 450px;
+						position:relative;					
+						margin-bottom:20px;
+					    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.17);
+						border-radius: 5px;
+						 margin-left:auto;
+						 padding-right: $space-l + $space-s + $space-vs; 
+						 
+						
+					&:before{
+						       content: '';
+							position: absolute;
+							border-left: 17px solid rgb(226, 240, 209);
+							border-bottom: 17px solid transparent;
+							right: -13px;
+							top: 5px;
+					}
+					&:after{
+						       content: '';
+							position: absolute;
+							border-left: 12px solid #cccccc69;
+							border-bottom: 12px solid transparent;
+							right: -13px;
+							top: 7px;
+							z-index: -1;
+					}
+					}
                     @media screen and (max-width:$break-vs){
                         margin: 15px 15px 5px 0px;
                     }
-                    &--image{
-                        width: 25px;
-                        height: 25px;
+                    &--avatar{
+                        width: 40px;
+                        height: 40px;
                         border-radius: 100px;
-                        float: right;
-                        margin: 6px 0 0 8px;
+                        float: left;
+                        margin-left: $space-m;
+						overflow:hidden;
+
                     }
-                    &--chat{
-                        display: inline-block;
-                        padding: 10px 15px;
-                        border-radius: 20px;
-                        max-width: 300px;
-                        line-height: 130%;
-                        color:$white-color;
-                        background: $green-color;
-                        float:right;
+                   &--chat{
+                       padding: 0px;					
+						line-height: 130%;
+						color: $black-color;
+						margin-bottom: 0px;
                         @media screen and (max-width:$break-vs){
-                            width: 250px;
+                            width:250px;
                         }
+						p{
+							margin-bottom:0px;							
+						}
+						span
+							{
+								font-size: 12px;
+								color:$grey-color9;
+								display: inline-block;
+							}
                     }
                 }
             }
@@ -2502,6 +2594,7 @@ font-size:15px;
                     font-size: 0.8em;
                     color: $grey-color5;
                     background:$grey-color2;
+					font-size:16px;  
                 }
                 
                 &--button{
@@ -2512,7 +2605,9 @@ font-size:15px;
                     cursor: pointer;
                     background: $blue-color;
                     color: $white-color;
-                    height: 46px;
+					font-size:16px;
+					    height: 100%;
+					position: absolute;
                 }
             }
         }
@@ -2739,7 +2834,7 @@ font-size:15px;
 	padding:0px 30px;
 	.page_option
 	{
-		    margin-left: auto;    
+		    margin-left: auto;
 			padding:5px;
 	}
 }
