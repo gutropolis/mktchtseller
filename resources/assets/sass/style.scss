@@ -1986,8 +1986,7 @@ font-size:15px;
         }
     }
     &--message_input{
-        position: absolute;
-        bottom: 0;
+
         width: 100%;
         z-index: 99;
         &--wrap{
@@ -1997,7 +1996,7 @@ font-size:15px;
                 float: left;
                 border: none;
                 width: calc(100% - 50px);
-                padding: 15px 32px 15px 8px;
+                padding: 12px 32px 12px 8px;
                 font-size: 0.8em;
                 color: $grey-color5;
                 background:$grey-color2;
@@ -2384,21 +2383,30 @@ font-size:15px;
             }
         
         }
-    
+    &--main
+	{
+	        width: 65%;
+			 float: left;
+	}
     &--right_sec{    
         max-height: 720px;
         min-height: 500px;
-        width: 65%;
+		width:100%;
         height: 85vh;
-        float: left;
+       
         overflow: hidden;
         position: relative;
 		
         @media screen and (max-width:$break-md){
             width: 100%;
         }
+		&--heading{
+			    background: $grey-color8;
+				padding:$space-s;
+				color: $white-color;
+		}
             &--box{
-                height:82vh;
+                height:73;
                 max-height:700px;
                 min-height: 450px;
                 overflow-y: scroll;
@@ -2461,7 +2469,7 @@ font-size:15px;
 					clear: both;
 					margin: 0px;
 					width: 100%;
-
+					display:flex;
 					
 					
                     @media screen and (max-width:$break-vs){
@@ -2579,8 +2587,6 @@ font-size:15px;
             }
         
         &--message_input{
-            position: absolute;
-            bottom: 0;
             width: 100%;
             z-index: 99;
             &--wrap{
