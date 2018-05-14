@@ -27,7 +27,7 @@ use Validator;
 Use App\Mail\Restore;
 use stdClass;
 
-
+    
 class charityController extends Controller
 {
 
