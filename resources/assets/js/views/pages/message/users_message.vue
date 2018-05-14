@@ -1,7 +1,7 @@
 <template>
 <div>
  <div id="main-wrapper">
-
+   
       <section class=" my__account">
         <div class="row">
             <app-sidebar></app-sidebar>
