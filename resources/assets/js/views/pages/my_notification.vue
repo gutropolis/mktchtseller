@@ -18,15 +18,16 @@
                         <div class="notification__element clearfix">
                            
                             <div class="notification__element--view" v-for="item in items">
-                               
-                                <div v-for="product in item.product_detail" class="notification__element--listing" >
+                              
+                                <div  class="notification__element--listing" >
                                     <figure class="notification__element--listing--figure">
-                                       <a v-bind:href="product.description_url"> <img  v-bind:src="product.images" class="notification__element--listing--figure--image"></a>
+                                      <img  v-bind:src="item.images" class="notification__element--listing--figure--image">
                                     </figure>
-                                    <div v-for="product in item.product_detail" class="notification__element--listing--content">
-                                      <h4><a v-bind:href="product.description_url">{{product.title}}</a></h4></a>
+                                    <div  class="notification__element--listing--content">
+                                      <h4>{{item.title}}</h4>
                                         
-                                    <p> Donated By:- {{product.updated_by}} </p>
+                                    <p> Donated By:- {{item.seller}} </p>
+									<b>Posted On:- {{item.created_at |moment("dddd,MMM-Do-YYYY")}}</b>
                                     </div>
                                 </div>
                                 <div class="notification__element--view--button">
@@ -57,14 +58,15 @@
                            
                             <div class="notification__element--view" v-for="item in accept_items">
                                
-                                <div v-for="product in item.product_detail" class="notification__element--listing" >
+                                <div class="notification__element--listing" >
                                     <figure class="notification__element--listing--figure">
-                                       <a v-bind:href="product.description_url"> <img  v-bind:src="product.images" class="notification__element--listing--figure--image"></a>
+                                       <a v-bind:href="item.description_url"> <img  v-bind:src="item.images" class="notification__element--listing--figure--image"></a>
                                     </figure>
-                                    <div v-for="product in item.product_detail" class="notification__element--listing--content">
-                                      <h4><a v-bind:href="product.description_url">{{product.title}}</a></h4></a>
+                                    <div class="notification__element--listing--content">
+                                      <h4><a v-bind:href="item.description_url">{{item.title}}</a></h4></a>
                                         
-                                    <p> Donated By:- {{product.updated_by}} </p>
+                                    <p> Donated By:- {{item.seller}} </p>
+									<b>Posted On:- {{item.created_at |moment("dddd,MMM-Do-YYYY")}}</b>
                                     </div>
                                 </div>
                                
@@ -91,14 +93,15 @@
                            
                             <div class="notification__element--view" v-for="item in decline_items">
                                
-                                <div v-for="product in item.product_detail" class="notification__element--listing" >
+                                <div  class="notification__element--listing" >
                                     <figure class="notification__element--listing--figure">
-                                       <a v-bind:href="product.description_url"> <img  v-bind:src="product.images" class="notification__element--listing--figure--image"></a>
+                                       <a v-bind:href="item.description_url"> <img  v-bind:src="item.images" class="notification__element--listing--figure--image"></a>
                                     </figure>
-                                    <div v-for="product in item.product_detail" class="notification__element--listing--content">
-                                      <h4><a v-bind:href="product.description_url">{{product.title}}</a></h4></a>
+                                    <div class="notification__element--listing--content">
+                                      <h4><a v-bind:href="item.description_url">{{item.title}}</a></h4></a>
                                         
-                                    <p> Donated By:- {{product.updated_by}} </p>
+                                    <p> Donated By:- {{item.seller}} </p>
+									<b>Posted On:- {{item.created_at |moment("dddd,MMM-Do-YYYY")}}</b>
                                     </div>
                                 </div>
                                
@@ -155,9 +158,10 @@
 		 {
              axios.get('/api/charity_notification').then((response) => {
                  this.items=response.data.data1;
-				// console.log('length'+response.data.data1.length);
+				
 				
 				 this.accept_items=response.data.data2;
+				 console.log(response.data.data2);
 				 this.decline_items=response.data.data3;
 				
               }) 
