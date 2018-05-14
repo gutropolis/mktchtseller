@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Redirect;
 use Sentinel;
-use URL;
+use URL;     
 use View;
 use Yajra\DataTables\DataTables;
 use Validator;
