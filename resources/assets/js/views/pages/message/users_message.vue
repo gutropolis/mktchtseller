@@ -147,7 +147,13 @@
               </div>
 			<div class="messages_outer--main">
               <div class="messages_outer--right_sec">
-				<h4 class="messages_outer--right_sec--heading">Charity Text</h4>
+			  <div v-if="subject.length>=50">
+								<h6 class="messages_outer--right_sec--heading"><span v-html="subject.substring(0,60)+'.......'"></span></h6>
+								</div>
+								 <div v-else>
+								<h6 class="messages_outer--right_sec--heading"><span v-html="subject"></span></h6>
+								</div>
+				
                  <ul class="messages_outer--right_sec--box" v-chat-scroll>
                     <div v-for="item in items" class="clearfix">
 					   
@@ -216,6 +222,7 @@ import AppNavbar from '../users/navbar.vue'
         },
     data() {
             return {
+			subject:{},
 			product:{},
    info:[],
    user:[],
@@ -234,6 +241,7 @@ import AppNavbar from '../users/navbar.vue'
    this.senderinfo();
    this.fetchItem();
    this.click();
+   this.fetch_subject();
         },
          mounted(){
      this.fetchItems();
@@ -322,7 +330,12 @@ import AppNavbar from '../users/navbar.vue'
    })
    },
    
-   
+   fetch_subject()
+   {
+	axios.get('/api/fetch_subject/'+this.$route.params.id).then(response => {
+		this.subject=response.data;
+	})
+   },
     fetchItems()
             {
     axios.get('/api/user_detail/'+this.$route.params.id).then(response =>  {
