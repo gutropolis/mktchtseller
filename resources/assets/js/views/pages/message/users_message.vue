@@ -65,10 +65,7 @@
                       <span class="messages_outer--left_sec--detail_sec--detail--data pull-right">{{item.address}}</span>
                     </li>
 
-                    <li class="messages_outer--left_sec--detail_sec--description">
-                    <span class="messages_outer--left_sec--detail_sec--description--title">Description:</span>
-                    <span class="messages_outer--left_sec--detail_sec--description--data">{{item.bio}}</span>
-                  </li>
+                    
                     <div class="charity_donation">
                                     <div v-if="getrole ==='seller'" class="charity__request">
                                        <div v-if="getrole=='seller'">
@@ -137,10 +134,7 @@
                       <span class="mobile_message_outer--left_sec--detail_sec--detail--data pull-right">{{item.address}}</span>
                     </li>
 
-                     <li class="mobile_message_outer--left_sec--detail_sec--description">
-                    <span class="mobile_message_outer--left_sec--detail_sec--description--title">Description:</span>
-                    <span class="mobile_message_outer--left_sec--detail_sec--description--data">{{item.bio}}</span>
-                  </li>
+                    
                     
                 </ul>               
 				 
