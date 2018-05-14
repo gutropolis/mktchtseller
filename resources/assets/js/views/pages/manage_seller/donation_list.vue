@@ -311,7 +311,7 @@ import pagination from 'laravel-vue-pagination'
    		axios.get('/api/donation_list?page=' + page + url).then(response=>{
    		
    		this.pending=response.data.data1;
-		
+		console.log(this.pending);
 		this.accept=response.data.data2;
 		this.decline=response.data.data3;
 		this.completed=response.data.data4;
