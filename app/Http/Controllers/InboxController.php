@@ -244,13 +244,20 @@ use stdClass;
 		}
 	}
 	
-	 
+	 public function subject($id)
+	{
+		$user = JWTAuth::parseToken()->authenticate();
+		$subject=Inbox::where('id',$id)->pluck('subject');
+		return $subject[0];
+		
+		
+	}
 	
 	
 	public function update_inbox_status($id)
 	{
 		$user = JWTAuth::parseToken()->authenticate();
-		$update=Inbox::where('id',$id)->where('reciever_id',$user_id)->update(['status'=> 0]);
+		$update=Inbox::where('id',$id)->where('reciever_id',$user->id)->update(['status'=> 0]);
 		return $update;
 		
 		
