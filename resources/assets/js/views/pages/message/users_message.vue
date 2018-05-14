@@ -69,7 +69,33 @@
                     <span class="messages_outer--left_sec--detail_sec--description--title">Description:</span>
                     <span class="messages_outer--left_sec--detail_sec--description--data">{{item.bio}}</span>
                   </li>
-                    
+                    <div class="charity_donation">
+                                    <div v-if="getrole ==='seller'" class="charity__request">
+                                       <div v-if="getrole=='seller'">
+                                          <div class="charity_donation--box">
+                                             <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Make An Offer</b-btn>
+                                             <b-modal id="modalPrevent"
+                                                ref="modal"
+                                                title="Invite To Donate Charity"
+                                                @ok="handleSubmit"
+                                                @shown="clearName">
+                                                <form  id="prod" @submit.stop.prevent="handleSubmit">
+                                                   <div class="form-group">
+                                                      <label class="login__element--box--label">Select Product</label>
+                                                      <select name="title" v-model="prod.id" v-on:change="onChange"   class="login__element--box--input">
+                                                         <option value="select">Select .. </option>
+                                                         <option v-for="item in product"  v-bind:value="item.id">{{item.title}}</option>
+                                                      </select>
+                                                   </div>
+                                                   <label class="charity__element--block--content--box--label">Units</label>
+                                                   <input type="number" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
+                                                   <input type="hidden" name="product_name" v-model="prod.product_name" class="login__element--box--input" />
+                                                </form>
+                                             </b-modal>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
                 </ul>
                 <div class="detail_icon">
                   <button type="button" class="detail_slide-toggle"><i class="fa fa-user" aria-hidden="true"></i></button>
@@ -117,6 +143,7 @@
                   </li>
                     
                 </ul>               
+				 
                  </div>
 				</div>
                 </div>
@@ -136,9 +163,9 @@
 							<div class="messages_outer--right_sec--box--chatbox">
 							<div class="messages_outer--right_sec--box--sent--chat">
 							<p >{{item.message}} </p>
-							<span>{{items.created_at |moment("dddd, h:mm, MMM-Do-YYYY")}}</span>
+							<span>{{items.created_at |moment("dddd,MMM-Do-YYYY")}}</span>
 							</div>
-							<p class="messages_outer--right_sec--box--sent--time">5min ago</p> 
+							<p class="messages_outer--right_sec--box--sent--time">{{item.created_at |moment("h:mm A")}}</p> 
 							</div>
 						</li>
 						
@@ -150,9 +177,9 @@
 						   <div class="messages_outer--right_sec--box--replies--chat">
 						   
 							<p class="">{{item.message}}</p>
-							<span>{{items.created_at |moment("dddd, h:mm, MMM-Do-YYYY")}}</span>
+							<span>{{items.created_at |moment("dddd, MMM-Do-YYYY")}}</span>
 							</div>
-							<p class="messages_outer--right_sec--box--sent--time">5min ago</p> 
+							<p class="messages_outer--right_sec--box--sent--time">{{item.created_at |moment("h:mm A")}}</p> 
 							</div>
 						</li>
 					</div> 
@@ -194,9 +221,14 @@ import AppNavbar from '../users/navbar.vue'
         },
     data() {
             return {
+			product:{},
    info:[],
    user:[],
       items:[],
+	    prod:{
+   				  title: 'select',
+   				  units: ''
+   				},
     savechat:{  message:''  }    
             }
         },
@@ -210,14 +242,34 @@ import AppNavbar from '../users/navbar.vue'
         },
          mounted(){
      this.fetchItems();
-       
+       this.fetchproducts();
     },
 
    methods: {
+    onChange: function (){
+           axios.get('/api/product_name/'+this.prod.id)
+            .then(response=>{
+   			this.prod=response.data;
+   			}).catch(error=>{
+   			toastr['error'](error.response.data.message);
+   				  
+                 });
+   	 },
+	  handleSubmit () {
+       let data = this.prod;
+     axios.post('/api/product/'+this.$route.params.id,this.prod).then(response => {
+     toastr['success'](response.data.message);
+     })
+   
+    },
+   
+      clearName () {
+   				this.name = ''
+   			},
    click()
     {
-   axios.post('api/inboxstatus/'+this.$route.params.id).then(response =>  {
-                        //toastr['success'](response.data.message);
+   axios.post('/api/inboxstatus/'+this.$route.params.id).then(response =>  {
+                      console.log("Id of"+this.$route.params.id);
     
     
     });
@@ -246,7 +298,16 @@ import AppNavbar from '../users/navbar.vue'
    },
    
    
-   
+   fetchproducts()
+               {
+   			
+                 axios.get('/api/product').then(response =>  {
+   					
+                     this.product = response.data;
+   				 
+   				  
+                 });
+               },
    
    
              submit(e){
@@ -293,7 +354,9 @@ import AppNavbar from '../users/navbar.vue'
    
     },
     computed: {
-   
+    getrole(){
+   	return this.getAuthUser('role');
+   },
             getAvatar(){
                 return '/images/user/'+this.getAuthUser('avatar');
             }
