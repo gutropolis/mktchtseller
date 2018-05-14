@@ -99,7 +99,7 @@
           
             <div v-if="getrole === 'charity'">
 			 <li class="proflie__element--detail--list--item">
-               <router-link to="/my_notification" class="proflie__element--detail--list--item--link">
+              <router-link to="" v-b-toggle.collapse9 class="proflie__element--detail--list--item--link">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="535.5px" height="535.5px" viewBox="0 0 535.5 535.5" style="enable-background:new 0 0 535.5 535.5;" xml:space="preserve">
                      <g id="notifications-on">
                         <path d="M142.8,53.55l-35.7-35.7C45.9,63.75,5.1,135.15,0,216.75h51C56.1,147.9,89.25,89.25,142.8,53.55z M484.5,216.75h51
@@ -111,6 +111,14 @@
                   </svg>
                   Notifications <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_notification}}</span> 
                </router-link>
+			    <b-link class="dropdown__arrow" v-b-toggle.collapse9><i class="fa fa-angle-down" aria-hidden="true"></i></b-link>
+                  <b-collapse  id="collapse9" class=""  >
+                     <ul class="drop_menu">
+                        <li class="drop_menu--list">
+                           <router-link to="/my_notification" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i>Arrange Offers</router-link>
+                        </li>
+                     </ul>
+                  </b-collapse>
             </li>
                <li class="proflie__element--detail--list--item">
                   <router-link to="/donaters" class="proflie__element--detail--list--item--link">
