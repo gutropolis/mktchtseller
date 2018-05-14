@@ -249,7 +249,8 @@ use stdClass;
 	
 	public function update_inbox_status($id)
 	{
-		$update=Inbox::where('id',$id)->update(['status'=> 0]);
+		$user = JWTAuth::parseToken()->authenticate();
+		$update=Inbox::where('id',$id)->where('reciever_id',$user_id)->update(['status'=> 0]);
 		return $update;
 		
 		
