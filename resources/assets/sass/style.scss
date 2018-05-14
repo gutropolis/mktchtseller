@@ -1989,6 +1989,8 @@ font-size:15px;
 
         width: 100%;
         z-index: 99;
+		position:absolute;
+		bottom:0;
         &--wrap{
             position: relative;
         
@@ -2406,7 +2408,7 @@ font-size:15px;
 				color: $white-color;
 		}
             &--box{
-                height:73;
+                height:73vh;
                 max-height:700px;
                 min-height: 450px;
                 overflow-y: scroll;
@@ -2586,9 +2588,11 @@ font-size:15px;
                 }
             }
         
-        &--message_input{
+        &--message_input{ 
             width: 100%;
             z-index: 99;
+			position: absolute;
+			bottom: 0;
             &--wrap{
                 position: relative;
             
