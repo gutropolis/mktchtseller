@@ -411,62 +411,17 @@ class charityController extends Controller
 			$date = new \DateTime();
 				$date->modify('-3 days');
 				$formatted_date = $date->format('Y-m-d H:i:s');
+				
+				
+		$pending=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_vender_product.id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.status','0')->where('gs_donation.charity_owner_id',$user->id)->get();
 		
-       $product=Donation::where('status','0')->where('charity_owner_id',$user->id)->where('created_at', '>',$formatted_date)->get();
-	  
-	   $detail=array();
-		foreach($product as $pro)
-		{
+				
+		$accept=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_vender_product.id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.status','1')->where('gs_donation.charity_owner_id',$user->id)->get();
 			
-			$product=Sellerproduct::where('id',$pro->product_id)->get();
-			
-			$charity=Charity::where('id',$pro->charity_id)->get();
-			$product_detail = array();
-			$product_detail['product_detail']=$product;
-			$product_detail['charity_detail']=$charity;
-			
-			$pro['product_detail']=$product;
-			$pro['charity_detail']=$charity;
-			array_push($detail,$pro);
-			
-		}
+		$decline=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_vender_product.id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.status','2')->where('gs_donation.charity_owner_id',$user->id)->get();
+				
 		
-		
-		  $product=Donation::where('status','1')->where('charity_owner_id',$user->id)->where('created_at', '>',$formatted_date)->get();
-		$acceptproduct=array();
-		foreach($product as $pro)
-		{
-			
-			$product=Sellerproduct::where('id',$pro->product_id)->get();
-			
-			$charity=Charity::where('id',$pro->charity_id)->get();
-			$product_detail = array();
-			$product_detail['product_detail']=$product;
-			$product_detail['charity_detail']=$charity;
-			
-			$pro['product_detail']=$product;
-			$pro['charity_detail']=$charity;
-			array_push($acceptproduct,$pro);
-			
-		}
-		$product=Donation::where('status','2')->where('charity_owner_id',$user->id)->where('created_at', '>',$formatted_date)->get();
-		$declineproduct=array();
-		foreach($product as $pro)
-		{
-			
-			$product=Sellerproduct::where('id',$pro->product_id)->get();
-			
-			$charity=Charity::where('id',$pro->charity_id)->get();
-			$product_detail = array();
-			$product_detail['product_detail']=$product;
-			$product_detail['charity_detail']=$charity;
-			
-			$pro['product_detail']=$product;
-			$pro['charity_detail']=$charity;
-			array_push($declineproduct,$pro);
-			
-		}
-		return response()->json(array('data1'=>$detail,'data2'=>$acceptproduct,'data3'=>$declineproduct));
+		return response()->json(array('data1'=>$pending,'data2'=>$accept,'data3'=>$decline));
 	}
 
     public function update_donation($id)
