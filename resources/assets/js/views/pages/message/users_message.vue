@@ -163,7 +163,7 @@
 							<div class="messages_outer--right_sec--box--chatbox">
 							<div class="messages_outer--right_sec--box--sent--chat">
 							<p >{{item.message}} </p>
-							<span>{{items.created_at |moment("dddd,MMM-Do-YYYY")}}</span>
+							<span>{{items.created_at | moment("dddd,MMM-Do-YYYY")}}</span>
 							</div>
 							<p class="messages_outer--right_sec--box--sent--time">{{item.created_at |moment("h:mm A")}}</p> 
 							</div>
