@@ -106,8 +106,8 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
         Route::get('{charity}/confirm-delete', 'charityController@getModalDelete')->name('charity.confirm-delete');
        
     });
-Route::resource('charity', 'CharityController');
-    Route::resource('donation', 'DonationController');
+			Route::resource('charity', 'CharityController');
+				Route::resource('donation', 'DonationController');
 
 
 
