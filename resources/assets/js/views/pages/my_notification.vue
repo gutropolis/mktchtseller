@@ -34,6 +34,7 @@
                                     
 									 <button class="btn notification__element--view--button--content text-White  green" v-on:click="update(item.id)">Accept</button>
 									  <button class="btn notification__element--view--button--content  text-White red" v-on:click="reject(item.id)">Reject</button>
+									   <router-link to="/users_detail"><button class="btn notification__element--view--button--content text-White green">Message Seller</button></router-link>
                                 </div>
                             </div>
                           
