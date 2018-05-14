@@ -151,9 +151,9 @@
                </div>
 
               </div>
-			
+			<div class="messages_outer--main">
               <div class="messages_outer--right_sec">
-          
+				<h4 class="messages_outer--right_sec--heading">Charity Text</h4>
                  <ul class="messages_outer--right_sec--box" v-chat-scroll>
                     <div v-for="item in items" class="clearfix">
 					   
@@ -195,6 +195,7 @@
                     </div>
 						</form>
               </div>
+			  </div>
 			
 			</div>
           </div>
