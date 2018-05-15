@@ -64,7 +64,7 @@ Charity List
 								<td>{{ $char->created_at }}</td>
 								 <td>
     
-	 <a href="{{ URL::to('admin/charity/edit/' . $char->id . '/edit' ) }}"><i class="livicon"
+	 <a href="{{ URL::to('admin/charity/' . $char->id . '/edit' ) }}"><i class="livicon"
                                                                                                      data-name="edit"
                                                                                                      data-size="18"
                                                                                                      data-loop="true"
