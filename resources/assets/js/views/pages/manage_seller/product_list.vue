@@ -17,10 +17,9 @@
                                  <tr>
                                     <th>Id</th>
                                     <th>Title</th>
-                                   
                                     <th>ASIN</th>
                                     <th>Images</th>
-									<th>Units</th>
+                                    <th>Units</th>
                                     <th>Created On</th>
                                     <th>Action</th>
                                  </tr>
@@ -31,7 +30,7 @@
                                     <td>
                                        <figure class="table-image"><img v-bind:src="item.images"></figure>
                                     </td>
-									<td>{{item.units}}</td>
+                                    <td>{{item.units}}</td>
                                     <td>{{item.created_at |  moment("MMMM Do YYYY")}}</td>
                                     <td>
                                        <router-link :to="{name: 'edit_product', params: { id: item.id }}" class="table-icon" >
@@ -69,35 +68,51 @@
                                              </g>
                                           </svg>
                                        </b-link>
+                                       <div class="charity_donation--offer">
+									    <div class="charity_donation--box">
+                                                <b-btn v-b-modal="modalId(item)"  variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Find Charity To Offer</b-btn>
+                                                <b-modal :id="'modal' + item.id"
+                                                   ref="modal"
+                                                   title="Offer To Donate Charity"
+                                                   @ok="handleSubmit(item)"
+                                                   @shown="clearName">
+                                                   <form id="offers"  @submit.stop.prevent="handleSubmit(item)">
+                                                      <div class="form-group">
+                                                         <label class="login__element--box--label">Select Charity To Donate This Product</label>
+                                                         <select name="title" v-model="offers.title"  class="login__element--box--input">
+                                                            <option value="select">Select .. </option>
+                                                            <option v-for="offer in charity"  v-bind:value="offer.id">{{offer.title}}</option>
+                                                         </select>
+                                                      </div>
+                                                      <label class="charity__element--block--content--box--label">Fill Units You Want Offer To Donate</label>
+                                                      <input type="number" name="units" v-model="offers.units"   placeholder="Units"  class="login__element--box--input" />
+                                                   </form>
+                                                </b-modal>
+                                             </div>
+                                         
+                                       </div>
                                     </td>
                                  </tr>
-								 <tr>
-								 <td v-if="items.length === 0" colspan="7">
-									<h4  style="text-align:center;" >No results</h4>
-										</td>
-										</tr>
+                                 <tr>
+                                    <td v-if="items.length === 0" colspan="7">
+                                       <h4  style="text-align:center;" >No results</h4>
+                                    </td>
+                                 </tr>
                               </table>
-							
-							  
                            </div>
                         </div>
                      </div>
-					 <div class="row">
-                                <div class="col-md-12 pagination_box">
-                                    <pagination :data="items" :limit=3 v-on:pagination-change-page="fetchItems"></pagination>
-									<select name="pageLength" class="page_option" v-model="filterUserForm.pageLength" @change="fetchItems" v-if="items.total">
-                                            <option value="5">5 per page</option>
-                                            <option value="10">10 per page</option>
-                                            <option value="25">25 per page</option>
-                                            <option value="100">100 per page</option>
-                                        </select>
-                                </div>
-                                
-                            </div>
-					
-					
-					
-					
+                     <div class="row">
+                        <div class="col-md-12 pagination_box">
+                           <pagination :data="items" :limit=3 v-on:pagination-change-page="fetchItems"></pagination>
+                           <select name="pageLength" class="page_option" v-model="filterUserForm.pageLength" @change="fetchItems" v-if="items.total">
+                              <option value="5">5 per page</option>
+                              <option value="10">10 per page</option>
+                              <option value="25">25 per page</option>
+                              <option value="100">100 per page</option>
+                           </select>
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>
@@ -106,67 +121,99 @@
    </div>
 </template>
 <script>
-import helper from '../../../services/helper'
-import pagination from 'laravel-vue-pagination'
-   import AppSidebar from '../users/sidebar.vue'
-   import Vue from 'vue'
-Vue.use(require('vue-moment')); 
- export default {
-   components: {
-               AppSidebar ,pagination
-          },
-   
-          data() {
-              return {
-			  
-			  filterUserForm: {
-                   // sortBy : 'title',
-                    order: 'desc',
-                    status: '',
-                    title: '',
-                    pageLength: 5
-                },
-                loaded: false,
-   		  items: {},
-              }
-          },
-         
-          
-          mounted(){},
-				 created: function()
-					  {
-						  this.fetchItems();
-					  },
-   	
-          methods: {
-		   fetchItems(page)
-			 {
-			 if (typeof page === 'undefined') {
-                    page = 1;
-                }
-				 let url = helper.getFilterURL(this.filterUserForm);
-				axios.get('/api/product_list?page=' + page + url).then((response) => {
-				 this.items=response.data;
-				 
-				 
-				this.loaded = true;}).catch(error=>{
-				toastr['error'](error.response.data.message);
-				});
-			},
-			
-   	
-   		 deleteTask(item){
-                  axios.delete('/api/task/'+item.id).then(response => {
-                      toastr['success'](response.data.message);
-   				this.loaded = true;
-   				this.fetchItems();
-                    
-                  }).catch(error => {
-                      toastr['error'](error.response.data.message);
-                  });
-              },
-   	 
-  
-          }
-      }
+   import helper from '../../../services/helper'
+   import pagination from 'laravel-vue-pagination'
+      import AppSidebar from '../users/sidebar.vue'
+      import Vue from 'vue'
+   Vue.use(require('vue-moment')); 
+    export default {
+      components: {
+                  AppSidebar ,pagination
+             },
+      
+             data() {
+                 return {
+   			  
+   			  filterUserForm: {
+                      // sortBy : 'title',
+                       order: 'desc',
+                       status: '',
+                       title: '',
+                       pageLength: 5
+                   },
+                   loaded: false,
+      		  items: {},
+   		  item:{
+   			product_id:'',
+   		  },
+   		  charity:{},
+   		  offers:{
+   		  title:'',
+   		  units:'',
+   		  },
+                 }
+             },
+            
+             
+             mounted(){},
+   				 created: function()
+   					  {
+   						  this.fetchcharity();
+   						  this.fetchItems();
+   					  },
+      	
+             methods: {
+			  modalId(item) {
+      return 'modal' + item.id;
+    },
+   		   
+   		   handleSubmit(item) {
+   		   console.log(this.item);
+         console.log(this.item.id);
+        axios.post('/api/seller_offer/'+item.id,this.offers).then(response => {
+        toastr['success'](response.data.message);
+        })
+      
+       },
+      
+         clearName () {
+      				this.name = ''
+      			},
+   		   fetchItems(page)
+   			 {
+   			 if (typeof page === 'undefined') {
+                       page = 1;
+                   }
+   				 let url = helper.getFilterURL(this.filterUserForm);
+   				axios.get('/api/product_list?page=' + page + url).then((response) => {
+   				 this.items=response.data;
+   				 
+   				 
+   				this.loaded = true;}).catch(error=>{
+   				toastr['error'](error.response.data.message);
+   				});
+   			},
+   			fetchcharity(){
+   				 axios.get('/api/charities').then(response =>  {
+                   
+   				this.charity=response.data.data1;
+   			});
+   			
+   			},
+   			
+      	
+      		 deleteTask(item){
+                     axios.delete('/api/task/'+item.id).then(response => {
+                         toastr['success'](response.data.message);
+      				this.loaded = true;
+      				this.fetchItems();
+                       
+                     }).catch(error => {
+                         toastr['error'](error.response.data.message);
+                     });
+                 },
+      	 
+     
+             }
+         }
 </script>
