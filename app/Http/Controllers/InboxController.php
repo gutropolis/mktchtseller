@@ -182,7 +182,7 @@ use stdClass;
 		$admin_email=Settings::pluck('admin_email');
 		$admin=$admin_email[0];
 		
-		 $data = array('message'=>$message, 'sender_user'=>$sender_user,'reciever_user'=>$reciever_user);
+		 $data = array('messages'=>$message, 'sender_user'=>$sender_user,'reciever_user'=>$reciever_user);
 		 
 		Mail::send('emails.message', $data , function($message) use($admin)
 		{
