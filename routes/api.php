@@ -124,6 +124,7 @@ Route::get('/charities_list','CharityController@charities_list');
 Route::post('/product/{id}','CharityController@product');
 Route::get('/fetch_subject/{id}','InboxController@subject');
 
+Route::post('/seller_offer/{id}','SellerproductController@offers');
 Route::get('/product_category','SellerproductController@product_category');
 
 //charity list
