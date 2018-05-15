@@ -26,13 +26,13 @@
 	<section class="equal search_section">
         <div class="container">
             <div class="search__form">
-                <h4 class="search__form--heading">Search Products or Find a Charity Needs</h4>
+                <h4 class="search__form--heading">Search Products or Charity Needs</h4>
                 <form id="searchform" class="search__form--outer">
                    
                     <div class="search__form--outer--box">
                         <div class="form-group">
                             <select placeholder="Search Keywords" v-model="searchform.selectcategory" class="search__form--outer--box--area">
-                                    <option value="">Types</option>
+                                    <option value="">Select..</option>
                                     <option value="product"> Products</option>
                                     <option value="charity"> Charity Needs</option>
                                     
