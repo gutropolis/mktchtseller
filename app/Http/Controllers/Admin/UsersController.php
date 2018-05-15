@@ -29,7 +29,9 @@ class UsersController extends JoshController
 
     public function index()
     {
-
+		
+		
+ $users = Users::get(['id', 'first_name', 'last_name','status', 'email','created_at']);
         // Show the page
         return view('admin.users.index', compact('users'));
     }
@@ -52,9 +54,12 @@ class UsersController extends JoshController
 
                 if($activation = Activation::completed($user)){
 
-                    return 'Activated';} else
+                    return 'Activated';
+					}
+					else
+					{
                     return 'Pending';
-
+					}
             })
             ->addColumn('actions',function($user) {
                 $actions = '<a href='. route('admin.users.show', $user->id) .'><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
