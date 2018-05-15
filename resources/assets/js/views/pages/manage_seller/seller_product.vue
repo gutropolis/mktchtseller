@@ -182,7 +182,7 @@
 					  console.log(this.items.bulletPoints[2]);
 					  console.log(this.items.bulletPoints[3]);
 					   
-					  /* this.bulletpoints=this.items.bulletPoints;
+					  this.bulletpoints=this.items.bulletPoints;
 					    let listBullet=[];
 					  let txtBullet='<ul>';
 					   $.each(response.data.bulletPoints, function(value, key) {
@@ -194,7 +194,7 @@
 						 console.log(txtBullet);
 					   console.log(listBullet);
 					   
-						vm.items.bulletPoints=txtBullet;*/
+						vm.items.bulletPoints=txtBullet;
 				
                       this.$router.push('/product');
                   }).catch(error => {
