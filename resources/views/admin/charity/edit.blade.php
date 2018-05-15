@@ -111,7 +111,7 @@
                                             <label for="location" class="col-sm-2 control-label">Location *</label>
                                             <div class="col-sm-10">
                                                 <input id="location" name="location" placeholder="location" type="text"
-                                                       class="form-control required" value="{!! old('location',$charity->location) !!}" required/>
+                                                       class="form-control required" value="{!! old('location',$charity->state) !!}" required/>
                                                 {!! $errors->first('location', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
