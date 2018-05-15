@@ -17,7 +17,7 @@
                                  <table id="example" class="table table-striped table-bordered table-box"" width="100%" cellspacing="0">
                                     <tr>
                                        <th>ID</th>
-                                       <th>Donate Product</th>
+                                       <th>Product</th>
                                        <th>Units</th>
                                        <th>Charity</th>
 									   <th>Progress Status</th>
@@ -93,7 +93,7 @@
                                  <table id="example" class="table table-striped table-bordered table-box"" width="100%" cellspacing="0">
                                     <tr>
                                        <th>ID</th>
-                                       <th>Donate Product</th>
+                                       <th>Product</th>
                                        <th>Units</th>
                                        <th>Charity</th>
 									   <th>Progress Status</th>
@@ -143,7 +143,7 @@
                                  <table id="example" class="table table-striped table-bordered table-box"" width="100%" cellspacing="0">
                                     <tr>
                                        <th>ID</th>
-                                       <th>Donate Product</th>
+                                       <th>Product</th>
                                        <th>Units</th>
                                        <th>Charity </th>
 									   <th>Progress Status</th>
@@ -193,7 +193,7 @@
                                  <table id="example" class="table table-striped table-bordered table-box"" width="100%" cellspacing="0">
                                     <tr>
                                        <th>ID</th>
-                                       <th>Donate Product</th>
+                                       <th>Product</th>
                                        <th>Units</th>
                                        <th>Charity </th>
 									   <th>Progress Status</th>
