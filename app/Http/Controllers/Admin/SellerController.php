@@ -30,7 +30,7 @@ class SellerController extends JoshController
 
     public function index()
     {
-
+			   $seller = Seller::get(['id','title', 'description', 'state', 'year_in_business','created_at']);
         // Show the page
         return view('admin.seller.index', compact('seller'));
     }
