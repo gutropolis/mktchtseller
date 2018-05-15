@@ -127,7 +127,7 @@
                                     <div v-if="getrole ==='seller'" class="charity__request">
                                        <div v-if="getrole=='seller'">
                                           <div class="charity_donation--box">
-                                             <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Invite Charity To Pretake in the Donation</b-btn>
+                                             <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Invite Charity To Your Donation</b-btn>
                                              <b-modal id="modalPrevent"
                                                 ref="modal"
                                                 title="Invite To Donate Charity"
@@ -206,12 +206,12 @@
                   </div>
                   <div class="helping__element">
                      <div class="helping__element--block">
-                        <h5 class="helping__element--block--heading">Helping Center</h5>
+                        <h5 class="helping__element--block--heading">Help Center</h5>
                      </div>
                      <p class="helping__element--pera">All the Lorem Ipsum generat on the Internet tend to repeat predefined chunks as necesa.</p>
                      <h3 class="helping__element--heading">+90 777 333 11 22</h3>
                      <h5 class="helping__element--subhead">support@supportcenter.com</h5>
-                     <p class="helping__element--btn"><a href="#" class="btn btn-bg-orange">Support Center</a> </p>
+                    
                   </div>
                </div>
             </div>
