@@ -69,10 +69,10 @@ class charityController extends JoshController
       $charity=\App\Charity::create([
 			'title'=> request('title'),
 			'description'=> request('description'),
-			'location'=> request('location'),
-			'year_in_business'=> request('year_in_business'),
-			'years_inception'=> request('years_inception'),
-			'business_purpose'=> request('business_purpose'),
+			
+			'state'=> request('state'),
+			'city'=> request('city'),
+			'country'=> request('country'),
 			'postal_code'=> request('postal_code'),
 			'area_code' =>request('area_code'),
 			'phone_number'=> request('phone_number'),
