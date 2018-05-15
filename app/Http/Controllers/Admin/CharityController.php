@@ -28,7 +28,7 @@ class charityController extends JoshController
 
     public function index()
     {
-
+			$charity = Charity::get(['id', 'title', 'description', 'state','city','images','created_at']);
         // Show the page
         
         return view('admin.charity.index', compact('charity'));
