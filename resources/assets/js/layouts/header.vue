@@ -19,11 +19,11 @@
                   </li>
                   <li class="nav-item">
                      <router-link to="/charityfba">
-                        <a class="nav-link " href="#">Charity</a>
+                        <a class="nav-link " href="#">Find Charity</a>
                      </router-link>
                   </li>
                   <li class="nav-item">
-                     <router-link to="/sellerfba" class="nav-link">Product</router-link>
+                     <router-link to="/sellerfba" class="nav-link">Available Products</router-link>
                   </li>
                   <li class="nav-item">
                      <router-link to="/contact" class="nav-link">Contact Us </router-link>
