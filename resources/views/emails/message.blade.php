@@ -6,8 +6,10 @@
             <h1 style="color:blue;font-size:20px;padding:0px;margin:0px;color:#fff;">Wants To Communicate With You</h1>
          </div>
       </div>
+	 
       <p style="font-size:13px;">Email ID:- {{ $sender_user->email }}</p>
       <p style="font-size:13px;">User Name:- {{ $sender_user->full_name }}</p>
+		<p style="font-size:13px;">Message:- {{ $messages->message }}</p>
       <p><a href= "{{url('users_detail')}}" style="font-size: 14px;
          background: #e8870b;
          border: 1px solid #e8870b;
