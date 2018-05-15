@@ -7,6 +7,7 @@ use Hash;
 use App\Http\Controllers\JoshController;
 use App\Sellerproduct;
 use App\Settings;
+use App\User;
 use App\ProductCategory;
 use App\Charity;
 use Illuminate\Http\Request;
@@ -109,6 +110,58 @@ protected $avatar_path = 'images/charityads/';
 	
 	return response()->json(array('data1'=>$product_details,'data2'=>$product_category));
 	}
+	
+	public function offers(Request $request,$id)
+    {
+		$charity=Charity::where('id',$request->input('title'))->first();
+		//return($charity);
+		$user = JWTAuth::parseToken()->authenticate();
+		$sellerproduct=new \App\Donation;
+		$sellerproduct->seller_id = $user->id;
+		$sellerproduct->product_id=$id;
+		$sellerproduct->charity_id=$request->input('title');
+		$sellerproduct->post_id=$id;
+		$sellerproduct->charity_owner_id=$charity->user_id;
+		$sellerproduct->units=$request->input('units');
+		$sellerproduct->status="0";
+		$sellerproduct->is_certify="0";
+		$sellerproduct->progress="0";
+		
+		$sender_user=User::where('id',$sellerproduct->seller_id)->first();
+		
+		
+		$reciever_user=User::where('id',$sellerproduct->charity_owner_id)->first();
+		$product=Sellerproduct::where('id',$sellerproduct->product_id)->first();
+		
+	 $data = array('sellerproduct'=>$sellerproduct, 'sender_user'=>$sender_user,'reciever_user'=>$reciever_user,'product'=>$product);
+		 Mail::send('emails.donate', $data , function($message) use ($reciever_user)
+		{
+			$message->to($reciever_user->email)->subject('Donate!');
+		});
+		$sellerproduct->save();
+		
+		$actvity=new Controller;
+	$actvity->AddUserActivityFeed($sellerproduct->seller_id,$sellerproduct->charity_owner_id,'Invite to Donate Product',$sellerproduct->post_id,'/donaters');
+	
+	
+	
+		if ($sellerproduct->save()) {
+                $success =trans('users/message.success.create');
+            activity($sender_user->fullname)
+                ->performedOn($sellerproduct)
+                ->causedBy($sellerproduct)
+                ->log('Invite Charity to Donate Product '.$product->title);
+            
+            return response()->json(['message' => 'Your Offer Request Sent to Charity.Charity Organization will respond you soon']);
+			}
+		
+		
+		
+		return response()->json(['message' => 'Your Request for Charity donation Submitted.Charity Will Respond you as Soon']);
+		
+    }
+	
+	
 
 
 	public function store(Request $request)
@@ -122,33 +175,25 @@ protected $avatar_path = 'images/charityads/';
 					return($image);
 				}
 	
-		
-		
-			
-	$sellerproduct = new \App\Sellerproduct;
-	$sellerproduct->title = $request->input('items.name');
-	$sellerproduct->description = $request->input('items.bulletPoints');
-	$sellerproduct->description_url = $request->input('items.description');
-	$sellerproduct->asin_url = $request->input('items.ASIN');
-	$sellerproduct->images = $request->input('items.image');
-	$sellerproduct->organisation_id = $request->input('items.title');
-	$sellerproduct->product_category = $request->input('items.product_catgeory');
-	$sellerproduct->units = $request->input('items.units');
-	$sellerproduct->price = $request->input('items.offer_price');
-	$data=$request->input('data1.tags');
-	foreach($request->data1 as $data  )
-			{
-				$tag[]=$data['text'];			
-			}
-			
-			$tagss=implode(" , ", $tag);
-			
-	
-	
-	$sellerproduct->tags = $tagss;
-	
-	
-	
+					$sellerproduct = new \App\Sellerproduct;
+					$sellerproduct->title = $request->input('items.name');
+					$sellerproduct->description = $request->input('items.bulletPoints');
+					$sellerproduct->description_url = $request->input('items.description');
+					$sellerproduct->asin_url = $request->input('items.ASIN');
+					$sellerproduct->images = $request->input('items.image');
+					$sellerproduct->organisation_id = $request->input('items.title');
+					$sellerproduct->product_category = $request->input('items.product_catgeory');
+					$sellerproduct->units = $request->input('items.units');
+					$sellerproduct->price = $request->input('items.price');
+					$sellerproduct->fair_value=$request->input('items.fair');
+					$data=$request->input('data1.tags');
+					foreach($request->data1 as $data  )
+							{
+								$tag[]=$data['text'];			
+							}
+							
+							$tagss=implode(" , ", $tag);
+					$sellerproduct->tags = $tagss;
 	
 	$user = JWTAuth::parseToken()->authenticate();
 	$query= Seller::where('user_id',$user->id)->first();
