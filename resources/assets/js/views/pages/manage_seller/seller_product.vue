@@ -50,12 +50,12 @@
                            <input type="hidden" name="organisation_id" v-model="items.organisation_id"   class="login__element--box--input" />
                            <div class="form-group ">
                               <label class="login__element--box--label">ASIN</label>
-                              <input type="text" name="asin" class="login__element--box--input" required   placeholder="ASIN" v-model="items.ASIN">
+                              <input type="text" name="asin" class="login__element--box--input" required   placeholder="ASIN"  v-model="items.ASIN">
                            </div>
 						 
                            <div class="form-group">
                               <label class="login__element--box--label">Description</label>
-                              <textarea  type="text" v-html="items.bulletPoints" v-model="items.bulletPoints" required rows="7" placeholder="BulletPoints" class="login__element--box--input"></textarea>
+                              <textarea  type="text"  v-model="items.bulletPoints" required rows="7" placeholder="BulletPoints" class="login__element--box--input"></textarea>
                            
                            </div>
                            <div class="form-group ">
@@ -65,19 +65,23 @@
 							<img v-bind:src="items.image"  height="100px" width="50px">
                            </div>
 						    <div class="form-group ">
-                              <label class="login__element--box--label tag-element">Per Unit Cost</label>
+                              <label class="login__element--box--label tag-element">Per Unit Cost *</label>
 							  <div class="info-btn">
 							  <b-btn v-b-popover.hover="'This is the per unit maufacturing cost plus shipping cost to send to amazon'" title="Info">
 								<i class="fa fa-info-circle" style="font-size:20px"></i>
 							  </b-btn>
 							</div>
 							<div class="multiple_vlue">
-                             <input type="text" name="offer_price" class="login__element--box--input" required  placeholder="units" v-model="items.offer_price">
+                             <input type="text" name="offer_price" class="login__element--box--input" required   v-model="items.price">
 							 </div>
                            </div>
+						    <div class="form-group ">
+                              <label class="login__element--box--label"> Fair Market Value *</label>
+                              <input type="text" name="fair" class="login__element--box--input" required  v-model="items.fair">
+                           </div>
                            <div class="form-group ">
-                              <label class="login__element--box--label">How Many Units do you want to donate?</label>
-                              <input type="text" name="units" class="login__element--box--input" required  placeholder="units" v-model="items.units">
+                              <label class="login__element--box--label">How Many Units do you want to donate? *</label>
+                              <input type="text" name="units" class="login__element--box--input" required  v-model="items.units">
                            </div>
 						   <div class="form-group ">
                               <label class="login__element--box--label tag-element">Tags</label>
@@ -170,13 +174,15 @@
 					 this.items=response.data; 
 					
 					 console.log(this.items);
+					 
 					 console.log(this.items.bulletPoints);
+					 
 					  console.log(this.items.bulletPoints[0]);
 					  console.log(this.items.bulletPoints[1]);
 					  console.log(this.items.bulletPoints[2]);
 					  console.log(this.items.bulletPoints[3]);
 					   
-					   this.bulletpoints=this.items.bulletPoints;
+					  /* this.bulletpoints=this.items.bulletPoints;
 					    let listBullet=[];
 					  let txtBullet='<ul>';
 					   $.each(response.data.bulletPoints, function(value, key) {
@@ -188,12 +194,8 @@
 						 console.log(txtBullet);
 					   console.log(listBullet);
 					   
-						vm.items.bulletPoints=txtBullet;
-					 
-					 
-					
-					  
-					//	this.items.push();
+						vm.items.bulletPoints=txtBullet;*/
+				
                       this.$router.push('/product');
                   }).catch(error => {
                      // toastr['error'](error.response.data.message);
