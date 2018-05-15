@@ -105,14 +105,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group {{ $errors->first('location', 'has-error') }}">
-                                            <label for="location" class="col-sm-2 control-label">Location *</label>
-                                            <div class="col-sm-10">
-                                                <input id="map" name="location" placeholder="location" type="text"
-                                                       class="form-control required" value="{!! old('location') !!}"  required/>
-                                                {!! $errors->first('location', '<span class="help-block">:message</span>') !!}
-                                            </div>
-                                        </div>
+                                        
 
                                        
                                     </div>
@@ -121,7 +114,7 @@
 
 
                                         <div class="form-group {{ $errors->first('pic_file', 'has-error') }}">
-                                            <label for="pic_file" class="col-sm-2 control-label">Image</label>
+                                            <label for="pic_file" class="col-sm-2 control-label">Logo Of Organization</label>
                                             <div class="col-sm-10">
                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
@@ -141,23 +134,31 @@
                                                 <span class="help-block">{{ $errors->first('images', ':message') }}</span>
                                             </div>
                                         </div>
-										
-										 <div class="form-group {{ $errors->first('year_in_business', 'has-error') }}">
-                                            <label for="year_in_business" class="col-sm-2 control-label">Year In Business *</label>
+										<div class="form-group {{ $errors->first('country', 'has-error') }}">
+                                            <label for="country" class="col-sm-2 control-label">Country *</label>
                                             <div class="col-sm-10">
-                                                <input id="year_in_business" name="year_in_business" type="text" placeholder="year_in_business"
-                                                       class="form-control required" value="{!! old('year_in_business') !!}"  required/>
+                                                <input id="country" name="country" type="text" placeholder="country"
+                                                       class="form-control required" value="{!! old('country') !!}"  required/>
 
-                                                {!! $errors->first('year_in_business', '<span class="help-block">:message</span>') !!}
+                                                {!! $errors->first('country', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
-										 <div class="form-group {{ $errors->first('year_in_business', 'has-error') }}">
-                                            <label for="years inception" class="col-sm-2 control-label">Years Inception *</label>
+										 <div class="form-group {{ $errors->first('state', 'has-error') }}">
+                                            <label for="state" class="col-sm-2 control-label">State*</label>
                                             <div class="col-sm-10">
-                                                <input id="years_inception" name="years_inception" type="text" placeholder="year_inception"
-                                                       class="form-control required" value="{!! old('year_in_business') !!}"  required/>
+                                                <input id="state" name="state" type="text" placeholder="state"
+                                                       class="form-control required" value="{!! old('state') !!}"  required/>
 
-                                                {!! $errors->first('years_inception', '<span class="help-block">:message</span>') !!}
+                                                {!! $errors->first('state', '<span class="help-block">:message</span>') !!}
+                                            </div>
+                                        </div>
+										 <div class="form-group {{ $errors->first('city', 'has-error') }}">
+                                            <label for="city" class="col-sm-2 control-label">City *</label>
+                                            <div class="col-sm-10">
+                                                <input id="city" name="city" type="text" placeholder="city"
+                                                       class="form-control required" value="{!! old('city') !!}"  required/>
+
+                                                {!! $errors->first('city', '<span class="help-block">:message</span>') !!}
                                             </div>
                                         </div>
 										
@@ -165,20 +166,12 @@
 										 <h2 class="hidden">&nbsp;</h2>
 											
 										
-										<div class="form-group {{ $errors->first('business_purpose', 'has-error') }}">
-                                            <label for="business_purpose" class="col-sm-2 control-label">Business Purpose*</label>
-                                            <div class="col-sm-10">
-                                                <input id="business_purpose" name="business_purpose" type="text" placeholder="business_purpose"
-                                                       class="form-control required" value="{!! old('business_purpose') !!}"  required/>
-
-                                                {!! $errors->first('business_purpose', '<span class="help-block">:message</span>') !!}
-                                            </div>
-                                        </div>
+										
 									
 										
 										
                                          <div class="form-group">
-                                            <label for="address" class="col-sm-2 control-label">Phone Number <small>(brief intro) *</small></label>
+                                            <label for="address" class="col-sm-2 control-label">Phone Number </label>
                                             <div class="col-sm-10">
 											 <input type="text" id="area_code" placeholder="+91" name="area_code" class="login__element--box--input_areacode" required>
 											  <input type="number" id="phone_number" name="phone_number" placeholder="9999999999" class="login__element--box--input_phone_number" required>
