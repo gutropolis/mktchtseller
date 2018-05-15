@@ -413,12 +413,12 @@ class charityController extends Controller
 				$formatted_date = $date->format('Y-m-d H:i:s');
 				
 				
-		$pending=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_vender_product.id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.status','0')->where('gs_donation.charity_owner_id',$user->id)->get();
+		$pending=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.status','0')->where('gs_donation.charity_owner_id',$user->id)->get();
 		
-				
-		$accept=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_vender_product.id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.status','1')->where('gs_donation.charity_owner_id',$user->id)->get();
+				//return($pending);
+		$accept=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.status','1')->where('gs_donation.charity_owner_id',$user->id)->get();
 			
-		$decline=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_vender_product.id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.status','2')->where('gs_donation.charity_owner_id',$user->id)->get();
+		$decline=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.status','2')->where('gs_donation.charity_owner_id',$user->id)->get();
 				
 		
 		return response()->json(array('data1'=>$pending,'data2'=>$accept,'data3'=>$decline));
