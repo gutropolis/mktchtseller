@@ -21,6 +21,8 @@ class GsVendorProduct extends Migration
             $table->string('asin_url');
 			$table->string('description_url');
             $table->string('images');
+			$table->string('fair_value');
+			$table->string('price');
             $table->string('units');
 			$table->string('organisation_id');
 			$table->string('product_category');
