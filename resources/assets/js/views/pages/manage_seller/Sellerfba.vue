@@ -4,7 +4,7 @@
  
 		<div class="container">
 			<div class="page__head--content">
-				<h2 class="page__head--content--heading">Products listing</h2>
+				<h2 class="page__head--content--heading">Available Products</h2>
 				
 				
 			</div>
@@ -48,15 +48,7 @@
 					</form>
 					</div>
 					</div>
-					<div class="helping__element">
-						<div class="helping__element--block">
-						<h5 class="helping__element--block--heading">Helping Center</h5>
-						</div>
-					<p class="helping__element--pera">All the Lorem Ipsum generat on the Internet tend to repeat predefined chunks as necesa.</p>
-					<h3 class="helping__element--heading">+90 777 333 11 22</h3>
-					<h5 class="helping__element--subhead">support@supportcenter.com</h5>
-					<p class="helping__element--btn"><a href="#" class="btn btn-bg-orange">Support Center</a> </p>
-					</div>
+					
 				</div>
 			
 			<div class="col-md-9">
