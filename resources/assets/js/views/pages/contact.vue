@@ -4,8 +4,7 @@
 		<div class="container">
 			<div class="page__head--content">
 				<h2 class="page__head--content--heading">Contact us</h2>
-				<router-link to = "/" class="page__head--content--menu">Home </router-link> 
-				<a href="#" class="page__head--content--menu">Contact Us</a>
+				
 				
 			</div>
 		</div>
