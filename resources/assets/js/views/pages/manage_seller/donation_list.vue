@@ -32,10 +32,10 @@
                                        <td>{{item.units}}</td>
                                        <td>{{item.charity}}</td>
 									   <td>{{item.progress}} %</td>
-                                       <td v-if="item.status == 0">Pending</td>
-                                       <td v-if="item.status == 1">Accept</td>
-                                       <td v-if="item.status == 2">Decline</td>
-                                       <td>{{item.created_at}}</td>
+                                       <td v-if="item.charity_status == 0">Pending</td>
+                                       <td v-if="item.charity_status == 1">Accept</td>
+                                       <td v-if="item.charity_status == 2">Decline</td>
+                                       <td>{{item.created_at |  moment("MMMM Do YYYY")}}</td>
 									  
 									   <td> <b-link class="table-icon" @click.prevent="deleteTask(item.id)">
                                           <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -107,10 +107,10 @@
                                        <td>{{item.units}}</td>
                                       <td>{{item.charity}}</td>
 									  <td>{{item.progress}} % </td>
-                                       <td v-if="item.status == 0">Pending</td>
-                                       <td v-if="item.status == 1">Accept</td>
-                                       <td v-if="item.status == 2">Decline</td>
-                                       <td>{{item.created_at}}</td>
+                                       <td v-if="item.charity_status == 0">Pending</td>
+                                       <td v-if="item.charity_status == 1">Accepted</td>
+                                       <td v-if="item.charity_status == 2">Decline</td>
+                                       <td>{{item.created_at |  moment("MMMM Do YYYY")}}</td>
                                      
                                     </tr>
 									<tr>
@@ -157,10 +157,10 @@
                                        <td>{{item.units}}</td>
                                       <td>{{item.charity}}</td>
 									  <td>{{item.progress}} % </td>
-                                       <td v-if="item.status == 0">Pending</td>
-                                       <td v-if="item.status == 1">Accept</td>
-                                       <td v-if="item.status == 2">Decline</td>
-                                       <td>{{item.created_at}}</td>
+                                       <td v-if="item.charity_status == 0">Pending</td>
+                                       <td v-if="item.charity_status == 1">Accepted</td>
+                                       <td v-if="item.charity_status == 2">Decline</td>
+                                       <td>{{item.created_at |  moment("MMMM Do YYYY")}}</td>
                                       
                                     </tr>
 									<tr>
@@ -208,11 +208,11 @@
                                        <td>{{item.units}}</td>
                                       <td>{{item.charity}}</td>
 									  <td>{{item.progress}} % </td>
-                                       <td v-if="item.status == 0">Pending</td>
-                                       <td v-if="item.status == 1">Accepted</td>
-                                       <td v-if="item.status == 2">Decline</td>
+                                       <td v-if="item.charity_status == 0">Pending</td>
+                                       <td v-if="item.charity_status == 1">Accepted</td>
+                                       <td v-if="item.charity_status == 2">Decline</td>
 									   <td></td>
-                                       <td>{{item.created_at}}</td>
+                                       <td>{{item.created_at |  moment("MMMM Do YYYY")}}</td>
                                        
                                     </tr>
 									<tr>
@@ -251,7 +251,8 @@
 <script>
 import helper from '../../../services/helper'
 import pagination from 'laravel-vue-pagination'
-
+import Vue from 'vue'
+Vue.use(require('vue-moment'));
   
    import AppSidebar from '../../pages/users/sidebar.vue' 
       export default {
