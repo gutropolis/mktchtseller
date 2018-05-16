@@ -151,7 +151,7 @@
 											<form  id="prod" @submit.stop.prevent="handleSubmit">
 											   <div class="form-group">
 												  <label class="login__element--box--label">Select Charity To Need This Product</label>
-												  <select name="title" v-model="prod.charity_id" v-on:change="onChange"   class="login__element--box--input">
+												  <select name="title" v-model="prod.charity_id"    class="login__element--box--input">
 													 <option value="select">Select .. </option>
 													 <option v-for="item in charities"  v-bind:value="item.id">{{item.title}}</option>
 												  </select>
@@ -223,19 +223,7 @@
        },
        methods: {
    
-           onChange: function() {
-   
-               axios.get('/api/charity_name/' + this.prod.title)
-                   .then(response => {
-   
-                       this.charity_name = response.data;
-   
-   
-                   }).catch(error => {
-                       toastr['error'](error.response.data.message);
-   
-                   });
-           },
+          
    
    
            submit1(e) {
@@ -257,9 +245,7 @@
    	this.charities=response.data;
    	
    	
-   	}).catch(error=>{
-   	toastr['error'](error.response.data.message);
-   	});
+   	})
    	},
    clearName () {
 							this.name = ''
@@ -279,10 +265,9 @@
                    this.category = response.data.data2;
    
    
-               }).catch(error => {
-                   toastr['error'](error.response.data.message);
+               })
    
-               });
+               
            },
    
            fetchItems() {
