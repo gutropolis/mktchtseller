@@ -78,7 +78,7 @@ Route::delete('/delete_donation/{id}','SellerController@destroy_donation');
 //Charity Ads
 Route::post('/create_ads','AdsController@store');
 Route::get('/charityads/','AdsController@index');
-Route::get('/charities/','AdsController@charity');
+
 Route::get('/requests','AdsController@request_list');
 
 
@@ -180,3 +180,4 @@ Route::get('/show_charities_request','AdsController@requests');
 Route::get('/message_notification','InboxController@message_notification');
 Route::get('/user_notification','InboxController@user_notification');
 Route::get('/requests/{id}','AdsController@request_charities');
+Route::get('/charities/','AdsController@charity');
