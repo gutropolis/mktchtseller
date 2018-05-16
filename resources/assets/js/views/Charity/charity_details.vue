@@ -122,38 +122,7 @@
                                     </b-list-group-item>
                                  </b-list-group>
                               </div>
-                              <div class="col-12">
-                                 <div class="charity_donation">
-                                    <div v-if="getrole ==='seller'" class="charity__request">
-                                       <div v-if="getrole=='seller'">
-                                          <div class="charity_donation--box">
-                                             <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Invite Charity To Your Donation</b-btn>
-                                             <b-modal id="modalPrevent"
-                                                ref="modal"
-                                                title="Invite To Donate Charity"
-                                                @ok="handleSubmit"
-                                                @shown="clearName">
-                                                <form  id="prod" @submit.stop.prevent="handleSubmit">
-                                                   <div class="form-group">
-                                                      <label class="login__element--box--label">Select Product</label>
-                                                      <select name="title" v-model="prod.id" v-on:change="onChange"   class="login__element--box--input">
-                                                         <option value="select">Select .. </option>
-                                                         <option v-for="item in product"  v-bind:value="item.id">{{item.title}}</option>
-                                                      </select>
-                                                   </div>
-                                                   <label class="charity__element--block--content--box--label">Units</label>
-                                                   <input type="number" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
-                                                   <input type="hidden" name="product_name" v-model="prod.product_name" class="login__element--box--input" />
-                                                </form>
-                                             </b-modal>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div v-if="getrole =='' "class="charity__request">
-                                    <router-link :to="{ path: '/login',query: {redurl:'/charity_details/'+this.$route.params.id}}" class="charity__request--send btn-bg-orange btn orangebtn">Invite charities to partake in the donation</router-link>
-                                 </div>
-                              </div>
+                             
                            </div>
                         </div>
                      </div>
@@ -205,12 +174,39 @@
                      </div>
                   </div>
                   <div class="helping__element">
-                     <div class="helping__element--block">
-                        <h5 class="helping__element--block--heading">Help Center</h5>
-                     </div>
-                     <p class="helping__element--pera">All the Lorem Ipsum generat on the Internet tend to repeat predefined chunks as necesa.</p>
-                     <h3 class="helping__element--heading">+90 777 333 11 22</h3>
-                     <h5 class="helping__element--subhead">support@supportcenter.com</h5>
+                     
+                     <div class="col-12">
+                                 <div class="charity_donation">
+                                    <div v-if="getrole ==='seller'" class="charity__request">
+                                       <div v-if="getrole=='seller'">
+                                          <div class="charity_donation--box">
+                                             <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Invite Charity To Your Donation</b-btn>
+                                             <b-modal id="modalPrevent"
+                                                ref="modal"
+                                                title="Invite To Donate Charity"
+                                                @ok="handleSubmit"
+                                                @shown="clearName">
+                                                <form  id="prod" @submit.stop.prevent="handleSubmit">
+                                                   <div class="form-group">
+                                                      <label class="login__element--box--label">Select Product</label>
+                                                      <select name="title" v-model="prod.id" v-on:change="onChange"   class="login__element--box--input">
+                                                         <option value="select">Select .. </option>
+                                                         <option v-for="item in product"  v-bind:value="item.id">{{item.title}}</option>
+                                                      </select>
+                                                   </div>
+                                                   <label class="charity__element--block--content--box--label">Units</label>
+                                                   <input type="number" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
+                                                   <input type="hidden" name="product_name" v-model="prod.product_name" class="login__element--box--input" />
+                                                </form>
+                                             </b-modal>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div v-if="getrole =='' "class="charity__request">
+                                    <router-link :to="{ path: '/login',query: {redurl:'/charity_details/'+this.$route.params.id}}" class="charity__request--send btn-bg-orange btn orangebtn">Invite Charity To Your Donation</router-link>
+                                 </div>
+                              </div>
                     
                   </div>
                </div>
