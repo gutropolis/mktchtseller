@@ -85,7 +85,7 @@
                               <label class="login__element--box--label">Phone Nummber</label>
                               <p class="control has-icon has-icon-right clearfix">
                                  <input type="text" placeholder="+91" v-model="address.area_code" v-validate="'required'" class="login__element--box--input_areacode">
-                                 <input  name="phone_number" v-model="address.phone_number" v-validate="'required|numeric'" class="login__element--box--input_phone_number" type="text" placeholder="phone_number">
+                                 <input  name="phone_number" v-model="address.phone_number" v-validate="'required'" class="login__element--box--input_phone_number" type="text" placeholder="phone_number">
                                  <i v-show="errors.has('phone_number')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('phone_number')" class="help is-danger">{{ errors.first('phone_number') }}</span>
                               </p>
