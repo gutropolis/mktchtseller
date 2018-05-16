@@ -89,13 +89,13 @@ class SellerController extends Controller
     }
 	public function update_request($id)
     {
-       $donation_request = Donation::where('id',$id)->update(['seller_status' => 1,'charity_status' => 1]);
+       $donation_request = Donation::where('id',$id)->update(['seller_status' => 1]);
 	   
 	     $donation_detail=Donation::where('id',$id)->first();
 	   $reciever_user=User::where('id',$donation_detail->charity_owner_id)->first();
 	   $sender_user=User::where('id',$donation_detail->seller_id)->first();
 	   $product=Sellerproduct::where('id',$donation_detail->product_id)->first();
-	   
+	     
 	   	 $data = array('donation_detail'=>$donation_detail, 'product'=>$product,'reciever_user'=>$reciever_user);
 		  
 		  $admin_email=Settings::pluck('admin_email');
