@@ -97,7 +97,7 @@
 								 </p>
                         </div>
                            <div class="column is-12">
-                              <label class="login__element--box--label">ZipCode</label>
+                              <label class="login__element--box--label">Zip Code</label>
                               <p class="control has-icon has-icon-right">
                                  <input  name="postal_code" v-model="address.postal_code" v-validate="'required'" class="login__element--box--input" type="text" placeholder="postal_code">
                                  <i v-show="errors.has('postal_code')" class="fa fa-warning"></i>
@@ -107,8 +107,7 @@
                            <div class="column is-12">
                               <label class="login__element--box--label">Phone Number</label>
                               <p class="control has-icon has-icon-right clearfix">
-                                 <input type="text" placeholder="+91" v-model="address.area_code" v-validate="'required'" class="login__element--box--input_areacode">
-                                 <input  name="phone_number" v-model="address.phone_number" v-validate="'required|numeric'" class="login__element--box--input_phone_number" type="text" placeholder="phone_number">
+                                 <vue-tel-input name="number" @onInput="onInput"  class="login__element--box--input_phone_number"></vue-tel-input>
                                  <i v-show="errors.has('phone_number')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('phone_number')" class="help is-danger">{{ errors.first('phone_number') }}</span>
                               </p>
@@ -122,7 +121,7 @@
                           <div class="column is-12">
                               <label class="login__element--box--label">Website</label>
                               <p class="control has-icon has-icon-right">
-                                 <input  name="website" v-model="address.website" v-validate="'required'" class="login__element--box--input" type="text" placeholder="website">
+                                 <input  name="website" v-model="address.website" v-validate="'required'" class="login__element--box--input" type="text" >
                                  <i v-show="errors.has('website')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('website')" class="help is-danger">{{ errors.first('website') }}</span>
                               </p>
@@ -130,7 +129,7 @@
 						 <div class="form-group">
                             <label class="login__element--box--label">Vision Statement</label>
 							  <p class="control has-icon has-icon-right">
-                             <textarea  type="text" v-model="address.vision_statement" name="vision_statement" v-validate="'required:true'" rows="5" placeholder="vision_statement" class="login__element--box--input"></textarea>
+                             <textarea  type="text" v-model="address.vision_statement" name="vision_statement" v-validate="'required:true'" rows="5"  class="login__element--box--input"></textarea>
 							  <i v-show="errors.has('vision_statement')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('vision_statement')" class="help is-danger">{{ errors.first('vision_statement') }}</span>
 								 </p>
@@ -138,7 +137,7 @@
 						<div class="form-group">
                             <label class="login__element--box--label">Mission Statement</label>
 							  <p class="control has-icon has-icon-right">
-                             <textarea  type="text" v-model="address.mission_statement" name="mission_statement" v-validate="'required:true'" rows="5" placeholder="mission_statement" class="login__element--box--input"></textarea>
+                             <textarea  type="text" v-model="address.mission_statement" name="mission_statement" v-validate="'required:true'" rows="5"  class="login__element--box--input"></textarea>
 							  <i v-show="errors.has('mission_statement')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('mission_statement')" class="help is-danger">{{ errors.first('mission_statement') }}</span>
 								 </p>
@@ -185,10 +184,13 @@
 </template>
 <script>
    import VueGoogleAutocomplete from 'vue-google-autocomplete'
+  // import 'vue-tel-input/dist/vue-tel-input.css'
+   
+import VueTelInput from 'vue-tel-input'
      import AppSidebar from '../pages/users/sidebar.vue'
      import VueTagsInput from '@johmun/vue-tags-input'
     import Vue from 'vue'
-   
+   Vue.use(VueTelInput)
     
      export default {
    components: {
@@ -197,6 +199,8 @@
    
    data() {
      return {
+	 phone_number:'',
+	 area_code:'',
 			  step:1,
 			   tag: '',
 			   tags: [],
@@ -208,6 +212,7 @@
 						charity_Category:'select',
 						title: '',
 						description: '',
+						number:'',
 					},
    		address: {
 					area_code:'',
@@ -228,6 +233,12 @@
 							this.fetchItems();
 						},
    methods: {
+    onInput({ number, country }) {
+			this.phone_number=number;
+			this.area_code=country;
+			
+      // console.log(number, country);
+	   },
 				prev() {
 							this.step--;
 						},
@@ -255,8 +266,10 @@
    let data1 = this.address;
    	 let data2= this.savecharityform;
    	 let data3=this.tags;
+	 let data4=this.phone_number;
+	 let data5=this.area_code;
     			 
-                    axios.post('/api/gs_charity_organisation', {image: this.image, data1,data2,data3}).then(response =>  {
+                    axios.post('/api/gs_charity_organisation', {image: this.image, data1,data2,data3,data4,data5}).then(response =>  {
                         toastr['success'](response.data.message);
                         this.$router.push('/charity_list');
                     })
