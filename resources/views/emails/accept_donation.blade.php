@@ -6,11 +6,11 @@
                <h1 style="color:blue;font-size:20px;padding:0px;margin:0px;color:#fff;">A Status To Donate Product</h1>
             </div>
             <p style="font-size:13px;">Hello! {{ $reciever_user->full_name }}</p>
-            <br />
+         
             <p style="font-size:13px;">
                {{ $charity_detail->title }} are Accepted Your Product It Will Very thankful to You.
             </p>
-            <br />
+           
             <p style="font-size:13px;">Here Inform Your status progress Report</p>
             <p style="font-size:13px;">Progress Status :- {{ $donation_detail->progress }} % </p>
             <br />
@@ -22,6 +22,7 @@
                border-radius: 5px;
                color: #fff;
                text-decoration: none;">Click Here To Update Status</a></p>
+			 
          </div>
       </div>
    </div>
