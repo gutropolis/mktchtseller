@@ -123,7 +123,7 @@ protected $avatar_path = 'images/charityads/';
 		$sellerproduct->post_id=$id;
 		$sellerproduct->charity_owner_id=$charity->user_id;
 		$sellerproduct->units=$request->input('units');
-		$sellerproduct->status="0";
+		$sellerproduct->charity_status="0";
 		$sellerproduct->is_certify="0";
 		$sellerproduct->progress="0";
 		
