@@ -137,13 +137,39 @@
                      </div>
                   </div>
                   <div class="helping__element">
-                     <div class="helping__element--block">
-                        <h5 class="helping__element--block--heading">Helping Center</h5>
-                     </div>
-                     <p class="helping__element--pera">All the Lorem Ipsum generat on the Internet tend to repeat predefined chunks as necesa.</p>
-                     <h3 class="helping__element--heading">+90 777 333 11 22</h3>
-                     <h5 class="helping__element--subhead">support@supportcenter.com</h5>
-                     <p class="helping__element--btn"><a href="#" class="btn btn-bg-orange">Support Center</a> </p>
+                    
+                     <div class="col-12">
+						   
+                              <div v-if="getrole ==='charity'" class="charity__request">
+									  <div v-if="getrole === 'charity'"> 
+										 <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary"  class="btn btn-bg-orange login__element--box--button">Request Donation</b-btn>
+										 <b-modal id="modalPrevent"
+											ref="modal"
+											title="Sent Request"
+											@ok="handleSubmit"
+											@shown="clearName">
+											<form  id="prod" @submit.stop.prevent="handleSubmit">
+											   <div class="form-group">
+												  <label class="login__element--box--label">Select Charity To Need This Product</label>
+												  <select name="title" v-model="prod.charity_id" v-on:change="onChange"   class="login__element--box--input">
+													 <option value="select">Select .. </option>
+													 <option v-for="item in charities"  v-bind:value="item.id">{{item.title}}</option>
+												  </select>
+											   </div>
+											   <label class="charity__element--block--content--box--label">Units</label>
+											   <input type="text" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
+											
+											</form>
+										 </b-modal>
+										
+									  </div>
+							  </div>
+                              <div  v-if="getrole =='' " class="charity__request">
+                                 <router-link :to="{ path: '/login',query: {redurl:'seller_details/'+this.$route.params.id}}" class="btn btn-bg-orange login__element--box--button">Send Request</router-link>
+								 
+                              </div>
+                          
+						  </div>
                   </div>
                </div>
             </div>
@@ -175,7 +201,7 @@
                category: {},
                charity_name: {},
                prod: {
-                   title: 'select',
+                   charity_id: 'select',
                    units: '',
                },
    
@@ -224,8 +250,27 @@
    
            },
    
-   
-   
+		 fetchCharity()
+   	{
+   	axios.get('/api/charities_list').then(response=>{
+   	
+   	this.charities=response.data;
+   	
+   	
+   	}).catch(error=>{
+   	toastr['error'](error.response.data.message);
+   	});
+   	},
+   clearName () {
+							this.name = ''
+						},
+      handleSubmit () {
+        //let data = this.prod;
+	  axios.post('/api/request_charity/'+this.$route.params.id,this.prod).then(response => {
+			toastr['success'](response.data.message);
+	  })
+	  
+    },
            fetchItem() {
    
                axios.get('/api/product_details/' + this.$route.params.id).then(response => {
