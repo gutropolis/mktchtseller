@@ -160,9 +160,9 @@
              axios.get('/api/charity_notification').then((response) => {
                  this.items=response.data.data1;
 				
-				
+				console.log(this.items.length);
 				 this.accept_items=response.data.data2;
-				 console.log(response.data.data2);
+				 
 				 this.decline_items=response.data.data3;
 				
               }) 
