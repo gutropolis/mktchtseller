@@ -82,7 +82,11 @@ let routes = [
 				component:require('./views/Charity/change_status')
 			},
 			
-			
+			{
+				path:'/request',
+				component:require('./views/pages/seller_notification')
+				
+			},
 			
 			{
 				path: '/vender_organisation',
@@ -113,11 +117,7 @@ let routes = [
 				path : '/edit_seller/:id',
 				component:require('./views/pages/manage_seller/edit_seller')
 			},
-			{
-				
-				path : '/seller_notification',
-				component:require('./views/pages/seller_notification')
-			},
+			
 			{
 				path: '/product_list',
 				component:require('./views/pages/manage_seller/product_list')
