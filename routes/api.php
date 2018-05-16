@@ -167,8 +167,8 @@ Route::post('/reject_donation/{id}', 'CharityController@reject_donation');
 
 Route::get('/count','InboxController@count');
 Route::post('/read/{id}','InboxController@read');
-Route::post('request_unit/{id}','SellerController@request_store');
-Route::get('request_unit','SellerController@units');
+Route::post('request_charity/{id}','SellerController@request_store');
+Route::get('request_charity','SellerController@requests');
 Route::get('/charity_name/{id}','SellerController@charity_name');
 Route::post('/reject_request/{id}', 'SellerController@reject_request');
 Route::post('/update_request/{id}', 'SellerController@update_request');
