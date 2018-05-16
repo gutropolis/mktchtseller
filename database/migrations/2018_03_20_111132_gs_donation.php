@@ -24,7 +24,8 @@ class GsDonation extends Migration
 			$table->string('progress');
 			$table->string('seller_read');
 			$table->string('charity_read');
-			$table->string('status');
+			$table->string('charity_status');
+			$table->string('seller_status');
 			$table->string('is_certify');
             $table->timestamps();
         });
