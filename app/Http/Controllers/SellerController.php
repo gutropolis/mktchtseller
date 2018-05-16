@@ -5,7 +5,7 @@ use App\Http\Requests\SellerRequest;
 use App\Seller;
 use App\Donation;
 use App\Sellerproduct;
-use App\Units;
+use App\User;
 use App\Charity;
 use App\Http\Requests;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
@@ -49,19 +49,34 @@ class SellerController extends Controller
 	public function request_store(Request $request,$id)
     {
 		$sellerproduct = Sellerproduct::find($id);
-		$units=new \App\Units;
-		$user = JWTAuth::parseToken()->authenticate();
-		$units->charity_id=$request->input('data.title');
-		$units->product=$sellerproduct->title;
-		$units->image=$sellerproduct->images;
-		$units->charity_owner=$user->full_name;
-		$units->units=$request->input('data.units');
+		$charity=Charity::where('id',$request->input('charity_id'))->first();
+		//return($charity);
+		$donation=new \App\Donation;
+		$donation->seller_id = $sellerproduct->user_id;
 		
-		$units->charity_name=$request->input('charity_name');
-		$units->product_id = $sellerproduct->id;
-		$units->status="0";
+		$donation->product_id=$sellerproduct->id;
+		$donation->charity_id=$request->input('charity_id');
+		$donation->post_id=$sellerproduct->id;
+		$donation->charity_owner_id=$charity->user_id;
+		$donation->units=$request->input('units');
+		$donation->seller_status="0";
+		$donation->is_certify="0";
+		$donation->progress="0";
 		
-		$units->save();
+		$sender_user=User::where('id',$donation->charity_owner_id)->first();
+		
+		
+		$reciever_user=User::where('id',$donation->seller_id)->first();
+		$product=Sellerproduct::where('id',$donation->product_id)->first();
+		
+	 $data = array('donation'=>$donation, 'sender_user'=>$sender_user,'reciever_user'=>$reciever_user,'product'=>$product);
+		 Mail::send('emails.requests_donation', $data , function($message) use ($reciever_user)
+		{
+			$message->to($reciever_user->email)->subject('Request For Donate!');
+		});
+		
+		
+		$donation->save();
 
 		
 		
@@ -74,13 +89,57 @@ class SellerController extends Controller
     }
 	public function update_request($id)
     {
-       $unit = Units::where('id',$id)->update(['status' => 1]);
-		return response()->json(['message' => 'Product are Accepted']);
+       $donation_request = Donation::where('id',$id)->update(['seller_status' => 1,'charity_status' => 1]);
+	   
+	     $donation_detail=Donation::where('id',$id)->first();
+	   $reciever_user=User::where('id',$donation_detail->charity_owner_id)->first();
+	   $sender_user=User::where('id',$donation_detail->seller_id)->first();
+	   $product=Sellerproduct::where('id',$donation_detail->product_id)->first();
+	   
+	   	 $data = array('donation_detail'=>$donation_detail, 'product'=>$product,'reciever_user'=>$reciever_user);
+		  
+		  $admin_email=Settings::pluck('admin_email');
+		$admin=$admin_email[0];
+		 
+		Mail::send('emails.accept_request_donation', $data , function($message) use($admin)
+		{
+			$message->to($admin)->subject('Request For Donation Status!');
+		});
+		Mail::send('emails.accept_request_donation', $data , function($message) use ($reciever_user)
+		{
+			$message->to($reciever_user->email)->subject('Notify Of Status Of request for Donation!');
+		});
+		return response()->json(['message' => 'Your Request are Accepted']);
     }
 	 public function reject_request($id)
     {
-       $donation = Units::where('id',$id)->update(['status' => 2]);
-		return response()->json(['message' => 'Product are Rejected']);
+       $donation = Donation::where('id',$id)->update(['seller_status' => 2]);
+	    $donation_detail=Donation::where('id',$id)->first();
+		//return($donation_detail);
+	   $reciever_user=User::where('id',$donation_detail->charity_owner_id)->first();
+	 
+	   $product=Sellerproduct::where('id',$donation_detail->product_id)->first();
+	  // return($product);
+	   	 $data = array('donation_detail'=>$donation_detail, 'product'=>$product,'reciever_user'=>$reciever_user);
+		 
+		 $admin_email=Settings::pluck('admin_email');
+		$admin=$admin_email[0];
+		 
+		Mail::send('emails.reject_request_donation', $data , function($message) use($admin)
+		{
+			$message->to($admin)->subject('Welcome!');
+		});
+		 
+		 
+		
+		 
+		Mail::send('emails.reject_request_donation', $data , function($message) use ($reciever_user)
+		{
+			$message->to($reciever_user->email)->subject('Notify!');
+			
+			
+		});
+		return response()->json(['message' => 'Your Request are Rejected']);
     }
 
 		public function charity_name($id)
@@ -91,20 +150,20 @@ class SellerController extends Controller
 			return($charity);
 		}
 	}
-	public function units(){
-			$units=Units::where('status',0)->orwhere('status','1')->get();
-		$msgInbox=array();
-		foreach($units as $unit)
-		{
-			$charity=Charity::where('id',$unit->charity_id)->get();
-			$userArr = array();
-			$userArr['sender_detail']=$charity;
-			$unit['sender_detail']=$charity;
-			array_push($msgInbox,$unit);
-		}
-			return response()->json($msgInbox);
+	public function requests(){
+		$user = JWTAuth::parseToken()->authenticate();
+	
+			$date = new \DateTime();
+				$date->modify('-3 days');
+				$formatted_date = $date->format('Y-m-d H:i:s');
 		
+			$pending=Donation::select('gs_donation.created_at','gs_donation.units','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_charity_organisation.title as charity','gs_donation.charity_id','gs_charity_organisation.updated_by as charity_name')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.seller_status','0')->where('gs_donation.seller_id',$user->id)->get();
+			
+			$accept=Donation::select('gs_donation.created_at','gs_donation.units','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_charity_organisation.title as charity','gs_charity_organisation.updated_by as charity_name')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.seller_status','1')->where('gs_donation.seller_id',$user->id)->get();
+			
+		$decline=Donation::select('gs_donation.created_at','gs_donation.units','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_charity_organisation.title as charity','gs_charity_organisation.updated_by as charity_name')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.seller_status','2')->where('gs_donation.seller_id',$user->id)->get();
 		
+		return response()->json(array('data1'=>$pending,'data2'=>$accept,'data3'=>$decline));
 	}
 	
 		
@@ -237,23 +296,23 @@ class SellerController extends Controller
 		$user = JWTAuth::parseToken()->authenticate();
 		
 		
-		$pendingstatus=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','0')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
+		$pendingstatus=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','0')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
 		//return($pendingstatus);
 		
-		$pendingLength=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','0')->where('gs_donation.seller_id',$user->id)->count();
+		$pendingLength=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','0')->where('gs_donation.seller_id',$user->id)->count();
 		
-		$acceptstatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','1')->where('gs_donation.is_certify','0')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
+		$acceptstatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','1')->where('gs_donation.is_certify','0')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
 		
-		$acceptLength=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','1')->where('gs_donation.is_certify','0')->where('gs_donation.seller_id',$user->id)->count();
+		$acceptLength=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','1')->where('gs_donation.is_certify','0')->where('gs_donation.seller_id',$user->id)->count();
 		
 		
-		$declinestatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','2')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
+		$declinestatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','2')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
 		
-		$declineLength=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','2')->where('gs_donation.seller_id',$user->id)->count();
+		$declineLength=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','2')->where('gs_donation.seller_id',$user->id)->count();
 		
-		$completestatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','2')->where('gs_donation.is_certify','1')->where('progress','100')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
+		$completestatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','2')->where('gs_donation.is_certify','1')->where('progress','100')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
 		
-		$completeLength=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.status','2')->where('gs_donation.is_certify','1')->where('progress','100')->where('gs_donation.seller_id',$user->id)->count();
+		$completeLength=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','2')->where('gs_donation.is_certify','1')->where('progress','100')->where('gs_donation.seller_id',$user->id)->count();
 	
 		
 		
