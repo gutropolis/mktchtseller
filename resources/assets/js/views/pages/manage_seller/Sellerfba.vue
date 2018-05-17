@@ -80,7 +80,7 @@
 							<div class="charity__listing--content--address row">
 								<div class="charity__listing--content--address--location col-md-4"><p><span>ASIN: </span> {{item.asin_url}}</p></div>
 								<div class="charity__listing--content--address--location col-md-3 "><p><span>Unit:</span> {{item.units}}</p></div>
-								<div class="charity__listing--content--address--location col-md-4 "><p><span>Post On:</span> {{item.created_at | moment("MMMM Do YYYY")}}</p></div>
+								<div class="charity__listing--content--address--location col-md-4 "><p><span>Post On:</span> {{item.created_at | moment("Do MMMM YYYY")}}</p></div>
 							
 							</div>
 							
