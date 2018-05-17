@@ -66,7 +66,7 @@
                                  </div>
                               </label>
                               <p class="control has-icon has-icon-right">
-                                 <vue-google-autocomplete id="map" class="login__element--box--input"  v-model="address.addr" placeholder="Start typing" v-on:placechanged="getAddressData">
+                                 <vue-google-autocomplete id="map" class="login__element--box--input"   placeholder="Start typing" v-on:placechanged="getAddressData">
                                  </vue-google-autocomplete>
                                 
                               </p>
@@ -206,6 +206,7 @@ import VueTelInput from 'vue-tel-input'
 			   tags: [],
 			   items:[],
 			   address:'',
+			   charity_address:'',
 				image: '',
       savecharityform:{
 						charity_type:'select',
@@ -268,18 +269,12 @@ import VueTelInput from 'vue-tel-input'
    	 let data3=this.tags;
 	 let data4=this.phone_number;
 	 let data5=this.area_code;
+	 let data6=this.charity_address;
     			 
-                    axios.post('/api/gs_charity_organisation', {image: this.image, data1,data2,data3,data4,data5}).then(response =>  {
+                    axios.post('/api/gs_charity_organisation', {image: this.image, data1,data2,data3,data4,data5,data6}).then(response =>  {
                         toastr['success'](response.data.message);
                         this.$router.push('/charity_list');
                     })
-   
-   
-   
-   
-   	
-   
-   
         
        });
     
@@ -302,6 +297,8 @@ import VueTelInput from 'vue-tel-input'
    getAddressData: function (addressData, placeResultData, id) 
    			{
    				   this.address = addressData;
+				   this.charity_address=placeResultData.formatted_address;
+				   
    			},
    
    fetchItems()
