@@ -11,11 +11,8 @@
 				  </div>
                      <form @on-complete="updateaddress">
                         <div v-if="step === 1" >
-                         
-						
-						
+                        
                            <div class="column is-12">
-                             
                                  <label class="login__element--box--label">Charity Type</label>
                                  <p class="control has-icon has-icon-right">
                                     <select name="charity_type" v-model="address.charity_type" v-validate="'required|not_in:Choose' "class="login__element--box--input" type="text" placeholder="charity_type">
@@ -48,7 +45,20 @@
                            </div>
                         </div>
                         <div v-if="step === 2">
-                          
+                           <div class="column is-12">
+                              <label class="login__element--box--label">
+                                 Shipping Address For Organization 
+                                 <div class="info-btn">
+                                    <b-btn v-b-popover.hover="'This address should be the physical mailing address that sellers can send goods/products to.'" title="Info">
+                                       <i class="fa fa-info-circle" style="font-size:20px"></i>
+                                    </b-btn>
+                                 </div>
+                              </label>
+                              <p class="control has-icon has-icon-right">
+                                <input  name="country" v-model="address.address" class="login__element--box--input" type="text" >
+                                
+                              </p>
+                           </div>
                            <div class="column is-12">
                               <label class="login__element--box--label">Country</label>
                               <p class="control has-icon has-icon-right">
@@ -224,6 +234,7 @@
      },
 		getAddressData: function (addressData, placeResultData, id) {
             this.address = addressData;
+			this.charity_address=placeResultData.formatted_address;
         },
            previewAvatar(e) {
                 let files = e.target.files || e.dataTransfer.files;
@@ -258,6 +269,7 @@
            
 			fetchaddress()
 			{
+			
 			axios.get('/api/edit_charity/'+this.$route.params.id).then(response=>{
 			
 			this.address=response.data.data1;
@@ -269,8 +281,11 @@
 			},
 			 updateaddress()
             {
+				
 				 this.$validator.validateAll().then((result) => {
-              axios.post('/api/edit_charity/'+this.$route.params.id,this.address).then(response =>  {
+				 let data1=this.address;
+				 let data2=this.charity_address=placeResultData.formatted_address;
+              axios.post('/api/edit_charity/'+this.$route.params.id,{data1,data2}).then(response =>  {
                     toastr['success'](response.data.message);
                     this.$router.push('/charity_list');
                 }).catch(error => {
