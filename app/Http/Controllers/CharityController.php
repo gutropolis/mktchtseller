@@ -457,6 +457,13 @@ class charityController extends Controller
 		$inbox->status='0';
 		$inbox->post_type='seller';
 		$inbox->save();
+		$message=new \App\Message;
+		$message->inbox_id=$inbox->id;
+		$message->sender_id=$sender_user->id;
+		$message->reciever_id=$reciever_user->id;
+		$message->message='Hello';
+		$message->reciever_read='0';
+		$message->save();
 		
 			$actvity=new Controller;
 			$actvity->AddUserActivityFeed($donation_detail->charity_owner_id,$donation_detail->seller_id,'Accept Your Donating product',$donation_detail->post_id,'/donaters');
