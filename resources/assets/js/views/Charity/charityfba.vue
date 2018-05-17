@@ -58,12 +58,12 @@
                               <div class="charity__listing--content--address--location col-md-5 ">
                                  <p><i class="fa fa-map-marker" aria-hidden="true"></i><span>Location:</span> {{ item.city }} , {{item.state}}</p>
                               </div>
-							  <div class="charity__listing--content--address--location col-md-7 ">
-                                 <p><i class="fa fa-calendar" aria-hidden="true"></i><span>Post On:</span> {{ item.created_at }} </p>
-                              </div>
-                             <div v-for="category in item.category" class="charity__listing--content--address--location col-md-5">  <p class=""><i class="fa fa-globe" aria-hidden="true"></i><span>Website:</span>  {{item.website}}</p></div>
-							  <div v-for="category in item.category" class="charity__listing--content--address--location col-md-7 ">
+							   <div v-for="category in item.category" class="charity__listing--content--address--location col-md-7 ">
                                  <p><i class="fa fa-tags" aria-hidden="true"></i><span>Category:</span> {{category.title}}</p>
+                              </div>
+							   <div v-for="category in item.category" class="charity__listing--content--address--location col-md-5">  <p class=""><i class="fa fa-globe" aria-hidden="true"></i><span>Website:</span>  {{item.website}}</p></div>
+							 <div class="charity__listing--content--address--location col-md-7 ">
+                                 <p><i class="fa fa-calendar" aria-hidden="true"></i><span>Post On:</span> {{ item.created_at | moment("Do MMMM YYYY")}}</p>
                               </div>
 							 
                            </div>
