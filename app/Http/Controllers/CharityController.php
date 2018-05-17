@@ -431,10 +431,11 @@ class charityController extends Controller
 	
        $donation = Donation::where('id',$id)->update(['charity_status' => 1,'charity_read' => 1]);
 	   $donation_detail=Donation::where('id',$id)->first();
+	   $product=Sellerproduct::where('id',$donation_detail->product_id)->first();
 	   $reciever_user=User::where('id',$donation_detail->seller_id)->first();
 	   $sender_user=User::where('id',$donation_detail->charity_owner_id)->first();
 	   $charity_detail=Charity::where('id',$donation_detail->post_id)->first();
-	   
+	 
 	   	 $data = array('donation_detail'=>$donation_detail, 'charity_detail'=>$charity_detail,'reciever_user'=>$reciever_user);
 		  
 		  $admin_email=Settings::pluck('admin_email');
@@ -448,10 +449,21 @@ class charityController extends Controller
 		{
 			$message->to($reciever_user->email)->subject('Notify!');
 		});
+		$inbox=new \App\Inbox;
+		$inbox->sender_id = $sender_user->id;
+		$inbox->reciever_id = $reciever_user->id;
+		$inbox->post_id = $donation_detail->product_id;
+		$inbox->subject = $product->title;
+		$inbox->status='0';
+		$inbox->post_type='seller';
+		$inbox->save();
+		
 			$actvity=new Controller;
 			$actvity->AddUserActivityFeed($donation_detail->charity_owner_id,$donation_detail->seller_id,'Accept Your Donating product',$donation_detail->post_id,'/donaters');
+			
+		
 	   
-		return response()->json(['message' => 'Product are Accepted']);
+		return response()->json(['message' => 'You Have accepted The Product.Please Communicate with seller In Message section']);
     }
 	 public function reject_donation($id)
     {
