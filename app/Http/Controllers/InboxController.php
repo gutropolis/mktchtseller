@@ -34,13 +34,14 @@ use stdClass;
 		{
 			$user = JWTAuth::parseToken()->authenticate();
 			$inboxes=Inbox::where('reciever_id',$user->id)->orwhere('sender_id',$user->id)->orderBy('created_at','dsc')->get();
+			
 			$msgInbox=array();
 			foreach($inboxes as $inbox)
 			{ 
-			//return($inbox);
+			
 				$block = array();
 				if(intval($inbox->id) > 0){
-				$block= Message::where('inbox_id', $inbox->id)->groupBy('inbox_id')->first();
+				//$block= Message::where('inbox_id', $inbox->id)->groupBy('inbox_id')->first();
 				$user = JWTAuth::parseToken()->authenticate();
 				$receiver_userid=0;
 				if($user->id==$inbox->reciever_id)
@@ -54,12 +55,12 @@ use stdClass;
 				$user=User::where('id',$receiver_userid)->get();
 				//return($block);
 				//var_dump($block);exit;
-				if(count($block) > 0 ){
+				
 				$userArr = array();
 				$userArr['sender_detail']=$user;
 				$inbox['sender_detail']=$user;
 				array_push($msgInbox,$inbox);
-				}
+				
 				}
 			} 
 	//return($msgInbox->id);
