@@ -172,7 +172,7 @@ use stdClass;
 		'reciever_id'=>$inbox_receiver_id,
 		'sender_id' => $inbox_sender_id,
 		'inbox_id' => $insertedId,
-		'receiver_read' => '0',
+		'reciever_read' => '0',
 		]);
 		$admin_email=Settings::first();
 		
