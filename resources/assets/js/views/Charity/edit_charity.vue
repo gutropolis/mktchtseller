@@ -283,9 +283,9 @@
             {
 				
 				 this.$validator.validateAll().then((result) => {
-				 let data1=this.address;
-				 let data2=this.charity_address=placeResultData.formatted_address;
-              axios.post('/api/edit_charity/'+this.$route.params.id,{data1,data2}).then(response =>  {
+				
+				 
+              axios.post('/api/edit_charity/'+this.$route.params.id,this.address).then(response =>  {
                     toastr['success'](response.data.message);
                     this.$router.push('/charity_list');
                 }).catch(error => {
