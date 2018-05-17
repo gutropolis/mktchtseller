@@ -335,7 +335,7 @@ class charityController extends Controller
 			$charity->website= $request->get('website');
 			$charity->vision_statement= $request->get('vision_statement');
 			$charity->mission_statement= $request->get('mission_statement');
-			$carity->address=$request->get('address');
+			$charity->address=$request->get('address');
 			$charity->tags= $request->get('tags');
 			$charity->charity_type= $request->get('charity_type');
 			$charity->save();
