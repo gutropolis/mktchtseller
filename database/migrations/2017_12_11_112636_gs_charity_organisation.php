@@ -22,6 +22,7 @@ class GsCharityOrganisation extends Migration
             $table->string('images');
             $table->string('country');
             $table->string('state');
+            $table->string('address');
             
             $table->string('area_code');
 			$table->string('postal_code');
