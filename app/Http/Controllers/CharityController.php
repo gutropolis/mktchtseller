@@ -324,19 +324,19 @@ class charityController extends Controller
         $charity = Charity::find($id);
 
 
-            $charity->title = $request->get('data1.title');
-			$charity->description = $request->get('data1.description');
-			$charity->country = $request->get('data1.country');
-			$charity->state= $request->get('data1.state');
-			$charity->area_code= $request->get('data1.area_code');
-			$charity->postal_code= $request->get('data1.postal_code');
-			$charity->city= $request->get('data1.city');
-			$charity->phone_number= $request->get('data1.phone_number');
-			$charity->website= $request->get('data1.website');
-			$charity->vision_statement= $request->get('data1.vision_statement');
-			$charity->mission_statement= $request->get('data1.mission_statement');
-			$carity->address=$request->get('data2');
-			$charity->tags= $request->get('data1.tags');
+            $charity->title = $request->get('title');
+			$charity->description = $request->get('description');
+			$charity->country = $request->get('country');
+			$charity->state= $request->get('state');
+			$charity->area_code= $request->get('area_code');
+			$charity->postal_code= $request->get('postal_code');
+			$charity->city= $request->get('city');
+			$charity->phone_number= $request->get('phone_number');
+			$charity->website= $request->get('website');
+			$charity->vision_statement= $request->get('vision_statement');
+			$charity->mission_statement= $request->get('mission_statement');
+			$carity->address=$request->get('address');
+			$charity->tags= $request->get('tags');
 			$charity->charity_type= $request->get('charity_type');
 			$charity->save();
 		
