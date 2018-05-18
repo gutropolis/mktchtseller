@@ -37,21 +37,11 @@ class charityController extends JoshController
     {
         $charity = Charity::get(['id', 'title', 'description', 'state','city','images','created_at']);
 
-        return DataTables::of($charity)
-            ->editColumn('created_at',function(charity $charity) {
-                return $charity->created_at->diffForHumans();
-            })
-            
-            ->addColumn('actions',function($charity) {
-                $actions = '<a href='. route('admin.charity.show', $charity->id) .'><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
-                            <a href='. route('admin.charity.edit', $charity->id) .'><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update user"></i></a>';
-                if ((Sentinel::getUser()->id != $charity->id) && ($charity->id != 1)) {
-                    $actions .= '<a href='. route('admin.charity.confirm-delete', $charity->id) .' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user"></i></a>';
-                }
-                return $actions;
-            })
-            ->rawColumns(['actions'])
+      return DataTables::of($charity)
             ->make(true);
+            
+            
+          
     }
    
     public function store(Request $request)
