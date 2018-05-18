@@ -28,7 +28,7 @@ class charityController extends JoshController
 
     public function index()
     {
-			$charity = Charity::get(['id', 'title', 'description', 'state','city','images','created_at']);
+
         // Show the page
         
         return view('admin.charity.index', compact('charity'));
@@ -69,10 +69,10 @@ class charityController extends JoshController
       $charity=\App\Charity::create([
 			'title'=> request('title'),
 			'description'=> request('description'),
-			
-			'state'=> request('state'),
-			'city'=> request('city'),
-			'country'=> request('country'),
+			'location'=> request('location'),
+			'year_in_business'=> request('year_in_business'),
+			'years_inception'=> request('years_inception'),
+			'business_purpose'=> request('business_purpose'),
 			'postal_code'=> request('postal_code'),
 			'area_code' =>request('area_code'),
 			'phone_number'=> request('phone_number'),
@@ -128,17 +128,6 @@ class charityController extends JoshController
          return view('admin.charity.create', compact('charitycategory','charityparcategory'));
 
     }
-	
-	 public function charity_requests()
-    {
-	
-         return view('admin.charity.charity_requests');
-
-    }
-	
-	
-	
-	
 	 public function edit(Charity $charity)
     {
 
@@ -237,7 +226,7 @@ class charityController extends JoshController
     public function show($id)
     {
        
-		$charity = Charity::find($id);
+$charity = Charity::find($id);
         return view('admin.charity.show',compact('charity'));
     }
 
