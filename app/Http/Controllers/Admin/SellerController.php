@@ -30,7 +30,7 @@ class SellerController extends JoshController
 
     public function index()
     {
-			   $seller = Seller::get(['id','title', 'description', 'state', 'year_in_business','created_at']);
+
         // Show the page
         return view('admin.seller.index', compact('seller'));
     }
@@ -43,7 +43,7 @@ class SellerController extends JoshController
      */
     public function data()
     {		
-        $seller = Seller::get(['id','title', 'description', 'state', 'year_in_business','created_at']);
+        $seller = Seller::get(['id','title', 'description', 'state', 'city','created_at']);
 		
         return DataTables::of($seller)
             ->editColumn('created_at',function(Seller $seller) {
