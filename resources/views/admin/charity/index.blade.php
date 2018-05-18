@@ -48,41 +48,15 @@ Charity List
                             <th>ID</th>
                             <th>Title</th>
                             <th>Description</th>
-                            <th>Location</th>
-                            
+                            <th>State</th>
+                            <th>City</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-					<tr>
-					@foreach($charity as $char)
-								<td>{{ $char->id }}</td>
-								<td>{{ $char->title }}</td>
-								<td>{{ $char->description }}</td>
-								<td>{{ $char->state }}</td>
-								<td>{{ $char->created_at }}</td>
-								 <td>
-    
-	 <a href="{{ URL::to('admin/charity/' . $char->id . '/edit' ) }}"><i class="livicon"
-                                                                                                     data-name="edit"
-                                                                                                     data-size="18"
-                                                                                                     data-loop="true"
-                                                                                                     data-c="#428BCA"
-                                                                                                     data-hc="#428BCA"
-	title="@lang('CharityRequest/table.update')"></i></a> 
-    
-    
-    
-    
-    
-    <a href="{{ route('admin.charity.delete', $char->id) }}"><i class="livicon" data-name="remove-alt"
-                                                                        data-size="18" data-loop="true" data-c="#f56954"
-                                                                        data-hc="#f56954"
-                                                                        title="@lang('Charity Request/table.delete')"></i></a></td>
-					</tr>
-					 @endforeach
-  
+
+
                     </tbody>
                 </table>
                 </div>
@@ -94,9 +68,34 @@ Charity List
 
 {{-- page level scripts --}}
 @section('footer_scripts')
-   
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
 
+<script>
+    $(function() {
+        var table = $('#table').DataTable({			
+            processing: true,
+            serverSide: true,
+            
+			ajax: '{!! route('admin.charity.data') !!}',
+            columns: [
+                { data: 'id', name: 'id' },
+                { data: 'title', name: 'title' },
+                { data: 'description', name: 'description' },
+                { data: 'state', name: 'state' },
+				{ data: 'city' , name: 'city'},
+                { data: 'created_at', name:'created_at'},
+                { data: 'actions', name: 'actions', orderable: false, searchable: false }
+            ]
+        });
+        table.on( 'draw', function () {
+            $('.livicon').each(function(){
+                $(this).updateLivicon();
+            });
+        } );
+    });
 
+</script>
 
 <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
 	<div class="modal-dialog">
