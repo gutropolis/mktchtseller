@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Donation List
+Seller List
 @parent
 @stop
 
@@ -50,10 +50,9 @@ Donation List
                                 <th>Donated Product</th>
                                 <th>Units</th>
                                 <th>Charity Organization</th>
-								<th>Progress %</th>
 								<th>Status</th>
                                 <th>Created At</th>
-                               
+                                <th>Actions</th>
                         </tr>
 						
 						
@@ -91,11 +90,11 @@ Donation List
             { data: 'product', name: 'Donated Product' },
             {data: 'units', name: 'units'},
             {data:'charity_organisation', name: 'Charity Name'},
-			{data:'progress' ,name: 'Progress'},
+	
 			{data:'status',name:'status'},
             { data: 'created_at', name:'created_at'},
                 
-              
+                { data: 'actions', name: 'actions', orderable: false, searchable: false }
             ]
         });
         table.on( 'draw', function () {
