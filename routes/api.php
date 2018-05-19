@@ -110,6 +110,14 @@ Route::post('/status/{id}','CharityController@status');
 Route::post('/certify/{id}','CharityController@toggleStatus');
 Route::get('/product_name/{id}','CharityController@product_name');
 
+//Activity_Seller
+Route::get('/seller_activity','Activity_log@sender_activity');
+
+
+
+
+
+
 });
 
 //Route::get('/product/search', 'ProductController@getSearchPage');
@@ -134,6 +142,7 @@ Route::post('/search','CharityController@search');
 Route::get('/search','CharityController@search');
 Route::get('/charities','CharityController@charity_list');
 Route::get('/charity_name','CharityController@fetch_charity');
+Route::get('/get_charity','CharityController@all_charities');
 Route::get('/charity_type','CharityController@charity_type');
 
 

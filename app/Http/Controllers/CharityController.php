@@ -59,7 +59,7 @@ class charityController extends Controller
 			{
 			$category=CharityCategory::where('id',$char->charity_type)->pluck('title');
 			}
-	
+			return($charity);
 			return response()->json(array('data1'=>$charity,'data2'=>$category[0]));
     }
 	 public function charity_list_user(Request $request)
@@ -76,6 +76,12 @@ class charityController extends Controller
 
 		$query = Charity::where('user_id',$user->id)->get();
 		return response()->json($query);
+	}
+	public function all_charities()
+	{
+		$charity=Charity::get();
+		return($charity);
+		
 	}
 	
 	public function fetch_charity(Request $request)
@@ -114,7 +120,7 @@ class charityController extends Controller
 		$sellerproduct->save();
 		
 		$actvity=new Controller;
-	$actvity->AddUserActivityFeed($sellerproduct->seller_id,$sellerproduct->charity_owner_id,'Invite to Donate Product',$sellerproduct->post_id,'/donaters');
+	$actvity->AddUserActivityFeed($sellerproduct->seller_id,$sellerproduct->charity_owner_id,'charity','Invite to Donate Product',$sellerproduct->post_id,'/donaters');
 	
 	
 	
@@ -144,19 +150,21 @@ class charityController extends Controller
 	}
 	
 	
-	public function donaters()
+	public function donaters(Request $request)
 	
 	{
-		
+		$user = JWTAuth::parseToken()->authenticate();
 		$date = new \DateTime();
 		$date->modify('-3 days');
 		$formatted_date = $date->format('Y-m-d H:i:s');
 		
-		$donaters=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.updated_by as seller','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.is_certify','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.created_at', '>',$formatted_date)->paginate(request('pageLength'));
+		$donaters=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.updated_by as seller','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.is_certify','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_owner_id','=',$user->id)->where('gs_donation.charity_status','1')->where('gs_donation.created_at', '>',$formatted_date)->paginate(request('pageLength'));
+		if(request('page') && request('pageLength'))
+		{
 		
-		$donatersLength=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.updated_by as seller','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.is_certify','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.created_at', '>',$formatted_date)->count();
-		
-		
+		$donatersLength=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.updated_by as seller','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.is_certify','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_owner_id','=',$user->id)->where('gs_donation.charity_status','1')->where('gs_donation.created_at', '>',$formatted_date)->count();
+		}
+		//return($donatersLength);
 		return response()->json(array('data1'=>$donaters,'data2'=>$donatersLength));
 		
 		
@@ -186,15 +194,19 @@ class charityController extends Controller
 		
 		
 	}
-	    public function toggleStatus(Request $request,$id){
-        $task = Donation::find($id);
-
+	    public function toggleStatus($id){
+			 $ids = explode(",", $id);
+			
+			$task = Donation::find($ids);
+		foreach($task as $tasks){
+			
+			 $tasks->is_certify = "1";
+			 $tasks->save();
+		}
+       
        
 
-        $task->is_certify = "1";
-        $task->save();
-
-        return response()->json(['message' => 'Task updated!']);
+        return response()->json(['message' => 'Donation Are Certified Completed']);
     }
 	
 	
@@ -466,7 +478,7 @@ class charityController extends Controller
 		$message->save();
 		
 			$actvity=new Controller;
-			$actvity->AddUserActivityFeed($donation_detail->charity_owner_id,$donation_detail->seller_id,'Accept Your Donating product',$donation_detail->post_id,'/donaters');
+			$actvity->AddUserActivityFeed($donation_detail->charity_owner_id,$donation_detail->seller_id,'seller','Accept Donated product',$donation_detail->post_id,'/donaters');
 			
 		
 	   
@@ -500,7 +512,7 @@ class charityController extends Controller
 		});
 	   
 	   $actvity=new Controller;
-	$actvity->AddUserActivityFeed($donation_detail->charity_owner_id,$donation_detail->seller_id,'Reject Your Donating product',$donation_detail->post_id,'/donaters');
+	$actvity->AddUserActivityFeed($donation_detail->charity_owner_id,$donation_detail->seller_id,'seller','Reject Donated product',$donation_detail->post_id,'/donaters');
 		return response()->json(['message' => 'Product are Rejected']);
     }
 
