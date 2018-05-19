@@ -15,7 +15,7 @@
                            <div v-if="loaded">
                               <table id="example" class="table table-striped table-bordered table-box" width="100%" cellspacing="0">
                                  <tr>
-                                    <th>Id</th>
+                                    <th><input type='checkbox'  v-model="selectAll"></th>
                                     <th>Title</th>
                                     <th>ASIN</th>
                                     <th>Images</th>
@@ -24,7 +24,7 @@
                                     <th>Action</th>
                                  </tr>
                                  <tr v-for="(item,index) in items.data">
-                                    <td>{{index+1}}</td>
+                                     <td> <input type='checkbox' v-bind:value='item.id' v-model='selected' ></td>
                                     <td>{{item.title}}</td>
                                     <td>{{item.asin_url}}</td>
                                     <td>
@@ -95,10 +95,11 @@
                                  </tr>
                                  <tr>
                                     <td v-if="items.length === 0" colspan="7">
-                                       <h4  style="text-align:center;" >No results</h4>
+                                       <h4  style="text-align:center;">No Record Found</h4>
                                     </td>
                                  </tr>
                               </table>
+							  
                            </div>
                         </div>
                      </div>
@@ -133,7 +134,8 @@
       
              data() {
                  return {
-   			  
+   			 
+				selected: [],
    			  filterUserForm: {
                       // sortBy : 'title',
                        order: 'desc',
@@ -194,9 +196,9 @@
    				});
    			},
    			fetchcharity(){
-   				 axios.get('/api/charities').then(response =>  {
+   				 axios.get('/api/get_charity').then(response =>  {
                    
-   				this.charity=response.data.data1;
+   				this.charity=response.data;
    			});
    			
    			},
@@ -214,6 +216,26 @@
                  },
       	 
      
-             }
+             },
+			 computed: {
+        selectAll: {
+            get: function () {
+		
+                return this.items.data ? this.selected.length == '5': false;
+            },
+            set: function (value) {
+                var selected = [];
+
+                if (value) {
+                    this.items.data.forEach(function (item) {
+                        selected.push(item.id);
+                    });
+                }
+
+                this.selected = selected;
+				console.log(this.selected);
+            }
+        }
+    }
          }
 </script>
