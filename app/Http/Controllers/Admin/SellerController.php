@@ -56,7 +56,7 @@ class SellerController extends JoshController
                             <a href='. route('admin.seller.edit', $seller->id) .'><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update seller"></i></a>';
                 if ((Sentinel::getUser()->id != $seller->id) && ($seller->id != 1)) {
                     $actions .= '<a href='. route('admin.seller.confirm-delete', $seller->id) .' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="seller-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete seller"></i></a>';
-                }
+                } 
                 return $actions;
             })
             ->rawColumns(['actions'])
