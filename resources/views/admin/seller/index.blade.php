@@ -48,11 +48,9 @@ Seller List
                             <th>ID</th>
                             <th>Title</th>
                             <th>Description</th>
-                            <th>Loaction</th>
                             <th>State</th>
-							<th>City</th>
+                            <th>City</th>
                             <th>Created At</th>
-							
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -84,7 +82,7 @@ Seller List
                 { data: 'title', name: 'tile' },
                 { data: 'description', name: 'decription' },
                 { data: 'state', name: 'state' },
-                { data: 'city', name: 'city'},
+				  { data: 'city', name: 'city' },
                 { data: 'created_at', name:'created_at'},
 				
                 { data: 'actions', name: 'actions', orderable: false, searchable: false }
