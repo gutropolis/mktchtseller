@@ -52,11 +52,12 @@
                               <label class="login__element--box--label">ASIN</label>
                               <input type="text" name="asin" class="login__element--box--input" required   placeholder="ASIN"  v-model="items.ASIN">
                            </div>
-						 
+						
                            <div class="form-group">
                               <label class="login__element--box--label">Description</label>
-                              <textarea  type="text"  v-model="items.bulletPoints" required rows="7" placeholder="BulletPoints" class="login__element--box--input"></textarea>
-                           
+							  
+                              <div  v-html="items.bulletPoints" required rows="7"  class="login__element--box--input login_description"  ></div>
+                           <input type="hidden" v-model="items.bulletPoints">
                            </div>
                            <div class="form-group ">
                               <label class="login__element--box--label">Image</label>
@@ -76,17 +77,17 @@
 							 </div>
                            </div>
 						    <div class="form-group ">
-                              <label class="login__element--box--label"> Fair Market Value *</label>
+                              <label class="login__element--box--label"> The average sale price on the going to market for your item *</label>
                               <input type="text" name="fair" class="login__element--box--input" required  v-model="items.fair">
                            </div>
                            <div class="form-group ">
-                              <label class="login__element--box--label">How Many Units do you want to donate? *</label>
+                              <label class="login__element--box--label">How many units do you want to donate? *</label>
                               <input type="text" name="units" class="login__element--box--input" required  v-model="items.units">
                            </div>
 						   <div class="form-group ">
                               <label class="login__element--box--label tag-element">Tags</label>
 							  <div class="info-btn">
-							  <b-btn v-b-popover.hover="'Please try to use tags that a general audience will understand'" title="Info">
+							  <b-btn v-b-popover.hover="'Create tags so that charities can find your product with ease'" title="Info">
 								<i class="fa fa-info-circle" style="font-size:20px"></i>
 							  </b-btn>
 							</div>
@@ -184,10 +185,10 @@
 					   
 					  this.bulletpoints=this.items.bulletPoints;
 					    let listBullet=[];
-					  let txtBullet='<ul>';
+					  let txtBullet='<ul class="amazon_listing">';
 					   $.each(response.data.bulletPoints, function(value, key) {
 						 listBullet.push(key);
-						  txtBullet=txtBullet+'<li>'+key+'</li>';
+						  txtBullet=txtBullet+'<li> <i class="fa fa-circle" aria-hidden="true"></i> '+key+'</li>';
 					   });
 					   
 					     txtBullet=txtBullet+'</ul>';
