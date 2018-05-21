@@ -145,7 +145,7 @@
                            <div class="column is-12">
                               <label class="login__element--box--label">Tags
                               <div class="info-btn">
-                                 <b-btn v-b-popover.hover="'Please try to use tags that a general audience will understand'" title="Info">
+                                 <b-btn v-b-popover.hover="'Enter Tags That Describe Your Charity So Seller Can Find You'" title="Info">
                                     <i class="fa fa-info-circle" style="font-size:20px"></i>
                                  </b-btn>
                               </div></label>
@@ -154,7 +154,7 @@
                               </p>
                            </div>
                            <div class="column is-12">
-                              <label class="login__element--box--label">Logo Upload</label>
+                              <label class="login__element--box--label">Upload Logo</label>
                               <p class="control has-icon has-icon-right">
                                  <input name="tags" class="login__element--box--input" v-on:change="onImageChange" validate.reject="'image|size:10'" type="file" placeholder="File">
                                  <i v-show="errors.has('file')" class="fa fa-warning"></i>
@@ -184,7 +184,7 @@
 </template>
 <script>
    import VueGoogleAutocomplete from 'vue-google-autocomplete'
-  // import 'vue-tel-input/dist/vue-tel-input.css'
+  
    
 import VueTelInput from 'vue-tel-input'
      import AppSidebar from '../pages/users/sidebar.vue'
