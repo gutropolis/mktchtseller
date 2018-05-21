@@ -107,6 +107,7 @@
                <div class="col-md-4">
                   <div class="charity__element--block"    >
                      <h5 class="charity__element--block--heading">Message This Seller</h5>
+					 <p><b>Must have valid charity registartion on this site to message or notify seller.</b></p>
                      <div class="charity__element--block--content">
                         <form id="create_message" @submit.prevent="submit1">
                            <div class="form-group charity__element--block--content--box">
@@ -145,12 +146,12 @@
 										 <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary"  class="btn btn-bg-orange login__element--box--button">Request Donation</b-btn>
 										 <b-modal id="modalPrevent"
 											ref="modal"
-											title="Sent Request"
+											title="Request Donation"
 											@ok="handleSubmit"
 											@shown="clearName">
 											<form  id="prod" @submit.stop.prevent="handleSubmit">
 											   <div class="form-group">
-												  <label class="login__element--box--label">Select Charity To Need This Product</label>
+												  <label class="login__element--box--label">Select Your Charity</label>
 												  <select name="title" v-model="prod.charity_id"    class="login__element--box--input">
 													 <option value="select">Select .. </option>
 													 <option v-for="item in charities"  v-bind:value="item.id">{{item.title}}</option>
