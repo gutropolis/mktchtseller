@@ -28,7 +28,9 @@
                     </div>
                     <div class="form-group ">
                         <label class="login__element--box--label">Description</label>
-                            <textarea  type="text" v-html="productForm.bulletPoints" v-model="productForm.description" required  rows="7" placeholder="Description" class="login__element--box--input"></textarea>
+						  <div v-html="productForm.description" class="login__element--box--input login_description"  ></div>
+                          
+                           <input type="hidden" v-model="productForm.description" class="login__element--box--input">
                     </div>
 					<div class="form-group ">
                         <label class="login__element--box--label">ASIN</label>
