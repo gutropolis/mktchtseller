@@ -131,7 +131,7 @@ class charityController extends Controller
                 ->causedBy($sellerproduct)
                 ->log('Invite Charity to Donate Product '.$product->title);
             
-            return response()->json(['message' => 'You have registered successfully.']);
+            return response()->json(['message' => 'You have successfully make an offer.']);
 			}
 		
 		
@@ -246,7 +246,7 @@ class charityController extends Controller
 		$charity->country=$request->input('data1.country');
 		$charity->state=$request->input('data1.administrative_area_level_1');
 		$charity->city=$request->input('data1.locality');
-		//$charity->address=$request->input('data2.address');
+		$charity->address=$request->input('data2.address');
 		$charity->postal_code=$request->input('data1.postal_code');
 		$charity->website=$request->input('data1.website');
 		$charity->vision_statement=$request->input('data1.vision_statement');
@@ -427,12 +427,12 @@ class charityController extends Controller
 				$formatted_date = $date->format('Y-m-d H:i:s');
 				
 				
-		$pending=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.charity_status','0')->where('gs_donation.charity_owner_id',$user->id)->get();
+		$pending=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_donation.units','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.charity_status','0')->where('gs_donation.charity_owner_id',$user->id)->get();
 		
 				//return($pending);
-		$accept=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.charity_status','1')->where('gs_donation.charity_owner_id',$user->id)->get();
+		$accept=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_donation.units','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.charity_status','1')->where('gs_donation.charity_owner_id',$user->id)->get();
 			
-		$decline=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.charity_status','2')->where('gs_donation.charity_owner_id',$user->id)->get();
+		$decline=Donation::select('gs_donation.created_at','gs_donation.id','gs_vender_product.images','gs_donation.units','gs_vender_product.title','gs_vender_product.updated_by as seller')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.charity_status','2')->where('gs_donation.charity_owner_id',$user->id)->get();
 				
 		
 		return response()->json(array('data1'=>$pending,'data2'=>$accept,'data3'=>$decline));
@@ -461,7 +461,7 @@ class charityController extends Controller
 		{
 			$message->to($reciever_user->email)->subject('Notify!');
 		});
-		$inbox=new \App\Inbox;
+		/*$inbox=new \App\Inbox;
 		$inbox->sender_id = $sender_user->id;
 		$inbox->reciever_id = $reciever_user->id;
 		$inbox->post_id = $donation_detail->product_id;
@@ -475,7 +475,7 @@ class charityController extends Controller
 		$message->reciever_id=$reciever_user->id;
 		$message->message='Hello';
 		$message->reciever_read='0';
-		$message->save();
+		$message->save();*/
 		
 			$actvity=new Controller;
 			$actvity->AddUserActivityFeed($donation_detail->charity_owner_id,$donation_detail->seller_id,'seller','Accept Donated product',$donation_detail->post_id,'/donaters');
