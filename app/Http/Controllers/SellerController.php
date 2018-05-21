@@ -353,33 +353,33 @@ class SellerController extends Controller
         $business_type = SellerCategory::where('id',$seller->business_type)->pluck('title');
         return response()->json(array('data1'=>$seller,'data2'=>$seller_type,'data3'=>$business_type[0]));    
     }
-       
-    public function updateSeller(Request $request,$id)
-    {
-        $validation = Validator::make($request->all(), [
-        'avatar' => 'required|image'
-        ]);
-        if ($validation->fails())
-        return response()->json(['message' => $validation->messages()->first()],422);
-        $seller = new Seller;
-        if($seller->avatar && \File::exists($this->avatar_path.$seller->avatar))
-        \File::delete($this->avatar_path.$seller->avatar);
-        $extension = $request->file('avatar')->getClientOriginalExtension();
-        $filename = uniqid();
-        $file = $request->file('avatar')->move($this->avatar_path, $filename.".".$extension);
-        $img = \Image::make($this->avatar_path.$filename.".".$extension);
-        $img->resize(200, null, function ($constraint) {
-        $constraint->aspectRatio();
-        
-    });
-        $image_ads = Seller::find($id);
-                $img->save($this->avatar_path.$filename.".".$extension);
-                
-        $image_ads->pic = $filename.".".$extension;
-        $image_ads->save();
-     return response()->json(['message' => 'Avatar updated!','profile' => $image_ads]);
+       public function updatelogo(Request $request,$id)
+	{
+		$validation = Validator::make($request->all(), [
+		'avatar' => 'required|image'
+		]);
+		if ($validation->fails())
+		return response()->json(['message' => $validation->messages()->first()],422);
+		$seller= new Seller;
+		if($seller->avatar && \File::exists($this->avatar_path.$seller->avatar))
+		\File::delete($this->avatar_path.$seller->avatar);
+		$extension = $request->file('avatar')->getClientOriginalExtension();
+		$filename = uniqid();
+		$file = $request->file('avatar')->move($this->avatar_path, $filename.".".$extension);
+		$img = \Image::make($this->avatar_path.$filename.".".$extension);
+		$img->resize(200, null, function ($constraint) {
+		$constraint->aspectRatio();
+		
+	});
+		$image = Seller::find($id);
+		        $img->save($this->avatar_path.$filename.".".$extension);
+				
+        $image->pic = $filename.".".$extension;
+        $image->save();
+	 return response()->json(['message' => 'Avatar updated!','profile' => $image]);
     }
-
+    
+   
    public function update(Request $request,$id)
     {     
     
