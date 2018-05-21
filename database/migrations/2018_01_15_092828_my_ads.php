@@ -18,7 +18,7 @@ class MyAds extends Migration
             $table->increments('id');
             $table->string('title')->nullable();
             
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
            
             $table->string('user_id')->nullable();
            
