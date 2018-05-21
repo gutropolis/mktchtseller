@@ -24,7 +24,7 @@
                                  <span v-show="errors.has('title')" class="help is-danger">{{ errors.first('title') }}</span>
                               </div>
                               <div class="form-group">
-                                 <label class="login__element--box--label">What type of item are your charity seeking?</label>
+                                 <label class="login__element--box--label">What types of items is your charity seeking?</label>
                                  <textarea  type="text" name="description" v-model="create_ads.description"  v-validate="'required'" rows="5"  class="login__element--box--input"></textarea>
 								 <i v-show="errors.has('description')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('description')" class="help is-danger">{{ errors.first('description') }}</span>
