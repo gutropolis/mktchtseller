@@ -141,7 +141,7 @@ protected $avatar_path = 'images/charityads/';
 		$sellerproduct->save();
 		
 		$actvity=new Controller;
-	$actvity->AddUserActivityFeed($sellerproduct->seller_id,$sellerproduct->charity_owner_id,'Invite to Donate Product',$sellerproduct->post_id,'/donaters');
+	$actvity->AddUserActivityFeed($sellerproduct->seller_id,$sellerproduct->charity_owner_id,'charity','Invite to Donate Product',$sellerproduct->post_id,'/donaters');
 	
 	
 	
