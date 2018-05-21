@@ -6,17 +6,10 @@
 			<app-sidebar></app-sidebar>
             <div class="col-md-9 dashboard">
                 <div class="dashboard__content clearfix">
-
                     <div class="dashboard__content--outer">
-                        
-                                             
-
-						 <form @on-complete="updateitems">
-                     
-					  <div v-if="step === 1" >
-					  
+                        <form @on-complete="updateitems">
+                    	  <div v-if="step === 1" >  
 						<div  class="form-group">
-					   
                             <label class="login__element--box--label">Company SubCategory </label>
                             <select name="business_type" v-model="items.business_type"  class="login__element--box--input">
 							<option value:="">--{{business_type}}</option>
@@ -24,7 +17,7 @@
 							</select>
                         </div>
                         <div class="form-group">
-                            <label class="login__element--box--label">Title</label>
+                            <label class="login__element--box--label">Company Name</label>
 							 <p class="control has-icon has-icon-right">
                             <input type="text" name="title" v-validate="'required:true'" v-model="items.title" placeholder="Title" class="login__element--box--input"/>
 							 <i v-show="errors.has('title')" class="fa fa-warning"></i>
@@ -54,7 +47,14 @@
                            </div>
 						</div>
 						 <div v-if="step === 2">
-                          
+                          <div class="column is-12">
+                              <label class="login__element--box--label">Address Of Your Business</label>
+                              <p class="control has-icon has-icon-right">
+                                 <input  name="address" v-model="items.address" v-validate="'required'" class="login__element--box--input" type="text" >
+                                 <i v-show="errors.has('address')" class="fa fa-warning"></i>
+                                 <span v-show="errors.has('address')" class="help is-danger">{{ errors.first('address') }}</span>
+                              </p>
+                           </div>
                            <div class="column is-12">
                               <label class="login__element--box--label">Country</label>
                               <p class="control has-icon has-icon-right">
@@ -87,11 +87,10 @@
                                  <span v-show="errors.has('zipcode')" class="help is-danger">{{ errors.first('zipcode') }}</span>
                               </p>
                            </div>
-                           <div class="column is-12">
-                              <label class="login__element--box--label">Phone Nummber</label>
+                          <div class="column is-12">
+                              <label class="login__element--box--label">Phone Number</label>
                               <p class="control has-icon has-icon-right clearfix">
-                                 <input type="text" placeholder="+91" v-model="items.area_code" v-validate="'required'" class="login__element--box--input_areacode">
-                                 <input  name="phone_number" v-model="items.phone_number" v-validate="'required|numeric'" class="login__element--box--input_phone_number" type="text" placeholder="phone_number">
+                                 <vue-tel-input name="number" @onInput="onInput"  class="login__element--box--input_phone_number"></vue-tel-input>
                                  <i v-show="errors.has('phone_number')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('phone_number')" class="help is-danger">{{ errors.first('phone_number') }}</span>
                               </p>
@@ -265,10 +264,20 @@ import Vue from 'vue'
 			toastr['error'](error.response.data.message);
 			});
 			},
+			  getAddressData: function (addressData, placeResultData, id) 
+   			{
+   				   this.address = addressData;
+				   this.seller_address=placeResultData.formatted_address;
+				   
+   			},
 			 updateitems()
             {
 			 this.$validator.validateAll().then((result) => {
-              axios.post('/api/edit_seller/'+this.$route.params.id,this.items).then(response =>  {
+			let data1=this.items;
+			let data2=this.phone_number;
+			let data3=this.area_code; 
+			let data4=this.seller_address;            
+			 axios.post('/api/edit_seller/'+this.$route.params.id,{data1,data2,data3,data4}).then(response =>  {
                     toastr['success'](response.data.message);
                     this.$router.push('/seller_list');
                 }).catch(error => {
