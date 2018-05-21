@@ -56,7 +56,7 @@
                            <div class="form-group">
                               <label class="login__element--box--label">Description</label>
 							  
-                              <div  v-html="items.bulletPoints" required rows="7"  class="login__element--box--input login_description"  ></div>
+                          <vue-editor v-model="items.bulletPoints" ></vue-editor>
                            <input type="hidden" v-model="items.bulletPoints">
                            </div>
                            <div class="form-group ">
@@ -111,10 +111,12 @@
 </template>
 <script>
    import AppSidebar from '../users/sidebar.vue'
-   import VueTagsInput from '@johmun/vue-tags-input';
+   import VueTagsInput from '@johmun/vue-tags-input'
+   import { VueEditor } from 'vue2-editor'
+
    export default {
     components: {
-              AppSidebar ,VueTagsInput
+              AppSidebar ,VueTagsInput,VueEditor
           },
           data() {
               return {
@@ -185,10 +187,10 @@
 					   
 					  this.bulletpoints=this.items.bulletPoints;
 					    let listBullet=[];
-					  let txtBullet='<ul class="amazon_listing">';
+					  let txtBullet='<ul>';
 					   $.each(response.data.bulletPoints, function(value, key) {
 						 listBullet.push(key);
-						  txtBullet=txtBullet+'<li> <i class="fa fa-circle" aria-hidden="true"></i> '+key+'</li>';
+						  txtBullet=txtBullet+'<li>'+key+'</li>';
 					   });
 					   
 					     txtBullet=txtBullet+'</ul>';
