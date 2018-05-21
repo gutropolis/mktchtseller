@@ -20,7 +20,6 @@
                                        <th>Product</th>
                                        <th>Units</th>
                                        <th>Charity</th>
-									   <th>Progress Status</th>
                                        <th>Status</th>
                                        <th>Created On</th>
 									   <th>Action</th>
@@ -31,7 +30,6 @@
                                        <td>{{item.product}}</td>
                                        <td>{{item.units}}</td>
                                        <td>{{item.charity}}</td>
-									   <td>{{item.progress}} %</td>
                                        <td v-if="item.charity_status == 0">Pending</td>
                                        <td v-if="item.charity_status == 1">Accept</td>
                                        <td v-if="item.charity_status == 2">Decline</td>
