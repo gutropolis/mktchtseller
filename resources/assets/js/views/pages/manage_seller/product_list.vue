@@ -70,7 +70,7 @@
                                        </b-link>
                                        <div class="charity_donation--offer">
 									    <div class="charity_donation--box">
-                                                <b-btn v-b-modal="modalId(item)"  variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Find Charity To Offer</b-btn>
+                                                <b-btn v-b-modal="modalId(item)"  variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Find Charity And Offer Donation</b-btn>
                                                 <b-modal :id="'modal' + item.id"
                                                    ref="modal"
                                                    title="Offer To Donate Charity"
@@ -78,7 +78,7 @@
                                                    @shown="clearName">
                                                    <form id="offers"  @submit.stop.prevent="handleSubmit(item)">
                                                       <div class="form-group">
-                                                         <label class="login__element--box--label">Select Charity To Donate This Product</label>
+                                                         <label class="login__element--box--label">This is Charity Search Bar,Sarch By Charity Name</label>
                                                          <select name="title" v-model="offers.title"  class="login__element--box--input">
                                                             <option value="select">Select .. </option>
                                                             <option v-for="offer in charity"  v-bind:value="offer.id">{{offer.title}}</option>
