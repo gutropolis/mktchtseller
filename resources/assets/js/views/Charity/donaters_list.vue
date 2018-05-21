@@ -7,43 +7,33 @@
                <div class="dashboard__content clearfix">
                   <div class="dashboard__content--head">
                      <h3 class="dashboard__content--head--heading">Donations</h3>
+					 <p>Click On Certify Only After the Products Have Been Dilevered to You.By Clicking On Certify You Acknowledge That the Donation is completed And you will Prompted to electronically sign off on the Donation </p>
                   </div>
                   <div>
                      <div class="panel-body">
                         <div class="table-responsive">
-                           <table id="example" class="table table-striped table-bordered table-box"" width="100%" cellspacing="0">
+						<button  class="btn btn-success btn-md" @click="toggleTaskStatus()" data-toggle="tooltip" title="Mark as Incomplete">Certify</button>
+                          <table id="example" class="table table-striped table-bordered table-box"" width="100%" cellspacing="0">
                               <tr>
-                                 <th>ID</th>
+                                 <th>  <input type='checkbox'  v-model="selectAll"></th>
 								 <th>Product Name</th>
                                  <th>Seller</th>
                                  <th>Charity</th>
 								 <th>Units</th>
-								 <th>Progress</th>
-                                 <th>Certify</th>
 								 <th>Status</th>
-                                 <th>Change Status</th>
+                                 <th>Update Progress</th>
                               </tr>
-                              <tr v-for="(item,index) in items.data">
-                                 <td>{{index+1}}</td>
+                              <tr v-for= "item in items.data">
+                                 <td> <input type='checkbox' v-bind:value='item.id' v-model='selected' ></td>
 								  <td>{{item.product}}</td>
                                  <td>{{item.seller}}</td>
 								 <td>{{item.charity}}</td>
                                  <td>{{item.units}}</td>
-								 <td>{{ item.progress }} %</td>
-                                
-                                 <td>
-								  <click-confirm yes-class="btn btn-success" no-class="btn btn-danger">
-                                    <button v-if="item.is_certify==0" class="btn btn-danger btn-sm" @click.prevent="toggleTaskStatus(item.id)" data-toggle="tooltip" title="Mark as complete"><i class="fa fa-times"></i></button>
-                                    <button v-if="item.is_certify==1" class="btn btn-success btn-sm" @click.prevent="toggleTaskStatus(item.id)" data-toggle="tooltip" title="Mark as Incomplete"><i class="fa fa-check"></i></button>
-									  </click-confirm>
-                                 </td>
-								 <td v-if="item.status== 0">Pending</td>
-								 <td v-if="item.status== 1">Accepted</td>
-								 <td v-if="item.status== 2">Decline</td>
-								 
+								 <td v-if="item.is_certify==0 && item.charity_status==1">Not Certified</td>
+								 <td v-if="item.is_certify==1  && item.charity_status==1">Certified</td>
                                  <td>
 								 <router-link :to="{name: 'change_status', params: { id: item.id }}">
-								Click Here
+								<span>Click</span>
 								 </router-link>
                                  </td>
                               </tr>
@@ -53,10 +43,10 @@
 										</td>
 										</tr>
                            </table>
-						  
+						   
                         </div>
                      </div>
-					   <div class="row">
+					<div class="row">
                                 <div class="col-md-12 pagination_box">
                                     <pagination :data="items" :limit=3 v-on:pagination-change-page="fetchItems"></pagination>
 									<select name="pageLength" class="page_option" v-model="filterUserForm.pageLength" @change="fetchItems" v-if="items.total">
@@ -68,11 +58,6 @@
                                 </div>
                                 
                             </div>
-					 
-					 
-					 
-					 
-					 
                   </div>
                </div>
             </div>
@@ -94,42 +79,36 @@
            data() {
    		
                return {
-			   itemslength:{},
-			   filterUserForm: {
-                   // sortBy : 'title',
-                    order: 'desc',
-                    status: '',
-                    title: '',
-                    pageLength: 5
-                },
+			   
+			    
+				items:{},
+				itemslength:{},
+				selected: [],
+				filterUserForm: {
+									order: 'desc',
+									status: '',
+									title: '',
+									pageLength: 5
+								},
 			   name:{},
 					item:
 					{
 						status: '',
 						},
-   			
-   			items:{},
+
                       
                    }
                },
    			
    			created: function()
            {
-		   this.fetchItems();
+		 this.fetchItems();
            },
            mounted(){
            },
            methods: {
-   		status(id){
-   			axios.post('/api/status/'+id,this.item).then(response=>{
-   			toastr['success']("Success");
-   			
-   			
-   			});
-   		
-     
-   		},
-   		fetchItems(page)
+		   
+		   fetchItems(page)
    			{
 			if (typeof page === 'undefined') {
                     page = 1;
@@ -139,20 +118,44 @@
    			
    			this.items=response.data.data1;
 			this.itemslength=response.data.data2;
-			console.log(this.itemslength);
+			
    			
    			}).catch(error=>{
    			toastr['error'](error.response.data.message);
    			});
    			},
                
-               toggleTaskStatus(id){
-                   axios.post('/api/certify/'+id).then((response) => {
+		     
+    
+	 toggleTaskStatus(){
+	 
+                   axios.post('/api/certify/'+this.selected).then((response) => {
+				   toastr['success'](response.data.message);
                        this.fetchItems();
                    });
-               }
-   			
-   			}
+               },
+			  
+   			},
+			computed: {
+        selectAll: {
+            get: function () {
+		
+                return this.items.data ? this.selected.length == '5': false;
+            },
+            set: function (value) {
+                var selected = [];
+
+                if (value) {
+                    this.items.data.forEach(function (item) {
+                        selected.push(item.id);
+                    });
+                }
+
+                this.selected = selected;
+				console.log(this.selected);
+            }
+        }
+    }
    			
            
    		
