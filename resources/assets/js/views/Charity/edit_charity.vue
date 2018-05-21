@@ -134,7 +134,7 @@
                            <div class="column is-12">
                               <label class="login__element--box--label">Tags
                               <div class="info-btn">
-                                 <b-btn v-b-popover.hover="'Please try to use tags that a general audience will understand'" title="Info">
+                                 <b-btn v-b-popover.hover="'Enter Tags That Describe Your Charity So Seller Can Find You'" title="Info">
                                     <i class="fa fa-info-circle" style="font-size:20px"></i>
                                  </b-btn>
                               </div></label>
@@ -143,7 +143,7 @@
                               </p>
                            </div>
                            <div class="column is-12">
-                              <label class="login__element--box--label">Logo Upload</label>
+                              <label class="login__element--box--label">Upload Logo</label>
                               <p class="control has-icon has-icon-right">
                                  <input name="tags" class="login__element--box--input" @change="previewAvatar" id="avatarUpload" type="file" placeholder="File">
                                  <i v-show="errors.has('file')" class="fa fa-warning"></i>
