@@ -64,7 +64,7 @@
                                     <div class="notification__element--listing--content">
                                        <h4 class="charity__listing--content--box--heading">{{item.title}}</h4>
                                        <p>{{item.description}}</p>
-									   <p v-for="charity in item.charity_detail"><b>Charity Name:</b> {{charity.title}}</p> 
+                                       <p v-for="charity in item.charity_detail"><b>Charity Name:</b> {{charity.title}}</p>
                                     </div>
                                  </div>
                                  <div class="notification__element--view--button">
@@ -76,72 +76,63 @@
                         </div>
                      </div>
                   </div>
-				    <div v-if="items.length === 0">
-								 
-									<h4  style="text-align:center;" >No Result Found</h4>
-									
-										</div>
+                  <div v-if="items.length === 0">
+                     <h4  style="text-align:center;" >No Result Found</h4>
+                  </div>
                </div>
-			   
-                       
-			   
-			   
-			   
-			   
             </div>
          </section>
       </div>
    </div>
 </template>
 <script>
-   import AppNavbar from './users/navbar.vue' 
-    import AppSidebar from './users/sidebar.vue'
-    import Vue from 'vue'
-       export default {
-       components: {
-               AppNavbar,  AppSidebar 
-           },
-   		data() {
-               return {
-   				 isCheckAll: false,
-                    items: [],
-   				 loaded: false,
-               }
-           },
-           mounted(){
-           },
-   		 created: function()
-           {
-               this.fetchItems();
-           },
-   		 methods: {
-   		  checkAll: function(){
+   import AppSidebar from './users/sidebar.vue'
+   import Vue from 'vue'
+      export default {
+      components: {
+   	AppSidebar 
+          },
+   	data() {
+              return {
+   			 isCheckAll: false,
+                   items: [],
+   			 loaded: false,
+              }
+          },
+          mounted(){
+          },
+   	 created: function()
+          {
+              this.fetchItems();
+          },
+   	 methods: {
+   	  checkAll: function(){
    
-         
-         this.items = [];
-         
-         },
-       
-   		 deleteItem(id){
-                   axios.delete('/api/charityads/'+id).then(response => {
-                       toastr['success'](response.data.message);
-   					this.fetchItems();
-                       
-                   }).catch(error => {
-                       toastr['error'](error.response.data.message);
-                   });
-               },
-                  fetchItems()
-   		 {
-                 axios.get('/api/charityads').then((response) => {
-                    this.items=response.data;
-					
-   				 this.loaded = true;
-   					
-                 }) 
-   			  
-               },
-   			
-           }
-   		}
+        
+        this.items = [];
+        
+        },
+      
+   	 deleteItem(id){
+                  axios.delete('/api/charityads/'+id).then(response => {
+                      toastr['success'](response.data.message);
+   				this.fetchItems();
+                      
+                  }).catch(error => {
+                      toastr['error'](error.response.data.message);
+                  });
+              },
+                 fetchItems()
+   	 {
+                axios.get('/api/charityads').then((response) => {
+                   this.items=response.data;
+   	
+   			 this.loaded = true;
+   				
+                }) 
+   		  
+              },
+   		
+          }
+   	}
 </script>
