@@ -39,7 +39,7 @@
                         </div>
 						
                         <div class="form-group">
-                            <label class="login__element--box--label">Title</label>
+                            <label class="login__element--box--label">Company Name</label>
                             <input type="text" name="title" v-model="savesellerform.title"  v-validate="'required:true'"    placeholder="Title" class="login__element--box--input">
 							 <i v-show="errors.has('title')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('title')" class="help is-danger">{{ errors.first('title') }}</span>
@@ -99,11 +99,10 @@
                                  <span v-show="errors.has('zipcode')" class="help is-danger">{{ errors.first('zipcode') }}</span>
                               </p>
                            </div>
-						  <div class="column is-12">
-                              <label class="login__element--box--label">Phone Nummber</label>
+						 <div class="column is-12">
+                              <label class="login__element--box--label">Phone Number</label>
                               <p class="control has-icon has-icon-right clearfix">
-                                 <input type="text" placeholder="+91" v-model="address.area_code" v-validate="'required'" class="login__element--box--input_areacode">
-                                 <input  name="phone_number" v-model="address.phone_number" v-validate="'required|numeric'" class="login__element--box--input_phone_number" type="text" placeholder="phone_number">
+                                 <vue-tel-input name="number" @onInput="onInput"  class="login__element--box--input_phone_number"></vue-tel-input>
                                  <i v-show="errors.has('phone_number')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('phone_number')" class="help is-danger">{{ errors.first('phone_number') }}</span>
                               </p>
@@ -117,7 +116,7 @@
 						 <div class="column is-12">
                               <label class="login__element--box--label">Website</label>
                               <p class="control has-icon has-icon-right">
-                                 <input  name="website" v-model="address.website" v-validate="'required'" class="login__element--box--input" type="text" placeholder="website">
+                                 <input  name="website" v-model="address.website" v-validate="'required'" class="login__element--box--input" type="text" >
                                  <i v-show="errors.has('website')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('website')" class="help is-danger">{{ errors.first('website') }}</span>
                               </p>
@@ -125,7 +124,7 @@
 						 <div class="form-group">
                             <label class="login__element--box--label">Vision Statement</label>
 							  <p class="control has-icon has-icon-right">
-                             <textarea  type="text" v-model="address.vision_statement" name="vision_statement" v-validate="'required:true'" rows="5" placeholder="vision_statement" class="login__element--box--input"></textarea>
+                             <textarea  type="text" v-model="address.vision_statement" v-validate="'required:true'" rows="5" name="vision_statement" class="login__element--box--input"></textarea>
 							  <i v-show="errors.has('vision_statement')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('vision_statement')" class="help is-danger">{{ errors.first('vision_statement') }}</span>
 								 </p>
@@ -133,7 +132,7 @@
 						<div class="form-group">
                             <label class="login__element--box--label">Mission Statement</label>
 							  <p class="control has-icon has-icon-right">
-                             <textarea  type="text" v-model="address.mission_statement" name="mission_statement" v-validate="'required:true'" rows="5" placeholder="mission_statement" class="login__element--box--input"></textarea>
+                             <textarea  type="text" v-model="address.mission_statement" name="mission_statement" v-validate="'required:true'" rows="5" class="login__element--box--input"></textarea>
 							  <i v-show="errors.has('mission_statement')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('mission_statement')" class="help is-danger">{{ errors.first('mission_statement') }}</span>
 								 </p>
@@ -141,13 +140,13 @@
 						<div class="column is-12">
                               <label class="login__element--box--label">Tax Id</label>
                               <p class="control has-icon has-icon-right">
-                                 <input  name="tax_id" v-model="address.tax_id" v-validate="'required'" class="login__element--box--input" type="text" placeholder="tax_id">
+                                 <input  name="tax_id" v-model="address.tax_id" v-validate="'required'" class="login__element--box--input" type="text" placeholder="Put here tax_id">
                                  <i v-show="errors.has('tax_id')" class="fa fa-warning"></i>
                                  <span v-show="errors.has('tax_id')" class="help is-danger">{{ errors.first('tax_id') }}</span>
                               </p>
                            </div>
 						 <div class="form-group">
-						  <label class="login__element--box--label">Logo Upload</label>
+						  <label class="login__element--box--label">Upload Logo</label>
                                           <span id="fileselector">
                                           <label class="btn btn-info">
                                           <input type="file" v-on:change="onImageChange"  class="form-control">
@@ -179,9 +178,9 @@
 <script>
   import VueGoogleAutocomplete from 'vue-google-autocomplete'
  import AppSidebar from '../users/sidebar.vue'
+import VueTelInput from 'vue-tel-input'
  import Vue from 'vue'
- import VueFormWizard from 'vue-form-wizard'
- Vue.use(VueFormWizard)
+  Vue.use(VueTelInput)
  export default {
  components: {
               AppSidebar,VueGoogleAutocomplete 
@@ -201,6 +200,7 @@
 					year_in_business: '',
 					state: '',
 					zipcode: '',
+					area_code:'',
 					phone_number: '',
 					website: '',
 					vision_statement: '',
@@ -218,6 +218,13 @@
         mounted(){
         },
         methods: {
+		 onInput({ number, country }) {
+			this.phone_number=number;
+			this.area_code=country;
+			
+      // console.log(number, country);
+	   },
+	   
 		prev() {
 							this.step--;
 						},
@@ -236,14 +243,18 @@
 		getAddressData: function (addressData, placeResultData, id) 
 					{
 						   this.address = addressData;
+						    this.seller_address=placeResultData.formatted_address;
 					},
 					
             submit(e){
 			 this.$validator.validateAll().then((result) => {
 			
 			 let data1 = this.savesellerform;
-			  let data2 = this.address;
-                axios.post('/api/gs_seller_organisation',{image: this.image, data1,data2}).then(response =>  {
+			  let data2 =this.address;
+			   let data3=this.phone_number;
+			    let data4=this.area_code;
+				let data5=this.seller_address;
+                axios.post('/api/gs_seller_organisation',{image: this.image, data1,data2,data3,data4,data5}).then(response =>  {
                     toastr['success'](response.data.message);
                     this.$router.push('/seller_list');
                 });
