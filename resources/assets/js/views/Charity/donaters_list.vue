@@ -21,7 +21,7 @@
                                  <th>Charity</th>
 								 <th>Units</th>
 								 <th>Status</th>
-                                 <th>Update Progress</th>
+                                
                               </tr>
                               <tr v-for= "item in items.data">
                                  <td> <input type='checkbox' v-bind:value='item.id' v-model='selected' ></td>
@@ -31,11 +31,7 @@
                                  <td>{{item.units}}</td>
 								 <td v-if="item.is_certify==0 && item.charity_status==1">Not Certified</td>
 								 <td v-if="item.is_certify==1  && item.charity_status==1">Certified</td>
-                                 <td>
-								 <router-link :to="{name: 'change_status', params: { id: item.id }}">
-								<span>Click</span>
-								 </router-link>
-                                 </td>
+                                 
                               </tr>
 							   <tr>
 								 <td v-if="itemslength == 0" colspan="9">
