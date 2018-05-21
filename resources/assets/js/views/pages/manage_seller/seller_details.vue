@@ -166,7 +166,7 @@
 									  </div>
 							  </div>
                               <div  v-if="getrole =='' " class="charity__request">
-                                 <router-link :to="{ path: '/login',query: {redurl:'seller_details/'+this.$route.params.id}}" class="btn btn-bg-orange login__element--box--button">Send Request</router-link>
+                                 <router-link :to="{ path: '/login',query: {redurl:'seller_details/'+this.$route.params.id}}" class="btn btn-bg-orange login__element--box--button"> Request Donation</router-link>
 								 
                               </div>
                           
