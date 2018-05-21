@@ -70,7 +70,7 @@
                                        </b-link>
                                        <div class="charity_donation--offer">
 									    <div class="charity_donation--box">
-                                                <b-btn v-b-modal="modalId(item)"  variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Find Charity And Offer Donation</b-btn>
+                                                <b-btn v-b-modal="modalId(item)"  variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Find Charity To Offer</b-btn>
                                                 <b-modal :id="'modal' + item.id"
                                                    ref="modal"
                                                    title="Offer To Donate Charity"
