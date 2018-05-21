@@ -25,29 +25,29 @@
                                     </figure>
                                     <div  class="notification__element--listing--content">
                                       <h4>{{item.title}}</h4>
-                                        
                                     <p> Donated By:- {{item.seller}} </p>
-									<b>Posted On:- {{item.created_at |moment("dddd,MMM-Do-YYYY")}}</b>
+									<p>Units Offer:- {{item.units}}</p>
+                                    <b>Posted On:- {{item.created_at |moment("dddd,MMM-Do-YYYY")}}</b>
                                     </div>
                                 </div>
                                 <div class="notification__element--view--button">
                                     
-									 <button class="btn notification__element--view--button--content text-White  green" v-on:click="update(item.id)">Accept</button>
-									  <button class="btn notification__element--view--button--content  text-White red" v-on:click="reject(item.id)">Reject</button>
-									   <router-link to="/users_detail"><button class="btn notification__element--view--button--content text-White green">Message Seller</button></router-link>
+                                     <button class="btn notification__element--view--button--content text-White  green" v-on:click="update(item.id)">Accept</button>
+                                      <button class="btn notification__element--view--button--content  text-White red" v-on:click="reject(item.id)">Reject</button>
+                                       <router-link to="/users_detail"><button class="btn notification__element--view--button--content text-White green">Message Seller</button></router-link>
                                 </div>
                             </div>
                           
                         </div>
                     </div>
-								 
+                                 
                               </div>
                            </div>
-						    <div v-if="items.length === 0">
-								 
-									<h4  style="text-align:center;" >No Result Found Here</h4>
-									
-										</div>
+                            <div v-if="items.length === 0">
+                                 
+                                    <h4  style="text-align:center;" >No Result Found Here</h4>
+                                    
+                                        </div>
                         </div>
                      </b-tab>
                      <b-tab title="Accepted" >
@@ -65,9 +65,9 @@
                                     </figure>
                                     <div class="notification__element--listing--content">
                                       <h4><a v-bind:href="item.description_url">{{item.title}}</a></h4></a>
-                                        
+										<p>Units Offer:- {{item.units}}</p>
                                     <p> Donated By:- {{item.seller}} </p>
-									<b>Posted On:- {{item.created_at |moment("dddd,MMM-Do-YYYY")}}</b>
+                                    <b>Posted On:- {{item.created_at |moment("dddd,MMM-Do-YYYY")}}</b>
                                     </div>
                                 </div>
                                
@@ -75,14 +75,14 @@
                           
                         </div>
                     </div>
-								 
+                                 
                               </div>
                            </div>
-						    <div v-if="accept_items.length === 0">
-								 
-									<h4  style="text-align:center;" >No Result Found Here</h4>
-									
-										</div>
+                            <div v-if="accept_items.length === 0">
+                                 
+                                    <h4  style="text-align:center;" >No Result Found Here</h4>
+                                    
+                                        </div>
                         </div>
                      </b-tab>
                      <b-tab title="Declined">
@@ -100,9 +100,9 @@
                                     </figure>
                                     <div class="notification__element--listing--content">
                                       <h4><a v-bind:href="item.description_url">{{item.title}}</a></h4></a>
-                                        
+                                       <p>Units Offer:- {{item.units}}</p> 
                                     <p> Donated By:- {{item.seller}} </p>
-									<b>Posted On:- {{item.created_at |moment("dddd,MMM-Do-YYYY")}}</b>
+                                    <b>Posted On:- {{item.created_at |moment("dddd,MMM-Do-YYYY")}}</b>
                                     </div>
                                 </div>
                                
@@ -110,24 +110,24 @@
                           
                         </div>
                     </div>
-								 
+                                 
                               </div>
                            </div>
-						   <div v-if="decline_items.length === 0">
-								 
-									<h4  style="text-align:center;" >No Result Found</h4>
-									
-										</div>
+                           <div v-if="decline_items.length === 0">
+                                 
+                                    <h4  style="text-align:center;" >No Result Found</h4>
+                                    
+                                        </div>
                         </div>
                      </b-tab>
-					
-					  </b-tab>
-					 
+                    
+                      </b-tab>
+                     
                   </b-tabs>
                </div>
                </div>
             </div>
-			
+            
          </div>
       </section>
    </div>
@@ -140,56 +140,47 @@
     components: {
               AppSidebar 
         },
-		data() {
+        data() {
             return {
-			decline_items:[],
-			accept_items:[],
-				items:[],
+            decline_items:[],
+            accept_items:[],
+                items:[],
                 
             }
         },
         mounted(){
         },
-		 created: function()
+         created: function()
         {
             this.fetchItems();
         },
-		 methods: {
-		fetchItems()
-		 {
+         methods: {
+        fetchItems()
+         {
              axios.get('/api/charity_notification').then((response) => {
                  this.items=response.data.data1;
-				
-				console.log(this.items.length);
-				 this.accept_items=response.data.data2;
-				 
-				 this.decline_items=response.data.data3;
-				
+                
+                console.log(this.items.length);
+                 this.accept_items=response.data.data2;
+                 
+                 this.decline_items=response.data.data3;
+                
               }) 
-			  
+              
             },
 
-			update(id){
-				axios.post('api/update_donation/'+id).then(response =>  {
+            update(id){
+                axios.post('api/update_donation/'+id).then(response =>  {
                     toastr['success'](response.data.message);
                     this.fetchItems();
                 })
-			 
-			
-			
-			},
-			reject(id){
-				axios.post('api/reject_donation/'+id).then(response =>  {
+               },
+            reject(id){
+                axios.post('api/reject_donation/'+id).then(response =>  {
                     toastr['success'](response.data.message);
                     this.fetchItems();
                 })
-			 
-			
-			
-			}
-			
-            },
-			
+            }
+            },   
         }
-		
 </script>
