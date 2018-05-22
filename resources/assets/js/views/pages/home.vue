@@ -40,7 +40,7 @@
  
         </div>
     </section>
-<section class="equal search_section">
+	<section class="equal search_section">
         <div class="container">
             <div class="search__form">
                 <h4 class="search__form--heading">Search Products or Charity Needs</h4>
@@ -61,7 +61,7 @@
                             <input type="text"  name="keyword" placeholder="Search Keywords"  v-model="searchform.keyword" class="search__form--outer--box--area">
                         </div>
                     </div>
-
+						
                     <div class="search__form--outer--box_btn">
                         <div class="form-group">
                             <a href="javascript:void()" class="search__form--outer--box_btn--btn btn btn-primary " v-on:click="submit(searchform.selectcategory)" >Submit</a></td>
@@ -71,8 +71,8 @@
             </div>
         </div>
     </section>
-<div>
-<section class="recent__post">
+	<div>
+		<section class="recent__post">
         <div class="container">
             <b-card no-body>
   <b-tabs card>
@@ -82,28 +82,28 @@
         <div v-for="item in request" class="recent__post--tab--content row">
             
                             <div v-for="charity in item.charity_detail" class="recent__post--tab--content--img_box">
-                                <figure class="recent__post--tab--content--img_box--figure"><img rc="'/images/charity/'+ charity.images" class="recent__post--tab--content--img_box--figure--images"></figure>
+                                <figure class="recent__post--tab--content--img_box--figure"><img :src="'/images/charity/'+ charity.images" class="recent__post--tab--content--img_box--figure--images"></figure>
                             </div>
                             <div class="recent__post--tab--content--detail_box">
                                 <article class="recent__post--tab--content--detail_box--block">
-<h6  class="recent__post--tab--content--detail_box--block--heading" > {{item.title}} </h6>
- <p class="recent__post--tab--content--detail_box--block--pera_box">{{item.description}}</p>
- <p class="recent__post--tab--content--detail_box--block--pera_box"><strong>{{item.created_at |  moment("MMMM Do YYYY"}}</strong></p>
-  
+								<h6  class="recent__post--tab--content--detail_box--block--heading" > {{item.title}} </h6>
+								 <p class="recent__post--tab--content--detail_box--block--pera_box">{{item.description}}</p>
+								 <p class="recent__post--tab--content--detail_box--block--pera_box"><strong>{{item.created_at |  moment("MMMM Do YYYY")}}</strong></p>
+								  
                                 </article>
                             </div>
- <div class="recent__post--tab--content--btn_outer">
+							 <div class="recent__post--tab--content--btn_outer">
                             <div v-for="charity in item.charity_detail" class="recent__post--tab--content--btn_outer--donate_btn"> 
                              <router-link :to="{name: 'charity_details', params: { id: charity.id },query:item.id}"  class="btn btn-border-orange">View Info</router-link>
                             </div>
-</div>
-
-</div>
+							</div>
+							
+						</div>
                     </div>
-  <div class="text-center equal">
+						  <div class="text-center equal">
                             <router-link to="/charityfba" class="btn btn-border-orange">View More</router-link>
                         </div>
-
+						
     </b-tab>
     <b-tab title="Products" active>
         <h1 class="tab_heading_top "> Recent Seller Posts</h1>
@@ -111,13 +111,13 @@
         <div v-for="product in products" class="recent__post--tab--content row">
             
                             <div class="recent__post--tab--content--img_box">
-                                <figure class="recent__post--tab--content--img_box--figure"><img v-bindrc="product.images" class="recent__post--tab--content--img_box--figure--images"></figure>
+                                <figure class="recent__post--tab--content--img_box--figure"><img v-bind:src="product.images" class="recent__post--tab--content--img_box--figure--images"></figure>
                             </div>
                             <div class="recent__post--tab--content--detail_box">
                                 <article class="recent__post--tab--content--detail_box--block">
                                     <h6 class="recent__post--tab--content--detail_box--block--heading">{{product.title}}</h6>
-                                    <p class="recent__post--tab--content--detail_box--block--pera_box"><span><strong>Units: </strong>{{product.units}} </span> <span><strong>ASIN:</strong> {{product.asin_url}}</span></p>
-<p class="recent__post--tab--content--detail_box--block--pera_box"><strong>{{product.created_at |  moment("MMMM Do YYYY"}}</strong></p>
+                                    <p class="recent__post--tab--content--detail_box--block--pera_box"><span><strong>Units: </strong>{{product.units}} </span>  <span><strong>ASIN:</strong> {{product.asin_url}}</span></p>
+									<p class="recent__post--tab--content--detail_box--block--pera_box"><strong>{{product.created_at |  moment("MMMM Do YYYY")}}</strong></p>
                                 </article>
                             </div>
                              <div class="recent__post--tab--content--btn_outer">
@@ -138,8 +138,8 @@
 
         </div>
     </section>
-</div>
-<section class="equal awesome__solution">
+	</div>
+	<section class="equal awesome__solution">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -147,7 +147,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="awesome__solution--content">
-                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="122.699px" height="122.699px" fill="#faa41a" viewBox="0 0 122.699 122.699" xmlpace="preserve">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="122.699px" height="122.699px" fill="#faa41a" viewBox="0 0 122.699 122.699" xml:space="preserve">
                         <g>
                             <circle cx="19.5" cy="12.2" r="12.1"/>
                             <path d="M6,66.699h1.2v24c0,3.301,2.7,6,6,6h12.6c3.3,0,6-2.699,6-6V89.3c-1.1-2.101-1.8-4.5-1.8-7v-31.4c0-6.1,3.7-11.4,9-13.7
@@ -167,7 +167,7 @@
                 <div class="col-md-3">
                     <div class="awesome__solution--content">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30.928px" height="30.928px" fill="#faa41a" viewBox="0 0 30.928 30.928" style="enable-background:new 0 0 30.928 30.928;"
-                            xmlpace="preserve">
+                            xml:space="preserve">
                             <g>
                                 <path d="M24.791,4.451c0.02-0.948-0.016-1.547-0.016-1.547l-9.264-0.007l0,0h-0.047h-0.047l0,0L6.152,2.904
                                     c0,0-0.035,0.599-0.015,1.547H0v1.012c0,0.231,0.039,5.68,3.402,8.665C4.805,15.373,6.555,15.999,8.618,16
@@ -187,7 +187,7 @@
                 <div class="col-md-3">
                     <div class="awesome__solution--content">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="478.512px" height="478.512px" fill="#faa41a" viewBox="0 0 478.512 478.512" style="enable-background:new 0 0 478.512 478.512;"
-                            xmlpace="preserve">
+                            xml:space="preserve">
                                 <g>
                                     <g id="icons_2_">
                                         <g>
@@ -243,7 +243,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="awesome__solution--content">
-                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 482.003 482.003" fill="#faa41a" style="enable-background:new 0 0 482.003 482.003;" xmlpace="preserve">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 482.003 482.003" fill="#faa41a" style="enable-background:new 0 0 482.003 482.003;" xml:space="preserve">
                                     <g>
                                         <path d="M209.106,118.097c32.56,0,59.049-26.489,59.049-59.049C268.155,26.489,241.665,0,209.106,0
                                             c-32.551,0-59.033,26.489-59.033,59.048C150.073,91.607,176.555,118.097,209.106,118.097z"/>
@@ -267,8 +267,8 @@
 
         </div>
     </section>
-<div>
- <section class="equal testimonial">
+	<div>
+	 <section class="equal testimonial">
         <div class="container">
             <h3 class="testimonial__heading">Clients Testimonials</h3>
             <div class="row">
@@ -286,9 +286,9 @@
             </div>
         </div>
     </section>
-</div>
-<div>
- <section class="equal sign__element">
+	</div>
+	<div>
+	 <section class="equal sign__element">
         <div class="container">
             <div class="sign__element--block">
                 <h3 class="sign__element--block--heading">Sign Up now!</h3>
@@ -297,115 +297,106 @@
                     <router-link to="">Seller </router-link>
                    <router-link to="">Charity</router-link>
                 </div>
-<div v-else class="sign__element--block--btn">
- <router-link to="/register">Seller </router-link>
+				<div v-else class="sign__element--block--btn">
+				 <router-link to="/register">Seller </router-link>
                    <router-link to="/charityregister">Charity</router-link>
-</div>
+				</div>
             </div>
         </div>
     </section>
-</div>
-
+	</div>
+	
   </div>   
 </template>
 <script>
 
-import helper from '../../services/helper'
-import Vue from 'vue'
-Vue.use(require('vue-moment'));
+	import helper from '../../services/helper'
+	import Vue from 'vue'
+	Vue.use(require('vue-moment'));
     export default {
-        data() {
-selectcategory:'charity'
+	        data() {
+	selectcategory:'charity'
             return {
-
-check:{},
-request:{},
-products:{},
- 
+			
+			check:{},
+			request:{},
+			products:{},
+				 
                 searchform: {
 
                 keyword:'',
-  selectcategory:''
+				  selectcategory:''
                     
                 }
             }
         },
-
-
+		
+	
         mounted() {
         },
-created(){
-this.fetchItems();
-this.fetchProducts();
-this.LoginCheck();
-},
-methods: {
-LoginCheck(){
- axios.get('/api/auth/login_check').then((response) => {
-this.check=response.data;
-  
-  
-  })
-  },
-fetchItems()
+		created(){
+		this.fetchItems();
+		this.fetchProducts();
+		this.LoginCheck();
+		},
+		methods: {
+		LoginCheck(){
+		 axios.get('/api/auth/login_check').then((response) => {
+				this.check=response.data;
+	  
+	  
+	  })
+	  },
+		fetchItems()
             {
-
+			
               axios.get('/api/show_charities_request').then(response =>  {
-
+					
                   this.request = response.data;
-  
-  
+				  
+				  
               });
             },
-
- fetchProducts()
+		
+		 fetchProducts()
             {
-
+			
               axios.get('/api/productsearch').then(response =>  {
-
+					
                   this.products = response.data;
-
-  
+				
+				  
               });
             },
-
-submit:function(type)
-{
-
-
-     axios.post('/api/searchform', this.searchform).then(response =>  {
+		
+		submit:function(type)
+		{
+			
+		
+		     axios.post('/api/searchform', this.searchform).then(response =>  {
                     
-
-if(type=='charity')
-{
-  this.$router.push({path:'charityfba',query:{ keyword: this.searchform.keyword}});
+					
+					if(type=='charity')
+					{
+					  this.$router.push({path:'charityfba',query:{ keyword: this.searchform.keyword}});
                      
-}
-else if (type=='product')
-{
-  this.$router.push({path:'sellerfba',query:{ keyword: this.searchform.keyword}}); 
- 
-}
-else{
-toastr['error']('Please select a Type');
-}
+					}
+					else if (type=='product')
+					{
+					  this.$router.push({path:'sellerfba',query:{ keyword: this.searchform.keyword}}); 
+					 
+					}
+					else{
+					toastr['error']('Please select a Type');
+					}
                 }).catch(error => {
                     toastr['error'](error.response.data.message);
                 });
-
-
-},
- getAuthUser(name)
-   {
-               return this.$store.getters.getAuthUser(name);
-           }
-
-},
- computed: {
-   getrole(){
-   	return this.getAuthUser('role');
-   },
-   }
-
+					
+				
+		}
+		
+		}
+		
     }
 </script>
