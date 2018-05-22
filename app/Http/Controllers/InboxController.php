@@ -196,8 +196,9 @@ use stdClass;
 		});
 		
 	}
+	
 	$actvity=new Controller;
-	$actvity->AddMessageActivityFeed($message->sender_id,$message->reciever_id,'Wants To Communicate',$message->post_id,'/users_detail');
+	$actvity->AddMessageActivityFeed($message->sender_id,$message->reciever_id,request('post_type'),'sent a message ',request('id'),'/users_detail');
 	
 		return response()->json(['message' => 'Message sent  Successfully']);  
 	}
