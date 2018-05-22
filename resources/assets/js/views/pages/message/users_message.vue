@@ -86,7 +86,7 @@
                                                    </div>
                                                    <label class="charity__element--block--content--box--label">Units</label>
                                                    <input type="number" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
-                                                   <input type="hidden" name="product_name" v-model="prod.product_name" class="login__element--box--input" />
+                                                 
                                                 </form>
                                              </b-modal>
                                           </div>
@@ -260,7 +260,8 @@ import AppNavbar from '../users/navbar.vue'
    	 },
 	  handleSubmit () {
        let data = this.prod;
-     axios.post('/api/product/'+this.$route.params.id,this.prod).then(response => {
+	   let data2=this.subject;
+     axios.post('/api/seller_make_offer/'+this.$route.params.id,{data,data2}).then(response => {
      toastr['success'](response.data.message);
      })
    
