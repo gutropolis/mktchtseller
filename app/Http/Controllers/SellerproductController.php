@@ -125,7 +125,7 @@ protected $avatar_path = 'images/charityads/';
 		$sellerproduct->units=$request->input('units');
 		$sellerproduct->charity_status="0";
 		$sellerproduct->is_certify="0";
-		$sellerproduct->progress="0";
+		$sellerproduct->progress="0"; //mm
 		
 		$sender_user=User::where('id',$sellerproduct->seller_id)->first();
 		
