@@ -29,8 +29,8 @@
                                  <td>{{item.seller}}</td>
 								 <td>{{item.charity}}</td>
                                  <td>{{item.units}}</td>
-								 <td v-if="item.is_certify==0 && item.charity_status==1">Not Certified</td>
-								 <td v-if="item.is_certify==1  && item.charity_status==1">Certified</td>
+								 <td v-if="item.is_certify==0 && item.charity_status==1"><b>Not Certified</b></td>
+								 <td v-if="item.is_certify==1  && item.charity_status==1"><b>Certified</b></td>
                                  
                               </tr>
 							   <tr>
