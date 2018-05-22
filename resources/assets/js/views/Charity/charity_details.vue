@@ -144,7 +144,7 @@
                <div class="col-md-4">
                   <div class="charity__element--block">
                      <h5 class="charity__element--block--heading">Ask This Charity A Question </h5>
-					 <p><b>Must Be Signed in as a seller to ask this chairty a question </b></p>
+					 <p class="instruction_box"><b>Must Be Signed in as a seller to ask this chairty a question </b></p>
                      <div class="charity__element--block--content">
                         <form id="create_message"  @submit.prevent="submit1">
                            <div class="form-group charity__element--block--content--box">
