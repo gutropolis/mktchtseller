@@ -145,6 +145,7 @@ Route::get('/charity_name','CharityController@fetch_charity');
 Route::get('/get_charity','CharityController@all_charities');
 Route::get('/charity_type','CharityController@charity_type');
 
+Route::post('/seller_make_offer/{id}','SellerController@seller_donation');
 
 
 
