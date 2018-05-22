@@ -181,6 +181,64 @@ class SellerController extends Controller
         return response()->json($seller_details);
     }
 
+	
+	public function seller_donation(Request $request)
+	{
+		$title=$request->input('data2');
+		//return ($title);
+		$charity = Charity::where('title',$title)->first();
+		
+		$user = JWTAuth::parseToken()->authenticate();
+		$sellerproduct=new \App\Donation;
+		$sellerproduct->seller_id = $user->id;
+		$sellerproduct->product_id=$request->input('data.id');
+		//return($sellerproduct->product_id);
+		$sellerproduct->charity_id=$charity->id;
+		$sellerproduct->post_id=$charity->id;
+		$sellerproduct->charity_owner_id=$charity->user_id;
+		$sellerproduct->units=$request->input('data.units');
+		$sellerproduct->charity_status="0";
+		$sellerproduct->is_certify="0";
+		$sellerproduct->progress="0";
+		
+		$sender_user=User::where('id',$sellerproduct->seller_id)->first();
+		
+		
+		$reciever_user=User::where('id',$sellerproduct->charity_owner_id)->first();
+		$product=Sellerproduct::where('id',$sellerproduct->product_id)->first();
+		
+	 $data = array('sellerproduct'=>$sellerproduct, 'sender_user'=>$sender_user,'reciever_user'=>$reciever_user,'product'=>$product);
+		 Mail::send('emails.donate', $data , function($message) use ($reciever_user)
+		{
+			$message->to($reciever_user->email)->subject('Donate!');
+		});
+		$sellerproduct->save();
+		
+		$actvity=new Controller;
+	$actvity->AddUserActivityFeed($sellerproduct->seller_id,$sellerproduct->charity_owner_id,'charity','Invite to Donate Product',$sellerproduct->post_id,'/donaters');
+	
+	
+	
+		if ($sellerproduct->save()) {
+                $success =trans('users/message.success.create');
+            activity($sender_user->fullname)
+                ->performedOn($sellerproduct)
+                ->causedBy($sellerproduct)
+                ->log('Invite Charity to Donate Product '.$product->title);
+            
+            return response()->json(['message' => 'You have successfully make an offer.']);
+			}
+		
+		
+		
+		return response()->json(['message' => 'Your Offer Succesfully Recieved To Charity Organization']);
+		
+    }
+		
+		
+		
+	
+	
     /*
      * Pass data through ajax call
      */
