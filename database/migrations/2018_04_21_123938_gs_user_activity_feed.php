@@ -16,9 +16,10 @@ class GsUserActivityFeed extends Migration
 		 Schema::create('gs_user_activity_feed', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->string('from');
-            $table->string('to');
+            $table->string('sender_id');
+            $table->string('reciever_id');
             $table->string('subject');
+			$table->string('post_type');
             $table->string('post_id');
             $table->string('link');
             $table->string('read_to');
