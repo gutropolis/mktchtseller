@@ -107,7 +107,7 @@
                <div class="col-md-4">
                   <div class="charity__element--block"    >
                      <h5 class="charity__element--block--heading">Message This Seller</h5>
-					 <p><b>Must have valid charity registartion on this site to message or notify seller.</b></p>
+					 <p class="instruction_box"><b>Must have valid charity registartion on this site to message or notify seller.</b></p>
                      <div class="charity__element--block--content">
                         <form id="create_message" @submit.prevent="submit1">
                            <div class="form-group charity__element--block--content--box">
