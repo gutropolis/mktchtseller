@@ -17,16 +17,18 @@ class GsVendorOrganisation extends Migration
 		{
 			$table->increments('id');
             $table->string('title');
-            $table->string('description');
-            $table->string('location');
+            $table->longText('description');
             $table->string('pic')->null;
             $table->string('year_in_business');
-           $table->string('address');
+			$table->string('address');
+			$table->string('country');
 			$table->string('state');
+			$table->string('city');
+			
 			$table->string('postal_code');
 			$table->string('area_code');
-            $table->string('mission_statement');
-            $table->string('vision_statement');
+            $table->longText('mission_statement');
+            $table->longText('vision_statement');
             $table->string('tax_id');
             $table->string('business_type');
             $table->string('phone_number');
