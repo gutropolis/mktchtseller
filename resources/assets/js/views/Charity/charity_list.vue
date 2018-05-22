@@ -26,8 +26,10 @@
                                  <tr v-for="(item,index) in items.data">
                                     <td>{{index+1}}</td>
                                     <td>{{item.title}}</td>
-                                    <td>{{item.description}}</td>
-                                    <td>{{item.city}}</td>
+									<td v-if="item.description.length>=50">
+								<p class="charity__listing--content--box--pera"><span v-text="item.description.substring(0,200)+'.......'"></span></p>
+									</td>
+                                    <td>{{item.city}}, {{item.state}}</td>
                                     <td>
                                        <router-link :to="{name: 'edit_charity', params: { id: item.id }}" class="table-icon" >
                                           <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
