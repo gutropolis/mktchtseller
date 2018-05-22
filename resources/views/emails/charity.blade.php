@@ -8,7 +8,7 @@
             <p style="font-size:13px;"><strong>User Name:-</strong> {{ $user->full_name }}</p>
             <p style="font-size:13px;"><strong>Email ID:-</strong> {{ $user->email }}</p>
             <p style="font-size:13px;"><strong>Organisation_Name:-</strong> {{ $charity->title }}</p>
-            <p style="font-size:13px;"><strong>Location:-</strong> {{ $charity->location }}</p>
+            <p style="font-size:13px;"><strong>Location:-</strong> {{ $charity->city }} </p>
             <p style="font-size:13px;"><strong>Contact:-</strong> {{$charity->area_code}}{{ $charity->phone_number }}</p>
          </div>
          <p><a href= "{{url('admin/charity/'.$charity->id.'/edit')}}" style="font-size: 14px;
