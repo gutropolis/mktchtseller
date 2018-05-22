@@ -201,7 +201,7 @@ class CharityRequestController extends JoshController
     public function destroy($id)
     {
   //charity::destroy($id);
-         my_ads::destroy($id);
+         my_ads::delete($id);
         return redirect()->route('admin.charityrequests.index')
                         ->with('success','Request deleted successfully');
     }
