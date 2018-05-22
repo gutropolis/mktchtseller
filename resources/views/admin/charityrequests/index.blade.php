@@ -83,7 +83,7 @@ Charity Requests
     
     
     
-    <a href="{{ route('admin.charityrequests.delete', $cat->id) }}"><i class="livicon" data-name="remove-alt"
+    <a href="{{ route('admin.charityrequests.destroy', $cat->id) }}"><i class="livicon" data-name="remove-alt"
                                                                         data-size="18" data-loop="true" data-c="#f56954"
                                                                         data-hc="#f56954"
                                                                         title="@lang('Charity Request/table.delete')"></i></a></td>
