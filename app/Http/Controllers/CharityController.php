@@ -92,7 +92,7 @@ class charityController extends Controller
 	}
 	
 	public function product(Request $request,$id)
-    {
+    { //dkjfh
 		$charity = Charity::find($id);
 		$user = JWTAuth::parseToken()->authenticate();
 		$sellerproduct=new \App\Donation;
