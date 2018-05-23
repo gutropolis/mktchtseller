@@ -366,7 +366,7 @@ class SellerController extends Controller
         
         $pendingLength=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','0')->where('gs_donation.seller_id',$user->id)->count();
         
-        $acceptstatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','1')->where('gs_donation.is_certify','0')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
+        $acceptstatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.id','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','1')->where('gs_donation.is_certify','0')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
         
         $acceptLength=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','1')->where('gs_donation.is_certify','0')->where('gs_donation.seller_id',$user->id)->count();
         
@@ -375,9 +375,9 @@ class SellerController extends Controller
         
         $declineLength=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','2')->where('gs_donation.seller_id',$user->id)->count();
         
-        $completestatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','2')->where('gs_donation.is_certify','1')->where('progress','100')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
+        $completestatus=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.id','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','1')->where('gs_donation.is_certify','1')->where('gs_donation.seller_id',$user->id)->paginate(request('pageLength'));
         
-        $completeLength=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','2')->where('gs_donation.is_certify','1')->where('progress','100')->where('gs_donation.seller_id',$user->id)->count();
+        $completeLength=Donation::select('gs_donation.created_at','gs_donation.progress','gs_donation.units','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_status','1')->where('gs_donation.is_certify','1')->where('gs_donation.seller_id',$user->id)->count();
     
         
         
@@ -386,6 +386,22 @@ class SellerController extends Controller
             
         
     }
+  
+		public function charity_info($id)
+		{
+			//$donation=Donation::where('id',$id)->pluck('charity_id');
+			//return($donation);
+			$charity_detail=Donation::select('gs_charity_organisation.phone_number','gs_charity_organisation.images','gs_charity_organisation.id','gs_charity_organisation.user_id','gs_charity_organisation.address','users.first_name','users.last_name')->where('gs_donation.id',$id)->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('users','users.id','=','gs_charity_organisation.user_id')->first();
+			
+			/*$charity_detail=Charity::select('gs_charity_organisation.phone_number','gs_charity_organisation.images','gs_charity_organisation.id','gs_charity_organisation.user_id','gs_charity_organisation.address','users.first_name','users.last_name')->join('gs_donation','gs_donation.id','=',$id)->where('gs_charity_organisation.id','=','gs_donation.charity_id')->join('users','gs_charity_organisation.user_id','=','users.id')->first();*/
+			return($charity_detail);
+			
+			
+		
+			
+			
+		}
+  
   
        public function edit_donation(Request $request,$id)
     {
