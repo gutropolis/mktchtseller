@@ -72,6 +72,7 @@ Route::get('/vender_category','SellerCategoryController@index');
 //Donation Seller
 Route::get('/donation/{id}','SellerController@edit_donation');
 Route::get('/donation_list','SellerController@donation_list');
+Route::get('/charity_info/{id}','SellerController@charity_info');
 Route::post('/edit_donation/{id}','SellerController@updatedonation');
 Route::delete('/delete_donation/{id}','SellerController@destroy_donation');
 
