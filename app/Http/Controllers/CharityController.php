@@ -92,7 +92,7 @@ class charityController extends Controller
 	}
 	
 	public function product(Request $request,$id)
-    { //dkjfh
+    { 
 		$charity = Charity::find($id);
 		$user = JWTAuth::parseToken()->authenticate();
 		$sellerproduct=new \App\Donation;
@@ -446,7 +446,7 @@ class charityController extends Controller
 	   $product=Sellerproduct::where('id',$donation_detail->product_id)->first();
 	   $reciever_user=User::where('id',$donation_detail->seller_id)->first();
 	   $sender_user=User::where('id',$donation_detail->charity_owner_id)->first();
-	   $charity_detail=Charity::where('id',$donation_detail->post_id)->first();
+	   $charity_detail=Charity::where('id',$donation_detail->charity_id)->first();
 	 
 	   	 $data = array('donation_detail'=>$donation_detail, 'charity_detail'=>$charity_detail,'reciever_user'=>$reciever_user);
 		  
