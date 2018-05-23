@@ -7,7 +7,7 @@
                <div class="col-md-9 dashboard">
                   <div class="dashboard__content clearfix">
                      <div class="dashboard__content--head">
-                        <h3 class="dashboard__content--head--heading"> Recieved Messages</h3>
+                        <h3 class="dashboard__content--head--heading">Recieved Message</h3>
                         <a href="#" class="dashboard__content--head--link">
                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                               width="460.298px" height="460.297px" viewBox="0 0 460.298 460.297" style="enable-background:new 0 0 460.298 460.297;"
@@ -44,25 +44,21 @@
 										<th>Date  & Time</th>
 									</tr>
 									</thead>
-									<tr v-for="create_messages in create_message" class="read">
-									<td v-for="userinfo in create_messages.sender_detail" >
-									 <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" ><figure class="users_messages--users_area--box--list--link--image_outer--image_box" v-if="userinfo.avatar!=null">
-                                                <img :src="'/images/user/'+ userinfo.avatar"  class="users_messages--users_area--box--list--link--image_outer--image_box--image">
-                                             </figure></router-link></td>
-									<td> <p v-for="userinfo in create_messages.sender_detail" class="users_messages--users_area--box--list--link--user_name"> <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >{{userinfo.first_name}}</router-link></p></td>
-									<td> <p v-for="userinfo in create_messages.sender_detail" class="users_messages--users_area--box--list--link--user_name"><router-link :to="{name: 'users_message', params: { id: create_messages.id }}" > {{userinfo.last_name}}</router-link></p></td>
-									<td>  <p class="users_messages--users_area--box--list--link--user_title"><router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >{{create_messages.subject}}</router-link></p></td>
-									<td> <p class="users_messages--users_area--box--list--link--date">{{ create_messages.created_at |  moment("MMMM Do YYYY, h:mm a") }}</p></td>
 									
-									</tr>
-									<tr v-for="create_messages in create_message"v-if="create_message.status==0" class="unread">
-									<td v-for="userinfo in create_messages.sender_detail" ><figure class="users_messages--users_area--box--list--link--image_outer--image_box" v-if="userinfo.avatar!=null">
-                                                <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" class="users_messages--users_area--box--list--link"> <img :src="'/images/user/'+ userinfo.avatar"  class="users_messages--users_area--box--list--link--image_outer--image_box--image"></router-link>
-                                             </figure></td>
-									<td> <p v-for="userinfo in create_messages.sender_detail" class="users_messages--users_area--box--list--link--user_name"> {{userinfo.first_name}}</p></td>
-									<td> <p v-for="userinfo in create_messages.sender_detail" class="users_messages--users_area--box--list--link--user_name"> {{userinfo.last_name}}</p></td>
-									<td>  <p class="users_messages--users_area--box--list--link--user_title">{{create_messages.subject}}</p></td>
-									<td> <p class="users_messages--users_area--box--list--link--date">{{ create_messages.created_at |  moment("MMMM Do YYYY, h:mm a") }}</p></td>
+									<tr v-for="create_messages in create_message">
+									<td>
+									<router-link :to="{name: 'users_message', params: { id: create_messages.id }}" ><figure class="users_messages--users_area--box--list--link--image_outer--image_box" >
+											<div v-if="create_messages.avatar==null">
+                                                <img :src="'/images/user/avatar.png'"  class="users_messages--users_area--box--list--link--image_outer--image_box--image"></div>
+												<div v-else>
+												 <img :src="'/images/user/'+create_messages.avatar"  class="users_messages--users_area--box--list--link--image_outer--image_box--image"></div>
+                                            </figure> </router-link>
+											
+											 </td>
+									<td> <p class="users_messages--users_area--box--list--link--user_name" > <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >  {{create_messages.first_name}}</router-link></p></td>
+									<td> <p  class="users_messages--users_area--box--list--link--user_name"> <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >{{create_messages.last_name}}</router-link></p></td>
+									<td>  <p class="users_messages--users_area--box--list--link--user_title"><router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >{{create_messages.subject}}</router-link></p></td>
+									<td> <p class="users_messages--users_area--box--list--link--date"><router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >{{ create_messages.created_at |  moment("MMMM Do YYYY, h:mm a") }}</router-link></p></td>
 									
 									</tr>
 								 </table>
