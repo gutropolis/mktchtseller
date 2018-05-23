@@ -6,13 +6,19 @@
             <div class="col-md-9 dashboard">
                <div class="dashboard__content clearfix">
                   <div class="dashboard__content--head">
-                     <h3 class="dashboard__content--head--heading">Donations</h3>
+                     <div class="d-flex align-items-center">
+					 <div class="col-nd-10"><h3 class="dashboard__content--head--heading">Donations</h3>
 					 <p>Click On Certify Only After the Products Have Been Dilevered to You.By Clicking On Certify You Acknowledge That the Donation is completed And you will Prompted to electronically sign off on the Donation </p>
-                  </div>
+					 </div>
+					 <div class="col-md-2">
+						<button  class="btn btn-success btn-md btn-sky-blue" @click="toggleTaskStatus()" data-toggle="tooltip" title="Mark as Incomplete">Certify</button>
+					 </div>
+					 </div>
+                  </div> 
                   <div>
                      <div class="panel-body">
                         <div class="table-responsive">
-						<button  class="btn btn-success btn-md" @click="toggleTaskStatus()" data-toggle="tooltip" title="Mark as Incomplete">Certify</button>
+						
                           <table id="example" class="table table-striped table-bordered table-box"" width="100%" cellspacing="0">
                               <tr>
                                  <th>  <input type='checkbox'  v-model="selectAll"></th>
