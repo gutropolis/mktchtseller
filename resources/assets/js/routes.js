@@ -46,11 +46,21 @@ let routes = [
 				path : '/users_detail',
 				component:require('./views/pages/message/users_detail')
 			},
+			{
+				
+				path : '/sent_message',
+				component:require('./views/pages/message/sent_message')
+			},
 			
 			{
 				name:'users_message',
 				path : '/users_message/:id',
 				component:require('./views/pages/message/users_message')
+			},
+			{
+				
+				path : '/activity_log',
+				component:require('./views/pages/manage_seller/activity_log')
 			},
 			
             {
