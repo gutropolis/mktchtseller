@@ -294,7 +294,7 @@
                </router-link>
             </li>
 			 
-            </div>
+            </div> 
 			<!--<li class="proflie__element--detail--list--item">
                   <router-link to="/activity_log" class="proflie__element--detail--list--item--link">
                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
