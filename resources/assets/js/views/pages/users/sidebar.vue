@@ -254,7 +254,7 @@
                </li>
               
 			 <li class="proflie__element--detail--list--item">
-               <router-link to="/users_detail" v-b-toggle.collapse7 class="proflie__element--detail--list--item--link">
+               <router-link to="" v-b-toggle.collapse17 class="proflie__element--detail--list--item--link">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
                      <g>
                         <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
@@ -263,8 +263,20 @@
                         <polygon points="320,256.3 490,390.4 490,101.1 		"/>
                      </g>
                   </svg>
-                  Messages <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_message_seller}}</span> 
+                  Messages<span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_message_seller}}</span> 
                </router-link>
+			   <b-link class="dropdown__arrow" v-b-toggle.collapse17><i class="fa fa-angle-down" aria-hidden="true"></i></b-link>
+                  <b-collapse  id="collapse17" class=""  >
+                     <ul class="drop_menu">
+                        <li class="drop_menu--list">
+                           <router-link to="/users_detail" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Inbox <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_message_seller}}</span> </router-link>
+                        </li>
+                        <li class="drop_menu--list">
+                           <router-link to="/sent_message" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Sent Message</router-link>
+                        </li>
+                        
+                     </ul>
+                  </b-collapse>
             </li>
 			 <li class="proflie__element--detail--list--item">
                <router-link to="/donation_list" class="proflie__element--detail--list--item--link">
@@ -295,7 +307,7 @@
             </li>
 			 
             </div> 
-			<!--<li class="proflie__element--detail--list--item">
+			<li class="proflie__element--detail--list--item">
                   <router-link to="/activity_log" class="proflie__element--detail--list--item--link">
                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -336,7 +348,7 @@
                      </svg>
                       Activity Log
                   </router-link>
-               </li>-->
+               </li>
             <li class="proflie__element--detail--list--item">
                <a href="#" @click.prevent="logout" class="proflie__element--detail--list--item--link">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="44.816px" height="44.816px" viewBox="0 0 44.816 44.816" style="enable-background:new 0 0 44.816 44.816;" xml:space="preserve">
