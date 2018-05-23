@@ -102,7 +102,7 @@
                                        <td>{{index+1}}</td>
                                       <td>{{item.product}}</td>
                                        <td>{{item.units}}</td>
-                                      <td> <b-link v-b-modal.modal1 class="btn-text">{{item.charity}}</b-link></td>
+                                      <td> <b-link v-b-modal.modal1 class="btn-text" @click="charity_info(item.id)">{{item.charity}}</b-link></td>
 									 
                                        <td v-if="item.charity_status == 0">Pending</td>
                                        <td v-if="item.charity_status == 1">Accepted</td>
@@ -116,17 +116,17 @@
 										</td>
 										</tr>
                                  </table>
-								  <b-modal id="modal1" hide-footer title="Bootstrap-Vue">
+								  <b-modal id="modal1" hide-footer title="Charity Detail">
  
 								  <div class="charity_accept-detail">
 									<div class="col-md-4">
-										<figure class="charity_accept-detail--figure"><img src="" /></figure>
+										<figure class="charity_accept-detail--figure"><img :src="'/images/charity/'+charity_detail.images" ></figure>
 									</div>
 									<div class="col-md-8">
 										<div class="charity_accept-detail--content">
-											<p><span>Name:</span> John Wick</p>
-											<p><span>Contact No:</span> (03) 56565-6676</p>
-											<p><span>Address:</span>62 Yukon Street Neenah, WI 54956 </p>
+											<p><span>Name:</span>{{charity_detail.first_name}} {{charity_detail.last_name}}</p>
+											<p><span>Contact No:</span> {{charity_detail.phone_number}}</p>
+											<p><span>Address:</span>{{charity_detail.address}}</p>
 											
 										
 										</div>
@@ -219,7 +219,7 @@
                                        <td>{{index+1}}</td>
                                         <td>{{item.product}}</td>
                                        <td>{{item.units}}</td>
-                                      <td>{{item.charity}}</td>
+                                      <td> <b-link v-b-modal.modal2 class="btn-text" @click="charity_info(item.id)">{{item.charity}}</b-link></td>
 									 
                                        <td v-if="item.charity_status == 0">Pending</td>
                                        <td v-if="item.charity_status == 1">Accepted</td>
@@ -234,7 +234,23 @@
 										</td>
 										</tr>
                                  </table>
-								 
+								  <b-modal id="modal2" hide-footer title="Charity Detail">
+ 
+								  <div class="charity_accept-detail">
+									<div class="col-md-4">
+										<figure class="charity_accept-detail--figure"><img :src="'/images/charity/'+charity_detail.images" ></figure>
+									</div>
+									<div class="col-md-8">
+										<div class="charity_accept-detail--content">
+											<p><span>Name:</span>{{charity_detail.first_name}} {{charity_detail.last_name}}</p>
+											<p><span>Contact No:</span> {{charity_detail.phone_number}}</p>
+											<p><span>Address:</span>{{charity_detail.address}}</p>
+											
+										
+										</div>
+									</div>
+								  </div>
+								   </b-modal>
                               </div>
                            </div>
 						   <div class="row">
@@ -277,6 +293,8 @@ Vue.use(require('vue-moment'));
           data() {
    	
               return {
+			  charity_detail:{},
+			  user_info:{},
 			  filterUserForm: {
                    // sortBy : 'title',
                     order: 'desc',
@@ -304,8 +322,18 @@ Vue.use(require('vue-moment'));
               this.fetchItems();
           },
           mounted(){
+		  this.charity_info()
           },
           methods: {
+		  charity_info(id)
+		 {
+			axios.get('/api/charity_info/'+id).then(response=>{
+				this.charity_detail=response.data;
+				
+			
+			});
+		  
+		  },
    	status(id){
    		axios.post('/api/status/'+id,this.status).then(response=>{
    		toastr['success']("Success");
