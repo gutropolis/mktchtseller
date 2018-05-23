@@ -2,7 +2,7 @@
 <div>
      <!-- banner element Start -->
     <section class="banner_element">
-        <div class="row">
+        <div class="d-flex">
             <div class="col-md-6 banner_element--left">
                 <div  class="banner_element--content row">
                     <h2 class="banner_element--content--heading">I am Seller</h2>
