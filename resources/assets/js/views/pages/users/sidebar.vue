@@ -56,7 +56,7 @@
                   </b-collapse>
                </li>
 			     <li class="proflie__element--detail--list--item">
-               <router-link to="/users_detail" v-b-toggle.collapse7 class="proflie__element--detail--list--item--link">
+               <router-link to="/users_detail" v-b-toggle.collapse18 class="proflie__element--detail--list--item--link">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490 490" style="enable-background:new 0 0 490 490;" xml:space="preserve">
                      <g>
                         <polygon points="169.6,256.3 0,101.5 0,390.4 		"/>
@@ -65,8 +65,20 @@
                         <polygon points="320,256.3 490,390.4 490,101.1 		"/>
                      </g>
                   </svg>
-                  Messages <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_message_charity}}</span> 
+                  Messages <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;" v-if="unread_message_charity!=0">{{unread_message_charity}}</span> 
                </router-link>
+			    <b-link class="dropdown__arrow" v-b-toggle.collapse18><i class="fa fa-angle-down" aria-hidden="true"></i></b-link>
+                  <b-collapse  id="collapse18" class=""  >
+                     <ul class="drop_menu">
+                        <li class="drop_menu--list">
+                           <router-link to="/users_detail" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Inbox <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;" v-if="unread_message_charity!=0">{{unread_message_charity}}</span> </router-link>
+                        </li>
+                        <li class="drop_menu--list">
+                           <router-link to="/sent_message" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Sent Message</router-link>
+                        </li>
+                        
+                     </ul>
+                  </b-collapse>
             </li>
                <li class="proflie__element--detail--list--item">
                   <router-link to="/my_ads" class="proflie__element--detail--list--item--link">
@@ -109,7 +121,7 @@
                            c17.85-2.55,30.6-15.3,35.7-30.6c2.55-5.101,5.1-12.75,5.1-20.4h-102C216.75,499.8,239.7,522.75,267.75,522.75z"/>
                      </g>
                   </svg>
-                  Notifications <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_notification}}</span> 
+                  Notifications <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;" v-if="unread_notification!=0">{{unread_notification}}</span> 
                </router-link>
 			    <b-link class="dropdown__arrow" v-b-toggle.collapse9><i class="fa fa-angle-down" aria-hidden="true"></i></b-link>
                   <b-collapse  id="collapse9" class=""  >
@@ -263,13 +275,13 @@
                         <polygon points="320,256.3 490,390.4 490,101.1 		"/>
                      </g>
                   </svg>
-                  Messages<span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_message_seller}}</span> 
+                  Messages<span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;" v-if="unread_message_seller!=0">{{unread_message_seller}}</span> 
                </router-link>
 			   <b-link class="dropdown__arrow" v-b-toggle.collapse17><i class="fa fa-angle-down" aria-hidden="true"></i></b-link>
                   <b-collapse  id="collapse17" class=""  >
                      <ul class="drop_menu">
                         <li class="drop_menu--list">
-                           <router-link to="/users_detail" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Inbox <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;">{{unread_message_seller}}</span> </router-link>
+                           <router-link to="/users_detail" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Inbox <span class="msg_counter" style="margin-left:10px;border-radius:20px;width:20px;height:17px;color:#fff;background-color:orange;padding: 1px 5px;" v-if="unread_message_seller!=0">{{unread_message_seller}}</span> </router-link>
                         </li>
                         <li class="drop_menu--list">
                            <router-link to="/sent_message" class="drop_menu--list--link"><i class="fa fa-angle-right" aria-hidden="true"></i> Sent Message</router-link>
