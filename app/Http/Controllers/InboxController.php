@@ -30,41 +30,23 @@ use stdClass;
 			return response()->json($inbox);
 		}
 		
-	public function fetch()
+	public function recieve_message()
 		{
 			$user = JWTAuth::parseToken()->authenticate();
-			$inboxes=Inbox::where('reciever_id',$user->id)->orwhere('sender_id',$user->id)->orderBy('created_at','dsc')->get();
-			
-			$msgInbox=array();
-			foreach($inboxes as $inbox)
-			{ 
-			
-				$block = array();
-				if(intval($inbox->id) > 0){
-				//$block= Message::where('inbox_id', $inbox->id)->groupBy('inbox_id')->first();
-				$user = JWTAuth::parseToken()->authenticate();
-				$receiver_userid=0;
-				if($user->id==$inbox->reciever_id)
-				{
-				$receiver_userid=$inbox->sender_id;
-				}
-				else
-				{
-				$receiver_userid=$inbox->reciever_id;
-				}
-				$user=User::where('id',$receiver_userid)->get();
-				//return($block);
-				//var_dump($block);exit;
+			 $recieve_message=Inbox::select('gs_messageinbox.created_at','gs_messageinbox.subject','gs_messageinbox.id','users.avatar','users.first_name','users.last_name')->where('gs_messageinbox.reciever_id',$user->id)->join('users','gs_messageinbox.sender_id','=','users.id')->get();
+			return($recieve_message);
 				
-				$userArr = array();
-				$userArr['sender_detail']=$user;
-				$inbox['sender_detail']=$user;
-				array_push($msgInbox,$inbox);
 				
-				}
-			} 
-	//return($msgInbox->id);
-		return response()->json($msgInbox); 
+			
+	
+	}
+	public function sent_message()
+		{
+			$user = JWTAuth::parseToken()->authenticate();
+			 $sent_message=Inbox::select('gs_messageinbox.created_at','gs_messageinbox.subject','gs_messageinbox.id','users.avatar','users.first_name','users.last_name')->where('gs_messageinbox.sender_id',$user->id)->join('users','gs_messageinbox.reciever_id','=','users.id')->get();
+			return($sent_message);
+			
+		
 	}
 	public  function detail(Request $request,$id)
 	{
