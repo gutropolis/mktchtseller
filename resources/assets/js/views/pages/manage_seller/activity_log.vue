@@ -11,11 +11,11 @@
                         
                      </div>
                      <div class="chat_frame">
-                        <div class="users_messages">      
+                        <div class="users_messages user_active">      
                           
-                           <div class="users_messages--users_area">
-                              <div v-for="actvities in activity">
-                                 <ul class="users_messages--users_area--box">
+                           <div class="users_messages--users_area user_active--area">
+                              <div >
+                                 <!-- <ul class="users_messages--users_area--box">
                                     <li class="users_messages--users_area--box--list">
                                       
                                           <div class="users_messages--users_area--box--list--link--image_outer">
@@ -36,7 +36,32 @@
                                        
                                     </li>
 									
-                                 </ul>
+                                 </ul> -->
+								  <table  class="table table-hover">
+									<thead class="thead-light">
+									<tr>
+										<th>Profile</th>
+										<th>Name</th>
+										<th>Activity</th>
+										<th>Subject</th>
+										<th>Date  & Time</th>
+									</tr>
+									</thead>
+									<tr v-for="actvities in activity">
+										<td>
+										<figure class="users_messages--users_area--box--list--link--image_outer--image_box">
+                                                 <img :src="'/images/charity/'+ actvities.images"  class="users_messages--users_area--box--list--link--image_outer--image_box--image">
+                                             </figure>
+										</td>
+										<td>
+										<p class="users_messages--users_area--box--list--link--user_title"> {{getAuthUserFullName()}}</p>
+										</td>
+										
+										<td><p class="users_messages--users_area--box--list--link--user_title">{{actvities.subject}}</p></td>
+										<td>   <p  class="users_messages--users_area--box--list--link--user_title">{{actvities.title}}</p></td>
+										<td> <p class="users_messages--users_area--box--list--link--date">{{ actvities.created_at |  moment("MMMM Do YYYY, h:mm a") }}</p></td>
+									</tr>
+									</table>
                               </div>
                            </div>
                         </div>
