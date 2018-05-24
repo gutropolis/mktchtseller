@@ -201,12 +201,12 @@
 </template>
 
 <script>
-import AppNavbar from '../users/navbar.vue' 
+
  import AppSidebar from '../users/sidebar.vue'
  import Vue from 'vue'
     export default {
     components: {
-            AppNavbar,  AppSidebar 
+              AppSidebar 
         },
         data() {
             return {
