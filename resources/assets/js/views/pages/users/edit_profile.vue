@@ -144,12 +144,12 @@
 <script>
    import datepicker from 'vuejs-datepicker'
     import ClickConfirm from 'click-confirm'
-   import AppNavbar from './navbar.vue' 
+ 
    import AppSidebar from './sidebar.vue'
    import Vue from 'vue'
    export default {
    components: {
-              AppNavbar,  AppSidebar ,ClickConfirm,datepicker,
+               AppSidebar ,ClickConfirm,datepicker,
           },
           data() {
               return {
