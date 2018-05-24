@@ -10,7 +10,7 @@
                 <div class="dashboard__content clearfix">
                     <div class="dashboard__content--head">
                         <h3 class="dashboard__content--head--heading">Messages</h3>
-                        <a href="#" class="dashboard__content--head--link"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        <router-link to ="/" class="dashboard__content--head--link"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="460.298px" height="460.297px" viewBox="0 0 460.298 460.297" style="enable-background:new 0 0 460.298 460.297;"
                             xml:space="preserve">
                            <g>
@@ -25,7 +25,7 @@
                                    L230.149,95.817l197.57,164.741c1.526,1.328,3.521,1.991,5.996,1.991h0.858c2.471-0.376,4.463-1.43,5.996-3.138l17.703-21.125
                                    c1.522-1.906,2.189-4.145,1.991-6.716C460.068,229.007,459.021,226.961,457.122,225.438z"/>
                            </g>
-                       </svg>Home</a>
+                       </svg>Home</router-link>
                     </div>
                   
           <div class="chat_frame">
@@ -215,7 +215,7 @@
 </template>
   
 <script>
-import AppNavbar from '../users/navbar.vue' 
+
  import AppSidebar from '../users/sidebar.vue'
  import Vue from 'vue'
  import toogle from '../../../../js/toogle.js'
@@ -223,35 +223,37 @@ import AppNavbar from '../users/navbar.vue'
   
     export default {
     components: {
-            AppNavbar,  AppSidebar 
+              AppSidebar 
         },
     data() {
             return {
 			subject:{},
 			product:{},
 			charities:{},
-   info:[],
-   user:[],
-      items:[],
-	    prod:{
+			info:[],
+			user:[],
+			items:[],
+	     prod:{
    				  title: 'select',
    				  units: ''
    				},
-    savechat:{  message:''  }    
-            }
+         savechat:{
+				      message:''  
+			       }    
+				}
         },
     props: ['userId'],
   created: function()
         {
-		this.fetchCharity();
-   this.fetchMessage();
-   this.senderinfo();
-   this.fetchItem();
-   this.click();
-   this.fetch_subject();
+			   this.fetchCharity();
+			   this.fetchMessage();
+			   this.senderinfo();
+			   this.fetchItem();
+			   this.click();
+			   this.fetch_subject();
         },
          mounted(){
-     this.fetchItems();
+       this.fetchItems();
        this.fetchproducts();
     },
 
@@ -331,8 +333,8 @@ import AppNavbar from '../users/navbar.vue'
    
    
              submit(e){
-    axios.post('/api/message/'+this.$route.params.id, this.savechat).then(response =>   { if(response.status===200) {
-        this.savechat.message = '';
+					axios.post('/api/message/'+this.$route.params.id, this.savechat).then(response =>   { if(response.status===200) {
+						this.savechat.message = '';
         
         }
        });
@@ -372,16 +374,14 @@ import AppNavbar from '../users/navbar.vue'
               });
             },
     getAuthUser(name) {
-    
-                return this.$store.getters.getAuthUser(name);
-    
-            },
+							return this.$store.getters.getAuthUser(name);
+						},
    
     },
     computed: {
     getrole(){
-   	return this.getAuthUser('role');
-   },
+				return this.getAuthUser('role');
+			},
             getAvatar(){
                 return '/images/user/'+this.getAuthUser('avatar');
             }
