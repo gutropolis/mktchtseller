@@ -68,12 +68,12 @@
    </div>
 </template>
 <script>
-   import AppNavbar from './navbar.vue' 
+   
     import AppSidebar from './sidebar.vue'
     import Vue from 'vue'
        export default {
        components: {
-               AppNavbar,  AppSidebar 
+           AppSidebar 
            },
 
            data() {
