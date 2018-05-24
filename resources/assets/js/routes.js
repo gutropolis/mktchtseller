@@ -129,11 +129,7 @@ let routes = [
 				path: '/product_list',
 				component:require('./views/pages/manage_seller/product_list')
 			},
-			{
-				name:'report_detail',
-				path: '/report_detail/:id',
-				component:require('./views/pages/manage_seller/report_detail')
-			},
+			
 			{
 				path: '/donation_list',
 				component:require('./views/pages/manage_seller/donation_list')
