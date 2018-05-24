@@ -179,6 +179,7 @@
   import VueGoogleAutocomplete from 'vue-google-autocomplete'
  import AppSidebar from '../users/sidebar.vue'
 import VueTelInput from 'vue-tel-input'
+
  import Vue from 'vue'
   Vue.use(VueTelInput)
  export default {
