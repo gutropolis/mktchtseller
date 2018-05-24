@@ -26,7 +26,7 @@
                                  <tr v-for="(item,index) in items.data">
                                     <td>{{index+1}}</td>
                                     <td>{{item.title}}</td>
-									<td v-if="item.description.length>=50">
+									<td v-if="item.description.length>=2">
 								<p class="charity__listing--content--box--pera"><span v-text="item.description.substring(0,200)+'.......'"></span></p>
 									</td>
                                     <td>{{item.city}}, {{item.state}}</td>
