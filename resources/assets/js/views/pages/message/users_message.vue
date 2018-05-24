@@ -78,14 +78,19 @@
                                                 @shown="clearName">
                                                 <form  id="prod" @submit.stop.prevent="handleSubmit">
                                                    <div class="form-group">
-                                                      <label class="login__element--box--label">Select Product</label>
+												   <label class="login__element--box--label">Select Product</label>
                                                       <select name="title" v-model="prod.id" v-on:change="onChange"   class="login__element--box--input">
                                                          <option value="select">Select .. </option>
                                                          <option v-for="item in product"  v-bind:value="item.id">{{item.title}}</option>
                                                       </select>
-                                                   </div>
-                                                   <label class="charity__element--block--content--box--label">Units</label>
+													<label class="charity__element--block--content--box--label">Units</label>
                                                    <input type="number" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
+                                                   </div>
+                                                   <label class="login__element--box--label">Select Charity to Offer Product</label>
+                                                      <select name="title" v-model="prod.charity_id"    class="login__element--box--input">
+                                                         <option value="select">Select .. </option>
+                                                         <option v-for="item in charities"  v-bind:value="item.id">{{item.title}}</option>
+                                                      </select>
                                                  
                                                 </form>
                                              </b-modal>
@@ -224,6 +229,7 @@ import AppNavbar from '../users/navbar.vue'
             return {
 			subject:{},
 			product:{},
+			charities:{},
    info:[],
    user:[],
       items:[],
@@ -237,6 +243,7 @@ import AppNavbar from '../users/navbar.vue'
     props: ['userId'],
   created: function()
         {
+		this.fetchCharity();
    this.fetchMessage();
    this.senderinfo();
    this.fetchItem();
@@ -259,9 +266,9 @@ import AppNavbar from '../users/navbar.vue'
                  });
    	 },
 	  handleSubmit () {
-       let data = this.prod;
-	   let data2=this.subject;
-     axios.post('/api/seller_make_offer/'+this.$route.params.id,{data,data2}).then(response => {
+      
+	 
+     axios.post('/api/seller_make_offer/'+this.$route.params.id,this.prod).then(response => {
      toastr['success'](response.data.message);
      })
    
@@ -300,6 +307,15 @@ import AppNavbar from '../users/navbar.vue'
    
    
    },
+    fetchCharity()
+   	{
+   	axios.get('/api/get_charity').then(response=>{
+   	
+   	this.charities=response.data;
+   	
+   	
+   	})
+   	},
    
    
    fetchproducts()
