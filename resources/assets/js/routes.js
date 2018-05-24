@@ -33,10 +33,7 @@ let routes = [
 				path : '/my_notification',
 				component:require('./views/pages/my_notification')
 			},
-			{
-				path : '/my_message',
-				component:require('./views/pages/message/my_message')
-			},
+			
 			{
 				path : '/user_chat',
 				component:require('./views/pages/message/user_chat')
@@ -131,6 +128,11 @@ let routes = [
 			{
 				path: '/product_list',
 				component:require('./views/pages/manage_seller/product_list')
+			},
+			{
+				name:'report_detail',
+				path: '/report_detail/:id',
+				component:require('./views/pages/manage_seller/report_detail')
 			},
 			{
 				path: '/donation_list',
