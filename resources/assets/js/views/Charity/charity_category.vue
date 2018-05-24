@@ -46,7 +46,7 @@
 </div>
 </template>
 <script>
-import AppNavbar from '../pages/users/navbar.vue' 
+
  import AppSidebar from '../pages/users/sidebar.vue'
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
@@ -55,7 +55,7 @@ Vue.use(VeeValidate);
 
  export default {
 	 components: {
-            AppNavbar,  AppSidebar 
+              AppSidebar 
         },
 	        data() {
 			
