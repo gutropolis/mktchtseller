@@ -172,6 +172,13 @@ class SellerController extends Controller
         return response()->json(array('data1'=>$pending,'data2'=>$accept,'data3'=>$decline));
     }
     
+	 public function report_detail(Request $request,$id)
+    {
+		 $report=Donation::select('gs_donation.created_at','gs_donation.units','gs_donation.id','gs_vender_product.price','gs_vender_product.fair_value')->where('gs_donation.id','=',$id)->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->get();
+		return($report);
+       
+    }
+
         
      public function seller_details(Request $request,$id)
     {
@@ -184,19 +191,19 @@ class SellerController extends Controller
 	
 	public function seller_donation(Request $request)
 	{
-		$title=$request->input('data2');
+		$charity_id=$request->input('charity_id');;
 		//return ($title);
-		$charity = Charity::where('title',$title)->first();
+		$charity = Charity::where('id',$charity_id)->first();
 		
 		$user = JWTAuth::parseToken()->authenticate();
 		$sellerproduct=new \App\Donation;
 		$sellerproduct->seller_id = $user->id;
-		$sellerproduct->product_id=$request->input('data.id');
+		$sellerproduct->product_id=$request->input('id');
 		//return($sellerproduct->product_id);
-		$sellerproduct->charity_id=$charity->id;
+		$sellerproduct->charity_id=$request->input('charity_id');
 		$sellerproduct->post_id=$charity->id;
 		$sellerproduct->charity_owner_id=$charity->user_id;
-		$sellerproduct->units=$request->input('data.units');
+		$sellerproduct->units=$request->input('units');
 		$sellerproduct->charity_status="0";
 		$sellerproduct->is_certify="0";
 		$sellerproduct->progress="0";
