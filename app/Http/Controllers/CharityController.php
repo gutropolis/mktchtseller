@@ -459,18 +459,14 @@ class charityController extends Controller
 	   $charity_detail=Charity::where('id',$donation_detail->charity_id)->first();
 	   $data = array('donation_detail'=>$donation_detail, 'charity_detail'=>$charity_detail,'reciever_user'=>$reciever_user);
 		  
-		$pdf = PDF::loadView('pdf.report', $data);
-			//return($pdf);	   	 
+		
 		  $admin_email=Settings::pluck('admin_email');
 		$admin=$admin_email[0];
 		 
 		Mail::send('emails.accept_donation', $data , function($message) use($admin,$pdf)
 		{
 			$message->to($admin)->subject('Welcome!');
-			  $message->attach('report.pdf', [
-                        'as' => 'report.pdf',
-                        'mime' => 'application/pdf',
-                    ]);
+			  
 		});
 		Mail::send('emails.accept_donation', $data , function($message) use ($reciever_user)
 		{
