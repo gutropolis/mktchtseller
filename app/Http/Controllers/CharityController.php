@@ -463,7 +463,7 @@ class charityController extends Controller
 		  $admin_email=Settings::pluck('admin_email');
 		$admin=$admin_email[0];
 		 
-		Mail::send('emails.accept_donation', $data , function($message) use($admin,$pdf)
+		Mail::send('emails.accept_donation', $data , function($message) use($admin)
 		{
 			$message->to($admin)->subject('Welcome!');
 			  
