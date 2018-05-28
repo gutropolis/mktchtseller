@@ -75,6 +75,11 @@ let routes = [
 				component:require('./views/Charity/charity_list')
 			},
 			{
+				name:'certify_document',
+				path : '/certify_document/:id',
+				component:require('./views/Charity/certify_document')
+			},
+			{
 				name:'edit_charity',
 				path : '/edit_charity/:id',
 				component:require('./views/Charity/edit_charity')
@@ -93,6 +98,11 @@ let routes = [
 				path:'/request',
 				component:require('./views/pages/seller_notification')
 				
+			},
+			{
+				name:'seller_document',
+				path : '/seller_document/:id',
+				component:require('./views/pages/manage_seller/seller_document')
 			},
 			
 			{
