@@ -6,11 +6,13 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\charityRequest;
 use App\Charity;
+use Intervention\Image\Exception\NotReadableException;
 use App\Sellerproduct;
 use App\Donation;
 use App\Events\MessageDonation;
 use App\User;
 use App\CharityCategory;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Settings;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
@@ -158,11 +160,11 @@ class charityController extends Controller
 		$date->modify('-3 days');
 		$formatted_date = $date->format('Y-m-d H:i:s');
 		
-		$donaters=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.updated_by as seller','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.is_certify','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_owner_id','=',$user->id)->where('gs_donation.charity_status','1')->where('gs_donation.created_at', '>',$formatted_date)->paginate(request('pageLength'));
+		$donaters=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.updated_by as seller','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.is_certify','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_owner_id','=',$user->id)->where('gs_donation.charity_status','1')->paginate(request('pageLength'));
 		if(request('page') && request('pageLength'))
 		{
 		
-		$donatersLength=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.updated_by as seller','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.is_certify','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_owner_id','=',$user->id)->where('gs_donation.charity_status','1')->where('gs_donation.created_at', '>',$formatted_date)->count();
+		$donatersLength=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.updated_by as seller','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.is_certify','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_owner_id','=',$user->id)->where('gs_donation.charity_status','1')->count();
 		}
 		//return($donatersLength);
 		return response()->json(array('data1'=>$donaters,'data2'=>$donatersLength));
@@ -181,10 +183,6 @@ class charityController extends Controller
 		
 	}
 		
-		
-		
-		
-		
 		public function status(Request $request,$id)
 	
 	{
@@ -194,19 +192,31 @@ class charityController extends Controller
 		
 		
 	}
-	    public function toggleStatus($id){
-			 $ids = explode(",", $id);
-			
-			$task = Donation::find($ids);
-		foreach($task as $tasks){
-			
-			 $tasks->is_certify = "1";
-			 $tasks->save();
-		}
-       
-       
-
-        return response()->json(['message' => 'Donation Are Certified Completed']);
+	    public function toggleStatus(Request $request)
+		{
+			$task=$request->input('data1');
+			$task = Donation::where('id',$task)->first();
+				$user = JWTAuth::parseToken()->authenticate();
+		
+		
+		if($request->get('data'))
+				{
+					$image = $request->get('data');
+					$image = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+					\Image::make($request->get('data'))->save(public_path('images/signature/').$image);
+				}
+		
+		
+	
+	$task->is_certify = "1";
+	$task->signature=$image;
+	
+	$actvity=new Controller;
+	$actvity->AddUserActivityFeed($user->id,$task->seller_id,'charity','Charity has certified the deal.This deal is Fully Completed.',$task->post_id,'/donation_list');
+	$task->save();
+	
+	
+	return response()->json(['message' => 'Donation Are Certified Completed']);
     }
 	
 	
@@ -447,35 +457,26 @@ class charityController extends Controller
 	   $reciever_user=User::where('id',$donation_detail->seller_id)->first();
 	   $sender_user=User::where('id',$donation_detail->charity_owner_id)->first();
 	   $charity_detail=Charity::where('id',$donation_detail->charity_id)->first();
-	 
-	   	 $data = array('donation_detail'=>$donation_detail, 'charity_detail'=>$charity_detail,'reciever_user'=>$reciever_user);
+	   $data = array('donation_detail'=>$donation_detail, 'charity_detail'=>$charity_detail,'reciever_user'=>$reciever_user);
 		  
+		$pdf = PDF::loadView('pdf.report', $data);
+			//return($pdf);	   	 
 		  $admin_email=Settings::pluck('admin_email');
 		$admin=$admin_email[0];
 		 
-		Mail::send('emails.accept_donation', $data , function($message) use($admin)
+		Mail::send('emails.accept_donation', $data , function($message) use($admin,$pdf)
 		{
 			$message->to($admin)->subject('Welcome!');
+			  $message->attach('report.pdf', [
+                        'as' => 'report.pdf',
+                        'mime' => 'application/pdf',
+                    ]);
 		});
 		Mail::send('emails.accept_donation', $data , function($message) use ($reciever_user)
 		{
 			$message->to($reciever_user->email)->subject('Notify!');
 		});
-		/*$inbox=new \App\Inbox;
-		$inbox->sender_id = $sender_user->id;
-		$inbox->reciever_id = $reciever_user->id;
-		$inbox->post_id = $donation_detail->product_id;
-		$inbox->subject = $product->title;
-		$inbox->status='0';
-		$inbox->post_type='seller';
-		$inbox->save();
-		$message=new \App\Message;
-		$message->inbox_id=$inbox->id;
-		$message->sender_id=$sender_user->id;
-		$message->reciever_id=$reciever_user->id;
-		$message->message='Hello';
-		$message->reciever_read='0';
-		$message->save();*/
+		
 		
 			$actvity=new Controller;
 			$actvity->AddUserActivityFeed($donation_detail->charity_owner_id,$donation_detail->seller_id,'seller','Accept Donated product',$donation_detail->post_id,'/donaters');
@@ -558,7 +559,9 @@ class charityController extends Controller
 		
 	}
 
-    public function postLockscreen(Request $request){
-       
+    public function certifydata(Request $request,$id){
+		
+      $data=Donation::select('gs_donation.created_at','gs_donation.id','gs_charity_organisation.mission_statement','gs_charity_organisation.vision_statement','gs_charity_organisation.postal_code','gs_charity_organisation.description','gs_charity_organisation.website','gs_charity_organisation.address','gs_vender_product.title as product','gs_donation.units','gs_charity_organisation.title as charity','gs_vender_organisation.tax_id')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.id',$id)->join('gs_vender_organisation','gs_vender_organisation.id','=','gs_vender_product.organisation_id')->first();
+	  return $data; 
     }
 }
