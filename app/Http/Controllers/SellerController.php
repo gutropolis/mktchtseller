@@ -11,6 +11,7 @@ use App\Http\Requests;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use Hash;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\SellerCategory;
 use Illuminate\Http\Request;
 use App\Settings;
@@ -166,7 +167,7 @@ class SellerController extends Controller
             
             $accept=Donation::select('gs_donation.created_at','gs_donation.units','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_charity_organisation.title as charity','gs_charity_organisation.updated_by as charity_name')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.seller_status','1')->where('gs_donation.seller_id',$user->id)->get();
             
-        $decline=Donation::select('gs_donation.created_at','gs_donation.units','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_charity_organisation.title as charity','gs_charity_organisation.updated_by as charity_name')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.seller_status','2')->where('gs_donation.seller_id',$user->id)->get();
+			$decline=Donation::select('gs_donation.created_at','gs_donation.units','gs_donation.id','gs_vender_product.images','gs_vender_product.title','gs_charity_organisation.title as charity','gs_charity_organisation.updated_by as charity_name')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.created_at', '>',$formatted_date)->where('gs_donation.seller_status','2')->where('gs_donation.seller_id',$user->id)->get();
         
         
         return response()->json(array('data1'=>$pending,'data2'=>$accept,'data3'=>$decline));
@@ -175,7 +176,12 @@ class SellerController extends Controller
 	 public function report_detail(Request $request,$id)
     {
 		 $report=Donation::select('gs_donation.created_at','gs_donation.units','gs_donation.id','gs_vender_product.price','gs_vender_product.fair_value')->where('gs_donation.id','=',$id)->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->get();
-		return($report);
+	
+		  $pdf = PDF::loadView('pdf.report', compact('report'));
+			return $pdf->download('report.pdf');
+		
+
+     
        
     }
 
@@ -494,12 +500,11 @@ class SellerController extends Controller
      *
      * @return View
      */
-    public function getDeletedseller()
+    public function sellerdocument(Request $request,$id)
     {
-        $seller = Seller::onlyTrashed()->get();
-
-        // Show the page
-        return view('admin.deleted_seller', compact('seller'));
+		
+      $data=Donation::select('gs_donation.created_at','gs_donation.signature','gs_donation.id','gs_charity_organisation.mission_statement','gs_charity_organisation.vision_statement','gs_charity_organisation.postal_code','gs_charity_organisation.description','gs_charity_organisation.website','gs_charity_organisation.address','gs_vender_product.title as product','gs_donation.units','gs_charity_organisation.title as charity','gs_vender_organisation.tax_id')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.id',$id)->join('gs_vender_organisation','gs_vender_organisation.id','=','gs_vender_product.organisation_id')->first();
+	  return $data; 
     }
 
  public function destroy_donation($id)
