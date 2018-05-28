@@ -10,9 +10,9 @@
 					 <div class="col-nd-10"><h3 class="dashboard__content--head--heading">Donations</h3>
 					 <p>Click On Certify Only After the Products Have Been Dilevered to You.By Clicking On Certify You Acknowledge That the Donation is completed And you will Prompted to electronically sign off on the Donation </p>
 					 </div>
-					 <div class="col-md-2">
+					<!-- <div class="col-md-2">
 						<button  class="btn btn-success btn-md btn-sky-blue" @click="toggleTaskStatus()" data-toggle="tooltip" title="Mark as Incomplete">Certify</button>
-					 </div>
+					 </div>-->
 					 </div>
                   </div> 
                   <div>
@@ -35,8 +35,8 @@
                                  <td>{{item.seller}}</td>
 								 <td>{{item.charity}}</td>
                                  <td>{{item.units}}</td>
-								 <td v-if="item.is_certify==0 && item.charity_status==1"><b>Not Certified</b></td>
-								 <td v-if="item.is_certify==1  && item.charity_status==1"><b>Certified</b></td>
+								<router-link :to="{name: 'certify_document', params: { id: item.id }}"> <td v-if="item.is_certify==0 && item.charity_status==1"><button class="btn btn-success btn-sm btn-sky-blue">Certify</button></td></router-link>
+								<router-link to =""> <td v-if="item.is_certify==1  && item.charity_status==1"><button class="btn btn-success btn-sm btn-sky-blue"  @click="toggleTaskStatus(item.id)">Certified</button></td></router-link/>
                                  
                               </tr>
 							   <tr>
@@ -129,9 +129,9 @@
                
 		     
     
-	 toggleTaskStatus(){
+	 toggleTaskStatus(id){
 	 
-                   axios.post('/api/certify/'+this.selected).then((response) => {
+                   axios.post('/api/certify/'+id).then((response) => {
 				   toastr['success'](response.data.message);
                        this.fetchItems();
                    });
