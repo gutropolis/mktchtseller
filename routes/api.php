@@ -76,6 +76,7 @@ Route::get('/donation_list','SellerController@donation_list');
 Route::get('/charity_info/{id}','SellerController@charity_info');
 Route::post('/edit_donation/{id}','SellerController@updatedonation');
 Route::delete('/delete_donation/{id}','SellerController@destroy_donation');
+Route::get('/sellerdata/{id}','SellerController@sellerdocument');
 
 //Charity Ads
 Route::post('/create_ads','AdsController@store');
@@ -105,11 +106,12 @@ Route::get('/edit_status/{id}','CharityController@edit_status');
 Route::post('/edit_status/{id}','CharityController@update_status');
 Route::get('/charity_notification','CharityController@notification');
 Route::get('/unread_charity_notification','CharityController@unread_notification');
+Route::get('/certifydata/{id}','CharityController@certifydata');
 
 //Donaters
 Route::get('/donaters_list','CharityController@donaters');
 Route::post('/status/{id}','CharityController@status');
-Route::post('/certify/{id}','CharityController@toggleStatus');
+Route::post('/certify','CharityController@toggleStatus');
 Route::get('/product_name/{id}','CharityController@product_name');
 
 //Activity_Seller
