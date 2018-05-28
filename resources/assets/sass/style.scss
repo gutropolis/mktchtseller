@@ -1044,7 +1044,26 @@ font-size:15px;
                         margin-right: 5px;
                     }
                 }
+				 .signature_box
+				 {
+					 p{
+						 font-size:14px;
+					 }
+					 
+				 }
+				 .signature_content{
+					 float:right;
+					 .signature_pad{
+						 
+						 background:#fff;
+						max-width:200px;
+						 max-height:100px;
+						 overflow:hidden;
+						 margin-bottom:10px;
+					 }
+				 }
             }
+			
             &--outer {
                 padding: $space-m;
             }
@@ -3005,4 +3024,15 @@ font-weight:600;
 		}
 	}
 	
+}
+.signature_box{
+	width:100%;
+	p{
+		padding-bottom:$space-n;
+		font-size:16px;
+	}
+	.signature_content
+	{
+		
+	}
 }
