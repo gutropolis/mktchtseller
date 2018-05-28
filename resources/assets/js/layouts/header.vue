@@ -126,7 +126,7 @@
 										  <figure class="notification__profile" v-if="it.avatar!=null"> 
 										  <img :src="'/images/user/'+it.avatar"></figure>
                                           <div class="notification__content">
-										  <p class="notification__content--pera">{{it.first_name}}{{it.last_name}}  {{ it.subject }}
+										  <p class="notification__content--pera">{{it.first_name}} {{it.last_name}}  {{ it.subject }}
 										  
 										  
 										  <span>{{ it.created_at |  moment("dddd, MMMM Do YYYY, h:mm:ss a") }}</span>
