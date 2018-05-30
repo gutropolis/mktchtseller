@@ -18,8 +18,9 @@
                         
 							<div class="signature_content">
 							
-                         
-							<img class="signature_pad" :src="'/images/signature/'+data.signature">
+
+								<img src="{{ public_path("images/signature/".$data->signature) }}" alt="" style="width: 150px; height: 150px;">
+							
                            
                            <div>All About {{ $data->charity }}</div>
 						   </div>
