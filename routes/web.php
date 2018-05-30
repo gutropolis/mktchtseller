@@ -95,6 +95,13 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
         Route::post('passwordreset', 'UsersController@passwordreset')->name('passwordreset');
 
     });
+	
+	//Membership
+	 Route::resource('plans', 'PlansController');
+	
+	
+	
+	
       Route::get('donation_list/data', 'DonationController@donation_listData')->name('donation_list.data');
        Route::get('{donation}/delete', 'DonationController@destroy')->name('donation.delete');
         Route::get('{donation}/confirm-delete', 'DonationController@getModalDelete')->name('donation.confirm-delete');
