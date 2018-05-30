@@ -229,6 +229,8 @@
                                        <td> 
                                       <!--<i class="fa fa-file-pdf-o" aria-hidden="true" @click="fetchreport(item.id)"></i>-->
 									<router-link :to="{name: 'seller_document', params: { id: item.id }}"> <i class="fa fa-file-text" aria-hidden="true"></i></router-link>
+									
+									<a href="/report.pdf" @click="generatepdf(item.id)" class="btn btn-md-danger" download>pdf</a>
                                   </td>
                                        
                                     </tr>
@@ -322,21 +324,15 @@ Vue.use(require('vue-moment'));
            
            created: function()
           {
-            this.fetchreport();
+		  this.generatepdf();
+           
               this.fetchItems();
           },
           mounted(){
           this.charity_info()
           },
           methods: {
-		   fetchreport(id)
-               {
-					
-                 axios.get('/api/report_donation/'+id).then(response =>  {
-   			
-   				
-                 });
-               },
+		   
           charity_info(id)
          {
             axios.get('/api/charity_info/'+id).then(response=>{
@@ -355,6 +351,18 @@ Vue.use(require('vue-moment'));
        
        
        },
+	   generatepdf(id)
+	   {
+			axios.get('/api/generatepdf/'+id).then(response=>{
+			 let blob = new Blob([response.data], { type: 'application/pdf' } ),
+      url = window.URL.createObjectURL(blob)
+
+  window.open(url); // Mostly the same, I was just experimenting with different approaches, tried link.click, iframe and other solutions
+});
+			 
+			
+	   
+	   },
     
        fetchItems(page)
            {
