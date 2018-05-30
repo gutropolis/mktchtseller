@@ -6,6 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "barryvdh/laravel-dompdf": "^0.8.2",
+        "barryvdh/laravel-snappy": "^0.4.1",
         "cartalyst/sentinel": "2.0.*",
         "consoletvs/charts": "^5.4",
         "cviebrock/eloquent-sluggable": "^4.3",
