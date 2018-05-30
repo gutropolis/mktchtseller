@@ -16,10 +16,10 @@
 						   </p>
 						  
                         
-							<div class="signature_content">
+							<div class="signature_content" style="text-align:right;">
 							
 
-								<img src="{{ public_path("images/signature/".$data->signature) }}" alt="" style="width: 150px; height: 150px;">
+								<img src="{{ public_path("images/signature/".$data->signature) }}" alt="" style="">
 							
                            
                            <div>All About {{ $data->charity }}</div>
