@@ -181,8 +181,8 @@ return [
 		Intervention\Image\ImageServiceProvider::class,
 		 Laravel\Socialite\SocialiteServiceProvider::class,
 		 App\Providers\AmazonServiceProvider::class,
-
-		
+		 /*Genrerate Html To PDF*/
+		Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -244,8 +244,8 @@ return [
 		'Sentinel'   => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
 		'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
 		'JWTFactory' => Tymon\JWTAuthFacades\JWTFactory::class,
-		'Amazon' => App\Facades\Amazon::class
-   
+		'Amazon' => App\Facades\Amazon::class,
+		'PDF' => Barryvdh\DomPDF\Facade::class,
    ],
 
 ];
