@@ -67,7 +67,7 @@ Route::post('/update-seller_logo/{id}','SellerController@updatelogo' );
 Route::post('/update-seller/{id}','SellerController@updateSeller' );
 Route::delete('/seller_list/{id}','SellerController@destroy');
 Route::get('/vender_category','SellerCategoryController@index');
-Route::get('/report_donation/{id}','SellerController@report_detail');
+
 
 
 //Donation Seller
@@ -77,6 +77,7 @@ Route::get('/charity_info/{id}','SellerController@charity_info');
 Route::post('/edit_donation/{id}','SellerController@updatedonation');
 Route::delete('/delete_donation/{id}','SellerController@destroy_donation');
 Route::get('/sellerdata/{id}','SellerController@sellerdocument');
+Route::get('/generatepdf/{id}','SellerController@generatepdf');
 
 //Charity Ads
 Route::post('/create_ads','AdsController@store');
