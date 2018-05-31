@@ -30,6 +30,7 @@ class charityController extends JoshController
     {
 
         // Show the page
+		$charity=Charity::all();
         
         return view('admin.charity.index', compact('charity'));
     }
