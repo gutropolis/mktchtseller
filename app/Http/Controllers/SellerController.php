@@ -502,6 +502,7 @@ class SellerController extends Controller
 		
 		$data=Donation::select('gs_donation.created_at','gs_donation.signature','gs_donation.id','gs_charity_organisation.mission_statement','gs_charity_organisation.vision_statement','gs_charity_organisation.postal_code','gs_charity_organisation.description','gs_charity_organisation.website','gs_charity_organisation.address','gs_vender_product.title as product','gs_donation.units','gs_charity_organisation.title as charity','gs_vender_organisation.tax_id')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.id',$id)->join('gs_vender_organisation','gs_vender_organisation.id','=','gs_vender_product.organisation_id')->first();
 			
+			//return($data);
 			$pdf = PDF::loadView('pdf.products', compact('data'));
 		
 			
