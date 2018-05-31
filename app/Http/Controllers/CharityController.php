@@ -118,7 +118,7 @@ class CharityController extends Controller
 	 $data = array('sellerproduct'=>$sellerproduct, 'sender_user'=>$sender_user,'reciever_user'=>$reciever_user,'product'=>$product);
 		 Mail::send('emails.donate', $data , function($message) use ($reciever_user)
 		{
-			$message->to($reciever_user->email)->subject('Donate!');
+			$message->to($reciever_user->email)->subject('Donate!');    
 		});
 		$sellerproduct->save();
 		$user = JWTAuth::parseToken()->authenticate();
