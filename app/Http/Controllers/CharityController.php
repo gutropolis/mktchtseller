@@ -11,6 +11,7 @@ use App\Sellerproduct;
 use App\Donation;
 use App\Events\MessageDonation;
 use App\User;
+use App\Seller;
 use App\CharityCategory;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Settings;
@@ -30,7 +31,7 @@ Use App\Mail\Restore;
 use stdClass;
 
     
-class charityController extends Controller
+class CharityController extends Controller
 {
 
  protected $avatar_path = 'images/charity/';   
@@ -120,6 +121,11 @@ class charityController extends Controller
 			$message->to($reciever_user->email)->subject('Donate!');
 		});
 		$sellerproduct->save();
+		$user = JWTAuth::parseToken()->authenticate();
+		//return($trial_pack);
+		$remaning=$user->trial_pack- $sellerproduct->units[0];
+		
+		$update=User::where('id',$user->id)->update(['trial_pack'=>$remaning]);
 		
 		$actvity=new Controller;
 	$actvity->AddUserActivityFeed($sellerproduct->seller_id,$sellerproduct->charity_owner_id,'charity','Invite to Donate Product',$sellerproduct->post_id,'/donaters');
@@ -160,7 +166,7 @@ class charityController extends Controller
 		$date->modify('-3 days');
 		$formatted_date = $date->format('Y-m-d H:i:s');
 		
-		$donaters=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.updated_by as seller','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.is_certify','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_owner_id','=',$user->id)->where('gs_donation.charity_status','1')->paginate(request('pageLength'));
+		$donaters=Donation::select('gs_donation.created_at','gs_donation.id','gs_donation.progress','gs_donation.units','gs_vender_product.updated_by as seller','gs_vender_product.title as product','gs_charity_organisation.title as charity','gs_donation.is_certify','gs_donation.charity_status')->join('gs_charity_organisation','gs_donation.charity_id','=','gs_charity_organisation.id')->join('gs_vender_product','gs_donation.product_id','=','gs_vender_product.id')->where('gs_donation.charity_owner_id','=',$user->id)->where('gs_donation.charity_status','1')->latest()->paginate(request('pageLength'));
 		if(request('page') && request('pageLength'))
 		{
 		
