@@ -21,22 +21,21 @@ Use App\Mail\Restore;
 use stdClass;
 
 
-class charityController extends JoshController
+class CharityController extends JoshController
 {
-
-    
 
     public function index()
     {
 
         // Show the page
-		$charity=Charity::all();
+		//$charity=Charity::all();
         
         return view('admin.charity.index', compact('charity'));
     }
  public function data()
     {
         $charity = Charity::get(['id', 'title', 'description', 'state','city','created_at']);
+		return($charity);
 
         return DataTables::of($charity)
             ->editColumn('created_at',function(charity $charity) {
