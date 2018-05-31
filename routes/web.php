@@ -116,18 +116,18 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
       Route::get('donation_list/data', 'DonationController@donation_listData')->name('donation_list.data');
        Route::get('{donation}/delete', 'DonationController@destroy')->name('donation.delete');
         Route::get('{donation}/confirm-delete', 'DonationController@getModalDelete')->name('donation.confirm-delete');
+		 Route::resource('donation', 'DonationController');
 	
 	//charity management
     Route::group([ 'prefix' => 'charity'], function () {
-        Route::get('data', 'charityController@data')->name('charity.data');
-        Route::get('{charity}/delete', 'charityController@destroy')->name('charity.delete');
-        Route::get('{charity}/confirm-delete', 'charityController@getModalDelete')->name('charity.confirm-delete');
-        //Route::get('{user}/restore', 'charityController@getRestore')->name('restore.user');
-//        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
-       // Route::post('passwordreset', 'charityController@passwordreset')->name('passwordreset');
+        Route::get('data', 'CharityController@data')->name('charity.data');
+        Route::get('{charity}/delete', 'CharityController@destroy')->name('charity.delete');
+        Route::get('{charity}/confirm-delete', 'CharityController@getModalDelete')->name('charity.confirm-delete');
+       
     });
+	  Route::resource('charity', 'CharityController');
 
-    Route::resource('donation', 'DonationController');
+   
 
 Route::group(['prefix' => 'charityrequests'], function () {
         Route::get('{charityrequests}/delete', 'CharityRequestController@destroy')->name('charityrequests.delete');
@@ -140,7 +140,7 @@ Route::group(['prefix' => 'charityrequests'], function () {
     Route::resource('charityrequests','CharityRequestController');
 
 
-    Route::resource('charity', 'CharityController');
+  
     
         Route::get('deleted_users',['before' => 'Sentinel', 'uses' => 'charityController@getDeletedUsers'])->name('deleted_users');
 		
