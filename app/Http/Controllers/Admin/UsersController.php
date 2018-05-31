@@ -318,7 +318,7 @@ class UsersController extends JoshController
             }
             // Delete the user
             //to allow soft deleted, we are performing query on users model instead of Sentinel model
-            User::destroy($id);
+            Users::destroy($id);
             Activation::where('user_id',$user->id)->delete();
             // Prepare the success message
             $success = trans('users/message.success.delete');
