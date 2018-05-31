@@ -17,7 +17,7 @@ Route::group(['prefix' => 'admin', 'namespace'=>'Admin'], function () {
 
     # Error pages should be shown without requiring login
     Route::get('404', function () {
-        return view('admin/404');
+        return view('admin/404');       
     });
     Route::get('500', function () {
         return view('admin/500');
@@ -79,7 +79,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'as' => 'admin.'], f
     //end Log viewer
     # Activity log
     Route::get('activity_log/data', 'JoshController@activityLogData')->name('activity_log.data');
-  
 //    Route::get('/', 'JoshController@index')->name('index');
 });
 
@@ -96,29 +95,6 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
 
     });
 	
-	//Membership
-	 Route::group([ 'prefix' => 'plans'], function () {
-        Route::get('data', 'PlansController@data')->name('plans.data');
-        Route::get('{plans}/delete', 'PlansController@destroy')->name('plans.delete');
-        Route::get('{plans}/confirm-delete', 'PlansController@getModalDelete')->name('plans.confirm-delete');
-        
-
-
-    });
-	 Route::resource('plans', 'PlansController');
-	
-	//payment Settings
-	 Route::group([ 'prefix' => 'plans'], function () {
-        Route::get('data', 'PaymentsController@data')->name('payments.data');
-	 });
-       
-	 Route::resource('payments', 'PaymentsController');
-	
-	
-      Route::get('donation_list/data', 'DonationController@donation_listData')->name('donation_list.data');
-       Route::get('{donation}/delete', 'DonationController@destroy')->name('donation.delete');
-        Route::get('{donation}/confirm-delete', 'DonationController@getModalDelete')->name('donation.confirm-delete');
-	
 	//charity management
     Route::group([ 'prefix' => 'charity'], function () {
         Route::get('data', 'charityController@data')->name('charity.data');
@@ -129,20 +105,7 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
        // Route::post('passwordreset', 'charityController@passwordreset')->name('passwordreset');
     });
 
-    Route::resource('donation', 'DonationController');
-
-Route::group(['prefix' => 'charityrequests'], function () {
-        Route::get('{charityrequests}/delete', 'CharityRequestController@destroy')->name('charityrequests.delete');
-   Route::get('{charityrequests}/accept', 'CharityRequestController@accept')->name('charityrequests.accept');
-    Route::get('{charityrequests}/deactivate', 'CharityRequestController@deactivate')->name('charityrequests.deactivate');
-   
-        Route::get('{charityrequests}/confirm-delete', 'CharityRequestController@getModalDelete')->name('prodcutcategory.confirm-delete');
-        Route::get('{charityrequests}/restore', 'CharityRequestController@getRestore')->name('productcategory.restore');
-    });
-    Route::resource('charityrequests','CharityRequestController');
-
-
-    Route::resource('charity', 'CharityController');
+    Route::resource('charity', 'charityController');
     
         Route::get('deleted_users',['before' => 'Sentinel', 'uses' => 'charityController@getDeletedUsers'])->name('deleted_users');
 		
@@ -200,10 +163,9 @@ Route::group(['prefix' => 'charityrequests'], function () {
         
         Route::get('{sellerproduct}/delete', 'SellerproductController@destroy')->name('sellerproduct.delete');
         Route::get('{sellerproduct}/confirm-delete', 'SellerproductController@getModalDelete')->name('sellerproduct.confirm-delete');
-		Route::post('/formsearch','SellerproductController@formsearch')->name('sellerproduct.formSearch');
 	 });
 	Route::resource('sellerproduct','SellerproductController');
- 
+   
 
     Route::get('deleted_seller',['before' => 'Sentinel', 'uses' => 'SellerController@getDeletedSeller'])->name('deleted_seller');
 
@@ -224,17 +186,17 @@ Route::group(['prefix' => 'charityrequests'], function () {
     });
 	
 	 Route::group([ 'prefix' => 'cms'], function () {
-        Route::get('data', 'CmsController@data')->name('cms.data');
-        Route::get('{cms}/delete', 'CmsController@destroy')->name('cms.delete');
-        Route::get('{cms}/confirm-delete', 'CmsController@getModalDelete')->name('cms.confirm-delete');
-        Route::get('{cms}/restore', 'CmsController@getRestore')->name('restore.cms');
+        Route::get('data', 'cmsController@data')->name('cms.data');
+        Route::get('{cms}/delete', 'cmsController@destroy')->name('cms.delete');
+        Route::get('{cms}/confirm-delete', 'cmsController@getModalDelete')->name('cms.confirm-delete');
+        Route::get('{cms}/restore', 'cmsController@getRestore')->name('restore.cms');
 //        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
-        Route::post('passwordreset', 'CmsController@passwordreset')->name('passwordreset');
+        Route::post('passwordreset', 'cmsController@passwordreset')->name('passwordreset');
 
     });
-    Route::resource('cms', 'CmsController');
+    Route::resource('cms', 'cmsController');
 
-    Route::get('deleted_cms',['before' => 'Sentinel', 'uses' => 'CmsController@getDeletedcms'])->name('deleted_cms');
+    Route::get('deleted_cms',['before' => 'Sentinel', 'uses' => 'cmsController@getDeletedcms'])->name('deleted_cms');
 	
 	
 	
@@ -258,13 +220,6 @@ Route::group(['prefix' => 'charityrequests'], function () {
         Route::get('{sellerCategory}/restore', 'SellerCategoryController@getRestore')->name('sellercategory.restore');
     });
     Route::resource('sellercategory', 'SellerCategoryController');
-	 /*routes for seller category*/
-    Route::group(['prefix' => 'productcategory'], function () {
-        Route::get('{productcategory}/delete', 'ProductCategoryController@destroy')->name('productcategory.delete');
-        Route::get('{productcategory}/confirm-delete', 'ProductCategoryController@getModalDelete')->name('prodcutcategory.confirm-delete');
-        Route::get('{productcategory}/restore', 'ProductCategoryController@getRestore')->name('productcategory.restore');
-    });
-    Route::resource('productcategory', 'ProductCategoryController');
 	
     /*routes for file*/
     Route::group(['prefix' => 'file'], function () {
@@ -325,22 +280,31 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('{name?}', 'JoshController@showView');
 });
 
-Route::get('/auth/social/{provider}', 'SocialAuthController@providerRedirect');
-Route::get('/auth/{provider}/callback', 'SocialAuthController@providerRedirectCallback');
+#FrontEndController
+Route::get('login', 'FrontEndController@getLogin')->name('login');
+Route::post('login', 'FrontEndController@postLogin')->name('login');
+Route::get('register', 'FrontEndController@getRegister')->name('register');
+Route::post('register','FrontEndController@postRegister')->name('register');
+Route::get('activate/{userId}/{activationCode}','FrontEndController@getActivate')->name('activate');
+Route::get('forgot-password','FrontEndController@getForgotPassword')->name('forgot-password');
+Route::post('forgot-password', 'FrontEndController@postForgotPassword');
 
+# Forgot Password Confirmation
+Route::post('forgot-password/{userId}/{passwordResetCode}', 'FrontEndController@postForgotPasswordConfirm');
+Route::get('forgot-password/{userId}/{passwordResetCode}', 'FrontEndController@getForgotPasswordConfirm')->name('forgot-password-confirm');
+# My account display and update details
+Route::group(['middleware' => 'user'], function () {
+    Route::put('my-account', 'FrontEndController@update');
+    Route::get('my-account', 'FrontEndController@myAccount')->name('my-account');
+});
+Route::get('logout', 'FrontEndController@getLogout')->name('logout');
+# contact form
+Route::post('contact', 'FrontEndController@postContact')->name('contact');
 
 #frontend views
-Route::get('/{vue?}', function () {
-    return view('index');
-})->where('vue', '[\/\w\.-]*')->name('index');
-
-
-
-
 Route::get('/', ['as' => 'home', function () {
     return view('index');
 }]);
-
 
 Route::get('blog','BlogController@index')->name('blog');
 Route::get('blog/{slug}/tag', 'BlogController@getBlogTag');
