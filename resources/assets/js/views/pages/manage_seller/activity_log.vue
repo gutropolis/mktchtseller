@@ -37,31 +37,18 @@
                                     </li>
 									
                                  </ul> -->
-								  <table  class="table table-hover">
-									<thead class="thead-light">
-									<tr>
-										<th>Profile</th>
-										<th>Name</th>
-										<th>Activity</th>
-										<th>Subject</th>
-										<th>Date  & Time</th>
-									</tr>
-									</thead>
-									<tr v-for="actvities in activity">
-										<td>
-										<figure class="users_messages--users_area--box--list--link--image_outer--image_box">
-                                                 <img :src="'/images/charity/'+ actvities.images"  class="users_messages--users_area--box--list--link--image_outer--image_box--image">
-                                             </figure>
-										</td>
-										<td>
-										<p class="users_messages--users_area--box--list--link--user_title"> {{getAuthUserFullName()}}</p>
-										</td>
-										
-										<td><p class="users_messages--users_area--box--list--link--user_title">{{actvities.subject}}</p></td>
-										<td>   <p  class="users_messages--users_area--box--list--link--user_title">{{actvities.title}}</p></td>
-										<td> <p class="users_messages--users_area--box--list--link--date">{{ actvities.created_at |  moment("MMMM Do YYYY, h:mm a") }}</p></td>
-									</tr>
-									</table>
+								  <div  class="row activity_content">
+									<div v-for="actvities in activity" class="col-md-6">
+										<div class="activity_content--box">
+											<figure><img :src="'/images/charity/'+ actvities.images"  /></figure>
+											<article>
+												<p>{{actvities.subject}}</p>
+												<p class="active_date">{{actvities.created_at}}</p>
+											</article>
+										</div>
+									</div>
+									
+								 </div>
                               </div>
                            </div>
                         </div>

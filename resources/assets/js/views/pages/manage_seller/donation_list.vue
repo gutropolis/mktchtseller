@@ -228,9 +228,9 @@
                                        <td>{{item.created_at |  moment("MMMM Do YYYY")}}</td>
                                        <td> 
                                       <!--<i class="fa fa-file-pdf-o" aria-hidden="true" @click="fetchreport(item.id)"></i>-->
-									<router-link :to="{name: 'seller_document', params: { id: item.id }}"> <i class="fa fa-file-text" aria-hidden="true"></i></router-link>
+									<router-link :to="{name: 'seller_document', params: { id: item.id }}"> <i class="fa fa-eye" aria-hidden="true"></i></router-link>
 									
-									<a href="/report.pdf" @click="generatepdf(item.id)" class="btn btn-md-danger" download>pdf</a>
+									<a href="/report.pdf" @click="generatepdf(item.id)" class="btn btn-md-danger" download><i class="fa fa-download" aria-hidden="true"></i></i></a>
                                   </td>
                                        
                                     </tr>

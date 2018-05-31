@@ -3036,3 +3036,38 @@ font-weight:600;
 		
 	}
 }
+.activity_content
+{
+	    margin: 0px;
+    padding: $space-s+$space-vs 0px;
+	
+	&--box
+	{
+		display: flex;
+    align-items: center;
+	background:$grey-color6;
+	margin-bottom:$space-n;
+	box-shadow: 4px 3px 3px rgba(0, 0, 0, 0.22);
+	figure{
+		padding:$space-s;
+		    width: 25%;
+			margin-bottom:0px;
+			img{
+				width:120px;
+			}
+	}
+	article{
+		width:75%;
+		p{
+			margin-bottom:0px;
+			font-size:16px;
+			
+			
+		}
+		.active_date{
+			color:#a9a8a8;
+			font-size:14px;
+		}
+	}
+	}
+}
