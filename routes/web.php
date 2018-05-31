@@ -91,63 +91,69 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
         Route::get('{user}/delete', 'UsersController@destroy')->name('users.delete');
         Route::get('{user}/confirm-delete', 'UsersController@getModalDelete')->name('users.confirm-delete');
         Route::get('{user}/restore', 'UsersController@getRestore')->name('restore.user');
+//        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
         Route::post('passwordreset', 'UsersController@passwordreset')->name('passwordreset');
 
     });
-	  Route::resource('users', 'UsersController');
-
 	
 	//Membership
 	 Route::group([ 'prefix' => 'plans'], function () {
         Route::get('data', 'PlansController@data')->name('plans.data');
         Route::get('{plans}/delete', 'PlansController@destroy')->name('plans.delete');
         Route::get('{plans}/confirm-delete', 'PlansController@getModalDelete')->name('plans.confirm-delete');
+
     });
 	 Route::resource('plans', 'PlansController');
 	
-	
 	//payment Settings
-	 Route::group([ 'prefix' => 'plans'], function () {
+	 Route::group([ 'prefix' => 'payments'], function () {
         Route::get('data', 'PaymentsController@data')->name('payments.data');
 	 });
+       
 	 Route::resource('payments', 'PaymentsController');
 	
-	//Donation
+	
       Route::get('donation_list/data', 'DonationController@donation_listData')->name('donation_list.data');
        Route::get('{donation}/delete', 'DonationController@destroy')->name('donation.delete');
         Route::get('{donation}/confirm-delete', 'DonationController@getModalDelete')->name('donation.confirm-delete');
-	   Route::resource('donation', 'DonationController');
 	
 	//charity management
     Route::group([ 'prefix' => 'charity'], function () {
         Route::get('data', 'charityController@data')->name('charity.data');
         Route::get('{charity}/delete', 'charityController@destroy')->name('charity.delete');
         Route::get('{charity}/confirm-delete', 'charityController@getModalDelete')->name('charity.confirm-delete');
-        Route::get('{user}/restore', 'charityController@getRestore')->name('restore.user');
-
+        //Route::get('{user}/restore', 'charityController@getRestore')->name('restore.user');
+//        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
+       // Route::post('passwordreset', 'charityController@passwordreset')->name('passwordreset');
     });
-    Route::resource('charity', 'CharityController');
- 
-//Requests
-		Route::group(['prefix' => 'charityrequests'], function () {
+
+    Route::resource('donation', 'DonationController');
+
+Route::group(['prefix' => 'charityrequests'], function () {
         Route::get('{charityrequests}/delete', 'CharityRequestController@destroy')->name('charityrequests.delete');
-		Route::get('{charityrequests}/accept', 'CharityRequestController@accept')->name('charityrequests.accept');
-		Route::get('{charityrequests}/deactivate', 'CharityRequestController@deactivate')->name('charityrequests.deactivate');
+   Route::get('{charityrequests}/accept', 'CharityRequestController@accept')->name('charityrequests.accept');
+    Route::get('{charityrequests}/deactivate', 'CharityRequestController@deactivate')->name('charityrequests.deactivate');
+   
         Route::get('{charityrequests}/confirm-delete', 'CharityRequestController@getModalDelete')->name('prodcutcategory.confirm-delete');
         Route::get('{charityrequests}/restore', 'CharityRequestController@getRestore')->name('productcategory.restore');
     });
     Route::resource('charityrequests','CharityRequestController');
 
-        Route::get('deleted_users',['before' => 'Sentinel', 'uses' => 'CharityController@getDeletedUsers'])->name('deleted_users');
+
+    Route::resource('charity', 'CharityController');
+    
+        Route::get('deleted_users',['before' => 'Sentinel', 'uses' => 'charityController@getDeletedUsers'])->name('deleted_users');
 		
 		
 		
-		//MemberShip
+		
 		  Route::group([ 'prefix' => 'membership'], function () {
         Route::get('data', 'MembershipController@data')->name('membership.data');
         Route::get('{membership}/delete', 'MembershipController@destroy')->name('membership.delete');
         Route::get('{membership}/confirm-delete', 'MembershipController@getModalDelete')->name('membership.confirm-delete');
-      
+        //Route::get('{user}/restore', 'charityController@getRestore')->name('restore.user');
+//        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
+       // Route::post('passwordreset', 'charityController@passwordreset')->name('passwordreset');
     });
 
     Route::resource('membership', 'MembershipController');
@@ -155,7 +161,12 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
 		
 		 //Routes for settings
   Route::group([ 'prefix' => 'settings'], function () {
-     
+        //Route::get('data', 'charityController@data')->name('charity.data');
+       // Route::get('{charity}/delete', 'charityController@destroy')->name('charity.delete');
+       // Route::get('{charity}/confirm-delete', 'charityController@getModalDelete')->name('charity.confirm-delete');
+        //Route::get('{user}/restore', 'charityController@getRestore')->name('restore.user');
+//        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
+       // Route::post('passwordreset', 'charityController@passwordreset')->name('passwordreset');
     });
 
     Route::resource('settings', 'SettingsController');
@@ -163,12 +174,14 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
     /*routes for Charity category*/
     Route::group(['prefix' => 'charitycategory'], function () {
        Route::get('{charitycategory}/delete', 'CharityCategoryController@destroy')->name('charitycategory.delete');
-      
+       // Route::get('{charitycategory}/confirm-delete', 'CharityCategoryController@getModalDelete')->name('charitycategory.confirm-delete');
+      //  Route::get('{charityCategory}/restore', 'CharityCategoryController@getRestore')->name('charitycategory.restore');
     });
     Route::resource('charitycategory', 'CharityCategoryController');
         
-  
-    
+    Route::resource('users', 'UsersController');
+
+    Route::get('deleted_users',['before' => 'Sentinel', 'uses' => 'UsersController@getDeletedUsers'])->name('deleted_users');
 	 # Seller Management
 	 
     Route::group([ 'prefix' => 'seller'], function () {
@@ -176,14 +189,13 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
         Route::get('{seller}/delete', 'SellerController@destroy')->name('seller.delete');
         Route::get('{seller}/confirm-delete', 'SellerController@getModalDelete')->name('seller.confirm-delete');
         Route::get('{seller}/restore', 'SellerController@getRestore')->name('restore.seller');
+//        Route::post('{user}/passwordreset', 'UsersController@passwordreset')->name('passwordreset');
         Route::post('passwordreset', 'SellerController@passwordreset')->name('passwordreset');
-		  Route::get('deleted_seller',['before' => 'Sentinel', 'uses' => 'SellerController@getDeletedSeller'])->name('deleted_seller');
 
     });
 	 Route::resource('seller', 'SellerController');
-		#sellerProduct
-		
-	Route::group([ 'prefix' => 'sellerproduct'], function () {
+	 Route::group([ 'prefix' => 'sellerproduct'], function () {
+        
         Route::get('{sellerproduct}/delete', 'SellerproductController@destroy')->name('sellerproduct.delete');
         Route::get('{sellerproduct}/confirm-delete', 'SellerproductController@getModalDelete')->name('sellerproduct.confirm-delete');
 		Route::post('/formsearch','SellerproductController@formsearch')->name('sellerproduct.formSearch');
@@ -191,7 +203,7 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
 	Route::resource('sellerproduct','SellerproductController');
  
 
-  
+    Route::get('deleted_seller',['before' => 'Sentinel', 'uses' => 'SellerController@getDeletedSeller'])->name('deleted_seller');
 
     # Group Management
     Route::group(['prefix' => 'groups'], function () {
