@@ -97,9 +97,22 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
     });
 	
 	//Membership
+	 Route::group([ 'prefix' => 'plans'], function () {
+        Route::get('data', 'PlansController@data')->name('plans.data');
+        Route::get('{plans}/delete', 'PlansController@destroy')->name('plans.delete');
+        Route::get('{plans}/confirm-delete', 'PlansController@getModalDelete')->name('plans.confirm-delete');
+        
+
+
+    });
 	 Route::resource('plans', 'PlansController');
 	
-	
+	//payment Settings
+	 Route::group([ 'prefix' => 'plans'], function () {
+        Route::get('data', 'PaymentsController@data')->name('payments.data');
+	 });
+       
+	 Route::resource('payments', 'PaymentsController');
 	
 	
       Route::get('donation_list/data', 'DonationController@donation_listData')->name('donation_list.data');
