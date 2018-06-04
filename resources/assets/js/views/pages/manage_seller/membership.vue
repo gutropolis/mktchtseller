@@ -76,7 +76,7 @@
    </div>
 </template>
 <script>
-import PayPal from 'vue-paypal-checkout'
+
    import AppSidebar from '../users/sidebar.vue'
    import Vue from 'vue'
     Vue.use(require('vue-moment'));
