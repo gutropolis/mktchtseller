@@ -33,7 +33,7 @@ use stdClass;
 		
 	
 			
-				$activity=User_Activity::select('gs_user_activity_feed.created_at','gs_user_activity_feed.post_type','gs_charity_organisation.images','gs_user_activity_feed.subject','users.first_name','users.last_name','gs_charity_organisation.title')->join('gs_charity_organisation','gs_user_activity_feed.post_id','=','gs_charity_organisation.id')->join('users','gs_user_activity_feed.reciever_id','=','users.id')->where('gs_user_activity_feed.sender_id', '=',$user->id)->get();
+				$activity=User_Activity::select('gs_user_activity_feed.created_at','gs_user_activity_feed.post_type','gs_charity_organisation.images','gs_user_activity_feed.subject','users.first_name','users.last_name','gs_charity_organisation.title')->join('gs_charity_organisation','gs_user_activity_feed.post_id','=','gs_charity_organisation.id')->join('users','gs_user_activity_feed.reciever_id','=','users.id')->where('gs_user_activity_feed.sender_id', '=',$user->id)->latest()->get();
 				
 			
 		
