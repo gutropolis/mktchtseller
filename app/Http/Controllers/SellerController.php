@@ -31,7 +31,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class SellerController extends Controller
 {
-        protected $avatar_path = 'images/seller/';
+       // protected $avatar_path = public_path() . '/images/seller/'; 
     /**
      * Show a list of all the users.
      *
@@ -438,18 +438,18 @@ class SellerController extends Controller
 		if ($validation->fails())
 		return response()->json(['message' => $validation->messages()->first()],422);
 		$seller= new Seller;
-		if($seller->avatar && \File::exists($this->avatar_path.$seller->avatar))
-		\File::delete($this->avatar_path.$seller->avatar);
+		if($seller->avatar && \File::exists(public_path() . '/images/seller/'.$seller->avatar))
+		\File::delete(public_path() . '/images/seller/'.$seller->avatar);
 		$extension = $request->file('avatar')->getClientOriginalExtension();
 		$filename = uniqid();
-		$file = $request->file('avatar')->move($this->avatar_path, $filename.".".$extension);
-		$img = \Image::make($this->avatar_path.$filename.".".$extension);
+		$file = $request->file('avatar')->move(public_path() . '/images/seller/', $filename.".".$extension);
+		$img = \Image::make(public_path() . '/images/seller/'.$filename.".".$extension);
 		$img->resize(200, null, function ($constraint) {
 		$constraint->aspectRatio();
 		
 	});
 		$image = Seller::find($id);
-		        $img->save($this->avatar_path.$filename.".".$extension);
+		        $img->save(public_path() . '/images/seller/'.$filename.".".$extension);
 				
         $image->pic = $filename.".".$extension;
         $image->save();
@@ -497,7 +497,7 @@ class SellerController extends Controller
 	 
 	  return $data; 
     }
-	public function generatepdf($id)
+	public function generatepdf($id)   
 	{
 		
 		$data=Donation::select('gs_donation.created_at','gs_donation.signature','gs_donation.id','gs_charity_organisation.mission_statement','gs_charity_organisation.vision_statement','gs_charity_organisation.postal_code','gs_charity_organisation.description','gs_charity_organisation.website','gs_charity_organisation.address','gs_vender_product.title as product','gs_donation.units','gs_charity_organisation.title as charity','gs_vender_organisation.tax_id')->join('gs_vender_product','gs_vender_product.id','=','gs_donation.product_id')->join('gs_charity_organisation','gs_charity_organisation.id','=','gs_donation.charity_id')->where('gs_donation.id',$id)->join('gs_vender_organisation','gs_vender_organisation.id','=','gs_vender_product.organisation_id')->first();
@@ -506,7 +506,7 @@ class SellerController extends Controller
 			$pdf = PDF::loadView('pdf.products', compact('data'));
 		
 			
-			 return $pdf->save('report.pdf');
+			 return $pdf->save(public_path().'/report.pdf');
 			 
 		
 	}
