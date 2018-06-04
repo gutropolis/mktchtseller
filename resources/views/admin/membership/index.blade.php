@@ -39,7 +39,7 @@ Membership List
                         @lang('Membership List')
                     </h4>
                     <div class="pull-right">
-                    <a href="{{ URL::to('admin/membership/create') }}" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus"></span> @lang('button.create')</a>
+                    <a href="{{ URL::to('admin/membership/create') }}" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus"></span>Create Pack</a>
                     </div>
                 </div>
             <br />
@@ -49,12 +49,11 @@ Membership List
                     <thead>
                         <tr class="filters">
                             <th>ID</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Duration</th>
-                           
-                            <th>Created At</th>
-                            <th>Actions</th>
+                            <th>Package Name</th>
+							<th>Currency</th>
+                            <th>Price</th>
+                            <th>Credit Score</th>
+                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -82,11 +81,13 @@ Membership List
             ajax: '{!! route('admin.membership.data') !!}',
             columns: [
                 { data: 'id', name: 'id' },
-                { data: 'title', name: 'title' },
-                { data: 'description', name: 'description' },
-                { data: 'duration', name: 'duration' },
+                { data: 'package_name', name: 'package_name' },
+                { data: 'currency', name: 'currency' },
+				{ data: 'amount', name: 'amount' },
+				
+                { data: 'credit_score', name: 'credit_score' },
                 
-                { data: 'created_at', name:'created_at'},
+              
                 { data: 'actions', name: 'actions', orderable: false, searchable: false }
             ]
         });
