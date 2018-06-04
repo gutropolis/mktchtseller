@@ -218,7 +218,7 @@ class SellerController extends Controller
 		$sellerproduct->save();
 		
 		$actvity=new Controller;
-	$actvity->AddUserActivityFeed($sellerproduct->seller_id,$sellerproduct->charity_owner_id,'charity','Invite to Donate Product',$sellerproduct->post_id,'/donaters');
+	$actvity->AddUserActivityFeed($sellerproduct->seller_id,$sellerproduct->charity_owner_id,'charity','Offer to Donate Product',$sellerproduct->post_id,'/donaters');
 	
 	
 	
