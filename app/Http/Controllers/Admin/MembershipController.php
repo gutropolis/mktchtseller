@@ -34,7 +34,7 @@ class MembershipController extends JoshController
     }
 	 public function data()
     {
-        $membership = membership::get(['id', 'package_name', 'amount','currency', 'credit_score','created_at']);
+        $membership = Membership::get(['id', 'package_name', 'amount','currency', 'credit_score','created_at']);
 
         return DataTables::of($membership)
             ->editColumn('created_at',function(membership $membership) {
@@ -57,7 +57,7 @@ class MembershipController extends JoshController
    
     public function store(Request $request)
     {
-		membership::create($request->all());
+		Membership::create($request->all());
         return redirect()->route('admin.membership.index')
                         ->with('success','New Record created successfully');
 	 
@@ -91,7 +91,7 @@ class MembershipController extends JoshController
     }
 	 public function edit($id)
     {
-		$membership=membership::find($id);
+		$membership=Membership::find($id);
 		//echo $membership->title;
 		//exit;
 	 return view('admin.membership.edit',compact('membership'));
@@ -103,7 +103,7 @@ class MembershipController extends JoshController
             // Get user information
             $membership = Sentinel::findById($id);
            
-            membership::destroy($id);
+            Membership::destroy($id);
             
             $success = trans('membership/message.success.delete');
            
