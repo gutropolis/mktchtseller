@@ -21,7 +21,7 @@ use stdClass;
 
 class UserController extends Controller
 {
- protected $avatar_path = 'images/user/';
+ //protected $avatar_path = public_path() . '/images/user/';
     /**
      * Show a list of all the users.
      *
@@ -48,17 +48,17 @@ public function index(){
         $user = JWTAuth::parseToken()->authenticate();
    
 
-        if($user->avatar && \File::exists($this->avatar_path.$user->avatar))
-            \File::delete($this->avatar_path.$user->avatar);
+        if($user->avatar && \File::exists(public_path() . '/images/user/'.$user->avatar))
+            \File::delete(public_path() . '/images/user/'.$user->avatar);
 
         $extension = $request->file('avatar')->getClientOriginalExtension();
         $filename = uniqid();
-        $file = $request->file('avatar')->move($this->avatar_path, $filename.".".$extension);
-        $img = \Image::make($this->avatar_path.$filename.".".$extension);
+        $file = $request->file('avatar')->move(public_path() . '/images/user/', $filename.".".$extension);
+        $img = \Image::make(public_path() . '/images/user/'.$filename.".".$extension);
         $img->resize(200, null, function ($constraint) {
             $constraint->aspectRatio();
         });
-        $img->save($this->avatar_path.$filename.".".$extension);
+        $img->save(public_path() . '/images/user/'.$filename.".".$extension);
         $user->avatar = $filename.".".$extension;
         $user->save();
 
@@ -85,8 +85,8 @@ public function index(){
         if(!$user->avatar)
             return response()->json(['message' => 'No avatar uploaded!'],422);
 
-        if(\File::exists($this->avatar_path.$user->avatar))
-            \File::delete($this->avatar_path.$user->avatar);
+        if(\File::exists(public_path() . '/images/user/'.$user->avatar))
+            \File::delete(public_path() . '/images/user/'.$user->avatar);
 
         $user->avatar = null;
         $user->save();
