@@ -57,7 +57,7 @@
                   </div>
                </div>
             </div>
-			{{activity.title}}
+			
          </section>
       </div>
    </div>
