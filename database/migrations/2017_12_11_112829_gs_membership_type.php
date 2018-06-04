@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class GsMembershipType extends Migration
+class GsMembershipPack extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class GsMembershipType extends Migration
      */
     public function up()
     {
-        Schema::create('gs_membership_type', function(Blueprint $table)
+        Schema::create('gs_membership_pack', function(Blueprint $table)
 		{
 			$table->increments('id');
-            $table->string('title');
-            $table->string('description');
-            $table->string('duration');
+            $table->string('package_name');
+            $table->string('amount');
+            $table->string('currency');
+			  $table->string('credit_score');
             
             $table->timestamps();
             
