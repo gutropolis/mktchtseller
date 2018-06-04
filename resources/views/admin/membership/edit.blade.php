@@ -33,7 +33,7 @@
             <div class="panel panel-primary ">
                 <div class="panel-heading">
                     <h4 class="panel-title"> <i class="livicon" data-name="users-add" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                        @lang('Membership.create')
+                        Edit Package
                     </h4>
                 </div>
                 <div class="panel-body">
@@ -44,51 +44,55 @@
                         {{ csrf_field() }}
 						
 						
-                        <div class="form-group {{ $errors->
-                            first('title', 'has-error') }}">
-                            <label for="title" class="col-sm-2 control-label">
-                                @lang('Title')
+                        <div class="form-group ">
+                            <label for="package_name" class="col-sm-2 control-label">
+                                @lang('Package Name')
                             </label>
                             <div class="col-sm-5">
-                                <input type="text" id="title" name="title"  class="form-control" placeholder="Title"
-                                       value="{!! old('title',$membership->title) !!}">
+                                <input type="text" id="package_name" name="package_name"  class="form-control" placeholder="package_name"
+                                       value="{!! old('package_name',$membership->package_name) !!}">
                             </div>
-                            <div class="col-sm-4">
-                                {!! $errors->first('title', '<span class="help-block">:message</span> ') !!}
-                            </div>
+                            
                         </div>
-						 <div class="form-group {{ $errors->
-                            first('description', 'has-error') }}">
-                            <label for="description" class="col-sm-2 control-label">
-                                @lang('Description')
-                            </label>
-                            <div class="col-sm-5">
-                                <input type="text" id="description"  name="description" class="form-control" placeholder="Description"
-                                       value="{!! old('description',$membership->description) !!}">
-                            </div>
-                            <div class="col-sm-4">
-                                {!! $errors->first('description', '<span class="help-block">:message</span> ') !!}
-                            </div>
+						 <div class="form-group ">
+                            <label for="currency"  class="col-sm-2 control-label">Currency</label>
+							<div class="col-sm-5">
+                            <select name="currency" class="form-control">
+							<option value="">Select...</option>
+							<option value="US Dollar" @if($membership->currency === 'US Dollar') selected="selected" @endif>US Dollar</option>
+							<option value="Euro" @if($membership->currency === 'Euro') selected="selected" @endif>Euro</option>
+							<option value="Rupees" @if($membership->currency === 'Rupees') selected="selected" @endif>Rupees</option>
+							</select>
+							</div>
+						
+                            
                         </div>
-						 <div class="form-group {{ $errors->
-                            first('duration', 'has-error') }}">
-                            <label for="duration" class="col-sm-2 control-label">
-                                @lang('Duration')
+						 <div class="form-group">
+                            <label for="amount" class="col-sm-2 control-label">
+                                @lang('Amount')
                             </label>
                             <div class="col-sm-5">
-                                <input type="text" id="duration"  name="duration" class="form-control" placeholder="duration"
-                                       value="{!! old('duration',$membership->duration) !!}">
+                                <input type="text" id="amount"  name="amount" class="form-control" placeholder="amount"
+                                       value="{!! old('amount',$membership->amount) !!}">
                             </div>
-                            <div class="col-sm-4">
-                                {!! $errors->first('duration', '<span class="help-block">:message</span> ') !!}
+                           
+                        </div>
+						 <div class="form-group">
+                            <label for="credit_score" class="col-sm-2 control-label">
+                                Credit
+                            </label>
+                            <div class="col-sm-5">
+                                <input type="text" id="credit_score"  name="credit_score" class="form-control" placeholder="credit_score"
+                                       value="{!! old('credit_score',$membership->credit_score) !!}">
                             </div>
+                            
                         </div>
 						
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-4"> 
                                 <button type="submit" class="btn btn-success">
-                                    @lang('Update Membership')
+                                    @lang('Update Package')
                                 </button>
 								<a class="btn btn-danger" href="{{ route('admin.membership.index') }}">
                                     @lang('Cancel')
