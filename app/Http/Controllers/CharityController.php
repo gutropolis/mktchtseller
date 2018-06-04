@@ -139,7 +139,7 @@ class CharityController extends Controller
             activity($sender_user->fullname)
                 ->performedOn($sellerproduct)
                 ->causedBy($sellerproduct)
-                ->log('Invite Charity to Donate Product '.$product->title);
+                ->log('Offer To Charity  Donate Product '.$product->title);
             
             return response()->json(['message' => 'You have successfully make an offer.']);
 			}
