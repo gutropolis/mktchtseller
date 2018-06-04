@@ -42,8 +42,9 @@
 										<div class="activity_content--box">
 											<figure><img :src="'/images/charity/'+ actvities.images"  /></figure>
 											<article>
+											<span><b>{{actvities.title}}</b></span>
 												<p>{{actvities.subject}}</p>
-												<p class="active_date">{{actvities.created_at}}</p>
+												<p class="active_date"><b>{{actvities.created_at | moment("Do MMMM YYYY") }}</b></p>
 											</article>
 										</div>
 									</div>
