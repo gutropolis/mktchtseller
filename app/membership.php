@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class membership extends Model
 {
-    protected $table="gs_membership_type";
+    protected $table="gs_membership_pack";
     protected $fillable = [
-        'title','description','duration'
+        'package_name','amount','currency','credit_score'
     ];
 
     
+	
 }
