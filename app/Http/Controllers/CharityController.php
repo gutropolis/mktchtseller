@@ -34,7 +34,7 @@ use stdClass;
 class CharityController extends Controller
 {
 
- protected $avatar_path = 'images/charity/';   
+ //protected $avatar_path = public_path() . '/images/charity/' ; 
 
 		public function index()
 		{
@@ -121,12 +121,14 @@ class CharityController extends Controller
 			$message->to($reciever_user->email)->subject('Donate!');    
 		});
 		$sellerproduct->save();
+		if($sellerproduct->save())
+		{
 		$user = JWTAuth::parseToken()->authenticate();
-		//return($trial_pack);
-		$remaning=$user->trial_pack- $sellerproduct->units[0];
+		
+		$remaning=$user->trial_pack-1;
 		
 		$update=User::where('id',$user->id)->update(['trial_pack'=>$remaning]);
-		
+		}
 		$actvity=new Controller;
 	$actvity->AddUserActivityFeed($sellerproduct->seller_id,$sellerproduct->charity_owner_id,'charity','Invite to Donate Product',$sellerproduct->post_id,'/donaters');
 	
@@ -157,6 +159,24 @@ class CharityController extends Controller
 	//return($product_name);
 	}
 	
+	public function user_units()
+	{
+		$user = JWTAuth::parseToken()->authenticate();
+		//return($user->id);
+		$units=Donation::where('seller_id',$user->id)->pluck('units');
+		$total=0;
+	
+		foreach($units as $unit)
+		{
+			$total += $unit;
+		
+					
+		}
+		
+		return $total;
+		
+	//return($product_name);
+	}
 	
 	public function donaters(Request $request)
 	
@@ -381,18 +401,18 @@ class CharityController extends Controller
 		if ($validation->fails())
 		return response()->json(['message' => $validation->messages()->first()],422);
 		$charity = new Charity;
-		if($charity->avatar && \File::exists($this->avatar_path.$seller->avatar))
-		\File::delete($this->avatar_path.$charity->avatar);
+		if($charity->avatar && \File::exists(public_path() . '/images/charity/' .$seller->avatar))
+		\File::delete(public_path() . '/images/charity/' .$charity->avatar);
 		$extension = $request->file('avatar')->getClientOriginalExtension();
 		$filename = uniqid();
-		$file = $request->file('avatar')->move($this->avatar_path, $filename.".".$extension);
-		$img = \Image::make($this->avatar_path.$filename.".".$extension);
+		$file = $request->file('avatar')->move(public_path() . '/images/charity/' , $filename.".".$extension);
+		$img = \Image::make(public_path() . '/images/charity/' .$filename.".".$extension);
 		$img->resize(200, null, function ($constraint) {
 		$constraint->aspectRatio();
 		
 	});
 		$image = Charity::find($id);
-		        $img->save($this->avatar_path.$filename.".".$extension);
+		        $img->save(public_path() . '/images/charity/' .$filename.".".$extension);
 				
         $image->images = $filename.".".$extension;
         $image->save();
