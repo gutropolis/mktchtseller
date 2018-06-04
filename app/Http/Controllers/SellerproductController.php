@@ -25,7 +25,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class SellerproductController extends JoshController
 {
-protected $avatar_path = 'images/charityads/';
+//protected $avatar_path = public_path() . '/images/charityads/
 
 	public function index()
 	{
