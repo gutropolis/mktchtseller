@@ -65,12 +65,7 @@
                     View Profile
                 </a>
             </li>
-            <li {!! (Request::is('admin/membership') ? 'class="active" id="active"' : '') !!}>
-                <a href="{{ URL::to('admin/membership') }}">
-                    <i class="fa fa-angle-double-right"></i>
-                    Membership Type
-                </a>
-            </li>
+          
         </ul>
 		</li>
 		
@@ -161,6 +156,34 @@
             
         </ul>
     </li>
+	  
+	  <li {!! (Request::is('admin/')  ? 'class="active"' : '') !!}>
+        <a href="#">
+            <i class="livicon" data-name="seller" data-size="18" data-c="#6CC66C" data-hc="#6CC66C"
+               data-loop="true"></i>
+            <span class="title">Payment</span>
+            <span class="fa arrow"></span>
+        </a>
+		 <ul class="sub-menu">
+		  <li {!! (Request::is('admin/membership') ? 'class="active" id="active"' : '') !!}>
+                <a href="{{ URL::to('admin/membership') }}">
+                    <i class="fa fa-angle-double-right"></i>
+                    Packages
+                </a>
+            </li>
+            <li {!! (Request::is('admin/payments') ? 'class="active" id="active"' : '') !!}>
+        <a href="{{  URL::to('admin/payments') }}">
+            <i class="fa fa-angle-double-right"></i>
+           Payment Settings
+			</a>
+    </li>
+			
+			 
+              
+        </ul>
+    </li>
+	
+	
     <li {!! (Request::is('admin/groups') || Request::is('admin/groups/create') || Request::is('admin/groups/*') ? 'class="active"' : '') !!}>
         <a href="#">
             <i class="livicon" data-name="users" data-size="18" data-c="#418BCA" data-hc="#418BCA"
