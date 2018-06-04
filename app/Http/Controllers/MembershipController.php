@@ -10,7 +10,7 @@ use App\Charity;
 use App\Sellerproduct;
 use App\Events\MessageDonation;
 use App\User;
-use App\Packages;
+use App\Membership;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use App\Events\DonationStatusChanged;
