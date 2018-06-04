@@ -124,7 +124,7 @@ class AdsController extends Controller
             $message->to($admin)->subject('Charity Request!');
         });
 		$actvity=new Controller;
-		$actvity->AddUserActivityFeed($user->id,$user->id,'charity','Post Our Need For Charity Organization',$create_ads->charity_organisation,'/my_Ads');
+		$actvity->AddActivityFeed($user->id,$user->id,'charity','Post Our Need For Charity Organization',$create_ads->charity_organisation,'/my_Ads');
          return response()->json(['message' => 'Your Ads sucessfully Added']);
     }
      public function activate($activation_token){
