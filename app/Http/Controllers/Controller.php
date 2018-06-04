@@ -76,7 +76,7 @@ class Controller extends BaseController
 
 					$read_to= '0';
 					$read_by_admin='0';
-					$created_at=date('Y-m-d h:i:s');
+					$created_at=date('Y-m-d h:i:s');      
 		
 					$activityfeed = \App\User_Activity::create([
 						   'sender_id'=> $sender_id,
