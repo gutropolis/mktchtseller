@@ -82,7 +82,7 @@
     Vue.use(require('vue-moment'));
       export default {
       components: {
-               AppSidebar ,PayPal
+               AppSidebar 
           },
       data() {
               return {
