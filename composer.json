@@ -22,7 +22,7 @@
         "pusher/pusher-php-server": "^3.0",
         "spatie/laravel-activitylog": "^2.3",
         "tymon/jwt-auth": "^0.5.12",
-        "yajra/laravel-datatables-oracle": "^8.4"
+        "yajra/laravel-datatables-oracle": "^8.7"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
