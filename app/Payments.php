@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payments extends Model
 {
- protected $table="payment_setting";
+ protected $table="gs_payment_setting";
     protected $fillable = [
 	'id','email','stripe_secret_key','stripe_publishable_key','currency',
    
