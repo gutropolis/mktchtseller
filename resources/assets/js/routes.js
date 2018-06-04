@@ -99,7 +99,7 @@ let routes = [
 				component:require('./views/pages/seller_notification')
 				
 			},
-			{
+			{   
 				name:'seller_document',
 				path : '/seller_document/:id',
 				component:require('./views/pages/manage_seller/seller_document')
@@ -108,6 +108,10 @@ let routes = [
 			{
 				path: '/vender_organisation',
 				component:require('./views/pages/manage_seller/vender_organisation')
+			},
+			{
+				path: '/membership',
+				component:require('./views/pages/manage_seller/membership')
 			},
 			{
 				path: '/product',
