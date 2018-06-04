@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\JoshController;
 //use App\Http\Requests\membershipRequest;
-use App\membership;
+use App\Membership;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
 use Hash;
@@ -29,22 +29,12 @@ class MembershipController extends JoshController
     public function index()
     {
 
-       //$config=config('app.url');
-	  // config::get('app.url');
-	   //echo config;
-	  
-	  // exit;
-	 //$settings = Settings::find(1);
-        //echo $settings->site_title;
-		//exit;
-		//$membership=membership::find(1);
-		//echo $membership;
-		//exit;
+      $membership=Membership::all();
         return view('admin.membership.index',compact('membership'));
     }
 	 public function data()
     {
-        $membership = membership::get(['id', 'title', 'description', 'duration','created_at']);
+        $membership = membership::get(['id', 'package_name', 'amount','currency', 'credit_score','created_at']);
 
         return DataTables::of($membership)
             ->editColumn('created_at',function(membership $membership) {
@@ -53,11 +43,10 @@ class MembershipController extends JoshController
 
                
             ->addColumn('actions',function($membership) {
-                $actions = '<a href='. route('admin.membership.show', $membership->id) .'><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view membership"></i></a>
-                            <a href='. route('admin.membership.edit', $membership->id) .'><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update membership"></i></a>';
-                if ((Sentinel::getUser()->id != $membership->id) && ($membership->id != 1)) {
+                $actions = '<a href='. route('admin.membership.edit', $membership->id) .'><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update membership"></i></a>';
+            
                     $actions .= '<a href='. route('admin.membership.confirm-delete', $membership->id) .' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete membership"></i></a>';
-                }
+                
                 return $actions;
             })
             ->rawColumns(['actions'])
@@ -68,16 +57,7 @@ class MembershipController extends JoshController
    
     public function store(Request $request)
     {
-		request()->validate([
-            'title' => 'required',
-			'description'=>'required',
-			'duration'=>'required'
-           
-        ]);
-        
-		
-			
-        membership::create($request->all());
+		membership::create($request->all());
         return redirect()->route('admin.membership.index')
                         ->with('success','New Record created successfully');
 	 
@@ -88,14 +68,9 @@ class MembershipController extends JoshController
 	}
 	public function update(Request $request,$id)
     {
-		request()->validate([
-            'title' => 'required',
-			'description'=>'required',
-			'duration'=>'required'
-           
-        ]);
+		
         
-		 membership::find($id)->update($request->all());
+		 Membership::find($id)->update($request->all());
         return redirect()->route('admin.membership.index')
                         ->with('success','Data update created successfully');
 	 
