@@ -2053,7 +2053,73 @@ font-size:15px;
     position: relative;
     width:100%;
 }
-
+.membership_content
+{
+	margin:0px;
+	padding:20px 0px;
+	&--box
+	{
+		background:$grey-color6;
+		text-align:center;
+		margin-bottom:$space-n;
+		h6{
+			padding:$space-s;
+			    color:  $grey-color7;
+			
+			}
+	&--heading{
+		background: $grey-color7;
+		padding: 10px;
+		margin-bottom: $space-s + $space-vs;
+		position:relative;
+		&:after
+		{
+			content: '';
+    position: absolute;
+    bottom: -10px;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 10px solid $grey-color7;
+    left: 0;
+    right: 0;
+    margin: 0px auto;
+    width: 1px;
+			
+		}
+	h3{	
+        font-size: 40px;
+		color: $white-color;
+		
+		display:inline-block;
+		position:relative;
+		span{
+			position: absolute;
+    font-size: 24px;
+    color: $orange-color;
+    left: -15px;
+		}
+	}
+	}
+	article{
+	p{
+		font-size:18px;
+		padding:$space-s;
+		margin:0px;
+	}
+	ul{
+		   
+    padding: 20px 10px;
+    background: $grey-color2;
+    margin-bottom: 20px;
+		li{
+			line-height: 30px;
+			font-size: 15px;
+		
+	}
+	}
+	}
+}
+}
 
 .users_messages{
     width:100%;
