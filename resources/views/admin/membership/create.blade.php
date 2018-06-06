@@ -54,6 +54,16 @@
                             </div>
 
                         </div>
+						
+						<div class="form-group ">
+						<label for="description" class="col-sm-2 control-label"> Description *</label>
+                          <div class="col-sm-5 ">
+                        <textarea name="description" id="description" class="form-control resize_vertical" placeholder=""
+                                  rows="4">{!! old('description') !!}</textarea>
+						</div>
+
+                        </div>
+						
 						  <div class="form-group ">
                             <label for="currency"  class="col-sm-2 control-label">Currency</label>
 							<div class="col-sm-5">
