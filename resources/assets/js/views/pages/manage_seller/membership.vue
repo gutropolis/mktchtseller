@@ -16,58 +16,58 @@
                            <div class="users_messages--users_area user_active--area">
                               <div>
                                 <div  class="row membership_content">
-								
-									<div class="col-md-3" v-for="pack in packs">
-											
-									<div class="membership_content--box">
-										<h6>{{pack.package_name}}</h6>
-										<div class="membership_content--box--heading"><h3><span>$</span>{{pack.amount}}</h3></div>
-											<article>											
-												<p>Credit Pack Of {{pack.credit_score}} For </p>
-												<ul><li>1 theme included.</li>
-													<li>1 year of theme updates & support.</li>
-													<li>20% off future purchases.</li></ul>
-													
-											</article>
-											<button class="btn btn-success"  v-on:click="submit(pack.id)" style="margin-bottom:10px;">Purchase Now</button>
-										</div>
-											
-									</div>
-									
-								<!--	<div class="col-md-6">
-									<h6>First Pack </h6>
-										<div class="activity_content--box">
-											<article>
-												<p>Credit Pack 3 For $129</p>
-												
-											</article>
-										</div>
-										<button class="btn btn-success">Purchase Now</button>
-									</div>
-									<div class="col-md-6">
-									<h6>Second Pack </h6>
-										<div class="activity_content--box">
-											<article>
-												<p>Credit Pack 10 For $399</p>
-												
-											</article>
-										</div>
-										<button class="btn btn-success" style="margin-bottom:10px;">Purchase Now</button>
-									</div>
-									<div class="col-md-6">
-									<h6>Third Pack </h6>
-										<div class="activity_content--box">
-											<article>
-												<p>Credit Pack 20 For $699</p>
-												
-											</article>
-										</div>
-										<button class="btn btn-success" style="margin-bottom:10px;">Purchase Now</button>
-									</div>-->
-									
-								
-								 </div>
-								 
+        
+         <div class="col-md-3" v-for="pack in packs">
+           
+         <div class="membership_content--box">
+          <h6>{{pack.package_name}}</h6>
+          <div class="membership_content--box--heading"><h3><span>$</span>{{pack.amount}}</h3></div>
+           <article>           
+            <p>Credit Pack Of {{pack.credit_score}} For </p>
+            <ul><li>1 theme included.</li>
+             <li>1 year of theme updates & support.</li>
+             <li>20% off future purchases.</li></ul>
+             
+           </article>
+           <button class="btn btn-success"  v-on:click="submit(pack.id)" style="margin-bottom:10px;">Purchase Now</button>
+          </div>
+           
+         </div>
+         
+        <!-- <div class="col-md-6">
+         <h6>First Pack </h6>
+          <div class="activity_content--box">
+           <article>
+            <p>Credit Pack 3 For $129</p>
+            
+           </article>
+          </div>
+          <button class="btn btn-success">Purchase Now</button>
+         </div>
+         <div class="col-md-6">
+         <h6>Second Pack </h6>
+          <div class="activity_content--box">
+           <article>
+            <p>Credit Pack 10 For $399</p>
+            
+           </article>
+          </div>
+          <button class="btn btn-success" style="margin-bottom:10px;">Purchase Now</button>
+         </div>
+         <div class="col-md-6">
+         <h6>Third Pack </h6>
+          <div class="activity_content--box">
+           <article>
+            <p>Credit Pack 20 For $699</p>
+            
+           </article>
+          </div>
+          <button class="btn btn-success" style="margin-bottom:10px;">Purchase Now</button>
+         </div>-->
+         
+        
+         </div>
+         
                               </div>
                            </div>
                         </div>
@@ -75,7 +75,7 @@
                   </div>
                </div>
             </div>
-			
+   
          </section>
       </div>
    </div>
@@ -91,53 +91,53 @@
           },
       data() {
               return {
-			 
-   			 packs:[],
+    
+       packs:[],
                
               }
    
           },
-   	created: function()
+    created: function()
              {
-			
-     			this.fetchItem();
-     			 	
+   
+        this.fetchItem();
+          
              },
-   	
+    
           mounted(){
           },
        
        methods: {
-			submit(id)
-			{
-				axios.post('/api/select_pack').then(response=>{
-					toastr['success']("Your Pack is Selected");
-					
-				
-				
-				});
-			
-			},
-	
-		fetchItem()
+   submit(id)
+   {
+    axios.post('/api/select_pack').then(response=>{
+     toastr['success']("Your Pack is Selected");
+     
+    
+    
+    });
+   
+   },
+ 
+  fetchItem()
                  {
-     			
+        
                   axios.get('/api/packs').then(response=>{
-     			
-     			this.packs=response.data;
-				
-     			console.log(this.activity);
-     			}).catch(error=>{
-     			toastr['error'](error.response.data.message);
-     				  
+        
+        this.packs=response.data;
+    
+        console.log(this.activity);
+        }).catch(error=>{
+        toastr['error'](error.response.data.message);
+           
                    });
                  },
-   		    getAuthUserFullName() {
+         getAuthUserFullName() {
                return this.$store.getters.getAuthUserFullName;
            },
    
            getAuthUser(name)
-		   {
+     {
                return this.$store.getters.getAuthUser(name);
            }
        },
@@ -151,5 +151,4 @@
               }
         
           
-      
-</script>
+      </script>
