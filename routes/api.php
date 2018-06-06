@@ -121,7 +121,7 @@ Route::get('/seller_activity','Activity_log@sender_activity');
 
 //MemberShip
 Route::get('/packs','MembershipController@index');
-Route::post('/select_pack/{id}','MembershipController@select_pack');
+Route::post('/subscriptions','MembershipController@subscriptions');
 Route::get('/get_credit','MembershipController@remaning_credit');
 Route::post('/selected_plan/{id}','MembershipController@select_plan');
 
