@@ -6,7 +6,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\charityRequest;
 use App\my_ads;
-use App\Charity;
+use App\Subscription;
 use App\Sellerproduct;
 use App\Events\MessageDonation;
 use App\User;
@@ -31,24 +31,43 @@ class MembershipController extends Controller
 {
      public function index()
     {
+		$user = JWTAuth::parseToken()->authenticate();
 			$pack=Membership::all();
-        
-        
-        return ($pack);
+			//$remaining_credit=Subscription::where('user_id',$user->id)->pluck('remaining_credit');
+			return $pack;
     }
     
    
-        
-  
-    
-    
-    
-    
-    public function store(Request $request)
+    public function remaning_credit()
     {
-      
-    }
-     public function activate($activation_token){
+      $user= JWTAuth::parseToken()->authenticate();
+	  $subscription=Subscription::where('user_id',$user->id)->first();
+	  return $subscription;
+	  
+	  
+	  
+    }  
+	public function select_plan($id)
+	{
+			$packs=Membership::where('id',$id)->first();
+			return($packs);
+			
+		
+		
+	}
+	
+     public function select_pack($id){
+		 $user = JWTAuth::parseToken()->authenticate();
+		 $pack=Membership::find($id);
+		 $store= new \App\Subscription;
+		 $store->user_id=$user->id;
+		 $store->membership_id=$pack->id;
+		 $store->credit=$pack->credit_score;
+		 $store->trial_units='10';
+		 $store->remaining_credit=$pack->credit_score;
+		 $store->status="1";
+		 $store->save();
+		
         
     }
 
