@@ -54,6 +54,17 @@
                             </div>
                             
                         </div>
+						  <div class="form-group ">
+						  <label for="package_name" class="col-sm-2 control-label">
+                                @lang('Package Name')
+                            </label>
+							  <div class="col-sm-5">
+                        <textarea name="description" id="description" class="form-control resize_vertical" placeholder="Description"
+                                  rows="4">{!! old('description',$membership->description) !!}</textarea>
+								   <span class="help-block">{{ $errors->first(
+								   'description', ':message') }}</span>
+                                            </div>
+											</div>
 						 <div class="form-group ">
                             <label for="currency"  class="col-sm-2 control-label">Currency</label>
 							<div class="col-sm-5">
