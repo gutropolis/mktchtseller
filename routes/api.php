@@ -82,7 +82,7 @@ Route::get('/generatepdf/{id}','SellerController@generatepdf');
 //Charity Ads
 Route::post('/create_ads','AdsController@store');
 Route::get('/charityads/','AdsController@index');
-Route::get('/units_donate','CharityController@user_units');
+
 
 Route::get('/requests','AdsController@request_list');
 
@@ -119,9 +119,11 @@ Route::get('/product_name/{id}','CharityController@product_name');
 //Activity_Seller
 Route::get('/seller_activity','Activity_log@sender_activity');
 
+//MemberShip
 Route::get('/packs','MembershipController@index');
-
-
+Route::post('/select_pack/{id}','MembershipController@select_pack');
+Route::get('/get_credit','MembershipController@remaning_credit');
+Route::post('/selected_plan/{id}','MembershipController@select_plan');
 
 
 });
