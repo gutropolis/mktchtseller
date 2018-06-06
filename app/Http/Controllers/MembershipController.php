@@ -56,19 +56,23 @@ class MembershipController extends Controller
 		
 	}
 	
-     public function select_pack($id){
-		 $user = JWTAuth::parseToken()->authenticate();
-		 $pack=Membership::find($id);
-		 $store= new \App\Subscription;
-		 $store->user_id=$user->id;
-		 $store->membership_id=$pack->id;
-		 $store->credit=$pack->credit_score;
-		 $store->trial_units='10';
-		 $store->remaining_credit=$pack->credit_score;
-		 $store->status="1";
-		 $store->save();
+     public function subscriptions(Request $request){
 		
-        
+		 
+		 $user = JWTAuth::parseToken()->authenticate();
+		 $pack=Membership::where('id',$request->input('plan_id'))->first();
+		 $subscription= new \App\Subscription;
+		 $subscription->user_id=$user->id;
+		 $subscription->stripe_email=$user->email;
+		  $subscription->stripe_id=$request->input('stripeToken');
+		 $subscription->package_id=$pack->id;
+		 $subscription->credit=$pack->credit_score;
+		 $subscription->trial_units='10';
+		 $subscription->remaining_credit=$pack->credit_score;
+		 $subscription->status="1";
+		 $subscription->save();
+		
+          return response()->json(['message' => 'Your Subscription Activated.']);
     }
 
      public function edit($id)
