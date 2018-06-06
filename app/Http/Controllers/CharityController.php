@@ -125,7 +125,7 @@ class CharityController extends Controller
 		{
 		$user = JWTAuth::parseToken()->authenticate();
 		
-		$remaning=$user->trial_pack-1;
+		$remaning=$user->trial_pack-$sellerproduct->units;
 		
 		$update=User::where('id',$user->id)->update(['trial_pack'=>$remaning]);
 		}
