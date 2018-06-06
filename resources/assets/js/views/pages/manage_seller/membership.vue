@@ -29,42 +29,13 @@
              <li>20% off future purchases.</li></ul>
              
            </article>
-           <button class="btn btn-success"  v-on:click="submit(pack.id)" style="margin-bottom:10px;">Purchase Now</button>
+           <button class="btn btn-success" @click="subscribe(pack.id)" style="margin-bottom:10px;">Subscribe</button>
+		   
           </div>
            
          </div>
          
-        <!-- <div class="col-md-6">
-         <h6>First Pack </h6>
-          <div class="activity_content--box">
-           <article>
-            <p>Credit Pack 3 For $129</p>
-            
-           </article>
-          </div>
-          <button class="btn btn-success">Purchase Now</button>
-         </div>
-         <div class="col-md-6">
-         <h6>Second Pack </h6>
-          <div class="activity_content--box">
-           <article>
-            <p>Credit Pack 10 For $399</p>
-            
-           </article>
-          </div>
-          <button class="btn btn-success" style="margin-bottom:10px;">Purchase Now</button>
-         </div>
-         <div class="col-md-6">
-         <h6>Third Pack </h6>
-          <div class="activity_content--box">
-           <article>
-            <p>Credit Pack 20 For $699</p>
-            
-           </article>
-          </div>
-          <button class="btn btn-success" style="margin-bottom:10px;">Purchase Now</button>
-         </div>-->
-         
+      
         
          </div>
          
@@ -91,46 +62,74 @@
           },
       data() {
               return {
-    
-       packs:[],
-               
-              }
+						stripeEmail: '',
+			            stripeToken: '',
+						status: false,
+						packs:[],
+						plan_id:'',
+                     }
    
           },
-    created: function()
+    	created: function()
              {
-   
-        this.fetchItem();
-          
+			//this.fetchplan();
+				this.fetchcredit();
+     			this.fetchItem();
+				this.stripe = StripeCheckout.configure({
+                key: 'pk_test_aPA6GkIugbRHoAMNVzlQoHFl',
+                image: "https://stripe.com/img/documentation/checkout/marketplace.png",
+                locale: "auto",
+                panelLabel: "Subscribe For",
+                email:'hunny@gmail.com',
+                token: (token) => {
+                    this.stripeToken = token.id;
+                    this.stripeEmail = 'singla.nikhil4@gmail.com';
+						
+                    axios.post('/api/subscriptions', this.$data)
+                        .then(
+						
+                            response => alert('Complete! Thanks for your payment!'),
+                            response => this.status = response.body.status
+                        )
+                }
+            });
+     			 	
              },
     
           mounted(){
           },
        
        methods: {
-   submit(id)
-   {
-    axios.post('/api/select_pack').then(response=>{
-     toastr['success']("Your Pack is Selected");
-     
-    
-    
-    });
-   
-   },
+			subscribe(id) {
+                axios.post('/api/selected_plan/'+id).then(response=>
+				{
+					this.selected_pack=response.data;
+					this.plan_id=response.data.id;
+					 this.stripe.open({         
+                    name:this.selected_pack.package_name,
+                    zipCode: true,
+                    amount: this.selected_pack.amount,
+                });
+				});
+               
+            },
  
-  fetchItem()
-                 {
-        
-                  axios.get('/api/packs').then(response=>{
-        
-        this.packs=response.data;
-    
-        console.log(this.activity);
-        }).catch(error=>{
-        toastr['error'](error.response.data.message);
-           
-                   });
+		fetchcredit()
+		{
+			axios.get('/api/get_credit').then(response=>
+			{
+				this.remaining_credit=response.data.remaining_credit;
+				this.subscription_id=response.data.membership_id;
+			})
+	},
+		fetchItem()
+				{
+					axios.get('/api/packs').then(response=>{
+					this.packs=response.data;
+					console.log(this.activity);
+					}).catch(error=>{
+				toastr['error'](error.response.data.message);
+             });
                  },
          getAuthUserFullName() {
                return this.$store.getters.getAuthUserFullName;
