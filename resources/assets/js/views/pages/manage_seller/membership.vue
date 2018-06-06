@@ -15,18 +15,23 @@
                           
                            <div class="users_messages--users_area user_active--area">
                               <div>
-                                <div  class="row activity_content">
+                                <div  class="row membership_content">
 								
-									<div class="col-md-6" v-for="pack in packs">
-											<h6>{{pack.package_name}}</h6>
-									<div class="activity_content--box">
-											<article>
-												<p>Credit Pack Of {{pack.credit_score}} For ${{pack.amount}}</p>
+									<div class="col-md-3" v-for="pack in packs">
+											
+									<div class="membership_content--box">
+										<h6>{{pack.package_name}}</h6>
+										<div class="membership_content--box--heading"><h3><span>$</span>{{pack.amount}}</h3></div>
+											<article>											
+												<p>Credit Pack Of {{pack.credit_score}} For </p>
+												<ul><li>1 theme included.</li>
+													<li>1 year of theme updates & support.</li>
+													<li>20% off future purchases.</li></ul>
 													
 											</article>
-											
-										</div>
 											<button class="btn btn-success"  v-on:click="submit(pack.id)" style="margin-bottom:10px;">Purchase Now</button>
+										</div>
+											
 									</div>
 									
 								<!--	<div class="col-md-6">
