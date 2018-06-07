@@ -34,7 +34,6 @@ use stdClass;
 class CharityController extends Controller
 {
 
- //protected $avatar_path = public_path() . '/images/charity/' ; 
 
 		public function index()
 		{
@@ -75,7 +74,7 @@ class CharityController extends Controller
     }
 	public function charities_list()
 	{		
-	$user = JWTAuth::parseToken()->authenticate();
+		$user = JWTAuth::parseToken()->authenticate();
 
 		$query = Charity::where('user_id',$user->id)->get();
 		return response()->json($query);
