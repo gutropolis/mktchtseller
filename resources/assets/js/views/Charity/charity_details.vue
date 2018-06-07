@@ -175,8 +175,32 @@
                      </div>
                   </div>
                   <div class="helping__element">
+				  
+				  <div v-if="trial<=0 || units < trial" class="col-12">
+						 <div class="charity_donation">
+                                    <div v-if="getrole ==='seller'" class="charity__request">
+                                       <div v-if="getrole=='seller'">
+                                          <div class="charity_donation--box">
+                                             <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Invite Charity To Your Donation</b-btn>
+                                             <b-modal id="modalPrevent"
+                                                ref="modal"
+                                                title="Your Trial pack Is Expire."
+                                                @ok=submit
+                                                @shown="clearName">
+                                                <form  id="member" @submit.stop.prevent="submit">
+														Click Ok To Purchase Membership To Continue.                                                 
+                                                </form>
+                                             </b-modal>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div v-if="getrole =='' "class="charity__request">
+                                    <router-link :to="{ path: '/login',query: {redurl:'/charity_details/'+this.$route.params.id}}" class="charity__request--send btn-bg-orange btn orangebtn">Invite Charity To Your Donation</router-link>
+                                 </div>
+				  </div>
                      
-                     <div class="col-12">
+                     <div v-else class="col-12">
                                  <div class="charity_donation">
                                     <div v-if="getrole ==='seller'" class="charity__request">
                                        <div v-if="getrole=='seller'">
@@ -185,7 +209,7 @@
                                              <b-modal id="modalPrevent"
                                                 ref="modal"
                                                 title="Invite To Donate Charity"
-                                                @ok="handleSubmit"
+                                                 @ok="handleOk"
                                                 @shown="clearName">
                                                 <form  id="prod" @submit.stop.prevent="handleSubmit">
                                                    <div class="form-group">
@@ -196,8 +220,13 @@
                                                       </select>
                                                    </div>
                                                    <label class="charity__element--block--content--box--label">Units</label>
+												  
                                                    <input type="number" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
-                                                   <input type="hidden" name="product_name" v-model="prod.product_name" class="login__element--box--input" />
+													<div v-if="prod.units > user.trial_pack">
+												  <p>Your Trial Pack  has remain only  {{user.trial_pack}} units You Need To Purchase Membership</p>
+												  <span><router-link to="/membership">Click Here To Purchase</router-link></span>
+												  </div>
+												   <input type="hidden" name="product_name" v-model="prod.product_name" class="login__element--box--input" />
                                                 </form>
                                              </b-modal>
                                           </div>
@@ -221,24 +250,24 @@
    </div>
 </template>
 <script>
-   import helper from '../../services/helper'
-    
+   import helper from '../../services/helper'  
    import Vue from 'vue'
    Vue.use(require('vue-moment'));
    export default {
    	 components: {},
-     
            data() {
-   		 
-   		
-               return {
-      charity_request:[],
-       myAttribute: 'null',
-      images:'',
-      similiar:[],
-   		request:{},
-   		  product_name:{},
-   		  role:true,
+   		       return {
+			   user:{},
+			   units:{},
+			  trial:{},
+			  msg:{},
+				  charity_request:[],
+				   myAttribute: 'null',
+				  images:'',
+				  similiar:[],
+					request:{},
+					  product_name:{},
+					  role:true,
    		 
    		  prod:{
    				  title: 'select',
@@ -256,9 +285,9 @@
    		created: function()
            {
                this.fetchItems();
-   			
+   			this.fetchtrial();
    			this.fetchproducts();
-   	
+			
            },
           
            
@@ -283,9 +312,24 @@
       clearName () {
    				this.name = ''
    			},
+			submit(){
+				 this.$router.push('/membership');
+			
+			},
+	 handleOk (evt) {
+    
+      evt.preventDefault()
+      if(this.prod.units > this.user.trial_pack) {
+	  this.msg="Your Trial Pack  has remain only " + this.user.trial_pack + " units You Need To Purchase Membership";
+	  
+      } else {
+        this.handleSubmit()
+      }
+    },
       
     handleSubmit () {
-       let data = this.prod;
+	
+     
      axios.post('/api/product/'+this.$route.params.id,this.prod).then(response => {
      toastr['success'](response.data.message);
      })
@@ -361,6 +405,18 @@
    				  
                  });
                },
+			   fetchtrial(){
+			   axios.get('/api/user_id').then(response =>  {
+							  this.user = response.data;
+							  this.trial=response.data.trial_pack;
+
+              });
+            },
+		
+			   
+			   
+			   
+		
       
        getAuthUserrole(){
                return this.$store.getters.getAuthUserrole;
