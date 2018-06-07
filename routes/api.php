@@ -136,7 +136,7 @@ Route::get('/productsearch','SellerproductController@products');
 Route::post('/productsearch','SellerproductController@search');
 Route::get('/product','SellerproductController@product');
 Route::get('/products','SellerproductController@sellerproduct');
-Route::get('/charities_list','CharityController@charities_list');
+//Route::get('/charities_list','CharityController@fetch_charity');
 Route::post('/product/{id}','CharityController@product');
 Route::get('/fetch_subject/{id}','InboxController@subject');
 
