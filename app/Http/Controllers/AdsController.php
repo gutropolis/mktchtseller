@@ -49,14 +49,14 @@ class AdsController extends Controller
         return response()->json($requestsArr);
     }
     
-    public function charity()
+  /*  public function charity()
     {
         $user = JWTAuth::parseToken()->authenticate();
         $query=\App\Charity::whereUserId($user->id);
         $qu=$query->get();
         return($qu);
         
-    }
+    }*/
         public function requests()
 		{
             $request=my_ads::where('status',1)->get();
