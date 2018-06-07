@@ -394,9 +394,23 @@
                 });
 					
 				
-		}
+		},
+		 getAuthUserrole(){
+               return this.$store.getters.getAuthUserrole;
+           },
+           getAuthUser(name){
+               return this.$store.getters.getAuthUser(name);
+           }
 		
-		}
+		},
+		 computed: {
+   getrole(){
+   	return this.getAuthUser('role');
+   },
+           getAvatar(){
+               return '/images/user/'+this.getAuthUser('avatar');
+           }
+       }
 		
     }
 </script>
