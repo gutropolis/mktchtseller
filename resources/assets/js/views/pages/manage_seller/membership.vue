@@ -20,7 +20,8 @@
          <div class="col-md-3" v-for="pack in packs">
            
          <div class="membership_content--box">
-          <h6>{{pack.package_name}}</h6>
+		
+          <h6>{{pack.package_name}}</h6><span v-if="pack.id==subscription_id">(Your Plan is Active Now) </span>
           <div class="membership_content--box--heading"><h3><span>$</span>{{pack.amount}}</h3></div>
            <article>           
             <p>Credit Pack Of {{pack.credit_score}} For </p>
@@ -29,8 +30,10 @@
              <li>20% off future purchases.</li></ul>
              
            </article>
-           <button class="btn btn-success" @click="subscribe(pack.id)" style="margin-bottom:10px;">Subscribe</button>
-		   
+        
+		    <button v-if="remaining_credit > 0" disabled class="btn btn-success" style="margin-bottom:10px;">Subscribe</button>
+			   <button class="btn btn-success" v-else @click="subscribe(pack.id)" style="margin-bottom:10px;">Subscribe</button>
+		
           </div>
            
          </div>
@@ -119,7 +122,7 @@
 			axios.get('/api/get_credit').then(response=>
 			{
 				this.remaining_credit=response.data.remaining_credit;
-				this.subscription_id=response.data.membership_id;
+				this.subscription_id=response.data.package_id;
 			})
 	},
 		fetchItem()
