@@ -17,6 +17,7 @@ class GsMembershipPack extends Migration
 		{
 			$table->increments('id');
             $table->string('package_name');
+			 $table->longText('description');
             $table->string('amount');
             $table->string('currency');
 			  $table->string('credit_score');
