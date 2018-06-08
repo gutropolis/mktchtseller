@@ -7,6 +7,7 @@ use App\Donation;
 use App\Sellerproduct;
 use App\User;
 use App\Charity;
+use App\Subscription;
 use App\Http\Requests;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
@@ -188,14 +189,13 @@ class SellerController extends Controller
 	public function seller_donation(Request $request)
 	{
 		$charity_id=$request->input('charity_id');;
-		//return ($title);
+	
 		$charity = Charity::where('id',$charity_id)->first();
 		
 		$user = JWTAuth::parseToken()->authenticate();
 		$sellerproduct=new \App\Donation;
 		$sellerproduct->seller_id = $user->id;
 		$sellerproduct->product_id=$request->input('id');
-		//return($sellerproduct->product_id);
 		$sellerproduct->charity_id=$request->input('charity_id');
 		$sellerproduct->post_id=$charity->id;
 		$sellerproduct->charity_owner_id=$charity->user_id;
@@ -203,7 +203,6 @@ class SellerController extends Controller
 		$sellerproduct->charity_status="0";
 		$sellerproduct->is_certify="0";
 		$sellerproduct->progress="0";
-		
 		$sender_user=User::where('id',$sellerproduct->seller_id)->first();
 		
 		
@@ -216,6 +215,26 @@ class SellerController extends Controller
 			$message->to($reciever_user->email)->subject('Donate!');
 		});
 		$sellerproduct->save();
+		$subscription=Subscription::where('user_id',$user->id)->first();
+		if($subscription->remaining_credit='1')
+		{
+			$update=Subscription::where('user_id',$user->id)->update(['status' => '0']);
+		}
+				
+		if(count($subscription) <= 0 )
+		{
+		
+		$remaning=$user->trial_pack-$sellerproduct->units;
+		$update=User::where('id',$user->id)->update(['trial_pack'=>$remaning]);
+	}
+	
+	if(count($subscription) > 0){
+		//echo 'else'; exit;
+			$remaning_credit=$subscription->remaining_credit - 1;
+			$update = Subscription::where('user_id',$user->id)->update(['remaining_credit' => $remaning_credit]);
+		
+		
+	}
 		
 		$actvity=new Controller;
 	$actvity->AddUserActivityFeed($sellerproduct->seller_id,$sellerproduct->charity_owner_id,'charity','Offer to Donate Product',$sellerproduct->post_id,'/donaters');
