@@ -45,7 +45,7 @@ Payment Settings
                     <thead>
                         <tr class="filters">
                            
-                            <th>Paypal Email</th>
+                            <th>Stripe Email</th>
                             <th>Stripe Secret Key</th>
                             <th>Stripe publishable key</th>
                             <th>Currency</th>
