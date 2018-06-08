@@ -4,6 +4,7 @@ use App\Http\Controllers\JoshController;
 use App\Http\Requests\UserRequest;
 use App\Users;
 use App\Payments;
+use App\Subscription;
 use App\Packages;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use File;
@@ -61,6 +62,19 @@ class PaymentsController extends JoshController
             ->make(true);
     }
 
+	 public function history()
+    {
+		
+		$subscription=Subscription::select('gs_subscription.id','gs_subscription.stripe_email','gs_subscription.stripe_id','gs_subscription.status','gs_subscription.remaining_credit','gs_membership_pack.package_name','gs_subscription.credit','gs_membership_pack.amount','gs_subscription.created_at')->join('gs_membership_pack','gs_subscription.package_id','=','gs_membership_pack.id')->paginate('5');
+        
+       
+		
+		return view('admin.payments.history',compact('subscription'))->with('no', 1);
+        
+    }
+	
+	
+	
     /**
      * Create new user
      *
@@ -79,7 +93,6 @@ class PaymentsController extends JoshController
      */
     public function store(Request $request)
     {
-       
        
           
 		 $charity= new \App\Packages;
