@@ -176,7 +176,7 @@
                   </div>
                   <div class="helping__element">
 				  
-				  <div v-if="trial<=0 || units < trial" class="col-12">
+				  <div v-if="credit.remaining_credit <= 0 && user.trial_pack <= 0 " class="col-12">
 						 <div class="charity_donation">
                                     <div v-if="getrole ==='seller'" class="charity__request">
                                        <div v-if="getrole=='seller'">
@@ -222,7 +222,7 @@
                                                    <label class="charity__element--block--content--box--label">Units</label>
 												  
                                                    <input type="number" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
-													<div v-if="prod.units > user.trial_pack">
+													<div v-if="prod.units > user.trial_pack && user.trial_pack <= 0">
 												  <p>Your Trial Pack  has remain only  {{user.trial_pack}} units You Need To Purchase Membership</p>
 												  <span><router-link to="/membership">Click Here To Purchase</router-link></span>
 												  </div>
@@ -257,6 +257,7 @@
    	 components: {},
            data() {
    		       return {
+			   credit:{},
 			   user:{},
 			   units:{},
 			  trial:{},
@@ -284,6 +285,7 @@
    		
    		created: function()
            {
+		   this.fetchCredit();
                this.fetchItems();
    			this.fetchtrial();
    			this.fetchproducts();
@@ -322,7 +324,7 @@
       if(this.prod.units > this.user.trial_pack) {
 	  this.msg="Your Trial Pack  has remain only " + this.user.trial_pack + " units You Need To Purchase Membership";
 	  
-      } else {
+      } if(this.credit.remaining_credit > 0 || this.user.trial_pack > 0 ) {
         this.handleSubmit()
       }
     },
@@ -332,6 +334,7 @@
      
      axios.post('/api/product/'+this.$route.params.id,this.prod).then(response => {
      toastr['success'](response.data.message);
+	 this.$router.push('/donation_list')
      })
    
     },
@@ -408,31 +411,35 @@
 			   fetchtrial(){
 			   axios.get('/api/user_id').then(response =>  {
 							  this.user = response.data;
-							  this.trial=response.data.trial_pack;
+							
 
               });
             },
 		
+			   fetchCredit(){
+					axios.get('/api/get_credit').then(response => {
+						this.credit = response.data;
+					
+					})
+			   
+			   },
 			   
 			   
-			   
-		
+		 getAuthUser(name){
+               return this.$store.getters.getAuthUser(name);
+           },
       
        getAuthUserrole(){
                return this.$store.getters.getAuthUserrole;
            },
-           getAuthUser(name){
-               return this.$store.getters.getAuthUser(name);
-           }
+          
    			
    			},
     computed: {
    getrole(){
    	return this.getAuthUser('role');
    },
-           getAvatar(){
-               return '/images/user/'+this.getAuthUser('avatar');
-           }
+           
        }
    
    }	
