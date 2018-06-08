@@ -12,6 +12,7 @@ use App\Donation;
 use App\Events\MessageDonation;
 use App\User;
 use App\Seller;
+use App\Subscription;
 use App\CharityCategory;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Settings;
@@ -120,14 +121,23 @@ class CharityController extends Controller
 			$message->to($reciever_user->email)->subject('Donate!');    
 		});
 		$sellerproduct->save();
-		if($sellerproduct->save())
+		$subscription=Subscription::where('user_id',$user->id)->first();
+		
+				
+		if(count($subscription) <= 0 )
 		{
-		$user = JWTAuth::parseToken()->authenticate();
 		
 		$remaning=$user->trial_pack-$sellerproduct->units;
-		
 		$update=User::where('id',$user->id)->update(['trial_pack'=>$remaning]);
-		}
+	}
+	if(count($subscription) > 0){
+		//echo 'else'; exit;
+			$remaning_credit=$subscription->remaining_credit - 1;
+			$update = Subscription::where('user_id',$user->id)->update(['remaining_credit' => $remaning_credit]);
+		
+		
+	}
+		
 		$actvity=new Controller;
 	$actvity->AddUserActivityFeed($sellerproduct->seller_id,$sellerproduct->charity_owner_id,'charity','Invite to Donate Product',$sellerproduct->post_id,'/donaters');
 	
