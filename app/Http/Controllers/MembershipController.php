@@ -36,20 +36,7 @@ class MembershipController extends Controller
 			//$remaining_credit=Subscription::where('user_id',$user->id)->pluck('remaining_credit');
 			return $pack;
     }
-    public function activepack()
-    {
-      $user= JWTAuth::parseToken()->authenticate();
-	  $subscription=Subscription::where('user_id',$user->id)->first();
-	  if(count($subscription) > 0 && $subscription->status == 1)
-	  {
-		  $plan="Your Plan Is  Active Now";
-		 return $plan;
-		  
-		  
-	  }
-	  return $subscription;
-	  
-    } 
+   
    
     public function remaning_credit()
     {
@@ -74,7 +61,25 @@ class MembershipController extends Controller
 		 //return $request;
 		 $user = JWTAuth::parseToken()->authenticate();
 		 $pack=Membership::where('id',$request->input('plan_id'))->first();
-		 $subscription= new \App\Subscription;
+		 
+		 $subsciber=Subscription::where('user_id',$user->id)->first();
+		
+		 if(count($subsciber) == '1' )
+		{
+			$update=Subscription::where('id',$subsciber->id)->first();
+			 $update->user_id=$user->id;
+		 $update->stripe_email=$user->email;
+		  $update->stripe_id=$request->input('stripeToken');
+		 $update->package_id=$pack->id;
+		 $update->credit=$pack->credit_score;
+		 $update->trial_units='10';
+		 $update->remaining_credit=$pack->credit_score;
+		 $update->status="1";
+		 
+		 $update->save();
+		}
+		else{
+				$subscription= new \App\Subscription;
 		 $subscription->user_id=$user->id;
 		 $subscription->stripe_email=$user->email;
 		  $subscription->stripe_id=$request->input('stripeToken');
@@ -84,6 +89,8 @@ class MembershipController extends Controller
 		 $subscription->remaining_credit=$pack->credit_score;
 		 $subscription->status="1";
 		 $subscription->save();
+
+		}
 		
           return response()->json(['message' => 'Your Subscription Activated.']);
     }
