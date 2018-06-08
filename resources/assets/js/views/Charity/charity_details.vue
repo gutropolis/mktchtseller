@@ -176,7 +176,7 @@
                   </div>
                   <div class="helping__element">
 				  
-				  <div v-if="credit.remaining_credit <= 0 || user.trial_pack < 0 " class="col-12">
+				  <div v-if="credit.remaining_credit <= 0 || user.trial_pack <= 0 " class="col-12">
 						 <div class="charity_donation">
                                     <div v-if="getrole ==='seller'" class="charity__request">
                                        <div v-if="getrole=='seller'">
