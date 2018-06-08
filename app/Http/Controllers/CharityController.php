@@ -122,7 +122,10 @@ class CharityController extends Controller
 		});
 		$sellerproduct->save();
 		$subscription=Subscription::where('user_id',$user->id)->first();
-		
+		if($subscription->remaining_credit='1')
+		{
+			$update=Subscription::where('user_id',$user->id)->update(['status' => '0']);
+		}
 				
 		if(count($subscription) <= 0 )
 		{
