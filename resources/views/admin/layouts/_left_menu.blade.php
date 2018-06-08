@@ -177,6 +177,12 @@
            Payment Settings
 			</a>
     </li>
+	 <li {!! (Request::is('admin/payments') ? 'class="active" id="active"' : '') !!}>
+        <a href="{{  URL::to('admin/payments/history') }}">
+            <i class="fa fa-angle-double-right"></i>
+           Payment History
+			</a>
+    </li>
 			
 			 
               
