@@ -124,6 +124,7 @@ Route::get('/packs','MembershipController@index');
 Route::post('/subscriptions','MembershipController@subscriptions');
 Route::get('/get_credit','MembershipController@remaning_credit');
 Route::post('/selected_plan/{id}','MembershipController@select_plan');
+Route::get('/activepack','MembershipController@activepack');
 
 
 });
