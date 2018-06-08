@@ -36,7 +36,20 @@ class MembershipController extends Controller
 			//$remaining_credit=Subscription::where('user_id',$user->id)->pluck('remaining_credit');
 			return $pack;
     }
-    
+    public function activepack()
+    {
+      $user= JWTAuth::parseToken()->authenticate();
+	  $subscription=Subscription::where('user_id',$user->id)->first();
+	  if(count($subscription) > 0 && $subscription->status == 1)
+	  {
+		  $plan="Your Plan Is  Active Now";
+		 return $plan;
+		  
+		  
+	  }
+	  return $subscription;
+	  
+    } 
    
     public function remaning_credit()
     {
@@ -44,9 +57,9 @@ class MembershipController extends Controller
 	  $subscription=Subscription::where('user_id',$user->id)->first();
 	  return $subscription;
 	  
-	  
-	  
     }  
+	
+	
 	public function select_plan($id)
 	{
 			$packs=Membership::where('id',$id)->first();
@@ -58,7 +71,7 @@ class MembershipController extends Controller
 	
      public function subscriptions(Request $request){
 		
-		 
+		 //return $request;
 		 $user = JWTAuth::parseToken()->authenticate();
 		 $pack=Membership::where('id',$request->input('plan_id'))->first();
 		 $subscription= new \App\Subscription;
