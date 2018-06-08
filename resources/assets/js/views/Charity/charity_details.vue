@@ -176,7 +176,7 @@
                   </div>
                   <div class="helping__element">
 				  
-				  <div v-if="credit.remaining_credit <= 0 && user.trial_pack <= 0 " class="col-12">
+				  <div v-if="credit.remaining_credit <= 0 || user.trial_pack < 0 " class="col-12">
 						 <div class="charity_donation">
                                     <div v-if="getrole ==='seller'" class="charity__request">
                                        <div v-if="getrole=='seller'">
@@ -184,7 +184,7 @@
                                              <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Invite Charity To Your Donation</b-btn>
                                              <b-modal id="modalPrevent"
                                                 ref="modal"
-                                                title="Your Trial pack Is Expire."
+                                                title="Your Have No Package.You Need to Purchase Package."
                                                 @ok=submit
                                                 @shown="clearName">
                                                 <form  id="member" @submit.stop.prevent="submit">
@@ -222,10 +222,10 @@
                                                    <label class="charity__element--block--content--box--label">Units</label>
 												  
                                                    <input type="number" name="units"  v-model="prod.units" placeholder="Units"  class="login__element--box--input" />
-													<div v-if="prod.units > user.trial_pack && user.trial_pack <= 0">
+													<!--<div v-if="prod.units > user.trial_pack && user.trial_pack <= 0">
 												  <p>Your Trial Pack  has remain only  {{user.trial_pack}} units You Need To Purchase Membership</p>
 												  <span><router-link to="/membership">Click Here To Purchase</router-link></span>
-												  </div>
+												  </div>-->
 												   <input type="hidden" name="product_name" v-model="prod.product_name" class="login__element--box--input" />
                                                 </form>
                                              </b-modal>
