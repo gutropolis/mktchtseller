@@ -147,6 +147,7 @@ Route::group(['prefix' => 'charityrequests'], function () {
 		//Membership
 		
 		  Route::group([ 'prefix' => 'membership'], function () {
+			  Route::get('memberships','MembershipController@index')->name('memberships');
         Route::get('data', 'MembershipController@data')->name('membership.data');
         Route::get('{membership}/delete', 'MembershipController@destroy')->name('membership.delete');
         Route::get('{membership}/confirm-delete', 'MembershipController@getModalDelete')->name('membership.confirm-delete');
@@ -184,6 +185,7 @@ Route::group(['prefix' => 'charityrequests'], function () {
 	 # Seller Management
 	 
     Route::group([ 'prefix' => 'seller'], function () {
+		Route::get('sellers','SellerController@index')->name('sellers');
         Route::get('data', 'SellerController@data')->name('seller.data');
         Route::get('{seller}/delete', 'SellerController@destroy')->name('seller.delete');
         Route::get('{seller}/confirm-delete', 'SellerController@getModalDelete')->name('seller.confirm-delete');
