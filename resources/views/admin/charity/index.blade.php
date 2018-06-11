@@ -77,7 +77,7 @@ Charity List
             processing: true,
             serverSide: true,
             
-			ajax: '{!! route('admin.charity.data') !!}',
+			ajax: '{{ URL::route('admin.charity.data') }}',
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'title', name: 'title' },
