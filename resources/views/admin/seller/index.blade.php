@@ -42,8 +42,8 @@ Seller List
             <br />
             <div class="panel-body">
                 <div class="table-responsive">
-                <table class="table table-bordered width100" id="table">
-                    <thead>
+                <table class="table table-bordered" id="table">
+                     <thead>
                         <tr class="filters">
                             <th>ID</th>
                             <th>Title</th>
@@ -54,9 +54,41 @@ Seller List
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-
-
+                     <tbody>
+                    @if(!empty($sellers))
+                        @foreach ($sellers as $seller)
+                            <tr>
+                                <td>{{ $seller->id }}</td>
+                                <td>{{ $seller->title }}</td>
+                                <td>{{ $seller->description }}</td>
+								 <td>{{ $seller->state }}</td>
+								  <td>{{ $seller->city }}</td>
+                                <td>{{ $seller->created_at->diffForHumans() }}</td>
+								    <td>
+                                    <a href="{{ URL::to('admin/seller/' . $seller->id ) }}"><i class="livicon"
+                                                                                                     data-name="info"
+                                                                                                     data-size="18"
+                                                                                                     data-loop="true"
+                                                                                                     data-c="#428BCA"
+                                                                                                     data-hc="#428BCA"
+                                                                                                     title="@lang('Show Seller')"></i></a>
+                                    <a href="{{ URL::to('admin/seller/' . $seller->id . '/edit' ) }}"><i class="livicon"
+                                                                                                     data-name="edit"
+                                                                                                     data-size="18"
+                                                                                                     data-loop="true"
+                                                                                                     data-c="#428BCA"
+                                                                                                     data-hc="#428BCA"
+                                                                                                     title="@lang('Update')"></i></a>
+                                    <a href="{{ route('admin.seller.confirm-delete', $seller->id) }}" data-toggle="modal"
+                                       data-target="#delete_confirm"><i class="livicon" data-name="remove-alt"
+                                                                        data-size="18" data-loop="true" data-c="#f56954"
+                                                                        data-hc="#f56954"
+                                                                        title="@lang('Seller Delete')"></i></a>
+                                </td>
+                           
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
                 </div>
@@ -68,36 +100,16 @@ Seller List
 
 {{-- page level scripts --}}
 @section('footer_scripts')
-    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}"></script>
 
-<script>
-    $(function() {
-        var table = $('#table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{!! route('admin.seller.data') !!}',
-            columns: [
-                { data: 'id', name: 'id' },
-                { data: 'title', name: 'tile' },
-                { data: 'description', name: 'decription' },
-                { data: 'state', name: 'state' },
-				  { data: 'city', name: 'city' },
-                { data: 'created_at', name:'created_at'},
-				
-                { data: 'actions', name: 'actions', orderable: false, searchable: false }
-            ]
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable();
         });
-        table.on( 'draw', function () {
-            $('.livicon').each(function(){
-                $(this).updateLivicon();
-            });
-        } );
-    });
+    </script>
 
-</script>
-
-<div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="seller_delete_confirm_title" aria-hidden="true">
+<div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
 	<div class="modal-dialog">
     	<div class="modal-content"></div>
   </div>
