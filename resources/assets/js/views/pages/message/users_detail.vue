@@ -55,10 +55,19 @@
                                             </figure> </router-link>
 											
 											 </td>
-									<td> <p class="users_messages--users_area--box--list--link--user_name" > <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >  {{create_messages.first_name}}</router-link></p></td>
-									<td> <p  class="users_messages--users_area--box--list--link--user_name"> <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >{{create_messages.last_name}}</router-link></p></td>
-									<td>  <p class="users_messages--users_area--box--list--link--user_title"><router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >{{create_messages.subject}}</router-link></p></td>
-									<td> <p class="users_messages--users_area--box--list--link--date"><router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >{{ create_messages.created_at |  moment("MMMM Do YYYY, h:mm a") }}</router-link></p></td>
+									<td> 
+									<p v-if="create_messages.status == '1'" class="users_messages--users_area--box--list--link--user_name" > <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" ><b>{{create_messages.first_name}}</b></router-link></p>
+									<p v-else class="users_messages--users_area--box--list--link--user_name" > <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >  {{create_messages.first_name}}</router-link></p>
+									</td>
+									<td> 
+									<p v-if="create_messages.status =='1'" class="users_messages--users_area--box--list--link--user_name"> <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" ><b>{{create_messages.last_name}}</b></router-link></p> 
+									<p v-else class="users_messages--users_area--box--list--link--user_name"> <router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >{{create_messages.last_name}}</router-link></p></td>
+									<td> 
+									<p v-if="create_messages.status =='1'" class="users_messages--users_area--box--list--link--user_title"><router-link :to="{name: 'users_message', params: { id: create_messages.id }}" ><b>{{create_messages.subject}}</b></router-link></p>
+									<p v-else class="users_messages--users_area--box--list--link--user_title"><router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >{{create_messages.subject}}</router-link></p>
+									</td>
+									<td><p v-if="create_messages.status == '1'" class="users_messages--users_area--box--list--link--date"><router-link :to="{name: 'users_message', params: { id: create_messages.id }}" ><b>{{ create_messages.created_at |  moment("MMMM Do YYYY, h:mm a") }}</b></router-link></p> 
+									<p v-else class="users_messages--users_area--box--list--link--date"><router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >{{ create_messages.created_at |  moment("MMMM Do YYYY, h:mm a") }}</router-link></p></td>
 									
 									</tr>
 									<tr>
