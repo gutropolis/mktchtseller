@@ -59,7 +59,31 @@
                                        <span class="messages_outer--left_sec--detail_sec--detail--title pull-left">location:</span>
                                        <span class="messages_outer--left_sec--detail_sec--detail--data pull-right">{{item.address}}</span>
                                     </li>
-                                    <div  v-if="credit.remaining_credit > 0 || user.trial_pack > 0 " class="charity_donation">
+									 <div  v-if="credit.remaining_credit <= 0 || user.trial_pack < 0 "  class="col-12">
+                                       <div class="charity_donation">
+                                          <div v-if="getrole ==='seller'" class="charity__request">
+                                             <div v-if="getrole=='seller'">
+                                                <div class="charity_donation--box">
+                                                   <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Make An Offer</b-btn>
+                                                   <b-modal id="modalPrevent"
+                                                      ref="modal"
+                                                      title="Your Have No Package To Offer Charity.Need to Purchase Membership Pack."
+                                                      @ok=link
+                                                      @shown="clearName">
+                                                      <form  id="member" @submit.stop.prevent="link">
+                                                         Click Ok To Purchase Membership To Continue.                                                 
+                                                      </form>
+                                                   </b-modal>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div v-if="getrole =='' "class="charity__request">
+                                          <router-link :to="{ path: '/login',query: {redurl:'/charity_details/'+this.$route.params.id}}" class="charity__request--send btn-bg-orange btn orangebtn">Make An Offer</router-link>
+                                       </div>
+                                    </div>
+									<div v-else class="col-12">
+                                    <div  class="charity_donation">
                                        <div v-if="getrole ==='seller'" class="charity__request">
                                           <div v-if="getrole=='seller'">
                                              <div class="charity_donation--box">
@@ -90,29 +114,7 @@
                                           </div>
                                        </div>
                                     </div>
-                                    <div v-else  class="col-12">
-                                       <div class="charity_donation">
-                                          <div v-if="getrole ==='seller'" class="charity__request">
-                                             <div v-if="getrole=='seller'">
-                                                <div class="charity_donation--box">
-                                                   <b-btn v-b-modal.modalPrevent v-b-modal. variant="primary" class="charity__request--send btn-bg-orange btn orangebtn">Make An Offer</b-btn>
-                                                   <b-modal id="modalPrevent"
-                                                      ref="modal"
-                                                      title="Your Have No Package To Offer Charity.Need to Purchase Membership Pack."
-                                                      @ok=link
-                                                      @shown="clearName">
-                                                      <form  id="member" @submit.stop.prevent="link">
-                                                         Click Ok To Purchase Membership To Continue.                                                 
-                                                      </form>
-                                                   </b-modal>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                       <div v-if="getrole =='' "class="charity__request">
-                                          <router-link :to="{ path: '/login',query: {redurl:'/charity_details/'+this.$route.params.id}}" class="charity__request--send btn-bg-orange btn orangebtn">Make An Offer</router-link>
-                                       </div>
-                                    </div>
+                                   </div>
                                  </ul>
                                  <div class="detail_icon">
                                     <button type="button" class="detail_slide-toggle"><i class="fa fa-user" aria-hidden="true"></i></button>
@@ -211,33 +213,34 @@
    import AppSidebar from '../users/sidebar.vue'
    import Vue from 'vue'
    import toogle from '../../../../js/toogle.js'
-    import helper from '../../../services/helper'
+   import helper from '../../../services/helper'
     
       export default {
       components: {
-                AppSidebar 
-          },
+					AppSidebar 
+				},
       data() {
               return {
-   		subject:{},
-   		product:{},
-   		charities:{},
-   		info:[],
-   		user:[],
-   		items:[],
-        prod:{
+						subject:{},
+						product:{},
+						charities:{},
+						info:[],
+						user:[],
+						items:[],
+				prod:{
      				  title: 'select',
      				  units: ''
      				},
-           savechat:{
-   			      message:''  
-   		       }    
+			  savechat:{
+						message:''  
+					}    
    			}
           },
       props: ['userId'],
     created: function()
           {
-   			this.fetchCredit();
+   			this.fetchcredit();
+			this.fetchstatus();
    		   this.fetchCharity();
    		   this.fetchMessage();
    		   this.senderinfo();
@@ -261,103 +264,85 @@
      				  
                    });
      	 },
-		 //Fetch Products
 		
-		//Post Offer
-     handleSubmit () {
-        
-    
-       axios.post('/api/seller_make_offer/'+this.$route.params.id,this.prod).then(response => {
-       toastr['success'](response.data.message);
-	 location.reload();
-       })
-     
-      },
-     //Post Offer
         clearName () {
      				this.name = ''
      			},
      click()
       {
-     axios.post('/api/inboxstatus/'+this.$route.params.id).then(response =>  {
+			axios.post('/api/inboxstatus/'+this.$route.params.id).then(response =>  {
                         console.log("Id of"+this.$route.params.id);
-      
       
       });
       },
 	  //fetch USer Message
      fetchMessage(){
-     axios.get('/api/user_id').then(response =>  {
-                  
-        this.user_id=response.data.id;
-      console.log("Userid login"+this.user_id);
-     
-     Echo.channel('chat'+this.user_id)
-              .listen('MessageSent', (e) => {
-     if((this.user_id == e.user.reciever_id) && (this.$route.params.id == e.user.inbox_id))
-     {
-                  this.items.push({
-                      message: e.user.message,
-                      sender_id: e.user.sender_id,
-                  })
+			axios.get('/api/user_id').then(response =>  {
+				this.user_id=response.data.id;
       
-      }
-        })
-     //console.log("user_detail"+this.user_id);
-     })
      
-     
-     },
+			 Echo.channel('chat'+this.user_id)
+					  .listen('MessageSent', (e) => {
+			 if((this.user_id == e.user.reciever_id) && (this.$route.params.id == e.user.inbox_id))
+			 {
+						  this.items.push({
+							  message: e.user.message,
+							  sender_id: e.user.sender_id,
+						  })
+			  
+			  }
+				})
+			 //console.log("user_detail"+this.user_id);
+			 })
+			 
+			 },
 	 //Ftech Message
 	 
 	 //Link Purchase Membership
 	 link(){
 				 this.$router.push('/membership');
-			
 			},
-			//Link
 			
-			//Event Check Trail or credit
-			handleOk (evt) {
-    
-      evt.preventDefault()
-      if(this.prod.units > this.user.trial_pack ) {
-	  this.msg="Your Trial Pack  has remain only " + this.user.trial_pack + " units You Need To Purchase Membership";
-	  
-      } if(this.credit.remaining_credit > 0 || this.user.trial_pack > 0 ) {
-        this.handleSubmit()
-      }
+	handleOk (evt) {
+			evt.preventDefault()
+			if(this.prod.units > this.user.trial_pack ) {
+				this.msg="Your Trial Pack  has remain only " + this.user.trial_pack + " units You Need To Purchase Membership";
+			}
+			if(this.credit.remaining_credit > 0 || this.user.trial_pack > 0 ) 
+			{
+				this.handleSubmit()
+			}
     },
+	 handleSubmit () {
+    
+       axios.post('/api/seller_make_offer/'+this.$route.params.id,this.prod).then(response => {
+       toastr['success'](response.data.message);
+		location.reload();
+       })
+     
+      },
 	//Event
 	//Fetch Charity List
       fetchCharity()
      	{
-     	axios.get('/api/get_charity').then(response=>{
-     	
-     	this.charities=response.data;
-     	
-     	
+			axios.get('/api/get_charity').then(response=>{
+			this.charities=response.data;
      	})
      	},//Fetch Charity
      
      //Fetch User Products
      fetchproducts()
                  {
-     			
-                   axios.get('/api/product').then(response =>  {
-     					
-                       this.product = response.data;
-     				 
-     				  
-                   });
+     			  axios.get('/api/product').then(response =>  {
+     			       this.product = response.data;
+     				});
                  },
      //fetchProdcts
      
-               submit(e){
+        submit(e){
    				axios.post('/api/message/'+this.$route.params.id, this.savechat).then(response =>   { if(response.status===200) {
-   					this.savechat.message = '';
-          
-          }
+					this.savechat.message = '';
+				}
          });
        this.fetchItems();
       
@@ -365,30 +350,37 @@
      
      senderinfo()
      {
-      axios.get('/api/senderinfo/'+this.$route.params.id).then(response =>  {
-       this.info = response.data;
+		axios.get('/api/senderinfo/'+this.$route.params.id).then(response =>  {
+			this.info = response.data;
      })
      },
 	 //fetch Remaining credit
-      fetchCredit(){
-   				axios.get('/api/get_credit').then(response => {
-   					this.credit = response.data;
-   				
-   				})
-   		   
-   		   },
+     fetchstatus(){
+			axios.get('/api/get_status').then(response=>
+		   {
+					this.credit=response.data;
+		   });
+		   },
+	fetchcredit()
+   {
+		axios.get('/api/get_credit').then(response=>
+   {
+   this.count=response.data;
+  
+   })
+   },
 		   //credit
      //fetch Subject
      fetch_subject()
-     {
-   axios.get('/api/fetch_subject/'+this.$route.params.id).then(response => {
-   	this.subject=response.data;
-   })
+		{
+		   axios.get('/api/fetch_subject/'+this.$route.params.id).then(response => {
+			this.subject=response.data;
+		})
      },
 	 //fetchSubject
       fetchItems()
               {
-      axios.get('/api/user_detail/'+this.$route.params.id).then(response =>  {
+				axios.get('/api/user_detail/'+this.$route.params.id).then(response =>  {
                     this.items = response.data;
       
                 });
@@ -396,10 +388,10 @@
     
      //fetch User Detiak
       fetchItem()
-              {
-      axios.get('/api/user_id').then(response =>  {
+             {
+				axios.get('/api/user_id').then(response =>  {
                     this.user = response.data;
-        this.user_id=response.data.id;
+				this.user_id=response.data.id;
         //console.log("User_id ="+this.user.id);
         
                 });
