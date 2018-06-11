@@ -42,8 +42,8 @@ Charity Requests
             <br />
             <div class="panel-body">
                 <div class="table-responsive">
-                <table class="table table-bordered width100" id="table">
-                    <thead>
+                <table class="table table-bordered" id="table">
+                     <thead>
                         <tr class="filters">
                             <th>ID</th>
                             <th>Title</th>
@@ -52,8 +52,10 @@ Charity Requests
                             <th>Status</th>
 							<th>Action</th>
                         </tr>
-						<tr>
-						@foreach($request as $cat)
+						</thead>
+                     <tbody>
+                    @if(!empty($request))
+                        @foreach($request as $cat)
 						<td>{{ $no++ }}</td>
 						<td>{{ $cat->title }}</td>
 						<td>{{ $cat->description }}</td>
@@ -91,11 +93,7 @@ Charity Requests
 						</tr>
 						 @endforeach
   
-						
-                    </thead>
-                    <tbody>
-
-
+                    @endif
                     </tbody>
                 </table>
                 </div>
@@ -107,10 +105,14 @@ Charity Requests
 
 {{-- page level scripts --}}
 @section('footer_scripts')
-    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}"></script>
 
-
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable();
+        });
+    </script>
 
 <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
 	<div class="modal-dialog">
@@ -122,23 +124,6 @@ $(function () {
 	$('body').on('hidden.bs.modal', '.modal', function () {
 		$(this).removeData('bs.modal');
 	});
-	$('#facebookicon').click(function() {
-  $(this).find('i').toggleClass('fa-times fa-check-square')
-});
-	
 });
 </script>
-<style>
-.active_icon
-{
-	font-size:20px;
-}
-.active_icon .fa-times{
-	color:red;
-}
-.active_icon .fa-check-square
-{
-	color:green;
-}
-</style>
 @stop
