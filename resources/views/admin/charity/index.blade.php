@@ -68,8 +68,8 @@ Charity List
 
 {{-- page level scripts --}}
 @section('footer_scripts')
-    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
+    <script type="text/javascript" src="{{URL:: asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
+    <script type="text/javascript" src="{{URL:: asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
 
 <script>
     $(function() {
