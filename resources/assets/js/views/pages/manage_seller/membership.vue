@@ -17,10 +17,10 @@
                                     <div class="col-md-3" v-for="pack in packs">
                                        <div class="membership_content--box">
                                           <h6>{{pack.package_name}}</h6>
-										  <div  v-if="active =='1' ">
 										 
-                                          <span  v-if="pack.id==subscription.package_id">(Your Plan Is Active Now) </span>
-										  </div>
+										 
+                                          <span  v-if="pack.id==subscription">(Your Plan Is Active Now) </span>
+										
                                           <div class="membership_content--box--heading">
                                              <h3><span>$</span>{{pack.amount}}</h3>
                                           </div>
@@ -32,9 +32,10 @@
                                                 <li>20% off future purchases.</li>
                                              </ul>
                                           </article>
-										 
-                                          <button v-if="active =='1' || count != '0'" disabled class="btn btn-success" style="margin-bottom:10px;">Subscribe</button>
-                                          <button class="btn btn-success" v-else @click="subscribe(pack.id)" style="margin-bottom:10px;">Subscribe</button>
+										  
+										  <button v-if="active == '0'||remaining_credit == '0' || count == '0'" class="btn btn-success"  @click="subscribe(pack.id)" style="margin-bottom:10px;">Subscribe</button>
+                                          <button v-else disabled class="btn btn-success" style="margin-bottom:10px;">Subscribe</button>
+                                         
                                        </div>
                                     </div>
                                  </div>
@@ -59,21 +60,22 @@
           },
       data() {
               return {
-			  count:{},
+			  remaining_credit:{},
+					count:{},
 				   active:{},
 				   stripeEmail: '',
 				   stripeToken: '',
 				   status: false,
 				   packs:[],
 				   plan_id:'',
-				   subscription:[],
+				   subscription:{},
 				   amount:'',
                      }
           },
 		  
     	created: function()
                  {
-					//this.fetchactivepack();
+					this.fetchstatus();
 					this.fetchcredit();
 					this.fetchItem();
    	
@@ -127,19 +129,27 @@
    {
    axios.get('/api/get_credit').then(response=>
    {
-   this.subscription=response.data;
-   this.count=response.data.id;
-	this.count=response.data.length;
-   this.active=response.data.status;
-   	
+   this.count=response.data;
+  
    })
    },
+   fetchstatus(){
+     axios.get('/api/get_status').then(response=>
+   {
+   this.active=response.data.status;
+   this.subscription=response.data.package_id;
+   this.remaining_credit=response.data.remaining_credit;
+  
+   })
+   
+   },
+   
   
    fetchItem()
    	{
    		axios.get('/api/packs').then(response=>{
    		this.packs=response.data;
-   		console.log(this.activity);
+   		//console.log(this.activity);
    		}).catch(error=>{
    	toastr['error'](error.response.data.message);
              });
