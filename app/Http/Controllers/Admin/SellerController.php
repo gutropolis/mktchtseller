@@ -32,8 +32,8 @@ class SellerController extends JoshController
     {
 
         // Show the page
-		//$seller=Seller::all();
-        return view('admin.seller.index', compact('seller'));
+		$sellers=Seller::all();
+        return view('admin.seller.index', compact('sellers'));
     }
 
     /*
