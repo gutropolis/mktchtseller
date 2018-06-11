@@ -42,7 +42,7 @@ Users List
             <br />
             <div class="panel-body">
                 <div class="table-responsive">
-                <table class="table table-bordered width100" id="table">
+                <table class="table table-bordered" id="table">
                     <thead>
                         <tr class="filters">
                             <th>ID</th>
@@ -54,9 +54,41 @@ Users List
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-
-
+                     <tbody>
+                    @if(!empty($users))
+                        @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->first_name }}</td>
+                                <td>{{ $user->last_name }}</td>
+								 <td>{{ $user->email }}</td>
+								  <td>{{ $user->status }}</td>
+                                <td>{{ $user->created_at->diffForHumans() }}</td>
+								    <td>
+                                    <a href="{{ URL::to('admin/users/' . $user->id ) }}"><i class="livicon"
+                                                                                                     data-name="info"
+                                                                                                     data-size="18"
+                                                                                                     data-loop="true"
+                                                                                                     data-c="#428BCA"
+                                                                                                     data-hc="#428BCA"
+                                                                                                     title="@lang('blog/table.view-blog-comment')"></i></a>
+                                    <a href="{{ URL::to('admin/users/' . $user->id . '/edit' ) }}"><i class="livicon"
+                                                                                                     data-name="edit"
+                                                                                                     data-size="18"
+                                                                                                     data-loop="true"
+                                                                                                     data-c="#428BCA"
+                                                                                                     data-hc="#428BCA"
+                                                                                                     title="@lang('blog/table.update-blog')"></i></a>
+                                    <a href="{{ route('admin.users.confirm-delete', $user->id) }}" data-toggle="modal"
+                                       data-target="#delete_confirm"><i class="livicon" data-name="remove-alt"
+                                                                        data-size="18" data-loop="true" data-c="#f56954"
+                                                                        data-hc="#f56954"
+                                                                        title="@lang('blog/table.delete-blog')"></i></a>
+                                </td>
+                           
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
                 </div>
@@ -68,33 +100,14 @@ Users List
 
 {{-- page level scripts --}}
 @section('footer_scripts')
-    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}"></script>
 
-<script>
-    $(function() {
-        var table = $('#table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{!! route('admin.users.data') !!}',
-            columns: [
-                { data: 'id', name: 'id' },
-                { data: 'first_name', name: 'first_name' },
-                { data: 'last_name', name: 'last_name' },
-                { data: 'email', name: 'email' },
-                { data: 'status', name: 'status'},
-                { data: 'created_at', name:'created_at'},
-                { data: 'actions', name: 'actions', orderable: false, searchable: false }
-            ]
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable();
         });
-        table.on( 'draw', function () {
-            $('.livicon').each(function(){
-                $(this).updateLivicon();
-            });
-        } );
-    });
-
-</script>
+    </script>
 
 <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
 	<div class="modal-dialog">
