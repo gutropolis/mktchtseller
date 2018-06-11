@@ -257,6 +257,7 @@
    	 components: {},
            data() {
    		       return {
+			   count:{},
 			   credit:{},
 			   user:{},
 			   units:{},
@@ -285,12 +286,14 @@
    		
    		created: function()
            {
-		   this.fetchCredit();
+		   this.fetchstatus();
+		  this.fetchcredit();
                this.fetchItems();
    			this.fetchtrial();
    			this.fetchproducts();
 			
            },
+		  
           
            
           mounted(){
@@ -415,14 +418,24 @@
 
               });
             },
-		
-			   fetchCredit(){
-					axios.get('/api/get_credit').then(response => {
-						this.credit = response.data;
-					
-					})
-			   
-			   },
+		 fetchstatus(){
+     axios.get('/api/get_status').then(response=>
+   {
+   this.credit=response.data;
+   //this.subscription=response.data.package_id;
+   //this.remaining_credit=response.data.remaining_credit;
+  
+   })
+   
+   },
+			  fetchcredit()
+   {
+   axios.get('/api/get_credit').then(response=>
+   {
+   this.count=response.data;
+  
+   })
+   },
 			   
 			   
 		 getAuthUser(name){
