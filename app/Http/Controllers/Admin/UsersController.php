@@ -31,6 +31,7 @@ class UsersController extends JoshController
     {
 
         // Show the page
+		$users=Users::all();
         return view('admin.users.index', compact('users'));
     }
 
