@@ -33,7 +33,7 @@ use stdClass;
 	public function recieve_message()
 		{
 			$user = JWTAuth::parseToken()->authenticate();
-			 $recieve_message=Inbox::select('gs_messageinbox.created_at','gs_messageinbox.subject','gs_messageinbox.id','users.avatar','users.first_name','users.last_name')->where('gs_messageinbox.reciever_id',$user->id)->join('users','gs_messageinbox.sender_id','=','users.id')->get();
+			 $recieve_message=Inbox::select('gs_messageinbox.created_at','gs_messageinbox.subject','gs_messageinbox.status','gs_messageinbox.id','users.avatar','users.first_name','users.last_name')->where('gs_messageinbox.reciever_id',$user->id)->join('users','gs_messageinbox.sender_id','=','users.id')->get();
 			return($recieve_message);
 				
 				
