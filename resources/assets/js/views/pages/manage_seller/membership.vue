@@ -18,8 +18,12 @@
                                        <div class="membership_content--box">
                                           <h6>{{pack.package_name}}</h6>
 										 
-										 
-                                          <span  v-if="pack.id==subscription">(Your Plan Is Active Now) </span>
+										 <div v-if="remaining_credit =='0'">
+                                          <span  v-if="pack.id==subscription">(Your Plan Is Expired) </span>
+										  </div>
+										  <div v-else>
+										    <span  v-if="pack.id==subscription">(Your Plan Is Active Now) </span>
+										  </div>
 										
                                           <div class="membership_content--box--heading">
                                              <h3><span>$</span>{{pack.amount}}</h3>
