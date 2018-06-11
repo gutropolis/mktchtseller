@@ -87,6 +87,7 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
 
     # User Management
     Route::group([ 'prefix' => 'users'], function () {
+		Route::get('users','UsersController@index')->name('users');
         Route::get('data', 'UsersController@data')->name('users.data');
         Route::get('{user}/delete', 'UsersController@destroy')->name('users.delete');
         Route::get('{user}/confirm-delete', 'UsersController@getModalDelete')->name('users.confirm-delete');
@@ -113,7 +114,8 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
 		 Route::resource('donation', 'DonationController');
 	
 	//charity management
-    Route::group([ 'prefix' => 'charity'], function () {
+    Route::group([ 'prefix' => 'charity'], function () 
+{
         Route::get('data', 'CharityController@data')->name('charity.data');
         Route::get('{charity}/delete', 'CharityController@destroy')->name('charity.delete');
         Route::get('{charity}/confirm-delete', 'CharityController@getModalDelete')->name('charity.confirm-delete');
