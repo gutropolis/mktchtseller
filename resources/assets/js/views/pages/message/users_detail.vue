@@ -61,6 +61,11 @@
 									<td> <p class="users_messages--users_area--box--list--link--date"><router-link :to="{name: 'users_message', params: { id: create_messages.id }}" >{{ create_messages.created_at |  moment("MMMM Do YYYY, h:mm a") }}</router-link></p></td>
 									
 									</tr>
+									<tr>
+								 <td v-if="create_message.length === 0" colspan="5">
+									<h4  style="text-align:center;" >No results</h4>
+										</td>
+										</tr>
 								 </table>
                               </div>
                            </div>
