@@ -27,10 +27,10 @@ class CharityController extends JoshController
     public function index()
     {
 
-        // Show the page
-		//$charity=Charity::all();
+       
+		$charity_data=Charity::all();
         
-        return view('admin.charity.index', compact('charity'));
+        return view('admin.charity.index', compact('charity_data'));
     }
  public function data()
     {
