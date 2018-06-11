@@ -41,9 +41,19 @@ class MembershipController extends Controller
     public function remaning_credit()
     {
       $user= JWTAuth::parseToken()->authenticate();
+
 	 
-	 $subscription=Subscription::where('user_id',$user->id)->first();
+	 $subscription=Subscription::where('user_id',$user->id)->count();
 	  return $subscription;
+	  
+    }  
+	 public function get_status()
+    {
+      $user= JWTAuth::parseToken()->authenticate();
+
+	 
+		$status=Subscription::where('user_id',$user->id)->first();
+	  return $status;
 	  
     }  
 	
