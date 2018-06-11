@@ -45,8 +45,8 @@ Membership List
             <br />
             <div class="panel-body">
                 <div class="table-responsive">
-                <table class="table table-bordered width100" id="table">
-                    <thead>
+                <table class="table table-bordered" id="table">
+                     <thead>
                         <tr class="filters">
                             <th>ID</th>
                             <th>Package Name</th>
@@ -56,9 +56,35 @@ Membership List
                              <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-
-
+                       <tbody>
+                    @if(!empty($memberships))
+                        @foreach ($memberships as $membership)
+                            <tr>
+                                <td>{{ $membership->id }}</td>
+                                <td>{{ $membership->package_name }}</td>
+                                <td>{{ $membership->currency }}</td>
+								 <td>{{ $membership->amount }}</td>
+								  <td>{{ $membership->credit_score }}</td>
+                                <td>{{ $membership->created_at->diffForHumans() }}</td>
+								    <td>
+                                   
+                                    <a href="{{ URL::to('admin/membership/' . $membership->id . '/edit' ) }}"><i class="livicon"
+                                                                                                     data-name="edit"
+                                                                                                     data-size="18"
+                                                                                                     data-loop="true"
+                                                                                                     data-c="#428BCA"
+                                                                                                     data-hc="#428BCA"
+                                                                                                     title="@lang('Update')"></i></a>
+                                    <a href="{{ route('admin.membership.confirm-delete', $membership->id) }}" data-toggle="modal"
+                                       data-target="#delete_confirm"><i class="livicon" data-name="remove-alt"
+                                                                        data-size="18" data-loop="true" data-c="#f56954"
+                                                                        data-hc="#f56954"
+                                                                        title="@lang('membership Delete')"></i></a>
+                                </td>
+                           
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
                 </div>
@@ -70,35 +96,14 @@ Membership List
 
 {{-- page level scripts --}}
 @section('footer_scripts')
-    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}"></script>
 
-<script>
-    $(function() {
-        var table = $('#table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{!! route('admin.membership.data') !!}',
-            columns: [
-                { data: 'id', name: 'id' },
-                { data: 'package_name', name: 'package_name' },
-                { data: 'currency', name: 'currency' },
-				{ data: 'amount', name: 'amount' },
-				
-                { data: 'credit_score', name: 'credit_score' },
-                
-              
-                { data: 'actions', name: 'actions', orderable: false, searchable: false }
-            ]
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable();
         });
-        table.on( 'draw', function () {
-            $('.livicon').each(function(){
-                $(this).updateLivicon();
-            });
-        } );
-    });
-
-</script>
+    </script>
 
 <div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
 	<div class="modal-dialog">
