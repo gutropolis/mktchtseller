@@ -42,16 +42,16 @@ class CharityController extends JoshController
                 return $charity->created_at->diffForHumans();
             })
             
-            ->addColumn('actions',function($charity) {
+            /*->addColumn('actions',function($charity) {
                 $actions = '<a href='. route('admin.charity.show', $charity->id) .'><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
                             <a href='. route('admin.charity.edit', $charity->id) .'><i class="livicon" data-name="edit" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="update user"></i></a>';
              
                     $actions .= '<a href='. route('admin.charity.confirm-delete', $charity->id) .' data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user"></i></a>';
                 
                 return $actions;
-            })
-            ->rawColumns(['actions'])
-            ->make(true);
+            })*/
+            //->rawColumns(['actions'])
+           // ->make(true);
     }
    
     public function store(Request $request)
