@@ -216,12 +216,18 @@ class SellerController extends Controller
 		});
 		$sellerproduct->save();
 		$subscription=Subscription::where('user_id',$user->id)->first();
+	//	return $subscription;
+		$subscription->remaining_credit;
 		if(count($subscription) > 0){
-		if($subscription->remaining_credit='1')
+		if($subscription->remaining_credit == '1')
 		{
 			$update=Subscription::where('user_id',$user->id)->update(['status' => '0']);
 		}
+		$remaning_credit=$subscription->remaining_credit - 1;
+			$update = Subscription::where('user_id',$user->id)->update(['remaining_credit' => $remaning_credit]);
 		}	
+		//return($subscription->remaining_credit);
+		
 		if(count($subscription) <= 0 )
 		{
 		
@@ -229,13 +235,6 @@ class SellerController extends Controller
 		$update=User::where('id',$user->id)->update(['trial_pack'=>$remaning]);
 	}
 	
-	if(count($subscription) > 0){
-		//echo 'else'; exit;
-			$remaning_credit=$subscription->remaining_credit - 1;
-			$update = Subscription::where('user_id',$user->id)->update(['remaining_credit' => $remaning_credit]);
-		
-		
-	}
 		
 		$actvity=new Controller;
 	$actvity->AddUserActivityFeed($sellerproduct->seller_id,$sellerproduct->charity_owner_id,'charity','Offer to Donate Product',$sellerproduct->post_id,'/donaters');
@@ -249,12 +248,12 @@ class SellerController extends Controller
                 ->causedBy($sellerproduct)
                 ->log('Invite Charity to Donate Product '.$product->title);
             
-            return response()->json(['message' => 'You have successfully make an offer.']);
+        
 			}
 		
 		
 		
-		return response()->json(['message' => 'Your Offer Succesfully Recieved To Charity Organization']);
+		    return response()->json(['message' => 'You have successfully make an offer.']);
 		
     }
 		
