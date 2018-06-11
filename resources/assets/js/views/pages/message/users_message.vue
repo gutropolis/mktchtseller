@@ -239,8 +239,8 @@
       props: ['userId'],
     created: function()
           {
-   			this.fetchcredit();
-			this.fetchstatus();
+   		   this.fetchcredit();
+		   this.fetchstatus();
    		   this.fetchCharity();
    		   this.fetchMessage();
    		   this.senderinfo();
