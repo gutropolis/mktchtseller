@@ -101,7 +101,7 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
 	//payment Settings
 	 Route::group([ 'prefix' => 'payments'], function () {
         Route::get('data', 'PaymentsController@data')->name('payments.data');
-		  Route::get('history', 'PaymentsController@history')->name('payments.history');
+		  Route::get('history', 'PaymentsController@history')->name('subscription');
 		  
 	 });
        
