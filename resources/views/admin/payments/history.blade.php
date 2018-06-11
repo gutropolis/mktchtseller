@@ -42,8 +42,8 @@ Payment History
             <br />
             <div class="panel-body">
                 <div class="table-responsive">
-                <table class="table table-bordered width100" id="table">
-                    <thead>
+                <table class="table table-bordered" id="table">
+                     <thead>
                         <tr class="filters">
 							<th>Id</th>
                             <th>User Email</th>
@@ -55,8 +55,9 @@ Payment History
 							<th>Status</th>
                            
                         </tr>
-						<tr>
-							@foreach($subscription as $cat)
+                     <tbody>
+                    @if(!empty($subscription))
+                        @foreach($subscription as $cat)
 							<td>{{ $no++ }}</td>
 						<td>{{ $cat->stripe_email }}</td>
 						<td>{{ $cat->package_name }}</td>
@@ -71,14 +72,9 @@ Payment History
 						
 						</tr>
 							 @endforeach
-						
-                    </thead>
-                    <tbody>
-							
-
+                    @endif
                     </tbody>
                 </table>
-				{!! $subscription->links('pagination') !!}
                 </div>
             </div>
         </div>
@@ -88,12 +84,16 @@ Payment History
 
 {{-- page level scripts --}}
 @section('footer_scripts')
-    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}" ></script>
-    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}" ></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/jquery.dataTables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendors/datatables/js/dataTables.bootstrap.js') }}"></script>
 
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable();
+        });
+    </script>
 
-
-<div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="seller_delete_confirm_title" aria-hidden="true">
+<div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
 	<div class="modal-dialog">
     	<div class="modal-content"></div>
   </div>
