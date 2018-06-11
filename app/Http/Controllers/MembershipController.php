@@ -104,6 +104,8 @@ class MembershipController extends Controller
 		}
 			
 			$update=User::where('id',$user->id)->update(['trial_pack'=>'0']);
+			
+			
           return response()->json(['message' => 'Your Subscription Activated.']);
     }
 
