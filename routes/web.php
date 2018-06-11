@@ -107,7 +107,7 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
        
 	 Route::resource('payments', 'PaymentsController');
 	
-	
+	Route::get('donations','DonationController@index')->name('donations');
       Route::get('donation_list/data', 'DonationController@donation_listData')->name('donation_list.data');
        Route::get('{donation}/delete', 'DonationController@destroy')->name('donation.delete');
         Route::get('{donation}/confirm-delete', 'DonationController@getModalDelete')->name('donation.confirm-delete');
@@ -115,7 +115,8 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
 	
 	//charity management
     Route::group([ 'prefix' => 'charity'], function () 
-{
+{			
+		Route::get('charity_data','CharityController@index')->name('charity_data');
         Route::get('data', 'CharityController@data')->name('charity.data');
         Route::get('{charity}/delete', 'CharityController@destroy')->name('charity.delete');
         Route::get('{charity}/confirm-delete', 'CharityController@getModalDelete')->name('charity.confirm-delete');
@@ -126,6 +127,8 @@ Route::group(['prefix' => 'admin','namespace'=>'Admin', 'middleware' => 'admin',
    
 
 Route::group(['prefix' => 'charityrequests'], function () {
+	
+	Route::get('request','CharityRequestController@index')->name('request');
         Route::get('{charityrequests}/delete', 'CharityRequestController@destroy')->name('charityrequests.delete');
    Route::get('{charityrequests}/accept', 'CharityRequestController@accept')->name('charityrequests.accept');
     Route::get('{charityrequests}/deactivate', 'CharityRequestController@deactivate')->name('charityrequests.deactivate');
