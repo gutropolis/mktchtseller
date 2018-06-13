@@ -65,7 +65,7 @@ class PaymentsController extends JoshController
 	 public function history()
     {
 		
-		$subscription=Subscription::select('gs_subscription.id','gs_subscription.stripe_email','gs_subscription.stripe_id','gs_subscription.status','gs_subscription.remaining_credit','gs_membership_pack.package_name','gs_subscription.credit','gs_membership_pack.amount','gs_subscription.created_at')->join('gs_membership_pack','gs_subscription.package_id','=','gs_membership_pack.id')->paginate('5');
+		$subscription=Subscription::select('gs_subscription.id','gs_subscription.stripe_email','gs_subscription.stripe_id','gs_subscription.status','gs_subscription.remaining_credit','gs_membership_pack.package_name','gs_subscription.credit','gs_membership_pack.amount','gs_subscription.created_at')->join('gs_membership_pack','gs_subscription.package_id','=','gs_membership_pack.id')->get();
         
        
 		
