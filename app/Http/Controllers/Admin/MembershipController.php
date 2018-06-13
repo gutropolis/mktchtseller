@@ -29,8 +29,8 @@ class MembershipController extends JoshController
     public function index()
     {
 
-      $membership=Membership::all();
-        return view('admin.membership.index',compact('membership'));
+      $memberships=Membership::all();
+        return view('admin.membership.index',compact('memberships'));
     }
 	 public function data()
     {
