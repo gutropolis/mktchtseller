@@ -905,10 +905,43 @@ font-size:15px;
     overflow-x: hidden;
     .proflie__element {
         background: $grey-color8;
+		width: 25%;
+	@media screen and (max-width: $break-sm){
+           height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow: hidden;
+    transition: 0.5s;
+    padding-top: 0px;
+	padding-left:0px;
+	box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.56);
+	-webkit-box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.56);
+	-moz-box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.56);
+         }
         &--box {
             background: $grey-color7;
             padding: $space-n;
         }
+		.closebtn{
+			display:none;
+		@media screen and (max-width: $break-sm){
+			display:block;
+			    position: absolute;
+    right: 0;
+    background: #faa41a;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 30px;
+    color: #fff;
+		}
+		}
+		
         &--image {
             border-radius: 100%;
             width: 60px;
@@ -918,6 +951,13 @@ font-size:15px;
             overflow: hidden;
             left: 35px;
             top: 0px;
+			@media screen and (max-width: $break-sm){
+				position:relative;
+				left:0;
+				right:0;
+				margin:0px auto;
+			}
+			
         }
         &--name {
             color: $white-color;
@@ -925,6 +965,11 @@ font-size:15px;
             padding-left:$space-xl + $space-m;
             font-size: 20px;
             line-height: 40px;
+			@media screen and (max-width: $break-sm)
+				{
+					padding-left:0px;
+					text-align:center;
+				}
         }
         &--detail {
             background: $grey-color8;
@@ -935,6 +980,7 @@ font-size:15px;
                 &--item {
                     position: relative;
                     background: transparent;
+					
                     &--link {
                         color: $white-color;
                         fill: $white-color;
@@ -949,6 +995,9 @@ font-size:15px;
                         transition: 0.3s ease-in-out;
                         -webkit-transition: 0.3s ease-in-out;
                         -moz-transition: 0.3s ease-in-out;
+						@media screen and (max-width: $break-sm){
+							padding-left:50px;
+						}
                         svg {
                             width: 20px;
                             height: auto;
@@ -956,7 +1005,11 @@ font-size:15px;
                             left: 0;
                             left: 40px;
                             top: 10px;
-                        }
+                        @media screen and (max-width: $break-sm){
+							left:15px;
+						}
+						}
+						
                         &:hover,
                         &:focus {
                             color: $orange-color;
@@ -3136,4 +3189,13 @@ font-weight:600;
 		}
 	}
 	}
+}
+.dashboard-siderbar-icon
+{
+	display:none;
+	@media screen and (max-width: $break-sm){
+	display:block;
+	padding: 0px 20px;
+    background: #d6d6d6;
+}
 }

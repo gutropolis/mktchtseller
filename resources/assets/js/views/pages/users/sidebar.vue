@@ -1,11 +1,14 @@
 <template>
-   <aside class="col-md-3 proflie__element pr-0">
+
+   <aside class="col-md-3 proflie__element  pr-0" id="mySidenavs">
+   <a href="javascript:void(0)" class="closebtn" @click="closeNav">&times;</a>
       <div class="proflie__element--box">
          <figure class="proflie__element--image">
             <img :src="getAvatar" alt="user" /> 
          </figure>
          <h4 class="proflie__element--name">{{getAuthUserFullName()}}</h4>
       </div>
+	  
       <div class="proflie__element--detail">
          <ul class="proflie__element--detail--list">
             <li class="proflie__element--detail--list--item">
@@ -400,6 +403,7 @@
       </tr>
    </aside>
 </template>
+
 <script>
    import helper from '../../../services/helper'
    
@@ -438,6 +442,12 @@
 			
 			},
 			
+			
+
+ closeNav() {
+    document.getElementById("mySidenavs").style.width = "0";
+},
+	
 			fetchmessage_charity(){
 					axios.get('/api/unread_message_charity').then(response=>{
 					this.unread_message_charity=response.data;

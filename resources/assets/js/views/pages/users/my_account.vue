@@ -7,6 +7,7 @@
                <div class="col-md-9 dashboard">
                   <div class="dashboard__content clearfix">
                      <div class="dashboard__content--head">
+					
                         <h3 class="dashboard__content--head--heading">My Profile</h3>
                         <a href="#" class="dashboard__content--head--link">
                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -55,9 +56,17 @@
                         </div>
                         <div class="dashboard__content--description">
                            <hr>
-                           <h3 class="dashboard__content--description--heading">Description:</h3>
-                           <p v-for="item in items" class="dashboard__content--description--content">{{item.bio}}
+						   <div class="row">
+                           <div class="col-md-9">
+						   <h3 class="dashboard__content--description--heading">Description:</h3>
+                           <p v-for="item in items" class="dashboard__content--description--content">
+							{{item.bio}}
                            </p>
+						   </div>
+								<div class="col-md-3">
+									<h3 class="dashboard__content--description--heading">Current Plan</h3>
+								<div class="membership_content--box"><h6>Basic</h6> <div><!----></div> <div class="membership_content--box--heading"><h3><span>$</span>49</h3></div> <article><p>Credit Pack Of 1 For </p> <ul><li>1 theme included.</li> <li>1 year of theme updates &amp; support.</li> <li>20% off future purchases.</li></ul></article> <button class="btn btn-success" style="margin-bottom: 10px;">Change Plan</button></div></div>
+						  </div>
                         </div>
                      </div>
                   </div>
@@ -93,6 +102,7 @@
 					},
        
            methods: {
+		  
        
    			 getAuthUserFullName(){
                    return this.$store.getters.getAuthUserFullName;
@@ -110,6 +120,7 @@
                },
        
            },
+		   
    		 computed: {
                getAvatar(){
                    return '/images/user/'+this.getAuthUser('avatar');

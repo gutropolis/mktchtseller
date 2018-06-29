@@ -1,7 +1,7 @@
 <template> 
 	<div id="main-wrapper">
 		<app-header></app-header>
-	
+	 <div class="dashboard-siderbar-icon"><span style="font-size:30px;cursor:pointer" @click="openNav">&#9776;</span></div>
 		<router-view></router-view>
 		<app-footer></app-footer>
 	</div>
@@ -14,6 +14,9 @@
   import helper from '../services/helper'
     export default {
 	 methods : {
+	  openNav() {
+					document.getElementById("mySidenavs").style.width = "250px";
+					},
             notification(){
                 toastr.options = {
                     "positionClass": "toast-top-right"
