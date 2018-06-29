@@ -37,8 +37,8 @@
                                              </ul>
                                           </article>
 										  
-										  <button v-if="active == '0'||remaining_credit == '0' || count == '0'" class="btn btn-success"  @click="subscribe(pack.id)" style="margin-bottom:10px;">Subscribe</button>
-                                          <button v-else disabled class="btn btn-success" style="margin-bottom:10px;">Subscribe</button>
+										  <button v-if="remaining_credit == '0' || count == '0'" class="btn btn-success"  @click="subscribe(pack.id)" style="margin-bottom:10px;">Subscribe</button>
+                                          <button  @click="subscribe(pack.id)" class="btn btn-success" style="margin-bottom:10px;">Subscribe</button>
                                          
                                        </div>
                                     </div>
