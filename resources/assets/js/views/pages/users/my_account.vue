@@ -63,9 +63,10 @@
 							{{item.bio}}
                            </p>
 						   </div>
-								<div class="col-md-3">
+						   
+								<div class="col-md-3" v-if="subscribed == '1'">
 									<h3 class="dashboard__content--description--heading">Current Plan</h3>
-								<div class="membership_content--box"><h6>Basic</h6> <div><!----></div> <div class="membership_content--box--heading"><h3><span>$</span>49</h3></div> <article><p>Credit Pack Of 1 For </p> <ul><li>1 theme included.</li> <li>1 year of theme updates &amp; support.</li> <li>20% off future purchases.</li></ul></article> <button class="btn btn-success" style="margin-bottom: 10px;">Change Plan</button></div></div>
+								<div class="membership_content--box"><h6>{{subscribed_detail.package_name}}</h6> <div><!----></div> <div class="membership_content--box--heading"><h3><span>$</span>{{subscribed_detail.amount}}</h3></div> <article><p>Credit Pack Of {{subscribed_detail.credit_score}} For </p> <ul><li>1 theme included.</li> <li>1 year of theme updates &amp; support.</li> <li>20% off future purchases.</li></ul></article> <router-link to="/membership" class="btn btn-success" style="margin-bottom: 10px;">Change Plan</router-link></div></div>
 						  </div>
                         </div>
                      </div>
@@ -88,7 +89,9 @@
            data() {
        
 				   return {
-							items: []
+							items: [],
+							subscribed:{},
+							subscribed_detail:{},
 						}
        
 				},
@@ -96,13 +99,20 @@
            mounted() {},
        
            created: function() {
-       
+						this.fetchsubscription();
 						this.fetchItems();
        
 					},
        
            methods: {
-		  
+		  fetchsubscription(){
+	axios.get('api/subscribed').then(response =>{
+		this.subscribed=response.data.data1;
+		this.subscribed_detail=response.data.data2;
+		
+	
+	})
+   },
        
    			 getAuthUserFullName(){
                    return this.$store.getters.getAuthUserFullName;
