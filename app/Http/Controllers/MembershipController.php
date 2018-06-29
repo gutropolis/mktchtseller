@@ -109,6 +109,16 @@ class MembershipController extends Controller
           return response()->json(['message' => 'Your Subscription Activated.']);
     }
 
+		public function user_subscription()
+		{
+			$user = JWTAuth::parseToken()->authenticate();
+			$user_subscribe=Subscription::where('user_id',$user->id)->where('status','=','1')->count();
+			$package_detail=Subscription::select('gs_membership_pack.package_name','gs_membership_pack.currency','gs_membership_pack.credit_score','gs_membership_pack.amount','gs_subscription.user_id','gs_subscription.status')->join('gs_membership_pack','gs_subscription.package_id','=','gs_membership_pack.id')->where('gs_subscription.user_id',$user->id)->where('gs_subscription.status','=','1')->first();
+			return response()->json(array('data1'=>$user_subscribe,'data2'=>$package_detail));
+		}
+	
+	
+	
      public function edit($id)
     {
         
